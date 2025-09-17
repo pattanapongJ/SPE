@@ -140,7 +140,7 @@ class AccountMoveLine(models.Model):
                 if barcode_modern_trade_ids:
                     barcode_modern_trade = barcode_modern_trade_ids[0].barcode_modern_trade
                 else:
-                    barcode_modern_trade = False
+                     = False
 
                 self.external_item = self.external_product_id.name
                 self.barcode_customer = self.external_product_id.barcode_modern_trade
