@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="wizard_inter_tranfers_form_view">
+        <field name="name">receipt.wizard.form</field>
+        <field name="model">wizard.inter.tranfers.report</field>
+        <field name="arch" type="xml">
+            <form string="Infer Tranfers Reports">
+                <group >
+                    <group>
+                        <!-- <field name="start_date"/> -->
+                        <field name="documents" widget="selection" string="Documents"/>
+                    </group>
+                    <!-- <group>
+                        <field name="end_date"/>
+                    </group> -->
+                </group>
+                <footer>
+                    <button name="print" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="inter_tranfers_report_wizard_action">
+        <field name="name">Infer Tranfers Reports</field>
+        <field name="res_model">wizard.inter.tranfers.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_inter_tranfers_form_view"/>
+        <field name="target">new</field>
+    </record>
+<!-- 
+     <menuitem id="menu_forecast_report_wizard_action"
+          parent="sale.menu_sale_report"
+          action="forecast_report_wizard_action"
+          sequence="2"/> -->
+<!-- 
+    <menuitem id="menu_report_product_all"
+            name="Sales"
+            action="action_order_report_all"
+            parent="menu_sale_report"
+            sequence="1"/> -->
+
+
+</odoo>

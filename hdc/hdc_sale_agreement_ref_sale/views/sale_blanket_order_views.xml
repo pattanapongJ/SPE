@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_sale_ref_blanket_order" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form.inherit.ref.sale</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="hdc_sale_project.inherit_view_view_blanket_order"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='project_detail']/group[2]" position="inside">
+                <field name="ref_sale_id" attrs="{'readonly': [('state', 'in', ('open','expired'))]}"/>
+                <field name="ref_sale_ids" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="inherit_sale_ref_attrs_blanket_order" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form.inherit.ref.sale.attrs</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='product_id']" position="attributes">
+                <attribute name="force_save" >1</attribute>
+                <attribute name="attrs">{'readonly': ['|', ('parent.state', 'in', ('open', 'expired')), ('parent.ref_sale_id','!=',False)],'required': [('display_type', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='original_uom_qty']" position="attributes">
+                <attribute name="force_save" >1</attribute>
+                <attribute name="attrs">{'readonly': [('parent.state', 'in', ('open', 'expired'))]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="force_save" >1</attribute>
+                <attribute name="attrs">{'readonly': ['|', ('parent.state', 'in', ('open', 'expired')), ('parent.ref_sale_id','!=',False)],'required': [('display_type', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='product_uom']" position="attributes">
+                <attribute name="force_save" >1</attribute>
+                <attribute name="attrs">{'readonly': ['|', ('parent.state', 'in', ('open', 'expired')), ('parent.ref_sale_id','!=',False)],'required': [('display_type', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

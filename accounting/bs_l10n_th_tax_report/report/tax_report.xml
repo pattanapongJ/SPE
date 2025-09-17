@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="l10n_th_tax_report.paperformat_tax_report" model="report.paperformat">
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">35</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_spacing">30</field>
+    </record>
+
+
+    <template
+            id="assets_backend"
+            name="bs_l10n_th_tax_report assets"
+            inherit_id="web.assets_backend"
+    >
+        <xpath expr="." position="inside">
+            <link
+                    href="/bs_l10n_th_tax_report/static/src/css/report.css"
+                    rel="stylesheet"
+            />
+        </xpath>
+    </template>
+
+
+    <template id="report_tax_report_filters_inherit" inherit_id="l10n_th_tax_report.report_tax_report_filters">
+        <xpath expr="//div[hasclass('data_table')]" position="replace">
+            <div class="text-right">
+                <span class="page"/>
+                /
+                <span class="topage"/>
+            </div>
+            <h4 class="m-1 text-center" t-attf-style="{{fstyle_one}}">
+                <t t-if="o.tax_id.type_tax_use == 'sale'">
+                    รายงานภาษีขาย
+                </t>
+                <t t-elif="o.tax_id.type_tax_use == 'purchase'">
+                    รายงานภาษีซื้อ
+                </t>
+            </h4>
+            <table class="table table-borderless table-sm" style="width:100%;">
+                <colgroup>
+                    <col style="width: 12%;"/>
+                    <col style="width: 63%;"/>
+                    <col style="width: 15%;"/>
+                    <col style="width: 10%;"/>
+                </colgroup>
+                <tr>
+                    <th t-attf-style="{{fstyle_four}}">ชื่อผู้ประกอบการ</th>
+                    <td>
+                        <span t-field="o.company_id.display_name"/>
+                    </td>
+                    <td t-attf-style="{{fstyle_four}}">
+                        <b>เดือนภาษี</b>
+                        <span class="ml-1" t-attf-style="{{fstyle_five}}" t-esc="o.date_range_id._get_month_thai()"/>
+                    </td>
+                    <td>
+                        <b>ปี</b>
+                        <span style="margin-left:5px;" t-field="o.date_range_id.year_th"/>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th t-attf-style="{{fstyle_four}}">ชื่อสถานที่ประกอบการ</th>
+                    <td>
+                        <span t-field="o.company_id.display_name"/>
+                    </td>
+                    <th t-attf-style="{{fstyle_four}}">
+                        เลขประจำตัวผู้เสียภาษี
+                    </th>
+                    <td>
+                        <span t-field="o.company_id.vat"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th class="text-right">
+                        <span style="margin-right:40px;">[/]</span>
+                    </th>
+                    <td>
+                        <span t-field="o.branch_id.display_name"/>
+                        <span style="margin-left:5px;" t-field="o.branch_id.branch_no"/>
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+    </template>
+
+
+    <template id="report_tax_report_base_inherit" inherit_id="l10n_th_tax_report.report_tax_report_base">
+        <xpath expr="//div[hasclass('page')]" position="replace">
+
+            <t t-set="fstyle_one"
+               t-value="'font-family: Kanit-Light;font-size: 18.67px;font-weight: normal;'"/>
+            <t t-set="fstyle_two" t-value="'font-family: Kanit-Light;font-size: 16px;font-weight: normal;'"/>
+            <t t-set="fstyle_three"
+               t-value="'font-family: Kanit-Light;font-size: 10.67px;font-weight: normal;'"/>
+            <t t-set="fstyle_four"
+               t-value="'font-family: Kanit-Light;font-size:12px;font-weight: bold;'"/>
+            <t t-set="fstyle_five" t-value="'font-family: Kanit-Light;font-size: 12px;font-weight: normal;'"/>
+
+            <div class="header" t-attf-style="{{fstyle_five}}">
+                <!-- Display filters -->
+                <t t-call="l10n_th_tax_report.report_tax_report_filters"/>
+            </div>
+            <div class="footer">
+            </div>
+
+
+            <div class="page" t-attf-style="{{fstyle_five}}">
+                <div class="act_as_table data_table mt8" style="width: 100%;">
+                    <t t-if="report_pages">
+                        <t t-call="bs_l10n_th_tax_report.pdf_tax_report_data"/>
+                    </t>
+                    <t t-else="">
+                        <t t-call="bs_l10n_th_tax_report.html_tax_report_data"/>
+                    </t>
+                </div>
+
+            </div>
+
+
+        </xpath>
+
+    </template>
+    <template id="html_tax_report_data">
+        <table class="table table-bordered table-sm border-secondary" style="width:100%;">
+            <thead class="bs_table" t-attf-style="{{fstyle_four}}">
+                <tr>
+                    <th style="vertical-align: middle;" rowspan="2">ลำดับที่</th>
+                    <th colspan="3">ใบกำกับภาษี</th>
+                    <th style="vertical-align: middle;" rowspan="2">
+                        <t t-if="o.tax_id.type_tax_use == 'sale'">
+                            ชื่อผู้ซื้อสินค้า/ผู้รับบริการ
+                        </t>
+                        <t t-elif="o.tax_id.type_tax_use == 'purchase'">
+                            ชื่อผู้ขายสินค้า/ผู้ให้บริการ
+                        </t>
+                    </th>
+                    <th style="vertical-align: top;" rowspan="2">เลขประจำตัว<br/>ผู้เสียภาษีอากร
+                    </th>
+                    <th style="vertical-align: middle;" rowspan="2">
+                        สถานประกอบการ
+                    </th>
+                    <th style="vertical-align: top;" rowspan="2">มูลค่าสินค้า<br/>หรือบริการ
+                    </th>
+                    <th style="vertical-align: top;" rowspan="2">จำนวนเงิน<br/>ภาษีมูลค่าเพิ่ม
+                    </th>
+                    <th style="vertical-align: middle;" rowspan="2">จำนวนเงินรวม</th>
+                </tr>
+                <tr>
+                    <th>วัน/เดือน/ปี</th>
+                    <th>เล่มที่/เลขที่</th>
+                    <th>Voucher</th>
+                    <!--                    <th>ผู้เสียภาษีอากร</th>-->
+                    <!--                    <th>หรือบริการ</th>-->
+                    <!--                    <th>ภาษีมูลค่าเพิ่ม</th>-->
+                </tr>
+            </thead>
+            <tbody t-attf-style="{{fstyle_three}}">
+                <t t-set="total_tax_base_amount" t-value="0"/>
+                <t t-set="total_tax_amount" t-value="0"/>
+                <t t-foreach="o.get_line_data()" t-as="line">
+                    <t t-set="line_total_amt" t-value="line['tax_base_amount'] + line['tax_amount']"/>
+                    <t t-set="total_tax_base_amount"
+                       t-value="total_tax_base_amount+line['tax_base_amount']"/>
+                    <t t-set="total_tax_amount" t-value="total_tax_amount+line['tax_amount']"/>
+                    <tr>
+                        <td>
+                            <span t-esc="line_index + 1"/>
+                        </td>
+                        <td>
+                            <span t-esc="line['tax_date'].strftime('%d-%m-%Y')"/>
+                        </td>
+                        <td>
+                            <span t-esc="line['tax_invoice_number']"/>
+
+                        </td>
+                        <td>
+                            <t t-foreach="line['voucher_no']" t-as="ref">
+                                <span t-esc="ref"/>
+                                <t t-if="not ref_lase_index">
+                                    <br/>
+                                </t>
+                            </t>
+                        </td>
+                        <td>
+                            <span t-esc="line['partner'].name"/>
+                        </td>
+                        <td>
+                            <span t-esc="line['partner'].vat"/>
+                        </td>
+                        <td>
+                            <span t-esc="line['partner'].branch"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-esc="line['tax_base_amount']"
+                                  t-options='{"widget": "float", "precision": 2}'/>
+                        </td>
+                        <td class="text-right">
+                            <span t-esc="line['tax_amount']"
+                                  t-options='{"widget": "float", "precision": 2}'/>
+                        </td>
+                        <td class="text-right">
+                            <span t-esc="line_total_amt"
+                                  t-options='{"widget": "float", "precision": 2}'/>
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="7" class="text-right" t-attf-style="{{fstyle_four}}">
+                        ยอดรวมทั้งหมด :
+                    </th>
+
+                    <th class="text-right">
+                        <span t-esc="total_tax_base_amount"
+                              t-options='{"widget": "float", "precision": 2}'/>
+                    </th>
+                    <th class="text-right">
+                        <span t-esc="total_tax_amount" t-options='{"widget": "float", "precision": 2}'/>
+                    </th>
+                    <th class="text-right">
+                        <span t-esc="total_tax_amount+total_tax_base_amount"
+                              t-options='{"widget": "float", "precision": 2}'/>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </template>
+
+    <template id="pdf_tax_report_data">
+        <t t-set="line_no" t-value="1"/>
+        <t t-foreach="report_pages[o.id]" t-as="page_data">
+            <table class="table table-bordered table-sm border-secondary" style="width:100%;">
+                <thead class="bs_table" t-attf-style="{{fstyle_four}}">
+                    <tr>
+                        <th style="vertical-align: middle;" rowspan="2">ลำดับที่</th>
+                        <th colspan="3">ใบกำกับภาษี</th>
+                        <th style="vertical-align: middle;" rowspan="2">ชื่อผู้ซื้อสินค้า/ผู้รับบริการ
+                        </th>
+                        <th style="vertical-align: top;" rowspan="2">เลขประจำตัว<br/>ผู้เสียภาษีอากร
+                        </th>
+                        <th style="vertical-align: middle;" rowspan="2">
+                            สถานประกอบการ
+                        </th>
+                        <th style="vertical-align: top;" rowspan="2">มูลค่าสินค้า<br/>หรือบริการ
+                        </th>
+                        <th style="vertical-align: top;" rowspan="2">จำนวนเงิน<br/>ภาษีมูลค่าเพิ่ม
+                        </th>
+                        <th style="vertical-align: middle;" rowspan="2">จำนวนเงินรวม</th>
+                    </tr>
+                    <tr>
+                        <th>วัน/เดือน/ปี</th>
+                        <th>เล่มที่/เลขที่</th>
+                        <th>Voucher</th>
+                        <!--                    <th>ผู้เสียภาษีอากร</th>-->
+                        <!--                    <th>หรือบริการ</th>-->
+                        <!--                    <th>ภาษีมูลค่าเพิ่ม</th>-->
+                    </tr>
+                </thead>
+                <tbody t-attf-style="{{fstyle_three}}">
+                    <t t-set="total_tax_base_amount" t-value="0"/>
+                    <t t-set="total_tax_amount" t-value="0"/>
+                    <t t-foreach="page_data['lines']" t-as="line">
+                        <t t-set="line_total_amt" t-value="line['tax_base_amount'] + line['tax_amount']"/>
+                        <t t-set="total_tax_base_amount"
+                           t-value="total_tax_base_amount+line['tax_base_amount']"/>
+                        <t t-set="total_tax_amount" t-value="total_tax_amount+line['tax_amount']"/>
+                        <tr>
+                            <td>
+                                <span t-esc="line_no"/>
+                            </td>
+                            <td>
+                                <span t-esc="line['tax_date'].strftime('%d-%m-%Y')"/>
+                            </td>
+                            <td>
+                                <span t-esc="line['tax_invoice_number']"/>
+
+                            </td>
+                            <td>
+                                <t t-foreach="line['voucher_no']" t-as="ref">
+                                    <span t-esc="ref"/>
+                                    <t t-if="not ref_lase_index">
+                                        <br/>
+                                    </t>
+                                </t>
+                            </td>
+                            <td>
+                                <span t-esc="line['partner'].name"/>
+                            </td>
+                            <td>
+                                <span t-esc="line['partner'].vat"/>
+                            </td>
+                            <td>
+                                <span t-esc="line['partner'].branch"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="line['tax_base_amount']"
+                                      t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="line['tax_amount']"
+                                      t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="line_total_amt"
+                                      t-options='{"widget": "float", "precision": 2}'/>
+                            </td>
+                        </tr>
+                        <t t-set="line_no" t-value="line_no+1"/>
+                    </t>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="7" class="text-right" t-attf-style="{{fstyle_four}}">
+                            ยอดรวมหน้า :
+                            <span class="ml-1" t-esc="page_data_index + 1" t-attf-style="{{fstyle_five}}"/>
+                        </th>
+
+                        <th class="text-right">
+                            <span t-esc="total_tax_base_amount"
+                                  t-options='{"widget": "float", "precision": 2}'/>
+                        </th>
+                        <th class="text-right">
+                            <span t-esc="total_tax_amount" t-options='{"widget": "float", "precision": 2}'/>
+                        </th>
+                        <th class="text-right">
+                            <span t-esc="total_tax_amount+total_tax_base_amount"
+                                  t-options='{"widget": "float", "precision": 2}'/>
+                        </th>
+                    </tr>
+
+                    <tr t-if="page_data_last">
+                        <t t-set="page_total_tax_base_amount"
+                           t-value="sum(line.tax_base_amount for line in o.results)"/>
+                        <t t-set="page_total_tax_amount"
+                           t-value="sum(line.tax_amount for line in o.results)"/>
+                        <th colspan="7" class="text-right" t-attf-style="{{fstyle_four}}">
+                            ยอดรวมทั้งหมด :
+
+                        </th>
+
+                        <th class="text-right">
+                            <span t-esc="page_total_tax_base_amount"
+                                  t-options='{"widget": "float", "precision": 2}'/>
+                        </th>
+                        <th class="text-right">
+                            <span t-esc="page_total_tax_amount"
+                                  t-options='{"widget": "float", "precision": 2}'/>
+                        </th>
+                        <th class="text-right">
+                            <span t-esc="page_total_tax_base_amount+page_total_tax_amount"
+                                  t-options='{"widget": "float", "precision": 2}'/>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+            <p style="page-break-before:always;"></p>
+
+        </t>
+    </template>
+
+
+</odoo>

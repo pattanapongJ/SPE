@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_inventory_adjustment_form_inherit_user_employee" model="ir.ui.view">
+        <field name="name">view.inventory.adjustment.form.inherit.user.employee</field>
+        <field name="model">stock.inventory</field>
+        <field name="inherit_id" ref="hdc_inventory_adj_confirm.view_inventory_adjustment_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_confirm_picking']" position="before">
+                <field name="user_employee_confirm_picking"/>
+            </xpath>
+            <xpath expr="//field[@name='user_confirm_picking']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_validation_picking']" position="before">
+                <field name="user_employee_validation_picking"/>
+            </xpath>
+            <xpath expr="//field[@name='user_validation_picking']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

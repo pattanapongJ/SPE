@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="mrp_production_workorder_tree_editable_view_inherit_1" model="ir.ui.view">
+            <field name="name">mrp.workorder.view.inherit</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='state']" position="replace">
+                    <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state not in ('done', 'cancel')" attrs="{'invisible': [('production_state', 'in', ('draft'))]}"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='name']" position="after">
+                    <field name="operation_id" options="{'no_create': True}"/>
+                    <field name="workcenter_view_id" options="{'no_create': True}"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//tree/field[@name='workcenter_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+           </field>
+        </record>
+
+    <record id="mrp_production_workorder_tree_editable_view_inherit" model="ir.ui.view">
+        <field name="name">mrp.workorder.view.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='workcenter_id']" position="after">
+                <!-- <field name= "machines_id" domain="[('workcenter_id', '=', workcenter_view_id)]"/> -->
+                <field name="machines_id" domain="[('id', 'in', mac_relate)]" />
+                <field name="mac_relate" invisible="1" />
+            </xpath>
+           
+       </field>
+    </record>
+
+    
+    <record id="hdc_mrp_machines_view_mrp_production_workorder_form_view_filter_inherit" model="ir.ui.view">
+        <field name="name">hdc_mrp_machines.mrp.production.work.order.select.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_workorder_form_view_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search/group" position="inside">
+                <filter string="Date" name="date" domain="[]" context="{'group_by': 'create_date:day'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_workorder_tree_view" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.tree</field>
+        <field name="model">mrp.workorder</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="replace">
+                <tree create="0">
+                    <field name="consumption" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="is_produced" invisible="1"/>
+                    <field name="is_user_working" invisible="1"/>
+                    <field name="product_uom_id" invisible="1" readonly="0"/>
+                    <field name="production_state" invisible="1"/>
+                    <field name="production_bom_id" invisible="1"/>
+                    <field name="qty_producing" invisible="1"/>
+                    <field name="time_ids" invisible="1"/>
+                    <field name="working_state" invisible="1"/>
+                    <field name="operation_id" invisible="1" domain="['|', ('bom_id', '=', production_bom_id), ('bom_id', '=', False)]" context="{'default_workcenter_id': workcenter_id, 'default_company_id': company_id}"/>
+                    <field name="name" string="Operation"/>
+                    <field name="workcenter_id"  invisible="1"/>
+                    <field name="production_id"/>
+                    <field name="machines_id" />
+                    <field name="date_planned_start" optional="show"/>
+                    <field name="date_planned_finished" optional="hide"/>
+                    <field name="create_date" string="Created Date"/>
+                    <field name="create_uid" widget="many2one_avatar_user"/>
+                    <field name="date_start" optional="hide" readonly="1"  invisible="1"/>
+                    <field name="date_finished" optional="hide" readonly="1"  invisible="1"/>
+                    <field name="duration_expected" widget="float_time"  invisible="1"/>
+                    <field name="duration" widget="mrp_time_counter"
+                      attrs="{'invisible': [('production_state','=', 'draft')], 'readonly': [('is_user_working', '=', True)]}" invisible="1"/>
+                    <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state not in ('done', 'cancel')" attrs="{'invisible': [('production_state', 'in', ('draft', 'done'))]}"  invisible="1"/>
+                </tree>
+            </xpath>
+    
+        </field>
+    </record>
+
+</odoo>

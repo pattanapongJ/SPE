@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_tax_invoice" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี Pre Print</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี Pre Print"</field>
+            <field name="report_name">hdc_account_general_reports.mpf_tax_inv_pp_report</field>
+            <field name="report_file">hdc_account_general_reports.mpf_tax_inv_pp_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_tax_invoice_20_line" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี Pre Print (20 บรรทัด)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี Pre Print (20 บรรทัด)"</field>
+            <field name="report_name">hdc_account_general_reports.mpf_tax_inv_pp_20line_report</field>
+            <field name="report_file">hdc_account_general_reports.mpf_tax_inv_pp_20line_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint_20line"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_tax_invoice_online" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี Pre Print (Online)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี Pre Print (Online)"</field>
+            <field name="report_name">hdc_account_general_reports.mpf_tax_inv_pp_online_report</field>
+            <field name="report_file">hdc_account_general_reports.mpf_tax_inv_pp_online_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_tax_invoice_eng" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี Pre Print (ENG)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี Pre Print (ENG)"</field>
+            <field name="report_name">hdc_account_general_reports.mpf_tax_inv_pp_eng_report</field>
+            <field name="report_file">hdc_account_general_reports.mpf_tax_inv_pp_eng_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!-- <record id="account_tax_inv_deposit" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี Pre Print (เบิกสินค้าจากใบรับมัดจำ)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี Pre Print (เบิกสินค้าจากใบรับมัดจำ)"</field>
+            <field name="report_name">hdc_account_general_reports.ac_tax_inv_dep_report</field>
+            <field name="report_file">hdc_account_general_reports.ac_tax_inv_dep_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_tax_inv_deposit_receive" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี Pre Print (รับมัดจำ)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี Pre Print (รับมัดจำ)"</field>
+            <field name="report_name">hdc_account_general_reports.ac_tax_inv_dep_rc_report</field>
+            <field name="report_file">hdc_account_general_reports.ac_tax_inv_dep_rc_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint"/>
+            <field name="binding_type">report</field>
+        </record> -->
+
+        <record id="report_account_billing_a4" model="ir.actions.report">
+            <field name="name">ใบวางบิล A4</field>
+            <field name="model">account.billing</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">'ใบวางบิล_A4-%s%s' % (object.name, object.state == 'draft' and '-draft' or '')</field>
+            <field name="report_name">hdc_account_general_reports.report_billing_a4</field>
+            <field name="report_file">hdc_account_general_reports.report_billing_a4</field>
+            <field name="binding_model_id" ref="account_billing.model_account_billing" />
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_bill_preprint_a4"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_account_billing_percent" model="ir.actions.report">
+            <field name="name">ใบวางบิลแบบเปอร์เซ็นต์</field>
+            <field name="model">account.billing</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">'ใบวางบิลแบบเปอร์เซ็นต์-%s%s' % (object.name, object.state == 'draft' and '-draft' or '')</field>
+            <field name="report_name">hdc_account_general_reports.report_billing_percent</field>
+            <field name="report_file">hdc_account_general_reports.report_billing_percent</field>
+            <field name="binding_model_id" ref="account_billing.model_account_billing" />
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint_percent"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_account_billing_preprint" model="ir.actions.report">
+            <field name="name">ใบวางบิล Pre Print</field>
+            <field name="model">account.billing</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">'ใบวางบิล Pre Print-%s%s' % (object.name, object.state == 'draft' and '-draft' or '')</field>
+            <field name="report_name">hdc_account_general_reports.report_billing_preprint</field>
+            <field name="report_file">hdc_account_general_reports.report_billing_preprint</field>
+            <field name="binding_model_id" ref="account_billing.model_account_billing" />
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint_preprint"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_account_billing_retail_preprint" model="ir.actions.report">
+            <field name="name">ใบแจ้งหนี้-หน้าร้าน (Preprint)</field>
+            <field name="model">account.billing</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">'ใบแจ้งหนี้-หน้าร้าน (Preprint)-%s%s' % (object.name, object.state == 'draft' and '-draft' or '')</field>
+            <field name="report_name">hdc_account_general_reports.report_billing_retail</field>
+            <field name="report_file">hdc_account_general_reports.report_billing_retail</field>
+            <field name="binding_model_id" ref="account_billing.model_account_billing" />
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint_retail"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!-- <record id="account_tax_invoice_weight" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี Pre Print (น้ำหนัก)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี Pre Print (น้ำหนัก)"</field>
+            <field name="report_name">hdc_account_general_reports.MPF_invoice_preprint_weight_report</field>
+            <field name="report_file">hdc_account_general_reports.MPF_invoice_preprint_weight_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint"/>
+            <field name="binding_type">report</field>
+        </record> -->
+
+        <!-- <record id="account_tax_invoice_project" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี Pre Print (Project)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี Pre Print (Project)"</field>
+            <field name="report_name">hdc_account_general_reports.preprint_project_report</field>
+            <field name="report_file">hdc_account_general_reports.preprint_project_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_tax_inv_pj_deposit" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี Pre Print Project (เบิกสินค้าจากใบรับมัดจำ)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี Pre Print Project (เบิกสินค้าจากใบรับมัดจำ)"</field>
+            <field name="report_name">hdc_account_general_reports.ac_tax_inv_pj_dep_report</field>
+            <field name="report_file">hdc_account_general_reports.ac_tax_inv_pj_dep_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_tax_inv_pj_deposit_receive" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี Pre Print Project (รับมัดจำ)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี Pre Print Project (รับมัดจำ)"</field>
+            <field name="report_name">hdc_account_general_reports.ac_tax_inv_pj_de_re_report</field>
+            <field name="report_file">hdc_account_general_reports.ac_tax_inv_pj_de_re_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint"/>
+            <field name="binding_type">report</field>
+        </record> -->
+
+        <record id="account.account_invoices" model="ir.actions.report">
+            <field name="name">ใบแจ้งหนี้</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบแจ้งหนี้-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_invoice_report</field>
+            <field name="report_file">hdc_account_general_reports.MPF_invoice_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_delivery" model="ir.actions.report">
+            <field name="name">ใบส่งของ</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบส่งของ-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.hdc_delivery_account_report</field>
+            <field name="report_file">hdc_account_general_reports.hdc_delivery_account_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_delivery"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_delivery_price" model="ir.actions.report">
+            <field name="name">ใบส่งของมีราคา</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบส่งของมีราคา-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.hdc_delivery_price_account_report</field>
+            <field name="report_file">hdc_account_general_reports.hdc_delivery_price_account_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_delivery"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_temp_delivery" model="ir.actions.report">
+            <field name="name">ใบส่งสินค้าชั่วคราว</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบส่งสินค้าชั่วคราว-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.hdc_temp_delivery_account_report</field>
+            <field name="report_file">hdc_account_general_reports.hdc_temp_delivery_account_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_delivery"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_temp_delivery_price" model="ir.actions.report">
+            <field name="name">ใบส่งของชั่วคราวแบบมีราคา</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบส่งของชั่วคราวแบบมีราคา-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.hdc_temp_delivery_price_account_report</field>
+            <field name="report_file">hdc_account_general_reports.hdc_temp_delivery_price_account_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_delivery"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_copy" model="ir.actions.report">
+            <field name="name">ใบแจ้งหนี้(สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบแจ้งหนี้-%s (สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_invoice_report_copy</field>
+            <field name="report_file">hdc_account_general_reports.MPF_invoice_report_copy</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_all" model="ir.actions.report">
+            <field name="name">ใบแจ้งหนี้(ต้นฉบับ/สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบแจ้งหนี้-%s (ต้นฉบับ/สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_invoice_report_all</field>
+            <field name="report_file">hdc_account_general_reports.MPF_invoice_report_all</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_bill" model="ir.actions.report">
+            <field name="name">ใบวางบิล/ใบเสร็จรับเงิน/ใบกำกับภาษี</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบวางบิล-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_bill_invoice_report</field>
+            <field name="report_file">hdc_account_general_reports.MPF_bill_invoice_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_bill"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_bill_copy" model="ir.actions.report">
+            <field name="name">ใบวางบิล/ใบเสร็จรับเงิน/ใบกำกับภาษี(สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบวางบิล-%s (สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_bill_invoice_report_copy</field>
+            <field name="report_file">hdc_account_general_reports.MPF_bill_invoice_report_copy</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_bill"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_bill_all" model="ir.actions.report">
+            <field name="name">ใบวางบิล/ใบเสร็จรับเงิน/ใบกำกับภาษี(ต้นฉบับ/สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบวางบิล-%s (ต้นฉบับ/สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_bill_invoice_report_all</field>
+            <field name="report_file">hdc_account_general_reports.MPF_bill_invoice_report_all</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_bill"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <record id="account_invoices_tax" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_tax_invoice_report</field>
+            <field name="report_file">hdc_account_general_reports.MPF_tax_invoice_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_tax_copy" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี(สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี-%s (สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_tax_invoice_report_copy</field>
+            <field name="report_file">hdc_account_general_reports.MPF_tax_invoice_report_copy</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_tax_all" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษี(ต้นฉบับ/สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษี-%s (ต้นฉบับ/สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_tax_invoice_report_all</field>
+            <field name="report_file">hdc_account_general_reports.MPF_tax_invoice_report_all</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <record id="account_invoices_receipt" model="ir.actions.report">
+            <field name="name">ใบเสร็จรับเงิน</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเสร็จรับเงิน-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_receipt_invoice_report</field>
+            <field name="report_file">hdc_account_general_reports.MPF_receipt_invoice_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_receipt_copy" model="ir.actions.report">
+            <field name="name">ใบเสร็จรับเงิน(สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเสร็จรับเงิน-%s (สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_receipt_invoice_report_copy</field>
+            <field name="report_file">hdc_account_general_reports.MPF_receipt_invoice_report_copy</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_receipt_all" model="ir.actions.report">
+            <field name="name">ใบเสร็จรับเงิน(ต้นฉบับ/สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเสร็จรับเงิน-%s (ต้นฉบับ/สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_receipt_invoice_report_all</field>
+            <field name="report_file">hdc_account_general_reports.MPF_receipt_invoice_report_all</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+
+        <record id="account_invoices_credit" model="ir.actions.report">
+            <field name="name">ใบลดหนี้</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบลดหนี้-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_credit_invoice_report</field>
+            <field name="report_file">hdc_account_general_reports.MPF_credit_invoice_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_debit_credit"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_credit_copy" model="ir.actions.report">
+            <field name="name">ใบลดหนี้(สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบลดหนี้-%s (สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_credit_invoice_report_copy</field>
+            <field name="report_file">hdc_account_general_reports.MPF_credit_invoice_report_copy</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_debit_credit"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_credit_all" model="ir.actions.report">
+            <field name="name">ใบลดหนี้(ต้นฉบับ/สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบลดหนี้-%s (ต้นฉบับ/สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_credit_invoice_report_all</field>
+            <field name="report_file">hdc_account_general_reports.MPF_credit_invoice_report_all</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_debit_credit"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+
+        <record id="account_invoices_debit" model="ir.actions.report">
+            <field name="name">ใบเพิ่มหนี้</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเพิ่มหนี้-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_debit_invoice_report</field>
+            <field name="report_file">hdc_account_general_reports.MPF_debit_invoice_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_debit_credit"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_debit_copy" model="ir.actions.report">
+            <field name="name">ใบเพิ่มหนี้(สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเพิ่มหนี้-%s (สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_debit_invoice_report_copy</field>
+            <field name="report_file">hdc_account_general_reports.MPF_debit_invoice_report_copy</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_debit_credit"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_invoices_debit_all" model="ir.actions.report">
+            <field name="name">ใบเพิ่มหนี้(ต้นฉบับ/สำเนา)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเพิ่มหนี้-%s (ต้นฉบับ/สำเนา)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_debit_invoice_report_all</field>
+            <field name="report_file">hdc_account_general_reports.MPF_debit_invoice_report_all</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_debit_credit"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_payment_voucher" model="ir.actions.report">
+            <field name="name">รายวันจ่าย</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายวันจ่าย-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_payment_voucher_report</field>
+            <field name="report_file">hdc_account_general_reports.MPF_payment_voucher_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_payment"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_receipt_voucher" model="ir.actions.report">
+            <field name="name">รายวันรับ</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายวันรับ-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_receipt_voucher_report</field>
+            <field name="report_file">hdc_account_general_reports.MPF_receipt_voucher_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_payment"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_tax_invoice_affiliated_company" model="ir.actions.report">
+            <field name="name">ใบกำกับภาษีบริษัทในเครือ</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบกำกับภาษีบริษัทในเครือ-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.tax_invoice_affiliated_company_report</field>
+            <field name="report_file">hdc_account_general_reports.tax_invoice_affiliated_company_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_tax_invoice_affiliated_company"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_tax_invoice_abb" model="ir.actions.report">
+            <field name="name">ใบเสร็จรับเงิน/ใบกำกับภาษีอย่างย่อ</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเสร็จรับเงิน/ใบกำกับภาษีอย่างย่อ-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.tax_invoice_abb_report</field>
+            <field name="report_file">hdc_account_general_reports.tax_invoice_abb_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_tax_invoice_abb"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_general_voucher_cus" model="ir.actions.report">
+            <field name="name">ใบสำคัญรับ A4</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบสำคัญรับ A4-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.general_voucher_report_cus</field>
+            <field name="report_file">hdc_account_general_reports.general_voucher_report_cus</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_general_voucher"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_general_voucher_vendor" model="ir.actions.report">
+            <field name="name">ใบสำคัญจ่าย A4</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบสำคัญจ่าย A4-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.general_voucher_report_vendor</field>
+            <field name="report_file">hdc_account_general_reports.general_voucher_report_vendor</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_general_voucher_vendor"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_pre_print_voucher_cus" model="ir.actions.report">
+            <field name="name">ใบสำคัญรับ Pre Print</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบสำคัญรับ Pre Print-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.pre_print_voucher_report_cus</field>
+            <field name="report_file">hdc_account_general_reports.pre_print_voucher_report_cus</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_pre_print_voucher_cus"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_pre_print_voucher_vendor" model="ir.actions.report">
+            <field name="name">ใบสำคัญจ่าย Preprint</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบสำคัญจ่าย Preprint-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.pre_print_voucher_report_vendor</field>
+            <field name="report_file">hdc_account_general_reports.pre_print_voucher_report_vendor</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_pre_print_voucher_vendor"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_vd_bill_pre" model="ir.actions.report">
+            <field name="name">ใบลดหนี้ (ส่งเสริมการขาย)</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบลดหนี้ (ส่งเสริมการขาย)-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.vb_bill_pre_report</field>
+            <field name="report_file">hdc_account_general_reports.vb_bill_pre_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_vd_bill_pre"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!-- <record id="account_payment_receipt_invoice" model="ir.actions.report">
+            <field name="name">ใบเสร็จรับเงิน/ใบแจ้งหนี้ (แบบย่อ) A4</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเสร็จรับเงิน/ใบแจ้งหนี้ (แบบย่อ) A4-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.payment_receipt_invoice_report</field>
+            <field name="report_file">hdc_account_general_reports.payment_receipt_invoice_report</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_payment_receipt_invoice"/>
+            <field name="binding_type">report</field>
+        </record> -->
+
+        <record id="account_payment_receipt_invoice2" model="ir.actions.report">
+            <field name="name">ใบเสร็จรับเงิน</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเสร็จรับเงิน-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.account_receipt_invoice_report2</field>
+            <field name="report_file">hdc_account_general_reports.account_receipt_invoice_report2</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_payment_receipt_new"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_move_receipt_invoice" model="ir.actions.report">
+            <field name="name">ใบเสร็จรับเงิน/ใบแจ้งหนี้ (แบบย่อ) A4</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเสร็จรับเงิน/ใบแจ้งหนี้ (แบบย่อ) A4-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.account_receipt_invoice_report</field>
+            <field name="report_file">hdc_account_general_reports.account_receipt_invoice_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_payment_receipt_invoice"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_move_receipt_invoice2" model="ir.actions.report">
+            <field name="name">ใบเสร็จรับเงิน</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเสร็จรับเงิน-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.account_receipt_invoice_report2</field>
+            <field name="report_file">hdc_account_general_reports.account_receipt_invoice_report2</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_payment_receipt_invoice"/>
+            <field name="binding_type">report</field>
+        </record>
+        
+        <record id="account_credit_note" model="ir.actions.report">
+            <field name="name">ใบลดหนี้</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบลดหนี้-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.credit_note_report</field>
+            <field name="report_file">hdc_account_general_reports.credit_note_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_credit_note"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_debit_note" model="ir.actions.report">
+            <field name="name">ใบเพิ่มหนี้</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบเพิ่มหนี้-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.debit_note_report</field>
+            <field name="report_file">hdc_account_general_reports.debit_note_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_debit_note"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_batch_billing" model="ir.actions.report">
+            <field name="name">ใบรับบัญชี</field>
+            <field name="model">batch.billing</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบรับบัญชี-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.batch_billing_report</field>
+            <field name="report_file">hdc_account_general_reports.batch_billing_report</field>
+            <field name="binding_model_id" ref="hdc_batch_billing.model_batch_billing"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_batch_billing"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="account_batch_billing_total" model="ir.actions.report">
+            <field name="name">ใบรับบัญชีรวมตามใบวางบิล</field>
+            <field name="model">batch.billing</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบรับบัญชีรวมตามใบวางบิล-%s" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.batch_billing_total_report</field>
+            <field name="report_file">hdc_account_general_reports.batch_billing_total_report</field>
+            <field name="binding_model_id" ref="hdc_batch_billing.model_batch_billing"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_batch_total_billing"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!-- Sale Borrow -->
+        <record id="invoice_borrow_new_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งสินค้าตัวอย่าง</field>
+           <field name="model">account.move</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบส่งสินค้าตัวอย่าง/%s " %(object.name)</field>
+           <field name="report_name">hdc_account_general_reports.hdc_invoice_borrow_new_report</field>
+           <field name="report_file">hdc_account_general_reports.hdc_invoice_borrow_new_report</field>
+           <field name="binding_model_id" ref="account.model_account_move"/>
+           <!-- <field name="binding_model_id" eval="False"/> -->
+           <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_borrow_new_invoice"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="invoice_borrow_free_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งสินค้าตัวอย่าง (ฟรี)</field>
+           <field name="model">account.move</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบส่งสินค้าตัวอย่าง (ฟรี)/%s " %(object.name)</field>
+           <field name="report_name">hdc_account_general_reports.hdc_invoice_borrow_free_report</field>
+           <field name="report_file">hdc_account_general_reports.hdc_invoice_borrow_free_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_borrow_invoice"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="invoice_borrow_return_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งสินค้าตัวอย่าง (รับกลับคืน)</field>
+           <field name="model">account.move</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบส่งสินค้าตัวอย่าง (รับกลับคืน)/%s " %(object.name)</field>
+           <field name="report_name">hdc_account_general_reports.hdc_invoice_borrow_return_report</field>
+           <field name="report_file">hdc_account_general_reports.hdc_invoice_borrow_return_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_borrow_invoice"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="invoice_borrow_test_money_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งสินค้าตัวอย่าง (ทดสอบผ่านคิดเงิน)</field>
+           <field name="model">account.move</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบส่งสินค้าตัวอย่าง (ทดสอบผ่านคิดเงิน)/%s " %(object.name)</field>
+           <field name="report_name">hdc_account_general_reports.hdc_invoice_borrow_test_money_report</field>
+           <field name="report_file">hdc_account_general_reports.hdc_invoice_borrow_test_money_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_borrow_invoice"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <!-- <record id="account_invoices_billing_tax" model="ir.actions.report">
+            <field name="name">ใบแจ้งหนี้หน้าร้าน</field>
+            <field name="model">account.billing</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบแจ้งหนี้หน้าร้าน-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.MPF_billing_tax_invoice_report</field>
+            <field name="report_file">hdc_account_general_reports.MPF_billing_tax_invoice_report</field>
+            <field name="binding_model_id" ref="account_billing.model_account_billing" />
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_billing_tax_account"/>
+            <field name="binding_type">report</field>
+        </record> -->
+
+        <record id="account_invoices_pos_invoice_preprint" model="ir.actions.report">
+            <field name="name">ใบแจ้งหนี้หน้าร้าน Pre Print</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบแจ้งหนี้หน้าร้าน-%s (ต้นฉบับ)" %(object.name)</field>
+            <field name="report_name">hdc_account_general_reports.pos_invoice_preprint_report</field>
+            <field name="report_file">hdc_account_general_reports.pos_invoice_preprint_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_pos_invoice_preprint"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

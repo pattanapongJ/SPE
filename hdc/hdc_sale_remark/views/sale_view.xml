@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- <record id="view_field_delivery_sale_order_inherit_form" model="ir.ui.view">
+            <field name="name">sale.order.inherit.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_cancel']" position="after">
+                    <button name="action_print_request" type="object" string="Print"/>
+                </xpath>
+               
+            </field>
+        </record> -->
+
+        <record id="view_sale_order_remark_delivery_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="hdc_sale.hdc_sale_view_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='customer_po']" position="before">
+                    <field name="remark_delivery" widget="textarea"/> 
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_sale_order_appropval_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='note_group']" position="inside">
+                    <field name="lang_code" invisible="1"/> 
+                    <!-- attrs="{'invisible': [('lang_code', '=', 'th_TH')]}" -->
+                    <field name="note_th" placeholder="Term and Conditions (Thai)"/>
+                    <field name="note_en" placeholder="Term and Conditions (ENG)"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

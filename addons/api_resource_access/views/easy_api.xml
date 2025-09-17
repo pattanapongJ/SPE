@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="easy_api_custom_access_inherit" model="ir.ui.view">
+        <field name="name">easy.api.custom.access.inherit</field>
+        <field name="model">easy.api</field>
+        <field name="priority" eval="20"/>
+        <field name="inherit_id" ref="api_framework_base.view_easy_api_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='access_control_detail']" position="inside">
+                <field name="resource_control_id" invisible="1"/>
+                <!-- <button class="link-primary" name="action_generate_custom_access_record" type="object" string="Generate Custom Access"
+                attrs="{'invisible':['|',('resource_control_id','!=',False), ('resource_control_type', '!=', 'custom_access')]}"/> -->
+                <button class="link-primary" name="action_open_custom_access_record" type="object" string="Open Personalized Access"
+                attrs="{'invisible':['|',('resource_control_id','=',False),('resource_control_type', '!=', 'custom_access')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.act_window" id="dewalt_claim_ept_action">
+        <field name="name">Dewalt</field>
+        <field name="res_model">crm.claim.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{ "search_default_user_id": uid,
+                                "default_rma_type":"receive_modify",
+                                "default_is_dewalt":True,
+                                }</field>
+        <field name="search_view_id" ref="rma_ept.view_crm_case_claims_filter_ept"/>
+        <field name="domain" eval="[('is_dewalt', '=', True)]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Record and track your customers' RMA.
+            </p><p>
+                RMA may be linked to a sales order or a
+                lot.You can send emails with attachments and keep the full history for a RMA
+                (emails sent, intervention type and so on). RMA may automatically be linked to
+                an email address using the mail gateway module.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="rma_dewalt_menu_root"
+        name="Dewalt"
+        web_icon="hdc_rma_dewalt,static/description/icon-dewalt.jpg"
+        sequence="10"
+        />
+    <menuitem
+        id="irma_dewalt_menu"
+        name="Dewalt"
+        action="dewalt_claim_ept_action"
+        parent="rma_dewalt_menu_root"
+        sequence="1"
+        />
+
+</odoo>

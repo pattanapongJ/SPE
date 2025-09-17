@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_order_form_inherit_rounding" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.discount</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='price_subtotal']" position="after">
+                <field name="rounding_price" optional="hide" />
+            </xpath>
+            <xpath expr="//page[@name='order_lines']/group[@name='note_group']/group[@name='sale_total']/field[@name='amount_total']" position="after">
+                <field name="rounding_untax" readonly="1" groups="base.group_no_one"/>
+                <field name="rounding_taxes" readonly="1" groups="base.group_no_one"/>
+                <field name="rounding_total" readonly="1" groups="base.group_no_one"/>
+                
+            </xpath>
+        </field>
+    </record>
+    <record id="view_order_btn_rounding_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.change.total.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="hdc_discount.view_order_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='recalculate_global_discount']" position="after">
+                <button string="Rounding" name="action_rounding_wizard" type="object" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

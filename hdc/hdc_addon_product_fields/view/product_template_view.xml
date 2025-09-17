@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="tags_sale_product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.tag.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="hdc_sale_alternative.product_template_form_view" />
+        <field name="priority" eval="20" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='used_for']" position="after">
+                <field name="tags_product_sale_ids" string="Product Tags" widget="many2many_tags" options="{'no_create': True,'color_field': 'color'}" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_template_addfields_from" model="ir.ui.view">
+        <field name="name">product.template.addfields.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="before">
+                <field name="item_eng"/>
+            </xpath>
+            <xpath expr="//label[@for='list_price']" position="before">
+                <field name="online_name"/>
+            </xpath>
+            <xpath expr="//field[@name='default_code']" position="after">
+                <field name="ref_item_number"/>
+                <field name="ref_item_fac"/>
+            </xpath>
+            <xpath expr="//page[@name='inventory']//field[@name='hs_code']" position="after">
+                <field name="box" string="กล่องละ"/>
+                <field name="crate" string="ลังละ"/>
+            </xpath>
+
+            <!-- <xpath expr="//group[@name='group_lots_and_weight']" position="before">
+                <group name="group_security_stock" string="Security Stock">
+                    <label for="safe_stock"/>
+                    <div class="o_row" name="safe_stock">
+                        <field name="safe_stock"/>
+                    </div>
+
+                    <label for="moq_stock"/>
+                    <div class="o_row" name="moq_stock">
+                        <field name="moq_stock"/>
+                        <span><field name="uom_name"/></span>
+                    </div>
+                    <label for="spq_stock"/>
+                    <div class="o_row" name="spq_stock">
+                        <field name="spq_stock"/>
+                        <span><field name="uom_name"/></span>
+                    </div>
+                </group>
+            </xpath> -->
+
+            <!-- <xpath expr="//group[@name='traceability']" position="attributes">
+                <attribute name="invisible">1</attribute> 
+            </xpath>
+            <xpath expr="//group[@name='stock_property']" position="attributes">
+                <attribute name="invisible">1</attribute> 
+            </xpath>
+            <xpath expr="//group[@name='group_lots_and_weight']" position="attributes">
+                <attribute name="invisible">1</attribute> 
+            </xpath> -->
+
+
+            <xpath expr="//group[@name='group_lots_and_weight']" position="before">
+                <group>
+                    <separator colspan="4" string="Carton And Product MASTER CARTON (กล่องนอก)"/>
+                    <group colspan="4">
+                        <label for="master_net_weight"/>
+                        <div class="o_row">
+                            <field name="master_net_weight" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="master_net_weight_uom_id" string="Net Weight Unit"/>
+                        </div>
+                        <label for="master_gross_weight"/>
+                        <div class="o_row">
+                            <field name="master_gross_weight" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="master_gross_weight_uom_id" string="Gross Weight Unit"/>
+                        </div>
+                    </group>
+                </group>
+
+                <group>
+                    <separator string="Physical Dimensions"/>
+                    <group colspan="4">
+                        <label for="master_height"/>
+                          <div class="o_row">
+                              <field name="master_height" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="master_height_uom_id" string="Height Unit"/>
+                          </div>
+                        <label for="master_width"/>
+                          <div class="o_row">
+                              <field name="master_width" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="master_width_uom_id" string="Width Unit"/>
+                          </div>
+                        <label for="master_length"/>
+                          <div class="o_row">
+                              <field name="master_length" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="master_length_uom_id" string="Length Unit"/>
+                          </div>
+                        <label for="master_packing_qty"/>     
+                          <div class="o_row">
+                              <field name="master_packing_qty" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="master_packing_unit" string="Packing Unit" />
+                          </div>
+                        <field name="master_packing_qty1"/>                        
+                    </group>
+                </group>
+
+                <group>
+                    <separator string="INNER CARTON (กล่องใน)"/>
+                    <group colspan="4">
+                        <label for="inner_net_weight"/>
+                          <div class="o_row">
+                              <field name="inner_net_weight" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="inner_net_weight_uom_id" string="Inner Net Weight Unit"/>
+                          </div>
+                        <label for="inner_gross_weight"/>
+                          <div class="o_row">
+                              <field name="inner_gross_weight" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="inner_gross_weight_uom_id" string="Inner Gross Weight Unit"/>
+                          </div>
+                        <label for="inner_height"/>
+                          <div class="o_row">
+                              <field name="inner_height" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="inner_height_uom_id" string="Inher Height Unit"/>
+                          </div>
+                        <label for="inner_width"/>     
+                          <div class="o_row">
+                              <field name="inner_width" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="inner_width_uom_id" string="Inner Width Unit"/>
+                          </div>
+                        <label for="inner_packing_qty"/>     
+                          <div class="o_row">
+                              <field name="inner_packing_qty" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="inner_packing_unit" string="Inner Packing Unit"/>
+                          </div>
+                        <field name="inner_packing_qty1"/>                        
+                    </group>
+                </group>
+
+                <group>
+                   <separator colspan="4" string="Product + packing size (B-สินค้า + ขนาดบรรจุภัณฑ์สินค้า)"/>
+                    <group colspan="4">
+                        <label for="b01_weight"/>
+                          <div class="o_row">
+                              <field name="b01_weight" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="b01_weight_uom_id" string="b01 Weight Unit"/>
+                          </div>      
+                        <label for="b02_width"/>
+                          <div class="o_row">
+                              <field name="b02_width" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="b02_width_uom_id" string="b02 Width Unit"/>
+                          </div>     
+                        <label for="b03_length"/>
+                          <div class="o_row">
+                              <field name="b03_length" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="b03_length_uom_id" string="b03 Length Unit"/>
+                          </div>
+                        <label for="b04_height"/>
+                          <div class="o_row">
+                              <field name="b04_height" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> <field name="b04_height_uom_id" string="b04 Height Unit"/>
+                          </div>                           
+                    </group> 
+                </group>
+
+                <group>
+                    <separator string="C-ขนาดห่อกล่องสินค้าออนไลน์"/>
+                    <group colspan="4">
+                        <label for="online_package_code"/>
+                          <div class="o_row">
+                              <field name="online_package_code"/>
+                          </div>      
+                        <label for="online_package_cm"/>
+                          <div class="o_row">
+                              <field name="online_package_cm"/>
+                          </div>  
+                        <label for="online_package_kg"/>
+                          <div class="o_row">
+                              <field name="online_package_kg"/>
+                          </div>  
+                        <label for="online_package_weight"/>
+                          <div class="o_row">
+                              <field name="online_package_weight"/>
+                          </div>             
+                    </group>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="product_product_view_form_addfields" model="ir.ui.view">
+        <field name="name">product.product.addfields.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']//field[@name='hs_code']" position="after">
+                <field name="box" string="กล่องละ"/>
+                <field name="crate" string="ลังละ"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_template_tree_addfields" model="ir.ui.view">
+        <field name="name">product tree view addfields</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="tags_product_sale_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

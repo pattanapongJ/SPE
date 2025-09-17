@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <record id="alternative_product_wizard_view" model="ir.ui.view">
+            <field name="name">Alternative Product Wizard</field>
+            <field name="model">alternative.product.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Alternative Product">
+                    
+                    <group>
+                        <group>
+                            
+                            <field name="internal_reference" readonly="True" string="Internal Reference"/>
+                            <field name="bns_code" readonly="True" string="BNS Code"/>
+                            <field name="name" readonly="True" string="Name"/>
+                            <field name="sales_price" readonly="True" string="Sales Price"/>
+                        </group>
+                        <group>
+                            <field name="on_hand" readonly="True" string="On Hand"/>
+                            <field name="incoming_qty" readonly="True" string="Incoming"/>
+                        </group>
+                    </group>
+                    <!-- <group name="note" string="Notes">
+                        <field name="note" nolabel="1" />
+                    </group> -->
+                    <group>
+                        <field name="sale_order_line_id" invisible="1"/>
+                        <field name="default_replace_product_ids" invisible="1" />
+                        <field name="replace_product_ids" string="Replace Product" domain="[('default_code', '=', internal_reference),('alternative_ids_m2m', '!=', False)]"/>
+                        <field name="alternative_product_ids" mode="tree" string="Alternative Products">
+                            <tree string="Alternative Product Line" create="0" delete="0">
+                                <!-- <control>
+                                    <create name="add_product_control" string="Add a product"/>
+                                </control> -->
+                                <!-- <field name="sequence" widget="handle"/> -->
+                                <field name="internal_reference"/>
+                                <field name="bns_code"/>
+                                <field name="name"/>
+                                <field name="sales_price"/>
+                                <field name="on_hand"/>
+                                <field name="shipping"/>
+                                <field name="incoming_qty"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button
+                            string="Replace"
+                            name="replace_button"
+                            type="object"
+                            class="oe_highlight"
+                        />
+                        or
+                        <button special="cancel" class="oe_link" string="Cancel" />
+                    </footer>
+                </form>
+                
+            </field>
+        </record>
+
+        <record id="action_alternative_product" model="ir.actions.act_window">
+            <field name="name">Alternative Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">alternative.product.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

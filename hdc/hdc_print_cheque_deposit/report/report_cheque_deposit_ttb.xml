@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_cheque_deposit_ttb_document">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <div class="article" style="font-family:LatoOpen Sans;font-size:13px;">
+            <div class="row">
+                <div class="col-10"/>
+                <div class="col-2">
+                <t t-if="o.deposit_date">
+                      <span t-field="o.deposit_date" t-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
+                    </t>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-1"/>
+                <div class="col-5 text-center  text-nowrap">
+                    <t t-if="acc_numbers">
+                        <t t-set="count" t-value="0"/>
+                        <t t-foreach="acc_numbers.get(o.id, [])" t-as="ac">
+                            <t t-set="count" t-value="count + 1"/>
+                            <t t-if="count &lt; 4">
+                                <span style="margin-right: 10px;">
+                                    <t t-esc="ac"/>
+                                </span>
+                            </t>
+                            <t t-elif="count == 4 or count == 9">
+                                <span style="margin-left: 10px; margin-right: 20px;">
+                                    <t t-esc="ac"/>
+                                </span>
+                            </t>
+                            <t t-elif="count &gt; 4 and count &lt; 9">
+                                <span style="margin-right: 10px;">
+                                    <t t-esc="ac"/>
+                                </span>
+                            </t>
+                        </t>
+                    </t>
+                </div>
+                <div class="col-2">
+                </div>
+                <div class="col-4 text-left  text-nowrap">
+                    <t t-if="o.journal_id.bank_account_id">
+                        <t t-esc="o.journal_id.bank_account_id.acc_holder_name"/>
+                    </t>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <!--<div class="row">-->
+            <!--    <div class="col-4"/>-->
+            <!--    <div class="col-4 text-center">-->
+            <!--        <span t-esc="amount_to_text_th(abs(o.payment_total_amount), 'THB')"/>-->
+            <!--    </div>-->
+            <!--    <div class="col-4 text-center">-->
+            <!--        <t t-if="o.payment_total_amount">-->
+            <!--          <span t-esc="'{:,.2f}'.format(o.payment_total_amount)"/>-->
+            <!--      </t>-->
+            <!--    </div>-->
+            <!--</div>-->
+            <div class="row" style="position: absolute; border: 1px solid white; top: 170px; width: 90%;">
+              <table class="table table-borderless" style="line-height: 5px; width: 100%;">
+                <tr>
+                    <td class="text-center" style="width: 33%;">
+                    </td>
+                    <td class="text-center" style="width: 33%;">
+                        <span t-esc="amount_to_text_th(abs(o.payment_total_amount), 'THB')"/>
+                    </td>
+                    <td class="text-right" style="width: 33%;">
+                      <t t-if="o.payment_total_amount">
+                          <span t-esc="'{:,.2f}'.format(o.payment_total_amount)"/>
+                      </t>
+                    </td>
+                </tr>
+              </table>
+            </div>
+            <div class="row">
+                <table class="table table-borderless" style="line-height: 5px; width: 90%;">
+                    <tbody>
+                        <t t-foreach="o.pdc_wizard_ids" t-as="wl">
+                            <tr>
+                                <td class="text-center" style="width: 33%;">
+                                    <t t-esc="wl.reference"/>
+                                </td>
+                                <td class="text-center" style="width: 33%;">
+                                    <t t-if="wl.bank_id">
+                                        <t t-esc="wl.bank_id.bic"/>/<t t-if="wl.bank_branch"><t t-esc="wl.bank_branch"/></t>
+                                    </t>
+                                </td>
+                                <td class="text-right" style="width: 33%;">
+                                    <t t-if="wl.payment_amount">
+                                        <span t-esc="'{:,.2f}'.format(wl.payment_amount)"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </template>
+
+    <template id="report_cheque_deposit_ttb">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="hdc_print_cheque_deposit.report_cheque_deposit_ttb_document" />
+            </t>
+        </t>
+    </template>
+    
+</odoo>

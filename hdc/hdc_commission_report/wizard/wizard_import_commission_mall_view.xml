@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_import_commission_mall_form_view" model="ir.ui.view">
+        <field name="name">wizard.import.commission.mall.form.view</field>
+        <field name="model">wizard.import.commission.mall</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="settle_commissions_mall_id" invisible="1"/>
+                            <field name="filename" invisible="1"/>
+                            <field name="import_file" widget="binary" filename="filename" string="File"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="button_import_xlsx_commission_mall" string="Import" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+	<record id="action_wizard_import_commission_mall" model="ir.actions.act_window">
+		<field name="name">Import</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">wizard.import.commission.mall</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="view_id" ref="wizard_import_commission_mall_form_view"/>
+	</record>
+</odoo>

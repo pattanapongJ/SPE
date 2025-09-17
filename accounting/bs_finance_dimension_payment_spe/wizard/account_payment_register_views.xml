@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_payment_register_form" model="ir.ui.view">
+        <field name="name">account.payment.register.form</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="bs_finance_dimension_payment.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='finance_dimension_3_id']" position="after">
+                <field name="finance_dimension_4_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_5_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_6_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_7_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_8_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_9_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_10_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+            </xpath>
+
+
+
+            <xpath expr="//field[@name='deduction_ids']/tree/field[@name='finance_dimension_3_id']" position="after">
+                <field name="need_finance_dimension_4" invisible="1"/>
+                    <field name="need_finance_dimension_5" invisible="1"/>
+                    <field name="need_finance_dimension_6" invisible="1"/>
+                    <field name="need_finance_dimension_7" invisible="1"/>
+                    <field name="need_finance_dimension_8" invisible="1"/>
+                    <field name="need_finance_dimension_9" invisible="1"/>
+                    <field name="need_finance_dimension_10" invisible="1"/>
+
+                    <field name="finance_dimension_4_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           attrs="{'required':[('need_finance_dimension_4','=',True)]}"
+                           optional="hide"/>
+                    <field name="finance_dimension_5_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           attrs="{'required':[('need_finance_dimension_5','=',True)]}"
+                           optional="hide"/>
+                    <field name="finance_dimension_6_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           attrs="{'required':[('need_finance_dimension_6','=',True)]}"
+                           optional="hide"/>
+                    <field name="finance_dimension_7_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           attrs="{'required':[('need_finance_dimension_7','=',True)]}"
+                           optional="hide"/>
+                    <field name="finance_dimension_8_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           attrs="{'required':[('need_finance_dimension_8','=',True)]}"
+                           optional="hide"/>
+                    <field name="finance_dimension_9_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           attrs="{'required':[('need_finance_dimension_9','=',True)]}"
+                           optional="hide"/>
+                    <field name="finance_dimension_10_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           attrs="{'required':[('need_finance_dimension_10','=',True)]}"
+                           optional="hide"/>
+
+            </xpath>
+
+
+        </field>
+    </record>
+</odoo>

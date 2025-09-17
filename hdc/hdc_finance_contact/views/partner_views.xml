@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hdc_finance_contact_partner_views" model="ir.ui.view">
+        <field name="name">hdc.finance.contact.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="hdc_billing_period_route.view_partner_property_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_period_id']" position="after">
+                <field name="finance_contact_id" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

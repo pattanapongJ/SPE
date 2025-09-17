@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_order_rfq_report_view_th" model="ir.actions.report">
+           <field name="name">ใบขอใบเสนอราคา TH</field>
+           <field name="model">purchase.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบขอใบเสนอราคา-%s " %(object.name)</field>
+           <field name="report_name">hdc_purchase_general_reports.hdc_purchase_order_rfq_report_th</field>
+           <field name="report_file">hdc_purchase_general_reports.hdc_purchase_order_rfq_report_th</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_purchase_general_reports.paperformat_report_rfq_th"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="purchase_order_rfq_report_view_en" model="ir.actions.report">
+           <field name="name">ใบขอใบเสนอราคา EN</field>
+           <field name="model">purchase.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบขอใบเสนอราคา-%s " %(object.name)</field>
+           <field name="report_name">hdc_purchase_general_reports.hdc_purchase_order_rfq_report_en</field>
+           <field name="report_file">hdc_purchase_general_reports.hdc_purchase_order_rfq_report_en</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_purchase_general_reports.paperformat_report_rfq_en"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="purchase_order_report_view_th" model="ir.actions.report">
+           <field name="name">ใบสั่งซื้อ (TH)</field>
+           <field name="model">purchase.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบสั่งซื้อ (TH)-%s " %(object.name)</field>
+           <field name="report_name">hdc_purchase_general_reports.hdc_purchase_order_report_th</field>
+           <field name="report_file">hdc_purchase_general_reports.hdc_purchase_order_report_th</field>
+           <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+           <field name="paperformat_id" ref="hdc_purchase_general_reports.paperformat_report_purchase_th"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="purchase_order_report_view_en" model="ir.actions.report">
+           <field name="name">ใบสั่งซื้อ (EN)</field>
+           <field name="model">purchase.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบสั่งซื้อ (EN)-%s " %(object.name)</field>
+           <field name="report_name">hdc_purchase_general_reports.hdc_purchase_order_report_en</field>
+           <field name="report_file">hdc_purchase_general_reports.hdc_purchase_order_report_en</field>
+           <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+           <field name="paperformat_id" ref="hdc_purchase_general_reports.paperformat_report_purchase_en"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="purchase_request_report_view" model="ir.actions.report">
+           <field name="name">ใบขอสั่งซื้อ TH</field>
+           <field name="model">purchase.request</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบขอสั่งซื้อ-%s " %(object.name)</field>
+           <field name="report_name">hdc_purchase_general_reports.hdc_purchase_request_report_th</field>
+           <field name="report_file">hdc_purchase_general_reports.hdc_purchase_request_report_th</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_purchase_general_reports.paperformat_report_purchase_request_th"/>
+           <field name="binding_type">report</field>
+        </record>
+
+         <record id="purchase_order_report_view_th_history" model="ir.actions.report">
+            <field name="name">รายงานการสั่งซื้อ</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายงานการสั่งซื้อ-%s " %(object.name)</field>
+            <field name="report_name">hdc_purchase_general_reports.hdc_purchase_order_report_th_history</field>
+            <field name="report_file">hdc_purchase_general_reports.hdc_purchase_order_report_th_history</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="paperformat_id" ref="hdc_purchase_general_reports.paperformat_report_purchase_th_history"/>
+            <field name="binding_type">report</field>
+         </record>
+
+         <record id="purchase_order_report_view_th_internal" model="ir.actions.report">
+            <field name="name">ใบสั่งซื้อ (FM)</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบสั่งซื้อ (FM)-%s " %(object.name)</field>
+            <field name="report_name">hdc_purchase_general_reports.hdc_purchase_order_report_th_internal</field>
+            <field name="report_file">hdc_purchase_general_reports.hdc_purchase_order_report_th_internal</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="paperformat_id" ref="hdc_purchase_general_reports.paperformat_report_purchase_th_internal"/>
+            <field name="binding_type">report</field>
+         </record>
+         
+
+    </data>
+
+    <template id="report_logo_style">
+      <!-- เช็คชื่อบริษัทและกำหนดค่า logo_style -->
+      <t t-if="company.name in ['Colt Plus (Thailand) Co.,Ltd.', 
+                                 'Siam Modern Home Co.,Ltd.', 
+                                 'Siam Techno Industry Co., Ltd.']">
+         <t t-set="logo_style">margin-top:30px;</t>
+      </t>
+      <t t-elif="company.name == 'Saeng Charoen Patana Enterprise Co., Ltd.'">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+      <t t-else="">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+
+      <img t-if="company.logo"
+            t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')"
+            class="pull-left img-logo"
+            t-attf-style="{{ logo_style }}; max-height: 140px; max-width: 140px;" />
+   </template>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="sale_team_addon_inherit_res_users_view_form" model="ir.ui.view">
+        <field name="name">sale.team.addon.inherit.res.users.view.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_show_groups']" position="before">
+                <button type="object"
+                    name="action_view_users_sale_team_history"
+                    class="oe_stat_button"
+                    icon="fa-tasks"
+                    groups="base.group_user">
+                    <field name="count_sale_team_history" widget="statinfo" string="Team History"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

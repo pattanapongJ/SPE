@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <record id="model_account_invoice_update_mass_tag_action" model="ir.actions.server">
+        <field name="name">Update Mass Tag</field>
+        <field name="model_id" ref="sh_invoice_tags.model_account_move" />
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="groups_id" eval="[(4, ref('sh_invoice_tags.sh_invoice_tags_user_id'))]" />
+        <field name="state">code</field>
+        <field name="binding_view_types">list</field>
+        <field name="code"> action = model.action_mass_tag_update()</field>
+    </record>
+</odoo>

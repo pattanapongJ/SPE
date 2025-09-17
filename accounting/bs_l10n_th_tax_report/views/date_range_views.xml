@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_date_range_tree" model="ir.ui.view">
+        <field name="name">view.date.range.tree</field>
+        <field name="model">date.range</field>
+        <field name="inherit_id" ref="date_range.view_date_range_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type_id']" position="after">
+                <field name="month_th"/>
+                <field name="year_th"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_date_range_form_view" model="ir.ui.view">
+        <field name="name">view.date.range.form</field>
+        <field name="model">date.range</field>
+        <field name="inherit_id" ref="date_range.view_date_range_form_view"/>
+        <field name="arch" type="xml">
+            <field name="type_id" position="after">
+                <field name="month_th"/>
+                <field name="year_th"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

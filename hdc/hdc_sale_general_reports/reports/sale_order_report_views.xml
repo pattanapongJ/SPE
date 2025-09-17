@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="delivery_booth_qo_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งสินค้าออกบูธ</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบส่งสินค้าออกบูธ/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_delivery_booth_qo_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_delivery_booth_qo_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_delivery_booth_qo"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="delivery_booth_so_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งสินค้าออกบูธ</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบส่งสินค้าออกบูธ/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_delivery_booth_so_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_delivery_booth_so_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_delivery_booth_so"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="delivery_booth_en_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งสินค้าออกบูธ</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบส่งสินค้าออกบูธ/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_delivery_booth_en_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_delivery_booth_en_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_delivery_booth_en"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="quotation_th_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_quotation_th_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_quotation_th_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_quotation_th_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="quotation_d_th_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_q_d_th_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_q_d_th_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_quotation_th_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="quotation_th_no_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_quotation_th_no_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_quotation_th_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_quotation_th_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="quotation_d_th_no_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_q_d_th_no_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_q_d_th_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_quotation_th_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <!-- Quotation EN -->
+
+        <record id="quotation_en_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย EN</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_quotation_en_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_quotation_en_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_quotation_en_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="quotation_en_no_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย EN</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_quotation_en_no_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_quotation_en_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_quotation_en_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <!-- Sale Order TH -->
+
+        <record id="sale_order_th_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบสั่งขาย</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"S/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_sale_order_th_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_sale_order_th_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_sale_th_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="sale_d_order_th_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบสั่งขาย</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"S/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_sale_d_th_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_sale_d_th_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_sale_th_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="sale_order_th_no_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบสั่งขาย</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"S/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_sale_order_th_no_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_sale_order_th_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_sale_th_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="sale_d_order_th_no_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบสั่งขาย</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"S/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_sale_d_th_no_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_sale_d_th_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_sale_th_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+
+        <!-- #Sale Order EN -->
+
+        <record id="sale_order_en_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบสั่งขาย EN</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"S/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_sale_order_en_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_sale_order_en_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_sale_en_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="sale_order_en_no_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบสั่งขาย EN</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"S/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_sale_order_en_no_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_sale_order_en_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_sale_en_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+         <!-- #Proforma INVOICE EN -->
+
+        <record id="proforma_en_dis_report_view" model="ir.actions.report">
+           <field name="name">PROFORMA INVOICE EN DIS</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"PROFORMA INVOICE/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_proforma_en_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_proforma_en_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_proforma_en_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="proforma_en_no_dis_report_view" model="ir.actions.report">
+           <field name="name">PROFORMA INVOICE EN NO DIS</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"PROFORMA INVOICE/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_proforma_en_no_dis_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_proforma_en_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_proforma_en_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+        
+
+        <!-- Sale Borrow -->
+        <!-- <record id="sale_borrow_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งสินค้าตัวอย่าง</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"SB/%s " %(object.name)</field>
+           <field name="report_name">hdc_sale_general_reports.hdc_sale_borrow_report</field>
+           <field name="report_file">hdc_sale_general_reports.hdc_sale_borrow_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_sale_general_reports.paperformat_report_sale_th_dis"/>
+           <field name="binding_type">report</field>
+        </record> -->
+
+    </data>
+
+   <template id="report_logo_style">
+      <!-- เช็คชื่อบริษัทและกำหนดค่า logo_style -->
+      <t t-if="company.name in ['Colt Plus (Thailand) Co.,Ltd.', 
+                                 'Siam Modern Home Co.,Ltd.', 
+                                 'Siam Techno Industry Co., Ltd.']">
+         <t t-set="logo_style">margin-top:30px;</t>
+      </t>
+      <t t-elif="company.name == 'Saeng Charoen Patana Enterprise Co., Ltd.'">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+      <t t-else="">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+
+      <img t-if="company.logo"
+            t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')"
+            class="pull-left img-logo"
+            t-attf-style="{{ logo_style }}; max-height: 140px; max-width: 140px;" />
+   </template>
+
+</odoo>

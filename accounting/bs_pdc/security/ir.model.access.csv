@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_pdc_rc_wizard_manager,pdc_rc_wizard_manager,model_pdc_rc_wizard,,1,1,1,1
+access_cheque_bounce_reason_manager,cheque_bounce_reason_manager,model_cheque_bounce_reason,,1,1,1,1

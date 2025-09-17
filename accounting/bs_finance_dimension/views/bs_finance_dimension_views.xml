@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View bs.finance.dimension View Tree -->
+    <record id="view_bs_finance_dimension_tree" model="ir.ui.view">
+        <field name="name">view.bs.finance.dimension.tree</field>
+        <field name="model">bs.finance.dimension</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="company_id" options="{'no_create':True}" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- View bs.finance.dimension form -->
+    <record id="view_bs_finance_dimension_form" model="ir.ui.view">
+        <field name="name">view.bs.finance.dimension.form</field>
+        <field name="model">bs.finance.dimension</field>
+        <field name="arch" type="xml">
+            <form string="Finance Dimension 1">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" placeholder="Name..." />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="group_id" />
+                        </group>
+                        <group>
+                            <field name="company_id" options="{'no_create':True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Action bs.finance.dimension -->
+    <record id="action_bs_finance_dimension_1" model="ir.actions.act_window">
+        <field name="name">Finance Dimension 1</field>
+        <field name="res_model">bs.finance.dimension</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain" eval="[('group_id', '=', ref('bs_finance_dimension.bs_dimension_1'))]" />
+        <field name="context" eval="{'default_group_id':ref('bs_finance_dimension.bs_dimension_1')}" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There is no examples click here to add new Bs Finance Dimension.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_bs_finance_dimension_2" model="ir.actions.act_window">
+        <field name="name">Finance Dimension 2</field>
+        <field name="res_model">bs.finance.dimension</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain" eval="[('group_id', '=', ref('bs_finance_dimension.bs_dimension_2'))]" />
+        <field name="context" eval="{'default_group_id':ref('bs_finance_dimension.bs_dimension_2')}" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There is no examples click here to add new Bs Finance Dimension.
+            </p>
+        </field>
+    </record>
+    <record id="action_bs_finance_dimension_3" model="ir.actions.act_window">
+        <field name="name">Finance Dimension 3</field>
+        <field name="res_model">bs.finance.dimension</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain" eval="[('group_id', '=', ref('bs_finance_dimension.bs_dimension_3'))]" />
+        <field name="context" eval="{'default_group_id':ref('bs_finance_dimension.bs_dimension_3')}" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There is no examples click here to add new Bs Finance Dimension.
+            </p>
+        </field>
+    </record>
+
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="menu_finance_dimension_categ" name="Finance Dimension"
+        parent="account.menu_finance_configuration" sequence="200" />
+    <menuitem id="menu_bs_dimension_group" name="Dimension Group"
+        parent="menu_finance_dimension_categ"
+        action="action_bs_dimension_group" sequence="0" />
+    <menuitem id="menu_finance_dimension_1" name="Dimension 1" parent="menu_finance_dimension_categ"
+        action="action_bs_finance_dimension_1" sequence="1" />
+    <menuitem id="menu_finance_dimension_2" name="Dimension 2" parent="menu_finance_dimension_categ"
+        action="action_bs_finance_dimension_2" sequence="2" />
+    <menuitem id="menu_finance_dimension_3" name="Dimension 3" parent="menu_finance_dimension_categ"
+        action="action_bs_finance_dimension_3" sequence="3" />
+
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="billing_status_master_view_tree" model="ir.ui.view">
+        <field name="name">billing.status.tree</field>
+        <field name="model">billing.status</field>
+        <field name="arch" type="xml">
+            <tree string="Billing Status">
+                <field name="name"/>                
+            </tree>
+        </field>
+    </record>
+    
+    <record id="billing_status_master_view_form" model="ir.ui.view">
+        <field name="name">billing.status.view.form</field>
+        <field name="model">billing.status</field>
+        <field name="arch" type="xml">
+            <form string="Billing Status">
+                <sheet>
+                    <field name="name" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="billing_status_master_view_action" model="ir.actions.act_window">
+        <field name="name">Billing Status</field>
+        <field name="res_model">billing.status</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Define a new Billing Status
+          </p>
+        </field>
+    </record>  
+
+    <menuitem id="menu_billing_status_round" name="Billing Status"
+    parent="hdc_tms.menu_resupply_delivery_round_main"
+    action="billing_status_master_view_action" sequence="9" />
+    
+</odoo>

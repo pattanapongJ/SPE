@@ -1,0 +1,369 @@
+<odoo>
+    <record id="receipt_list_form_view" model="ir.ui.view">
+        <field name="name">receipt.list.form</field>
+        <field name="model">receipt.list</field>
+        <field name="arch" type="xml">
+            <form string="Receipt List">
+                <header>
+                    <button name="confirm_rl" string="Confirm RL" type="object" class="oe_highlight" states="draft"/>
+                    <button name="confirm_warehouse" string="Confirm Warehouse" type="object" class="oe_highlight" states="ready"/>
+                    <button name="confirm_inventory" string="Confirm Inventory" type="object" class="oe_highlight" states="waiting"/>
+                    <button name="add_items" string="Add Transfer" type="object" class="oe_highlight" states="draft,ready"/>
+                    <button name="revised" string="Revise" type="object" class="oe_highlight" states="ready,waiting"/>
+                    <button name="cancel_close" string="Cancel" type="object" states="draft"/>
+                    <button name="action_print" string="Print Receipt List" type="object" states="ready,waiting,done"/>
+                    <button name="action_print_shortage_overage" string="Print Receipt" type="object" states="ready,waiting,done"/>
+                    <button name="create_bills" string="Create Billing" type="object" class="oe_highlight" states="done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,ready,waiting,done" readonly="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            class="oe_stat_button"
+                            name="open_invoice_view"
+                            type="object"
+                            attrs="{'invisible':[('bills_count', '=', 0)]}"
+                            icon="fa-pencil-square-o"
+                        >
+                            <field
+                                name="bills_count"
+                                string="Vendor Bills"
+                                widget="statinfo"
+                            />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" nolabel="1"/></h1>
+                    </div>
+                    <group>
+                        <group name="group_1">
+                            <field name="is_oversea" invisible="1"/>
+                            <field name="partner_id"/>
+                            <field name="user_em_id"/>
+                            <field name="company_id" attrs="{'required': [('state', '!=', 'cancel')]}"/>
+                            <field name="operation_type" attrs="{'required': [('state', '!=', 'cancel')]}" 
+                                    domain="[('code', '=', 'incoming'),('company_id', '=', company_id),('company_id', '!=', False)]"/>
+                            <field name="warehouse_id" force_save="1" readonly="1" attrs="{'required': [('state', '!=', 'cancel')]}"
+                                    domain="[('company_id', '=', company_id),('company_id', '!=', False)]"/>
+                            <field name="location_id" attrs="{'required': [('state', '!=', 'cancel')]}"
+                                    domain="[('warehouse_id', '=', warehouse_id),('warehouse_id', '!=', False)]"/>
+                        </group>
+                        <group name="group_2">
+                            <field name="scheduled_date"/>
+                            <field name="receipted_date"/>
+                            <field name="invoice_no" attrs="{'invisible': [('is_oversea', '!=', False)]}"/>
+                            <field name="invoice_date_in" attrs="{'invisible': [('is_oversea', '!=', False)]}"/>
+                            <field name="performa_invoice" attrs="{'invisible': [('is_oversea', '!=', True)]}"/>
+                            <field name="per_invoice_date" attrs="{'invisible': [('is_oversea', '!=', True)]}"/>
+                            <field name="commercial_invoice" attrs="{'invisible': [('is_oversea', '!=', True)]}"/>
+                            <field name="com_invoice_date" attrs="{'invisible': [('is_oversea', '!=', True)]}"/>
+                            <field name="vendor_ref"/>
+                            <field name="po_ref"/>
+                            
+                            <label for="batch_ref" string="Batch Ref" />
+                            <div>
+                                <div class="o_row">
+                                    <field
+                                        name="batch_ref"
+                                        class="oe_inline"
+                                    />
+                                    <button name="batch_add" string="Add" type="object" class="oe_inline oe_highlight"/>
+                                    <button name="batch_remove" string="Clear" type="object" class="oe_inline oe_highlight"/>
+                                </div>
+                            </div>
+
+                            <field name="currency_id"/>
+                            <field name="exchange_date"/>
+                            <field name="exchange_rate" force_save="1"/>
+                            <field name="exchange_date_free"/>
+                            <field name="exchange_rate_free"/>
+                        </group>
+                        <group name="group_3" string="Warehouse/Inventory Status">
+                            <field name="confirmed_warehouse_date"/>
+                            <field name="confirmed_warehouse_by" readonly="1"/>
+                            <field name="warehouse_status"/>
+                            <field name="validate_inventory_date"/>
+                            <field name="validate_inventory_by" readonly="1"/>
+                            <field name="inventory_status"/>
+                        </group>
+                        <group name="group_4" string="Shipping Info"  attrs="{'invisible': [('is_oversea', '!=', True)]}">
+                            <field name="shipping_provider"/>
+                            <field name="original_country"/>
+                            <field name="incoterm_id"/>
+                            <field name="delivery_mode"/>
+                            <field name="etd"/>
+                            <field name="eta"/>
+                            <field name="shipper"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="page_0" string="Transfer Lists">
+                            <field name="line_ids" nolabel="1">
+                                <tree create="false" editable="bottom">
+                                    <button name="action_remove_line" type="object" icon="fa-trash" title="Delete" class="btn-link text-danger"/>
+                                    <button name="action_show_details" type="object" icon="fa-list" width="0.1"
+                                            options='{"warn": true}' attrs="{'invisible': [('parent.state', 'in', ('draft','ready','done','cancel'))]}"/>
+                                    <field name="move_id" invisible="1"/>
+                                    <field name="product_id"/>
+                                    <field name="date"/>
+                                    <field name="warehouse_id"/>
+                                    <field name="location_dest_id"/>
+                                    <field name="reference"/>
+                                    <field name="group_id"/>
+                                    <field name="batch_no"/>
+                                    <field name="vendor_bill_id" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="vendor_bill_state" optional="hide"/>
+                                    <field name="demand_total" optional="show"/>
+                                    <field name="po_remain" optional="show"/>
+                                    <field name="po_shipped_qty" optional="show" attrs="{'readonly': [('parent.state', '!=', 'draft')]}"/>
+                                    <field name="po_receipt_qty" optional="show" force_save="1" attrs="{'readonly': [('parent.state', 'not in', ('ready'))]}"/>
+                                    <field name="po_receipt_done" optional="show"/>
+                                    <field name="po_product_uom" optional="show"/>
+                                    <field name="demand" optional="hide"/>
+                                    <field name="product_uom_qty" optional="hide"/>
+                                    <field name="qty_to_invoice" optional="hide"/>
+                                    <field name="qty_invoiced" optional="hide"/>
+                                    <field name="shipped_qty" optional="hide" readonly="1" force_save="1" attrs="{'readonly': [('parent.state', '!=', 'draft')]}"/>
+                                    <field name="receipt_qty" optional="hide" force_save="1" attrs="{'readonly': [('parent.state', 'not in', ('ready'))]}"/>
+                                    <field name="overage_qty" force_save="1" optional="hide"/>
+                                    <field name="shortage_qty" force_save="1" optional="hide"/>
+                                    <field name="receipt_done" optional="hide"/>
+                                    <field name="product_uom" optional="hide"/>
+                                    <field name="price" optional="show" string= "Unit Price/After Discount"/>
+                                    <field name="currency_id" optional="show" readonly="1" force_save="1"/>
+                                    <field name="subtotal" optional="show"/>
+                                    <field name="default_code" optional="hide"/>
+                                    <field name="barcode" optional="hide"/>
+                                    <field name="product_categ_id" optional="hide"/>
+                                    <field name="product_tag_ids" widget="many2many_tags" optional="hide"/>
+                                    <field name="all_stock" optional="hide"/>
+                                    <field name="available_stock" optional="hide"/>
+                                    <field name="external_barcodes" widget="many2many_tags" optional="hide"/>
+                                    <field name="remark" optional="hide"/>
+                                    <field name="box" optional="hide"/>
+                                    <field name="crate" optional="hide"/>
+                                    <field name="net_price" optional="hide"/>
+                                    <field name="std_price" optional="hide"/>
+                                    <field name="discount" optional="hide"/>
+                                    <field name="taxes_id" widget="many2many_tags" optional="hide"/>
+                                    <field name="hs_code" optional="hide"/>
+                                    <field name="duty" optional="hide"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="move_id" invisible="1"/>
+                                            <field name="product_id"/>
+                                            <field name="date"/>
+                                            <field name="warehouse_id"/>
+                                            <field name="location_dest_id"/>
+                                            <field name="reference"/>
+                                            <field name="group_id"/>
+                                            <field name="demand_total"/>
+                                            <field name="shipped_qty" readonly="1"/>
+                                            <field name="demand"/>
+                                            <field name="price"/>
+                                            <field name="subtotal"/>
+                                        </group>
+                                        <group>
+                                            <field name="state"/>
+                                            <field name="default_code"/>
+                                            <field name="barcode"/>
+                                            <field name="product_categ_id"/>
+                                            <field name="product_tag_ids" widget="many2many_tags" />
+                                            <field name="all_stock"/>
+                                            <field name="available_stock"/>
+                                            <field name="external_barcodes" widget="many2many_tags"/>
+                                            <field name="remark"/>
+                                            <field name="box"/>
+                                            <field name="crate"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="untaxed_amount"/>
+                                <field name="vat_amount"/>
+                                <div class="oe_subtotal_footer_separator oe_inline">
+                                    <label for="total_amount"/>
+                                </div>
+                                <field name="total_amount" nolabel="1" class="oe_subtotal_footer_separator" options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                          <group name="group_page_1" string="Remarks">
+                            <field name="remarks" nolabel="1"/>
+                          </group>
+                        </page>
+                        <page name="page_1" string="Detailed Transfer">
+                            <field name="move_line_id" nolabel="1"/>
+                        </page>
+                        <page name="page_2" string="Service Lists">
+                            <field name="line_service_ids" nolabel="1">
+                                <tree editable="bottom" create="false">
+                                    <field name="purchase_line_id" invisible="1"/>
+                                    <field name="product_id"/>
+                                    <field name="po_id"/>
+                                    <field name="demand"/>
+                                    <field name="price"/>
+                                    <field name="subtotal" invisible="1"/>
+                                </tree>
+                            </field>
+                            <!-- <group>
+                              <group>
+                                <field name="account_journal_id"/>
+                                <button name="compute_landed_cost" string="Compute" type="object" class="btn-secondary" attrs="{'invisible': [('state', 'in', ('draft','done','cancel'))]}"/>
+                              </group>
+                              <group></group>
+                            </group>
+                            
+                            <field name="cost_lines" nolabel="1">
+                                <form string="Cost Lines">
+                                    <group>
+                                        <group>
+                                            <field name="product_id" domain="[('landed_cost_ok', '=', True)]" context="{'default_landed_cost_ok': True}"/>
+                                            <field name="price_unit"/>
+                                            <field name="currency_id" invisible="1"/>
+                                        </group>
+                                        <group>
+                                            <field name="split_method"/>
+                                            <field name="account_id" options="{'no_create': True}"/>
+                                        </group>
+                                    </group>
+                                    <label for="name"/>
+                                    <field name="name"/>
+                                </form>
+                                <tree string="Cost Lines" editable="bottom">
+                                    <field name="product_id" domain="[('landed_cost_ok', '=', True)]" context="{'default_landed_cost_ok': True, 'default_type': 'service'}"/>
+                                    <field name="name"/>
+                                    <field name="account_id" options="{'no_create': True}"/>
+                                    <field name="split_method"/>
+                                    <field name="price_unit"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </tree>
+                            </field>
+                            
+
+                            <field name="valuation_adjustment_lines" nolabel="1">
+                                <form string="Valuation Adjustments">
+                                    <group>
+                                        <group>
+                                            <field name="product_id"/>
+                                            <field name="quantity"/>
+                                        </group>
+                                        <group>
+                                            <field name="currency_id" invisible="1"/>
+                                            <field name="former_cost"/>
+                                            <field name="additional_landed_cost"/>
+                                        </group>
+                                    </group>
+                                </form>
+                                <tree string="Valuation Adjustments" editable="bottom" create="0">
+                                    <field name="cost_line_id" readonly="1"/>
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="weight" readonly="1" optional="hide"/>
+                                    <field name="volume" readonly="1" optional="hide"/>
+                                    <field name="quantity" readonly="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="former_cost" readonly="1"/>
+                                    <field name="final_cost" readonly="1"/>
+                                    <field name="additional_landed_cost"/>
+                                </tree>
+                            </field> -->
+                        </page>
+                        <page name="page_3" string="Remarks">
+                          <group name="group_page_3" string="External Remarks">
+                            <field name="external_remarks" nolabel="1"/>
+                          </group>
+                          <group name="group_page_3_2" string="Internal Remarks">
+                            <field name="internal_remarks" nolabel="1"/>
+                          </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="receipt_list_tree_view" model="ir.ui.view">
+        <field name="name">receipt.list.tree</field>
+        <field name="model">receipt.list</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1" sample="1">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_em_id"/>
+                <field name="company_id"/>
+                <field name="operation_type"/>
+                <field name="warehouse_id"/>
+                <field name="location_id"/>
+                <field name="untaxed_amount"/>
+                <field name="vat_amount"/>
+                <field name="total_amount"/>
+                <field name="state" widget="badge"
+                        decoration-success="state == 'done'"
+                        decoration-info="state in ('draft','ready','waiting')"
+                        decoration-danger="state == 'cancel'" />
+                <field name="invoice_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="receipt_list_line_tree_view" model="ir.ui.view">
+        <field name="name">receipt.list.line.tree</field>
+        <field name="model">receipt.list.line</field>
+        <field name="arch" type="xml">
+            <tree string="RL line" create="false" delete="false">
+                <field name="receipt_list_id"/>
+                <field name="invoice_lines" widget="many2many_tags" string="Bill Number"/>
+                <field name="invoice_status"/>
+                <field name="product_id"/>
+                <field name="date"/>
+                <field name="warehouse_id"/>
+                <field name="location_dest_id"/>
+                <field name="reference"/>
+                <field name="group_id"/>
+                <field name="batch_no"/>
+                <field name="demand_total"/>
+                <field name="demand"/>
+                <field name="shipped_qty"/>
+                <field name="receipt_qty"/>
+                <field name="receipt_done"/>
+                <field name="price"/>
+                <field name="subtotal"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_receipt_list" model="ir.actions.act_window">
+        <field name="name">Receipt List</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">receipt.list</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_receipt_list_line" model="ir.actions.act_window">
+        <field name="name">RL line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">receipt.list.line</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="action_receipt_list_create_bill" model="ir.actions.server">
+        <field name="name">Create Billing</field>
+        <field name="model_id" ref="model_receipt_list"/>
+        <field name="binding_model_id" ref="model_receipt_list"/>
+        <field name="state">code</field>
+        <field name="binding_view_types">list</field>
+        <field name="code">
+            action = records.create_bills_tree()
+        </field>
+    </record>
+
+
+</odoo>

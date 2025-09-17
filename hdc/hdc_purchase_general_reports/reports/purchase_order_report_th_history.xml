@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hdc_purchase_order_report_document_th_history">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <t t-if="o and 'branch_id' in o">
+            <t t-set="branch" t-value="o.branch_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'branch_id' in o">
+            <t t-set="branch" t-value="res_branch"/>
+        </t>
+        <div class="header" style="font-family: KanitLight;" >
+            <div class="row">                
+                <div class="col-8 text-left" style="margin-top:5mm;">
+                    <span style="font-family: KanitLight;font-size: 21.33px;">
+                        <t t-esc="company.name_th"/>                  
+                    </span>                
+                </div>
+                <div class="col-4 text-right"  style="margin-right:0mm;margin-top:5mm">
+                    <span style="font-family: KanitLight;font-size: 21.33px;">
+                        รายละเอียดใบสั่งซื้อย้อนหลัง
+                    </span>
+                    <br/>
+                    <span style="font-family: KanitLight;font-size: 14.67px;">
+                        PO No 
+                        <span style="padding-right:50px">
+                            <span t-if="doc.name">
+                                <span t-field="doc.name"/>
+                            </span>
+                            <span t-if="not doc.name">
+                                -
+                            </span>
+                        </span>
+                    </span>             
+                </div>
+            </div>
+        </div>
+
+        <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <div class="row">
+                <t t-set="l_no" t-value="0"/>
+                <table class="table-bordered" style="font-size: 12.00px;line-height: 18px">
+                    <thead style="background-color:#ECECEC">
+                        <tr>
+                            <th class="text-center align-middle" style="width: 100px;">Item Number</th>
+                            <th class="text-center align-middle" style="width: 318px;">Product Name</th>
+                            <th class="text-center align-middle" style="width: 76px;">Inventory<br/>Unit</th>
+                            <th class="text-center align-middle" style="width: 76px;">เคลื่อนไหว 4<br/>เดือน</th>
+                            <th class="text-center align-middle" style="width: 76px;">เคลื่อนไหว 1<br/>เดือน</th>
+                            <th class="text-center align-middle" style="width: 76px;">Stock</th>
+                            <th class="text-center align-middle" style="width: 76px;">จำนวน<br/>เดือน<br/>ที่ขายได้<br/>(S/T)</th>
+                            <th class="text-center align-middle" style="width: 76px;">ค้างรับ</th>
+                            <th class="text-center align-middle" style="width: 76px;">Stock+ค้างรับ</th>
+                            <th class="text-center align-middle" style="width: 76px;">จำนวนเดือน<br/>ที่ขายได้<br/>(S/T+B/O)</th>
+                            <th class="text-center align-middle" style="width: 76px;">สั่งซื้อใหม่</th>
+                            <th class="text-center align-middle" style="width: 76px;">(S/T+B/O+<br/>สั่งซื้อใหม่)</th>
+                            <th class="text-center align-middle" style="width: 76px;">จำนวน<br/>เดือน<br/>ที่ขายได้<br/>(S/T+B/O<br/>+สั่งซื้อใหม่)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="g_l" t-value="doc.env['account.move.line'].search([
+                            ('parent_state', '=', 'posted'),
+                            ('journal_id.type','=','sale'),
+                            ('product_id.type','=','product'),
+                            ('move_id.move_type','=','out_invoice'),
+                            ('journal_id.sale_example','!=','True')    
+                        ])"/>
+                        <t t-set="p_o_l" t-value="doc.env['purchase.order.line'].search([
+                            ('product_id.type','=','product'),
+                            ('order_id.reception_status','!=','received'),
+                            '|',('state','=','done'),('state','=','purchase')    
+                        ])"/>
+                        <span t-if="doc.date_approve and doc.state in ['purchase','done']">
+                            <t t-set="confirmation_date_month" t-value="int(doc.date_approve.month)"/>
+                            <t t-set="confirmation_date_year" t-value="int(doc.date_approve.year)"/>
+                        </span>
+                        <span t-else="">
+                            <t t-set="confirmation_date_month" t-value="int(doc.date_order.month)"/>
+                            <t t-set="confirmation_date_year" t-value="int(doc.date_order.year)"/>
+                        </span>
+                        <t t-foreach="o.order_line" t-as="ol" >                                
+                            <t t-set="g_l_quantity_4" t-value="0"/>
+                            <t t-set="g_l_quantity_1" t-value="0"/>
+                            <t t-set="product_stock" t-value="0"/>
+                            <t t-set="s_t" t-value="int(0)"/>
+                            <t t-set="b_d" t-value="int(0)"/>
+                            <t t-set="s_t_b_d" t-value="int(0)"/>
+                            <t t-set="s_t_b_d_new" t-value="int(0)"/>
+                            <t t-set="s_t_b_d_new_q1" t-value="int(0)"/>
+                            <tr>
+                                <td class="text-center" style="width: 100px;">
+                                    <t t-set="l_no" t-value="l_no + 1"/>
+                                    <t t-esc="l_no"/>
+                                </td>
+                                <td class="text-left" style="width: 318px;">
+                                    <span t-if="ol.name">
+                                        <span t-field="ol.name"/>
+                                    </span>
+                                    <span t-if="not ol.name">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 76px;">
+                                    <span t-if="ol.product_uom">
+                                        <span t-field="ol.product_uom"/>
+                                    </span>
+                                    <span t-if="not ol.product_uom">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 76px;">
+                                    <t t-foreach="g_l" t-as="gl" >
+                                        <t t-if="gl.product_id.name == ol.product_id.name">  
+                                            <t t-if="confirmation_date_month-gl.date.month in [1,2,3,4] and gl.date.year == confirmation_date_year">
+                                                <t t-set="g_l_quantity_4" t-value="g_l_quantity_4 + gl.quantity"/>
+                                            </t>
+                                            <t t-if="confirmation_date_month-gl.date.month in [-11,-10,-9,-8] and gl.date.year == confirmation_date_year-1">         
+                                                <t t-set="g_l_quantity_4" t-value="g_l_quantity_4 + gl.quantity"/>
+                                            </t>
+                                            <t t-if="confirmation_date_month-gl.date.month == 1 and gl.date.year == confirmation_date_year">
+                                                <t t-set="g_l_quantity_1" t-value="g_l_quantity_1 + gl.quantity"/>
+                                            </t> 
+                                            <t t-if="confirmation_date_month-gl.date.month == -11 and gl.date.year == confirmation_date_year-1">                                       
+                                                <t t-set="g_l_quantity_1" t-value="g_l_quantity_1 + gl.quantity"/>
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <span t-if="g_l_quantity_4>0">
+                                        <t t-esc="'{0:,.0f}'.format(g_l_quantity_4)"/>
+                                    </span>
+                                    <span t-if="g_l_quantity_4 == 0">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 76px;">
+                                    <span t-if="g_l_quantity_1>0">
+                                        <t t-esc="'{0:,.0f}'.format(g_l_quantity_1)"/>
+                                    </span>
+                                    <span t-if="g_l_quantity_1 == 0">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 76px;">  
+                                    <span t-if="ol.product_id">
+                                        <t t-set="product_stock" t-value="int(ol.product_id.qty_available)"/>
+                                        <!-- <t t-esc="product_stock"/> -->
+                                        <t t-esc="'{0:,.0f}'.format(product_stock)"/>
+                                    </span>
+                                    <span t-if="not ol.product_id">
+                                        -
+                                    </span>      
+                                </td>
+                                <td class="text-center" style="width: 76px;">
+                                    <t t-if="g_l_quantity_1 > 0">
+                                        <t t-set="s_t" t-value="int((product_stock/g_l_quantity_1)+0.5)"/>
+                                    </t>
+                                    <span t-if="s_t>0">
+                                        <t t-esc="'{0:,.0f}'.format(s_t)"/>
+                                    </span>
+                                    <span t-if="s_t == 0">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 76px;">
+                                    <t t-foreach="p_o_l" t-as="pol" >
+                                        <t t-if="pol.product_id == ol.product_id"> 
+                                            <t t-set="b_d" t-value="b_d + int(pol.product_qty - pol.qty_received)"/>
+                                        </t>
+                                    </t>
+                                    <span t-if="b_d>0">
+                                        <t t-esc="'{0:,.0f}'.format(b_d)"/>
+                                    </span>
+                                    <span t-if="b_d == 0">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 76px;">
+                                    <span t-if="product_stock + b_d > 0">
+                                        <t t-esc="'{0:,.0f}'.format(product_stock + b_d)"/>
+                                    </span>
+                                    <span t-if="product_stock + b_d == 0">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 76px;">
+                                    <t t-if="g_l_quantity_1 > 0">
+                                        <t t-set="s_t_b_d" t-value="int(((product_stock + b_d)/g_l_quantity_1)+0.5)"/>
+                                    </t>
+                                    <span t-if="s_t_b_d > 0">
+                                        <t t-esc="'{0:,.0f}'.format(s_t_b_d)"/>
+                                    </span>
+                                    <span t-if="s_t_b_d == 0">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 76px;">
+                                    <span t-if="ol.product_qty">
+                                        <t t-esc="'{0:,.0f}'.format(ol.product_qty)"/>
+                                    </span>
+                                    <span t-if="not ol.product_qty">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 76px;">
+                                    <span t-if="ol.product_id">
+                                        <t t-set="s_t_b_d_new" t-value="int(product_stock + s_t + ol.product_qty)"/>
+                                        <t t-esc="'{0:,.0f}'.format(s_t_b_d_new)"/>
+                                    </span>
+                                    <span t-if="not ol.product_id">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 76px;">
+                                    <t t-if="g_l_quantity_1 > 0">
+                                        <t t-set="s_t_b_d_new_q1" t-value="int((s_t_b_d_new/g_l_quantity_1)+0.5)"/>
+                                    </t>
+                                    <span t-if="s_t_b_d_new_q1 > 0">
+                                        <t t-esc="'{0:,.0f}'.format(s_t_b_d_new_q1)"/>
+                                    </span>
+                                    <span t-if="s_t_b_d_new_q1 == 0">
+                                        -
+                                    </span>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer last-page not-first-page" style="font-size: 11px;margin-top:2mm;vertical-align: bottom;font-family: KanitLight;max-height:403px">
+                   
+        </div>
+    </template>
+
+    <template id="hdc_purchase_order_report_th_history">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hdc_purchase_general_reports.hdc_purchase_order_report_document_th_history" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

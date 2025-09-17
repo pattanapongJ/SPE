@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="generate_settle_commissions_mall_view_form" model="ir.ui.view">
+        <field name="name">generate.settle.commissions.mall.form</field>
+        <field name="model">generate.settle.commissions.mall</field>
+        <field name="arch" type="xml">
+            <form string="Search">
+                <header>
+                    <button string="Search" name="search_action" type="object" class="oe_highlight"/>
+                    <button string="Clear All" name="clear_all_action" type="object" class="oe_highlight"/>
+                    <button string="Make Settlements" 
+                        name="create_settlements" 
+                        type="object" class="oe_highlight"/>
+                </header>
+				<group>
+					<group>
+                        <field name="target_type"  widget="radio"/>   
+                        <field name="team_id" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="target_type_commission"  widget="radio"/>
+                        <field name="user_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type_commission', '!=', 'user_id')]}"/>
+                        <field name="sale_spec" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type_commission', '!=', 'sale_spec')]}"/>
+                        <field name="sale_manager_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type_commission', '!=', 'sale_manager_id')]}"/> 
+                        <field name="member_ids" invisible="1"/>
+                        <field name="spec_member_ids" invisible="1"/>
+                        <field name="manager_member_id" invisible="1"/> 
+					</group>
+					<group>
+                        <label for="receipted_date_form" attrs="{'invisible': [('target_type', '=', 'sold_out')]}"/>
+                        <div class="o_row" attrs="{'invisible': [('target_type', '=', 'sold_out')]}">
+                            <field name="receipted_date_form"/> to
+                            <field name="receipted_date_to" />
+                        </div>
+                        <label for="invoice_date_form" attrs="{'invisible': [('target_type', '=', 'sold_out')]}"/>
+                        <div class="o_row" attrs="{'invisible': [('target_type', '=', 'sold_out')]}">
+                            <field name="invoice_date_form"/> to
+                            <field name="invoice_date_to" />
+                        </div>
+                        <label for="invoice_date_form" string="Credit Note Date" attrs="{'invisible': [('target_type', '=', 'normal')]}"/>
+                        <div class="o_row" attrs="{'invisible': [('target_type', '=', 'normal')]}">
+                            <field name="invoice_date_form"/> to
+                            <field name="invoice_date_to" />
+                        </div>
+					</group>
+				</group>
+                <notebook>
+                    <page string="Payment Lines" name="payment_commission_mall_lines" attrs="{'invisible': [('target_type', '=', 'sold_out')]}">
+                        <field name="selected"/>
+                        <span class="oe_inline">Select All</span>
+                        <field name="payment_lines">
+                            <tree string="payment" editable="bottom" create="0" edit="0">
+                                <field name="generate_settle_commissions_mall_id" invisible="1"/>
+                                <field name="selected"/>
+                                <field name="payment_id" optional="show"/>
+                                <field name="payment_id_create_date" optional="show"/>
+                                <field name="payment_id_date" optional="show"/>
+                                <field name="invoice_id" optional="show"/>
+                                <field name="invoice_id_date" optional="show"/>
+                                <field name="form_no" optional="show"/>
+                                <field name="partner_id" optional="show"/>
+                                <field name="company_id" optional="show"/>
+                                <field name="product_id" optional="show"/>
+                                <field name="total_amount_tax" optional="show"/>
+                                <field name="total_amount_untax" optional="show"/>
+                                <field name="note" optional="show"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Credit Note Lines" name="invoice_commission_mall_lines" attrs="{'invisible': [('target_type', '=', 'normal')]}">
+                        <field name="selected"/>
+                        <span class="oe_inline">Select All</span>
+                        <field name="invoice_lines">
+                            <tree string="invoice" editable="bottom" create="0" edit="0">
+                                <field name="generate_settle_commissions_mall_id" invisible="1"/>
+                                <field name="selected"/>
+                                <field name="invoice_id" optional="show"/>
+                                <field name="invoice_id_date" optional="show"/>
+                                <field name="form_no" optional="show"/>
+                                <field name="partner_id" optional="show"/>
+                                <field name="company_id" optional="show"/>
+                                <field name="product_id" optional="show"/>
+                                <field name="total_amount_tax" optional="show"/>
+                                <field name="total_amount_untax" optional="show"/>
+                                <field name="note" optional="show"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+			</form>
+        </field>
+    </record>
+
+    <record id="generate_settle_commissions_mall_action" model="ir.actions.act_window">
+        <field name="name">Generate Settle Commissions Mall</field>
+        <field name="res_model">generate.settle.commissions.mall</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Generate Settle Commissions
+          </p>
+        </field>
+    </record>
+</odoo>

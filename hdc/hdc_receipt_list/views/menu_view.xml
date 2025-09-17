@@ -1,0 +1,73 @@
+<odoo>
+   
+    <menuitem id="main_menu_receipt_list" web_icon="hdc_receipt_list,static/description/giving.png" name="Receipt Lists" sequence="40" />
+
+    <menuitem
+        id="menu_receipt_list"
+        name="Receipt Lists"
+        parent="main_menu_receipt_list"
+        sequence="1"/>
+
+    <menuitem
+        id="menu_gen_billing_rl"
+        name="Generate Billing"
+        parent="main_menu_receipt_list"
+        action="action_gen_billing_rl"
+        sequence="2"/>
+
+    <menuitem
+        id="gen_receipt_list_menu"
+        name="Generate Receipt Lists"
+        parent="menu_receipt_list"
+        action="action_gen_receipt_list"
+        sequence="1"/>
+
+    <menuitem
+        id="receipt_list_menu"
+        name="Receipt Lists"
+        parent="menu_receipt_list"
+        action="action_receipt_list"
+        sequence="2"/>
+    
+    <menuitem
+        id="receipt_list_line_menu"
+        name="RL Line"
+        parent="menu_receipt_list"
+        action="action_receipt_list_line"
+        sequence="3"/>
+
+    <menuitem
+        id="purchase_receipt_list_menu"
+        name="Receipt List"
+        parent="purchase.menu_purchase_root"
+        sequence="2"/>
+
+    <menuitem
+        id="menu_gen_billing_rl2"
+        name="Generate Billing"
+        parent="purchase.menu_purchase_root"
+        action="action_gen_billing_rl"
+        sequence="3"/>
+
+    <menuitem
+        id="gen_receipt_list_menu2"
+        name="Generate Receipt Lists"
+        parent="purchase_receipt_list_menu"
+        action="action_gen_receipt_list"
+        sequence="1"/>
+
+    <menuitem
+        id="receipt_list_menu2"
+        name="Receipt Lists"
+        parent="purchase_receipt_list_menu"
+        action="action_receipt_list"
+        sequence="2"/>
+
+    <menuitem
+        id="receipt_list_line_menu2"
+        name="RL Line"
+        parent="purchase_receipt_list_menu"
+        action="action_receipt_list_line"
+        sequence="3"/>
+
+</odoo>

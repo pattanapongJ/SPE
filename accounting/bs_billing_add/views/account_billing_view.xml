@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_billing_form_inherited" model="ir.ui.view">
+        <field name="name">account_billing_form_inherited</field>
+        <field name="model">account.billing</field>
+        <field name="inherit_id" ref="account_billing.view_account_billing_form" />
+        <field name="arch" type="xml">
+            <field name="narration" position="after">
+                <field name="total_bill_amount" invisible="1"/>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="start_date" />
+                <field name="end_date" />
+            </field>
+            <xpath expr="//field[@name='billing_line_ids']" position="replace">
+                <field name="billing_line_ids">
+                    <tree name="billing" create="1" editable="bottom">
+                        <field name="invoice_id" context="{'search_default_group_by_payment_status': 1, 'search_default_posted': 1}" />
+                        <field name="name" readonly="1" force_save="1" />
+                        <field name="invoice_date" readonly="1" force_save="1" />
+                        <field name="threshold_date" readonly="1" force_save="1" />
+                        <field name="origin" readonly="1" force_save="1" />
+                        <field name="total" sum="Total Amount" readonly="1" force_save="1" />
+                        <field name="state" readonly="1" force_save="1" widget="badge"
+                               decoration-success="state == 'posted'"
+                               decoration-info="state == 'draft'"
+                               decoration-danger="state == 'cancel'" />
+                        <field name="payment_state" widget="badge"
+                               decoration-success="payment_state == 'paid'"
+                               decoration-info="payment_state == 'not_paid'"
+                               decoration-danger="payment_state == 'reversed'"
+                               decoration-warning="payment_state == 'in_payment'" />
+                    </tree>
+                </field>
+            </xpath>
+             <!-- <xpath expr="//header/button[@name='action_cancel'][@states='billed']" position="attributes">
+                <attribute name="invisible">1</attribute>
+             </xpath> -->
+
+             <xpath expr="//field[@name='end_date']" position="after">
+                <field name="payment_terms_id"/>
+             </xpath>
+        </field>
+    </record>
+    
+    <record id="account_billing_tree_inherited" model="ir.ui.view">
+        <field name="name">account_billing_tree_inherited</field>
+        <field name="model">account.billing</field>
+        <field name="inherit_id" ref="account_billing.view_account_billing_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="total_bill_amount"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

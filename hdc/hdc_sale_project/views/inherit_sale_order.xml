@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_view_dalivery_status" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="delivery_state" invisible="0" string="Delivery state" modifiers="{}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_sale_blanket_order" model="ir.ui.view">
+        <field name="name">sale.order.from.blanket.form.hdc_sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="hdc_sale.hdc_sale_view_order_form_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='client_order_ref']" position="after">
+                <field name="project_name" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+ 
+   

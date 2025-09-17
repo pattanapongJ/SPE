@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="hdc_allowed_warehouse_location_assets_backend" name="stock_allowed_wh assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/hdc_allowed_warehouse_location/static/src/js/report_stock_forecasted.js"/>
+        </xpath>
+   </template>
+    
+</odoo>

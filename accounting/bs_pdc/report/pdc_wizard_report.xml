@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dev_print_cheque.action_report_print_cheque" model="ir.actions.report">
+            <field name="name">Print Cheque</field>
+            <field name="model">pdc.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bs_pdc.report_pdc_wizard_view</field>
+            <field name="report_file">bs_pdc.report_pdc_wizard_view</field>
+            <field name="print_report_name">'%s' % object.name</field>
+            <field name="binding_model_id" ref="model_pdc_wizard"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="dev_print_cheque.paperformat_cheque"/>
+        </record>
+    </data>
+
+</odoo>

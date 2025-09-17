@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_quotation_order_form_form_inherit_convert_prod_uom" model="ir.ui.view">
+        <field name="name">quotation.order.form.convert.prod.uom</field>
+        <field name="model">quotation.order</field>
+        <field name="inherit_id" ref="hdc_quotation_order.view_quotation_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quotation_line']/tree//field[@name='product_uom']"
+                position="after">
+                <field name="sale_uom_map_ids" widget="many2many_tags" invisible="1" />
+            </xpath>
+
+            <xpath expr="//field[@name='quotation_line']/tree//field[@name='product_uom']"
+                position="attributes">
+                <attribute name="domain">[('id', 'in', sale_uom_map_ids)]</attribute>
+            </xpath>
+        </field>
+    </record>    
+</odoo>

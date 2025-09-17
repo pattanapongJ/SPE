@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hdc_confirm_warehouse.module_warehouse_confirm_permission" model="ir.module.category">
+        <field name="name">Confirm Warehouse/Inventory</field>
+        <field name="description">Warehouse Inventory </field>
+        <field name="sequence">50</field>
+    </record> 
+    <record id="hdc_confirm_warehouse.group_warehouse" model="res.groups">
+        <field name="name">Warehouse</field>
+        <field name="category_id" ref="hdc_confirm_warehouse.module_warehouse_confirm_permission"/>
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="hdc_confirm_warehouse.group_inventory" model="res.groups">
+        <field name="name">Inventory</field>
+        <field name="category_id" ref="hdc_confirm_warehouse.module_warehouse_confirm_permission" />
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="hdc_confirm_warehouse.module_receipt_list_permission" model="ir.module.category">
+        <field name="name">Confirm/Validation Receipt List</field>
+        <field name="description">Picking List</field>
+        <field name="sequence">52</field>
+    </record> 
+    <record id="hdc_confirm_warehouse.group_receipt_confirm" model="res.groups">
+        <field name="name">Confirm Receipt List</field>
+        <field name="category_id" ref="hdc_confirm_warehouse.module_receipt_list_permission"/>
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="hdc_confirm_warehouse.group_receipt_validate" model="res.groups">
+        <field name="name">Validate Receipt List</field>
+        <field name="category_id" ref="hdc_confirm_warehouse.module_receipt_list_permission" />
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

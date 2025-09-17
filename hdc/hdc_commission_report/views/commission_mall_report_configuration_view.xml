@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_commission_mall_report_configuration_form" model="ir.ui.view">
+        <field name="name">commission.mall.report.configuration.form</field>
+        <field name="model">commission.mall.report.configuration</field>
+        <field name="arch" type="xml">            
+            <form string="Settle Commission Mall Report Configuration">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group name="form_commission_report_configuration" string="">
+                        <field name="code"/>
+                        <field name="description"/>
+                        <field name="target_type" widget="radio" invisible="0"/>
+                        <field name="report_id" options="{'no_create': True, 'no_open': True}"/>
+                    </group>   
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_commission_mall_report_configuration_tree" model="ir.ui.view">
+        <field name="name">commission.mall.report.configuration.tree</field>
+        <field name="model">commission.mall.report.configuration</field>
+        <field name="arch" type="xml">
+            <tree string="Settle Commission Mall Report Configuration">       
+                <field name="name"/>            
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="menu_commission_mall_report_configuration_action">
+        <field name="name">Settle Commission Mall Report Configuration</field>
+        <field name="res_model">commission.mall.report.configuration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

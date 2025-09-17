@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_blanket_order_inherit_addon_credit_limit" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form.inherit.addon</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="hdc_sale_agreement_addon.sale_blanket_order_inherit_addon"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='modify_type_txt']" position="before">
+                <field name="is_credit_limit" readonly="1" force_save="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

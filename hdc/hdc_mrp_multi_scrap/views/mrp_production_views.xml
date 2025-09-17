@@ -1,0 +1,36 @@
+<odoo>
+    <record id="mrp_production_form_multi_scrap_view_inherited" model="ir.ui.view">
+        <field name="name">mrp.production.view.inherited</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <!-- <field name="groups_id" eval="[(4, ref('stock.group_stock_manager'))]"/> -->
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_scrap']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_scrap']" position="after">
+                <button name="button_multi_scrap" type="object" string="Multi Scrap Orders"
+                        attrs="{'invisible': [('state', 'not in', ('progress','cancel','to_close','done'))]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_see_move_scrap']" position="after">
+                <field name="has_multi_scrap_move" invisible="1"/>
+                <button name="action_see_move_multi_scrap" string="Multi Scraps" type="object"
+                            class="oe_stat_button" icon="fa-arrows-v"
+                            attrs="{'invisible': [('has_multi_scrap_move', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+    <menuitem
+        id="menu_multi_stock_scrap"
+        name="Multi Scrap"
+        parent="mrp.menu_mrp_manufacturing"
+        action="hdc_multi_scrap.action_multi_stock_scrap"
+        sequence="98"/>
+    <menuitem id="mrp.menu_mrp_scrap"
+            name="Scrap"
+            parent="mrp.menu_mrp_manufacturing"
+            action="stock.action_stock_scrap"
+            sequence="25"
+            active="False"
+            />
+</odoo>

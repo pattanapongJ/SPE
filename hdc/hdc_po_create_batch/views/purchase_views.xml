@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="form_purchase_order_button_receipt" model="ir.ui.view">
+        <field name="name">purchase.addon.fields.form.inherit.purchase</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="button_create_receipt_list" string="Create Receipt List"  type="object" attrs="{'invisible':[('state', 'not in', ['purchase', 'done'])]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button type="object"
+                    name="action_view_picking_list"
+                    class="oe_stat_button"
+                    icon="fa-download"
+                    attrs="{'invisible': [('count_receipt_list', '=', 0)]}"
+                    groups="base.group_user">
+                    <field name="count_receipt_list" widget="statinfo" string="Receipt List"/>
+                </button>
+            </xpath>
+        </field>
+    </record>       
+</odoo>

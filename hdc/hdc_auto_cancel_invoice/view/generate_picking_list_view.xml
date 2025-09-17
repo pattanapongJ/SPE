@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="picking_list_form_hdc_auto_cancel_invoice" model="ir.ui.view">
+        <field name="name">picking.list.form.hdc.auto.cancel.invoice</field>
+        <field name="model">picking.lists</field>
+        <field name="inherit_id" ref="hdc_inventory_picking_list_sale.picking_list_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='product_id']" position="before">
+                <field name="state_cancel" invisible="1"/>
+                <field name="state" options="{&quot;bg_color&quot;: &quot;red:state == 'cancel'&quot;, &quot;fg_color&quot;: &quot;white:state == 'cancel'&quot;}"/>           
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

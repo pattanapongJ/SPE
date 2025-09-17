@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hdc_commission.module_hdc_commission_permission" model="ir.module.category">
+            <field name="name">Commission</field>
+            <field name="description">Commission</field>
+            <field name="sequence">53</field>
+        </record> 
+        <record model="res.groups" id="group_commission_user">
+            <field name="name">User</field>
+            <field name="category_id" ref="hdc_commission.module_hdc_commission_permission"/>
+            <field name="implied_ids" eval="[(4, ref('hdc_multi_company_addon.group_multi_company_all'))]"/>
+        </record>
+        <record model="res.groups" id="group_commission_manager">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="hdc_commission.module_hdc_commission_permission"/>
+            <field name="implied_ids" eval="[(4, ref('hdc_commission.group_commission_user'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View pdc.wizard form -->
+    <record id="view_pdc_wizard_form" model="ir.ui.view">
+        <field name="name">view.pdc.wizard.form</field>
+        <field name="model">pdc.wizard</field>
+        <field name="inherit_id" ref="bs_customer_bank_account_spe.view_pdc_wizard_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='customer_bank_id']" position="after">
+                <field name="drawer" attrs="{'invisible':[('payment_type','=','send_money')]}"/>
+                <field name="bank_account_holder_id" attrs="{'invisible':[('payment_type','=','send_money')]}"
+                       options="{'no_create_edit': True,'no_create': True, 'no_quick_create': True}"/>
+                <field name="no_of_signature" attrs="{'invisible':[('payment_type','=','send_money')]}"/>
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="transfer_line_report">
+        <t t-call="web.html_container">
+
+            <!-- Initialize variables -->
+            <t t-set="doc_id" t-value="0"/>
+            <t t-set="iso_detail" t-value="0"/>
+
+            <!-- Loop over documents to prepare context -->
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="check_iso" t-value="'hdc_inventory_general_report.hdc_tranfers_llk_report'"/>
+                <t t-set="iso_detail" t-value="doc.picking_id.check_iso_name(check_iso)"/>
+                <t t-set="print_status" t-value="doc.picking_id.print_llk_status_change()"/>
+            </t>
+
+            <!-- Header Section -->
+            <div class="header font-inventory-div" style="font-family: KanitLight;">
+
+                <div style="text-align: center; margin: 5mm 0; font-family: KanitLight;">
+                    <h4 style="font-size: 15.64px;">
+                        <strong>ใบจัดสินค้า</strong>
+                    </h4>
+                </div>
+
+                <div class="row" style="font-size: 10.64px; margin: 2mm 0 1mm 0; font-family: KanitLight;">
+                    <div class="col-6">
+                        <div class="row">
+                            <span>Page </span> <span class="page"/> / <span class="topage"/><br/>
+                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/><br/>
+                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M:%S')"/>
+                        </div>
+                    </div>
+                    <div class="col-6" style="position: relative;">
+                        <div style="position: absolute; bottom: 0; right: 0;">
+                            <span t-esc="iso_detail"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body Section -->
+            <div class="article font-inventory-div" 
+                 style="font-family: KanitLight;" 
+                 >
+
+				<t t-set="new_docs" t-value="docs.get_report_data()"/>
+
+                <div class="row">
+
+
+                    <table class="table table-borderless" style="font-size: 10.64px; line-height: 11px;">
+
+                        <t t-foreach="new_docs" t-as="new_doc">
+
+						<!-- Table Header -->
+						<thead>
+							<tr>
+								<th class="align-middle text-left font-inventory-th" style="width: 5%; border-bottom: 1px solid black; font-weight: bold; padding: 0 5px;">Journal name</th>
+								<th class="align-middle text-left font-inventory-th" style="width: 17%; border-bottom: 1px solid black; font-weight: bold; padding: 0 5px;">Transfer</th>
+								<th class="align-middle text-left font-inventory-th" style="width: 5%; border-bottom: 1px solid black; font-weight: bold; padding: 0 5px;">Date</th>
+								<th class="align-middle text-left font-inventory-th" style="width: 5%; border-bottom: 1px solid black; font-weight: bold; padding: 0 5px;">Description</th>
+								<th class="align-middle text-center font-inventory-th" style="width: 5%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 5%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 8%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 5%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 5%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 5%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 5%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 6%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 7%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 5%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 7%; border-bottom: 1px solid black;"/>
+								<th class="align-middle text-center font-inventory-th" style="width: 5%; border-bottom: 1px solid black;"/>
+							</tr>
+						</thead>
+
+
+							<t t-set="picking_id" t-value="new_doc['picking_id']"/>
+							<t t-set="lines" t-value="new_doc['lines']"/>
+
+                            <!-- Table Body -->
+							<tbody>
+
+								<!-- Transfer Header Rows -->
+								<!-- Document Info Row -->
+								<tr>
+									<td class="text-left" style="padding: 4px 5px;">-</td>
+									<td class="text-left" style="padding: 4px 5px;">
+										<span t-field="picking_id.name" t-if="picking_id.name"/>
+										<span t-if="not picking_id.name">-</span>
+									</td>
+									<td class="text-left" style="padding: 4px 5px;">
+										<span t-field="picking_id.date" t-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}" t-if="picking_id.date"/>
+										<span t-if="not picking_id.date">-</span>
+									</td>
+									<td class="text-left" colspan="13" style="padding: 4px 5px;">
+										<span t-field="picking_id.note" t-if="picking_id.note"/>
+										<span t-if="not picking_id.note">-</span>
+									</td>
+								</tr>
+
+								<!-- From/To Labels -->
+								<tr>
+									<td class="text-center" colspan="7" style="padding: 4px 5px;"/>
+									<td class="text-center" colspan="2" style="padding: 4px 5px; font-weight: bold;">From</td>
+									<td class="text-center" colspan="2" style="padding: 4px 5px; font-weight: bold;">To</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">Qty</td>
+									<td class="text-center" style="padding: 4px 5px;"/>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">To</td>
+									<td class="text-center" colspan="2" style="padding: 4px 5px;"/>
+								</tr>
+
+								<!-- Column Labels -->
+								<tr>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">รหัสสินค้า</td>
+									<td class="text-left" colspan="2" style="padding: 4px 5px; font-weight: bold;">ชื่อสินค้า</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">Lots</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">จำนวน</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">หน่วย</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">หมายเหตุ</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">WH</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">Location</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">WH</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">Location/Sub</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">ส่งลูกค้า</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">คงเหลือเก็บ24</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">WH Onh</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">ผู้ตรวจสอบ</td>
+									<td class="text-left" style="padding: 4px 5px; font-weight: bold;">ผู้เก็บ</td>
+								</tr>
+
+								<t t-foreach="lines" t-as="line">
+
+                                    <!-- Line Row -->
+                                    <tr>
+                                        <td class="text-left" style="padding: 4px 5px;">
+                                            <span t-field="line.product_id.default_code" t-if="line.product_id.default_code"/>
+                                            <span t-if="not line.product_id.default_code">-</span>
+                                        </td>
+                                        <td class="text-left" colspan="2" style="padding: 4px 5px;">
+                                            <span t-field="line.move_id.description_picking" t-if="line.move_id.description_picking"/>
+                                            <span t-if="not line.move_id.description_picking">-</span>
+                                        </td>
+                                        <td class="text-center" style="padding: 4px 5px;">-</td>
+                                        <td class="text-right" style="padding: 4px 5px;">
+                                            <span t-field="line.report_qty" t-if="line.report_qty"/>
+                                            <span t-if="not line.report_qty">-</span>
+                                        </td>
+                                        <td class="text-left" style="padding: 4px 5px;">
+                                            <span t-field="line.uom_id.name" t-if="line.uom_id"/>
+                                            <span t-if="not line.uom_id">-</span>
+                                        </td>
+                                        <td class="text-left" style="padding: 4px 5px;">
+                                            <span t-field="line.remark" t-if="line.remark"/>
+                                            <span t-if="not line.remark">-</span>
+                                        </td>
+                                        <td class="text-left" style="padding: 4px 5px;">
+                                            <span t-field="line.picking_id.to_warehouse.name" t-if="line.picking_id.to_warehouse"/>
+                                            <span t-if="not line.picking_id.to_warehouse">-</span>
+                                        </td>
+                                        <td class="text-left" style="padding: 4px 5px;">
+                                            <span t-field="line.location_id.complete_name" t-if="line.location_id"/>
+                                            <span t-if="not line.location_id">-</span>
+                                        </td>
+                                        <td class="text-left" style="padding: 4px 5px;">
+                                            <span t-field="line.picking_id.from_warehouse.name" t-if="line.picking_id.from_warehouse"/>
+                                            <span t-if="not line.picking_id.from_warehouse">-</span>
+                                        </td>
+                                        <td class="text-left" style="padding: 4px 5px;">
+                                            <span t-field="line.location_dest_id.complete_name" t-if="line.location_dest_id"/>
+                                            <span t-if="not line.location_dest_id">-</span>
+                                        </td>
+                                        <td class="text-center" style="padding: 4px 5px;">
+                                            <span t-field="line.move_id.urgent_pick" t-if="line.move_id.urgent_pick"/>
+                                            <span t-if="not line.move_id.urgent_pick">-</span>
+                                        </td>
+                                        <td class="text-right" style="padding: 4px 5px;">
+                                            <t t-if="line.report_qty">
+                                                <t t-set="remain_stock" t-value="line.report_qty - line.move_id.urgent_remain"/>
+                                                <span t-esc="remain_stock"/>
+                                            </t>
+                                            <span t-if="not line.report_qty">-</span>
+                                        </td>
+
+                                        <td class="text-right" style="padding: 4px 5px;">
+                                            <t t-set="stock_warehouse" 
+                                               t-value="line.picking_id.get_stock_warehouse(line.move_id, line.picking_id.from_warehouse)"/>
+                                            <span t-esc="'{0:,}'.format(int(stock_warehouse))" t-if="stock_warehouse"/>
+                                            <span t-if="not stock_warehouse">-</span>
+                                        </td>
+                                        <td class="text-center" style="padding: 4px 5px;">
+                                            <span t-field="line.picking_id.approve_inter.name" t-if="line.picking_id.approve_inter"/>
+                                            <span t-if="not line.picking_id.approve_inter">-</span>
+                                        </td>
+                                        <td class="text-center" style="padding: 4px 5px;">-</td>
+
+                                    </tr>
+
+								</t> <!-- lines -->
+
+                           </tbody>
+
+                        </t> <!-- docs -->
+
+                    </table>
+
+                </div>
+            </div>
+
+        </t>
+    </template>
+</odoo>
+

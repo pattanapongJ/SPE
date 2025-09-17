@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_addition_Operation_type_tree" model="ir.ui.view">
+        <field name="name">addition.operation.type.tree</field>
+        <field name="model">addition.operation.type</field>
+        <field name="arch" type="xml">
+            <tree string="Addition Operation Type" editable="bottom">
+                <field name="addition_Operation_type"/>
+                <field name="code"/>
+                <field name="description"/>
+                <field name="write_date"/>
+                <field name="create_uid"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_addition_Operation_type_form" model="ir.ui.view">
+        <field name="name">addition.operation.type.form</field>
+        <field name="model">addition.operation.type</field>
+        <field name="arch" type="xml">
+            <tree string="Addition Operation Type" >
+                <field name="addition_Operation_type"/>
+                <field name="code"/>
+                <field name="description"/>
+                <field name="write_date"/>
+                <field name="create_uid"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="project_event_search" model="ir.ui.view">
+        <field name="name">addition.operation.type.search</field>
+        <field name="model">addition.operation.type</field>
+        <field name="arch" type="xml">
+            <search string="Search Addition Operation Type">
+                <field name="addition_Operation_type"/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_addition_Operation_type_form" model="ir.actions.act_window">
+        <field name="name">Addition Operation Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">addition.operation.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_addition_Operation_type" name="Addition Operation Type" parent="stock.menu_warehouse_config" sequence="5" action="action_addition_Operation_type_form" />
+</odoo>

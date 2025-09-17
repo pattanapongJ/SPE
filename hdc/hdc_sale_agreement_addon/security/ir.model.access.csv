@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_blanket_orders_change_total_user,undefined.wizard.blanket.orders.change.total,model_wizard_blanket_orders_change_total,base.group_user,1,1,1,1
+access_sale_blanket_order_confirmation_wizard_user,undefined.sale.blanket.order.confirmation.wizard,model_sale_blanket_order_confirmation_wizard,base.group_user,1,1,1,1
+access_sale_blanket_order_warning_wizard_user,undefined.sale.blanket.order.warning.wizard,model_sale_blanket_order_warning_wizard,base.group_user,1,1,1,1

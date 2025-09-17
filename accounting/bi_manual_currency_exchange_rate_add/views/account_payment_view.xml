@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="bi_view_account_payment_invoice_form_exchange_rate_field_add_inherit" model="ir.ui.view">
+            <field name="name">bi.view.account.payment.invoice.form.exchange.rate.field.add.inherit</field>
+            <field name="model">account.payment.register</field>
+            <field name="inherit_id"
+                   ref="bi_manual_currency_exchange_rate.bi_view_account_payment_invoice_form_exchange_rate_field_add_inherit"/>
+            <field name="arch" type="xml">
+
+                <field name="manual_currency_rate_active" position="replace">
+                    <field name="same_currency" invisible="1"/>
+                    <field name="manual_currency_rate_active" attrs="{'invisible':[('same_currency','=',True)]}"/>
+                    
+                    <label for="main_amount" attrs="{'invisible':[('manual_currency_rate_active','=',False)]}"/>
+                    <div class="o_row">
+                        <field name="main_amount"
+                           attrs="{'invisible':[('manual_currency_rate_active','=',False)]}"/>
+                           <button name="calculate_exchange_rate_on_main_amount" type="object" icon="fa-calculator" string="Calculate Rate"
+                            class="btn btn-primary"
+                           attrs="{'invisible':[('manual_currency_rate_active','=',False)]}"/>
+                    </div>
+                    
+                </field>
+
+                <field name="manual_currency_rate" position="attributes">
+                    <attribute name="digits">[12,12]</attribute>
+                </field>
+
+                <field name="manual_currency_rate" position="before">
+                    <field name="manual_currency_inverse_rate" digits="[12,12]"
+                           attrs="{'invisible': [('manual_currency_rate_active', '=', False)],'required':[('manual_currency_rate_active', '=', True)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

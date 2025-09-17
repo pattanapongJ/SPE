@@ -1,0 +1,45 @@
+<odoo>
+    <record id="hdc_multi_scrap_addon_view_line_form" model="ir.ui.view">
+        <field name="name">hdc_multi_scrap.stock.picking.form.addon</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="attributes">
+                <attribute name="domain">[('id', 'child_of', parent.location_id), 
+                                        '|', 
+                                        ('company_id', '=', False), 
+                                        ('company_id', '=', company_id), 
+                                        ('scrap_location', '=', False)]
+                </attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="hdc_multi_scrap_addon_view_line_detail_form" model="ir.ui.view">
+        <field name="name">hdc_multi_scrap.stock.picking.form.addon.detail</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="attributes">
+                <attribute name="domain">[('id', 'child_of', parent.location_id), 
+                                        '|', 
+                                        ('company_id', '=', False), 
+                                        ('company_id', '=', company_id), 
+                                        ('scrap_location', '=', False)]
+                </attribute>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="multi_scrap_invisible_btn_form" model="ir.ui.view">
+        <field name="name">mrp.production.form.invisible.scrap.btn</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_scrap']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

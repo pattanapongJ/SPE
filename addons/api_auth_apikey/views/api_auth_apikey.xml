@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- API Key List View -->
+        <record id="view_api_auth_apikey_tree" model="ir.ui.view">
+            <field name="name">api.auth.apikey.tree</field>
+            <field name="model">api.auth.apikey</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="easy_api_id"/>
+                    <field name="expiry"/>
+                    <field name="user_id"/>
+                    <field name="apikey"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- API Key Form View -->
+        <record id="view_api_auth_apikey_form" model="ir.ui.view">
+            <field name="name">api.auth.apikey.form</field>
+            <field name="model">api.auth.apikey</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="easy_api_id"/>
+                            <field name="api_key_choice"/>
+                            <field name="apikey" attrs="{'readonly':[('api_key_choice','=','auto')],'required':[('api_key_choice','=','manual')]}" widget="CopyClipboardChar"/>
+                            <field name="user_id"/>
+                            <field name="expiry"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Main Action: api.auth.apikey -->
+        <record id="api_auth_apikey_action" model="ir.actions.act_window">
+            <field name="name">API Key</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">api.auth.apikey</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                All important API Key Track handle here
+            </p><p>
+                Ekika helps you track, manage and maintain your API Keys activity in the software.
+            </p>
+            </field>
+        </record>
+        <!-- Sub Action Tree: api.auth.apikey -->
+        <record id="api_auth_apikey_action_tree_view" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_api_auth_apikey_tree"/>
+            <field name="act_window_id" ref="api_auth_apikey_action"/>
+        </record>
+        <!-- Sub Action Form: api.auth.apikey -->
+        <record id="api_auth_apikey_action_form_view" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_api_auth_apikey_form"/>
+            <field name="act_window_id" ref="api_auth_apikey_action"/>
+        </record>
+
+        <!-- API Key Action -->
+        <record id="action_api_auth_apikey" model="ir.actions.act_window">
+            <field name="name">API Keys</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">api.auth.apikey</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

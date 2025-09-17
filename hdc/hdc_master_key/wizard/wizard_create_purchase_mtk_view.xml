@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_create_purchase_mtk_form" model="ir.ui.view">
+        <field name="name">wizard.create.purchase.mtk.form</field>
+        <field name="model">wizard.create.purchase.mtk</field>
+        <field name="arch" type="xml">
+            <form string="Edit Price">
+                <group>
+                    <group>
+                        <field name="sale_id" invisible="1"></field>
+                        <field name="company_id" invisible="1"></field>
+                        <field name="operation_type" required="1" options="{'no_create': True}"></field>
+                    </group>
+                    <group></group>
+                </group>
+                <footer>
+                    <button name="action_create_purchase_master_key" type="object" string="Save" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_create_purchase_mtk" model="ir.actions.act_window">
+        <field name="name">Create Purchase MTK</field>
+        <field name="res_model">wizard.create.purchase.mtk</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
+ 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_blanket_order_inherit_finance_dimension" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form.inherit.finance.dimension</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='invoicing']" position="after">
+                <group name="finance_dimension_gp" string="Finance Dimension">
+                    <field name="finance_dimension_1_id"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_2_id"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_3_id"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_blanket_order_inherit_addon_finance_dimension" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form.inherit.addon.finance.dimension</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="hdc_sale_agreement_addon.sale_blanket_order_inherit_addon"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='note']" position="after">
+                <field name="finance_dimension_1_id" attrs="{'readonly': [('parent.state', 'in', ('open','expired'))]}" options="{'no_create_edit': True, 'no_quick_create': True}"
+                    optional="hide"/>
+                <field name="finance_dimension_2_id" attrs="{'readonly': [('parent.state', 'in', ('open','expired'))]}" options="{'no_create_edit': True, 'no_quick_create': True}"
+                    optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/form/group/group[1]/field[@name='note']" position="after">
+                <field name="note" widget="section_and_note_text" optional="hide"/>
+                <field name="finance_dimension_1_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                    optional="hide"/>
+                <field name="finance_dimension_2_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                    optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

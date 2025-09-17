@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="icp_api_key_choice" model="ir.config_parameter">
+            <field name="key">api_auth_apikey.api_key_choice</field>
+            <field name="value">auto</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hdc_tms_reports_view_form" model="ir.ui.view">
+        <field name="name">hdc.tms.reports</field>
+        <field name="model">distribition.delivery.note</field>
+        <field name="inherit_id" ref="hdc_tms.distibution_delivery_note_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='cancel_action']" position="after">
+                <button name="print" string="Print Report" type="object"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

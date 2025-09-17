@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="hdc_tms.distibution_delivery_note_action" model="ir.actions.act_window">
+        <field name="name">Delivery Lists</field>
+        <field name="res_model">distribition.delivery.note</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="distibution_delivery_note_view_tree_inherit" model="ir.ui.view">
+        <field name="name">Distribution Delivery Note tree inherit</field>
+        <field name="model">distribition.delivery.note</field>
+        <field name="inherit_id" ref="hdc_tms.distibution_delivery_note_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='transport_line_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+             </xpath>
+            <xpath expr="//field[@name='transport_round_id']" position="attributes">
+                <attribute name="string">Delivery Line</attribute>
+             </xpath>
+        </field>
+    </record>
+    <record id="distibution_delivery_note_view_form" model="ir.ui.view">
+        <field name="name">Distribution Delivery Note form</field>
+        <field name="model">distribition.delivery.note</field>
+        <field name="inherit_id" ref="hdc_tms.distibution_delivery_note_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form[1]" position="replace">
+                <form string="Distribution Delivery Note">
+                <header>
+                    <button name="prepare_action"       type="object" string="Validate"       class="oe_highlight"  attrs="{'invisible':[('state','!=','draft')]}"/>
+                    <button name="confirm_action"     type="object" string="Confirm"       class="oe_highlight"  attrs="{'invisible':[('state', '!=', 'prepare_product')]}"/>
+                    <button name="validate_action"     type="object" string="Validate"       class="oe_highlight"  attrs="{'invisible':[('state', '!=', 'transfer')]}"/>
+                    <button name="cancel_status_action"     type="object" string="Cancel"       class="oe_highlight"  attrs="{'invisible':['|', ('state', '=', 'closed'), ('state', '=', 'cancel')]}"/>
+                    
+                    <field name="state" widget="statusbar" statusbar_visible="draft,prepare_product,transfer,done"/>
+                </header>
+                <sheet>
+                    <field name="backorder_count" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_attachment"
+                            class="oe_stat_button"
+                            icon="fa-cloud-upload"
+                            type="object"
+                            string="Attachments">
+                        </button>
+                        <button class="oe_stat_button" 
+                            name="action_backorder_delivery_truck" 
+                            type="object" 
+                            icon="fa-truck"
+                            attrs="{'invisible':[('backorder_count', '=', 0)]}" >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Backorder</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" 
+                            name="action_delivery_truck" 
+                            type="object" 
+                            icon="fa-truck" >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Delivery</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="transport_round_id" string="Delivery Line" options="{'no_create_edit': True,'no_create': True, 'no_open': True}"/>
+                            <!-- <field name="operation_type_id" /> -->
+                        </group>
+                        <group>
+                            <field name="schedule_date" />
+                            <field name="delivery_date" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Product Lines" name="Product Lines">
+                            <field name="distribition_line_ids">
+                                <tree string="Product" editable="bottom" create="0" edit="1" delete="0">
+                                    <field name="picking_id" optional="show" invisible="1"/>
+                                    <field name="move_id" optional="show" invisible="1"/>
+                                    <field name="invoice_id" optional="show"/>
+                                    <field name="so_id" optional="show"/>
+                                    <field name="name" optional="show"/>
+                                    <field name="qty_available" optional="show"/>
+                                    <field name="qty_demand" optional="show"/>
+                                    <field name="qty_reserved" optional="show" readonly="1"/>
+                                    <field name="qty_done" optional="show"/>
+                                    <field name="uom_id" optional="show"/>
+
+                                    <field name="partner_id" optional="hide"/>
+                                    <field name="carrier" optional="hide"/>
+                                    <field name="description" optional="hide"/>
+                                    <field name="payment" optional="hide"/>
+                                    <field name="temp_receipt_no" optional="hide"/>
+                                    <field name="state_delivery" optional="hide"/>
+                                    <field name="delivery_address" optional="hide"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Driver Info" name="Driver Info">
+                            <group>
+                                <group>
+                                    <field name="car_code" />
+                                    <field name="car_type" />
+                                </group>
+                                <group>
+                                    <field name="driver_name" />
+                                    <field name="driver_assistant_name" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+            </xpath>
+        </field>
+    </record>
+</odoo>

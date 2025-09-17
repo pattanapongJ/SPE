@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="hdc_mrp_production_template_document">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+                <t t-if="not o and doc">
+                    <t t-set="o" t-value="doc"/>
+                </t>
+
+                <t t-if="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-if="not o or not 'company_id' in o">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+
+                <div class="header" style="font-family: KanitLight;" >
+                    <!-- <div class="row">
+                        <div class="col-2 text-left">
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')" class="pull-left img-logo" style="max-height: 140px; max-width: 140px;"/>
+                        </div>
+                        <div class="col-7 text-left" style="font-size: 15.12px;">
+                            <span style="font-size: 16.67px; font-weight: bold;"><t t-esc="company.name_th"/></span><br/>
+                            <span style="font-size: 16.67px; font-weight: bold;"><t t-esc="company.name"/></span><br/>
+                            <span style=""><t t-esc="company.street_th"/> <t t-esc="company.street2_th"/> <t t-esc="company.city_th"/> <t t-esc="company.state_th_id.name"/> <t t-esc="company.zip_th"/></span><br/>
+                            <span style=""><t t-esc="company.street"/>,<t t-esc="company.street2"/>,<t t-esc="company.city"/>,<t t-esc="company.state_id.name"/>,<t t-esc="company.zip"/>,<t t-esc="company.country_id.name"/></span><br/>
+                            <span style="">TEL : +<t t-esc="company.phone"/></span><span style=""> FAX : +<t t-esc="company.fax"/></span> <br/> 
+                            <span style="">WEBSITE <t t-esc="company.website"/></span> / <span style="">EMAIL : <t t-esc="company.email"/></span><br/>
+                            <span style="">เลขประจำตัวผู้เสียภาษี: <t t-esc="company.vat"/></span><br/>
+                        </div>
+                        <div class="col-3 text-right" style="margin-right:0mm;margin-top:3mm">
+                            <div style="font-size: 8.18px; font-weight: bold;" >
+                                <span><strong>เลขที่เอกสาร: <t t-esc="doc.name"/></strong></span><br/>
+                                <span t-if="doc.name">
+                                    <div>
+                                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;quiet=%s' % ('Code128', doc.name, 400, 100, 0)" style="height:30px" alt="Barcode"/>
+                                    </div>
+                                </span>
+                                <span><strong>วันที่เอกสาร: <span t-field="doc.create_date" t-options="{&quot;format&quot;: &quot;dd/MM/yyyy HH:mm:ss&quot;}"/></strong></span>
+                            </div>
+                            <div style="font-size: 8.18px; font-weight: bold;" >
+                                <span>ต้นฉบับ/Original</span><br/>
+                                <span>หน้า </span>
+                                <span class="page"/>
+                                /
+                                <span class="topage"/>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-7">
+                                <h2><span t-field="o.name"/></h2>
+                            </div>
+                            <div class="col-5">
+                                <span class="text-right">
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:350px;height:60px"/>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6" t-if="o.origin">
+                                        <strong>Source Document:</strong><br/>
+                                        <span t-field="o.origin"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Responsible:</strong><br/>
+                                        <span t-field="o.user_id"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4" t-if="o.product_description_variants">
+                                        <strong>Description:</strong><br/>
+                                        <span t-field="o.product_description_variants"/>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <strong>Finished Product:</strong><br/>
+                                        <span t-field="o.product_id"/>
+                                    </div>
+                                    <div class="col-2">
+                                        <strong>Description:</strong><br/>
+                                        <span t-if="o.product_description_variants">
+                                            <span t-field="o.product_description_variants"/>
+                                        </span>
+                                        <span t-if="not o.product_description_variants">
+                                            -
+                                        </span>    
+                                    </div>
+                                    <div class="col-2">
+                                        <strong>Quantity to Produce:</strong><br/>
+                                        <span t-field="o.product_qty"/>
+                                        <span t-field="o.product_uom_id.name" groups="uom.group_uom"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <div t-if="o.workorder_ids" groups="mrp.group_mrp_routings">
+                            <h3>
+                                <span t-if="o.state == 'done'">Operations Done</span>
+                                <span t-else="">Operations Planned</span>
+                            </h3>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th><strong>Operation</strong></th>
+                                    <th><strong>WorkCenter</strong></th>
+                                    <th><strong>No. Of Minutes</strong></th>
+                                </tr>
+                                <tr t-foreach="o.workorder_ids" t-as="line2">
+                                    <td><span t-field="line2.name"/></td>
+                                    <td><span t-field="line2.workcenter_id.name"/></td>
+                                    <td>
+                                        <span t-if="o.state != 'done'" t-field="line2.duration_expected"/>
+                                        <span t-if="o.state == 'done'" t-field="line2.duration"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <h3 t-if="o.move_raw_ids">
+                            <span t-if="o.state == 'done'">
+                                Consumed Products
+                            </span>
+                            <span t-else="">
+                                Products to Consume
+                            </span>
+                        </h3>
+
+                        <table class="table table-sm" t-if="o.move_raw_ids">
+                            <t t-set="has_product_barcode" t-value="any(m.product_id.barcode for m in o.move_raw_ids)"/>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th t-attf-class="{{ 'text-right' if not has_product_barcode else '' }}">Quantity</th>
+                                    <th t-if="has_product_barcode" width="15%" class="text-center">Barcode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="o.move_raw_ids">
+                                    <tr t-foreach="o.move_raw_ids" t-as="raw_line">
+                                        <td>
+                                            <span t-field="raw_line.product_id"/>
+                                        </td>
+                                        <td t-attf-class="{{ 'text-right' if not has_product_barcode else '' }}">
+                                            <span t-field="raw_line.product_uom_qty"/>
+                                            <span t-field="raw_line.product_uom" groups="uom.group_uom"/>
+                                        </td>
+                                        <td t-if="has_product_barcode" width="15%" class="text-center">
+                                            <t t-if="raw_line.product_id.barcode">
+                                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', raw_line.product_id.barcode, 600, 100)" style="width:100%;height:35px" alt="Barcode"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div class="oe_structure"/>
+                    
+                </div>
+
+                <div class="footer last-page not-first-page font-inventory-div" style="font-family: KanitLight;margin-top:5mm;vertical-align: bottom;overflow: hidden">
+                    <div class="row" style="font-size: 13.64px;">
+                        <div class="col-12 text-right">
+                            <t t-set="picking_type_id" t-value="o.picking_type_id.id"/>
+                            <span t-esc="o.get_iso_name(picking_type_id,'mrp_production_order')"/>
+                        </div>
+                    </div>
+                </div>
+        </t>
+    </t>
+</template>
+
+<template id="hdc_mrp_production_report_template">
+    <t t-call="hdc_mrp_general_report.hdc_mrp_production_template_document" />
+</template>
+
+</odoo>

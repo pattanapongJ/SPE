@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="distibution_delivery_note_view_tree" model="ir.ui.view">
+        <field name="name">Distribution Delivery Note tree</field>
+        <field name="model">distribition.delivery.note</field>
+        <field name="arch" type="xml">
+            <tree string="Distribution Delivery Note" multi_edit="1" sample="1">
+                <field name="name" string="Service Request No" readonly="1"/>
+                <field name="transport_line_id"/>
+                <field name="company_round_id"/>
+                <field name="schedule_date"/>
+                <field name="delivery_date"/>
+                <field name="user_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="distribution_invoice_line_view_tree" model="ir.ui.view">
+        <field name="name">Distribution Invoice Line Tree</field>
+        <field name="model">distribition.invoice.line</field>
+        <field name="arch" type="xml">
+            <tree string="Invoice Lines" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <!-- <field name="sequence2"/> -->
+                <field name="invoice_id"/>
+                <field name="invoice_date" readonly="1"/>
+                <field name="partner_id" readonly="1"/>
+                <field name="transport_line_id" readonly="1"/>
+                <field name="spe_invoice" readonly="1"/>
+                <field name="company_round_id"/>
+                <field name="amount_total" readonly="1"/>
+                <field name="note_for_receive"/>
+                <field name="delivery_status"/>
+                <field name="billing_status"/>
+                <field name="remark"/>
+                <field name="tms_remark"/>
+                <field name="cancel_remark"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="distibution_delivery_note_view_form" model="ir.ui.view">
+        <field name="name">Distribution Delivery Note form</field>
+        <field name="model">distribition.delivery.note</field>
+        <field name="arch" type="xml">
+            <form string="Distribution Delivery Note">
+                <header>
+                    <button string="Confirm" name="confirm_action" type="object" class="oe_highlight" attrs="{'invisible': [('state','!=','draft')]}"/>
+                    <button string="Delivery" name="delivery_action" type="object" class="oe_highlight" attrs="{'invisible': [('state','!=','in_progress')]}"/>
+                    <button string="To Billing / Finance" name="to_billing_action" type="object" class="oe_highlight" attrs="{'invisible': [('state','!=','delivery')]}"/>
+                    <button string="Closed" name="closed_action" type="object" class="oe_highlight" attrs="{'invisible': [('state','!=','delivery')]}"/>
+                    <button string="Cancel" name="cancel_action" type="object" attrs="{'invisible': [('state','in',['close', 'cancel'])]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,delivery,close"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice_finance" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoice_finance_count', '=', 0)]}">
+                            <field name="invoice_finance_count" widget="statinfo" string="Finance"/>
+                        </button>
+                        <button name="action_view_invoice_billing" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoice_billing_count', '=', 0)]}">
+                            <field name="invoice_billing_count" widget="statinfo" string="Billing"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="transport_line_id" options="{'no_create_edit': True,'no_create': True, 'no_open': True}"/>
+                            <field name="transport_desc" />
+                            <field name="company_round_id" options="{'no_create_edit': True,'no_create': True, 'no_open': True}"/>
+                            <field name="company_round_desc" />
+                            <field name="driver_id" />
+                            <field name="car_registration" />
+                        </group>
+                        <group>
+                            <field name="schedule_date" />
+                            <field name="delivery_date" />
+                            <field name="company_id" options="{'no_create_edit': True,'no_create': True}"/>
+                            <field name="user_id" options="{'no_create_edit': True,'no_create': True, 'no_open': True}"/>
+                            <label for="tms_remark" string="TMS Remark" />
+                            <div name="tms_remark_div" style="width: 100%;">
+                                <field name="tms_remark" on_change="1" modifiers="{}" id="tms_remark" class="oe_inline" style="width: 100%;"/> &amp;nbsp; &amp;nbsp;                
+                                <span><button name="action_update_tms_remark" type="object" class="oe_stat_button" icon="fa-edit" /></span> &amp;nbsp; &amp;nbsp;  
+                                <span><button name="action_clear_tms_remark" type="object" class="oe_stat_button" icon="fa-refresh" /></span>
+                            </div>
+                            <field name="billing_status_remark" class="oe_inline" widget="radio"/>
+                            <label for="cancel_remark" string="Cancel Remark" />
+                            <div name="cancel_remark_div">
+                                <field name="cancel_remark" on_change="1" modifiers="{}" id="cancel_remark" class="oe_inline"/> &amp;nbsp; &amp;nbsp;                
+                                <span><button name="action_update_cancel_remark" type="object" class="oe_stat_button" icon="fa-edit" /></span> &amp;nbsp; &amp;nbsp;  
+                                <span><button name="action_clear_cancel_remark" type="object" class="oe_stat_button" icon="fa-refresh" /></span>
+                            </div>
+                            <field name="cancel_status_remark" class="oe_inline" widget="radio"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Invoice Lines" name="invoice_lines">
+                            <field name="max_line_sequence" invisible="1" />
+                            <field name="invoice_line_ids" context="{'default_transport_line_id': transport_line_id,'default_sequence': max_line_sequence}">
+                                <tree string="Product" editable="bottom" create="1" edit="1">
+                                    <field name="sequence"  widget="handle"/>
+                                    <field name="sequence2" />
+                                    <field name="invoice_id" optional="show" options="{'no_create_edit': True,'no_create': True}"/>
+                                    <field name="invoice_date" optional="show" readonly="1"/>
+                                    <field name="partner_id" optional="show" readonly="1"/>
+                                    <field name="transport_line_id" optional="show" readonly="1"/>
+                                    <field name="spe_invoice" optional="show" readonly="1"/>
+                                    <field name="company_round_id" optional="show" readonly="0"/>
+                                    <field name="amount_total" readonly="1"/>
+                                    <field name="note_for_receive" optional="show"/>
+                                    <field name="delivery_status" optional="show" readonly="0"/>
+                                    <field name="billing_status" optional="show" readonly="0"/>
+                                    <field name="remark" optional="show"/>
+                                    <field name="tms_remark" optional="show"/>
+                                    <field name="cancel_remark" optional="show"/>                                    
+                                    <field name="sale_no" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="delivery_id" optional="hide" readonly="1"/>
+                                    <field name="sale_person" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="invoice_status" optional="hide" readonly="1"/>
+                                    <field name="invoice_date" optional="hide" readonly="1"/>
+                                    <field name="delivery_address_id" optional="hide" readonly="1" force_save="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                
+                </sheet>
+			</form>
+        </field>
+    </record>
+
+    <record id="action_change_billing_status" model="ir.actions.server">
+        <field name="name">Change Billing Status</field>
+        <field name="model_id" ref="hdc_tms.model_distribition_invoice_line"/>
+        <!-- <field name="binding_type">action</field> -->
+        <field name="binding_model_id" ref="hdc_tms.model_distribition_invoice_line"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+        if records:
+            action = records.change_billing_status()
+        </field>
+    </record>
+
+    <record id="distibution_delivery_note_action" model="ir.actions.act_window">
+        <field name="name">Delivery Slip</field>
+        <field name="res_model">distribition.delivery.note</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_distribution_invoice_line" model="ir.actions.act_window">
+        <field name="name">Delivery Slip Lines</field>
+        <field name="res_model">distribition.invoice.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

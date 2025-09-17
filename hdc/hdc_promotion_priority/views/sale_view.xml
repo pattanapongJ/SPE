@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_promotion_discount_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.promotion.discount</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="hdc_sale_triple_discount.view_order_form_inherit_discount"/>
+            <field name="arch" type="xml">
+                <xpath expr="////tree/field[@name='triple_discount']" position="after">
+                    <field name="is_reward_line" invisible="1"/>
+                    <field name="promotion_id" options="{'no_create_edit': True, 'no_create': True}" attrs="{'readonly': [('is_reward_line', '=', True)]}"  optional="show"/>
+                    <field name="formula_discount" optional="show"/>
+                    <field name="promotion_discount" readonly="1" force_save="1" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_promotion_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.promotion</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="hdc_sale_general_reports.view_inherit_hdc_billing_route_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='days_delivery_div']" position="after">
+                    <label for="promotion_id" string="Promotion" />
+                    <div name="promotion_id_div" class="o_row" >
+                        <field name="promotion_id" states="draft,sent,sale" options="{'no_create_edit': True, 'no_create': True}"/>
+                        <button name="recompute_coupon_lines" class="btn btn-secondary" string="Promotions"
+                            help="When clicked, the content of the order will be checked to detect (and apply) possible promotion programs."
+                            type="object" states="draft,sent,sale"/>
+                    </div>
+                    <field name="promotion_ids" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

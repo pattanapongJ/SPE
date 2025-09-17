@@ -1,0 +1,1186 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hdc_rma_ept_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230227\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-17 03:57+0000\n"
+"PO-Revision-Date: 2023-10-17 03:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hdc_rma_ept_purchase
+#: model:mail.template,report_name:hdc_rma_ept_purchase.mail_purchase_rma_details_notification_ept
+msgid "${(object.code or '')}"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:mail.template,subject:hdc_rma_ept_purchase.mail_purchase_rma_details_notification_ept
+msgid "${object.company_id.name} RMA (Ref ${object.code or 'n/a' })"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.actions.report,print_report_name:hdc_rma_ept_purchase.action_report_rma_purchase
+msgid "'RMA Report - %s' % (object.code)"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "- Approved"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "- Closed"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "- Rejected"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "- Waiting For Approval"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:mail.template,body_html:hdc_rma_ept_purchase.mail_purchase_rma_details_notification_ept
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"<p style=\"margin: 0px; padding: 0px; font-size: 12px;\">\n"
+"    <p>Dear ${object.partner_id.name}\n"
+"        % if object.partner_id.parent_id:\n"
+"        (<i>${object.partner_id.parent_id.name}</i>)\n"
+"        % endif\n"
+"    </p>\n"
+"    <br/>\n"
+"    <p>\n"
+"        Please find attached Return for <strong>${object.purchase_id.name}</strong> with <strong>${object.code}</strong> in <strong>${object.state}</strong> status.\n"
+"    </p>\n"
+"    <br/>\n"
+"    <p>Thank you,</p>\n"
+"    <br/>\n"
+"    <p style=\"color:#888888;\">\n"
+"    % if object.user_id and object.user_id.signature:\n"
+"        ${object.user_id.signature | safe}\n"
+"    % endif\n"
+"    </p>\n"
+"</p>\n"
+"</div>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "<span class=\"o_stat_text\">Deliveries</span>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "<span class=\"o_stat_text\">Internal Transfer</span>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "<span class=\"o_stat_text\">Receipt</span>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "<span class=\"o_stat_text\">Refund Invoices</span>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "<span class=\"o_stat_text\">Sale Order</span>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "<span name=\"rma_heading\">Return Order #</span>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "<strong>Customer:</strong>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "<strong>Date:</strong>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "<strong>Order Reference:</strong>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "<strong>RMA Note:</strong>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "<strong>Responsible:</strong>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "<strong>Return Address:</strong>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "<strong>Shipping Reference:</strong>"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__claim_type
+msgid "Action"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Action Description..."
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__type_action
+msgid "Action Type"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Actions"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__active
+msgid "Active"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Add Contact Person"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Add Delivery Address"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_create_partner_deliver_address_form_view_ept
+msgid "Add New Contact"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_create_partner_deliver_address_form_view_ept
+msgid "Address"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.ui.menu,name:hdc_rma_ept_purchase.menu_crm_claim_ept_after_sale_purchase
+msgid "After-Sale Services"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Approve"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_crm_claim_ept__state__approve
+msgid "Approved"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_purchase_claim_line_ept
+msgid "CRM Claim Line Purchase"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_purchase_claim_reject_message
+msgid "CRM Claim Reject Message Purchase"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_purchase_rma_reason_ept
+msgid "CRM Reason Purchase"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_claim_reject_ept
+msgid "Cancel"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__city
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_create_partner_deliver_address_form_view_ept
+msgid "City"
+msgstr "อำเภอ/เขต"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_account_bank_statement_line__purchase_claim_id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_account_move__purchase_claim_id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_account_payment__purchase_claim_id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_repair_order__purchase_claim_id
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Claim"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_picking__purchase_claim_count_out
+msgid "Claim Count"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "Claim Date by Month"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__claim_line_id
+msgid "Claim Line"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__claim_lot_ids
+msgid "Claim Lot"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "Claim Month"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.ui.menu,name:hdc_rma_ept_purchase.menu_claim_reject_message_ept_purchase
+msgid "Claim Reject Message"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claim_from_delivery_ept
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_calendar_view
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "Claims"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_claim_picking
+msgid "Close"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__date_closed
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_crm_claim_ept__state__close
+msgid "Closed"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__company_id
+msgid "Company"
+msgstr "บริษัท"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__name
+msgid "Contact Name"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__rma_support_person_id
+msgid "Contact Person"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_crm_claim_ept__type_action__correction
+msgid "Corrective Action"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__country_id
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_create_partner_deliver_address_form_view_ept
+msgid "Country"
+msgstr "ประเทศ"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__is_create_invoice
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__is_create_invoice
+msgid "Create Invoice"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__create_uid
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__create_uid
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_reject_message__create_uid
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__create_uid
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__create_uid
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_rma_reason_ept__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__create_date
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__create_date
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_reject_message__create_date
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__create_date
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_rma_reason_ept__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__create_date
+msgid "Creation Date"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__rma_reason_id
+msgid "Customer Reason"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__date
+msgid "Date"
+msgstr "วันที่"
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Dates"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__date_deadline
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "Deadline"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__done_qty
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "Delivered Quantity"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__partner_delivery_id
+msgid "Delivery Address"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__description
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "Description"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,help:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__email_from
+msgid "Destination email for email gateway."
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_account_move__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_procurement_group__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_reject_message__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_rma_reason_ept__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_repair_order__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_production_lot__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_return_picking__display_name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_warehouse__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_crm_claim_ept__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__email
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__email_from
+msgid "Email"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Follow Up"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "Group By"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__hide
+msgid "Hide"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_crm_claim_ept__priority__2
+msgid "High"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_account_move__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_procurement_group__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_reject_message__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_order__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_rma_reason_ept__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_repair_order__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_picking__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_production_lot__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_return_picking__id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_warehouse__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,help:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_needaction
+#: model:ir.model.fields,help:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,help:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_has_error
+#: model:ir.model.fields,help:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__internal_picking_id
+msgid "Internal Delivery Order"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__invoice_id
+msgid "Invoice"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__is_rma_without_incoming
+msgid "Is RMA Without Incoming"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__is_return_internal_transfer
+msgid "Is Return Internal Trnafer"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__is_visible_goods_back
+msgid "Is Visible Goods Back"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_account_move
+msgid "Journal Entry"
+msgstr "รายการบันทึกบัญชี"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_account_move____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_procurement_group____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_reject_message____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_rma_reason_ept____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_repair_order____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_production_lot____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_return_picking____last_update
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_warehouse____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__write_uid
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__write_uid
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_reject_message__write_uid
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__write_uid
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__write_uid
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_rma_reason_ept__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__write_date
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__write_date
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_reject_message__write_date
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__write_date
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_rma_reason_ept__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr "ล็อต/ซีเรียล"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__serial_lot_ids
+msgid "Lot/Serial Number"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_crm_claim_ept__priority__0
+msgid "Low"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:res.groups,name:hdc_rma_ept_purchase.group_purchase_rma_manager_ept
+msgid "Manager"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__mobile
+msgid "Mobile"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__move_id
+msgid "Move"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__new_purchase_id
+msgid "New Purchase Order"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__action_next
+msgid "Next Action"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__date_action_next
+msgid "Next Action Date"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_crm_claim_ept__priority__1
+msgid "Normal"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__comment
+msgid "Note"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,help:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,help:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,help:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__parent_partner_id
+msgid "Parent Partner"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__partner_id
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "Partner"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__phone
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__partner_phone
+msgid "Phone"
+msgstr "เบอร์โทรศัพท์ "
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__picking_id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_repair_order__picking_ids
+msgid "Picking"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_crm_claim_ept__type_action__prevention
+msgid "Preventive Action"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__priority
+msgid "Priority"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_crm_claim_ept__state__process
+msgid "Processing"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_procurement_group
+msgid "Procurement Group"
+msgstr "กลุ่มจัดซื้อ"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__product_id
+msgid "Product"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__to_be_replace_product_id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__product_id
+msgid "Product to be Replace"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__move_product_ids
+msgid "Products"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.actions.act_window,name:hdc_rma_ept_purchase.action_claim_from_delivery_ept_purchase
+msgid "Purchase Claim From Delivery"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.actions.act_window,name:hdc_rma_ept_purchase.purchase_claim_reject_message_action
+msgid "Purchase Claim Reject Message"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_production_lot__purchase_claim_line_id
+msgid "Purchase Claim line"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_purchase_order
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_procurement_group__purchase_id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__purchase_id
+msgid "Purchase Order"
+msgstr "ใบสั่งซื้อ"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.actions.report,name:hdc_rma_ept_purchase.action_report_rma_purchase
+msgid "Purchase RMA Report"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_purchase_create_partner_delivery_address_ept
+msgid "Purchase Wizard to add new delivery partner"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_purchase_claim_process_wizard
+msgid "Purchase Wizard to process claim lines"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__quantity
+msgid "Quantity"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.actions.act_window,name:hdc_rma_ept_purchase.purchase_crm_claim_ept_action
+#: model:ir.ui.menu,name:hdc_rma_ept_purchase.menu_crm_claim_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_order_form_extend_rma_ept
+msgid "RMA"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.module.category,name:hdc_rma_ept_purchase.module_purchase_category_rma_ept
+msgid "RMA (Purchase)"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_purchase_crm_claim_ept
+msgid "RMA CRM Claim Purchase"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_picking__purchase_claim_id
+msgid "RMA Claim"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_order__purchase_rma_count
+msgid "RMA Claims"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "RMA Details"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "RMA Lines"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "RMA Note"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__code
+msgid "RMA Number"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_rma_reason_ept__name
+msgid "RMA Reason"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.actions.act_window,name:hdc_rma_ept_purchase.purchase_rma_reason_ept_action
+#: model:ir.ui.menu,name:hdc_rma_ept_purchase.menu_rma_reason_ept_purchase
+msgid "RMA Reasons"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__rma_send
+msgid "RMA Send"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.actions.act_window,help:hdc_rma_ept_purchase.purchase_crm_claim_ept_action
+msgid ""
+"RMA may be linked to a sales order or a\n"
+"                lot.You can send emails with attachments and keep the full history for a RMA\n"
+"                (emails sent, intervention type and so on). RMA may automatically be linked to\n"
+"                an email address using the mail gateway module."
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "Reason"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__picking_id
+msgid "Receipt Order"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__return_qty
+msgid "Received Quantity"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.actions.act_window,help:hdc_rma_ept_purchase.purchase_crm_claim_ept_action
+msgid "Record and track your customers' RMA."
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_claim_line_ept__claim_type__refund
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_rma_reason_ept__action__refund
+msgid "Refund"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__refund_invoice_id
+msgid "Refund Invoice"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__refund_invoice_ids
+msgid "Refund Invoices"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Reject"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_claim_reject_ept
+msgid "Reject Claim"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__reject_message_id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_reject_message__name
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__reject_message_id
+msgid "Reject Reason"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "Reject Reason:"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_crm_claim_ept__state__reject
+msgid "Rejected"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_rma_reason_ept__action
+msgid "Related Action"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__purchase_claim_id
+msgid "Related claim"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_return_picking__remark
+msgid "Remark"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_repair_order
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_picking__repair_order_id
+msgid "Repair Order"
+msgstr "คำสั่งซ่อม"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__repair_order_ids
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Repairs"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__repairs_count
+msgid "Repairs Count"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__to_be_replace_quantity
+msgid "Replace Quantity"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_claim_line_ept__claim_type__replace_other_product
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_rma_reason_ept__action__replace_other_product
+msgid "Replace With Other Product"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_claim_line_ept__claim_type__replace_same_product
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_rma_reason_ept__action__replace_same_product
+msgid "Replace With Same Product"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__resolution
+msgid "Resolution"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Resolution Actions"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__user_id
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "Responsible"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "Responsible User"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_warehouse__return_partner_id
+msgid "Return Address"
+msgstr "ที่อยู่ส่งคืน"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__return_picking_id
+msgid "Return Delivery Order"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__to_return_picking_ids
+msgid "Return Delivery Orders"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__claim_line_ids
+msgid "Return Line"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__location_id
+msgid "Return Location"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_stock_return_picking
+msgid "Return Picking"
+msgstr "ส่งคืนการหยิบ"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__quantity
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.report_rma_document
+msgid "Return Quantity"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_line_ept__return_total
+msgid "Returned total"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_picking__rma_purchase_id
+msgid "Rma Purchase Order"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__cause
+msgid "Root Cause"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Root Causes"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_claim_picking
+msgid "Save"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "Search Claims"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__send_goods_back
+msgid "Send Goods Back to Customer"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Send RMA By Mail"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Set product to be replace"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Set to Draft"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_claim_process_wizard__state
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__state_id
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__state
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_create_partner_deliver_address_form_view_ept
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "State"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__street
+msgid "Street"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_create_partner_deliver_address_form_view_ept
+msgid "Street..."
+msgstr "ที่อยู่ บรรทัดที่ 1"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__street2
+msgid "Street2"
+msgstr "ที่อยู่ บรรทัดที่ 2"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__name
+msgid "Subject"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,help:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__email_cc
+msgid ""
+"These email addresses will be added to"
+"                                                           the CC field of "
+"all inbound and outbound"
+"                                                           emails for this "
+"record before being sent."
+"                                                           Separate multiple"
+" email addresses with"
+"                                                            a comma"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_stock_picking
+msgid "Transfer"
+msgstr "การโอน"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__user_fault
+msgid "Trouble Responsible"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_crm_case_claims_filter_ept
+msgid "Unassigned Claims"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__write_date
+msgid "Update Date"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:res.groups,name:hdc_rma_ept_purchase.group_purchase_rma_user_ept
+msgid "User"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view
+msgid "Validate"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_stock_picking__view_purchase_claim_button
+msgid "View Purchase Claim Button"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model,name:hdc_rma_ept_purchase.model_stock_warehouse
+msgid "Warehouse"
+msgstr "คลังสินค้า"
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__email_cc
+msgid "Watchers Emails"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,help:hdc_rma_ept_purchase.field_purchase_crm_claim_ept__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.purchase_create_partner_deliver_address_form_view_ept
+msgid "ZIP"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields,field_description:hdc_rma_ept_purchase.field_purchase_create_partner_delivery_address_ept__zip
+msgid "Zip"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_claim_process_wizard__hide__false
+msgid "false"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model_terms:ir.ui.view,arch_db:hdc_rma_ept_purchase.view_purchase_claim_reject_ept
+msgid "or"
+msgstr ""
+
+#. module: hdc_rma_ept_purchase
+#: model:ir.model.fields.selection,name:hdc_rma_ept_purchase.selection__purchase_claim_process_wizard__hide__true
+msgid "true"
+msgstr ""

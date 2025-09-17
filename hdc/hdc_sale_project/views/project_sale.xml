@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+        <record id="sale_project_project_view_tree" model="ir.ui.view">
+            <field name="name">sale.project.tree</field>
+            <field name="model">sale.project</field>
+            <field name="arch" type="xml">
+                <tree string="Sale project" editable="top">
+                    <field name="project_name"/>
+                    <field name="code"/>
+                    <field name="partner_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="user_id"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+        <record id="sale_project_view_form" model="ir.ui.view">
+            <field name="name">sale.project.view.form</field>
+            <field name="model">sale.project</field>
+            <field name="arch" type="xml">
+                <form string="Project Sale">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="project_name"/>
+                                <field name="partner_id"/>
+                                <field name="user_id"/>
+                                <field name="code"/>
+                                <field name="sale_taker_id"/>
+                            </group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="status"/>
+                                <field name="customer_po_deadline"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="sale_project_view_search" model="ir.ui.view">
+            <field name="name">sale.project.view.search</field>
+            <field name="model">sale.project</field>
+            <field name="arch" type="xml">
+                <search string="Sale Project">
+                    <field name="project_name"/>
+                    <field name="code"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <group string="Group By">
+                        <filter name="project_name" string="Project Name" domain="[]" context="{'group_by':'project_name'}"/>
+                        <filter name="partner_id" string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter name="user_id" string="Sale Person" domain="[]" context="{'group_by':'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="sale_project_action" model="ir.actions.act_window">
+            <field name="name">Sale Project</field>
+            <field name="res_model">sale.project</field>
+            <field name="view_id" ref="sale_project_project_view_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem
+            id="sale_project_menu"
+            name="Sale Project"
+            action="hdc_sale_project.sale_project_action"
+            parent="sale.menu_sales_config"
+            sequence="21"/>
+    
+</odoo>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_product_template_barcode_spe_from" model="ir.ui.view">
+        <field name="name">product.template.barcode.spe.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <!-- <field name="priority">20</field> -->
+        <field name="arch" type="xml">
+            <group name="source_spe" position="after">
+                <group string="Setup Catalog">
+                    <field name="page_no"/>
+                    <field name="page_number_code"/>
+                    <field name="page"/>
+                    <field name="catalog_sel"/>
+                    <field name="grouping_sel"/>
+
+                    <label for="page_lv1_id" string="Page LV 1"/>
+                    <div class="o_row no-gutters d-flex">
+                        <div class="o_row">
+                            <field name="page_lv1_id" class="text-left" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                        </div>
+                        <field name="page_lv1_desc" string="Description" class="oe_inline text-left"/>
+                    </div>
+                    
+                    <label for="page_lv2_id" string="Page LV 2"/>
+                    <div class="o_row no-gutters d-flex">
+                        <div class="o_row">
+                            <field name="page_lv2_id" class="text-left" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                        </div>
+                        <field name="page_lv2_desc" string="Description" class="oe_inline text-left"/>
+                    </div>
+
+                    <label for="page_lv3_id" string="Page LV 3"/>
+                    <div class="o_row no-gutters d-flex">
+                        <div class="o_row">
+                            <field name="page_lv3_id" class="text-left" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                        </div>
+                        <field name="page_lv3_desc" string="Description" class="oe_inline text-left"/>
+                    </div>
+
+                    <label for="page_lv4_id" string="Page LV 4"/>
+                    <div class="o_row no-gutters d-flex">
+                        <div class="o_row">
+                            <field name="page_lv4_id" class="text-left" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                        </div>
+                        <field name="page_lv4_desc" string="Description" class="oe_inline text-left"/>
+                    </div>
+
+                    <field name="status_product"/>
+                    <field name="expected_date_product"/>
+                    <field name="page_online"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>

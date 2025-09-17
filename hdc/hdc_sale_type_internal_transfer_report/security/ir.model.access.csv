@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_sale_type_report_user,undefined.wizard.sale.type.report,model_wizard_sale_type_report,base.group_user,1,1,1,1
+access_wizard_sale_type_return_booth_report_user,undefined.wizard.sale.type.return.booth.report,model_wizard_sale_type_return_booth_report,base.group_user,1,1,1,1

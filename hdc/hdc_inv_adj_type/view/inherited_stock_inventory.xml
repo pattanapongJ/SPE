@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_inventory_form_inherit_branch" model="ir.ui.view">
+            <field name="name">view.stock.inventory.form.inherit.branch</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='location_ids']" position="before">
+                    <field name="type_action" widget="radio" />
+                    <field name="operation_types" />
+                </xpath>
+
+                <xpath expr="//div[hasclass('oe_title')]" position="before">
+                    <div>
+                        <h1><field name="sequence" /></h1>
+                    </div>
+                </xpath>
+
+                <xpath expr="//field[@name='exhausted']" position="after">
+                    <field name="noted" />
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="stock_inventory_line_tree_inherit" model="ir.ui.view">
+            <field name="name">stock.inventory.line.tree.inherit</field>
+            <field name="model">stock.inventory.line</field>
+            <field name="inherit_id" ref="stock.stock_inventory_line_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='product_qty']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('state', 'not in', 'confirm'), ('type_action', '=', 'edit_stock')]}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='theoretical_qty']" position="before">
+                    <field name="type_action" />
+               </xpath>
+
+               <xpath expr="//field[@name='difference_qty']" position="before">
+                    <field name="inventory_adjust" attrs="{'invisible': [('type_action','!=','edit_stock')]}" />
+               </xpath>
+
+               <xpath expr="//field[@name='product_uom_id']" position="after">
+                    <field name="remark" />
+               </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- View account.payment.register form -->
+    <record id="view_account_payment_register_form" model="ir.ui.view">
+        <field name="name">view.account.payment.register.form</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_bank_id']" position="after">
+                <field name="is_pdc_journal" invisible="1"/>
+                <field name="cheque_ref" attrs="{'invisible':[('is_pdc_journal','!=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

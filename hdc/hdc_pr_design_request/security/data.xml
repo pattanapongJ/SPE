@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Define the module category -->
+    <record id="hdc_pr_design_request.module_category_product_design" model="ir.module.category">
+        <field name="name">Product Design</field>
+        <field name="description">Manage and edit product designs.</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- Define the group for viewing product design -->
+    <record model="res.groups" id="hdc_pr_design_request.group_product_design">
+        <field name="name">ลาดพร้าว</field>
+        <field name="category_id" ref="hdc_pr_design_request.module_category_product_design" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- Define the group for editing product design -->
+    <record model="res.groups" id="hdc_pr_design_request.group_can_edit_product_design">
+        <field name="name">โรงงาน</field>
+        <field name="category_id" ref="hdc_pr_design_request.module_category_product_design" />
+        <field name="implied_ids" eval="[(4, ref('hdc_pr_design_request.group_product_design'))]"/>
+    </record>
+
+    <!-- Define the group for admin -->
+    <record model="res.groups" id="hdc_pr_design_request.group_admin_product_design">
+        <field name="name">แอดมิน</field>
+        <field name="category_id" ref="hdc_pr_design_request.module_category_product_design" />
+        <field name="implied_ids" eval="[(4, ref('hdc_pr_design_request.group_can_edit_product_design'))]"/>
+        <!-- <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" /> -->
+    </record>
+</odoo>

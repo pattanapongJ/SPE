@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_hs_code_master_view_tree" model="ir.ui.view">
+        <field name="name">product.hs.code.tree</field>
+        <field name="model">product.hs.code</field>
+        <field name="arch" type="xml">
+            <tree string="HS Code" editable="bottom">
+                <field name="name" />
+                <field name="description" />
+                <field name="remark" />
+                <field name="duty" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_hs_code_action" model="ir.actions.act_window">
+        <field name="name">HS Code</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.hs.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Data Product HS Code
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="product_setup_menu" name="Product Setup" parent="stock.menu_stock_config_settings"
+        sequence="99" />
+
+    <menuitem
+        action="product_hs_code_action" id="menu_product_hs_code_action"
+        name="HS Code"
+        parent="product_setup_menu" sequence="1" />
+
+    <record id="product_hs_code_inherit_delivery_view" model="ir.ui.view">
+        <field name="name">product.hs.code.inherit.delivery.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="delivery.product_template_hs_code"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='hs_code']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='hs_code']" position="before">
+                <field name="hs_code_id" />
+            </xpath>            
+        </field>
+    </record>
+
+</odoo>

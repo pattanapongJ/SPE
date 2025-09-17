@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="mrp_production_state_view_tree" model="ir.ui.view">
+        <field name="name">mrp.production.state.view.tree</field>
+        <field name="model">mrp.production.state</field>
+        <field name="arch" type="xml">
+            <tree string="Mrp Production State" multi_edit="1">
+                <field name="mrp_id"/>
+                <field name="worker"/>
+                <field name="date"/>
+                <field name="operation_id"/>
+                <field name="machines_id"/>
+                <field name="work_shifts"/>
+                <field name="set_up_start_time" widget="float_time"/>
+                <field name="set_up_end_time" widget="float_time"/>
+                <field name="production_start_time" widget="float_time"/>
+                <field name="production_end_time" widget="float_time"/>
+                <field name="product_good_qty"/>
+                <field name="product_failed_qty"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="mrp_production_state_view_form" model="ir.ui.view">
+        <field name="name">mrp.production.state.view.form</field>
+        <field name="model">mrp.production.state</field>
+        <field name="arch" type="xml">
+            <form string="Mrp Production State">
+                <sheet>
+                    <group>
+                        <field name="mrp_id" invisible="1"/>
+                        <field name="worker"/>
+                        <field name="date"/>
+                        <field name="operation_id"/>
+                        <field name="machines_id"/>
+                        <field name="work_shifts"/>
+                        <field name="set_up_start_time" widget="float_time"/>
+                        <field name="set_up_end_time" widget="float_time"/>
+                        <field name="production_start_time" widget="float_time"/>
+                        <field name="production_end_time" widget="float_time"/>
+                        <field name="product_good_qty"/>
+                        <field name="product_failed_qty"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_production_state_view_action" model="ir.actions.act_window">
+        <field name="name">Mrp Production State</field>
+        <field name="res_model">mrp.production.state</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            
+          </p>
+        </field>
+    </record>
+
+    
+</odoo>

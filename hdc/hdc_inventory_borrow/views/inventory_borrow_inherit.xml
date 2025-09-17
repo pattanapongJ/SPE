@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="inventory_borrow_inherit" model="ir.ui.view">
+        <field name="name">inventory.borrow.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_external_tranfer_hydra.view_external_tran_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="requestor_emp" string="Requestor" attrs="{'invisible': [('request_spare_parts_type','=',False)]}"/>
+                <field name="department_name" string="Department" attrs="{'invisible': [('request_spare_parts_type','=',False)]}"/>
+                <field name="request_spare_parts_type" invisible="1"/>
+                <field name="operation_type_rm" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="before">
+                <field name="request_date" attrs="{'invisible': [('request_spare_parts_type','=',False)]}"/>
+                <field name="borrow_date" attrs="{'invisible': [('request_spare_parts_type','=',False)]}"/>
+                <field name="transfer_date" string="Transfer Date" attrs="{'invisible': [('request_spare_parts_type','=',False)]}"/>
+                <field name="return_date" attrs="{'invisible': [('request_spare_parts_type','=',False)], 'required': [('request_spare_parts_type','!=',False)]}"/>
+
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[4]/group/group" position="after">
+                <group string="Approval" attrs="{'invisible': [('request_spare_parts_type','=',False)]}">
+                    <field name="reviewer_return" attrs="{'invisible': [('request_spare_parts_type','=',False)]}"/>
+                    <field name="approver_return" attrs="{'invisible': [('request_spare_parts_type','=',False)]}"/>
+                </group>
+            </xpath>
+            <xpath expr="/form/sheet/div[1]/button[@name='action_view_stock_valuation_layers']" position="before" >
+                <button class="oe_stat_button" type="object" name="get_return_order" icon="fa-undo" 
+                    attrs="{'invisible': ['|',('state','not in', ['waiting_cancel','ready_delivery','done','cancel']), '&amp;',('order_return','=',0), ('addition_operation_types_code', '!=', 'AO-02')]}">
+                     <field string="Return Order" name="order_return" widget="statinfo"/>
+                </button>
+            </xpath>
+            <!-- <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="after" >
+                <button name="%(stock.act_stock_return_picking)d" string="Return" 
+                    attrs="{'invisible': [('state', '!=', 'ready_delivery')]}" type="action" groups="base.group_user"/>
+            </xpath> -->
+        </field>
+    </record>
+    <record id="stock_move_line_demand" model="ir.ui.view">
+            <field name="name">inventory.borrow.operation.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='action_toggle_is_locked']" position="after">
+                    <field name="check_force_done" invisible="1"/>
+                    <field name="check_order_return" invisible="1"/>
+                    <!-- <button name="force_done" string="Force Done" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|','|','|','|', ('order_return', '=', 0),('check_force_done', '!=', True),('picking_type_code', '!=', 'outgoing'), ('state', '!=', 'cancel'), ('addition_operation_types_code', '!=', 'AO-02')]}"/>                     -->
+                    <button name="force_done" string="Force Done" groups="stock.group_stock_user" type="object" attrs="{'invisible':[ '|','|',('state', '!=', 'ready_delivery'),('picking_type_code', '!=', 'outgoing'), ('addition_operation_types_code', '!=', 'AO-02')]}"/>                    
+                </xpath>
+<!--                <xpath expr="//field[@name='product_id']" position="after">-->
+<!--&lt;!&ndash;                    <field name="product_brand" />&ndash;&gt;-->
+<!--&lt;!&ndash;                    <field name="product_model" />&ndash;&gt;-->
+<!--                </xpath>-->
+                <!-- <xpath expr="//field[@name='description_picking']" position="after"> -->
+                    <!-- <field name="location_id" /> -->
+                <!-- </xpath> -->
+                <xpath expr="//field[@name='quantity_done']" position="after">
+                    <field name="return_value" attrs="{'column_invisible': [('parent.operation_type_rm', '!=', 'RQS')]}"/>
+                    <field name="scrap_value"  attrs="{'column_invisible': [('parent.operation_type_rm', '!=', 'RQS')]}"/>
+                    <field name="scrap_return"  attrs="{'column_invisible': [('parent.operation_type_rm', '!=', 'RM' )]}"/>
+                </xpath>
+                <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('state', 'not in', ('ready_delivery', 'done'))]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']" position="after">
+                    <field name="remark"/>
+                </xpath>
+            </field>
+    </record>
+    <record id="view_stock_return_picking_form_addon" model="ir.ui.view">
+            <field name="name">Return lines Addon</field>
+            <field name="model">stock.return.picking</field>
+            <field name="inherit_id" ref="stock.view_stock_return_picking_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="remark" />
+                </xpath>
+            </field>
+    </record>
+</odoo>

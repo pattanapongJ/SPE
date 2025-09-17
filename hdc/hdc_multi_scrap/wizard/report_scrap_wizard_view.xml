@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_report_scrap_wizard_form_inherit" model="ir.ui.view">
+            <field name="name">report.scrap.wizard.form.inherit</field>
+            <field name="model">report.scrap</field>
+            <field name="arch" type="xml">
+                <form string="Scrap Report">
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <footer>
+                    <button string="Print" name="action_print" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_report_scrap_wizard" model="ir.actions.act_window">
+            <field name="name">Scrap Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report.scrap</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_scrap" name="Scrap Report"
+              parent="stock.menu_warehouse_report" sequence="151"
+              action="action_report_scrap_wizard"/>
+
+        <report
+            id="report_scrap_xlsx"
+            model="report.scrap"
+            string="Scrap Report"
+            report_type="xlsx"
+            name="report_scrap_xlsx"
+            file="Scarp Report"
+            attachment_use="False"
+        />
+</odoo>

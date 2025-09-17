@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_sale_inter_company_form_view" model="ir.ui.view">
+        <field name="name">Report</field>
+        <field name="model">wizard.sale.inter.company</field>
+        <field name="arch" type="xml">
+            <form string="Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="pricelist_id" invisible="1"/>
+                            <field name="inter_company_transactions" invisible="1"/>
+                            <field name="sale_type_check" invisible="1"/>
+                            <field name="vendor_company_id" attrs="{'invisible':[('inter_company_transactions','!=',True)],'required':[('inter_company_transactions','=',True)]}"/>
+                            <field name="vendor_id" required="1"/>
+                            <field name="inter_company_id" attrs="{'invisible':[('inter_company_transactions','=',True)]}"/>
+                            <field name="customer_id" attrs="{'invisible':[('inter_company_transactions','=',True)],'required':[('inter_company_transactions','!=',True)]}"/>
+                            <field name="pricelist_id"/>
+                        </group>
+                        <group>
+                            <field name="date_order"/>
+                            <field name="user_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <notebook>
+                    <page string="SO Line" name="order_line">
+                        <field name="order_line">
+                            <tree string="SO Line" editable="bottom">
+                                <field name="order_line" invisible="1"/>
+                                <field name="product_id"/>
+                                <field name="categ_id"/>
+                                <field name="price_unit"/>
+                                <field name="free_qty" string="Available"/>
+                                <field name="product_uom_qty"/>
+                                <field name="order_qty"/>
+                                <field name="product_uom"/>
+                                <field name="price_unit_cus" optional="show"/>
+                                <field name="cost_price" optional="show" readonly="1"/>
+                                <field name="triple_discount" optional="show" readonly="1"/>
+                                <field name="cost_price_list" optional="show" readonly="1"/>
+                                <field name="unit_price_pricelist" invisible="1"/>
+                                <field name="free_product" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="PO Line" name="order_po_line" attrs="{'invisible': [('sale_type_check', '=', False)]}">
+                        <field name="order_po_line">
+                            <tree string="PO Line" editable="bottom" delete="1" create="1" edit="1">
+                                <field name="order_line" invisible="1"/>
+                                <field name="product_id"/>
+                                <field name="categ_id"/>
+                                <field name="price_unit"/>
+                                <field name="free_qty" string="Available"/>
+                                <field name="product_uom_qty"/>
+                                <field name="order_qty"/>
+                                <field name="product_uom"/>
+                                <field name="price_unit" invisible="1"/>
+                                <field name="triple_discount" invisible="1"/>
+                                <field name="free_product" invisible="1"/>
+                                <field name="cost_price_list" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_confirm" string="Confirm" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+	<record id="action_wizard_sale_inter_company" model="ir.actions.act_window">
+		<field name="name">Report</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">wizard.sale.inter.company</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="view_id" ref="wizard_sale_inter_company_form_view"/>
+	</record>
+</odoo>

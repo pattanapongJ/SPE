@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_cheque_ttb" model="ir.actions.report">
+        <field name="name">Print Cheque - TTB</field>
+        <field name="model">pdc.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque.report_cheque_ttb</field>
+        <field name="report_file">hdc_print_cheque.report_cheque_ttb</field>
+        <field name="binding_model_id" ref="sh_pdc.model_pdc_wizard" />
+        <field name="paperformat_id" ref="hdc_print_cheque.paperformat_pdc_hdc" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_scb" model="ir.actions.report">
+        <field name="name">Print Cheque - SCB</field>
+        <field name="model">pdc.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque.report_cheque_scb</field>
+        <field name="report_file">hdc_print_cheque.report_cheque_scb</field>
+        <field name="binding_model_id" ref="sh_pdc.model_pdc_wizard" />
+        <field name="paperformat_id" ref="hdc_print_cheque.paperformat_pdc_hdc" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_uob" model="ir.actions.report">
+        <field name="name">Print Cheque - UOB</field>
+        <field name="model">pdc.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque.report_cheque_uob</field>
+        <field name="report_file">hdc_print_cheque.report_cheque_uob</field>
+        <field name="binding_model_id" ref="sh_pdc.model_pdc_wizard" />
+        <field name="paperformat_id" ref="hdc_print_cheque.paperformat_pdc_hdc" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_kbank" model="ir.actions.report">
+        <field name="name">Print Cheque - KBANK</field>
+        <field name="model">pdc.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque.report_cheque_kbank</field>
+        <field name="report_file">hdc_print_cheque.report_cheque_kbank</field>
+        <field name="binding_model_id" ref="sh_pdc.model_pdc_wizard" />
+        <field name="paperformat_id" ref="hdc_print_cheque.paperformat_pdc_hdc" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_bbl" model="ir.actions.report">
+        <field name="name">Print Cheque - BBL</field>
+        <field name="model">pdc.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque.report_cheque_bbl</field>
+        <field name="report_file">hdc_print_cheque.report_cheque_bbl</field>
+        <field name="binding_model_id" ref="sh_pdc.model_pdc_wizard" />
+        <field name="paperformat_id" ref="hdc_print_cheque.paperformat_pdc_hdc" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_lhb" model="ir.actions.report">
+        <field name="name">Print Cheque - LHB</field>
+        <field name="model">pdc.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque.report_cheque_lhb</field>
+        <field name="report_file">hdc_print_cheque.report_cheque_lhb</field>
+        <field name="binding_model_id" ref="sh_pdc.model_pdc_wizard" />
+        <field name="paperformat_id" ref="hdc_print_cheque.paperformat_pdc_hdc" />
+        <field name="binding_type">report</field>
+    </record>
+    
+</odoo>

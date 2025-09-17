@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="so_line_customer_xlsx"
+            model="wizard.sale.order.line.report"
+            string="SPE Open sales line by customer"
+            report_type="xlsx"
+            name="so_line_customer_xlsx"
+            file="SPE Open sales line by customer"
+            attachment_use="False"
+        />
+        <report
+            id="so_line_sale_xlsx"
+            model="wizard.sale.order.line.report"
+            string="SPE Open sales line by พนักงานขาย"
+            report_type="xlsx"
+            name="so_line_sale_xlsx"
+            file="SPE Open sales line by พนักงานขาย"
+            attachment_use="False"
+        />
+        <report
+            id="so_line_item_xlsx"
+            model="wizard.sale.order.line.report"
+            string="SPE Open sales line by Item"
+            report_type="xlsx"
+            name="so_line_item_xlsx"
+            file="SPE Open sales line by Item"
+            attachment_use="False"
+        />
+        
+    </data>
+</odoo>

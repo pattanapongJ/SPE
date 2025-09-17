@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sale_order_contact_person_inherit_form" model="ir.ui.view">
+            <field name="name">sale.order.contact_person.inherit.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_sale_order_contact_person_inherit_form_v2" model="ir.ui.view">
+            <field name="name">sale.order.contact_person.inherit.form.v2</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority">25</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                    <field name="contact_person" context="{'show_name_only': True }" options='{"always_reload": True}'
+                        domain="['|', ('id', '=', partner_id), '&amp;', ('parent_id', '=', partner_id), ('type', '=', 'contact')]"
+                        attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"
+                    />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

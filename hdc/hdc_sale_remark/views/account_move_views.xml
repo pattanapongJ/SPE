@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_move_form_inherit_sale_remark">
+        <field name="name">view.move.form.inherit.sale.remark</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='narration']" position="after">
+                <group string="Remark ออกรายงาน" name="remark_report_group">
+                    <div>
+                        <field name="remark_report" class="oe_inline"/>
+                    </div>
+                </group>
+                <group string="Remark บนระบบ" name="remark_group">
+                    <div>
+                        <field name="remark" class="oe_inline"/>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="billing_contact_view_account_move_form_inherit_hdc_billing_period_route" model="ir.ui.view">
+        <field name="name">billing.contact.view.account.move.form.inherit.hdc.billing.period.route</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="hdc_billing_period_route.hdc_billing_period_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='billing_route_id']" position="after">
+                <field name="billing_terms_id" attrs="{'invisible': [('move_type', 'in', ['in_invoice','in_refund'])]}"/>
+                <field name="billing_place_id" attrs="{'invisible': [('move_type', 'in', ['in_invoice','in_refund'])]}"/>
+                <field name="payment_period_id" attrs="{'invisible': [('move_type', 'in', ['in_invoice','in_refund'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

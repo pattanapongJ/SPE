@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="multi_scrap_report_view" model="ir.actions.report">
+            <field name="name">Multi Stock Scrap Report</field>
+            <field name="model">multi.stock.scrap</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_multi_scrap.hdc_multi_scrap_report</field>
+            <field name="print_report_name">'Multi Stock Scrap_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_multi_scrap.paperformat_report_multi_scrap_report"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
+ 

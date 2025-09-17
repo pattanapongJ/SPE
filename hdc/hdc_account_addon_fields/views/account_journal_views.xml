@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_addon_fields_inherit_move" model="ir.ui.view">
+        <field name="name">account.move.addon.fields.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_info_group']" position="inside">
+                <field name="trip_no" />
+                <field name="ps_order" />
+            </xpath>
+            <field name="invoice_incoterm_id" position="before">
+                <field name="parent_company" />
+            </field>
+            <xpath
+                expr="//field[@name='invoice_line_ids']//field[@name='price_subtotal']"
+                position="before"
+            >
+                <field name="external_item" optional="hide" readonly="1" force_save="1"/>
+                <field name="barcode_customer" optional="hide" readonly="1" force_save="1"/>
+                <field name="barcode_modern_trade" optional="hide" readonly="1" force_save="1"/>
+                <field name="description_customer" optional="hide" readonly="1" force_save="1"/>
+                <field name="modify_type_txt" optional="hide" readonly="1" force_save="1"/>
+                <field name="plan_home" optional="hide" readonly="1" force_save="1"/>
+                <field name="room" optional="hide" readonly="1" force_save="1"/>
+            </xpath>
+
+            <xpath
+                expr="//field[@name='invoice_line_ids']//field[@name='product_id']"
+                position="before"
+            >
+                <field name="internal_reference" readonly="1" force_save="1"/>
+            </xpath>
+            <xpath
+                expr="//field[@name='invoice_line_ids']//field[@name='product_id']"
+                position="after"
+            >
+                <field name="tags_product_sale_ids" string="Product Tags" widget="many2many_tags" options="{'no_create': True}" optional="hide"/>
+            </xpath>
+
+            <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="before">
+                <group name="form_label_group" attrs="{'invisible': [('move_type', '!=', 'out_invoice')]}">
+                    <label for="form_label_type" string="Form Label" />
+                    <div name="form_label_type_div">
+                      <field name="form_label_type" id="form_label_type" class="oe_inline"/>
+                    </div>
+                </group>
+            </xpath>
+
+            <field name="narration" position="before">
+                <!-- <h1>
+                    <span>Remark Customer</span>
+                </h1> -->
+                <separator string="Remark Customer" attrs="{'invisible': [('move_type', '!=', 'out_refund')]}"/>
+                <field name="remark_customer" colspan="4" attrs="{'invisible': [('move_type', '!=', 'out_refund')]}" placeholder="Add an remark customer note..." nolabel="1" class="oe_inline text-break" height="50"/>
+            </field>
+
+            <notebook position="inside">
+                <field name="check_product_sample" invisible="1" />
+                <page
+                    name="result_product_sample"
+                    string="Result Product Sample"
+                    attrs="{'invisible':[('check_product_sample', '!=', True)]}"
+                >
+                 <group name="result_product_sample_group" col="2">
+                    <field name="result_product_sample" string="Result"/>
+                    <field name="description_product_sample" string="Description" colspan="1" style="width: 200px;"/>
+                </group>
+                
+                </page>
+            </notebook>
+        </field>
+    </record>
+    <record id="account_addon_fields_account_journal_form" model="ir.ui.view">
+        <field name="name">account.move.addon.fields.account_journal.form</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form" />
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="branch_id" />
+            </field>
+        </field>
+    </record>   
+</odoo>

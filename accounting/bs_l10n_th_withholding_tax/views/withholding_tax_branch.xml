@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- WT Certificate form: add Branch under Company/Tax ID -->
+  <record id="view_withholding_tax_cert_form_inherit_branch" model="ir.ui.view">
+    <field name="name">withholding.tax.cert.form.inherit.branch</field>
+    <field name="model">withholding.tax.cert</field>
+    <field name="inherit_id" ref="l10n_th_withholding_tax_cert.view_withholding_tax_cert_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//form//field[@name='company_taxid']" position="after">
+        <field name="branch_id" options="{'no_create': True}"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

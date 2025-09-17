@@ -1,0 +1,19 @@
+<odoo>
+    <record id="view_account_move_inherit_form_print" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="priority">70</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_draft']" position="after">
+                <button name="%(action_wizard_invoice_report)d" string="พิมพ์" type="action" attrs="{'invisible': [('move_type', 'in', ('entry'))]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='invoice_vendor_bill_id']" position="after">
+                 <field name="contact_person" />
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

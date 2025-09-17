@@ -1,0 +1,402 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_cost_center
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.1alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-06 08:19+0000\n"
+"PO-Revision-Date: 2020-10-06 08:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_needaction
+msgid "Action Needed"
+msgstr "الإجراءات اللازمة"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_ids
+msgid "Activities"
+msgstr "أنشطة"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "رمز نوع النشاط"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__sh_code
+msgid "Code"
+msgstr "الشفرة"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__company_id
+msgid "Company"
+msgstr "شركة"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_bank_statement_line__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_invoice_report__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move_line__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_payment__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_hr_expense__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order_line__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_report__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_res_users__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order_line__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_report__sh_cost_center_id
+#: model:res.groups,name:sh_cost_center.sh_group_cost_center
+msgid "Cost Center"
+msgstr "مركز تقييم الكلفة، مركز التسعير، مركز التثمين"
+
+#. module: sh_cost_center
+#: model:ir.actions.act_window,name:sh_cost_center.sh_cost_center_action
+#: model:ir.model,name:sh_cost_center.model_sh_cost_center
+#: model:ir.ui.menu,name:sh_cost_center.menu_cost_center
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_account_invoice_search_view
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_cost_center_form_view
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_cost_center_tree_view
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_expense_search_view
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_purchase_order_search_view
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_sale_order_search_view
+msgid "Cost Centers"
+msgstr "مراكز التكلفة"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__create_uid
+msgid "Created by"
+msgstr "انشأ من قبل"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__create_date
+msgid "Created on"
+msgstr "تم إنشاؤها على"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__resource_calendar_id
+msgid "Define the schedule of resource"
+msgstr "تحديد الجدول الزمني للموارد"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_invoice_report__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_hr_expense__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_report__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_res_users__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_advance_payment_inv__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_report__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_hr_expense
+msgid "Expense"
+msgstr "مصروف"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_follower_ids
+msgid "Followers"
+msgstr "متابعون"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "رمز الخط الرائع على سبيل المثال FA- المهام"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_invoice_report__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move_line__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_hr_expense__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_report__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_res_users__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_advance_payment_inv__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_report__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__id
+msgid "ID"
+msgstr "هوية شخصية"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_exception_icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "رمز للإشارة إلى نشاط استثناء."
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_needaction
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "إذا تم تحديدها ، فإن الرسائل الجديدة تتطلب انتباهك."
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_has_error
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده ، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_account_invoice_report
+msgid "Invoices Statistics"
+msgstr "إحصائيات الفواتير"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_is_follower
+msgid "Is Follower"
+msgstr "أتباع"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_account_move
+msgid "Journal Entry"
+msgstr "إفتتاحية المجلة"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_account_move_line
+msgid "Journal Item"
+msgstr "عنصر دفتر اليومية"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_invoice_report____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_hr_expense____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_report____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_res_users____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_advance_payment_inv____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_report____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center____last_update
+msgid "Last Modified on"
+msgstr "تاريخ آخر تعديل"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب اتخاذ إجراء"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل غير المقروءة"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_purchase_order
+msgid "Purchase Order"
+msgstr "أمر شراء"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "خط طلب الشراء"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_purchase_report
+msgid "Purchase Report"
+msgstr "تقرير الشراء"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__resource_id
+msgid "Resource"
+msgstr "الموارد"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_user_id
+msgid "Responsible User"
+msgstr "مستخدم مسؤول"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل القصيرة"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "فاتورة الدفع المسبق للمبيعات"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_sale_report
+msgid "Sales Analysis Report"
+msgstr "تقرير تحليل المبيعات"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_sale_order
+msgid "Sales Order"
+msgstr "طلب المبيعات"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "خط طلب المبيعات"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة على أساس الأنشطة \ n"
+"متأخر: تاريخ الاستحقاق فات بالفعل \ n"
+"اليوم: تاريخ النشاط هو اليوم \ n"
+"مخطط لها: الأنشطة المستقبلية".
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__tz
+msgid ""
+"This field is used in order to define in which timezone the resources will "
+"work."
+msgstr ""
+"يتم استخدام هذا الحقل لتحديد المنطقة الزمنية التي ستشغلها الموارد"
+"عمل."
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__tz
+msgid "Timezone"
+msgstr "وحدة زمنية"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__sh_title
+msgid "Title"
+msgstr "عنوان"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع نشاط الاستثناء المسجل."
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_unread
+msgid "Unread Messages"
+msgstr "رسائل غير مقروءة"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عداد الرسائل غير المقروءة"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_res_users
+msgid "Users"
+msgstr "المستخدمون"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__website_message_ids
+msgid "Website communication history"
+msgstr "سجل اتصال الموقع"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__resource_calendar_id
+msgid "Working Hours"
+msgstr "ساعات العمل"

@@ -1,0 +1,457 @@
+<odoo>
+    <record id="view_quotation_order_tree" model="ir.ui.view">
+        <field name="name">quotation.order.tree</field>
+        <field name="model">quotation.order</field>
+        <field name="arch" type="xml">
+            <tree string="Quotation" class="o_sale_order" multi_edit="1" sample="1">
+                <field name="name" string="Number" readonly="1" decoration-bf="1"/>
+                <field name="create_date" string="Creation Date" widget="date" optional="show"/>
+                <field name="commitment_date" widget="date" optional="hide"/>
+                <field name="partner_id" readonly="1"/>
+                <field name="user_id" widget="many2one_avatar_user" optional="show"/>
+                <field name="activity_ids" widget="list_activity" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show" readonly="1"/>
+                <field name="state" decoration-success="state == 'sale' or state == 'done'" decoration-info="state == 'draft' or state == 'sent'" widget="badge" optional="show"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_quotation_order_form" model="ir.ui.view">
+        <field name="name">quotation.order.form</field>
+        <field name="model">quotation.order</field>
+        <field name="arch" type="xml">
+          <form string="Quotations" class="o_sale_order" js_class="sale_discount_form">
+            <header>
+                <button name="action_confirm" id="action_confirm"
+                        string="Confirm" class="btn-primary" type="object"
+                        attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                <button name="action_approved" id="action_confirm"
+                        string="Approve" class="btn-primary" type="object"
+                        attrs="{'invisible': [('state', 'not in', ['approved'])]}"/>
+                <button name="open_wizard_create_sale_order" id="action_create_sale_order"
+                        string="Create Sale Order" class="btn-primary" type="object"
+                        attrs="{'invisible': [('state', 'not in', ['sale'])]}"/>
+                <button name="action_cancel" id="action_confirm"
+                        string="Cancel" type="object" attrs="{'invisible': [('state', 'in', ['cancel', 'done'])]}"/>
+                <button name="action_set_to_draft" id="action_confirm"
+                        string="Set to Draft" type="object"
+                        attrs="{'invisible': [('state', 'in', ['draft', 'cancel', 'done'])]}"/>
+                <button name="action_lock" type="object" string="Lock" states="sale" groups="sales_team.group_sale_manager"/>
+                <button name="action_unlock" type="object" string="Unlock" states="done" groups="base.group_no_one"/>
+                <button name="print" string="Print Quotation" type="object" class="oe_highlight"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,approved,sale"/>
+            </header>
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_sale_orders"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list-alt" attrs="{'invisible': [('sale_count', '=', 0)]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Sale Order</span>
+                            <field name="sale_count"/>
+                        </div>
+                    </button>
+                </div>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                </div>
+                <group name="sale_header">
+                    <group name="partner_details">
+                        <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer','show_ref': True, 'show_address': 1, 'show_vat': True}" options='{"always_reload": True}'/>
+                        <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" options='{"always_reload": True}' attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}" options='{"always_reload": True}' attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="contact_person" context="{'show_name_only': True }" options='{"always_reload": True}' domain="['|', ('id', '=', partner_id), '&amp;', ('parent_id', '=', partner_id), ('type', '=', 'contact')]" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="customer_po" string="Customer PO No."  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="po_date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="expire_date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="outline_agreement"/>
+                        <field name="customer_contact_date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="client_order_ref" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="project_name" options="{'no_create': True}"/>
+                        <field name="delivery_time" string="Delivery Time" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" invisible="1"/>
+                        <label for="commitment_date" string="Delivery Date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" invisible="1"/>
+                        <div name="commitment_date_div" class="o_row" invisible="1">
+                            <field name="commitment_date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                         </div>
+                        <field name="priority" widget="priority" string="Priority"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="warehouse_id"/>
+                        <field name="branch_id" domain="[('company_id', '=', company_id)]" required="1"/>
+                        <field name="tag_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                    <group name="order_details">
+                        <field name="validity_date" string="Expiration QT/SA" attrs="{'invisible': [('state', 'in', ['sale', 'done'])]}"/>
+                        <div class="o_td_label" attrs="{'invisible': [('state', 'not in', ['sale', 'done'])]}">
+                            <label for="confirm_date" string="Confirmed Date"/>
+                        </div>
+                         <field name="confirm_date" nolabel="1" groups="base.group_no_one" attrs="{'invisible': [('state', 'not in', ['sale', 'done'])]}"/>
+                        <div class="o_td_label" groups="base.group_no_one" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}">
+                            <label for="date_order" string="Quotation Date"/>
+                        </div>
+                        <field name="date_order" nolabel="1" groups="base.group_no_one" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
+                        <div class="o_td_label" attrs="{'invisible': [('state', 'in', ['draft', 'sent'])]}">
+                            <label for="date_order" string="Order Date"/>
+                        </div>
+                        <field name="date_order" attrs="{'required': [('state', 'in', ['sale', 'done'])], 'invisible': [('state', 'in', ['draft', 'sent'])]}" nolabel="1"/>
+                        <field name="show_update_pricelist" invisible="1"/>
+                        <label for="pricelist_id" groups="product.group_product_pricelist"/>
+                        <div groups="product.group_product_pricelist" class="o_row">
+                            <field name="pricelist_id" options="{'no_open':True,'no_create': True}"/>
+                            <button name="update_prices" type="object"
+                                string=" Update Prices"
+                                help="Recompute all prices based on this pricelist"
+                                class="btn-link mb-1 px-0" icon="fa-refresh"
+                                confirm="This will update all unit prices based on the currently set pricelist."
+                                attrs="{'invisible': ['|', ('show_update_pricelist', '=', False), ('state', 'in', ['sale', 'done','cancel'])]}"/>
+                        </div>
+                        <field name="pricelist_ids" invisible="1"/>
+                        <field name="currency_id" invisible="0"/>
+                        <field name="type_id" string="Sales Type" required="1" />
+                        <field name="sale_type_ids" invisible="1"/>
+                        <field name="sale_team_ids" invisible="1"/>
+                        <field name="modify_type_txt" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="plan_home" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="room" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="port_of_loading" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="shipment_by_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        
+                        <field name="payment_method_id" />
+                        <field name="can_edit_payment_terms" invisible="1"/>
+                        <field name="payment_term_id" force_save="1" options="{'no_open':True,'no_create': True}" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="fiscal_position_id" options="{'no_create': True}" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="billing_period_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <field name="billing_route_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                        <label for="days_delivery"/>
+                        <div name="days_delivery_div">
+                            <field name="days_delivery" class="oe_inline"/> days
+                        </div>
+                    </group>
+                    <group string="Responsible">
+                    <field name="team_id"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="user_id"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="sale_spec"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="sale_manager_id" domain="[('share', '=', False)]" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="user_sale_agreement" string="Sale Taker" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="remark"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="member_ids" invisible="1"/>
+                </group>
+                <group name="delivery_info" string="Delivery">
+                    <field name="requested_ship_date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="requested_receipt_date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="inter_company_transactions" invisible="1"/>
+                    <field name="delivery_trl" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))], 'required': [('inter_company_transactions', '!=', True)]}" domain="[('status_active', '=', True)]"/>
+                    <field name="delivery_trl_description" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))], 'required': [('inter_company_transactions', '!=', True)]}"/>
+                    <field name="delivery_company" string="Mode of delivery" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))], 'required': [('inter_company_transactions', '!=', True)]}" domain="[('status_active', '=', True)]"/>
+                    <field name="delivery_company_description" string="Mode of delivery Description" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))], 'required': [('inter_company_transactions', '!=', True)]}"/>
+                </group>
+                </group>
+                <notebook>
+                    <page string="Order Lines" name="order_lines">
+                        <field name="max_line_sequence" invisible="1" />
+                        <field
+                            name="quotation_line" widget="hide_gb_line" context = "{'default_sequence': max_line_sequence}" 
+                            mode="tree">
+                            <form>
+                                <field name="display_type" invisible="1"/>
+                                <field name="sequence" invisible="1"/>
+                                <field name="sequence2"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <group>
+                                    <group attrs="{'invisible': [('display_type', '!=', False)]}">
+                                        <field name="product_id"
+                                            domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                                            context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
+                                            attrs="{
+                                                'required': [('display_type', '=', False)],
+                                            }"
+                                            force_save="1"
+                                            widget="many2one_barcode"
+                                           />
+
+                                        <field name="price_total" invisible="1"/>
+                                        <field name="price_tax" invisible="1"/>
+                                        <field name="price_subtotal" invisible="1"/>
+                                        <field name="warehouse_id" invisible="1" />
+                                        <field name="qty_available" readonly="1"/>
+                                        <field name="free_qty" readonly="1"/>
+                                        <field name="barcode" optional="show"/>
+                                        <field name="note" widget="section_and_note_text"/>
+                                        <label for="product_uom_qty"/>
+                                        <div class="o_row" name="ordered_qty">
+                                            <field
+                                                context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'uom_qty_change':True, 'company_id': parent.company_id}"
+                                                name="product_uom_qty"/>
+                                            <field
+                                                name="product_uom"
+                                                force_save="1"
+                                                groups="uom.group_uom"
+                                                class="oe_no_button"
+                                                attrs="{
+                                                    'required': [('display_type', '=', False)],
+                                                }"
+                                            />
+                                        </div>
+
+                                        <field name="price_unit"/>
+                                        <field name="tax_id" widget="many2many_tags" options="{'no_create': True}" context="{'search_view_ref': 'account.account_tax_view_search'}" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
+                                           />
+                                        <field name="sequence" invisible="1"/>
+                                    </group>
+                                    <group attrs="{'invisible': [('display_type', '!=', False)]}">
+                                    </group>
+                                </group>
+                                <label for="name" string="Description" attrs="{'invisible': [('display_type', '!=', False)]}"/>
+                                <label for="name" string="Section Name (eg. Products, Services)" attrs="{'invisible': [('display_type', '!=', 'line_section')]}"/>
+                                <label for="name" string="Note" attrs="{'invisible': [('display_type', '!=', 'line_note')]}"/>
+                                <field name="name"/>
+                                <field name="pick_location_id" attrs="{
+                                    'readonly': [('state', 'in', ('done','sale','cancel'))]
+                                    }"/>
+                                <field name="state" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                            </form>
+                            <tree string="Sales Order Lines" editable="bottom" decoration-danger="price_subtotal &lt; 0 and is_global_discount == False">
+                                <control>
+                                    <create name="add_product_control" string="Add a product"/>
+                                    <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                    <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                </control>
+
+                                <field name="sequence" widget="handle" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" />
+                                <field name="sequence2" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                                <field name="display_type" invisible="1"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <field
+                                    name="product_id"
+                                    attrs="{
+                                        'required': [('display_type', '=', False)], 'readonly': [('state', 'in', ('sale','done','cancel'))]
+                                    }"
+                                    options="{'no_open': True}"
+                                    force_save="1"
+                                    context="{
+                                        'partner_id': parent.partner_id,
+                                        'quantity': product_uom_qty,
+                                        'pricelist': parent.pricelist_id,
+                                        'uom':product_uom,
+                                        'company_id': parent.company_id,
+                                        'default_lst_price': price_unit,
+                                        'default_description_sale': name
+                                    }"
+                                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                                    widget="product_configurator"
+                                />
+                                <field name="bom_revision"/>
+                                <field name="product_template_id"
+                                  string="Product"
+                                  invisible="1"
+                                  attrs="{
+                                      'required': [('display_type', '=', False)], 'readonly': [('state', 'in', ('sale','done','cancel'))]
+                                  }"
+                                  options="{'no_open': True}"
+                                  context="{
+                                      'partner_id': parent.partner_id,
+                                      'quantity': product_uom_qty,
+                                      'pricelist': parent.pricelist_id,
+                                      'uom':product_uom,
+                                      'company_id': parent.company_id,
+                                      'default_list_price': price_unit,
+                                      'default_description_sale': name
+                                  }"
+                                  domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                                  widget="product_configurator"/>
+                                  <!-- <field name="blanket_order_line" readonly="1" force_save="1" optional="hide" context="{'from_sale_order': True}" attrs="{'readonly': [('state', 'in', ('done','sale','cancel'))]}"/> -->
+                                  <field name="blanket_order_line" readonly="1" force_save="1" optional="hide" context="{'from_sale_order': True}"/>
+                                <field name="tags_product_sale_ids" string="Product Tags" widget="many2many_tags" options="{'no_create': True}" optional="hide"/>
+                                <field name="name" widget="section_and_note_text" optional="show" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                                <field name="pick_location_id" attrs="{
+                                    'readonly': [('state', 'in', ('done','sale','cancel'))]
+                                    }"/>
+                                <field name="warehouse_id" invisible="1" />
+                                <field name="qty_available" readonly="1" optional="hide"/>
+                                <field name="free_qty" readonly="1" optional="hide"/>
+                                <field name="barcode" optional="show" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                                <field name="note" widget="section_and_note_text" optional="hide"/>
+                                <field
+                                    name="product_uom_qty"
+                                    context="{
+                                        'partner_id': parent.partner_id,
+                                        'quantity': product_uom_qty,
+                                        'pricelist': parent.pricelist_id,
+                                        'uom': product_uom,
+                                        'company_id': parent.company_id
+                                    }"
+                                    attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"
+                                />
+                                <field
+                                    name="product_uom"
+                                    force_save="1"
+                                    string="UoM"
+                                    attrs="{
+                                        'required': [('display_type', '=', False)], 'readonly': [('state', 'in', ('sale','done','cancel'))]
+                                    }"
+                                    context="{'company_id': parent.company_id}"
+                                    groups="uom.group_uom"
+                                    options='{"no_open": True}'
+                                    optional="show"
+                                />
+                                <field name="price_unit" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                                <field name="sale_price_marketing" string="Sale MKT" readonly="1" optional="hide"/>
+                                <field
+                                    name="tax_id"
+                                    widget="many2many_tags"
+                                    readonly="1" force_save="1"
+                                    options="{'no_create': True}"
+                                    domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
+                                    context="{'active_test': True}"
+                                    optional="show"
+                                    attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"
+                                />
+                                <field name="discount" invisible="1"/>
+                                <field name="triple_discount" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                                <field name="discount_pricelist" force_save="1" optional="show"/>
+                                <field name="sub_discount" string="Sub Disc%" readonly="1" optional="hide"/>
+                                <field name="price_subtotal" widget="monetary" optional="hide" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                                <field name="rounding_price" optional="hide" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                                <field name="price_total" widget="monetary" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"
+                                options="{'bg_color': 'red:price_subtotal &lt; 0 and is_global_discount == False',
+                                    'fg_color': 'white:price_subtotal &lt; 0 and is_global_discount == False'}"/>
+                                <field name="state" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="price_tax" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="is_global_discount" invisible="1"/>
+                                <field name="external_product_id" invisible="1"/> 
+                                <!-- <field name="external_customer" readonly="1" force_save="1" optional="hide"/> -->
+                                <field name="external_item" readonly="1" force_save="1" optional="hide"/>
+                                <field name="barcode_customer" readonly="1" force_save="1" optional="hide"/>
+                                <field name="barcode_modern_trade" readonly="1" force_save="1" optional="hide"/>
+                                <field name="description_customer" readonly="1" force_save="1" optional="hide"/>
+                                <field name="modify_type_txt" optional="hide" readonly="1" force_save="1"/>
+                                <field name="plan_home" optional="hide" readonly="1" force_save="1"/>
+                                <field name="room" optional="hide" readonly="1" force_save="1"/>
+                            </tree>
+                        </field>
+                        <div class="oe_right">
+                            <button name="recalculate_global_discount" type="object"
+                                string="Re-Cal"
+                                help="Update Global Discount"
+                                class="btn-link mb-1 px-0" icon="fa-refresh"
+                            />
+                            <button string="Rounding" name="action_rounding_wizard" type="object" />
+                        </div>
+                        <group name="note_group" col="6" class="mt-2 mt-md-0">
+                            <group string="Discount" name="discount_group" colspan="4" modifiers="{}">
+                                <field name="sub_discount_percentage" string="Sub Disc%" readonly="1" modifiers="{'readonly':true}" id="sub_discount_percentage"/>
+                                <field name="sub_discount_amount" string="Sub Discount Amount" readonly="1" modifiers="{'readonly':true}" id="sub_discount_amount"/>
+                                <label for="global_discount" string="Global Discount" />
+                                <div name="global_discount_div">
+                                  <field name="global_discount" on_change="1" modifiers="{}" id="global_discount" class="oe_inline"/> &amp;nbsp; &amp;nbsp;
+                                  <span>(<field name="global_discount_total"/>)</span>
+                                </div>
+                                <field name="total_discount_percentage" string="Total Discount%" readonly="1" modifiers="{'readonly':true}" id="total_discount_percentage"/>
+                                <field name="total_discount_amount" string="Total Discount Amount" readonly="1" modifiers="{'readonly':true}" id="total_discount_amount__4__"/>
+                            </group>
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                <field name="amount_before_discount" string="Amount Before Discount" readonly="1" groups="base.group_no_one"/>
+                                <field name="total_discount_amount_new" string="Total Discount" readonly="1"/>
+                                <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                    <label for="amount_total" />
+                                </div>
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                <field name="rounding_untax" readonly="1" groups="base.group_no_one"/>
+                                <field name="rounding_taxes" readonly="1" groups="base.group_no_one"/>
+                                <field name="rounding_total" readonly="1" groups="base.group_no_one"/>
+                            </group>
+                            <field name="lang_code" invisible="1"/> 
+                            <field name="note_th" placeholder="Term and Conditions (Thai)"/>
+                            <field name="note_en" placeholder="Term and Conditions (ENG)"/>
+                            <div class="oe_clear"/>
+                        </group>
+                    </page>
+                    <page string="Components" name="product_components">
+                        <field name="order_bom_line" readonly="1">
+                            <tree string="Components" editable="bottom" >
+                                <field name="product_id"/>
+                                <field name="origin_product_id"/>
+                                <field name="product_uom_qty"/>
+                                <field name="product_uom"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Other Info" name="other_information">
+                        <group>
+                            <group name="sales_person" string="Sales">
+                                <field name="user_id" widget="many2one_avatar_user"/>
+                                <field name="team_id" kanban_view_ref="%(sales_team.crm_team_view_kanban)s" options="{'no_create': True}"/>
+                                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                                <field name="require_signature"/>
+                                <field name="require_payment"/>
+                                <field name="reference" readonly="1" attrs="{'invisible': [('reference', '=', False)]}"/>
+                                <field name="client_order_ref"/>
+                            </group>
+                            <group name="sale_info" string="Invoicing">
+                                <field name="fiscal_position_id" options="{'no_create': True}" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page groups="base.group_no_one" string="Customer Signature" name="customer_signature" attrs="{'invisible': [('require_signature', '=', False), ('signed_by', '=', False), ('signature', '=', False), ('signed_on', '=', False)]}">
+                        <group>
+                            <field name="signed_by"/>
+                            <field name="signed_on"/>
+                            <field name="signature" widget="image"/>
+                        </group>
+                    </page>
+                    <page string="Line Detail" name="line_detail">
+                        <field name="quotation_line_detail" mode="tree" readonly="1">
+                            <tree string="Quotation Order Lines" editable="bottom">
+                                <field name="product_id"/>
+                                <field name="categ_id"/>
+                                <field name="name"/>
+                                <field name="barcode"/>
+                                <field name="product_uom_qty"/>
+                                <field name="product_uom"/>
+                                <field name="price_unit"/>
+                                <field name="triple_discount"/>
+                                <field name="discount_pricelist" force_save="1" optional="show"/>
+                                <field name="tax_id" widget="many2many_tags"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+            </div>
+          </form>
+        </field>
+    </record>
+
+    <record id="action_quotation_orders" model="ir.actions.act_window">
+            <field name="name">Quotations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">quotation.order</field>
+            <field name="view_id" ref="view_quotation_order_tree"/>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="domain">['|',('active','=',False),('active','=',True)]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new quotation, the first step of a new sale!
+              </p><p>
+                Once the quotation is confirmed by the customer, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+              </p>
+            </field>
+        </record>
+
+    <menuitem id="sale.menu_sale_quotations"
+        action="action_quotation_orders"
+        parent="sale.sale_order_menu"
+        sequence="1" groups="sales_team.group_sale_salesman"/>
+
+</odoo>

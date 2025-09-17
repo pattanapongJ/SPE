@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="picking_list_form_inherit" model="ir.ui.view">
+        <field name="name">picking.list.form.inherit</field>
+        <field name="model">picking.lists</field>
+        <field name="inherit_id" ref="hdc_inventory_picking_list_sale.picking_list_form"/>
+        <field name="arch" type="xml">            
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button name="print_pk_list" string="Print" type="object"  states="draft,waiting_pick,done"/>
+            </xpath>   
+            <xpath expr="//group[@name='picking_lists_header']//div" position="after">
+                <field name="barcode_date"/>
+            </xpath>   
+            <xpath expr="//tree/field[@name='qty_done']" position="replace">
+                <field name="qty_done" optional="show" string="Picking Done"/>
+            </xpath>        
+            <xpath expr="//tree/field[@name='qty_ava']" position="after">
+                <field name="qty_all_stock" optional="show"/>
+            </xpath>  
+            <xpath expr="//tree/field[@name='picking_done_qty']" position="replace">
+                <field name="picking_done_qty" optional="hide"/>
+            </xpath>    
+            <xpath expr="//tree/field[@name='categ_id']" position="replace">
+                <field name="categ_id" optional="hide"/>
+            </xpath>    
+            <xpath expr="//tree/field[@name='picking_id']" position="replace">
+                <field name="picking_id" optional="hide"/>
+            </xpath>     
+            <xpath expr="//tree/field[@name='location_id']" position="replace">
+                <field name="location_id" optional="hide"/>
+            </xpath>     
+        </field>
+    </record>     
+</odoo>

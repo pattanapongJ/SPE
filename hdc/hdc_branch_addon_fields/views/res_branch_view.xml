@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="branch_addon_fields_inherit_branch" model="ir.ui.view">
+        <field name="name">branch.addon.fields.form.inherit.branch</field>
+        <field name="model">res.branch</field>
+        <field name="inherit_id" ref="branch.branch_res_branch_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='address']" position="after">
+                <field name="address_eng"/>
+            </xpath>
+            <xpath expr="//field[@name='telephone']" position="before">
+                <field name="branch_number"/>
+            </xpath>
+            <xpath expr="//field[@name='telephone']" position="after">
+                <field name="fax"/>
+            </xpath>
+            <xpath expr="//group[1]/group[2]" position="inside">
+                <field name="is_head_office"/>
+            </xpath>
+        </field>
+    </record>       
+</odoo>

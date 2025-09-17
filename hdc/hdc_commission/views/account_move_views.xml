@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="commission_form_inherit_account_move">
+        <field name="name">Commission Account Invoice</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='journal_div']" position="after">
+                <field name="is_settle_commission_sale_manager" invisible="1"/>
+                <field name="is_settle_commission_salesperson" invisible="1"/>
+                <field name="is_settle_commission_sale_spec" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_subtotal']" position="after">
+                <field name="commission_code" widget="many2many_tags" optional="hide"/>
+                <field name="commission_remarks" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

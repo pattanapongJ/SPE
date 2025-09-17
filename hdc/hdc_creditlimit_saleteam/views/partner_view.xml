@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_credit_show_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.partner_credit_limit.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="dev_customer_credit_limit.view_credit_readonly_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='credit_limit']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='check_credit']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='check_credit']" position="before">
+                <field name="credit_type"/>
+            </xpath>
+            <xpath expr="//field[@name='credit_limit']" position="after">
+                <field name="credit_limit_show" readonly="1" force_save="1"/>
+                <field name="cash_limit_show" readonly="1" force_save="1" attrs="{'invisible':[('credit_type','=','new')]}"/>
+                <field name="cash_limit" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='credit_limit_on_hold']" position="replace">
+                <field name="credit_limit_on_hold"/>
+                <field name="remark_on_hold" attrs="{'invisible':[('credit_limit_on_hold','=',False)]}"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_cash_limit"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-money">
+                    <span>Cash Limit</span>
+                </button>
+            </xpath>
+        </field>
+    </record>
+    <!-- <record id="view_credit_show_editable_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.partner_credit_limit.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="view_credit_show_partner_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('dev_customer_credit_limit.credit_limit_config')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='credit_limit_show']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+        </field>
+    </record> -->
+</odoo>

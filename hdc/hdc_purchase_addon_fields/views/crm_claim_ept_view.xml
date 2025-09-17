@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="inherit_crm_claim_ept_contact_person">
+        <field name="name">inherit.crm.claim.ept.contact.person</field>
+        <field name="model">crm.claim.ept</field>
+        <field name="inherit_id" ref="rma_ept.crm_claims_ept_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='rma_support_person_id']" position="after">
+                <field name="ref_sale_rma" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

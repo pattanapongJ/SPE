@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hdc_auto_cancel_inv_view_move_form" model="ir.ui.view">
+        <field name="name">hdc.auto.cancel.inv.view.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="cancel_entry_auto_button" string="Cancel Entry Auto" type="object"
+                    groups="account.group_account_invoice"
+                    attrs="{'invisible' : ['|', ('id', '=', False), ('state', '!=', 'draft')]}" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

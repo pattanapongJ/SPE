@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="easy_api_graphql_inherit" model="ir.ui.view">
+        <field name="name">easy.api.graphql.inherit</field>
+        <field name="model">easy.api</field>
+        <field name="priority" eval="1"/>
+        <field name="inherit_id" ref="api_framework_base.view_easy_api_form"/>
+        <field name="arch" type="xml">
+            <!-- ToDo: documentation view -->
+            <!-- <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_graphql_doc" type="object" class="oe_stat_button" icon="fa-book" attrs="{'invisible':[('api_type','!=','graphql')]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">GraphQL</span>
+                        <span class="o_stat_text">Doc.</span>
+                    </div>
+                </button>
+            </xpath> -->
+            <xpath expr="//field[@name='api_type']" position="attributes">
+                <attribute name="graphql_text" position="add">GraphQL is a query language for APIs that enables more efficient and flexible communication between clients and servers by allowing clients to request only the data they need.</attribute>
+                <attribute name="graphql_icon" position="add">/easy_graphql/static/src/img/graphql.svg</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

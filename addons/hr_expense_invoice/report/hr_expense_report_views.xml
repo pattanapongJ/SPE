@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="expense_report" model="ir.actions.report">
+            <field name="name">ใบบันทึกค่าใช้จ่าย</field>
+            <field name="model">hr.expense</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบบันทึกค่าใช้จ่าย-%s (ต้นฉบับ)" %(object.custom_number)</field>
+            <field name="report_name">hr_expense_invoice.MPF_expense_report</field>
+            <field name="report_file">hr_expense_invoice.MPF_expense_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hr_expense_invoice.paperformat_report_expense"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

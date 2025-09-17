@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="delivery_inter_company" model="delivery.round">
+            <field name="name">สายส่งระหว่างบริษัท</field>
+            <field name="code">TRL000</field>
+            <field name="status_active">True</field>
+        </record>
+        
+        <record id="company_delivery_inter_company" model="company.delivery.round">
+            <field name="name">ขนส่งระหว่างบริษัท</field>
+            <field name="code">TRP000</field>
+            <field name="delivery_line" ref="delivery_inter_company"/>
+            <field name="status_active">True</field>
+        </record>
+
+        <record id="sale_pricelist_inter_company" model="product.pricelist">
+            <field name="name">Pricelist Inter Company</field>
+        </record>
+
+        <!-- warehouse A-24A Saeng Charoen Patana Enterprise Co., Ltd.-->
+        <!-- <record id="sale_type_saeng_charoen_inter_company_destination" model="sale.order.type">
+            <field name="name">ขายบริษัทในเครือ</field>
+            <field name="warehouse_id" ref="stock.warehouse0"/>
+            <field name="pricelist_id" ref="sale_pricelist_inter_company"/>
+            <field name="inter_company_transactions">False</field>
+        </record> -->
+        <!-- <record id="sale_type_saeng_charoen_inter_company_origin" model="sale.order.type">
+            <field name="name">ขายระหว่างบริษัท</field>
+            <field name="warehouse_id" ref="stock.warehouse0"/>
+            <field name="pricelist_id" ref="sale_pricelist_inter_company"/>
+            <field name="inter_company_transactions">True</field>
+        </record>         -->
+    </data>
+</odoo>

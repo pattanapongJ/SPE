@@ -1,0 +1,402 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_cost_center
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.1alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-06 08:19+0000\n"
+"PO-Revision-Date: 2020-10-06 08:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_needaction
+msgid "Action Needed"
+msgstr "需要采取的行动"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_ids
+msgid "Activities"
+msgstr "活动"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "活动例外装饰"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_state
+msgid "Activity State"
+msgstr "活动状态"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "活动类型图标"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_attachment_count
+msgid "Attachment Count"
+msgstr "附件数"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__sh_code
+msgid "Code"
+msgstr "代码"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_bank_statement_line__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_invoice_report__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move_line__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_payment__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_hr_expense__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order_line__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_report__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_res_users__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order_line__sh_cost_center_id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_report__sh_cost_center_id
+#: model:res.groups,name:sh_cost_center.sh_group_cost_center
+msgid "Cost Center"
+msgstr "成本中心"
+
+#. module: sh_cost_center
+#: model:ir.actions.act_window,name:sh_cost_center.sh_cost_center_action
+#: model:ir.model,name:sh_cost_center.model_sh_cost_center
+#: model:ir.ui.menu,name:sh_cost_center.menu_cost_center
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_account_invoice_search_view
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_cost_center_form_view
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_cost_center_tree_view
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_expense_search_view
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_purchase_order_search_view
+#: model_terms:ir.ui.view,arch_db:sh_cost_center.sh_sale_order_search_view
+msgid "Cost Centers"
+msgstr "成本中心"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__create_uid
+msgid "Created by"
+msgstr "由...制作"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__create_date
+msgid "Created on"
+msgstr "创建于"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__resource_calendar_id
+msgid "Define the schedule of resource"
+msgstr "定义资源计划"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_invoice_report__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_hr_expense__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_report__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_res_users__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_advance_payment_inv__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_report__display_name
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_hr_expense
+msgid "Expense"
+msgstr "费用"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_follower_ids
+msgid "Followers"
+msgstr "追随者"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "追随者（渠道）"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "关注者（合作伙伴）"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "字体真棒图标任务"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_invoice_report__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move_line__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_hr_expense__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_report__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_res_users__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_advance_payment_inv__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_report__id
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_exception_icon
+msgid "Icon"
+msgstr "图标"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "表示异常活动的图标。"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_needaction
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "如果选中，则需要您注意新消息。"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_has_error
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "如果选中，则某些邮件有传递错误。"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_account_invoice_report
+msgid "Invoices Statistics"
+msgstr "发票统计"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_is_follower
+msgid "Is Follower"
+msgstr "是追随者"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_account_move
+msgid "Journal Entry"
+msgstr "日记帐分录"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_account_move_line
+msgid "Journal Item"
+msgstr "日记帐项目"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_invoice_report____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_hr_expense____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_purchase_report____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_res_users____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_advance_payment_inv____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_sale_report____last_update
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center____last_update
+msgid "Last Modified on"
+msgstr "最后修改时间"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间："
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "主要附件"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_has_error
+msgid "Message Delivery error"
+msgstr "邮件传递错误"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_ids
+msgid "Messages"
+msgstr "留言内容"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "下一个活动截止日期"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_summary
+msgid "Next Activity Summary"
+msgstr "下一个活动摘要"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_type_id
+msgid "Next Activity Type"
+msgstr "下一个活动类型"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_needaction_counter
+msgid "Number of Actions"
+msgstr "动作数"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_has_error_counter
+msgid "Number of errors"
+msgstr "错误数"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "需要采取措施的消息数"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "传递错误的邮件数"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__message_unread_counter
+msgid "Number of unread messages"
+msgstr "未读邮件数"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_purchase_order
+msgid "Purchase Order"
+msgstr "采购订单"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "采购订单行"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_purchase_report
+msgid "Purchase Report"
+msgstr "采购报告"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__resource_id
+msgid "Resource"
+msgstr "资源资源"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__activity_user_id
+msgid "Responsible User"
+msgstr "负责用户"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "短信发送错误"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "销售预付款发票"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_sale_report
+msgid "Sales Analysis Report"
+msgstr "销售分析报告"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_sale_order
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "销售订单行"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+“基于活动的状态\ n”
+“过期：到期日期已经过\ n”
+“今天：活动日期是今天\ n”
+“计划：未来的活动。”
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__tz
+msgid ""
+"This field is used in order to define in which timezone the resources will "
+"work."
+msgstr ""
+“使用此字段是为了定义资源将在哪个时区进行”
+“工作。”
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__tz
+msgid "Timezone"
+msgstr "时区"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__sh_title
+msgid "Title"
+msgstr "标题"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "记录的异常活动的类型。"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_unread
+msgid "Unread Messages"
+msgstr "未读邮件"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "未读邮件计数器"
+
+#. module: sh_cost_center
+#: model:ir.model,name:sh_cost_center.model_res_users
+msgid "Users"
+msgstr "用户数"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__website_message_ids
+msgid "Website Messages"
+msgstr "网站讯息"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,help:sh_cost_center.field_sh_cost_center__website_message_ids
+msgid "Website communication history"
+msgstr "网站交流历史"
+
+#. module: sh_cost_center
+#: model:ir.model.fields,field_description:sh_cost_center.field_sh_cost_center__resource_calendar_id
+msgid "Working Hours"
+msgstr "工作时间"

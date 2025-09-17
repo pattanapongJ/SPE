@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="ShowPaymentInfo">
+        <t t-jquery="a.outstanding_credit_assign" t-operation="before">
+            <a title="partial reconcile" role="button" class="oe_form_field btn btn-link o_partial_button" t-att-data-id="line.id" t-att-data-move_id="line.move_id" style="margin-right: 10px;" href="#" data-toggle="tooltip" context="{'default_active_id': active_id}">Partial Pay</a>
+        </t>
+    </t>
+</templates>

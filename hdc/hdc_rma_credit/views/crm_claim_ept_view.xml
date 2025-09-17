@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="rma_reason_select_form_view_inherit">
+        <field name="name">CRM Product inherit</field>
+        <field name="model">rma.reason.ept</field>
+        <field name="inherit_id" ref="rma_ept.rma_reason_ept_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_not_receipt']" position="after">
+                <field name="is_select_product_receipt"/>
+            </xpath>
+            <xpath expr="//field[@name='action']" position="attributes">
+                <!-- <attribute name="attrs">{'readonly': [('is_select_product_receipt', '=', True)]}</attribute> -->
+                <attribute name="force_save">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="crm_claims_ept_form_view_inherit">
+        <field name="name">CRM - Claims Ept Form</field>
+        <field name="model">crm.claim.ept</field>
+        <field name="inherit_id" ref="rma_ept.crm_claims_ept_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_deadline']" position="after">
+                <field name="is_select_product_receipt" invisible="1"/>
+            </xpath>
+
+            <!-- <xpath expr="//field[@name='reason_cancel']" position="after">
+                <field name="is_job_no" />
+            </xpath> -->
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="bs_finance_dimension.bs_dimension_2" model="bs.dimension.group">
+            <field name="ref_model" ref="hr.model_res_users"/>
+        </record>
+
+
+        <!-- Dimension Group 4,5,6,7,8,9,10-->
+        <record id="bs_dimension_4" model="bs.dimension.group">
+            <field name="name">Dimension 4</field>
+            <field name="ref_model" ref="hr.model_hr_employee"/>
+        </record>
+        <record id="bs_dimension_5" model="bs.dimension.group">
+            <field name="name">Dimension 5</field>
+            <field name="ref_model" ref="base.model_res_partner"/>
+        </record>
+        <record id="bs_dimension_6" model="bs.dimension.group">
+            <field name="name">Dimension 6</field>
+            <field name="ref_model" ref="base.model_res_partner"/>
+        </record>
+        <record id="bs_dimension_7" model="bs.dimension.group">
+            <field name="name">Dimension 7</field>
+        </record>
+        <record id='bs_dimension_8' model="bs.dimension.group">
+            <field name="name">Dimension 8</field>
+        </record>
+        <record id="bs_dimension_9" model="bs.dimension.group">
+            <field name="name">Dimension 9</field>
+        </record>
+        <record id='bs_dimension_10' model="bs.dimension.group">
+            <field name="name">Dimension 10</field>
+        </record>
+    </data>
+</odoo>

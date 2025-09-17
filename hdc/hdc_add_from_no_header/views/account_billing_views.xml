@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_billing_form_add_from_no" model="ir.ui.view">
+        <field name="name">account.billing.form.add.from.no</field>
+        <field name="priority">15</field>
+        <field name="inherit_id" ref="account_billing.view_account_billing_form"/>
+        <field name="model">account.billing</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="bill_type" invisible="1"/>
+                <!-- <field name="form_no" invisible="1"/> -->
+                <field name="form_no" string="SPE Billing No." attrs="{'readonly': [('state', 'in', ['posted'])], 'invisible': [('bill_type', 'in', ['in_invoice'])]}"/>
+                <field name="old_spe_billing_no" attrs="{'readonly': [('state', 'in', ['posted'])], 'invisible': [('bill_type', 'in', ['in_invoice'])]}"/>   
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

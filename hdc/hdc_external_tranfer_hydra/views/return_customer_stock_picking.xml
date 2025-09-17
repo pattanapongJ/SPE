@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="action_create_repair_order_to">
+        <field name="name">Repair Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">repair.order</field>
+        <field name="view_mode">form,tree</field>
+        <field name="domain">[('requisition_id','=',active_id)]</field>
+        <field name="context">{
+            "default_requisition_id":active_id,
+            }
+        </field>
+    </record>
+
+    <record id="view_return_customer_form" model="ir.ui.view">
+        <field name="name">stock.picking.return.customer</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group[1]/group[1]/div[1]/label[2]" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|',('check_all','=',True),('picking_type_code', '!=', 'incoming')]}
+                </attribute>
+            </xpath>
+            <xpath expr="/form/sheet/div[1]/button[@name='action_see_move_scrap']" position="before">
+                    <button class="oe_stat_button" type="object" name="get_repair"
+                        icon="fa-reply"  attrs="{'invisible':['|',('repair_count', '=', 0),('return_customer_types','=',False)]}">
+                        <field string="Repair Orders" name="repair_count" widget="statinfo"/>
+                    </button>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="employee_name" string="Requestor" attrs="{'invisible': [('return_customer_types','=',False)]}"/>
+                <field name="department_id" string="Department" attrs="{'invisible': [('return_customer_types','=',False)]}"/>
+                <field name="return_type" string="Return Type" attrs="{'invisible': [('return_customer_types','=',False)]}"/>
+                <field name="partner_id" string="Customer" attrs="{'invisible': [('return_customer_types','=',False)]}"/>
+                <field name="return_customer_types" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='date_done']" position="before">
+                <field name="schedule_req" string="Issue Date" attrs="{'invisible': [('return_customer_types','=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='date_done']" position="after">
+                <field name="date_done" string="Tranfer Date" attrs="{'invisible': ['|',('state','!=','done'),('return_customer_types','=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='date_done']" position="after">
+                <field name="return_customer_types" attrs="{'invisible': 1}"/>
+                <field name="company_id" attrs="{'invisible': 1}"/>
+            </xpath>
+            <xpath expr="//header/button[1]" position="before">
+                <button name="%(action_create_repair_order_to)d" type="action" string="Create Repair" attrs="{'invisible': [('return_customer_types','=',False)]}" class="btn btn-primary"/>
+            </xpath>
+            <xpath expr="//group[@name='other_infos']" position="after">
+                <group string="Approval" attrs="{'invisible': [('return_customer_types','=',False)]}">
+                    <field name="approved_reviewer"/>
+                    <field name="approved"/>
+                </group>
+            </xpath>
+
+            <!--move_line-->
+             <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom_qty']" position="attributes">
+                <attribute name="attrs">
+                    {'column_invisible': [('parent.return_customer_types', '=', True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom_qty']" position="after">
+                 <field name="return_uom_qty" string="Return QTY" attrs="{'column_invisible': [('parent.return_customer_types', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_repair_return_customer_form" model="ir.ui.view">
+        <field name="name">repair.order.return</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group[1]/group[2]" position="inside">
+                <field name="requisition_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

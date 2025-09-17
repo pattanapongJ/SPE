@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="sale_targets_view_tree_inherit_user_employee" model="ir.ui.view">
+        <field name="name">sale.targets.view.tree.inherit.user.employee</field>
+        <field name="model">sale.targets</field>
+        <field name="inherit_id" ref="hdc_sale_targets.sale_targets_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="sale_employee_ids" invisible="1"/>
+                <field name="user_employee_id"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='target_team']" position="replace">
+                <field name="target_team" force_save="1" attrs="{'readonly':[('user_employee_id','!=',False)],'required': [('team_id','!=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='target_sales']" position="replace">
+                <field name="target_sales" attrs="{'readonly':[('user_employee_id','=',False)],'required': [('user_employee_id','!=',False)]}"/> 
+            </xpath>
+        </field>
+    </record>    
+    <record id="sale_targets_view_form_inherit_user_employee" model="ir.ui.view">
+        <field name="name">sale.targets.view.form.inherit.user.employee</field>
+        <field name="model">sale.targets</field>
+        <field name="inherit_id" ref="hdc_sale_targets.sale_targets_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="sale_employee_ids" invisible="1"/>
+                <field name="user_employee_id"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='target_team']" position="replace">
+                <field name="target_team" force_save="1" attrs="{'readonly':[('user_employee_id','!=',False)],'required': [('team_id','!=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='target_sales']" position="replace">
+                <field name="target_sales" attrs="{'readonly':[('user_employee_id','=',False)],'required': [('user_employee_id','!=',False)]}"/> 
+            </xpath>
+        </field>
+    </record>    
+</odoo>

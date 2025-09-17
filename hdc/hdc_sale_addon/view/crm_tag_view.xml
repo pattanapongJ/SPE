@@ -1,0 +1,23 @@
+
+<odoo>
+    <record id="view_crm_tag_tree_inherit" model="ir.ui.view">
+        <field name="name">crm.tag.tree.inherit</field>
+        <field name="model">crm.tag</field>
+        <field name="inherit_id" ref="sales_team.sales_team_crm_tag_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="color" position="before">
+                <field name="default_product_tag"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_crm_tag_form_inherit" model="ir.ui.view">
+        <field name="name">crm.tag.form.inherit</field>
+        <field name="model">crm.tag</field>
+        <field name="inherit_id" ref="sales_team.sales_team_crm_tag_view_form"/>
+        <field name="arch" type="xml">
+            <field name="color" position="after">
+                <field name="default_product_tag"/>
+            </field>
+        </field>
+    </record>
+</odoo>

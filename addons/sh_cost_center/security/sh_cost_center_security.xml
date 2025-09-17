@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_group_cost_center" model="res.groups">
+        <field name="name">Cost Center</field>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
+    </record>
+    <record model="ir.rule" id="sh_cost_center_comp_rule">
+        <field name="name">Cost Center multi-company</field>
+        <field name="model_id" ref="model_sh_cost_center" />
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

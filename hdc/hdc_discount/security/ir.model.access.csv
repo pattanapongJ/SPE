@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_time_user,undefined.delivery.time,model_delivery_time,base.group_user,1,1,1,1
+access_offer_validation_user,undefined.offer.validation,model_offer_validation,base.group_user,1,1,1,1

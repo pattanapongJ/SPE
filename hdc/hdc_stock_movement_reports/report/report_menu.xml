@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="stock_movement_report_xlsx"
+            model="wizard.stock.movement.report"
+            string="รายงานการเคลื่อนไหวของสินค้า (Stock Movement Report)"
+            report_type="xlsx"
+            name="stock_movement_report_xlsx"
+            file="รายงานการเคลื่อนไหวของสินค้า"
+            attachment_use="False"
+        />
+        <report
+            id="financial_detail_report_xlsx"
+            model="wizard.financial.detail.report"
+            string="Financial (Detail)"
+            report_type="xlsx"
+            name="financial_detail_report_xlsx"
+            file="Financial (Detail)"
+            attachment_use="False"
+        />
+        <report
+            id="physical_detail_report_xlsx"
+            model="wizard.physical.detail.report"
+            string="Physical (Detail)"
+            report_type="xlsx"
+            name="physical_detail_report_xlsx"
+            file="Physical (Detail)"
+            attachment_use="False"
+        />
+
+        <menuitem name ="Operation Reports" id='menu_stock_operation_reports' parent="stock.menu_warehouse_report" sequence="1"/>
+    </data>
+</odoo>

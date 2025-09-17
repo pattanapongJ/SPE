@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="purchase_global_discount_view_move_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.global.discount.view.move.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_unit']" position="before">
+                <field name="gross_unit_price" optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='tax_ids']" position="after">
+                <field name="net_amount" invisible="1"/>
+                <field name="price_total" string="Net Amount" optional="hide"/>
+            </xpath>
+            <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="after">
+                <group class="oe_subtotal_footer ">
+                    <field name="discount_price" style="width: 100px;" attrs="{'invisible': [('move_type', '!=', 'in_invoice')]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

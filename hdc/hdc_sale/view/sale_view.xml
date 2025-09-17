@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="hdc_sale_view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='other_information']/group/group/field[@name='client_order_ref']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+                <attribute name="string">Invoice Account</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_term_id']" position="before">
+                <field name="modify_type_txt"/>
+                <field name="plan_home"/>
+                <field name="room"/>
+                <field name="port_of_loading"/>
+                <field name="shipment_by_id"/>
+            </xpath>
+        
+            <xpath expr="//field[@name='validity_date']" position="replace">
+                <field name="offer_validation" string="Offer Validation" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" invisible="1"/>
+                <field name="validity_date" attrs="{'invisible': [('state', 'in', ['sale', 'done'])],}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="customer_po" string="Customer PO No."/>
+                <field name="po_date"/>
+                <field name="expire_date"/>
+                <field name="outline_agreement"/>
+                <field name="customer_contact_date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                <field name="client_order_ref" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                <field name="delivery_time" string="Delivery Time" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" invisible="1"/>
+                <label for="commitment_date" string="Delivery Date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" invisible="1"/>
+                <div name="commitment_date_div" class="o_row" invisible="1">
+                    <field name="commitment_date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+<!--                    <span class="text-muted" attrs="{'invisible': [('effective_date', '!=', False), ('commitment_date', '!=', False)]}">Expected: <field name="expected_date" widget="date"/></span>-->
+                </div>
+                <field name="priority" widget="priority" string="Priority"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                <field name="warehouse_id"/>
+            </xpath>
+
+            <xpath expr="//group[@name='order_details']" position="after">
+                <group string="Responsible">
+                    <field name="team_id"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="user_id"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="sale_spec"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="sale_manager_id" domain="[('share', '=', False)]" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="user_sale_agreement"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="remark"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="member_ids" invisible="1"/>
+                </group>
+                <group name="delivery_info" string="Delivery">
+                    <field name="requested_ship_date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="requested_receipt_date" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                    <field name="delivery_trl" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" domain="[('status_active', '=', True)]" required='1'/>
+                    <field name="delivery_trl_description" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" required='1'/>
+                    <field name="delivery_company" string="Mode of delivery" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" domain="[('status_active', '=', True)]" required='1'/>
+                    <field name="delivery_company_description" string="Mode of delivery Description" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" required='1'/>
+                </group>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="fiscal_position_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                <field name="sale_team_ids" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//group[@name='sale_shipping']/label[@for='commitment_date']" position="replace">
+                <label for="commitment_date" string="Delivery Date" invisible="1" />
+            </xpath>
+
+            <field name="payment_term_id" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', 'in', ('sale','done','cancel'))]}</attribute>
+            </field>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="barcode" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="warehouse_id" invisible="1" />
+                <field name="qty_available" readonly="1" optional="hide"/>
+                <field name="free_qty" readonly="1" optional="hide"/>
+            </xpath>
+            <xpath expr="//page[@name='other_information']" position="replace">
+                <page string="Other Info" name="other_information">
+                    <group>
+                        <group name="sales_person" string="Sales">
+                            <field name="user_id" widget="many2one_avatar_user" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                            <field name="team_id" kanban_view_ref="%(sales_team.crm_team_view_kanban)s" options="{'no_create': True}" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                            <field name="require_signature" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                            <field name="require_payment" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                            <field name="reference" readonly="1" attrs="{'invisible': [('reference', '=', False)]}"/>
+                            <field name="client_order_ref" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" invisible="1"/>
+                        </group>
+                        <group name="sale_info" string="Invoicing">
+                            <field name="fiscal_position_id" options="{'no_create': True}" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                            <field name="analytic_account_id" context="{'default_partner_id':partner_invoice_id, 'default_name':name}" attrs="{'readonly': [('invoice_count','!=',0),('state','=','sale')]}" groups="analytic.group_analytic_accounting" force_save="1"/>
+                            <field name="invoice_status" states="sale,done" groups="base.group_no_one"/>
+                        </group>
+                    <!-- </group>
+                    <group> -->
+                        <group string="Reporting" name="sale_reporting" groups="base.group_no_one">
+                            <group name="technical" colspan="2" class="mb-0">
+                                <field name="origin"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                            </group>
+                            <group name="utm_link" colspan="2" class="mt-0">
+                                <field name="campaign_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                                <field name="medium_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                                <field name="source_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                            </group>
+                        </group>
+                        <group name="sale_shipping">
+                            <label for="commitment_date" string="Delivery Date"/>
+                            <div name="commitment_date_div" class="o_row">
+                                <field name="commitment_date"/>
+                                <span name="expected_date_span" class="text-muted">Expected: <field name="expected_date" widget="date"/></span>
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_form_inherit_sale_stock" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.inherit.stock</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_shipping']/div[@class='o_row']" position="replace">
+                <div class="o_row">
+                </div>
+            </xpath>
+            
+        </field>
+    </record>
+
+    <record id="view_inherit_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <!-- <field name="priority" widget="priority" string="Priority"/> -->
+                <field name="priority" optional="show" widget="priority" string="Priority" />
+            </xpath>
+             <xpath expr="//field[@name='company_id']" position="after">
+                <field name="customer_po" string="Customer PO No" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_inherit_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="priority" optional="show" widget="priority" string="Priority" />
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="customer_po" string="Customer PO No" />
+            </xpath>
+        </field>
+        
+    </record>
+    
+</odoo>

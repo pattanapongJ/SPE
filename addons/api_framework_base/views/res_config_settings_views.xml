@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.api_framework_base</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="priority" eval="0"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="API" string="API" data-key="api_framework_base">
+                    <div id="api_config_setting">
+                        <h2>Authentications</h2>
+                        <div class="row mt16 o_settings_container" id="api_authentications">
+                            <div class="col-12 col-lg-6 o_setting_box" id="basic_auth">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_api_auth_basic"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_api_auth_basic" string="Basic"/>
+                                    <div class="text-muted">
+                                        Clients include their username and password in request headers; the server validates these credentials to grant access to API resources, relying on HTTPS for secure communication.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="apikey_auth">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_api_auth_apikey"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_api_auth_apikey" string="API Key"/>
+                                    <div class="text-muted">
+                                        Clients include a secret API key in their requests' headers to access APIs. It grants authorised usage and allows for straightforward authentication.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="apiuser_auth">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_api_auth_apiuser"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_api_auth_apiuser" string="API User"/>
+                                    <div class="text-muted">
+                                        Clients provide their username and password in request parameters to access APIs. It verifies user credentials for secure and personalised interactions.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="token_auth">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_api_auth_token"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_api_auth_token" string="Token"/>
+                                    <div class="text-muted">
+                                        Clients obtain a unique token (e.g., JWT) after providing valid credentials. This token is then included in subsequent requests to access APIs, avoiding the need to send credentials with each request and enhancing security. Token is valid for period of time.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="openid_auth">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_api_auth_openid"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_api_auth_openid" string="Open ID"/>
+                                    <div class="text-muted">
+                                        OpenID Authentication for API is a user-centric, decentralised authentication protocol. It allows clients to authenticate users by leveraging their existing accounts from OpenID providers, enhancing security and simplifying user access to APIs.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="oauth1_auth">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_api_auth_oauth1"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_api_auth_oauth1" string="OAuth 1"/>
+                                    <div class="text-muted">
+                                        OAuth 1.0a for API is an authorization protocol that enables secure API access for third-party applications. It involves the exchange of tokens, ensuring authorized access without sharing user credentials directly.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="oauth2_auth">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_api_auth_oauth2"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_api_auth_oauth2" string="OAuth 2"/>
+                                    <div class="text-muted">
+                                        OAuth 2.0 Authentication for API is a modern and widely used authorisation framework. It enables secure access to APIs by allowing clients to obtain access tokens after user consent, ensuring authorised and restricted access to resources.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_api_framework_base_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'api_framework_base', 'bin_size': False}</field>
+    </record>
+
+</odoo>

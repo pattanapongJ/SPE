@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'Basic Solution - Finance Dimension',
+    'version': '14.2.1.0',
+    'summary': """ Finance Dimension For Sale,Purchase,Account,Inventory """,
+    'author': "Basic Solution Co., Ltd.",
+    'website': "https://www.basic-solution.com",
+    'category': 'Accounting/Accounting',
+    'depends': ['sale_stock', 'purchase_stock','hr_expense'],
+    "data": [
+        "data/dimension_group_data.xml",
+        "security/ir.model.access.csv",
+        "security/security.xml",
+        "views/bs_dimension_group_views.xml",
+        "views/bs_finance_dimension_views.xml",
+        "views/purchase_order_views.xml",
+        "views/sale_order_views.xml",
+        "views/account_move_views.xml",
+        "views/stock_picking_views.xml",
+        "views/account_account_views.xml",
+        "views/hr_expense_views.xml",
+        "views/stock_valuation_layer_views.xml",
+    ],
+    'application': True,
+    'installable': True,
+    'auto_install': False,
+    'license': 'LGPL-3',
+}

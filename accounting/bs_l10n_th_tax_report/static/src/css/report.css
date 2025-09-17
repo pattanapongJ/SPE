@@ -1,0 +1,19 @@
+.bs_table {
+
+}
+
+.bs_table th{
+    vertical-align: middle;
+    text-align: center;
+}
+
+.page-break {
+        page-break-after: always;
+    }
+
+ tfoot {
+        display: table-footer-group;
+    }
+
+
+

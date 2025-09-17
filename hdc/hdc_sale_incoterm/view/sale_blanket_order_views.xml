@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_blanket_order_view_inherit_incoterm" model="ir.ui.view">
+        <field name="name">sale.blanket.order.view.inherit.incoterm</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="hdc_sale_agreement_addon.sale_blanket_order_inherit_addon" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='room']" position="after">
+                <field name="incoterm_id" string="Term Of Delivery"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

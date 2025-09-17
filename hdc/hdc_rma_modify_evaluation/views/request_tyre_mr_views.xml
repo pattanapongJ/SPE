@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="rma_request_type_mr_inherit_tree" model="ir.ui.view">
+            <field name="name">rma.request.type.mr.inherit_tree</field>
+            <field name="model">request.type.mr</field>
+            <field name="inherit_id" ref="hdc_mrp_mr.view_mr_request_type_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="is_repair"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="rma_request_type_mr_inherit" model="ir.ui.view">
+            <field name="name">rma.request.type.mr.inherit</field>
+            <field name="model">request.type.mr</field>
+            <field name="inherit_id" ref="hdc_mrp_mr.view_mr_request_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="is_repair"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

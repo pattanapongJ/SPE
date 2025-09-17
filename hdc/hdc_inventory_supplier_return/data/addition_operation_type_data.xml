@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- <record id="stock_request_order" model="stock.picking.type">
+            <field name="name">Stock Requests</field>
+            <field name="sequence_id" ref="stock_request.seq_stock_request_order" />
+            <field name="code">stock_request_order</field>
+            <field name="sequence_code">SRO</field>
+        </record> -->
+
+        <record id="supplier_return" model="addition.operation.type">
+            <field name="addition_Operation_type">Supplier Return</field>
+            <field name="code">AO-09</field>
+            <field name="active">True</field>
+        </record>
+        
+    </data>
+</odoo>

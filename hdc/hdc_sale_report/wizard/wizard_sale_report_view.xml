@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_sale_reporting" model="ir.ui.view">
+        <field name="name">Generate RFQ</field>
+        <field name="model">wizard.sale.reporting</field>
+        <field name="arch" type="xml">
+            <form string="Choose your vendor">
+                <group>
+                    <group string="Sale Report Types">
+                        <field name="document_type" widget="radio"/>
+                    </group>
+                    <group string="Sale Period">
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="saleman_id" widget="many2many_tags"    attrs="{'invisible': [('document_type', '!=', 'sale')]}"/>
+                        <field name="saleteam_id" widget="many2many_tags"   attrs="{'invisible': [('document_type', '!=', 'sale')]}"/>
+                        <field name="categories" widget="many2many_tags"    attrs="{'invisible': [('document_type', '!=', 'category')]}"/>
+                        <field name="brand_id" widget="many2many_tags"      attrs="{'invisible': [('document_type', '!=', 'brand')]}"/>
+                        <field name="partner_id" widget="many2many_tags"    attrs="{'invisible': [('document_type', '!=', 'customer')]}"/>
+                    </group>
+                    <group>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print" string="Excel" type="object" class="btn-primary"/>
+                    <button string="Discard" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_sale_reporting" model="ir.actions.act_window">
+		<field name="name">Sales Reporting</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">wizard.sale.reporting</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="view_id" ref="wizard_sale_reporting"/>
+	</record>
+
+    <menuitem id="menu_report_product_all"
+            name="Sale Reports"
+            action="action_wizard_sale_reporting"
+            parent="sale.menu_sale_report"
+            sequence="2"/>
+
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_create_settlements_form" model="ir.ui.view">
+            <field name="name">Make Settlements</field>
+            <field name="model">wizard.create.settlements</field>
+            <field name="arch" type="xml">
+                <form string="Make Settlements">
+                    <group>
+                        <field name="generate_settle_commissions_id" invisible="1"/>
+                        <field name="team_id" invisible="1"/>
+                        <field name="target_type" widget="radio" invisible="1"/>
+                        <field name="user_id" invisible="1"/>
+                        <field name="sale_spec" invisible="1"/>
+                        <field name="sale_manager_id" invisible="1"/>
+                        <field name="settle_type" widget="radio" invisible="1"/>
+                        <field name="create_type" widget="radio"/>
+                        <field name="settle_commissions_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('create_type', '=', 'new_settlement')],'required': [('create_type', '=', 'add_settlement')]}"/>
+                    </group>
+                    
+                    <footer>
+                        <button name="action_make_settlement" string="Make Settlements" type="object" class="btn-primary"/>
+                        <button string="Discard" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_create_settlements" model="ir.actions.act_window">
+            <field name="name">Make Settlements</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.create.settlements</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+       
+    </data>
+</odoo>    

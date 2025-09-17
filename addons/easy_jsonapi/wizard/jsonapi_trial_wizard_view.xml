@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="jsonapi_trial_wizard_form" model="ir.ui.view">
+        <field name="name">jsonapi.trial.wizard.form</field>
+        <field name="model">jsonapi.trial.wizard</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="model_id"/>
+                        <field name="normal_field_ids" domain="[('model_id', '=', model_id)]" widget="many2many_tags"/>
+                        <field name="include_field_ids" domain="[('ttype', 'in', ['many2one','many2many','one2many']), ('model_id', '=', model_id)]" widget="many2many_tags"/>
+                        <field name="include_model_ids" widget="many2many_tags" readonly="1"/>
+                        <field name="include_model_field_ids" widget="many2many_tags" domain="[('model_id', 'in', include_model_ids)]" />
+                        <field name="jsonapi_sample"/>
+                        <field name="easy_api_id" invisible="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_jsonapi_trial_wizard" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Test API</field>
+        <field name="res_model">jsonapi.trial.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_mrp_mr_intertransfer_factory" model="ir.ui.view">
+        <field name="name">wizard mrp mr to intertransfer factory</field>
+        <field name="model">wizard.mrp.mr.intertransfer.factory</field>
+        <field name="arch" type="xml">
+            <form string="Create Transfer">
+                <group>
+                    <group>
+                        <field name="mr_id" invisible="1"/>
+                        <field name="user_id" />
+                        <field name="picking_type_id" />
+                        <field name="location_id" />
+                        <field name="location_dest_id" />
+                    </group>
+                    <group>
+                        <field name="request_date" />
+                        <field name="to_warehouse" />
+                        <field name="transit_location"/>
+                    </group>
+                </group>
+                <notebook invisible="0">
+                    <page name="order_line" string="Order Line">
+                        <group name="attribute_value_group">
+                            <field name="order_line_ids" string="Order Line" nolabel="1" >
+                                <tree editable="top" create="false" delete="0" >
+                                    <field name="wizard_mrp_to_int_fac_ids" invisible="1"/>
+                                    <field name="product_id" invisible="1"/>
+                                    <field name="name"/>
+                                    <field name="location_id"/>
+                                    <field name="need_to_order_qty"/>
+                                    <field name="date_required"/>
+                                    <field name="product_uom" options="{'no_create': True, 'no_create_edit': True}"/>
+                                    <field name="product_uom_category_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_generate_int" string="Create Transfer" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

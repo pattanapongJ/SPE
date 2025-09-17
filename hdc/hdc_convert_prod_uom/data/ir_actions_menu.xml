@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu Action สำหรับ Fix Default UOM -->
+    <record id="action_fix_default_uom_menu" model="ir.actions.server">
+        <field name="name">Update UoM Conversion</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">
+# เปิด wizard พร้อมสินค้าที่เลือก
+action = {
+    'type': 'ir.actions.act_window',
+    'name': 'Update UoM Conversion',
+    'res_model': 'fix.default.uom.wizard',
+    'view_mode': 'form',
+    'target': 'new',
+    'context': {'active_ids': records.ids if records else [], 'default_product_ids': [(6, 0, records.ids)] if records else []}
+}
+        </field>
+    </record>
+</odoo>

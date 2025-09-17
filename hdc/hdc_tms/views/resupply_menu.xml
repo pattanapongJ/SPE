@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_resupply_main" web_icon="hdc_tms,static/description/icon-tms.png" name="TMS"
+        sequence="35" />
+    <menuitem id="menu_transfer_branch_summary" name="Generate Delivery Slip"
+        parent="menu_resupply_main" action="transfer_branch_summary_action" sequence="1" />
+    <menuitem id="menu_distibution_delivery_note" name="Delivery Slip" parent="menu_resupply_main" sequence="2" />
+
+    <menuitem
+        id="delivery_status_menu"
+        name="Delivery Slip"
+        action="distibution_delivery_note_action"
+        parent="hdc_tms.menu_distibution_delivery_note"
+        sequence="1" />
+    
+    <menuitem
+        id="delivery_status_line_menu"
+        name="Delivery Slip Line"
+        action="action_distribution_invoice_line"
+        parent="hdc_tms.menu_distibution_delivery_note"
+        sequence="2" />
+
+
+    <menuitem id="menu_resupply_delivery_round_main" name="Delivery Line"
+        parent="hdc_tms.menu_resupply_main" sequence="4" />
+    <menuitem id="menu_resupply_delivery_round" name="สายส่ง TRL"
+        parent="hdc_tms.menu_resupply_delivery_round_main"
+        action="resupply_delivery_round_master_view_action" sequence="4" />
+    
+    <menuitem id="menu_tms_reporting_main" name="Reporting"
+        parent="hdc_tms.menu_resupply_main" sequence="5" />
+
+    
+</odoo>

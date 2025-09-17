@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="company_delivery_round_master_view_tree" model="ir.ui.view">
+        <field name="name">company.delivery.round.tree</field>
+        <field name="model">company.delivery.round</field>
+        <field name="arch" type="xml">
+            <tree string="Transport Line">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="delivery_line"/>
+                <field name="status_active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="company_delivery_round_master_view_form" model="ir.ui.view">
+        <field name="name">company.delivery.round.view.form</field>
+        <field name="model">company.delivery.round</field>
+        <field name="arch" type="xml">
+            <form string="Company Delivery Line">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="delivery_line"/>
+                        </group>
+                        <group>
+                            <field name="status_active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="company_delivery_round_master_view_action" model="ir.actions.act_window">
+        <field name="name">Company Delivery Line</field>
+        <field name="res_model">company.delivery.round</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Define a new Company Delivery Line
+          </p>
+        </field>
+    </record>
+    
+    <menuitem id="menu_company_delivery_line" name="Company Delivery Line" parent="hdc_partner_delivery_line.menu_resupply_delivery_round_main" action="company_delivery_round_master_view_action" sequence="5"/>
+
+</odoo>

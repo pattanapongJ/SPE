@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+{
+    "name": "BS PDC Cheque",
+    "version": "14.3.2.2",
+    'description': """ BS PDC Cheque """,
+    'summary': """  BS PDC Cheque  """,
+    'author': "Basic Solution Co., Ltd.",
+    'website': "https://www.basic-solution.com",
+    'category': 'Accounting',
+    'depends': ['base', 'bs_print_cheque','sh_pdc'],
+    "data": [
+        "security/pdc_wizard_security.xml",
+        "views/account_payment_views.xml",
+        "views/pdc_wizard_views.xml",
+        "report/report_print_cheque_template.xml",
+        "report/pdc_wizard_report.xml",
+        "wizard/pdc_rc_wizard.xml",
+        "security/ir.model.access.csv",
+        "views/account_payment_register_views.xml",
+        "views/account_journal_views.xml",
+        "views/account_move_views.xml",
+        "views/cheque_bounce_reason_views.xml",
+        "views/res_config_settings_view.xml",
+    ],
+    'license': 'LGPL-3',
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="easyapi_jsonapi_basic_signup_inherit" model="ir.ui.view">
+        <field name="name">easy.api.log.inherit</field>
+        <field name="model">easy.api</field>
+        <field name="priority" eval="5"/>
+        <field name="inherit_id" ref="api_framework_base.view_easy_api_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='page_size']" position="after">
+                <field name="allow_public_jsonapi" widget="boolean_toggle"  attrs="{'invisible': ['|', ('api_type','!=','jsonapi'), ('authentication_type', '!=', 'basic')], 'readonly': [('state', 'in', ['open', 'active'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

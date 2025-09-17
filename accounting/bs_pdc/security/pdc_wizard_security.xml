@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.model.access" id="access_pdc_wizard_user">
+        <field name="name">PDC Wizard: User Access</field>
+        <field name="model_id" ref="model_pdc_wizard"/>
+        <field name="group_id" ref="base.group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record model="ir.rule" id="pdc_wizard_bs_company_rule">
+        <field name="name">PDC Wizard: Multi-Company Rule</field>
+        <field name="model_id" ref="model_pdc_wizard"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+</odoo>

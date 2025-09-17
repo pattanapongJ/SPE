@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_purchase_request_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="purchase_request_report.purchase_request_layout">
+                    <div class="page">
+                        <div class="oe_structure" />
+                        <br/>
+<!--                        header info-->
+                    <div  class="row border-top border-dark border-bottom border-dark pl-1" style="font-family:kanit-light;font-size:12px">
+                        <div class="col-6 pt-1 pd-1">
+                            <div class="row">
+                                <div class="col-3 mb-0 p-0 text-left ">
+                                    <span>แผนก:&#160;</span>
+                                </div>
+                                <div class="col-8 p-0 mb-0 text-left">
+                                    <span>
+                                        <t t-if="o.department_id">
+                                            <span t-esc="o.department_id.name" />
+                                        </t>
+                                    </span>
+                                    <span>
+                                        <t t-if="not o.department_id">
+                                            <span> - </span>
+                                        </t>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 mb-0 p-0 text-left ">
+                                    <span>ผู้ขอซื้อ:&#160;</span>
+                                </div>
+                                <div class="col-8 p-0 mb-0 text-left">
+                                    <span>
+                                        <t t-if="o.requested_by">
+                                            <span t-field="o.requested_by" />
+                                        </t>
+                                        <t t-if="not o.requested_by">
+                                            <span> - </span>
+                                        </t>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 mb-0 p-0 text-left ">
+                                    <span>เรื่อง:&#160;</span>
+                                </div>
+                                <div class="col-8 p-0 mb-0 text-left">
+                                    <span>
+                                        <t t-if="o.description">
+                                            <span t-esc="o.description" />
+                                        </t>
+                                    </span>
+                                    <span>
+                                        <t t-if="not o.description">
+                                            <span> - </span>
+                                        </t>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 mb-0 p-0 text-left ">
+                                    <span>Customer Name:&#160;</span>
+                                </div>
+                                <div class="col-8 p-0 mb-0 text-left">
+                                    <span>
+                                        <t t-if="o.for_customer">
+                                            <span t-esc="o.for_customer.name" />
+                                        </t>
+                                    </span>
+                                    <span>
+                                        <t t-if="not o.for_customer">
+                                            <span> - </span>
+                                        </t>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-6 pt-1 pb-1 mr-1 ml-5">
+                            <div class="row">
+                                <div class="col-3 p-0 mb-0 pl-2 text-left">
+                                    <span>วันที่:&#160;</span>
+                                </div>
+                                <div class="col-8 p-0 mb-0text-left" style="margin-left:-20px">
+                                    <span>
+                                        <t t-if="o.date_start">
+                                            <span t-field="o.date_start" t-options='{"widget": "date","format": "dd/MM/yyyy"}' />
+                                        </t>
+                                    </span>
+                                    <span>
+                                        <t t-if="not o.date_start">
+                                            <span> - </span>
+                                        </t>
+                                    </span>
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-3 p-0 mb-0 pl-2 text-left">
+                                    <span>เลขที่เอกสาร:&#160;</span>
+                                </div>
+                                <div class="col-8 p-0 mb-0 text-left" style="margin-left:-20px">
+                                    <span t-field="o.name" />
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-3 p-0 mb-0 pl-2 text-left">
+                                    <span>เอกสารอ้างอิง:&#160;</span>
+                                </div>
+                                <div class="col-8 p-0 mb-0 text-left" style="margin-left:-20px">
+                                    <span>
+                                        <t t-if="o.origin">
+                                             <span t-field="o.origin" />
+                                        </t>
+                                    </span>
+                                    <span>
+                                        <t t-if="not o.origin">
+                                            <span> - </span>
+                                        </t>
+                                    </span>
+                                </div>
+                             </div>
+                        </div>
+                    </div>  
+                    <!-- table-->
+                    <div class="row pt-1 pb-3" style="font-family: kanit-light; font-size: 12px;">
+                        <div class="col-12 p-0 m-0 pt-1">
+                            <t t-if="o.line_ids">
+                                    <table class="table">
+                                        <thead style="background:#F2F2F2;border-top:1px solid black;">
+                                            <tr>
+                                                <th>
+                                                    ลำดับ
+                                                </th>
+                                                <th>
+                                                    หมายเลขสินค้า
+                                                </th>
+                                                <th>
+                                                    รายละเอียดสินค้า
+                                                </th>
+                                                <th>
+                                                    หมายเหตุ
+                                                </th>
+                                                <th class="text-right">
+                                                    จำนวน
+                                                </th>
+                                                <th>
+                                                    หน่วย
+                                                </th>
+                                                <th>
+                                                    วันที่ขอซื้อ
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="o.line_ids" t-as="line">
+                                                <td>
+                                                    <span t-esc="line_index + 1" />
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.product_id" />
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.name" />
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.remark" />
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.product_qty"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.product_uom_id" />
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.date_required"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                            </t>
+                        </div>
+                    </div>
+                        <div class="oe_structure" />
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

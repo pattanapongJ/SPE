@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="stock_valuation_layer_tree_inherit" model="ir.ui.view">
+            <field name="name">stock_valuation_layer_tree_inherit</field>
+            <field name="model">stock.valuation.layer</field>
+            <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="finance_dimension_1_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_2_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_3_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="stock_valuation_layer_form_inherit" model="ir.ui.view">
+            <field name="name">stock_valuation_layer_form_inherit</field>
+            <field name="model">stock.valuation.layer</field>
+            <field name="inherit_id" ref="stock_account.stock_valuation_layer_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//sheet/group" position="inside">
+                    <group name="finance_dimension_gp" string="Finance Dimension">
+
+                        <field name="finance_dimension_1_id" readonly="1" force_save="1"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_2_id" readonly="1" force_save="1"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_3_id" readonly="1" force_save="1"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

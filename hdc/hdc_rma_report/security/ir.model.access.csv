@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_wizard_rma_report,wizard_rma_report group_user,model_wizard_rma_report,base.group_user,1,1,1,1
+access_crm_claim_ept_line,crm_claim_ept_line group_user,model_crm_claim_ept_line,base.group_user,1,1,1,1
+access_wizard_rma_report_list,wizard_rma_report_list group_user,model_wizard_rma_report_list,base.group_user,1,1,1,1

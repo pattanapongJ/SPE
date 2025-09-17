@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_order_form_inherit_discount" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.discount</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='customer_signature']" position="after">
+                <page string="Line Detail" name="line_detail">
+                    <field name="order_line_detail" mode="tree" readonly="1">
+                        <tree string="Sales Order Lines" editable="bottom">
+                            <field name="product_id"/>
+                            <field name="categ_id"/>
+                            <field name="name"/>
+                            <field name="barcode"/>
+                            <field name="product_uom_qty"/>
+                            <field name="product_uom"/>
+                            <field name="price_unit"/>
+                            <field name="triple_discount"/>
+                            <field name="tax_id" widget="many2many_tags"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

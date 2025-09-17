@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="inter_transfer_addon_inherit" model="ir.ui.view">
+        <field name="name">inter.transfer.addon.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">            
+            <xpath expr="//field[@name='origin']" position="after">  
+                <field name="order_id" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/>
+                <field name="customer_po" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/>
+                <!-- <field name="remark" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/> -->
+                <field name="project_name" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/>
+            </xpath>        
+            <xpath expr="//field[@name='origin']" position="attributes"> 
+                <attribute name = "attrs"> {'invisible': [('addition_operation_types_code', '=', 'AO-06')]}</attribute>
+            </xpath>
+            <xpath expr="//page[@name='operations']/field[@name='move_ids_without_package']" position="after">
+                <group name="remark" string="Remark">
+                    <div>
+                        <field name="remark" class="oe_inline"/>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>    
+
+    <record id="inter_transfer_addon_inherit_branch" model="ir.ui.view">
+        <field name="name">inter.transfer.addon.form.inherit.branch</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="branch.view_picking_form_inherit_branch"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='branch_id']" position="attributes"> 
+                <attribute name = "attrs"> {'invisible': [('addition_operation_types_code', '=', 'AO-06')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inter_transfer_addon_inherit_delivery" model="ir.ui.view">
+        <field name="name">inter.transfer.addon.form.inherit.delivery</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='carrier_data']" position="inside">
+                <field name="origin" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/>
+                <field name="branch_id" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/>
+            </xpath>
+        </field>
+    </record>   
+</odoo>

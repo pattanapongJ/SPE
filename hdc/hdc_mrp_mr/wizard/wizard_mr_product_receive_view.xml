@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_mr_product_receive" model="ir.ui.view">
+        <field name="name">wizard_mr_product_receive</field>
+        <field name="model">wizard.mr.product.receive</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <field name="mr_id" invisible="1"/>
+                    <notebook>
+                        <page string="Product Return">
+                            <field name="selected"/>
+                            <field name="product_line_ids" widget="one2many_list">
+                                <tree  editable="bottom" create="false" delete="0">
+                                    <field name="selected"/>
+                                    <field name="product_id" readonly="1" force_save="1"/>
+                                    <field name="name" readonly="1" force_save="1"/>
+                                    <field name="demand_qty_modify" force_save="1" readonly="1"/>
+                                    <field name="remain_receive_qty" force_save="1" readonly="1"/>
+                                    <field name="receive_qty"/>
+                                    <field name="product_uom" readonly="1" force_save="1"/>
+                                    <field name="product_uom_category_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_receive_product" string="Create Receive" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

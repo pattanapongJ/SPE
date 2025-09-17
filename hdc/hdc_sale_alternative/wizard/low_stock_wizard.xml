@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record id="low_stock_wizard_view" model="ir.ui.view">
+            <field name="name">low.stock.wizard.view</field>
+            <field name="model">low.stock.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Low Stock Wizard">
+                    <field name="message_low_stock" readonly="1"/>
+                    <field name="sale_order_line_id" invisible="1"/>
+                    <footer>
+                        <button name="change_quantity" string="Change" class="oe_highlight" type="object"/>
+                        or
+                        <button special="cancel" class="oe_link" string="Keep" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

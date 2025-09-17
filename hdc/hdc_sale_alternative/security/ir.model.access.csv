@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_alternative_user,undefined.product.alternative,model_product_alternative,base.group_user,1,1,1,1
+access_alternative_product_wizard_user,undefined.alternative.product.wizard,model_alternative_product_wizard,base.group_user,1,1,1,1
+access_alternative_product_wizard_line_user,undefined.alternative.product.wizard.line,model_alternative_product_wizard_line,base.group_user,1,1,1,1
+access_low_stock_wizard_user,undefined.low.stock.wizard,model_low_stock_wizard,base.group_user,1,1,1,1

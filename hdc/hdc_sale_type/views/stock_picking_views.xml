@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_picking_internal_search_inherit_sale_type" model="ir.ui.view">
+            <field name="name">view.picking.internal.search.inherit.sale_type</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <filter string="Sales Type" name="sales_type" domain="[]" context="{'group_by':'sales_type_id'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

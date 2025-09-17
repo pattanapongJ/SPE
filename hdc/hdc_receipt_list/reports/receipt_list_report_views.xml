@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="receipt_list_report_view" model="ir.actions.report">
+            <field name="name">Receipt List</field>
+            <field name="model">receipt.list</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_receipt_list.hdc_receipt_list_report</field>
+            <field name="print_report_name">'ใบรับสินค้า_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_receipt_list.receipt_list_paperformat_report"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="receipt_shortage_overage_report_view" model="ir.actions.report">
+            <field name="name">รายงานใบรับสินค้า ขาด/เกิน</field>
+            <field name="model">receipt.list</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_receipt_list.hdc_receipt_shortage_overage</field>
+            <field name="print_report_name">'รายงานใบรับสินค้า ขาด/เกิน_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_receipt_list.paperformat_report_receipt_s_o"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+
+    <template id="report_logo_style">
+      <!-- เช็คชื่อบริษัทและกำหนดค่า logo_style -->
+      <t t-if="company.name in ['Colt Plus (Thailand) Co.,Ltd.', 
+                                 'Siam Modern Home Co.,Ltd.', 
+                                 'Siam Techno Industry Co., Ltd.']">
+         <t t-set="logo_style">margin-top:30px;</t>
+      </t>
+      <t t-elif="company.name == 'Saeng Charoen Patana Enterprise Co., Ltd.'">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+      <t t-else="">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+
+      <img t-if="company.logo"
+            t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')"
+            class="pull-left img-logo"
+            t-attf-style="{{ logo_style }}; max-height: 140px; max-width: 140px;" />
+   </template>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="invoice_form" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="name">crm_Claim_account_invoice</field>
+        <field name="inherit_id" ref="account.view_move_form"></field>
+        <field name="arch" type="xml">
+            <field name="team_id" position="after">
+                <field name="claim_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="rma_ref_view_move_form_inherit" model="ir.ui.view">
+        <field name="name">account.move.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <group name="rma_ref" string="RMA Reference">
+                    <field name="customer_requisition"/>
+                    <field name="customer_ref"/>
+                    <field name="is_job_no"/>
+                    <field name="original_value"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

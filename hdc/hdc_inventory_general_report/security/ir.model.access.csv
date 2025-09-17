@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_borrow_report_user,undefined.wizard.borrow.report,model_wizard_borrow_report,base.group_user,1,1,1,1
+access_wizard_receipt_report_user,undefined.wizard.receipt.report,model_wizard_receipt_report,base.group_user,1,1,1,1
+access_wizard_inter_tranfers_report_user,undefined.wizard.inter.tranfers.report,model_wizard_inter_tranfers_report,base.group_user,1,1,1,1
+access_wizard_inventory_picking_list_report_user,undefined.wizard.inventory.picking.list.report,model_wizard_inventory_picking_list_report,base.group_user,1,1,1,1

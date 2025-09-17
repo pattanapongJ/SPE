@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo><data>
+    <record id="receive_method_view_tree" model="ir.ui.view">
+        <field name="name">receive.method.view.tree</field>
+        <field name="model">receive.method</field>
+        <field name="arch" type="xml">
+            <tree string="Receive Method Templates" editable="bottom">
+                <field name="name"/>
+                <field name="write_date"/>
+                <field name="create_uid"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="receive_method_action" model="ir.actions.act_window">
+        <field name="name">Receive Method</field>
+        <field name="res_model">receive.method</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+    <!-- <menuitem id="lms_menu_main"
+    name="LMS Configuration"
+    parent="rma_ept.base_crm_claim_ept_action_root"
+    sequence="4"/> -->
+    
+    <menuitem id="receive_method_menu"
+    parent="rma_ept.base_crm_claim_ept_action_root"
+    action="receive_method_action"
+    sequence="5"/>
+
+</data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="bs_finance_dimension_company_rule" model="ir.rule">
+            <field name="name">Finance Dimension Multi-Company</field>
+            <field name="model_id" ref="model_bs_finance_dimension"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+
+    </data>
+</odoo>

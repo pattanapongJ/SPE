@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_type_workcenter_form_inherit" model="ir.ui.view">
+        <field name="name">mrp.workcenter.product_type.inherit</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='alternative_workcenter_ids']" position="after">
+                <field name= "product_type_id" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

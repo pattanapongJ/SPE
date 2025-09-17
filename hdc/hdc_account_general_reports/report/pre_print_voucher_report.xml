@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="pre_print_voucher_report_cus_document">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <div class="header" style="font-family: KanitLight" >
+            <div class="row" style=": 1px solid black;margin-top:5mm;">
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col-3 text-right" style="font-size: 12px">
+                            <span style="font-weight: bold;"></span>
+                        </div>
+                        <div class="col-9 text-left" style="font-size: 12px">
+                            <span t-if="doc.partner_id.ref">
+                                <span t-field="doc.partner_id.ref"/>
+                            </span>
+                            <span t-if="not doc.partner_id.ref">
+                                -
+                            </span>
+                            <span t-if="doc.partner_id.name">
+                                <span t-field="doc.partner_id.name"/>
+                            </span>
+                            <span t-if="not doc.partner_id.name">
+                                -
+                            </span>
+                            <br/>
+                            <span t-field="doc.partner_id.street"/>
+                            <span t-field="doc.partner_id.street2"/>
+                            <span t-field="doc.partner_id.sub_district"/>
+                            <br/>
+                            <span t-field="doc.partner_id.city"/>
+                            <span t-field="doc.partner_id.state_id.name"/>
+                            <span t-field="doc.partner_id.zip"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-5">
+                    <div class="col-5">
+                        <div class="row">
+                            <div class="col-7" style="font-size: 12px">
+                                <span style="font-weight: bold;"> </span>
+                            </div>
+                            <div class="col-5" style="font-size: 12px">
+                                <span style="font-weight: bold;"> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.name">
+                               <span t-field="doc.name"/>
+                           </span>
+                           <span t-if="not doc.name">
+                               -
+                           </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.move_id.date">
+                               <span t-field="doc.move_id.date"/>
+                           </span>
+                           <span t-if="not doc.move_id.date">
+                               -
+                           </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.pdc_id.reference">
+                               <span t-field="doc.pdc_id.reference"/>
+                           </span>
+                           <span t-if="not doc.pdc_id.reference">
+                               -
+                           </span>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.pdc_id.due_date">
+                               <span t-field="doc.pdc_id.due_date"/>
+                           </span>
+                           <span t-if="not doc.pdc_id.due_date">
+                               -
+                           </span>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="row" style=": 1px solid black">
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col-3 text-right" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-9 text-left" style="font-size: 12px">
+                            <span t-if="doc.ref">
+                                <br/>
+                                <span t-field="doc.ref"/>
+                            </span>
+                            <span t-if="not doc.ref">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 text-right" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-9 text-left" style="font-size: 12px">
+                            <span t-if="doc.partner_bank_id">
+                                <div>
+                                    <span t-field="doc.partner_bank_id.bank_id.name"/> <span t-field="doc.partner_bank_id.acc_number"/> <span t-field="doc.partner_bank_id.acc_holder_name"/>
+                                </div>
+                            </span>
+                            <span t-if="not doc.partner_bank_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-5">
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.currency_id">
+                                <br/>
+                                <span t-esc="'{:.4f}'.format(float(doc.get_currency_rate()))"/>
+                                <span t-field="doc.currency_id.name"/>
+                            </span>
+                            <span t-if="not doc.currency_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="article" style="font-family: KanitLight" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <div class="row" >
+                <t t-set="l_no" t-value="0" />
+                <t t-set="sum_debit" t-value="0" />
+                <t t-set="sum_credit" t-value="0" />
+                <table class="table table-borderless" style="font-size: 12px;line-height: 3px">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 10%;">
+                                
+                            </th>
+                            <th class="text-center" style="width: 25%;">
+                                
+                            </th>
+                            <th class="text-center" style="width: 35%;">
+                                
+                            </th>
+                            <th class="text-center" style="width: 15%;">
+                                
+                            </th>
+                            <th class="text-center" style="width: 15%;">
+                               
+                            </th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <t t-set="set_no_vat" t-value="0" />
+                        <t t-set="set_vat" t-value="0" />
+                        <t t-set="set_dis" t-value="0" />
+                        <t t-set="debitArray" t-value="[]" />
+                        <t t-set="creditArray" t-value="[]" />
+                        <t t-set="sum_debit" t-value="0" />
+                        <t t-set="sum_credit" t-value="0" />
+
+                        <!-- กรองเฉพาะรายการที่ไม่มี display_type -->
+                        <t t-set="filtered_lines" t-value="[l for l in o.line_ids if not l.display_type]" />
+
+                        <!-- แยกเป็น debitArray และ creditArray -->
+                        <t t-set="debitArray" t-value="[l for l in filtered_lines if l.debit]" />
+                        <t t-set="creditArray" t-value="[l for l in filtered_lines if l.credit]" />
+
+                        <!-- การแสดงผล -->
+                        <t t-foreach="o.line_ids" t-as="ol">
+                            <t t-if="ol.display_type in ['line_section', 'line_note']">
+                                <!-- แสดงผล line section / note ตามปกติ -->
+                                <tr>
+                                <td></td>
+                                <td colspan="6" class="text-left">
+                                    <span t-if="ol.name">
+                                    <t t-if="ol.display_type == 'line_note'">
+                                        <em>
+                                        <span t-field="ol.name"/>
+                                        </em>
+                                    </t>
+                                    <t t-if="ol.display_type == 'line_section'">
+                                        <strong>
+                                        <span t-field="ol.name"/>
+                                        </strong>
+                                    </t>
+                                    </span>
+                                </td>
+                                </tr>
+                            </t>
+                            <t t-if="not ol.display_type">
+                                <!-- สำหรับรายการจริง (ไม่มี display_type) ให้แสดงผล debitArray และ creditArray ครั้งเดียว -->
+                                <t t-if="ol == filtered_lines[0]">
+                                    <!-- วนลูป debitArray -->
+                                    <t t-foreach="debitArray" t-as="ol_d">
+                                        <tr>
+                                        <td class="text-center">
+                                            <t t-set="l_no" t-value="l_no + 1"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-if="ol_d.account_id.code">
+                                            <span t-esc="ol_d.account_id.code"/>
+                                            </span>
+                                            <span t-if="not ol_d.account_id.code"></span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-if="ol_d.account_id.name">
+                                            <span t-esc="ol_d.account_id.name"/>
+                                            </span>
+                                            <span t-if="not ol_d.account_id.name"></span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-if="ol_d.debit">
+                                            <span t-esc="'{0:,.2f}'.format(float(ol_d.debit))"/>
+                                            <t t-set="sum_debit" t-value="sum_debit + ol_d.debit"/>
+                                            </span>
+                                            <span t-if="not ol_d.debit"></span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-if="ol_d.credit">
+                                            <span t-esc="'{0:,.2f}'.format(float(ol_d.credit))"/>
+                                            <t t-set="sum_credit" t-value="sum_credit + ol_d.credit"/>
+                                            </span>
+                                            <span t-if="not ol_d.credit"></span>
+                                        </td>
+                                        </tr>
+                                    </t>
+
+                                    <!-- วนลูป creditArray -->
+                                    <t t-foreach="creditArray" t-as="ol_c">
+                                        <tr>
+                                        <td class="text-center">
+                                            <t t-set="l_no" t-value="l_no + 1"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-if="ol_c.account_id.code">
+                                            <span t-esc="ol_c.account_id.code"/>
+                                            </span>
+                                            <span t-if="not ol_c.account_id.code"></span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-if="ol_c.account_id.name">
+                                            <span t-esc="ol_c.account_id.name"/>
+                                            </span>
+                                            <span t-if="not ol_c.account_id.name"></span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-if="ol_c.debit">
+                                            <span t-esc="'{0:,.2f}'.format(float(ol_c.debit))"/>
+                                            <t t-set="sum_debit" t-value="sum_debit + ol_c.debit"/>
+                                            </span>
+                                            <span t-if="not ol_c.debit"></span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-if="ol_c.credit">
+                                            <span t-esc="'{0:,.2f}'.format(float(ol_c.credit))"/>
+                                            <t t-set="sum_credit" t-value="sum_credit + ol_c.credit"/>
+                                            </span>
+                                            <span t-if="not ol_c.credit"></span>
+                                        </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                        </t>
+
+                    </tbody>
+				</table>
+            </div>
+
+            <div class="row last-page">
+                <table class="table table-borderless" style="font-size: 12px;">
+                    <tbody style="font-size: 12px;">
+                        <tr>
+                            <td class="text-left" style="width: 70%;">
+                            </td>
+                            <td class="text-right" style="width: 15%;">
+                                <span t-esc="'{0:,.2f}'.format(float(sum_debit))"/>
+                            </td>
+                            <td class="text-right" style="width: 15%;">
+                                <span t-esc="'{0:,.2f}'.format(float(sum_credit))" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <t t-set="sum_inv_amount_total" t-value="0" />
+            <t t-set="sum_amount_total" t-value="0" />
+            <div class="row" style="height:170px;">
+                <table class="table table-borderless" style="font-size: 12px;">
+                    <thead>
+                        <tr>
+                            <th class="text-center border-dotted-bottom border-dotted-dark" style="width: 15%;">
+                                Invoice No
+                            </th>
+                            <th class="text-center border-dotted-bottom border-dotted-dark" style="width: 15%;">
+                                Document Date
+                            </th>
+                            <th class="text-center border-dotted-bottom border-dotted-dark" style="width: 15%;">
+                                SPE Invoice
+                            </th>
+                            <th class="text-center border-dotted-bottom border-dotted-dark" style="width: 15%;">
+                                Receipt No.
+                            </th>
+                            <th class="text-center border-dotted-bottom border-dotted-dark" style="width: 20%;">
+                                Invoice Amount
+                            </th>
+                            <th class="text-center border-dotted-bottom border-dotted-dark" style="width: 20%;">
+                                Amount to Apply
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="o.reconciled_invoice_ids" t-as="ol_d" >
+                            <tr>
+                                <td class="text-left">
+                                    <span t-if="ol_d.name">
+                                        <span t-esc="ol_d.name" />
+                                    </span>
+                                    <span t-if="not ol_d.name">
+                                        
+                                    </span>
+                                </td>
+                                <td class="text-left">
+                                    <span t-if="ol_d.invoice_date">
+                                        <span t-esc="ol_d.invoice_date" t-options='{"widget": "date"}'/>
+                                    </span>
+                                    <span t-if="not ol_d.invoice_date">
+                                        
+                                    </span>
+                                </td>
+                                <td class="text-left">
+                                    <span t-if="ol_d.form_no">
+                                        <span t-esc="ol_d.form_no" />
+                                    </span>
+                                    <span t-if="not ol_d.form_no">
+                                        
+                                    </span>
+                                </td>
+                                <td class="text-left">
+                                    <span t-if="ol_d.invoice_payments_widget">
+                                        <t t-esc="ol_d.get_account_payment_id_before_name()"/>
+                                    </span>
+                                    <span t-if="not ol_d.invoice_payments_widget">
+                                        
+                                    </span>
+                                </td>
+                                <td class="text-right">
+                                    <span t-if="ol_d.amount_total">
+                                        <t t-set="sum_inv_amount_total" t-value="sum_inv_amount_total + float(ol_d.amount_total)" />
+                                        <span t-esc="'{:,.2f}'.format(float(ol_d.amount_total))"/>
+                                    </span>
+                                    <span t-if="not ol_d.amount_total">
+                                        
+                                    </span>
+                                </td>
+                                <td class="text-right">
+                                    <span t-if="ol_d.invoice_payments_widget">
+                                        <t t-set="sum_amount_total" t-value="sum_amount_total + ol_d.get_widget_amount_info()" />
+                                        <t t-esc="ol_d.get_widget_amount_info()"/>
+                                    </span>
+                                    <span t-if="not ol_d.invoice_payments_widget">
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="footer last-page not-first-page" style="font-size: 12px;font-family: KanitLight;">
+            <div class="row">
+                <table class="table table-borderless" style="font-size: 12px;line-height: 18px;">
+                    <tbody style="font-size: 12px;">
+                        <tr>
+                            <td class="text-left" style="width: 65%;">
+                            </td>
+                            <td class="text-right border-dotted-top border-dotted-bottom border-dotted-dark" style="width: 15%;">
+                                <span t-esc="'{0:,.2f}'.format(float(sum_inv_amount_total))" />
+                            </td>
+                            <td class="text-right border-dotted-top border-dotted-bottom border-dotted-dark" style="width: 20%;">
+                               <span t-esc="'{0:,.2f}'.format(float(sum_amount_total))" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <template id="pre_print_voucher_report_cus">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hdc_account_general_reports.pre_print_voucher_report_cus_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="pre_print_voucher_report_vendor_document">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <div class="header" style="font-family: KanitLight" >
+            <div class="row" style="margin-top:5mm;">
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col-3 text-right" style="font-size: 12px">
+                            <span style="font-weight: bold;"></span>
+                        </div>
+                        <div class="col-9 text-left" style="font-size: 12px">
+                            <span t-if="doc.partner_id.ref">
+                                <span t-field="doc.partner_id.ref"/>
+                            </span>
+                            <span t-if="not doc.partner_id.ref">
+                                -
+                            </span>
+                            <span t-if="doc.partner_id.name_company">
+                                <span t-field="doc.partner_id.name_company"/>
+                            </span>
+                            <span t-if="not doc.partner_id.name_company">
+                                -
+                            </span>
+                            <br/>
+                            <span t-field="doc.partner_id.street"/>
+                            <span t-field="doc.partner_id.street2"/>
+                            <span t-field="doc.partner_id.sub_district"/>
+                            <br/>
+                            <span t-field="doc.partner_id.city"/>
+                            <span t-field="doc.partner_id.state_id.name"/>
+                            <span t-field="doc.partner_id.zip"/>
+                            <br/>
+                            <span t-field="doc.partner_id.branch"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.name">
+                               <span t-field="doc.name"/>
+                           </span>
+                           <span t-if="not doc.name">
+                               -
+                           </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.date">
+                               <span t-field="doc.date"/>
+                           </span>
+                           <span t-if="not doc.date">
+                               -
+                           </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.move_id.date">
+                               <span t-field="doc.move_id.date"/>
+                           </span>
+                           <span t-if="not doc.move_id.date">
+                               -
+                           </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.pdc_id.journal_id">
+                               <span t-field="doc.pdc_id.journal_id.name"/>
+                           </span>
+                           <span t-if="not doc.pdc_id.journal_id">
+                               -
+                           </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.pdc_id.reference">
+                               <span t-field="doc.pdc_id.reference"/>
+                           </span>
+                           <span t-if="not doc.pdc_id.reference">
+                               -
+                           </span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col-3 text-right" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-9 text-left" style="font-size: 12px">
+                            <span t-if="doc.ref">
+                                <span t-field="doc.ref"/>
+                            </span>
+                            <span t-if="not doc.ref">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.pdc_id.due_date">
+                               <span t-field="doc.pdc_id.due_date"/>
+                           </span>
+                           <span t-if="not doc.pdc_id.due_date">
+                               -
+                           </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7" style="font-size: 12px">
+                            <span style="font-weight: bold;"> </span>
+                        </div>
+                        <div class="col-5" style="font-size: 12px">
+                            <span t-if="doc.currency_id">
+                                <span t-esc="'{:.4f}'.format(float(doc.get_currency_rate()))"/>
+                                <span t-field="doc.currency_id.name"/>
+                            </span>
+                            <span t-if="not doc.currency_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="article" style="font-family: KanitLight" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <div class="row" >
+                <t t-set="l_no" t-value="0" />
+                <t t-set="sum_debit" t-value="0" />
+                <t t-set="sum_credit" t-value="0" />
+                <table class="table table-borderless" style="font-size: 12px;">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 10%;">
+                                
+                            </th>
+                            <th class="text-center" style="width: 25%;">
+                                
+                            </th>
+                            <th class="text-center" style="width: 35%;">
+                                
+                            </th>
+                            <th class="text-center" style="width: 15%;">
+                                
+                            </th>
+                            <th class="text-center" style="width: 15%;">
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <t t-set="set_no_vat" t-value="0" />
+                        <t t-set="set_vat" t-value="0" />
+                        <t t-set="set_dis" t-value="0" />
+                        <t t-foreach="o.line_ids" t-as="ol_d" >
+                            <t t-if="ol_d.display_type in ['line_section', 'line_note']">
+                                <tr>
+                                    <td></td>
+                                    <td colspan="6" class="text-left" >
+                                        <span t-if="ol_d.name">
+                                            <t t-if="ol_d.display_type == 'line_note'">
+                                                <em>
+                                                    <span t-field="ol_d.name"/>
+                                                </em>
+                                            </t>
+                                            <t t-if="ol_d.display_type == 'line_section'">
+                                                <strong><span t-field="ol_d.name"/></strong>
+                                            </t>
+                                        </span>
+                                        <span t-if="not ol_d.name">
+                                            
+                                        </span>
+                                    </td>
+                                </tr>
+                            </t>
+                            <t t-if="not ol_d.display_type in ['line_section', 'line_note']">
+                                <tr>
+                                    <td class="text-center">
+                                        <t t-set="l_no" t-value="l_no + 1"/>
+                                        <t t-esc="l_no"/>
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-if="ol_d.account_id.code">
+                                            <span t-esc="ol_d.account_id.code" />
+                                        </span>
+                                        <span t-if="not ol_d.account_id.code">
+                                            
+                                        </span>
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-if="ol_d.account_id.name">
+                                            <span t-esc="ol_d.account_id.name" />
+                                        </span>
+                                        <span t-if="not ol_d.account_id.name">
+                                            
+                                        </span>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="ol_d.debit">
+                                            <span t-esc="'{0:,.2f}'.format(float(ol_d.debit))" />
+                                            <t t-set="sum_debit" t-value="sum_debit + ol_d.debit" />
+                                        </span>
+                                        <span t-if="not ol_d.debit">
+                                            
+                                        </span>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="ol_d.credit">
+                                            <span t-esc="'{0:,.2f}'.format(float(ol_d.credit))" />
+                                            <t t-set="sum_credit" t-value="sum_credit + ol_d.credit" />
+                                        </span>
+                                        <span t-if="not ol_d.credit">
+                                            
+                                        </span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+				</table>
+            </div>
+        </div>
+        <div class="footer last-page not-first-page" style="font-size: 12px;font-family: KanitLight;">
+            <div class="row">
+                <table class="table table-borderless" style="font-size: 12px;">
+                    <tbody style="font-size: 12px;">
+                        <tr>
+                            <td class="text-left" style="width: 70%;">
+                            </td>
+                            <td class="text-right border-top border-bottom border-dark" style="width: 15%;">
+                                <span t-esc="'{0:,.2f}'.format(float(sum_debit))"/>
+                            </td>
+                            <td class="text-right border-top border-bottom border-dark" style="width: 15%;">
+                                <span t-esc="'{0:,.2f}'.format(float(sum_credit))" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <t t-set="sum_amount_total" t-value="0" />
+            <div class="row" style="height:170px;">
+                <table class="table table-borderless" style="font-size: 12px;">
+                    <thead>
+                        <tr>
+                            <th class="text-center border-bottom border-dark" style="width: 15%;">
+                                Invoice No
+                            </th>
+                            <th class="text-center border-bottom border-dark" style="width: 15%;">
+                                Voucher
+                            </th>
+                            <th class="text-center border-bottom border-dark" style="width: 15%;">
+                                
+                            </th>
+                            <th class="text-center border-bottom border-dark" style="width: 15%;">
+                                Amount to Apply
+                            </th>
+                            <td class="text-left" style="width: 50%;">
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="o.reconciled_bill_ids" t-as="ol_d" >
+                            <tr>
+                                <td class="text-left">
+                                    <span t-if="ol_d.name">
+                                        <span t-esc="ol_d.name" />
+                                    </span>
+                                    <span t-if="not ol_d.name">
+                                        
+                                    </span>
+                                </td>
+                                <td class="text-left">
+                                    <span t-if="ol_d.ref">
+                                        <span t-esc="ol_d.ref" />
+                                    </span>
+                                    <span t-if="not ol_d.ref">
+                                        
+                                    </span>
+                                </td>
+                                <td class="text-left">
+                                    <span t-if="ol_d.invoice_payments_widget">
+                                        <t t-esc="ol_d.get_account_payment_id_before_name()"/>
+                                    </span>
+                                    <span t-if="not ol_d.invoice_payments_widget">
+                                        
+                                    </span>
+                                </td>
+                                <td class="text-right">
+                                    <span t-if="ol_d.amount_total_signed">
+                                        <span t-esc="'{:.2f}'.format(float(ol_d.amount_total_signed))"/>
+                                        <t t-set="sum_amount_total" t-value="sum_amount_total + float(ol_d.amount_total_signed)" />
+                                    </span>
+                                    <span t-if="not ol_d.amount_total_signed">
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <table class="table table-borderless" style="font-size: 12px;line-height: 18px;">
+                    <tbody style="font-size: 12px;">
+                        <tr>
+                            <td class="text-left" style="width: 45%;">
+                            </td>
+                            <td class="text-right border-top border-bottom border-dark" style="width: 15%;">
+                                <span t-esc="'{0:,.2f}'.format(float(sum_amount_total))" />
+                            </td>
+                            <td class="text-left" style="width: 50%;">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <template id="pre_print_voucher_report_vendor">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hdc_account_general_reports.pre_print_voucher_report_vendor_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

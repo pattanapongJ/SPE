@@ -1,0 +1,15 @@
+<odoo>
+    <record id="account_asset_location_responsible_view_form" model="ir.ui.view">
+        <field name="name">account.asset.location.responsible.form</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset_management.account_asset_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='asset_holder']" position="after">
+                <field name="asset_location_id"/>
+            </xpath>
+            <xpath expr="//field[@name='asset_location_id']" position="after">
+                <field name="asset_responsible_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

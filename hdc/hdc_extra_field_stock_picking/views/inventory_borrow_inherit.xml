@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="extra_field_inventory_borrow_inherit" model="ir.ui.view">
+        <field name="name">inventory.borrow.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_external_tranfer_hydra.view_external_tran_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='requestor_emp']" position="attributes">
+                <attribute name="attrs">{'readonly':[('state','=','done')]}</attribute>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="view_return_picking_field_borrow_inherit" model="ir.ui.view">
+        <field name="name">return.picking.borrow.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_locked']" position="after">
+                <field name="hide_return_btn" invisible="1" />
+                <field name="is_force_done" invisible="1" />
+            </xpath>
+            <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',('state', 'not in', ('ready_delivery', 'done')),('hide_return_btn','=',True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_extra_field_inventory_borrow_inherit" model="ir.ui.view">
+        <field name="name">extra.field.inventory.borrow.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_inventory_borrow.inventory_borrow_inherit" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='requestor_emp']" position="before">
+                <field name="partner_id" />
+            </xpath>
+            <xpath expr="//button[@name='get_return_order']" position="replace" >
+                <button class="oe_stat_button" type="object" name="get_return_order" icon="fa-undo" 
+                    attrs="{'invisible': ['|','|',('state','not in', ['waiting_cancel','ready_delivery','done','cancel']),('type_borrow','=', 'not_return'), '&amp;',('order_return','=',0), ('addition_operation_types_code', '!=', 'AO-02')]}">
+                     <field string="Return Order" name="order_return" widget="statinfo"/>
+                </button>
+            </xpath>
+
+
+            <xpath expr="//field[@name='requestor_emp']" position="after">
+                <field name="type_borrow"
+                    attrs="{'invisible': [('request_spare_parts_type','=',False)], 'readonly':[('state','=','done')]}" />
+                <field name="team_id" attrs="{'readonly':[('state','=','done')]}" />
+                <field name="user_id" />
+            </xpath>
+
+
+            <xpath expr="//field[@name='return_date']" position="attributes">
+                <attribute name="attrs">{'required':[('type_borrow','=','must_return')],
+                    'invisible': ['|',('request_spare_parts_type','=',False), ('type_borrow', '=','not_return')], 
+                    'required': [('request_spare_parts_type','!=',False), ('type_borrow', '=','must_return')]}</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

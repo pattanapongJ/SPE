@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="res_partner_view_inherit_sale_incoterm" model="ir.ui.view">
+    <field name="name">res.partner.view.inherit.sale.incoterm</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="sales_team.res_partner_view_team" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='team_id']" position="after">
+            <field name="sale_incoterm_id"/>
+        </xpath>
+    </field>
+  </record>
+</odoo>

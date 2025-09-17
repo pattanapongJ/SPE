@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="hdc_rma_report_document">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <div class="header" style="font-family: KanitLight;">
+            <div class="d-flex">
+                <div style="">                    
+                    <t t-if="company.name == 'Colt Plus (Thailand) Co.,Ltd.'">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')" style="width: 200px; margin-right:10px; margin-top: 35px;"/>
+                    </t>
+                    <t t-if="company.name != 'COLT PLUS (THAILAND) COMPANY LIMITED'">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')" style="width: 200px; margin-right:10px;margin-top:20px;"/>
+                    </t>                    
+                </div>
+                    <div class="font-weight-bold" style="width: 90%;">
+                        <div class="d-flex justify-content-center" style="">
+                            <t t-if="company.name != 'COLT PLUS (THAILAND) COMPANY LIMITED'">
+                                <div style="font-size: 25px; margin-left: 30px;margin-top: 60px;">
+                                    <!-- <p style=""><t t-esc="company.name_th"/><br/><t t-esc="company.name"/></p> -->
+                                    <p style=""><t t-esc="company.name_th"/><br/></p>
+                                </div>
+                            </t>
+                            <t t-if="company.name == 'Colt Plus (Thailand) Co.,Ltd.'">
+                                <div style="font-size: 25px; margin-left: 30px;margin-top: 38px;">
+                                    <!-- <p style=""><t t-esc="company.name_th"/><br/><t t-esc="company.name"/></p> -->
+                                    <p style=""><t t-esc="company.name_th"/><br/></p>
+                                </div>
+                            </t>
+                            <div class="text-nowrap" style="width: 320px; margin-top: 28px; margin-left: 50px;">
+                                <t t-if="company.name != 'COLT PLUS (THAILAND) COMPANY LIMITED'">
+                                    <div style="font-size: 14px;" >
+                                        <p>
+                                            <!-- <t t-esc="company.street_th"/><t t-esc="company.street2_th"/> -->
+                                        </p>
+                                        <!-- <p>
+                                            <t t-esc="company.street"/><t t-esc="company.street2"/>
+                                        </p> -->
+                                    </div>
+                                </t>
+                                <t t-if="company.name == 'Colt Plus (Thailand) Co.,Ltd.'">
+                                    <div style="font-size: 16px;" >
+                                        <p>
+                                            <!-- <t t-esc="company.street_th"/><t t-esc="company.street2_th"/> -->
+                                        </p>
+                                        <!-- <p>
+                                            <t t-esc="company.street"/><t t-esc="company.street2"/>
+                                        </p> -->
+                                    </div>
+                                </t>                                
+                            </div>
+                        </div>                    
+                        <div class="d-flex justify-content-center" style="font-size: 25px;">                            
+                            <p style="margin-right: 30px; width: 100%;">
+                                <!-- <t t-if="company.phone_th">
+                                    <t t-esc="company.phone_th"/>
+                                </t>
+                                <t t-if="company.fax_th">
+                                    FAX: <t t-esc="company.fax_th"/>
+                                </t> -->
+                            </p>                            
+                        </div>
+                    </div>       
+            </div>
+        </div>
+        <div class="article" style="font-family: KanitLight;">
+            <div class="row">
+                <t t-set="l_no" t-value="0" />
+                <t t-set="d_no" t-value="0" />
+                <table class="table table-bordered"
+                    style="font-size: 10.64px; line-height: 18px; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th class="text-center font-tms-th"
+                            ></th>
+                            <th class="text-center font-tms-th"
+                            >Create on</th>
+                            <th class="text-center font-tms-th" style="min-width: 230px;"
+                            >Reference</th>
+                            <th class="text-center font-tms-th"
+                            >Material</th>
+                            <th class="text-center font-tms-th"
+                            >Material Desciption</th>
+                            <th class="text-center font-tms-th"
+                            >Qty</th>
+                            <th class="text-center font-tms-th"
+                            >Net Value/THB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-if="len(list_product_id_selected) > 0">
+                            <t t-foreach="record_RMA_filter" t-as="doc">
+                                <t t-if="doc.claim_line_ids">
+                                    <t t-set="l_no" t-value="l_no + 1" />
+                                    <t t-set="d_no" t-value="0" />
+                                    <t t-foreach="doc.claim_line_ids" t-as="line">
+                                        <t t-if="line.product_id.id in list_product_id_selected">
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <span t-if="not d_no > 0">
+                                                        <t t-esc="l_no" />
+                                                        <t t-set="d_no" t-value="d_no + 1" />
+                                                    </span>
+                                                    <span t-if="d_no > 0">
+                                                        
+                                                    </span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="doc.date"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="doc.is_job_no"/>/<t t-esc="doc.account_id.name"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="line.product_id.default_code"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="line.product_id.name"/>
+                                                </td>
+                                                <!-- <td class="text-center">
+                                                    <t t-esc="line.product_id.product_tmpl_id.description_sale"/>
+                                                </td> -->
+                                                <td class="text-center">
+                                                    <t t-esc="line.done_qty"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="line.product_id.lst_price"/>
+                                                </td>
+                                            </tr>
+                                        </t>                                               
+                                    </t>   
+                                </t>
+                                <t t-if="doc.crm_claim_ept_line_ids">
+                                    <t t-foreach="doc.crm_claim_ept_line_ids" t-as="line">
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="doc.date"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="doc.is_job_no"/>/<t t-esc="doc.account_id.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="line.line_description"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="line.line_product_id.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="'{0:,.1f}'.format(float(line.line_qty))"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="'{0:,.1f}'.format(float(line.line_subtotal))"/>
+                                                <!-- <t t-esc="line.line_subtotal"/> -->
+                                            </td>
+                                        </tr>
+                                    </t>                                    
+                                </t>                                                       
+                            </t>                            
+                        </t>
+                        <t t-if="len(list_product_id_selected) == 0">
+                            <t t-foreach="record_RMA_filter" t-as="doc">
+                                <t t-if="doc.claim_line_ids">
+                                    <t t-set="l_no" t-value="l_no + 1" />
+                                    <t t-set="d_no" t-value="0" />
+                                    <t t-foreach="doc.claim_line_ids" t-as="line">
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                <span t-if="not d_no > 0">
+                                                    <t t-esc="l_no" />
+                                                    <t t-set="d_no" t-value="d_no + 1" />
+                                                </span>
+                                                <span t-if="d_no > 0">
+                                                    
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="doc.date"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="doc.is_job_no"/>/<t t-esc="doc.account_id.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="line.product_id.default_code"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="line.product_id.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="line.done_qty"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="line.product_id.lst_price"/>
+                                            </td>
+                                        </tr>
+                                    </t> 
+                                </t>                                           
+                                <t t-if="doc.crm_claim_ept_line_ids">
+                                    <t t-foreach="doc.crm_claim_ept_line_ids" t-as="line">
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="doc.date"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="doc.is_job_no"/>/<t t-esc="doc.account_id.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="line.line_description"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="line.line_product_id.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="'{0:,.1f}'.format(float(line.line_qty))"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="'{0:,.1f}'.format(float(line.line_subtotal))"/>
+                                                <!-- <t t-esc="line.line_subtotal"/> -->
+                                            </td>
+                                        </tr>
+                                    </t>                                    
+                                </t>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <template id="hdc_rma_report">
+        <t t-call="web.html_container">
+            <t t-call="hdc_rma_report.hdc_rma_report_document" />
+        </t>
+    </template>
+
+</odoo>

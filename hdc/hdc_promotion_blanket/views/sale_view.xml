@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_promotion_blanket_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.blanket.order.inherit.coupon</field>
+            <field name="model">sale.blanket.order</field>
+            <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']" position="after">
+                    <div class="oe_right">
+                        <button name="%(action_open_coupon_wizard)d" class="btn btn-secondary"
+                                string="Coupon" type="action" groups="base.group_user" 
+                                attrs="{'invisible': ['|',('ref_sale_id', '!=', False),('state', 'not in', ['draft','open'])]}"/>
+                        <button name="recompute_coupon_lines" class="btn btn-secondary" string="Promotions"
+                                help="When clicked, the content of the order will be checked to detect (and apply) possible promotion programs."
+                                type="object" attrs="{'invisible': ['|',('ref_sale_id', '!=', False),('state', 'not in', ['draft','open'])]}"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_promotion_blanket_discount_form_inherit" model="ir.ui.view">
+            <field name="name">sale.blanket.order.form.promotion.discount</field>
+            <field name="model">sale.blanket.order</field>
+            <field name="inherit_id" ref="hdc_sale_agreement_addon.sale_blanket_order_inherit_addon"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='triple_discount']" position="after">
+                    <field name="promotion_id" options="{'no_create_edit': True, 'no_create': True}" attrs="{'readonly': [('is_reward_line', '=', True)]}"/>
+                    <!-- <field name="promotion_discount" attrs="{'readonly': [('parent.state', 'in', ('open','expired'))]}" /> -->
+                    <field name="promotion_discount" readonly="1" force_save="1"/>
+                    <field name="is_reward_line" invisible="1"/>
+                </xpath>
+                <xpath expr="//div[@name='days_delivery_div']" position="after">
+                    <label for="promotion_id" string="Promotion"  attrs="{'invisible': [('ref_sale_id', '!=', False)]}"/>
+                    <div name="promotion_id_div" class="o_row">
+                        <field name="promotion_id"  attrs="{'invisible': [('ref_sale_id', '!=', False)],'readonly':[('state', 'not in', ['draft','open'])]}"  options="{'no_create_edit': True, 'no_create': True}"/>
+                        <button name="recompute_coupon_lines" class="btn btn-secondary" string="Promotions"
+                            help="When clicked, the content of the order will be checked to detect (and apply) possible promotion programs."
+                            type="object" attrs="{'invisible': ['|',('ref_sale_id', '!=', False),('state', 'not in', ['draft','open'])]}"/>
+                    </div>
+                    <field name="promotion_ids" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_promotion_quotation_order_form_inherit" model="ir.ui.view">
+            <field name="name">quotation.order.inherit.coupon</field>
+            <field name="model">quotation.order</field>
+            <field name="inherit_id" ref="hdc_quotation_order.view_quotation_order_form" />
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='quotation_line']" position="after">
+                    <div class="oe_right">
+                        <button name="%(action_open_coupon_wizard_quotation)d" class="btn btn-secondary"
+                                string="Coupon" type="action" groups="base.group_user" states="draft,sent,sale"/>
+                        <button name="recompute_coupon_lines" class="btn btn-secondary" string="Promotions"
+                                help="When clicked, the content of the order will be checked to detect (and apply) possible promotion programs."
+                                type="object" states="draft,sent,sale"/>
+                    </div>
+                </xpath>
+                <xpath expr="//tree/field[@name='triple_discount']" position="after">
+                    <field name="promotion_id" options="{'no_create_edit': True, 'no_create': True}" attrs="{'readonly': [('is_reward_line', '=', True)]}"/>
+                    <!-- <field name="promotion_discount"  attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/> -->
+                    <field name="promotion_discount" readonly="1" force_save="1"/>
+                    <field name="is_reward_line" invisible="1"/>
+                </xpath>
+                <xpath expr="//div[@name='days_delivery_div']" position="after">
+                    <label for="promotion_id" string="Promotion" />
+                    <div name="promotion_id_div" class="o_row">
+                        <field name="promotion_id" states="draft,sent,sale"  options="{'no_create_edit': True, 'no_create': True}"/>
+                        <button name="recompute_coupon_lines" class="btn btn-secondary" string="Promotions"
+                            help="When clicked, the content of the order will be checked to detect (and apply) possible promotion programs."
+                            type="object" states="draft,sent,sale"/>
+                    </div>
+                    <field name="promotion_ids" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_promotion_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.promotion</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="hdc_promotion_priority.view_promotion_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='promotion_ids']" position="after">
+                    <field name="is_from_agreement" invisible="1"/>
+                </xpath>
+                <xpath expr="//label[@for='promotion_id']" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': [('is_from_agreement', '=', True)]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//div[@name='promotion_id_div']" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': [('is_from_agreement', '=', True)]}
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_hide_btn_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.hide.btn</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_coupon.sale_order_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='recompute_coupon_lines']" position="after">
+                    <field name="is_from_agreement" invisible="1"/>
+                </xpath>
+                <xpath expr="//button[@name='%(sale_coupon.sale_coupon_apply_code_action)d']" position="replace">
+                    <button name="%(sale_coupon.sale_coupon_apply_code_action)d" class="btn btn-secondary"
+                            string="Coupon" type="action" groups="base.group_user"
+                            attrs="{'invisible': ['|',('is_from_agreement', '=', True),('state', 'not in', ['draft','sent','sale'])]}"/>
+
+                </xpath>
+                <xpath expr="//button[@name='recompute_coupon_lines']" position="replace">
+                    <button name="recompute_coupon_lines" class="btn btn-secondary" string="Promotions"
+                            help="When clicked, the content of the order will be checked to detect (and apply) possible promotion programs."
+                            type="object" 
+                            attrs="{'invisible': ['|',('is_from_agreement', '=', True),('state', 'not in', ['draft','sent','sale'])]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_customer_credit_limit_tree" model="ir.ui.view">
+        <field name="name">customer.credit.limit.tree</field>
+        <field name="model">customer.credit.limit</field>
+        <field name="arch" type="xml">
+            <tree string="Customer Credit" editable="bottom">
+                <field name="credit_id" invisible="1"/>
+                <field name="partner_id"/>
+                <field name="credit_limit" invisible="1"/>
+                <field name="credit_limit_show" />
+                <field name="quotation_amount"/>
+                <field name="sale_order_amount"/>
+                <field name="invoiced_amount_draft"/>
+                <field name="invoice_amount"/>
+                <field name="credit_remain"/>
+                <field name="credit_approval"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_customer_credit_limit_form" model="ir.ui.view">
+        <field name="name">customer.credit.limit.form</field>
+        <field name="model">customer.credit.limit</field>
+        <field name="arch" type="xml">
+            <form string="Customer Credit">
+                <sheet>
+                    <group name="sale_header">
+                        <group name="form_1">
+                            <field name="credit_id" invisible="1"/>
+                            <field name="partner_id"/>
+                            <field name="credit_limit" invisible="1"/>
+                            <field name="credit_limit_show"/>
+                            <field name="sale_order_amount"/>
+                        </group>
+                        <group name="form_2">
+                            <field name="quotation_amount"/>
+                            <field name="invoiced_amount_draft"/>
+                            <field name="invoice_amount"/>
+                            <field name="credit_remain"/>
+                            <field name="credit_approval"/>
+                        </group>
+                    </group>
+                </sheet>
+              </form>
+        </field>
+    </record>
+
+    <record id="view_customer_cash_limit_tree" model="ir.ui.view">
+        <field name="name">customer.credit.limit.tree</field>
+        <field name="model">customer.credit.limit</field>
+        <field name="arch" type="xml">
+            <tree string="Customer Credit" editable="bottom">
+                <field name="credit_id" invisible="1"/>
+                <field name="partner_id"/>
+                <field name="cash_limit" invisible="1"/>
+                <field name="cash_limit_show" />
+                <field name="quotation_amount_cash"/>
+                <field name="sale_order_amount_cash"/>
+                <field name="invoiced_amount_draft_cash"/>
+                <field name="invoice_cash_amount"/>
+                <field name="cash_remain"/>
+                <field name="cash_approval"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_customer_cash_limit_form" model="ir.ui.view">
+        <field name="name">customer.credit.limit.form</field>
+        <field name="model">customer.credit.limit</field>
+        <field name="arch" type="xml">
+            <form string="Customer Credit">
+                <sheet>
+                    <group name="sale_header">
+                        <group name="form_1">
+                            <field name="credit_id" invisible="1"/>
+                            <field name="partner_id"/>
+                            <field name="cash_limit" invisible="1"/>
+                            <field name="cash_limit_show"/>
+                            <field name="sale_order_amount_cash"/>
+                        </group>
+                        <group name="form_2">
+                            <field name="quotation_amount_cash"/>
+                            <field name="invoiced_amount_draft_cash"/>
+                            <field name="invoice_cash_amount"/>
+                            <field name="cash_remain"/>
+                            <field name="cash_approval"/>
+                        </group>
+                    </group>
+                </sheet>
+              </form>
+        </field>
+    </record>
+
+    <record id="view_customer_credit_import_tree" model="ir.ui.view">
+        <field name="name">customer credit limit import</field>
+        <field name="model">customer.credit.limit</field>
+        <field name="arch" type="xml">
+            <tree string="Customer Credit limit" editable="bottom">
+                <field name="credit_id"/>
+                <field name="partner_id"/>
+                <field name="credit_limit"/>
+                <field name="credit_limit_show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_credit_limit_sale_line_tree" model="ir.ui.view">
+        <field name="name">credit.limit.sale.line.tree</field>
+        <field name="model">credit.limit.sale.line</field>
+        <field name="arch" type="xml">
+            <tree string="Credit Limit Line" editable="bottom">
+                <field name="credit_id"/>
+                <field name="sale_team_id"/>
+                <field name="payment_term_id"/>
+                <field name="payment_method_id"/>
+                <field name="credit_limit"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_new_customer_cash_limit_tree" model="ir.ui.view">
+        <field name="name">new.customer.cash.limit.tree</field>
+        <field name="model">customer.cash.limit</field>
+        <field name="arch" type="xml">
+            <tree create="0" delete="0">
+                <field name="partner_id" readonly="1" force_save="1"/>
+                <field name="company_id" readonly="1" force_save="1" invisible="1"/>
+                <field name="cash_limit_default" readonly="1" force_save="1"/>
+                <field name="cash_limit"/>
+                <field name="quotation_amount_cash"/>
+                <field name="sale_order_amount_cash"/>
+                <field name="invoiced_amount_draft_cash"/>
+                <field name="invoice_cash_amount"/>
+                <field name="cash_remain"/>
+                <field name="cash_approval"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_credit_limit_sale_line" model="ir.actions.act_window">
+        <field name="name">Credit Limit Line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">credit.limit.sale.line</field>
+        <field name="view_id" ref="view_credit_limit_sale_line_tree"/>
+        <field name="view_mode">tree</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <record id="action_customer_credit_import" model="ir.actions.act_window">
+        <field name="name">Customer Credit limit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer.credit.limit</field>
+        <field name="view_id" ref="view_customer_credit_import_tree"/>
+        <field name="view_mode">tree</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <record id="action_new_customer_cash_import" model="ir.actions.act_window">
+        <field name="name">Customer Cash limit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer.cash.limit</field>
+        <field name="view_id" ref="view_new_customer_cash_limit_tree"/>
+        <field name="view_mode">tree</field>
+        <field name="domain">[]</field>
+    </record>
+</odoo>

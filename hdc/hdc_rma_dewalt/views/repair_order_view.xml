@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_repair_order_form_discount" model="ir.ui.view">
+        <field name="name">repair.order.form.view</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_state']" position="after">
+                <field name="create_sale_order" invisible="1" />
+                <field name="borrow_status" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='operations']/tree/field[@name='price_unit']" position="after">
+                <field name="triple_discount"/>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes"> 
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="borrow_dewalt_ids" invisible="1" />
+                <button
+                            class="oe_stat_button"
+                            name="action_view_borrow_dewalt"
+                            type="object"
+                            attrs="{'invisible':[('borrow_dewalt_count', '=', 0)]}"
+                            icon="fa-book"
+                        >
+                            <field
+                                name="borrow_dewalt_count"
+                                string="Borrow Dewalt"
+                                widget="statinfo"
+                            />
+                        </button>
+            </xpath>
+            <xpath expr="//button[@name='action_repair_start']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|',('borrow_status', '!=', 'done'),'|', ('create_sale_order', '=', True), '&amp;', ('state','!=','confirmed'), '!', '&amp;', ('state','=','ready'), ('invoice_method','=','b4repair')]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_repair_start']" position="after">
+                <button
+                    name="action_create_sale_order"
+                    type="object"
+                    string="Create Sales Order"
+                    attrs="{'invisible': ['|',('borrow_status', '!=', 'done'),'|', '|', ('create_sale_order', '=', False), ('sale_order_count', '&gt;', 0), ('state','!=','confirmed')]}"
+                    class="oe_highlight"
+                />
+            </xpath>
+        </field>
+    </record>
+    <!-- <record id="view_repair_order_form" model="ir.ui.view">
+        <field name="name">repair.order.form.view</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair_sale_order.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_create_sale_order']" position="attributes"> 
+                <attribute name="attrs">{'invisible': ['|', ('create_sale_order', '=', False),('state','!=','confirmed')]}</attribute>
+            </xpath>
+
+        </field>
+    </record> -->
+
+</odoo>

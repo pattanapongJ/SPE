@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree: api.custom.control -->
+    <record model="ir.ui.view" id="view_api_custom_control_tree">
+        <field name="name">tree.api.custom.control</field>
+        <field name="model">api.custom.control</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="api_custom_control">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Form: api.custom.control -->
+    <record model="ir.ui.view" id="view_api_custom_control_form">
+        <field name="name">form.api_custom_control</field>
+        <field name="model">api.custom.control</field>
+        <field name="priority" eval="15"/>
+        <field name="arch" type="xml">
+            <form string="api_custom_control">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_applied_rules" type="object" class="oe_stat_button" icon="fa-globe icon">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Applied</span>
+                                <span class="o_stat_text">Global Rules</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <!-- <group>
+                            <field name="group_id" groups="base.group_no_one"/>
+                            <field name="user_id" groups="base.group_no_one"/>
+                        </group> -->
+                    </group>
+                    <notebook>
+                        <page string="Accesses">
+                            <field name="custom_model_access_ids"/>
+                        </page>
+                        <page string="Rules">
+                            <field name="rule_group_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="model_id"/>
+                                    <field name="groups" invisible="1"/>
+                                    <field name="domain_force"/>
+                                    <field name="perm_read"/>
+                                    <field name="perm_write"/>
+                                    <field name="perm_create"/>
+                                    <field name="perm_unlink"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Main Action: api.custom.control -->
+    <record id="action_api_custom_control" model="ir.actions.act_window">
+        <field name="name">API Custom Control</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">api.custom.control</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            All important API Custom Control
+          </p><p>
+            Ekika helps you track, manage and maintain your API Custom Control.
+          </p>
+        </field>
+    </record>
+    <!-- Sub Action Tree: api.custom.control -->
+    <record id="action_api_custom_control_view_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_api_custom_control_tree"/>
+        <field name="act_window_id" ref="action_api_custom_control"/>
+    </record>
+    <!-- Sub Action Form: api.custom.control -->
+    <record id="action_api_custom_control_view_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_api_custom_control_form"/>
+        <field name="act_window_id" ref="action_api_custom_control"/>
+    </record>
+
+</odoo>

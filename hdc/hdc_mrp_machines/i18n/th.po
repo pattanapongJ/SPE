@@ -1,0 +1,147 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hdc_mrp_machines
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230227\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 07:39+0000\n"
+"PO-Revision-Date: 2023-10-12 07:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hdc_mrp_machines
+#: model_terms:ir.ui.view,arch_db:hdc_mrp_machines.mrp_machines_form_view
+msgid "<span class=\"o_stat_text\">Work Order</span>"
+msgstr "<span>คำสั่งงาน</span>"
+
+#. module: hdc_mrp_machines
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines__active
+msgid "Active"
+msgstr "การเปิดใช้งาน"
+
+#. module: hdc_mrp_machines
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines__capacity
+msgid "Capacity"
+msgstr "กำลังการผลิต"
+
+#. module: hdc_mrp_machines
+#: model_terms:ir.ui.view,arch_db:hdc_mrp_machines.mrp_production_workorder_tree_view
+msgid "Created Date"
+msgstr "สร้างวันที่"
+
+#. module: hdc_mrp_machines
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hdc_mrp_machines
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hdc_mrp_machines
+#: model_terms:ir.ui.view,arch_db:hdc_mrp_machines.hdc_mrp_machines_view_mrp_production_workorder_form_view_filter_inherit
+msgid "Date"
+msgstr ""
+
+#. module: hdc_mrp_machines
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines__display_name
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_workcenter__display_name
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_workorder__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: hdc_mrp_machines
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines__id
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_workcenter__id
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_workorder__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: hdc_mrp_machines
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines____last_update
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_workcenter____last_update
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_workorder____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: hdc_mrp_machines
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hdc_mrp_machines
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hdc_mrp_machines
+#: model:ir.model,name:hdc_mrp_machines.model_mrp_machines
+#: model_terms:ir.ui.view,arch_db:hdc_mrp_machines.mrp_machines_form_view
+#: model_terms:ir.ui.view,arch_db:hdc_mrp_machines.mrp_machines_tree_view
+msgid "MRP Machines"
+msgstr ""
+
+#. module: hdc_mrp_machines
+#: model:ir.actions.act_window,name:hdc_mrp_machines.mrp_machines_action
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_workcenter__machines_id
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_workorder__machines_id
+#: model:ir.ui.menu,name:hdc_mrp_machines.menu_mrp_machines_view
+msgid "Machines"
+msgstr "เครื่องจักร"
+
+#. module: hdc_mrp_machines
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines__name
+msgid "Machines Name"
+msgstr "ชื่อเครื่องจักร"
+
+#. module: hdc_mrp_machines
+#: model_terms:ir.ui.view,arch_db:hdc_mrp_machines.mrp_production_workorder_tree_view
+msgid "Operation"
+msgstr "การดำเนินการ"
+
+#. module: hdc_mrp_machines
+#: model:ir.model,name:hdc_mrp_machines.model_mrp_workcenter
+#: model:ir.model.fields,field_description:hdc_mrp_machines.field_mrp_machines__workcenter_id
+msgid "Work Center"
+msgstr "ศูนย์งาน"
+
+#. module: hdc_mrp_machines
+#: model:ir.model,name:hdc_mrp_machines.model_mrp_workorder
+msgid "Work Order"
+msgstr "คำสั่งงาน"
+
+#. module: mrp
+#: model:ir.model.fields,field_description:mrp.field_mrp_workcenter__capacity
+msgid "ความจุ"
+msgstr "กำลังการผลิต"
+
+#. module: mrp
+#: model:ir.model.fields,field_description:mrp.field_mrp_workcenter__time_start
+msgid "Time before prod."
+msgstr "เวลาก่อนผลิต"
+
+#. module: mrp
+#: model:ir.model.fields,field_description:mrp.field_mrp_workcenter__time_stop
+msgid "Time after prod."
+msgstr "เวลาหลังผลิต"
+
+#. module: mrp
+#: model_terms:ir.ui.view,arch_db:mrp.mrp_workcenter_view
+msgid "Costing Information"
+msgstr "ข้อมูลต้นทุนค่าใช้จ่าย"
+
+#. module: mrp
+#: model:ir.model.fields,field_description:mrp.field_mrp_routing_workcenter__name
+#: model:ir.model.fields,field_description:mrp.field_mrp_workorder__operation_id
+#: model_terms:ir.ui.view,arch_db:mrp.mrp_bom_form_view
+#: model_terms:ir.ui.view,arch_db:mrp.mrp_bom_line_view_form
+#: model_terms:ir.ui.view,arch_db:mrp.mrp_production_workorder_tree_editable_view
+msgid "Operation"
+msgstr "การดำเนินการ"

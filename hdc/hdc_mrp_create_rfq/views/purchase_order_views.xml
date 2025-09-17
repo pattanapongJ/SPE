@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data>
+    <record id="create_rfq_form_view_purchase" model="ir.ui.view">
+        <field name="name">purchase.order.inherited.form.rfq</field>
+        <field name="model">purchase.order</field>
+        <field name="priority">32</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button class="oe_stat_button" name="action_view_create_rfq_to_mo" type="object" icon="fa-credit-card" groups="purchase.group_purchase_user" attrs="{'invisible': [('create_rfq_to_mo_count', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field name="create_rfq_to_mo_count"/></span>
+                        <span class="o_stat_text">Manufacturing Order</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</data></odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_plan_purchase_forecast_wizard_form_inherit" model="ir.ui.view">
+            <field name="name">plan.purchase.forecast.wizard.form.inherit</field>
+            <field name="model">plan.purchase.forecast</field>
+            <field name="arch" type="xml">
+                <form string="Plan Purchase Forecast">
+                    <group>
+                        <group>
+                            <field name="date_before" widget="radio"/>
+                        </group>
+                    </group>
+                    <footer>
+                    <button string="Print" name="action_print" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_plan_purchase_forecast_wizard" model="ir.actions.act_window">
+            <field name="name">Plan Purchase Forecast Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">plan.purchase.forecast</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+</odoo>

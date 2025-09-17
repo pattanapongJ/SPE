@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>    
+    <record id="mrp_mr_view_form_inherited_onhand" model="ir.ui.view">
+        <field name="name">mrp.mr.view.form.inherited.onhand</field>
+        <field name="model">mrp.mr</field>
+        <field name="inherit_id" ref="hdc_mrp_mr.mrp_mr_view_form" />
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='demand_qty']" position="after">
+                <field name="free_qty" optional="show" readonly="1" force_save="1"/>
+            </xpath>
+            <xpath expr="//field[@name='demand_qty_modify']" position="after">
+                <field name="free_qty" optional="show" readonly="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

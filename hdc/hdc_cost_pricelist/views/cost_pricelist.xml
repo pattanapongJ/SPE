@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="cost_pricelist_view_tree" model="ir.ui.view">
+        <field name="name">cost.pricelist.tree</field>
+        <field name="model">cost.pricelist</field>
+        <field name="arch" type="xml">
+            <tree string="Pricelist" editable="bottom">
+                <field name="product_id"/>
+                <field name="pricelist_type"/>
+                <field name="product_tmpl_id" invisible="1"/>
+                <field name="current_sale_price" readonly="1"/>
+                <field name="po_cost" readonly="1"/>
+                <field name="pricelist_config"/>
+                <field name="exchange_rate"/>
+                <field name="taxes"/>
+                <field name="margin"/>
+                <field name="surcharge"/>
+                <field name="fright" string="Freight"/>
+                <field name="frist_discount" string="First Discount"/>
+                <field name="sec_discount"/>
+                <field name="std_price" string="Calc Price" readonly="1"/>
+                <field name="last_updated" readonly="1"/>
+                <field name="status"/>
+                <field name="update_price"/>
+                <button name="update_price_button" type="object" string="Update price" class="btn-outline-info"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="cost_pricelist_action" model="ir.actions.act_window">
+        <field name="name">Pricelist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cost.pricelist</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="cost_pricelist_view_tree"/>
+    </record>
+
+    <menuitem id="sale.menu_product_pricelist_main"
+          name="Pricelists" parent="sale.product_menu_catalog"
+          action="cost_pricelist_action" sequence="3" active="True"/>
+
+    <record id="pricelist_configuration_view_tree" model="ir.ui.view">
+        <field name="name">pricelist.configuration.tree</field>
+        <field name="model">pricelist.configuration</field>
+        <field name="arch" type="xml">
+            <tree string="Pricelist Configuration" editable="bottom">
+                <field name="name"/>
+                <field name="cate_id"/>
+                <field name="brand"/>
+                <field name="currency_id"/>
+                <field name="exchange_rate"/>
+                <field name="taxes"/>
+                <field name="margin"/>
+                <field name="surcharge"/>
+                <field name="fright" string="Freight"/>
+                <field name="frist_discount"/>
+                <field name="sec_discount"/>
+                <field name="variant"/>
+                <field name="write_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pricelist_configuration_action" model="ir.actions.act_window">
+        <field name="name">Pricelist Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pricelist.configuration</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="pricelist_configuration_view_tree"/>
+    </record>
+
+    <menuitem id="root_pricelist_configuration"
+          name="Pricelist Configuration" parent="sale.menu_sale_config"
+          sequence="3" active="True"/>
+
+    <menuitem id="menu_pricelist_configuration"
+          name="Pricelist Configuration" parent="root_pricelist_configuration"
+          action="pricelist_configuration_action" sequence="1" active="True"/>
+
+</odoo>

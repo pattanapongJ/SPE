@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_is_internal_borrow_type_form" model="ir.ui.view">
+        <field name="name">stock.picking.type.is.borrow.internal</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form" />
+        <field name="arch" type="xml">
+            <field name="use_existing_lots" position="after">
+                <field name="is_internal_borrow" />
+                <field name="is_internal_return" />
+            </field>
+        </field>
+    </record>
+</odoo>

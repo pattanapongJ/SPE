@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_factory" model="ir.ui.view">
+        <field name="name">product.template.common.form.factory</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+           <xpath expr="//page[@name='general_information']/group/group[@name='group_standard_price']/field[@name='uom_po_id']" position="after">
+                <field name="is_factory"/>
+           </xpath>
+        </field>
+    </record>
+    <record id="product_template_form_view_branch_factory" model="ir.ui.view">
+        <field name="name">product_extended.product.form.branch.factory</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="branch.product_template_form_view_branch" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='branch_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_product_view_form_branch_factory" model="ir.ui.view">
+        <field name="name">product.product.view.form.branch.factory</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="branch.product_product_view_form_branch"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='branch_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

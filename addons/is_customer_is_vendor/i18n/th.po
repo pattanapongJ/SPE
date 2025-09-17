@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* is_customer_is_vendor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230227\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-04 04:35+0000\n"
+"PO-Revision-Date: 2023-12-04 04:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: is_customer_is_vendor
+#: model:ir.model,name:is_customer_is_vendor.model_res_partner
+msgid "Contact"
+msgstr "ติดต่อ"
+
+#. module: is_customer_is_vendor
+#: model:ir.model.fields,field_description:is_customer_is_vendor.field_crm_lead__display_name
+#: model:ir.model.fields,field_description:is_customer_is_vendor.field_res_partner__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: is_customer_is_vendor
+#: model:ir.model.fields,field_description:is_customer_is_vendor.field_crm_lead__id
+#: model:ir.model.fields,field_description:is_customer_is_vendor.field_res_partner__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: is_customer_is_vendor
+#: model:ir.model.fields,field_description:is_customer_is_vendor.field_res_partner__customer
+#: model:ir.model.fields,field_description:is_customer_is_vendor.field_res_users__customer
+msgid "Is Customer"
+msgstr "เป็นลูกค้า"
+
+#. module: is_customer_is_vendor
+#: model:ir.model.fields,field_description:is_customer_is_vendor.field_res_partner__supplier
+#: model:ir.model.fields,field_description:is_customer_is_vendor.field_res_users__supplier
+msgid "Is Supplier"
+msgstr "เป็นคู่ค้า"
+
+#. module: is_customer_is_vendor
+#: model:ir.model.fields,field_description:is_customer_is_vendor.field_crm_lead____last_update
+#: model:ir.model.fields,field_description:is_customer_is_vendor.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: is_customer_is_vendor
+#: model:ir.model,name:is_customer_is_vendor.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "เป้าหมาย / โอกาส"
+
+#. module: is_customer_is_vendor
+#: model_terms:ir.ui.view,arch_db:is_customer_is_vendor.view_partner_is_customer_is_vendor_form
+msgid "Partner Type"
+msgstr "ประเภทพาร์ทเนอร์"

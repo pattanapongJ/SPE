@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_inventory_recalculate_form" model="ir.ui.view">
+            <field name="name">Inventory Recalculate</field>
+            <field name="model">wizard.inventory.recalculate</field>
+            <field name="arch" type="xml">
+                <form string="Inventory Recalculate">
+                    <group>
+                        <group>
+                            <field name="company_id"/>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                            <field name="target_type"  widget="radio"/>
+                            <field name="categ_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type', '!=', 'categ')], 'required': [('target_type', '=', 'categ')]}"/>
+                            <field name="product_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type', '!=', 'product')], 'required': [('target_type', '=', 'product')]}"/>
+                        </group>
+                    </group>
+                    
+                    <footer>
+                        <button name="action_recalculate" string="Recalculate" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_inventory_recalculate" model="ir.actions.act_window">
+            <field name="name">Inventory Recalculate</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.inventory.recalculate</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem
+        id="menu_inventory_recalculate"
+        name="Inventory Recalculate"
+        parent="stock.menu_stock_warehouse_mgmt"
+        action="action_inventory_recalculate"
+        groups="hdc_recalculate_inventory_valuation.inventory_Recalculate_user"
+        sequence="31"/>
+    </data>
+</odoo>    

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_move_line_demand_supplier_return" model="ir.ui.view">
+            <field name="name">inventory.supplier.return.operation.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group[1]/group[1]/div[1]/label[2]" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': ['|',('check_all','=',True),('picking_type_code', '!=', 'incoming')]}
+                    </attribute>
+                </xpath>
+                <xpath expr="/form/sheet/div[1]/button[@name='action_see_move_scrap']" position="before">
+                        <button class="oe_stat_button" type="object" name="get_repair"
+                            icon="fa-reply"  attrs="{'invisible':['|',('repair_count', '=', 0),('supplier_return','=',False)]}">
+                            <field string="Repair Orders" name="repair_count" widget="statinfo"/>
+                        </button>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="employee_name" string="Requestor" attrs="{'invisible': [('supplier_return','=',False)]}"/>
+                    <field name="department_id" string="Department" attrs="{'invisible': [('supplier_return','=',False)]}"/>
+                    <field name="return_type" string="Return Type" attrs="{'invisible': [('supplier_return','=',False)]}"/>
+                    <field name="partner_id" string="Customer" attrs="{'invisible': [('supplier_return','=',False)]}"/>
+                    <field name="supplier_return" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='date_done']" position="before">
+                    <field name="schedule_req" string="Issue Date" attrs="{'invisible': [('supplier_return','=',False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='date_done']" position="after">
+                    <field name="date_done" string="Tranfer Date" attrs="{'invisible': ['|',('state','!=','done'),('supplier_return','=',False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='date_done']" position="after">
+                    <field name="supplier_return" attrs="{'invisible': 1}"/>
+                    <field name="company_id" attrs="{'invisible': 1}"/>
+                </xpath>
+                <xpath expr="//header/button[1]" position="before">
+                    <button name="%(hdc_external_tranfer_hydra.action_create_repair_order_to)d" type="action" string="Create Repair" attrs="{'invisible': [('supplier_return','=',False)]}" class="btn btn-primary"/>
+                </xpath>
+                <xpath expr="//group[@name='other_infos']" position="after">
+                    <group string="Approval" attrs="{'invisible': [('supplier_return','=',False)]}">
+                        <field name="approved_reviewer"/>
+                        <field name="approved"/>
+                    </group>
+                </xpath>
+
+                <!--move_line-->
+                <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom_qty']" position="attributes">
+                    <attribute name="attrs">
+                        {'column_invisible': [('parent.supplier_return', '=', True)]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom_qty']" position="after">
+                    <field name="return_uom_qty" string="Return QTY" attrs="{'column_invisible': [('parent.supplier_return', '=', False)]}"/>
+                </xpath>
+
+                <!-- <xpath expr="//header/button[@name='action_toggle_is_locked']" position="after">
+                    <field name="check_force_done" invisible="1"/>
+                    <field name="check_order_return" invisible="1"/>
+                    <button name="force_done" string="Force Done" groups="stock.group_stock_user" type="object" attrs="{'invisible':[ '|','|',('state', '!=', 'ready_delivery'),('picking_type_code', '!=', 'outgoing'), ('addition_operation_types_code', '!=', 'AO-02')]}"/>                    
+                </xpath>
+
+                <xpath expr="//field[@name='quantity_done']" position="after">
+                    <field name="return_value" attrs="{'column_invisible': [('parent.operation_type_rm', '!=', 'RQS')]}"/>
+                    <field name="scrap_value"  attrs="{'column_invisible': [('parent.operation_type_rm', '!=', 'RQS')]}"/>
+                    <field name="scrap_return"  attrs="{'column_invisible': [('parent.operation_type_rm', '!=', 'RM' )]}"/>
+                </xpath>
+                <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('state', 'not in', ('ready_delivery', 'done'))]}</attribute>
+                </xpath> -->
+            </field>
+    </record>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_account_billing_route_form" model="ir.ui.view">
+        <field name="name">account.billing.route.form</field>
+        <field name="model">account.billing.route</field>
+        <field name="arch" type="xml">
+            <form string="Billing Route">
+                <sheet>
+                    <group name="form_billing_route" string="string">
+                        <field name="name"/>
+                        <field name="label"/>
+                        <field name="description"/>
+                    </group>                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_account_billing_route_tree" model="ir.ui.view">
+        <field name="name">account.billing.route.tree</field>
+        <field name="model">account.billing.route</field>
+        <field name="arch" type="xml">
+            <tree string="Billing Route">
+                <field name="name"/>
+                <field name="label"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sub_menu_account_billing_route_action">
+        <field name="name">Billing Route</field>
+        <field name="res_model">account.billing.route</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="sub_menu_account_billing_route" name="Billing Route" parent="hdc_billing_period_route.menu_account_billing_settings" sequence="2" action="hdc_billing_period_route.sub_menu_account_billing_route_action" />
+
+</odoo>

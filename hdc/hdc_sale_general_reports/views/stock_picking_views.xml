@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_borrow_report_view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='do_print_picking']" position="after">
+                    <button name="print_sale_borrow" 
+                        string="ใบส่งสินค้าตัวอย่าง" 
+                        groups="stock.group_stock_user" 
+                        type="object"  
+                        attrs="{'invisible': [('sale_borrow', '=', False)]}"/>
+                </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_temp_credit_request_form_inherit_user_employee" model="ir.ui.view">
+        <field name="name">view.temp.credit.request.form.inherit.user.employee</field>
+        <field name="model">temp.credit.request</field>
+        <field name="inherit_id" ref="hdc_creditlimit_saleteam.view_temp_credit_request_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_person']" position="before">
+                <field name="sale_employee_ids" invisible="1"/>
+                <field name="user_employee_id" attrs="{'readonly': [('state', 'in', ('approved', 'cancel'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_person']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>    
+</odoo>

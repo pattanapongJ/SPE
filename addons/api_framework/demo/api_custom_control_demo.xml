@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- CUSTOM CONTROL DATA -->
+        <!--  Custom JsonAPI APIKEY -->
+        <record id="custom_jsonapi_apikey" model="api.custom.control">
+            <field name="name" model="api.custom.control" 
+            eval="(obj().env['easy.api'].search([('id','=',ref('easy_api_custom_jsonapi_apikey'))])).name + '_custom_access'"/>
+            <field name="custom_model_access_ids" model="custom.model.access" eval="[(0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.bank')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.category')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            })]"/>
+        </record>
+
+        <!-- Custom JsonAPI Api-User -->
+        <record id="custom_jsonapi_apiuser" model="api.custom.control">
+            <field name="name" model="api.custom.control" 
+            eval="(obj().env['easy.api'].search([('id','=',ref('easy_api_custom_jsonapi_apiuser'))])).name + '_custom_access'"/>
+            <field name="custom_model_access_ids" model="custom.model.access" eval="[(0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.bank')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.category')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            })]"/>
+        </record>
+
+        <!-- Custom JsonAPI Basic-Auth -->
+        <record id="custom_jsonapi_apibasic" model="api.custom.control">
+            <field name="name" model="api.custom.control" 
+            eval="(obj().env['easy.api'].search([('id','=',ref('easy_api_custom_jsonapi_apibasic'))])).name + '_custom_access'"/>
+            <field name="custom_model_access_ids" model="custom.model.access" eval="[(0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.bank')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.category')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            })]"/>
+        </record>
+
+        <!-- Custom JsonAPI OAuth2 -->
+        <record id="custom_jsonapi_oauth2" model="api.custom.control">
+            <field name="name" model="api.custom.control" 
+            eval="(obj().env['easy.api'].search([('id','=',ref('easy_api_custom_jsonapi_oauth2'))])).name + '_custom_access'"/>
+            <field name="custom_model_access_ids" model="custom.model.access" eval="[(0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.bank')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.category')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            })]"/>
+        </record>
+
+        <!--  Custom GraphQL APIKEY -->
+        <record id="custom_graphql_apikey" model="api.custom.control">
+            <field name="name" model="api.custom.control" 
+            eval="(obj().env['easy.api'].search([('id','=',ref('easy_api_custom_graphql_apikey'))])).name + '_custom_access'"/>
+            <field name="custom_model_access_ids" model="custom.model.access" eval="[(0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.bank')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.category')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            })]"/>
+        </record>
+
+        <!-- Custom GraphQL Api-User -->
+        <record id="custom_graphql_apiuser" model="api.custom.control">
+            <field name="name" model="api.custom.control" 
+            eval="(obj().env['easy.api'].search([('id','=',ref('easy_api_custom_graphql_apiuser'))])).name + '_custom_access'"/>
+            <field name="custom_model_access_ids" model="custom.model.access" eval="[(0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.bank')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.category')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            })]"/>
+        </record>
+
+        <!-- Custom GraphQL Basic-Auth -->
+        <record id="custom_graphql_apibasic" model="api.custom.control">
+            <field name="name" model="api.custom.control" 
+            eval="(obj().env['easy.api'].search([('id','=',ref('easy_api_custom_graphql_apibasic'))])).name + '_custom_access'"/>
+            <field name="custom_model_access_ids" model="custom.model.access" eval="[(0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.bank')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.category')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            })]"/>
+        </record>
+        <!-- Custom GraphQL OAuth2 -->
+        <record id="custom_graphql_oauth2" model="api.custom.control">
+            <field name="name" model="api.custom.control" 
+            eval="(obj().env['easy.api'].search([('id','=',ref('easy_api_custom_graphql_oauth2'))])).name + '_custom_access'"/>
+            <field name="custom_model_access_ids" model="custom.model.access" eval="[(0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.bank')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            }),
+            (0, 0, {
+                'model_id': obj().env['ir.model'].search([('model','=','res.partner.category')]).id,
+                'create_perm': True,
+                'read_perm': True,
+                'write_perm': True,
+                'delete_perm': True,
+            })]"/>
+        </record>
+
+    </data>
+
+    <data>
+
+        <record id="easy_api_custom_graphql_oauth2" model="easy.api">
+            <field name="resource_control_id" ref="custom_graphql_oauth2"/>
+        </record>
+
+        <record id="easy_api_custom_graphql_apibasic" model="easy.api">
+            <field name="resource_control_id" ref="custom_graphql_apibasic"/>
+        </record>
+
+        <record id="easy_api_custom_graphql_apiuser" model="easy.api">
+            <field name="resource_control_id" ref="custom_graphql_apiuser"/>
+        </record>
+
+        <record id="easy_api_custom_graphql_apikey" model="easy.api">
+            <field name="resource_control_id" ref="custom_graphql_apikey"/>
+        </record>
+
+        <record id="easy_api_custom_jsonapi_oauth2" model="easy.api">
+            <field name="resource_control_id" ref="custom_jsonapi_oauth2"/>
+        </record>
+
+        <record id="easy_api_custom_jsonapi_apibasic" model="easy.api">
+            <field name="resource_control_id" ref="custom_jsonapi_apibasic"/>
+        </record>
+
+        <record id="easy_api_custom_jsonapi_apiuser" model="easy.api">
+            <field name="resource_control_id" ref="custom_jsonapi_apiuser"/>
+        </record>
+
+        <record id="easy_api_custom_jsonapi_apikey" model="easy.api">
+            <field name="resource_control_id" ref="custom_jsonapi_apikey"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_general_voucher" model="ir.actions.report">
+            <field name="name">ใบสำคัญบันทึกบัญชี A4</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบสำคัญบันทึกบัญชี A4"</field>
+            <field name="report_name">hdc_voucher_report.account_general_voucher_report</field>
+            <field name="report_file">hdc_voucher_report.account_general_voucher_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_voucher_report.paperformat_report_general_voucher"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <record id="tags_sale_product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.tag.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="hdc_sale_alternative.product_template_form_view" />
+        <field name="priority" eval="20" />
+        <field name="arch" type="xml">
+            <group name="group_standard_price" position="after">
+                <group>
+                    <field name="tags_product_sale_ids" string="Tag" widget="many2many_tags" options="{'no_create': True}" />
+                </group>
+            </group>
+            <xpath expr="//field[@name='used_for']" position="after">
+                <field name="tags_product_sale_ids" string="Tag" widget="many2many_tags" options="{'no_create': True}" />
+            </xpath>
+        </field>
+    </record> -->
+
+    <record id="product_supplierinfo_addon_fields_inherit_product_supplierinfo" model="ir.ui.view">
+        <field name="name">product.supplierinfo.addon.fields.form.inherit.product.supplierinfo</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="vendor_code" readonly="True"/>
+            </xpath>
+            <xpath expr="//group[@name='vendor']" position="inside">
+                <field name="buyer_name"/>
+                <label for="production_leadtime"/>
+                <div>
+                    <field name="production_leadtime" class="oe_inline"/> days
+                </div>
+                <label for="booking"/>
+                <div>
+                    <field name="booking" class="oe_inline"/> days
+                </div>
+                <label for="transit_time"/>
+                <div>
+                    <field name="transit_time" class="oe_inline"/> days
+                </div>
+                <label for="clearance"/>
+                <div>
+                    <field name="clearance" class="oe_inline"/> days
+                </div>
+                <label for="product_delivery_safety"/>
+                <div>
+                    <field name="product_delivery_safety" class="oe_inline" readonly="True"/> days
+                </div>
+                <label for="safety_stock"/>
+                <div>
+                    <field name="safety_stock" class="oe_inline"/> days
+                </div>
+                <label for="month_to_stock"/>
+                <div>
+                    <field name="month_to_stock" class="oe_inline" readonly="True"/> month
+                </div>
+            </xpath>
+            <xpath expr="//group" position="after">  
+                <group name="remark" string="Remark">
+                    <div>
+                        <field name="remark" placeholder="This note is added to purchase orders."/>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>  
+    <record id="product_addon_fields_view_product_supplierinfo_tree_inherit" model="ir.ui.view">
+        <field name="name">product.addon.fields.view.product.supplierinfo.tree.inherit</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="vendor_code" readonly="True"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

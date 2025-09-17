@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hdc_mrp_wo_start_all_view_production_form_inherit" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_mark_done'][1]" position="replace">
+                <button name="button_mark_done" invisible="1" string="Validate" type="object" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//button[@name='button_mark_done'][2]" position="replace">
+                <button name="button_mark_done" attrs="{'invisible': [('state', 'not in', ('progress','to_close'))]}" string="Mark as Done" type="object" class="oe_highlight"/>
+            </xpath>
+
+            <xpath expr="//button[@name='button_unbuild']" position="after">
+                <field name="hide_btn" invisible="1"/>
+                <button name="button_start" type="object" string="Start WO" attrs="{'invisible': [('hide_btn','=',True),]}"/>
+                <button name="button_done" type="object" string="Done WO" attrs="{'invisible': [('state', 'not in', ('progress'))]}"/>
+            </xpath>
+            <xpath expr="//button[@name='button_unplan']" position="replace">
+                <button name="button_unplan" type="object" string="Unplan" invisible="1"/>
+            </xpath>
+            <xpath expr="//button[@name='button_plan']" position="replace">
+                <button name="button_plan" invisible="1" type="object" string="Plan" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_production_order_wo_start" model="ir.actions.server">
+        <field name="name">Start WO</field>
+        <field name="model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+        records.button_start()
+        </field>
+    </record>
+
+    <record id="action_production_order_wo_done" model="ir.actions.server">
+        <field name="name">Done WO</field>
+        <field name="model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+        records.button_done()
+        </field>
+    </record>
+
+    <record id="action_work_center_wo_start" model="ir.actions.server">
+        <field name="name">Start WO</field>
+        <field name="model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+        for record in records:
+            record.button_start()
+        </field>
+    </record>
+
+    <record id="action_work_center_wo_done" model="ir.actions.server">
+        <field name="name">Done WO</field>
+        <field name="model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+        for record in records:
+            record.button_done()
+        </field>
+    </record>
+
+</odoo>

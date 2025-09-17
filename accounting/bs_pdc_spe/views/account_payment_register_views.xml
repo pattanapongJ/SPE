@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- View account.payment.register form -->
+    <record id="view_account_payment_register_form" model="ir.ui.view">
+        <field name="name">view.account.payment.register.form</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="bs_pdc.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='cheque_ref']" position="after">
+                <field name="due_date" attrs="{'invisible':[('is_pdc_journal','!=',True)]}"/>
+                <field name="bank_id" attrs="{'invisible':[('is_pdc_journal','!=',True)]}" options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                <field name="bank_branch" attrs="{'invisible':[('is_pdc_journal','!=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_purchase_mtk_user,undefined.wizard.purchase.mtk,model_wizard_purchase_mtk,base.group_user,1,1,1,1
+access_wizard_purchase_mtk_line_user,undefined.wizard.purchase.mtk.line,model_wizard_purchase_mtk_line,base.group_user,1,1,1,1
+access_wizard_create_purchase_mtk_user,undefined.wizard.create.purchase.mtk,model_wizard_create_purchase_mtk,base.group_user,1,1,1,1

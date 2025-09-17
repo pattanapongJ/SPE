@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="receipt_list_paperformat_report" model="report.paperformat">
+        <field name="name">Receipt List A4 Report</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">78</field>
+        <field name="margin_bottom">42</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">71</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="paperformat_report_receipt_s_o" model="report.paperformat">
+        <field name="name">Report RL shortage/overage A4 Portrait</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">69</field>
+        <field name="margin_bottom">55</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">62</field>
+        <field name="dpi">90</field>
+    </record>
+</odoo>

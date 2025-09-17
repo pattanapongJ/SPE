@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="sale_to_mr_view_inherited" model="ir.ui.view">
+        <field name="name">sale to mr view inherited</field>
+        <field name="model">mrp.mr</field>
+        <field name="inherit_id" ref="hdc_mrp_mr.mrp_mr_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='remark']" position="after">
+                <field name="sale_order_id" />
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_create_mrp_request_inherit" model="ir.ui.view">
+        <field name="name">sale order create mrp request form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_cancel']" position="after">
+                <button name="open_wizard_mrp_request" string="Create MR" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ['draft','sale'])]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button type="object"
+                    name="act_manufacturing_request"
+                    class="oe_stat_button"
+                    icon="fa-bars"
+                    attrs="{'invisible': [('mr_count', '=', 0)]}">
+                    <field name="mr_count" widget="statinfo" string="Manufacturing Request"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

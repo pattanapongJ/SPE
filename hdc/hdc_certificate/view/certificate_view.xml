@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="view_certificate_origin_form" model="ir.ui.view">
+        <field name="name">certificate.origin.form</field>
+        <field name="model">certificate.origin</field>
+        <field name="arch" type="xml">
+            <form string="Certificate Of Origin">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="view_certificate_origin_tree" model="ir.ui.view">
+        <field name="name">certificate.origin.tree</field>
+        <field name="model">certificate.origin</field>
+        <field name="arch" type="xml">
+            <tree string="Certificate Of Origin" create="true" edit="true">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_certificate_origin" model="ir.actions.act_window">
+        <field name="name">Certificate Of Origin</field>
+        <field name="res_model">certificate.origin</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_certificate_origin" name="Certificate Of Origin"
+          parent="contacts.res_partner_menu_config" action="action_certificate_origin"/>
+
+    <!-- ################### -->
+
+    <record id="inherit_partner_view_certificate_origin" model="ir.ui.view">
+        <field name="name">view.partner.certificate.origin</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">40</field>
+        <field name="arch" type="xml">
+            <!-- depend account -->
+            <field name="property_supplier_payment_term_id" position="after">
+                <field name="payment_method"/>
+            </field>
+            <!-- depend purchase -->
+            <xpath expr="//group[@name='purchase']" position="inside">
+                <field name="certificate_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ################### -->
+    
+    <record id="purchase_order_certificate_form_inherit" model="ir.ui.view">
+        <field name="name">view.purchase.order.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="hdc_addon_fields_purchase.view_1add_field_purchase_order_form_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='remark_for_supplier']" position="before">
+                <field name="certificate_id"/>
+            </xpath>
+        </field>    
+    </record>
+
+
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_mrp_borrow_user,undefined.wizard.mrp.borrow,model_wizard_mrp_borrow,base.group_user,1,1,1,1
+access_wizard_mrp_borrow_line_user,undefined.wizard.mrp.borrow.line,model_wizard_mrp_borrow_line,base.group_user,1,1,1,1

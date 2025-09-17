@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View account.payment.register form -->
+    <record id="view_account_payment_register_form" model="ir.ui.view">
+        <field name="name">view.account.payment.register.form</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account_payment_multi_deduction.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='deduction_ids']" position="before">
+                <group>
+
+                    <field name="add_gl_items" widget="many2many_tags"
+                           context="{
+                           'search_gl_items':1,
+                           'tree_view_ref': 'account.view_move_line_tree_grouped_general',
+                           'search_view_ref': 'account.view_account_move_line_filter',
+                           'journal_type':'general',
+                            'search_default_group_by_account': 1,
+                             'search_default_posted':1}"
+                           domain="[('partner_id','=',partner_id),('parent_state','=','posted'),('full_reconcile_id','=',False),('account_id.reconcile','=',True),('balance', '!=', 0),('display_type', 'not in', ('line_section', 'line_note')),('id','not in',line_ids)]"
+                           options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True,'no_create':True,'search_more':True}"/>
+                </group>
+            </xpath>
+
+            <xpath expr="//field[@name='deduction_ids']/tree/field[@name='name']" position="after">
+                <field name="gl_item_id" invisible="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

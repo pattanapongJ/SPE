@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_pdc_deposit_bbl" model="report.paperformat">
+        <field name="name">PDC Deposit</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">195</field>
+        <field name="page_width">109</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">5</field>
+        <field name="dpi">80</field>
+    </record>
+
+    <record id="paperformat_pdc_deposit_ktb" model="report.paperformat">
+        <field name="name">PDC Deposit</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">210</field>
+        <field name="page_width">102</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">5</field>
+        <field name="dpi">80</field>
+    </record>
+
+    <record id="paperformat_pdc_deposit_kbank" model="report.paperformat">
+        <field name="name">PDC Deposit</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">211</field>
+        <field name="page_width">115</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">5</field>
+        <field name="dpi">80</field>
+    </record>
+
+    <record id="paperformat_pdc_deposit_ttb" model="report.paperformat">
+        <field name="name">PDC Deposit</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">216</field>
+        <field name="page_width">115</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">5</field>
+        <field name="dpi">80</field>
+    </record>
+
+    <record id="paperformat_pdc_deposit_bay" model="report.paperformat">
+        <field name="name">PDC Deposit</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">215</field>
+        <field name="page_width">105</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">5</field>
+        <field name="dpi">80</field>
+    </record>
+
+    <record id="paperformat_pdc_deposit_uob" model="report.paperformat">
+        <field name="name">PDC Deposit</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">212</field>
+        <field name="page_width">107</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">5</field>
+        <field name="dpi">80</field>
+    </record>
+
+    <record id="paperformat_pdc_deposit_scb" model="report.paperformat">
+        <field name="name">PDC Deposit</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">217</field>
+        <field name="page_width">105</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">5</field>
+        <field name="dpi">80</field>
+    </record>
+</odoo>

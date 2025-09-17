@@ -1,0 +1,14 @@
+<odoo>
+    <record id="account_asset_code_view_form" model="ir.ui.view">
+        <field name="name">account.asset.code.form</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset_management.account_asset_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//h1" position="after">
+               <h2> 
+                  <field name="asset_code" Sting="Asset Code" class="oe_inline" placeholder="Asset Code"/>               
+              </h2>
+            </xpath>
+        </field>
+    </record>
+</odoo>

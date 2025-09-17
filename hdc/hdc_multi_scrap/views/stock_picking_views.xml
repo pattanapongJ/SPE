@@ -1,0 +1,21 @@
+<odoo>
+    <record id="hdc_multi_scrap_view_picking_form" model="ir.ui.view">
+        <field name="name">hdc_multi_scrap.stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_scrap']" position="after">
+                <button name="button_multi_scrap" type="object" string="Multi Scrap Orders"
+                        attrs="{'invisible': ['|', '&amp;', ('picking_type_code', '=', 'incoming'), ('state', '!=', 'done'), '&amp;', ('picking_type_code', '=', 'outgoing'), ('state', '=', 'done')]}"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_see_move_scrap']" position="after">
+                <field name="has_multi_scrap_move" invisible="1"/>
+                <button name="action_see_move_multi_scrap" string="Multi Scraps" type="object"
+                            class="oe_stat_button" icon="fa-arrows-v"
+                            attrs="{'invisible': [('has_multi_scrap_move', '=', False)]}"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

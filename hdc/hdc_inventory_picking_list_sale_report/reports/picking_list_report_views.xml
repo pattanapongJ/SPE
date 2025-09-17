@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="generate_picking_list_report" model="ir.actions.report">
+         <field name="name">รายงานสั่งจัดสินค้า Modern Trade</field>
+         <field name="model">generate.picking.list.report</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานสั่งจัดสินค้า Modern Trade "</field>
+         <!-- <field name="print_report_name">"รายงานสั่งจัดสินค้า Modern Trade-%s " %(object.name)</field> -->
+         <field name="report_name">hdc_inventory_picking_list_sale_report.ge_pkl_rp</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.ge_pkl_rp</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="picking_list_report_view_th_history" model="ir.actions.report">
+         <field name="name">รายงานสั่งจัดสินค้า Modern Trade</field>
+         <field name="model">picking.lists</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานสั่งจัดสินค้า Modern Trade-%s " %(object.name)</field>
+         <field name="report_name">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="picking_list_report_view_th_history_1" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้า (รวมยอดจัด)</field>
+         <field name="model">picking.lists</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้า (รวมยอดจัด)-%s " %(object.name)</field>
+         <field name="report_name">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_1</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_1</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="picking_list_report_view_th_history_portrait" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้า</field>
+         <field name="model">picking.lists</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้า-%s " %(object.name)</field>
+         <field name="report_name">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history_portrait"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="picking_list_report_view_th_history_a5" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้า A5</field>
+         <field name="model">picking.lists</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้า A5-%s " %(object.name)</field>
+         <field name="report_name">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_a5</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_a5</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history_a5"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="picking_list_report_view_th_history_a5_multi" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้า A5 (Multi Sale Order)</field>
+         <field name="model">picking.lists</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้า A5 (Multi Sale Order)-%s " %(object.name)</field>
+         <field name="report_name">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_a5_multi</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_a5_multi</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history_a5_multi"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="picking_list_report_view_th_history_portrait_multi" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้า (Multi Sale Order)</field>
+         <field name="model">picking.lists</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้า (Multi Sale Order)-%s " %(object.name)</field>
+         <field name="report_name">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait_multi</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait_multi</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history_portrait_multi"/>
+         <field name="binding_type">report</field>
+        </record>
+      
+      <record id="picking_list_report_view_th_history_portrait_booth" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้าบูธ</field>
+         <field name="model">picking.lists</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้าบูธ-%s " %(object.name)</field>
+         <field name="report_name">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait_booth</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait_booth</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history_portrait"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="picking_list_report_view_th_history_portrait_road_show" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้า Road Show</field>
+         <field name="model">picking.lists</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้า Road Show-%s " %(object.name)</field>
+         <field name="report_name">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait_road_show</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait_road_show</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history_portrait"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="picking_list_report_view_th_history_portrait_sale_consignment" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้าฝากขาย</field>
+         <field name="model">picking.lists</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้าฝากขาย-%s " %(object.name)</field>
+         <field name="report_name">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait_sale_consignment</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait_sale_consignment</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history_portrait"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="picking_list_report_view_th_history_portrait_consignment" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้า Road Show</field>
+         <field name="model">picking.lists</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้า Road Show-%s " %(object.name)</field>
+         <field name="report_name">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait_consignment</field>
+         <field name="report_file">hdc_inventory_picking_list_sale_report.hdc_picking_list_report_th_history_portrait_consignment</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_picking_list_sale_report.paperformat_report_picking_list_th_history_portrait"/>
+         <field name="binding_type">report</field>
+      </record>
+   </data>
+</odoo>

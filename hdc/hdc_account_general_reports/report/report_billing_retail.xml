@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <t t-name="hdc_account_general_reports.report_billing_retail_document"> -->
+    <template id="report_billing_retail_document">
+
+    <t t-if="not o and doc">
+        <t t-set="o" t-value="doc" />
+    </t>
+    <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id.sudo()" />
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company" />
+    </t>
+    <t t-set="total_amount" t-value="0" />
+    <t t-foreach="o.billing_line_ids" t-as="bill_line">
+        <t t-set="move" t-value="bill_line.invoice_id" />
+        <t t-set="sale_order" t-value="env['sale.order'].search([('name', '=', (bill_line.invoice_id and bill_line.invoice_id.invoice_origin) or '')])"/>
+
+        <div class="header" style="font-family: KanitLight; font-size: 12px;">
+            <br />
+            <div class="row">
+                <div class="col-12 text-center">
+                    <t t-esc="company.name_th" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <t t-esc="company.name" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <t t-if="company.street_th">
+                        <t t-esc="company.street_th" />
+                    </t>
+                    <t t-if="company.street2_th">
+                        <t t-esc="company.street2_th" />
+                    </t>
+                    <t t-if="company.city_th">
+                        <t t-esc="company.city_th" />
+                    </t>
+                    <t t-if="company.state_th_id.name">
+                        <t t-esc="company.state_th_id.name" />
+                    </t>
+                    <t t-if="company.zip_th">
+                        <t t-esc="company.zip_th" />
+                    </t>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 text-center text-nowrap">
+                    <!-- <strong><t t-esc="move.name" /></strong> -->
+                    <t t-if="sale_order.name">
+                        <strong><t t-esc="sale_order.name" /></strong>
+                    </t>
+                    <t t-else="">
+                        <span style="color: white;">-</span>
+                    </t>
+                </div>
+                <div class="col-6 text-center text-nowrap" style="">
+                    <t t-if="company.street">
+                        <t t-esc="company.street" />
+                    </t>
+                    <t t-if="company.street2">
+                        <t t-esc="company.street2" />
+                    </t>
+                    <t t-if="company.sub_district">
+                        <t t-esc="company.sub_district" />
+                    </t>
+                    <t t-if="company.city">
+                        <t t-esc="company.city" />
+                    </t>
+                    <t t-if="company.state_id.name">
+                        <t t-esc="company.state_id.name" />
+                    </t>
+                    <t t-if="company.zip">
+                        <t t-esc="company.zip" />
+                    </t>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <span style="margin-right: 20px;">
+                        TEL
+                        <t t-esc="move.branch_id.company_id.phone_th" />
+                    </span>
+                    <span style="margin-right: 20px;">
+                        FAX
+                        <t t-esc="move.branch_id.company_id.fax_th" />
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 text-right">
+                    <span style="margin-right: 20px;">
+                      
+                    </span>
+                    <span style="margin-right: 20px;">
+                        <!-- <strong>2xxxxxxxx</strong> -->
+                        <strong><t t-esc="move.partner_id.ref" /></strong>
+                    </span>
+                </div>
+                <div class="col-4 text-right">
+                     <!-- style="margin-right: 30px;" -->
+                    <span style="margin-right: 41px;">
+                        <t t-esc="move.branch_id.name" />
+                    </span>
+                </div>
+                <div class="col-3 text-right">
+                    <span style="margin-right: 20px;">
+                        <strong><t t-esc="move.billing_route_id.name" /></strong>
+                    </span>
+                </div>
+                <div class="col-2 text-right">
+                    <span style="margin-right: 20px;">
+                        <strong><t t-esc="move.form_no" /></strong>
+                    </span>
+                </div>
+            </div>
+
+            <!-- <div class="row">
+                <div class="col-12 text-right">
+                    <span>
+                        <strong>Page</strong>
+                    </span>
+                    <span class="page" style="margin-right: 5px;" />of
+                    <span class="topage" style="margin-left: 5px;" />
+                </div>
+            </div> -->
+
+            <div class="row">
+                <div class="col-7 text-right">
+                    <span>
+                        <strong>สำเนาใบกำกับภาษี/สำเนาบิลเงินสด</strong>
+                    </span>
+                </div>
+                <div class="col-5 text-right">
+                    <span>
+                        <strong>เลขที่ <t t-esc="move.form_no" /></strong>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4 text-left">
+                    <span>
+                        <strong>
+                            เลขประจำตัวผู้เสียภาษี:
+                            <t t-esc="move.branch_id.company_id.vat_th" />
+                        </strong>
+                    </span>
+                </div>
+                <div class="col-4 text-center">
+                    <span> 
+                        <strong style="margin-right: 20px;">TAX INVOICE COPY/CASH RECEIPT COPY</strong>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row" style="height: 135px;">
+                <div class="col-6" style="border: 1px solid black;">
+                <div class="row">
+                    <div class="col-3 text-nowrap">
+                        <span>ชื่อ/ที่อยู่: </span>
+                    </div>
+                    <div class="col-9 text-left">
+                        <strong> <t t-esc="move.partner_id.name" /> <t t-esc="move.branch_id.name" /> </strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-nowrap">
+                        <span>Name/Address: </span>
+                    </div>
+                    <div class="col-9 text-left">
+                        <t t-if="move.partner_id.street">
+                            <strong><t t-esc="move.branch_id.company_id.street" /></strong>
+                        </t>
+                        <t t-if="move.partner_id.street2">
+                            <strong><t t-esc="move.partner_id.street2" /></strong>
+                        </t>
+                        <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-left">
+                        <t t-if="move.partner_id.street">
+                            <strong><t t-esc="move.branch_id.company_id.street" /></strong>
+                        </t>
+                        <t t-if="move.partner_id.street2">
+                            <strong><t t-esc="move.partner_id.street2" /></strong>
+                        </t>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-12 text-left">
+                        <t t-if="move.partner_id.sub_district">
+                            <strong><t t-esc="move.partner_id.sub_district" /></strong>
+                        </t>
+                        <t t-if="move.partner_id.city">
+                            <strong><t t-esc="move.partner_id.city" /></strong>
+                        </t>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-12 text-left">
+                        <t t-if="move.partner_id.state_id.name">
+                            <strong><t t-esc="move.partner_id.state_id.name" /></strong>
+                        </t>
+                        <br/>
+                        <t t-if="move.partner_id.zip">
+                            <strong><t t-esc="move.partner_id.zip" /></strong>
+                        </t>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-12 text-left">
+                        <t t-if="move.partner_id.phone">
+                            <strong>โทร. <t t-esc="move.partner_id.phone" /></strong>
+                        </t>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-6" style="border: 1px solid black; display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="row" style="height: 60px;">
+                    <div class="col-5">
+                    <span>วันที่/Date: </span>
+                    </div>
+                    <div class="col-7">
+                        <strong><t t-esc="move.invoice_date.strftime('%d/%m/%Y')"/></strong>
+                    </div>
+                </div>
+                <div class="row" style="border-bottom: 1px solid black;">
+                    <div class="col-5">
+                    <span>พนักงานขาย/Saleman: </span>
+                    </div>
+                    <div class="col-7">
+                        <strong><t t-esc="move.invoice_user_employee_id.name"/>/<t t-esc="move.invoice_user_employee_id.phone"/></strong>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px; height: 20px;">
+                    <div class="col-7">
+                    <span>เงื่อนไขการชำระเงิน/Conditions: เงินสด Cash</span>
+                    </div>
+                    <div class="col-5">
+                        <strong><t t-esc="move.invoice_payment_term_id.name"/></strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-7">
+                    <span>เลขประจำตัวผู้เสียภาษีอากรผู้ซื้อ: </span>
+                    </div>
+                    <div class="col-5">
+                        <strong><t t-esc="move.partner_id.vat"/></strong>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="article font-inventory-div" style="font-family: KanitLight; font-size: 12px;" t-att-data-oe-model="o and move._name" t-att-data-oe-id="o and move.id">
+            <style>
+                .table-bordered {
+                    width: 100%;
+                    border-collapse: collapse;
+                    table-layout: fixed;
+                    border-top: 1px solid black; 
+                    border-bottom: 1px solid black;
+                    border-left: 1px solid black;
+                    border-right: 1px solid black; 
+                }
+                .table-bordered th,
+                .table-bordered td {
+                    padding: 4px 8px;
+                    vertical-align: top;
+                    line-height: 19px;
+                    border: none; 
+                }
+
+                .table-bordered thead th {
+                    text-align: center;
+                    border: 1px solid black; 
+                    border-bottom: none;
+                }
+
+                .table-bordered thead tr:last-child th {
+                    border-bottom: 1px solid black;
+                    border-top: none; 
+                }
+
+
+                .table-bordered tbody td {
+                    border-left: 1px solid black;
+                    border-right: 1px solid black;
+                    border-top: none; 
+                    border-bottom: none; 
+                }
+
+                .table-footer {
+                    border: none; 
+                }
+
+                .table-footer td {
+                    line-height: 19px;
+                    padding: 4px 8px;
+                    border-left: 1px solid black;
+                    border-right: 1px solid black; 
+                    border-top: none !important;  
+                    border-bottom: none !important; 
+                }
+
+                .table-footer tr:last-child td {
+                    border-bottom: none !important;
+                }
+
+                .table-bordered thead th:first-child,
+                .table-bordered thead th:last-child,
+                .table-footer td:first-child,
+                .table-footer td:last-child {
+
+                }
+
+                td span[style*="color: white;"] {
+                    border: none !important; 
+                }
+
+            </style>
+    
+            <div class="row">
+                <t t-set="l_no" t-value="0" />
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" class="text-center" style="width: 5%;">ลำดับ<br /><span>Item</span></th>
+                            <th rowspan="2" class="text-center" style="width: 35%;">รายการ<br /><span>Description</span></th>
+                            <th colspan="3" class="text-center" style="width: 15%;">ส่วนลด %<br /><span>Discount</span></th>
+                            <th rowspan="2" class="text-center" style="width: 10%;">จำนวน<br /><span>Quantity</span></th>
+                            <th rowspan="2" class="text-center" style="width: 5%;">หน่วย<br /><span>Unit</span></th>
+                            <th rowspan="2" class="text-center" style="width: 15%;">ราคาต่อหน่วย<br /><span>Unit Price</span></th>
+                            <th rowspan="2" class="text-center" style="width: 15%;">จำนวนเงิน<br /><span>Amount (Baht)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="max_rows_per_tbody_page" t-value="6" /> 
+                        
+                        <t t-if="o and move.invoice_line_ids">
+                            <t t-set="max_actual_rows" t-value="len(move.invoice_line_ids)" />
+                        </t>
+                        <t t-else="">
+                            <t t-set="max_actual_rows" t-value="0" />
+                        </t>
+
+                        <t t-foreach="move.invoice_line_ids or []" t-as="line">
+                            <tr class="white-border-bottom">
+                                <td style="text-align: left;"><t t-esc="line_index + 1" /></td> 
+                                <td style="text-align: left; font-size: 10px"><t t-esc="line.name" /></td> 
+                                <td style="text-align: center; font-size: 10px"><t t-esc="line.triple_discount"/></td> 
+                                <td><span style="color: white;">-</span></td>
+                                <td><span style="color: white;">-</span></td>
+                                <td style="text-align: right; font-size: 10px"><span t-esc="'{0:,.2f}'.format(line.quantity)"/></td> 
+                                <td style="text-align: center; font-size: 10px"><t t-esc="line.product_uom_id.name"/></td> 
+                                <td style="text-align: right; font-size: 10px"><span t-esc="'{0:,.2f}'.format(line.price_unit)"/></td> 
+                                <td style="text-align: right; font-size: 10px"><span t-esc="'{0:,.2f}'.format(line.price_total)"/></td> 
+
+                            </tr>
+                        </t>
+
+                        <t t-set="rows_on_last_page" t-value="max_actual_rows % max_rows_per_tbody_page" />
+                        
+                        <t t-if="rows_on_last_page == 0 and max_actual_rows > 0">
+                            </t>
+                        <t t-elif="max_actual_rows == 0">
+                            <t t-set="num_empty_rows" t-value="max_rows_per_tbody_page" />
+                        </t>
+                        <t t-else="">
+                            <t t-set="num_empty_rows" t-value="max_rows_per_tbody_page - rows_on_last_page" />
+                        </t>
+                        
+                        <t t-if="num_empty_rows > 0">
+                            <t t-foreach="range(num_empty_rows)" t-as="empty_row_index">
+                                <tr class="white-border-bottom">
+                                    <td><span style="color: white;">-</span></td>
+                                    <td><span style="color: white;">-</span></td>
+                                    <td><span style="color: white;">-</span></td>
+                                    <td><span style="color: white;">-</span></td>
+                                    <td><span style="color: white;">-</span></td>
+                                    <td><span style="color: white;">-</span></td>
+                                    <td><span style="color: white;">-</span></td>
+                                    <td><span style="color: white;">-</span></td>
+                                    <td><span style="color: white;">-</span></td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                    <tfoot class="table-footer">
+                        <tr class="white-border-bottom">
+                            <td style="text-align: left;"></td>
+                            <td style="text-align: left;"><span t-esc="move.transport_line_id.name" /></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"></td>
+                            <td style="text-align: left;"><span t-esc="(move.narration or '')[:100]"/></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                            <td><span style="color: white;">-</span></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer font-inventory-div" style="font-family: KanitLight; font-size: 12px;" t-att-data-oe-model="o and move._name" t-att-data-oe-id="o and move.id"> 
+            <div class="row"> 
+                <t t-set="l_no" t-value="0" /> 
+                <table class="table table-borderless" style="line-height: 14px; border-collapse: collapse; width: 100%;"> 
+                    <tbody> 
+                    <tr> 
+                        <td style="text-align: left; width: 70.5%; padding: 8px;vertical-align: top; border: 1px solid black;"> 
+                        1. ได้รับมอบสินค้าตามจำนวนรายการและราคาข้างต้นไว้ครบถ้วนในสภาพเรียบร้อยถูกต้องตามความประสงค์ทุกประการ<br/>
+                        2. บริษัทฯ จะคิดดอกเบี้ย 1.25% ต่อเดือน หากชำระบิลเกินกำหนด<br/>
+                        3. ใบเสร็จรับเงินเฉบับนี้จะสมบูรณ์ก็ต่อเมื่อ ผู้ซื้อได้ชำระเงินให้กับบริษัทฯ เป็นที่เรียบร้อยแล้ว<br/>
+                        <span style="display: inline-block; margin-left: 250px;">ผิด ตก ยกเว้น E. &amp; O. E.</span>
+                        </td> 
+                        <td style="width: 29.5%; padding: 0; border: 1px solid black; vertical-align: top;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                            <td style="border-bottom: 1px solid black; padding: 5px; text-align: left; font-weight: bold;width: 49%;">
+                                รวมเป็นเงิน<br/>Total
+                            </td>
+                            <td style="border-bottom: 1px solid black; border-left: 1px solid black; padding: 5px; text-align: right;font-weight: bold; width: 51%;">
+                                <strong><span t-esc="'{0:,.2f}'.format(move.amount_untaxed)"/></strong>
+                            </td>
+                            </tr>
+                            <tr>
+                            <t t-set="amount_by_group" t-value="move.amount_by_group"/>
+                            <t t-if="amount_by_group and amount_by_group[0]">
+                                <t t-set="vat_7_percent" t-value="amount_by_group[0][0].replace('VAT ', '')"/>
+                            </t>
+                            <t t-else="">
+                                <t t-set="vat_7_percent" t-value="''"/>
+                            </t>
+                            <td style="border-bottom: 1px solid black; padding: 5px; text-align: left; font-weight: bold; width: 50%;">
+                                ภาษีมูลค่าเพิ่ม <strong><span style="margin-left: 30px;" t-esc="vat_7_percent"/></strong>
+                                <br/>Vat
+                            </td>
+                            <td style="border-bottom: 1px solid black; border-left: 1px solid black; padding: 5px; text-align: right; width: 50%;">
+                               
+                                <t t-if="amount_by_group and len(amount_by_group) > 0 and len(amount_by_group[0]) > 1">
+                                    <t t-if="amount_by_group[0][1]">
+                                        <t t-set="value" t-value="amount_by_group[0][1]"/>
+                                    </t>
+                                    <t t-if="not amount_by_group[0][1]">
+                                        0.00
+                                    </t>
+                                    <span t-if="isinstance(value, (int, float))">
+                                        <strong><span t-esc="'{0:,.2f}'.format(float(value))"/></strong>
+                                    </span>
+                                    <span t-if="not isinstance(value, (int, float))">
+                                        <strong><span t-esc="value"/></strong>
+                                    </span>
+                                    
+                                </t>
+                            </td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td style="text-align: center; width: 70.5%; padding: 8px;vertical-align: top; border: 1px solid black;"> 
+                            <strong><span t-esc="move.currency_id.amount_to_text_th(abs(move.amount_total), move.currency_id.currency_unit_label)"/></strong>
+                        </td> 
+                        <td style="width: 29.5%; padding: 0; border: 1px solid black; vertical-align: top;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                            <td style="border-bottom: 1px solid black; padding: 5px; text-align: left; font-weight: bold;width: 50%;">
+                                รวมเป็นเงินทั้งสิ้น<br/>Grand Total
+                            </td>
+                            <td style="border-bottom: 1px solid black; border-left: 1px solid black; padding: 5px; text-align: right; font-weight: bold; width: 50%;">
+                                <strong><span t-esc="'{0:,.2f}'.format(move.amount_total)"/></strong>
+                            </td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="padding: 0; border: 1px solid black;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="width: 20%; text-align: center; padding: 10px 0;">
+                                        <br/>
+                                        <br/>
+                                        <div style="border-bottom: 1px solid black; margin: 0 10px 0 0;"></div>
+                                        <br/>
+                                        <strong>ผู้รับสินค้า Received by</strong>
+                                    </td>
+                                    <td style="width: 20%; text-align: center; padding: 10px 0; border-right: 1px solid black;">
+                                        <br/>
+                                        <br/>
+                                        <div style="border-bottom: 1px solid black; margin: 0;"></div>
+                                        <br/>
+                                        <strong>วันที่ Date</strong>
+                                    </td>
+                                    <td style="width: 20%; text-align: center; padding: 10px 0; border-right: 1px solid black;">
+                                        <div style="position: relative; top: -10px;">
+                                            <t t-if="move.name">
+                                                <strong><t t-esc="move.name" /></strong>
+                                            </t>
+                                            <t t-else="">
+                                                <span style="color: white;">-</span>
+                                            </t>
+                                        </div>
+                                        <br/>
+                                        <div style="border-bottom: 1px solid black; margin: 0;"></div>
+                                        <br/>
+                                        <strong>ผู้อนุมัติ Approved by</strong>
+                                    </td>
+                                    <td style="width: 20%; text-align: center; padding: 10px 0;">
+                                        <div style="position: relative; top: -10px;">
+                                            <t t-if="move.billing_period_id.name">
+                                                <strong><t t-esc="move.billing_period_id.name" /></strong>
+                                            </t>
+                                            <t t-else="">
+                                                <span style="color: white;">-</span>
+                                            </t>
+                                        </div>
+                                        <br/>
+                                        <div style="border-bottom: 1px solid black; margin: 0;"></div>
+                                        <br/>
+                                        <strong>ผู้รับเงิน Cashier</strong>
+                                    </td>
+                                    <td style="width: 20%; text-align: center; padding: 10px 0;">
+                                        <br/>
+                                        <br/>
+                                        <div style="border-bottom: 1px solid black; margin: 0 0 0 10px;"></div>
+                                        <br/>
+                                        <strong>วันที่ Date</strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody> 
+                </table>
+            </div>
+        </div>
+    </t>
+</template>
+
+
+<template id="report_billing_retail">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="hdc_account_general_reports.report_billing_retail_document" />
+            </t>
+        </t>
+</template>
+
+</odoo>

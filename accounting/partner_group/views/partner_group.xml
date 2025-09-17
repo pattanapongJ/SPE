@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- partner group form -->
+    <record id="contacts_partner_group_view" model="ir.ui.view">
+        <field name="name">contacts.partner.group.view.form</field>
+        <field name="model">partner.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="code">
+                        <field name="code" />
+                        <field name="partner_group" />
+                    </group>
+                    <group>
+                        <field name="account_receivable_id" />
+                        <field name="account_payable_id" />
+                        <field name="fiscal_position_id" />
+                    </group>
+                    <group>
+                        <field name="entry_sequence_id" options="{'no_create':True}"/>
+                        <field name="company_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- list view -->
+    <record id="contacts_partner_group_view_tree" model="ir.ui.view">
+        <field name="name">contacts.partner.group.view.list</field>
+        <field name="model">partner.group</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" />
+                <field name="partner_group" />
+                <field name="account_receivable_id" />
+                <field name="account_payable_id" />
+                <field name="fiscal_position_id" />
+                <field name="company_id" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

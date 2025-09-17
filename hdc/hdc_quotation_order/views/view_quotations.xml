@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_quotation_order_tree_quotation_only" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.quotation.only</field>
+        <field name="model">quotation.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Quotations View">
+                <field name="quotation_id" invisible="1"/>
+                <field name="quotation_name"/>
+                <field name="order_partner_id"/>
+                <field name="order_partner_id"/>
+                <field name="validity_date"/>
+                <field name="user_id"/>
+                <field name="date_order"/>
+                <field name="product_id" invisible="1"/>
+                <field name="product_default_code"/>
+                <field name="product_name"/>
+                <field name="name"/>
+                <field name="product_uom_qty"/>
+                <field name="product_uom"/>
+                <field name="price_unit"/>
+                <field name="sub_discount"/>
+                <field name="price_total"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_quotation_order_quotation_only" model="ir.actions.act_window">
+        <field name="name">Sale Quotations View</field>
+        <field name="res_model">quotation.order.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_quotation_order_tree_quotation_only"/>
+        <!-- <field name="domain">[('state', '=', 'draft')]</field> -->
+    </record>
+
+    <menuitem id="menu_quotation_order_quotation_only"
+              name="Sale Quotations View"
+              parent="sale.menu_sale_report"
+              action="action_quotation_order_quotation_only"
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="purchase_request_inherit_purchase_request" model="ir.ui.view">
+        <field name="name">purchase.request.form.inherit.purchase.request</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='for_customer']" position="after">
+                <field name="team_id" required="1"/>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="partner_pr"/>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']/form/sheet/group/group/field[@name='name']" position="after">
+                <field name="unit_price" widget="monetary" attrs="{'readonly': [('is_editable','=', False)]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='product_uom_id']" position="after">
+                <field name="mix" force_save="1" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                <field name="max" force_save="1" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                <field name="box_qty" force_save="1" attrs="{'readonly': [('is_editable','=', False)]}"/>
+                <field name="crate_qty" force_save="1" attrs="{'readonly': [('is_editable','=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_request_line_form_addon" model="ir.ui.view">
+        <field name="name">purchase_request_line_form_addon</field>
+        <field name="model">purchase.request.line</field>
+        <field name="inherit_id" ref="purchase_request.purchase_request_line_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="unit_price" widget="monetary" attrs="{'readonly': [('is_editable','=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

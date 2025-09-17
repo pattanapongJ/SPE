@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_blanket_orders_report_form_view" model="ir.ui.view">
+        <field name="name">wizard.blanket.orders.report.form.view</field>
+        <field name="model">wizard.blanket.orders.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="state" invisible="1"/>
+                            <field name="sale_blanket_id" invisible="1"/>
+                            <field name="document" widget="selection" string="Documents" />
+                            <field name="description_type" widget='radio' string="Form Type" options="{'horizontal': false}" /> 
+                        </group>
+                    </group>
+                    <!-- <group>
+                        <group>
+                            <field name="document_type" widget='radio' options="{'horizontal': false}" /> 
+                        </group>
+                    </group> -->
+                </sheet>
+                <footer>
+                    <button string="Print" type="object" name="print" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+	<record id="action_wizard_blanket_orders_report" model="ir.actions.act_window">
+		<field name="name">Report</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">wizard.blanket.orders.report</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="view_id" ref="wizard_blanket_orders_report_form_view"/>
+	</record>
+    
+
+    
+</odoo>

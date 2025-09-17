@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_mrp_cutting_report_form_view" model="ir.ui.view">
+        <field name="name">wizard.mrp.cutting.report.form.view</field>
+        <field name="model">wizard.mrp.cutting.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="mrp_id" invisible="1"/>
+                            <field name="operation_id" invisible="1"/>
+                            <field name="material_requisition_type_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Components" name="components">
+                            <field name="mrp_cutting_line_id">
+                                <form>
+                                    <group name="group_components">
+                                        <field name="product_id"/>
+                                        <field name="quantity_qty_line"/>
+                                        <field name="quantity_qty_cut"/>
+                                        <field name="quantity_done"/>
+                                        <field name="returned_scrap"/>
+                                    </group>
+                                </form>
+                                <tree editable="bottom" create='0' delete='False'>
+                                    <field name="wizard_mrp_cutting_report_id" invisible="1"/>
+                                    <field name="product_id"/>
+                                    <field name="quantity_qty_line"/>
+                                    <field name="quantity_qty_cut"/>
+                                    <field name="quantity_done"/>
+                                    <field name="returned_scrap"/>
+                                  </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button string="Print" type="object" name="print" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+	<record id="action_wizard_mrp_cutting_report" model="ir.actions.act_window">
+		<field name="name">Cutting Report</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">wizard.mrp.cutting.report</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="view_id" ref="wizard_mrp_cutting_report_form_view"/>
+	</record>
+    
+
+    
+</odoo>

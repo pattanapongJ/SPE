@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_form_inherit_spe" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="priority">18</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_untaxed']" position="before">
+                <field name="total_before_global_disc"  widget='monetary'/>
+                <field name="total_global_disc"  widget='monetary'/>
+            </xpath>
+
+            <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="after">
+                <group class="oe_subtotal_footer ">
+                    <field name="total_discount_price" invisible="1"/>
+                    <field name="discount_price" attrs="{'readonly': [('state','=', 'done')]}" style="width: 100px;"/>
+                </group>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="replace">
+                <field name="gross_unit_price" string="Unit Price"/>
+                <field name="multi_disc"/>
+                <field name="multi_disc_amount" optional="hide"/>
+                <field name="global_disc_status" optional="hide"/>
+                <field name="global_disc_amt" optional="hide"/>
+                <field name="price_unit" readonly="1" optional="hide"/>
+            </xpath>
+             <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="before">
+                <field name="total_before_global_disc" string="Amount" optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_total']" position="replace">
+                <field name="price_total" string="Net Amount"  widget="monetary" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="decoration-danger"> price_total &lt; 0 </attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_total']" position="attributes">
+                <attribute name="options"> {
+                    "bg_color": "red:price_total &lt; 0",
+                    "fg_color": "white:price_total &lt; 0"
+                    }</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

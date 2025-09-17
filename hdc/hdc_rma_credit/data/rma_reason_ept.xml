@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="rma_ept_refund_credit_receive" model="rma.reason.ept">
+        <field name="name">ลดหนี้ห้าง ต้องรับของ</field>
+        <field name="action">refund</field>
+        <field name="is_select_product_receipt">True</field>
+        <field name="is_not_receipt">False</field>
+    </record>
+    <record id="rma_ept_refund_credit_non_receive" model="rma.reason.ept">
+        <field name="name">ลดหนี้ห้าง ไม่ต้องรับของ</field>
+        <field name="action">refund</field>
+        <field name="is_select_product_receipt">True</field>
+        <field name="is_not_receipt">True</field>
+    </record>
+
+</odoo>

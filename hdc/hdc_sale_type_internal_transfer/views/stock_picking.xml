@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_picking_form_b_c_urgen" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_sale_quick_invoice.view_picking_form_urgen"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="b_c_urgent_delivery_id"/>
+                <field name="is_b_c_urgent" invisible="1"/>
+                <field name="urgent_hide_field" invisible="1"/>
+            </field>
+            <xpath expr="//field[@name='urgent_pick']" position="replace">
+                <field name="urgent_pick" optional="hide" force_save="1" readonly="1" attrs="{'column_invisible': [('parent.urgent_hide_field', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='qty_remain']" position="replace">
+                <field name="qty_remain" optional="show" force_save="1" readonly="1" attrs="{'column_invisible': ['|',('parent.picking_type_code', '!=','incoming'),('parent.urgent_hide_field', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='urgent_location_ids']" position="replace">
+                <field name="urgent_location_ids" widget="many2many_tags" optional="hide" force_save="1" readonly="1" attrs="{'column_invisible': ['|',('parent.picking_type_code', '!=','incoming'),('parent.urgent_hide_field', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='urgent_remain']" position="replace">
+                <field name="urgent_remain" optional="hide" force_save="1" readonly="1" attrs="{'column_invisible': ['|',('parent.picking_type_code', '!=','incoming'),('parent.urgent_hide_field', '=', True)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

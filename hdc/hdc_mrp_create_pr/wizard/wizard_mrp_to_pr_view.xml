@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_mrp_to_intertransfer" model="ir.ui.view">
+        <field name="name">wizard.mrp.create.pr</field>
+        <field name="model">wizard.mrp.create.pr</field>
+        <field name="arch" type="xml">
+            <form string="Create PR">
+                <group>
+                    <group>
+                        <field name="mo_id" invisible="1"/>
+                        <field name="request_type" />
+                        <field name="requested_by" />
+                    </group>
+                    <group>
+                        <field name="picking_type_id" />
+                        <field name="currency_id" />
+                    </group>
+                </group>
+
+                <notebook>
+                    <page name="order_line" string="Order Line">
+                        <group name="attribute_value_group">
+                            <field name="order_line_ids" string="Order Line" nolabel="1">
+                                <tree editable="top">
+                                    <field name="wizard_mrp_create_pr_ids" invisible="1"/>
+                                    <field name="product_id" options="{'no_create_edit': True, 'no_create': True}"/>
+                                    <field name="product_qty"/>
+                                    <field name="estimated_cost"/>
+                                    <field name="qty_available"/>
+                                    <field name="incoming_qty"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_create_pr" string="Create PR" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

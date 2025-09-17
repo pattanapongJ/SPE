@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_invoice_group_view_form" model="ir.ui.view">
+        <field name="name">account.invoice.group.view.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@id='aml_tab']" position="after">
+                <page name="group_account" string="Group Accounting">
+                    <group>
+                        <button
+                        name="merge_group_line"
+                        string="Compute"
+                        type="object"
+                    />
+                    </group>
+                    
+                    <field name="invoice_group_account_line_ids" mode="tree" nolabel="1">
+                        <tree editable="bottom" edit="true" create="false">
+                            <field name="invoice_group_account_account_id" readonly="1"/>
+                            <field name="invoice_group_account_label" />
+                            <field name="invoice_group_account_currency_id" invisible="1"/>
+                            <field name="invoice_group_account_debit" sum="Total Debit" widget="monetary" readonly="1"/>
+                            <field name="invoice_group_account_credit" sum="Total Credit" widget="monetary" readonly="1"/>
+                        </tree>
+                        <form>
+                            <group>
+                              <field name="invoice_group_account_debit" sum="Total Debit"/>
+                              <field name="invoice_group_account_credit" sum="Total Credit"/>
+                            </group>
+                          </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

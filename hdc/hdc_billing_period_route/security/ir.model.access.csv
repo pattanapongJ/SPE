@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_billing_period_user,access.account.billing.period.user,model_account_billing_period,base.group_user,1,1,1,1
+access_account_billing_route_user,access.account.billing.route.user,model_account_billing_route,base.group_user,1,1,1,1

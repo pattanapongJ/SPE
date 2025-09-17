@@ -1,0 +1,12 @@
+<odoo noupdate="1">
+    <record id="seq_account_group_billing" model="ir.sequence">
+        <field name="name">Group Billing sequence</field>
+        <field name="code">account.group.billing</field>
+        <field name="prefix">GROUP.BIL/%(year)s/</field>
+        <field eval="1" name="number_next" />
+        <field eval="1" name="number_increment" />
+        <field eval="True" name="use_date_range" />
+        <field eval="False" name="company_id" />
+        <field name="padding">5</field>
+    </record>
+</odoo>

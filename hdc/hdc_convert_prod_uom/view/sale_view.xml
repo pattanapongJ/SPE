@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="convert_prod_inherit_sale_line_tree" model="ir.ui.view">
+        <field name="name">convert.prod.inherit.sale.line.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']"
+                position="after">
+                <field name="sale_uom_map_ids" widget="many2many_tags" invisible="1" />
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']"
+                position="attributes">
+                <attribute name="domain">[('id', 'in', sale_uom_map_ids)]</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

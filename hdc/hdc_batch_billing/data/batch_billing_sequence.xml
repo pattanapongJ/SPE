@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="sequence_batch_billing" model="ir.sequence">
+        <field name="name">Batch Billing</field>
+        <field name="code">batch.billing</field>
+        <field eval="4" name="padding" />
+        <field name="prefix">BB</field>
+    </record>
+    <record id="sequence_spe_batch_billing" model="ir.sequence">
+        <field name="name">Batch Billing SPE Seq</field>
+        <field name="code">batch.billing</field>
+        <field eval="4" name="padding" />
+        <field name="prefix">BB-SPE-</field>
+    </record>
+    <record id="sequence_colt_batch_billing" model="ir.sequence">
+        <field name="name">Batch Billing Colt Seq</field>
+        <field name="code">batch.billing</field>
+        <field eval="4" name="padding" />
+        <field name="prefix">BB-COLT-</field>
+    </record>
+    <record id="sequence_smh_batch_billing" model="ir.sequence">
+        <field name="name">Batch Billing SMH Seq</field>
+        <field name="code">batch.billing</field>
+        <field eval="4" name="padding" />
+        <field name="prefix">BB-SMH-</field>
+    </record>
+    <record id="sequence_sti_batch_billing" model="ir.sequence">
+        <field name="name">Batch Billing STI Seq</field>
+        <field name="code">batch.billing</field>
+        <field eval="4" name="padding" />
+        <field name="prefix">BB-STI-</field>
+    </record>
+</odoo>

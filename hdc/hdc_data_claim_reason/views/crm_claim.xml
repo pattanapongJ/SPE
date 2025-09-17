@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="crm_claim_data_claim_reason_form_view">
+        <field name="name">crm.claim.reason.form.view</field>
+        <field name="model">crm.claim</field>
+        <field name="inherit_id" ref="crm_claim.crm_case_claims_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="claim_reason" options="{'no_create': True}"/>
+                <label for="receive_claim" string="" />
+                <div>
+                    <div class="o_row">
+                        <label for="receive_claim" string="รับสินค้า" />
+                        <field
+                            name="receive_claim"
+                            class="oe_inline"
+                        />
+                        <span class="oe_inline"></span>
+                        <label for="reject_claim" string="ไม่รับสินค้า" />
+                        <field
+                            name="reject_claim"
+                            class="oe_inline"
+                        />
+                    </div>
+                </div>
+           </xpath>
+        </field>
+    </record>
+</odoo>

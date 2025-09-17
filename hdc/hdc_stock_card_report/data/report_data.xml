@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>   
+    <record id="action_report_physical_detail_report_html" model="ir.actions.client">
+        <field name="name">Physical Detail Report</field>
+        <field name="tag">stock_card_report_backend</field>
+        <field name="context" eval="{'active_model': 'report.physical.detail.report'}" />
+    </record>
+
+    <record id="action_report_financial_detail_report_html" model="ir.actions.client">
+        <field name="name">Financial Detail Report</field>
+        <field name="tag">stock_card_report_backend</field>
+        <field name="context" eval="{'active_model': 'report.financial.detail.report'}" />
+    </record>    
+
+    <record id="action_report_stock_movement_report_html" model="ir.actions.client">
+        <field name="name">Stock Movement Report</field>
+        <field name="tag">stock_card_report_backend</field>
+        <field name="context" eval="{'active_model': 'report.stock.movement.report'}" />
+    </record>
+
+    <record id="action_report_physical_detail_report_summary_html" model="ir.actions.client">
+        <field name="name">Physical Detail Report Summary</field>
+        <field name="tag">stock_card_report_backend</field>
+        <field name="context" eval="{'active_model': 'report.physical.detail.report.summary'}" />
+    </record>
+    <record id="action_report_financial_detail_report_summary_html" model="ir.actions.client">
+        <field name="name">Financial Detail Report Summary</field>
+        <field name="tag">stock_card_report_backend</field>
+        <field name="context" eval="{'active_model': 'report.financial.detail.report.summary'}" />
+    </record>    
+</odoo>

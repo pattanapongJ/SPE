@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_note_form_inherit_discount" model="ir.ui.view">
+        <field name="name">note.form.inherit.discount</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='line_detail']" position="after">
+                <page string="Note" name="note">
+                    <field name="note_text" string="Note"
+                        placeholder="Add an internal note that will be printed on the Picking Operations sheet" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

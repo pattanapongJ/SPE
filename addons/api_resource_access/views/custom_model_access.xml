@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree: custom.model.access -->
+    <record model="ir.ui.view" id="view_custom_model_access_tree">
+        <field name="name">tree.custom.model.access</field>
+        <field name="model">custom.model.access</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="custom_model_access">
+                <field name="model_id"/>
+                <field name="read_perm"/>
+                <field name="write_perm"/>
+                <field name="create_perm"/>
+                <field name="delete_perm"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Form: custom.model.access -->
+    <record model="ir.ui.view" id="view_custom_model_access_form">
+        <field name="name">form.custom_model_access</field>
+        <field name="model">custom.model.access</field>
+        <field name="priority" eval="15"/>
+        <field name="arch" type="xml">
+            <form string="custom_model_access">
+                <sheet>
+                    <group colspan="4">
+                        <group>
+                            <field name="model_id"/>
+                            <field name="create_perm"/>
+                            <field name="read_perm"/>
+                            <field name="write_perm"/>
+                            <field name="delete_perm"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Main Action: custom.model.access -->
+    <record id="action_custom_model_access" model="ir.actions.act_window">
+        <field name="name"> Custom Model Access</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">custom.model.access</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            All important Custom Model Access
+          </p><p>
+            Ekika helps you track, manage and maintain your Custom Model Access.
+          </p>
+        </field>
+    </record>
+    <!-- Sub Action Tree: custom.model.access -->
+    <record id="action_custom_model_access_view_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_custom_model_access_tree"/>
+        <field name="act_window_id" ref="action_custom_model_access"/>
+    </record>
+    <!-- Sub Action Form: custom.model.access -->
+    <record id="action_custom_model_access_view_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_custom_model_access_form"/>
+        <field name="act_window_id" ref="action_custom_model_access"/>
+    </record>
+
+</odoo>

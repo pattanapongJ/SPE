@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+         <record id="view_purchase_form_exchange_rate_field_add_inherit" model="ir.ui.view">
+            <field name="name">view.purchase.form.exchange.rate.field.add.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="bi_manual_currency_exchange_rate.view_purchase_form_exchange_rate_field_add_inherit"/>
+            <field name="arch" type="xml">
+
+                <field name="purchase_manual_currency_rate" position="attributes">
+                    <attribute name="digits">[12,12]</attribute>
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="purchase_manual_currency_rate_active" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="purchase_manual_currency_rate" position="before">
+<!--                      <field name="purchase_manual_currency_inverse_rate" digits="[12,12]" attrs="{'invisible': [('purchase_manual_currency_rate_active', '=', False)],'required':[('purchase_manual_currency_rate_active', '=', True)],'readonly': [('state','in',['purchase','done','cancel'])]}"/>-->
+                      <field name="purchase_manual_currency_inverse_rate" digits="[12,12]" invisible="1"/>
+
+                  </field>
+            </field>
+        </record>
+
+	</data>
+</odoo>

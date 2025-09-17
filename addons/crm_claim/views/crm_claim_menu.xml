@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<odoo>
+    <menuitem
+        id="menu_aftersale"
+        name="Claims"
+        groups="sales_team.group_sale_salesman"
+        parent="rma_ept.base_crm_claim_ept_action_root"
+        sequence="4"
+    />
+    <menuitem
+        name="Claims"
+        id="menu_crm_case_claims"
+        parent="menu_aftersale"
+        action="crm_claim_category_claim0"
+        sequence="1"
+    />
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sale_order_confirm_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.confirm.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="hdc_inter_company_transactions.inter_company_transactions_sale_order_confirm_form_inherit"/>
+        <field name="arch" type="xml"> 
+            <xpath expr="//button[@name='action_sale_ok2']" position="attributes">
+                <attribute name="name">action_sale_ok3</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_sale_ok2']" position="attributes">
+                <attribute name="name">action_sale_ok3</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

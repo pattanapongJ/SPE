@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_form_hdc_receipt_list" model="ir.ui.view">
+        <field name="name">account.move.form.hdc_receipt_list</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="open_rl_view" type="object" attrs="{'invisible':[('rl_count', '=', 0)]}" icon="fa-truck">
+                    <field name="rl_count" string="Receipt List" widget="statinfo"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="exchange_date_free"/>
+                <field name="exchange_date"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_payment_form_receipt_list" model="ir.ui.view">
+        <field name="name">account.payment.form.hdc_receipt_list</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                 <button class="oe_stat_button" name="open_rl_view" type="object" attrs="{'invisible':[('rl_count', '=', 0)]}" icon="fa-truck">
+                    <field name="rl_count" string="Receipt List" widget="statinfo"/>
+                </button>
+              
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

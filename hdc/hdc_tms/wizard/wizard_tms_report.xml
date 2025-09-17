@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_tms_report_view_form" model="ir.ui.view">
+        <field name="name">wizard.tms.report.view.form</field>
+        <field name="model">wizard.tms.report</field>
+        <field name="arch" type="xml">
+            <form string="Wizard TMS Report">
+                <sheet>
+                    <h1>TMS Report</h1>
+                    <group>
+                        <label for="from_date" />
+                        <div class="o_row">
+                            <field name="from_date" />
+                            <p class="font-weight-bold">To</p>
+                            <field name="to_date" />
+                        </div>
+                        <field name="delivery_status" widget="many2many_tags" domain="[('name', '!=', 'False')]" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="billing_status" widget="many2many_tags" domain="[('name', '!=', 'False')]" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="transport_desc_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="tms_remark" />
+                    </group>
+                    <footer>
+                        <button name="print_pdf" string="Print PDF" type="object"
+                            class="btn-primary" />
+                        <button name="print_excel" string="Print Excel" type="object"
+                            class="btn-primary" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_tms_report_action" model="ir.actions.act_window">
+        <field name="name">Open TMS Report</field>
+        <field name="res_model">wizard.tms.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_tms_report" name="TMS Report" parent="hdc_tms.menu_tms_reporting_main"
+        action="wizard_tms_report_action" sequence="1" />
+
+</odoo>

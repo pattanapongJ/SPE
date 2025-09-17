@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="crm_claims_ept_addon_inherit_purchase_crm_claims_ept_form_view" model="ir.ui.view">
+        <field name="name">crm.claims.ept.addon.form.inherit.purchase.crm.claims.ept.form.view</field>
+        <field name="model">purchase.crm.claim.ept</field>
+        <field name="inherit_id" ref="hdc_rma_ept_purchase.purchase_crm_claims_ept_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_id']" position="after">
+                <field name="invoice_id" string="Vendor Bill" options="{'no_create': True}" domain="[('invoice_origin', '!=', False),('state', '=', 'posted'),('move_type', '=', 'in_invoice')]"/>
+            </xpath>
+        </field>
+    </record>  
+</odoo>

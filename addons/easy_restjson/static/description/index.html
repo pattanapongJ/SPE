@@ -1,0 +1,884 @@
+<!-- Start Ekika LOGO Section -->
+<section id="ekika-logo" class="text-dark">
+    <div class="container mb-4">
+      <div class="d-flex justify-content-around text-dark">
+        <div class="align-self-center">
+          <div class="align-self-center p-4 border rounded shadow"><img
+              src="assets/ekika-assets/EKIKA-Logo.png" loading="lazy" height="50px" alt="Ekika">
+          </div>
+          <div class="w-100 mt-3 shadow-lg fs-5 p-2 text-center border rounded-3">
+            <a href="mailto:hello@ekika.co" class="text-dark">Email: hello@ekika.co</a>
+          </div>
+        </div>
+        <div class="" style="width: 42%;"> <!-- w-25 -->
+          <table class="table table-bordered text-center shadow">
+              <tbody class="text-center">
+                  <tr>
+                      <th style="width:30%" class="p-1 text-muted">Supported Versions</th> <!-- small -->
+                      <th>12.0</th>
+                      <th>13.0</th>
+                      <th>14.0</th>
+                      <th>15.0</th>
+                      <th>16.0</th>
+                      <th>17.0</th>
+                      <th>18.0</th>
+                  </tr>
+                  <tr>
+                      <td class="p-1 text-secondary">Community</td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                  </tr>
+                  <tr>
+                      <td class="p-1 text-primary">Enterprise</td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                      <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                  </tr>
+              </tbody>
+          </table>
+          <p class="w-100 shadow-lg fs-5 p-2 text-center border rounded-3">
+              https://www.ekika.co/support
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul class="fs-3">
+      <li>Our All API Addons: <a href="https://apps.odoo.com/apps/modules/browse?author=EKIKA&search=api&series=14.0">EKIKA API Addons</a></li>
+      <li>All-in-One is "api_framework" (Buy): <a href="https://apps.odoo.com/apps/modules/14.0/api_framework">Easy API Framework</a></li>
+    <ul>
+</section>
+
+<!-- Start Header section 2 Content -->
+<div class="container text-center mt-5">
+    <div class="text-success">
+      <b>
+        <span class="text-dark fs-4 text-center">
+            <h2 class="text-success"><b class="border-5 border-bottom">Odoo Standard RESTful JSON API</b></h2>
+        </span>
+      </b>
+    </div>
+</div>
+  
+<!-- Start Main Body Content Section -->
+<section id="main-section" class="container-fluid rounded shadow-lg border my-5 text-dark">
+    <img class="rounded shadow-sm img-fluid position-absolute h-100 w-100" src="assets/bg/1.jpg" alt="Background Image"
+        loading="lazy" style="opacity: 0.5;" />
+    <div id="graphql-tab" class="rounded m-3" style="z-index: 10;">
+
+        <!-- Start REST LOGO Section -->
+        <section id="restapi-logo" class="rounded">
+            <div class="py-4 text-center img-thumbnail my-4"
+                style="border: 1px solid #FFA500;">
+                <div class="text-center fs-4 mx-auto mt-4 w-75 text-dark">
+                    <p>This module allows you Odoo's Standard RESTful JSON formats with api_framework features. It adds multiple authentication methods, access control, logs and CORS which enhances communication between Odoo and external systems. Ideal for developers and businesses, it offers an easy way to integrate Odoo with other applications.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Start REST API Introduction Section -->
+        <section id="restapi-introduction" class="border border-dark rounded my-4">
+            <div class="m-4">
+                <h3 id="restapi-works" style="font-family: 'Open Sans', 'Helvetica', 'Sans';">How It Works:</h3>
+                <p>By defining a standard structure for API requests and responses, this module promotes consistency and ease of use.</p>
+                <p>Each request includes a various methods such as Search, Search Read, Read, Check Access Right, & Create etc, that defines the action to be performed on the resource. The server's response typically contains the requested data in JSON format, along with an HTTP status code to indicate success or failure.</p>
+            </div>
+        </section>
+
+        <!-- Start REST API Full Tab Section -->
+        <section id="restapi-tabs" class="rounded mb-4">
+            <div id="restapi-detailed" class="p-2 border border-dark rounded">
+            
+                <!-- Start REST JSON API Calls Content -->
+                <div class="container" id="restapi-calls">
+                    <div class="d-flex my-2" style="border: 2px solid #001F3F;">
+                
+                        <!-- Start REST JSON API Calls Side Bar from here -->
+                        <ul class="nav nav-tabs col-md-2 p-2 flex-column" style="background-color: #001F3F; border-bottom: unset;">
+                            <!-- <h5 class="text-warning m-0"><b>Get Record's</b></h5> -->
+                            <!-- 1. Overview -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-overview" class="nav-link rounded" data-bs-toggle="tab"
+                                    style="color: #001F3F; text-align: left; ">
+                                    Overview
+                                </a>
+                            </li>
+                            <!-- 2. Search -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-search" class="nav-link rounded" data-bs-toggle="tab" style="color: #001F3F; text-align: left; ">
+                                    Search
+                                </a>
+                            </li>
+                            <!-- 3. Search Read -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-sr" class="nav-link rounded" data-bs-toggle="tab" style="color: #001F3F; text-align: left; ">
+                                    Search Read
+                                </a>
+                            </li>
+                            <!-- 4. Search Count -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-sc" class="nav-link rounded" data-bs-toggle="tab" style="color: #001F3F; text-align: left; ">
+                                    Search Count
+                                </a>
+                            </li>
+                            <!-- 5. Read -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-read" class="nav-link rounded" data-bs-toggle="tab" style="color: #001F3F; text-align: left; ">
+                                    Read
+                                </a>
+                            </li>
+                            <!-- 6. Read Group -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-rg" class="nav-link rounded" data-bs-toggle="tab" style="color: #001F3F; text-align: left; ">
+                                    Read Group
+                                </a>
+                            </li>
+                            <!-- 7. Create -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-create" class="nav-link rounded" data-bs-toggle="tab" style="color: #001F3F; text-align: left; ">
+                                    Create
+                                </a>
+                            </li>
+                            <!-- 8. Write -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-write" class="nav-link rounded" data-bs-toggle="tab" style="color: #001F3F; text-align: left; ">
+                                    Write
+                                </a>
+                            </li>
+                            <!-- 9. Unlink -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-unlink" class="nav-link rounded" data-bs-toggle="tab" style="color: #001F3F; text-align: left; ">
+                                    Unlink
+                                </a>
+                            </li>
+                            <!-- 10. Fields Get -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-fg" class="nav-link rounded" data-bs-toggle="tab" style="color: #001F3F; text-align: left; ">
+                                    Fields Get
+                                </a>
+                            </li>
+                            <!-- 11. Check Access Rights -->
+                            <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                                <a href="#restjson-ar" class="nav-link rounded active" data-bs-toggle="tab" style="color: #001F3F; text-align: left; ">
+                                    Check Access Rights
+                                </a>
+                            </li>
+                        </ul>
+                    
+                        <!-- Start REST JSON API Tab Content From Here -->
+                        <div class="tab-content col-md-10"> <!-- h-100 -->
+                    
+                            <!-- 1. Start REST JSON Overview -->
+                            <div id="restjson-overview" class="tab-pane p-2">
+                            <h4 class="">Standard REST Json API Request's Overview:</h4>
+                            <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                                style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                                <div class="vr text-dark"></div>
+                                <div class="d-flex flex-wrap fs-5 p-1 px-3"><span class="text-info">{domain[:port]}</span>/<span
+                                    class="text-primary">{endpoint}</span>/<span class="text-muted">{model}</span>/<span class="text-danger">{method}</span>
+                                </div>
+                            </div>
+                            <ul class="text-break">
+                                <li>This is the main query parameters which is mandatory to write when you are working with APIs.</li>
+                                <li>Use "<b>HTTP POST Method</b>" to send specific data.</li>
+                                <li><b>Domain</b> is specified your wesite's domain address. The port number is optional.</li>
+                                <li><b>Endpoint</b> is the specific path within the API that identifies the particular resource or action.
+                                This part of the URL tells the server what type of operation is being requested.</li>
+                                <li><b>Model</b> is Odoo's technical name of entities and also known as model name, record's model or
+                                entities. You can identify it from the URL shown below.</li>
+                                <li><b>Method</b> specifies the type of action being performed on the server.</li>
+                                <img src="assets/domain_image/domain.png" alt="Domain Image" class="img-fluid">
+                                <li><b>Headers</b> in an API request are key-value pairs sent between the client and the server, providing
+                                additional information about the request or the client itself. They are part of the HTTP protocol and can
+                                carry various types of metadata.</li>
+                                <li>Add "<b>Content-Type</b>" and "<b>x-api-key</b>" keys with their specific values. REST API's media
+                                type designation is "<b>application/json</b>". Add this in Content-Type's value field and also add your
+                                API Key.</li>
+                                <div class="text-center my-1">
+                                <img src="assets/restjson-header_image/rest-header.png" alt="Rest JSON API Headers"
+                                    class="img-thumbnail border">
+                                </div>
+                            </ul>
+                            </div>
+                    
+                            <!-- 2. Start REST JSON Search -->
+                            <div id="restjson-search" class="tab-pane p-2">
+                                <h4>Search:</h4>
+                                <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2" style="border-radius: 100px;"><b
+                                        class="px-3" style="color: #AD7A03;">POST</b>
+                                    <div class="vr text-dark"></div>
+                                    <div class="d-flex flex-wrap fs-5 p-1 px-3">http://localhost:8016/api-rest-json/res.partner/search</div>
+                                </div>
+                                <p>See the Example with Query & Output:</p>
+                                <p><b>Example</b>: This query searches for res.partner records in a local Odoo instance via the /api-rest-json/res.partner/search endpoint.</p>
+                                <div class="row p-1">
+                                    <div class="d-flex justify-content-center mt-2">
+                                    <span class="text-info">Query & Output</span>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center">
+                                    <img src="assets/easy-restjson_images/search-request.png" alt="Rest JSON Search Request"
+                                        class="img-thumbnail border" />
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="fw-bold">Query</span>:
+                                </div>
+                                <div class="tab-pane col-8">
+                                    <pre class="bg-white p-2 border shadow-sm">
+*** python ***
+
+import requests
+import json
+
+url = "http://localhost:8016/api-rest-json/res.partner/search"
+
+payload = json.dumps({
+"args": [
+    [
+    [
+        "is_company",
+        "=",
+        True
+    ]
+    ]
+],
+"kwargs": {}
+})
+headers = {
+'Content-Type': 'application/json',
+'x-api-key': 'YOUR-API-KEY'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+</pre>
+                                </div>
+                            </div>
+
+                            <!-- 3. Start REST JSON Search Read -->
+                            <div id="restjson-sr" class="tab-pane p-2">
+                                <h4>Search Read:</h4>
+                                <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2" style="border-radius: 100px;"><b
+                                        class="px-3" style="color: #AD7A03;">POST</b>
+                                    <div class="vr text-dark"></div>
+                                    <div class="d-flex flex-wrap fs-5 p-1 px-3">http://localhost:8016/api-rest-json/res.partner/search_read</div>
+                                </div>
+                                <p>See the Example with Query & Output:</p>
+                                <p><b>Example</b>: This query combines search and read operations for res.partner records in a local Odoo instance via the /api-rest-json/res.partner/search_read endpoint. It retrieves records that match specified criteria and returns their details in a single request.</p>
+                                <div class="row p-1">
+                                    <div class="d-flex justify-content-center mt-2">
+                                    <span class="text-info">Query & Output</span>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center">
+                                    <img src="assets/easy-restjson_images/search-read-request.png" alt="Rest JSON Search Read Request"
+                                        class="img-thumbnail border" />
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="fw-bold">Query</span>:
+                                </div>
+                                <div class="tab-pane col-8">
+                                    <pre class="bg-white p-2 border shadow-sm">
+*** python ***
+
+import requests
+import json
+
+url = "http://localhost:8016/api-rest-json/res.partner/search_read"
+
+payload = json.dumps({
+"args": [
+    [
+    [
+        "is_company",
+        "=",
+        True
+    ]
+    ]
+],
+"kwargs": {
+    "fields": [
+    "name",
+    "country_id",
+    "comment",
+    "is_company"
+    ],
+    "limit": 5
+}
+})
+headers = {
+'Content-Type': 'application/json',
+'x-api-key': 'YOUR-API-KEY'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+</pre>
+                                </div>
+                            </div>
+
+                            <!-- 4. Start REST JSON Search Count -->
+                            <div id="restjson-sc" class="tab-pane p-2">
+                                <h4>Search Count:</h4>
+                                <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2" style="border-radius: 100px;"><b
+                                        class="px-3" style="color: #AD7A03;">POST</b>
+                                    <div class="vr text-dark"></div>
+                                    <div class="d-flex flex-wrap fs-5 p-1 px-3">http://localhost:8016/api-rest-json/res.partner/search_count</div>
+                                </div>
+                                <p>See the Example with Query & Output:</p>
+                                <p><b>Example</b>: This query returns the count of res.partner records in a local Odoo instance via the /api-rest-json/res.partner/search_count endpoint.</p>
+                                <div class="row p-1">
+                                    <div class="d-flex justify-content-center mt-2">
+                                    <span class="text-info">Query & Output</span>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center">
+                                    <img src="assets/easy-restjson_images/search-count-request.png" alt="Rest JSON Search Count Request"
+                                        class="img-thumbnail border" />
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="fw-bold">Query</span>:
+                                </div>
+                                <div class="tab-pane col-8">
+                                    <pre class="bg-white p-2 border shadow-sm">
+*** python ***
+
+import requests
+import json
+
+url = "http://localhost:8016/api-rest-json/res.partner/search_count"
+
+payload = json.dumps({
+"args": [
+    [
+    [
+        "is_company",
+        "=",
+        True
+    ]
+    ]
+],
+"kwargs": {}
+})
+headers = {
+'Content-Type': 'application/json',
+'x-api-key': 'YOUR-API-KEY'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+</pre>
+                                </div>
+                            </div>
+
+                            <!-- 5. Start REST JSON Read -->
+                            <div id="restjson-read" class="tab-pane p-2">
+                                <h4>Read:</h4>
+                                <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2" style="border-radius: 100px;"><b
+                                        class="px-3" style="color: #AD7A03;">POST</b>
+                                    <div class="vr text-dark"></div>
+                                    <div class="d-flex flex-wrap fs-5 p-1 px-3">http://localhost:8016/api-rest-json/res.partner/read</div>
+                                </div>
+                                <p>See the Example with Query & Output:</p>
+                                <p><b>Example</b>: This query retrieves details of res.partner records from a local Odoo instance via the /api-rest-json/res.partner/read endpoint.</p>
+                                <div class="row p-1">
+                                    <div class="d-flex justify-content-center mt-2">
+                                    <span class="text-info">Query & Output</span>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center">
+                                    <img src="assets/easy-restjson_images/read-request.png" alt="Rest JSON Read Request"
+                                        class="img-thumbnail border" />
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="fw-bold">Query</span>:
+                                </div>
+                                <div class="tab-pane col-8">
+                                    <pre class="bg-white p-2 border shadow-sm">
+*** python ***
+
+import requests
+import json
+
+url = "http://localhost:8016/api-rest-json/res.partner/read"
+
+payload = json.dumps({
+"args": [
+    [
+    14,
+    10,
+    11
+    ]
+],
+"kwargs": {
+    "fields": [
+    "name",
+    "country_id",
+    "comment",
+    "is_company"
+    ]
+}
+})
+headers = {
+'Content-Type': 'application/json',
+'x-api-key': 'YOUR-API-KEY'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+</pre>
+                                </div>
+                            </div>
+
+                            <!-- 6. Start REST JSON Read Group -->
+                            <div id="restjson-rg" class="tab-pane p-2">
+                                <h4>Read Group:</h4>
+                                <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2" style="border-radius: 100px;"><b
+                                        class="px-3" style="color: #AD7A03;">POST</b>
+                                    <div class="vr text-dark"></div>
+                                    <div class="d-flex flex-wrap fs-5 p-1 px-3">http://localhost:8016/api-rest-json/res.partner/read_group</div>
+                                </div>
+                                <p>See the Example with Query & Output:</p>
+                                <p><b>Example</b>: 
+                                    This query retrieves grouped data for res.partner records in a local Odoo instance via the /api-rest-json/res.partner/read_group endpoint. It allows grouping records based on specified fields.</p>
+                                <div class="row p-1">
+                                    <div class="d-flex justify-content-center mt-2">
+                                    <span class="text-info">Query & Output</span>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center">
+                                    <img src="assets/easy-restjson_images/read-group-request.png" alt="Rest JSON Read Group Request"
+                                        class="img-thumbnail border" />
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="fw-bold">Query</span>:
+                                </div>
+                                <div class="tab-pane col-8">
+                                    <pre class="bg-white p-2 border shadow-sm">
+*** python ***
+
+import requests
+import json
+
+url = "http://localhost:8016/api-rest-json/res.partner/read_group"
+
+payload = json.dumps({
+"args": [
+    [
+    [
+        "is_company",
+        "=",
+        False
+    ]
+    ]
+],
+"kwargs": {
+    "fields": [
+    "name",
+    "country_id",
+    "comment",
+    "is_company"
+    ],
+    "groupby": "country_id"
+}
+})
+headers = {
+'Content-Type': 'application/json',
+'x-api-key': 'YOUR-API-KEY'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+</pre>
+                                </div>
+                            </div>
+
+                            <!-- 7. Start REST JSON Create -->
+                            <div id="restjson-create" class="tab-pane p-2">
+                                <h4>Create:</h4>
+                                <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2" style="border-radius: 100px;"><b
+                                        class="px-3" style="color: #AD7A03;">POST</b>
+                                    <div class="vr text-dark"></div>
+                                    <div class="d-flex flex-wrap fs-5 p-1 px-3">http://localhost:8016/api-rest-json/res.partner/create</div>
+                                </div>
+                                <p>See the Example with Query & Output:</p>
+                                <p><b>Example</b>: This query creates a new res.partner record in a local Odoo instance via the /api-rest-json/res.partner/create endpoint. It uses the POST method to send the necessary data for the new record.</p>
+                                <div class="row p-1">
+                                    <div class="d-flex justify-content-center mt-2">
+                                    <span class="text-info">Query & Output</span>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center">
+                                    <img src="assets/easy-restjson_images/create-request.png" alt="Rest JSON Create Request"
+                                        class="img-thumbnail border" />
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="fw-bold">Query</span>:
+                                </div>
+                                <div class="tab-pane col-8">
+                                    <pre class="bg-white p-2 border shadow-sm">
+*** python ***
+
+import requests
+import json
+
+url = "http://localhost:8016/api-rest-json/res.partner/create"
+
+payload = json.dumps({
+"args": [
+    {
+    "name": "Sample Partner",
+    "email": "sample-partner@example.com"
+    }
+],
+"kwargs": {}
+})
+headers = {
+'Content-Type': 'application/json',
+'x-api-key': 'YOUR-API-KEY'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+</pre>
+                                </div>
+                            </div>
+
+                            <!-- 8. Start REST JSON Write -->
+                            <div id="restjson-write" class="tab-pane p-2">
+                                <h4>Write:</h4>
+                                <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2" style="border-radius: 100px;"><b
+                                        class="px-3" style="color: #AD7A03;">POST</b>
+                                    <div class="vr text-dark"></div>
+                                    <div class="d-flex flex-wrap fs-5 p-1 px-3">http://localhost:8016/api-rest-json/res.partner/write</div>
+                                </div>
+                                <p>See the Example with Query & Output:</p>
+                                <p><b>Example</b>: This query updates existing res.partner records in a local Odoo instance via the /api-rest-json/res.partner/write endpoint. It uses the POST method to send updated data for specific records, modifying their fields.</p>
+                                <div class="row p-1">
+                                    <div class="d-flex justify-content-center mt-2">
+                                    <span class="text-info">Query & Output</span>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center">
+                                    <img src="assets/easy-restjson_images/write-request.png" alt="Rest JSON Write Request"
+                                        class="img-thumbnail border" />
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="fw-bold">Query</span>:
+                                </div>
+                                <div class="tab-pane col-8">
+                                    <pre class="bg-white p-2 border shadow-sm">
+*** python ***
+
+import requests
+import json
+
+url = "http://localhost:8016/api-rest-json/res.partner/write"
+
+payload = json.dumps({
+"args": [
+    [
+    49
+    ],
+    {
+    "name": "Sample Partner Change",
+    "email": "sample-partner-change@example.com"
+    }
+],
+"kwargs": {}
+})
+headers = {
+'Content-Type': 'application/json',
+'x-api-key': 'YOUR-API-KEY'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+        </pre>
+                                </div>
+                            </div>
+
+                            <!-- 9. Start REST JSON Unlink -->
+                            <div id="restjson-unlink" class="tab-pane p-2">
+                                <h4>Unlink:</h4>
+                                <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2" style="border-radius: 100px;"><b
+                                        class="px-3" style="color: #AD7A03;">POST</b>
+                                    <div class="vr text-dark"></div>
+                                    <div class="d-flex flex-wrap fs-5 p-1 px-3">http://localhost:8016/api-rest-json/res.partner/unlink</div>
+                                </div>
+                                <p>See the Example with Query & Output:</p>
+                                <p><b>Example</b>: This query deletes res.partner records in a local Odoo instance via the /api-rest-json/res.partner/unlink endpoint. It uses the POST method to remove specified records from the system.</p>
+                                <div class="row p-1">
+                                    <div class="d-flex justify-content-center mt-2">
+                                    <span class="text-info">Query & Output</span>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center">
+                                    <img src="assets/easy-restjson_images/unlink-request.png" alt="Rest JSON Unlink Request"
+                                        class="img-thumbnail border" />
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="fw-bold">Query</span>:
+                                </div>
+                                <div class="tab-pane col-8">
+                                    <pre class="bg-white p-2 border shadow-sm">
+*** python ***
+
+import requests
+import json
+
+url = "http://localhost:8016/api-rest-json/res.partner/unlink"
+
+payload = json.dumps({
+"args": [
+    [
+    49
+    ]
+],
+"kwargs": {}
+})
+headers = {
+'Content-Type': 'application/json',
+'x-api-key': 'YOUR-API-KEY'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+        </pre>
+                                </div>
+                            </div>
+
+                            <!-- 10. Start REST JSON Fields Get -->
+                            <div id="restjson-fg" class="tab-pane p-2">
+                                <h4>Fields Get:</h4>
+                                <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2" style="border-radius: 100px;"><b
+                                        class="px-3" style="color: #AD7A03;">POST</b>
+                                    <div class="vr text-dark"></div>
+                                    <div class="d-flex flex-wrap fs-5 p-1 px-3">http://localhost:8016/api-rest-json/res.partner/fields_get</div>
+                                </div>
+                                <p>See the Example with Query & Output:</p>
+                                <p><b>Example</b>: This query retrieves the field definitions for the res.partner model in a local Odoo instance via the /api-rest-json/res.partner/fields_get endpoint. It provides information about the fields, such as their types, labels, and other properties.</p>
+                                <div class="row p-1">
+                                    <div class="d-flex justify-content-center mt-2">
+                                    <span class="text-info">Query & Output</span>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center">
+                                    <img src="assets/easy-restjson_images/fields-get-request.png" alt="Rest JSON Fields Get Request"
+                                        class="img-thumbnail border" />
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="fw-bold">Query</span>:
+                                </div>
+                                <div class="tab-pane col-8">
+                                    <pre class="bg-white p-2 border shadow-sm">
+*** python ***
+
+import requests
+import json
+
+url = "http://localhost:8016/api-rest-json/res.partner/fields_get"
+
+payload = json.dumps({
+"args": [],
+"kwargs": {
+    "attributes": [
+    "string",
+    "help",
+    "type"
+    ]
+}
+})
+headers = {
+'Content-Type': 'application/json',
+'x-api-key': 'YOUR-API-KEY'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+        </pre>
+                                </div>
+                            </div>
+
+                            <!-- 11. Start REST JSON Check Access Rights -->
+                            <div id="restjson-ar" class="tab-pane p-2 active">
+                                <h4>Check Access Rights:</h4>
+                                <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2" style="border-radius: 100px;"><b
+                                        class="px-3" style="color: #AD7A03;">POST</b>
+                                    <div class="vr text-dark"></div>
+                                    <div class="d-flex flex-wrap fs-5 p-1 px-3">http://localhost:8016/api-rest-json/res.partner/check_access_rights</div>
+                                </div>
+                                <p>See the Example with Query & Output:</p>
+                                <p><b>Example</b>: This query checks the access rights for the res.partner model in a local Odoo instance via the /api-rest-json/res.partner/check_access_rights endpoint. It verifies whether the user has the necessary permissions (such as create, read, write, delete) for the specified model.</p>
+                                <div class="row p-1">
+                                    <div class="d-flex justify-content-center mt-2">
+                                    <span class="text-info">Query & Output</span>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center">
+                                    <img src="assets/easy-restjson_images/check-access-rights-request.png" alt="Rest JSON Check Access Rights Request"
+                                        class="img-thumbnail border" />
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="fw-bold">Query</span>:
+                                </div>
+                                <div class="tab-pane col-8">
+                                    <pre class="bg-white p-2 border shadow-sm">
+*** python ***
+
+import requests
+import json
+
+url = "http://localhost:8016/api-rest-json/res.partner/check_access_rights"
+
+payload = json.dumps({
+"args": [
+    "create"
+],
+"kwargs": {}
+})
+headers = {
+'Content-Type': 'application/json',
+'x-api-key': 'YOUR-API-KEY'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+</pre>
+                                </div>
+                            </div>
+                    
+                        </div>
+                
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+</section>
+
+<!-- Our Other Apps -->
+<section id="our-other-apps" class="rounded">
+    <div class="oe_screenshot border rounded shadow p-5 text-white" style="background-color: #001F3F;">
+      <a href="https://apps.odoo.com/apps/modules/browse?series=14.0&search=Ekika" target="_blank">
+        <div class="col-md-12 col-sm-12 mt32" style="padding:8px; font-size:18px; line-height:initial">
+            <h4 class="oe_slogan mt0 align-items-center m-0 fs-3 text-white"><b>Our Other Apps</b></h4>
+        </div>
+      </a>
+      <div id="demo" class="row carousel slide mt32 mb32">
+        <div id="apps-card">
+          <div class="row justify-content-center" style="justify-content: center;">
+            <div class="col-md-4 p-2">
+              <a href="https://apps.odoo.com/apps/modules/14.0/api_framework" target="_blank">
+                <div style="border-radius:10px">
+                  <img class="img img-responsive w-100 center-block" style="border-radius:10px; border: 2px solid white;"
+                    alt="Odoo API Framework v14" src="assets/other-apps/api_framework.png">
+                </div>
+              </a>
+            </div>
+            <div class="col-md-4 p-2">
+              <a href="https://apps.odoo.com/apps/modules/14.0/api_cors_config" target="_blank">
+                <div style="border-radius:10px">
+                  <img class="img img-responsive w-100 center-block" style="border-radius:10px; border: 2px solid white;"
+                    alt="API CORS Config" src="assets/other-apps/api_cors_config.png">
+                </div>
+              </a>
+            </div>
+            <div class="col-md-4 p-2">
+              <a href="https://apps.odoo.com/apps/modules/14.0/api_framework_base" target="_blank">
+                <div style="border-radius:10px">
+                  <img class="img img-responsive w-100 center-block" style="border-radius:10px; border: 2px solid white;"
+                    alt="Odoo API Base" src="assets/other-apps/api_framework_base.png">
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- Our Services -->
+<section id="services-ekika-provides">
+    <div style="background-color:#fff9e5" class="container text-center my-5 p-4 shadow rounded border">
+        
+      <h2 class="my-4" style="color:#001F3F">Services EKIKA Provides</h2>
+      <!-- <h6 style="color:#001F3F; letter-spacing:2px">FEATURES</h6> -->
+      <div class="w-100 d-flex align-items-center flex-column">
+        <p class="w-75">EKIKA is your destination for expert Odoo ERP implementation and customization. We pride ourselves on building reliable, trust-based partnerships that give you full transparency and control over your business processes.</p>
+        <p class="w-75">With over 12 years of experience, we can assist you with eCommerce platforms, production planning, point-of-sale systems, managing inventory adjustments, and providing advanced field worker tracking solutions to optimize your workflows and boost operational efficiency.</p>
+      </div>
+  
+      <div class="row">
+        <!-- Implementation Card -->
+        <div class="col-md-4 mb-4">
+          <div style="border-bottom:5px solid #ffa500;" class="card h-100 rounded-3 shadow">
+            <div class="card-body">
+              <img src="assets/our-services/implementation.png" alt="Ekika Odoo Implementation" class="img-fluid mb-3" style="max-width:120px; height:auto">
+              <h3 class="card-title" style="color:#001f3f">Implementation</h3>
+              <p class="card-text fs-5" style="color:#757575">Utilise Odoo ERP tailored for your business needs for smooth operations.</p>
+            </div>
+            <div class="card-footer" style="background-color: #ffffff; border: none;">
+              <a href="skype:amshukla17?chat" class="btn btn-success rounded py-2 px-4" style="background-color: #001f3f;">Contact Us</a>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Customization Card -->
+        <div class="col-md-4 mb-4">
+          <div style="border-top:5px solid #ffa500;" class="card h-100 rounded-3 shadow">
+            <div class="card-body">
+              <img src="assets/our-services/customization.png" alt="Ekika Odoo Customization" class="img-fluid mb-3" style="max-width:180px; height:auto">
+              <h3 class="card-title" style="color:#001f3f">Customization</h3>
+              <p class="card-text fs-5" style="color:#757575">Personalized adjustments to Odoo modules for seamless management.</p>
+            </div>
+            <div class="card-footer" style="background-color: #ffffff; border: none;">
+              <a href="skype:amshukla17?chat" class="btn btn-success rounded py-2 px-4" style="background-color: #001f3f;">Contact Us</a>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Support Card -->
+        <div class="col-md-4 mb-4">
+          <div style="border-bottom:5px solid #ffa500;" class="card h-100 rounded-3 shadow">
+            <div class="card-body">
+              <img src="assets/our-services/support.png" alt="Ekika Odoo Support" class="img-fluid mb-3" style="max-width:120px; height:auto">
+              <h3 class="card-title" style="color:#001f3f">Support</h3>
+              <p class="card-text fs-5" style="color:#757575">Ongoing assistance and maintenance to optimize your Odoo system's performance.</p>
+            </div>
+            <div class="card-footer" style="background-color: #ffffff; border: none;">
+              <a href="skype:amshukla17?chat" class="btn btn-success rounded py-2 px-4" style="background-color: #001f3f;">Contact Us</a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="w-100 d-flex align-items-center flex-column">
+          <p class="w-75">Are you struggling with disorganized operations, high operational costs, or lack of transparency in your processes? What sets us apart is our commitment to personalized solutions tailored to your unique business needs and our proactive support, ensuring seamless integration and ongoing success.</p>
+          <p class="w-75">Would you like to explore Odoo ERP for your business? Schedule a free consultation with EKIKA today!</p>
+          <div class="my-3 rounded bg-dark" style="border:none; background: silver;">
+            <a href="mailto:hello@ekika.co" class="btn btn-outline-success rounded py-3 px-5 fs-5"><span class="fa fa-envelope" style="font-size:30px;"></span><span class="align-middle px-4">Email</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

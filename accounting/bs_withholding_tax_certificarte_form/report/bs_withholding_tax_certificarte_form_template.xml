@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="request_layout">
+	    <style>
+                @font-face {
+                font-family: 'THSarabunPSK';
+                src: url('/bs_withholding_tax_certificarte_form/static/src/fonts/THSarabunPSK.ttf') format('truetype');
+                font-style: normal;
+                }
+        </style>
+		<t t-if="not o" t-set="o" t-value="doc" />
+		<t t-if="not company">
+			<!-- Multicompany -->
+			<t t-if="company_id">
+				<t t-set="company" t-value="company_id" />
+			</t>
+			<t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+				<t t-set="company" t-value="o.company_id.sudo()" />
+			</t>
+			<t t-else="else">
+				<t t-set="company" t-value="res_company" />
+			</t>
+		</t>
+		<div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+			<div class="row pt-2" style="font-size: 11px;">
+				<div class="col-12 p-0 m-0 pt-1 pl-1">
+					<div class="text-left">
+						<span style="font-weight: bold;">
+							ฉบับที่ 1
+						</span>
+						<span>
+							(สำหรับผู้ถูกหักภาษี ณ ที่จ่าย ใช้แนบพร้อมกับแบบแสดงรายการภาษี)
+						</span>
+					</div>
+					<div class="text-left">
+						<span style="font-weight: bold;">
+							ฉบับที่ 2
+						</span>
+						<span>
+							(สำหรับผู้ถูกหักภาษี ณ ที่จ่าย เก็บไว้เป็นหลักฐาน)
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-8 p-0 m-0">
+					<div class="text-right">
+						<span style="font-weight: bold; font-size: 21px;">
+							หนังสือรับรองการหักภาษี ณ ที่จ่าย
+						</span>
+					</div>
+					<div style="margin-left: 320px;">
+						<span style="font-size: 14px;">
+							ตามมาตรา 50 ทวิ แห่งประมวลรัษฎากร
+						</span>
+					</div>
+				</div>
+				<div class="col-3 pl-1">
+					<div class="text-right" style="font-size: 15px;">
+						<span t-field="o.payment_id.name" />
+					</div>
+				</div>
+				<div class="col-1 p-0 m-0">
+					<div class="text-right" style="font-size: 15px;">
+						<span>
+							เล่มที่........
+						</span>
+						<span>
+							เลขที่........
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="row pl-2 pr-2" style="border: 1px solid black; border-radius: 10px;">
+				<div class="col-12">
+					<div class="row ">
+						<div class="col-6 p-0 pt-1">
+							<div class="row pl-3">
+								<div class="col-12 text-left" style="font-size: 15px; font-weight: bold;">
+									<span>
+										ผู้มีหน้าที่หักภาษี ณ ที่จ่าย : -
+									</span>
+								</div>
+							</div>
+							<div class="row pl-3">
+								<div class="col-2 text-left" style="font-size: 15px; font-weight: bold;">
+									<span>
+										ชื่อ
+									</span>
+								</div>
+								<div class="col-10 text-left" style="font-size: 15px;">
+									<span t-esc="o.company_partner_id.name" />
+									<span>(<t t-esc="o.company_partner_id.branch"/>)</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-10 text-center" style="font-size: 10px;">
+									<span>
+										(ให้ระบุว่าเป็น บุคคล นิติบุคคล บริษัท สมาคม หรือคณะบุคคล)
+									</span>
+								</div>
+								<div class="col-2 text-center">
+								</div>
+							</div>
+						</div>
+						<div class="col-6 p-0 pt-1">
+							<div class="row">
+								<div class="text-left" style="font-size: 15px;">
+									<span style="font-weight: bold;">
+										เลขประจําตัวผู้เสยีภาษีอากร (13หลัก)*
+									</span>
+									<t t-if="o.company_partner_id.vat">
+										<span t-field="o.company_partner_id.vat" />
+									</t>
+								</div>
+							</div>
+							<div class="row">
+								<div class="text-left" style="font-size: 15px; font-weight: bold;">
+									<span>
+										เลขประจำตัวผู้เสียภาษีอากร
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-1 text-left" style="font-size: 15px; font-weight: bold;">
+							<span>
+								ที่อยู่
+							</span>
+						</div>
+						<div class="col-11 text-left">
+							<span t-field="o.company_id.street" />
+							<span t-field="o.company_id.street2" />
+							<span t-field="o.company_id.city" />
+							<span t-field="o.company_id.state_id" />
+							<span t-field="o.company_id.zip" />
+							<span t-field="o.company_id.country_id" />
+						</div>
+					</div>
+					<div class="row pl-4">
+						<div class="col-10 text-left" style="font-size: 10px;">
+							<span>
+								(ให้ระบุ ชื่ออาคาร/หมู่บ้าน ห้องเลขที่ ชั้นที่ เลขที่ ตรอก/ซอย หมู่ที่ ถนน ตำบล/แขวง อำเภอ/เขต จังหวัด)
+							</span>
+						</div>
+						<div class="col-2">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row pl-2 pr-2 mt-1" style="border: 1px solid black; border-radius: 10px;">
+				<div class="col-12">
+					<div class="row ">
+						<div class="col-6 p-0 pt-1">
+							<div class="row pl-3">
+								<div class="col-12 text-left" style="font-size: 15px; font-weight: bold;">
+									<span>
+										ผู้ถูกหักภาษี ณ ที่จ่าย : -
+									</span>
+								</div>
+							</div>
+							<div class="row pl-3">
+								<div class="col-2 text-left" style="font-size: 15px; font-weight: bold;">
+									<span>
+										ชื่อ
+									</span>
+								</div>
+								<div class="col-10 text-left" style="font-size: 15px;">
+									<span t-esc="o.supplier_partner_id.name"/>
+									<t t-if="o.supplier_partner_id.branch">
+										<span>(<t t-esc="o.supplier_partner_id.branch"/>)</span>
+									</t>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-10 text-center" style="font-size: 10px;">
+									<span>
+										(ให้ระบุว่าเป็น บุคคล นิติบุคคล บริษัท สมาคม หรือคณะบุคคล)
+									</span>
+								</div>
+								<div class="col-2 text-center">
+								</div>
+							</div>
+						</div>
+						<div class="col-6 p-0 pt-1">
+							<div class="row">
+								<div class="text-left" style="font-size: 15px;">
+									<span style="font-weight: bold;">
+										เลขประจําตัวผู้เสยีภาษีอากร (13หลัก)*
+									</span>
+									<t t-if="o.supplier_taxid">
+										<span t-field="o.supplier_taxid" />
+									</t>
+								</div>
+							</div>
+							<div class="row">
+								<div class="text-left" style="font-size: 15px; font-weight: bold;">
+									<span>
+										เลขประจำตัวผู้เสียภาษีอากร
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-1 text-left" style="font-size: 15px; font-weight: bold;">
+							<span>
+								ที่อยู่
+							</span>
+						</div>
+						<div class="col-11 text-left">
+							<span t-field="o.supplier_partner_id.street" />
+							<span t-field="o.supplier_partner_id.street2" />
+							<span t-field="o.supplier_partner_id.city" />
+							<span t-field="o.supplier_partner_id.state_id" />
+							<span t-field="o.supplier_partner_id.zip" />
+							<span t-field="o.supplier_partner_id.country_id" />
+						</div>
+					</div>
+					<div class="row pl-4">
+						<div class="col-10 text-left" style="font-size: 10px;">
+							<span>
+								(ให้ระบุ ชื่ออาคาร/หมู่บ้าน ห้องเลขที่ ชั้นที่ เลขที่ ตรอก/ซอย หมู่ที่ ถนน ตำบล/แขวง อำเภอ/เขต จังหวัด)
+							</span>
+						</div>
+						<div class="col-2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<div class="text-left" style="font-size: 15px; font-weight: bold;">
+								<span>
+									ลำดับที่
+									<span style="border:1px solid black; display:inline-block; width:75px; height:18px;
+                                    margin:0 6px; vertical-align:middle; border-radius: 2px;">
+									</span>
+									<span style="font-weight: normal;">
+										ในแบบ
+									</span>
+								</span>
+							</div>
+						</div>
+						<div class="col-8 pb-1">
+							<table style="width:100%; border-collapse: collapse; font-size: 13px;">
+								<tr>
+									<!-- (1) ภ.ง.ด.1 -->
+									<td style="width:25%; vertical-align: top;">
+										<input type="checkbox" t-att-checked="o.income_tax_form == 'pnd1'" />
+										<span>
+											(1) ภ.ง.ด.1
+										</span>
+									</td>
+									<!-- (2) ภ.ง.ด.1ก พิเศษ (no condition in your code snippet, so left plain) -->
+									<td style="width:25%; vertical-align: top;">
+										<input type="checkbox" t-att-checked="o.income_tax_form == 'pnd1a'" />
+										<span>
+											(2) ภ.ง.ด.1ก พิเศษ
+										</span>
+									</td>
+									<!-- (3) ภ.ง.ด.2 (no condition in your code snippet, so left plain) -->
+									<td style="width:25%; vertical-align: top;">
+										<input type="checkbox" t-att-checked="o.income_tax_form == 'pnd2'" />
+										<span>
+											(3) ภ.ง.ด.2
+										</span>
+									</td>
+									<!-- (4) ภ.ง.ด.3 -->
+									<td style="width:25%; vertical-align: top;">
+										<input type="checkbox" t-att-checked="o.income_tax_form == 'pnd3'" />
+										<span>
+											(4) ภ.ง.ด.3
+										</span>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<div class="text-left" style="font-size: 10px;">
+								<span>
+									(ให้สามารถอ้างอิงหรือสอบยันกันได้ระหว่างลำดับที่ตามหนังสือรับรองฯ กับแบบยื่นรายการภาษีหักที่จ่าย)
+								</span>
+							</div>
+						</div>
+						<div class="col-8 pb-1">
+							<table style="width:100%; border-collapse: collapse; font-size: 13px;">
+								<tr>
+									<!-- (5) ภ.ง.ด.2 (no condition in your snippet, so left plain) -->
+									<td style="width:25%; vertical-align: top;">
+										<input type="checkbox" t-att-checked="o.income_tax_form == 'pnd2a'" />
+										<span>
+											(5) ภ.ง.ด.2ก
+										</span>
+									</td>
+									<!-- (6) ภ.ง.ด.3ก -->
+									<td style="width:25%; vertical-align: top;">
+										<input type="checkbox" t-att-checked="o.income_tax_form == 'pnd3a'" />
+										<span>
+											(6) ภ.ง.ด.3ก
+										</span>
+									</td>
+									<!-- (7) ภ.ง.ด.53 -->
+									<td style="width:50%; vertical-align: top;">
+										<input type="checkbox" t-att-checked="o.income_tax_form == 'pnd53'" />
+										<span>
+											(7) ภ.ง.ด.53
+										</span>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+			<t t-raw="0" />
+		</div>
+
+		<div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+			<div class="last-page">
+				<div class="row" style="font-family:'TH SarabunPSK'; border: 1px solid black; border-radius:5px; margin-top:-1px; padding-top:5px; padding-bottom:5px;">
+					<div class="col-5">
+						<div class = "row">
+							<div class="col-3 text-left" style="font-size: 13px; font-weight: bold;">
+								<span>
+									คำเตือน
+								</span>
+							</div>
+							<div class="col-9 text-left" style="font-size: 12px; border-right: 1px solid black;">
+								<span>
+									ผู้มีหน้าที่ออกหนังสือรับรองการหักภาษี ณ ที่จ่ายฝ่าฝืนไม่ปฏิบัติตามมาตรา 50 
+								</span>
+								<br/>
+								<span>
+									ทวิแหงประมวลรัษฎากรต้องรับโทษทางอาญา
+								</span>
+								<br/>
+								<span>
+									ตามมาตรา 50 ทวิ แห่งประมวลรัษฎากร
+								</span>
+							</div>
+						</div>
+					</div>	
+					<div class="col-7" style ="text-align: center; font-size: 13px;">
+						<div class="row">
+							<div class="col-12">
+								<span>ขอรับรองว่าขอความและตัวเลขดังกล่าวข้างต้นถูกต้องตรงกับความจริงทุกประการ</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-10">
+								<span>ลงชื่อ........................................................ผู้จ้ายเงิน</span>
+								<br/>
+								<span style = "margin-right: 10px;">........................................................</span>
+								<br/>
+								<span>(วัน เดือน ปี ทีออกหนังสือรับรอง)</span>
+							</div>
+							<div class="col-2">
+								<div style="width: 50px; height: 50px; border: 1px solid black; border-radius: 50%; font-size: 9px; padding-top: 5px;">
+									<span> ประทับตรา
+											นิติบุคคล
+											(ถ้ามี)
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="font-family:'TH SarabunPSK'; margin-top:-1px; padding-top:5px; padding-bottom:5px;">
+					<div class= "col-6">
+						<div class = "row" style="font-size: 13px;">
+							<div class="col-3 text-left" style="font-weight: bold;">
+								<span>
+											หมายเหตุ
+								</span>
+							</div>
+							<div class="col-9 text-left">
+								<span>	
+											 เลขประจำตัวผู้เสียภาษีอากร (13 หลัก )* หมายถึง
+								</span>
+							</div>	
+						</div>	
+					</div>
+					<div class="col-6 text-left" style="font-size: 11px;">
+						<span>
+									1. กรณีบุคคลธรรมดาไทย ให้ใช้เลขประจำตัวประชาชนของกรมการปกครอง
+						</span>
+						<br/>
+						<span>
+									2. กรณีนิติบุคคลไทย ให้ใช้เลขทะเบียนนิติบุคคลของกรมพัฒนาธุรกิจการค้า
+						</span>
+						<br/>
+						<span>
+									3. กรณีอื่น ๆ นอกเหนือจาก 1. และ 2. ให้ใช้เลขประจำตัวผู้เสียภาษีอากร (13 หลัก) ของกรมสรรพากร
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+</odoo>

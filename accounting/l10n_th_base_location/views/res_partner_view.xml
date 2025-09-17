@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="assets_backend_partner_address" name="partner_address assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+        <link rel="stylesheet" type="text/css" href="/l10n_th_base_location/static/src/css/form_view.scss"/>
+        </xpath>
+    </template>
+    <record id="view_partner_form_inherit_address" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="city" position="before">
+                <field name="sub_district" placeholder="Sub-District" class="o_address_sub_district" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

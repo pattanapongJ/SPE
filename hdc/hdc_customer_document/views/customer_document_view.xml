@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="customer_document_master_view_tree" model="ir.ui.view">
+        <field name="name">customer.document.master.view.tree</field>
+        <field name="model">customer.document</field>
+        <field name="arch" type="xml">
+            <tree string="ชุดเอกสาร" editable="bottom">
+                <field name="name" />
+                <field name="note_1" />
+                <field name="remark_1" />
+                <field name="note_2" />
+                <field name="remark_2" />
+                <field name="note_3" />
+                <field name="remark_3" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="customer_document_action" model="ir.actions.act_window">
+        <field name="name">Customer Documents</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer.document</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Data Customer Documents
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        action="customer_document_action" id="menu_customer_document_action"
+        name="Customer Documents"
+        parent="contacts.res_partner_menu_config" sequence="99" />
+
+    <record id="customer_document_inherit_res_partner" model="ir.ui.view">
+        <field name="name">customer.document.inherit.res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//page[@name='accounting']" position="inside">
+               <group>
+                    <group name="customer_documents" string="ชุดเอกสาร">
+                        <field name="cus_doc_id" />
+                        <group>
+                            <field name="cus_doc_note_1"  />
+                            <field name="cus_doc_note_2" />
+                            <field name="cus_doc_note_3" />
+                        </group>
+                        <group>
+                            <field name="cus_doc_remark_1" />
+                            <field name="cus_doc_remark_2" />
+                            <field name="cus_doc_remark_3" />
+                        </group>
+                    </group>
+               </group>
+            </xpath>       -->
+
+            <xpath expr="//page[@name='accounting']" position="inside">
+                <group name="customer_documents" string="ชุดเอกสาร">
+                    <field name="cus_doc_id"/>
+                    <group>
+                        <field name="cus_doc_note_1"/>
+                        <field name="cus_doc_note_2"/>
+                        <field name="cus_doc_note_3"/>
+                    </group>
+                    <group>
+                        <field name="cus_doc_remark_1"/>
+                        <field name="cus_doc_remark_2"/>
+                        <field name="cus_doc_remark_3"/>
+                    </group>
+                </group>
+            </xpath>  
+
+        </field>
+    </record>
+
+</odoo>

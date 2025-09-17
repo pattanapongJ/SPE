@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_view_id_inherit_module_purchase_order" model="ir.ui.view">
+        <field name="name">purchase.order.view.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_unlock']" position="after">
+                <button name="print_po_and_rfq" string="Print RFQ / PO" type="object"/>
+            </xpath>
+            <xpath expr="//button[@name='print_quotation']" position="replace">
+                <button name="print_quotation" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_ref']" position="after">
+                <field name="contact_person" />
+            </xpath>
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="delivery_terms" />
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="inherit_view_id_inherit_module_purchase_request_report_btn" model="ir.ui.view">
+        <field name="name">purchase.request.view.form.inherit.btn</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_rejected']" position="after">
+                <button name="action_print_request" string="Print PR" type="object" />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='product_qty']" position="after">
+                 <field name="pending_order"/>
+                 <field name="order_plan" />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='purchase_state']" position="after">
+                 <field name="approve_order" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

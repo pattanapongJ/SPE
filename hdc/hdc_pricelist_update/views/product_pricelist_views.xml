@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_pricelist_item_form_view_hdc" model="ir.ui.view">
+        <field name="name">product.pricelist.item.form</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//sheet/h1" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        name="action_button_method"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-bars"
+                        attrs="{'invisible': [('amount_pricelist_update', '=', 0)]}">
+                        <field name="amount_pricelist_update" string="Price Update"
+                            widget="statinfo" />
+                    </button>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

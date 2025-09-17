@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <!-- menuitem -->
+    <!-- <menuitem
+        id="purchase_receipt_list_menu"
+        name="Receipt List"
+        action="stock_picking_batch.stock_picking_batch_action"
+        parent="purchase.menu_purchase_root"
+        sequence="4"/>
+
+    <menuitem id="menu_receipt_list_main_root" web_icon="spe_receiptlist_menu,static/description/giving.png" name="Receipt Lists" sequence="40" />
+
+    <menuitem
+        id="purchase_receipt_list_menu_inherit"
+        name="Receipt List"
+        action="stock_picking_batch.stock_picking_batch_action"
+        parent="menu_receipt_list_main_root"
+        sequence="1"/> -->
+
+</odoo>

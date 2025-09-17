@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_hdc_inventory_picking_list_sale" model="ir.ui.view">
+        <field name="name">view.sale.form.inherit.hdc_inventory_picking_list_sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_quotation_send']" position="before">
+                <button name="action_create_picking" id="action_create_picking" string="Create Picking"
+                        class="btn-primary" type="object" attrs="{'invisible': [('state', 'not in', ('sale', 'done'))]}"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button type="object"
+                    name="action_view_picking_list"
+                    class="oe_stat_button"
+                    icon="fa-hand-lizard-o"
+                    attrs="{'invisible': [('count_picking_list', '=', 0)]}"
+                    groups="base.group_user">
+                    <field name="count_picking_list" widget="statinfo" string="Picking List"/>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="pick_location_id" attrs="{
+                        'readonly': [('state', 'in', ('done','sale','cancel'))]
+                        }"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_inherit_sale_stock_picking_list_sale" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.stock.picking_list_sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_delivery']" position="attributes">
+                <attribute name="groups">base.group_no_one</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_advance_payment_inv_inherit_picking_list" model="ir.ui.view">
+        <field name="name">payment.inv.inherit_picking_list.form</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id" ref="sale.view_sale_advance_payment_inv" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <field name="picking_list" widget="many2many_tags" attrs="{'invisible': [('advance_payment_method','not in', ('picking','picking_urgent'))], 'required': [('advance_payment_method','in', ('picking','picking_urgent'))]}" options="{'no_create': True}"/>
+            </xpath>
+            <xpath expr="//group" position="after">
+                <group attrs="{'invisible': [('advance_payment_method','not in', ('picking','picking_urgent'))], 'required': [('advance_payment_method','in', ('picking','picking_urgent'))]}">
+                    <notebook>
+                        <page string="Product Lists">
+                            <field name="list_line_ids" readonly="0" context="{'tree_view_ref': 'hdc_inventory_picking_list_sale.view_picking_lists_line_tree_popup'}">
+                                <tree string="Product Lists" editable="bottom" delete="1" create="0" edit="0">
+                                    <field name="sequence2"/>
+                                    <field name="product_id"/>
+                                    <field name="categ_id"/>
+                                    <field name="sale_id" invisible="1"/>
+                                    <field name="move_id" invisible="1"/>
+                                    <field name="picking_done_qty" optional="hide"/>
+                                    <field name="picking_id"/>
+                                    <field name="location_id" readonly="1" force_save="1"/>
+                                    <field name="reserved_availability" invisible="1"/>
+                                    <field name="qty_ava" invisible="1"/>
+                                    <field name="qty_sale_order" optional="hide"/>
+                                    <field name="qty" optional="show"/>
+                                    <field name="amount_arranged" optional="show" readonly="1" force_save="1"/>
+                                    <field name="qty_done"/>
+                                    <field name="uom_id"/>
+                                    <field name="external_item" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="barcode_customer" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="barcode_modern_trade" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="description_customer" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="modify_type_txt" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="plan_home" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="room" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="date_order" optional="hide"/>
+                                    <field name="delivery_date" optional="hide"/>
+                                    <field name="move_location_id" invisible="1"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="move_state" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

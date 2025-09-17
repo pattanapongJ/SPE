@@ -1,0 +1,253 @@
+<odoo>
+    <record id="gen_receipt_list_form_view" model="ir.ui.view">
+        <field name="name">gen.receipt.list.form</field>
+        <field name="model">gen.receipt.list</field>
+        <field name="arch" type="xml">
+            <form string="Generate Receipt List">
+                <header>
+                    <button name="search_value" string="Search" type="object" class="oe_highlight"/>
+                    <button name="clear_value" string="Clear all" type="object"/>
+                    <button name="create_receipt_lists" string="Create Receipt Lists" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="company_id"/>
+                            <field name="purchase_ids" widget="many2many_tags"/>
+                            <field name="picking_ids" widget="many2many_tags"/>
+                            <field name="purchase_type"/>
+                            <field name="po_ref"/>
+                        </group>
+                        <group>
+                            <label for="s_date_form" string="Scheduled Date From" />
+                                <div>
+                                    <div class="o_row">
+                                        <field
+                                            name="s_date_form"
+                                            class="oe_inline"
+                                        />
+                                        <span class="oe_inline">To</span>
+                                        <field
+                                            name="s_date_to"
+                                            class="oe_inline"
+                                        />
+                                    </div>
+                                </div>
+                            <label for="d_date_form" string="Deadline Date From" />
+                                <div>
+                                    <div class="o_row">
+                                        <field
+                                            name="d_date_form"
+                                            class="oe_inline"
+                                        />
+                                        <span class="oe_inline">To</span>
+                                        <field
+                                            name="d_date_to"
+                                            class="oe_inline"
+                                        />
+                                    </div>
+                                </div>
+                            <field name="performa_invoice"/>
+                            <label for="per_invoice_date_form" string="Performa Invoice Date From" />
+                                <div>
+                                    <div class="o_row">
+                                        <field
+                                            name="per_invoice_date_form"
+                                            class="oe_inline"
+                                        />
+                                        <span class="oe_inline">To</span>
+                                        <field
+                                            name="per_invoice_date_to"
+                                            class="oe_inline"
+                                        />
+                                    </div>
+                                </div>
+                            <field name="commercial_invoice"/>
+                            <label for="com_invoice_date_form" string="Commercial Invoice Date From" />
+                                <div>
+                                    <div class="o_row">
+                                        <field
+                                            name="com_invoice_date_form"
+                                            class="oe_inline"
+                                        />
+                                        <span class="oe_inline">To</span>
+                                        <field
+                                            name="com_invoice_date_to"
+                                            class="oe_inline"
+                                        />
+                                    </div>
+                                </div>
+                            <field name="vendor_ref"/>
+                        </group>
+                    </group>
+                    <button name="select_all" string="Select All" type="object" class="oe_highlight"/>
+                    <field name="line_ids" nolabel="1">
+                        <tree create="false" editable="bottom">
+                            <button name="action_remove_line" type="object" icon="fa-trash" title="Delete" class="btn-link text-danger"/>
+                            <field name="move_id" invisible="1"/>
+                            <field name="select" string=" "/>
+                            <field name="product_id"/>
+                            <field name="date"/>
+                            <field name="warehouse_id"/>
+                            <field name="location_dest_id"/>
+                            <field name="reference"/>
+                            <field name="group_id"/>
+                            <field name="demand_total"/>
+                            <field name="shipped_qty" readonly="1"/>
+                            <field name="demand"/>
+                            <field name="price"/>
+                            <field name="subtotal"/>
+                            <field name="state"/>
+                            <field name="default_code" optional="hide"/>
+                            <field name="barcode" optional="hide"/>
+                            <field name="product_categ_id" optional="hide"/>
+                            <field name="product_tag_ids" widget="many2many_tags" optional="hide"/>
+                            <field name="all_stock" optional="hide"/>
+                            <field name="available_stock" optional="hide"/>
+                            <field name="external_barcodes" widget="many2many_tags" optional="hide"/>
+                            <field name="remark" optional="hide"/>
+                            <field name="box" optional="hide"/>
+                            <field name="crate" optional="hide"/>
+                            <field name="net_price" optional="hide"/>
+                            <field name="std_price" readonly="1" optional="hide"/>
+                            <field name="discount" optional="hide"/>
+                            <field name="taxes_id" widget="many2many_tags" optional="hide"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="move_id" invisible="1"/>
+                                    <field name="product_id"/>
+                                    <field name="date"/>
+                                    <field name="warehouse_id"/>
+                                    <field name="location_dest_id"/>
+                                    <field name="reference"/>
+                                    <field name="group_id"/>
+                                    <field name="demand_total"/>
+                                    <field name="shipped_qty" readonly="1"/>
+                                    <field name="demand"/>
+                                    <field name="price"/>
+                                    <field name="subtotal"/>
+                                </group>
+                                <group>
+                                    <field name="state"/>
+                                    <field name="default_code"/>
+                                    <field name="barcode"/>
+                                    <field name="product_categ_id"/>
+                                    <field name="product_tag_ids" widget="many2many_tags" />
+                                    <field name="all_stock"/>
+                                    <field name="available_stock"/>
+                                    <field name="external_barcodes" widget="many2many_tags"/>
+                                    <field name="remark"/>
+                                    <field name="box"/>
+                                    <field name="crate"/>
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="untaxed_amount"/>
+                        <field name="vat_amount"/>
+                        <div class="oe_subtotal_footer_separator oe_inline">
+                            <label for="total_amount"/>
+                        </div>
+                        <field name="total_amount" nolabel="1" class="oe_subtotal_footer_separator" options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gen_receipt_list" model="ir.actions.act_window">
+        <field name="name">Generate Receipt Lists</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gen.receipt.list</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="gen_receipt_list_form_view"/>
+    </record>
+
+    <record id="add_gen_receipt_list_form_view" model="ir.ui.view">
+        <field name="name">add.gen.receipt.list.form</field>
+        <field name="model">gen.receipt.list</field>
+        <field name="arch" type="xml">
+            <form string="Receipt List">
+                <sheet>
+                    <button name="select_all" string="Select All" type="object" class="oe_highlight"/>
+                    <field name="line_ids" nolabel="1">
+                        <tree create="false" editable="bottom">
+                            <field name="move_id" invisible="1"/>
+                            <field name="select" string=" "/>
+                            <field name="product_id"/>
+                            <field name="date"/>
+                            <field name="warehouse_id"/>
+                            <field name="location_dest_id"/>
+                            <field name="reference"/>
+                            <field name="group_id"/>
+                            <field name="demand_total"/>
+                            <field name="shipped_qty" readonly="1"/>
+                            <field name="demand"/>
+                            <field name="price"/>
+                            <field name="subtotal"/>
+                            <field name="state"/>
+                            <field name="default_code" optional="hide"/>
+                            <field name="barcode" optional="hide"/>
+                            <field name="product_categ_id" optional="hide"/>
+                            <field name="product_tag_ids" widget="many2many_tags" optional="hide"/>
+                            <field name="all_stock" optional="hide"/>
+                            <field name="available_stock" optional="hide"/>
+                            <field name="external_barcodes" widget="many2many_tags" optional="hide"/>
+                            <field name="remark" optional="hide"/>
+                            <field name="box" optional="hide"/>
+                            <field name="crate" optional="hide"/>
+                            <field name="net_price" optional="hide"/>
+                            <field name="std_price" readonly="1" optional="hide"/>
+                            <field name="discount" optional="hide"/>
+                            <field name="taxes_id" widget="many2many_tags" optional="hide"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="move_id" invisible="1"/>
+                                    <field name="product_id"/>
+                                    <field name="date"/>
+                                    <field name="warehouse_id"/>
+                                    <field name="location_dest_id"/>
+                                    <field name="reference"/>
+                                    <field name="group_id"/>
+                                    <field name="demand_total"/>
+                                    <field name="shipped_qty" readonly="1"/>
+                                    <field name="demand"/>
+                                    <field name="price"/>
+                                    <field name="subtotal"/>
+                                </group>
+                                <group>
+                                    <field name="state"/>
+                                    <field name="default_code"/>
+                                    <field name="barcode"/>
+                                    <field name="product_categ_id"/>
+                                    <field name="product_tag_ids" widget="many2many_tags" />
+                                    <field name="all_stock"/>
+                                    <field name="available_stock"/>
+                                    <field name="external_barcodes" widget="many2many_tags"/>
+                                    <field name="remark"/>
+                                    <field name="box"/>
+                                    <field name="crate"/>
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+                </sheet>
+                <footer>
+                    <button name="confirm_add_item"
+                        string="Create"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

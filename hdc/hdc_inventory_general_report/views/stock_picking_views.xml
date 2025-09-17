@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inventory_report_view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+                <xpath expr="//field[@name='picking_type_code']" position="after">
+                    <!-- <field name="operation_types_name" invisible="1"/> -->
+                    <field name="addition_operation_types_code" invisible="1"/>
+                </xpath>
+
+                 <xpath expr="//header/button[@name='do_print_picking']" position="replace">
+                    <button name="do_print_picking" string="Print" groups="stock.group_stock_user" type="object" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//header/button[@name='do_print_picking']" position="after">
+                    <button name="do_receipt_print_picking" string="Print Receipt" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|',('picking_type_code', '!=', 'incoming'),('addition_operation_types_code', '=', 'AO-05')]}"/>
+                    <!-- <button name="do_internal_tranfer_print_picking" string="Print Internal Tranfer" groups="stock.group_stock_user" type="object"  attrs="{'invisible': ['|', ('picking_type_code', '!=', 'internal') , ('operation_types_name', '!=', False)]}"/> -->
+                    <button name="do_internal_tranfer_print_picking" string="Print Internal Tranfer" groups="stock.group_stock_user" type="object"  attrs="{'invisible': [('picking_type_code', '!=', 'internal')]}"/>
+                    <button name="do_delivery_print_picking" string="Print Delivery" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|','|', ('picking_type_code', '!=', 'outgoing'), ('state', '=', 'waiting_cancel'), ('addition_operation_types_code', '=', 'AO-02')]}"/>
+                    <button name="do_requestion_print_picking" string="Print Borrow" groups="stock.group_stock_user" type="object"  attrs="{'invisible': ['|',('picking_type_code', '!=', 'outgoing'),('addition_operation_types_code', '!=', 'AO-02')]}"/>
+                    <button name="do_return_customer_print_picking" string="Print Return Customer" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|',('picking_type_code', '!=', 'incoming'),('addition_operation_types_code', '!=', 'AO-05')]}"/>
+                </xpath>
+
+                <xpath expr="//header/button[@name='to_approve']" position="after">
+                    <button name="do_inter_tranfer_print_picking" string="Print Inter Tranfer" groups="stock.group_stock_user" type="object"/>
+                    <!-- <button name="do_inter_tranfer_print_picking" string="Print Inter Tranfer" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|', ('operation_types_name', '!=', 'Inter Transfer'), ('inter_state', 'not in', ('delivery', 'done'))]}"/> -->
+                </xpath>
+
+                <!-- <xpath expr="//header" position="after">
+                <header attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}">
+                    <button name="do_inter_tranfer_print_picking" string="Print Inter Tranfer" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|', ('picking_type_code', '!=', 'internal'), ('operation_types_name', '!=', 'Inter Transfer')]}"/>
+                </header>
+            </xpath> -->
+
+                <xpath expr="//group[@name='other_infos']/field[@name='user_id']" position="after">
+                    <field name="write_uid" readonly="1" />
+                    <field name="write_date" readonly="1"/>
+                </xpath>
+                <xpath expr="//button[@name='642']" position="after">
+                    <button name="print_pk_list" string="พิมพ์ใบสั่งจัด" type="object"  attrs="{'invisible': [('operation_type_rm', '!=', 'BRS')]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='quantity_done']" position="after">
+                    <field name="shortage_qty" force_save="1"/>
+                    <field name="overage_qty" force_save="1"/>
+                </xpath>
+                <xpath expr="//header/button[@name='do_print_picking']" position="after">
+                    <button name="print_sale_borrow" 
+                        string="ใบส่งสินค้าตัวอย่าง" 
+                        groups="stock.group_stock_user" 
+                        type="object"  
+                        attrs="{'invisible': [('sale_borrow', '=', False)]}"/>
+                </xpath>
+        </field>
+    </record>
+    
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <template id="withholding_layout_report" inherit_id="l10n_th_withholding_tax_cert_form.withholding_layout_report">
+            <xpath expr="//div[hasclass('supplier_name')]/p" position="replace">
+                 <p>
+                    <span t-field="o.supplier_partner_id.name" />
+                     <t t-if="o.supplier_partner_id.branch">
+                         ( <span t-field="o.supplier_partner_id.branch"/> )
+                     </t>
+                </p>
+            </xpath>
+            <xpath expr="//t[@t-set='year']" position="replace">
+                <t t-set="year" t-value="(int((o.date).strftime('%Y')))" />
+            </xpath>
+            <xpath expr="//div[hasclass('article')]" position="inside">
+                 <t t-if="o.create_uid.employee_id and o.create_uid.employee_id.signature">
+                         <img t-att-src="image_data_uri(o.create_uid.employee_id.signature)" alt="Signature" style="position: fixed;
+                            box-sizing: content-box;
+                            width: 200px;
+                            height: 30px;
+                            top: 1410px;
+                            right:40px;
+                            object-fit: contain;"/>
+                </t>
+
+                <t t-if="o.income_tax_form == 'pnd1a'">
+                    <p style="
+                        position: fixed;
+                        top: 430px;
+                        right: 570px;
+                        font-size: 28px;">
+                        X
+                    </p>
+                </t>
+                <t t-if="o.income_tax_form == 'pnd2'">
+                    <p style="
+                        position: fixed;
+                        top: 430px;
+                        right: 365px;
+                        font-size: 28px;">
+                        X
+                    </p>
+                </t>
+
+                <t t-if="o.income_tax_form == 'pnd2a'">
+                    <p style="
+                        position: fixed;
+                        top: 463px;
+                        left: 418px;
+                        font-size: 28px;">
+                        X
+                    </p>
+                </t>
+                <t t-if="o.tax_payer == 'paid_all_time'">
+                    <p style="
+                        position: fixed;
+                        top: 1350px;
+                        left: 354px;
+                        font-size: 23px;
+                        font-weight: bold;">
+                        X
+                    </p>
+                </t>
+            
+               <t t-if="o.date">
+                     <div style="position: fixed;box-sizing: content-box;width: 250px;height: 30px;top: 1435px;right:230px;">
+                         <span t-esc="o.date.strftime('%d')" style="margin-right: 70px;"/>
+                         <span t-esc="o.date.strftime('%m')"  style="margin-right: 80px;"/>
+                         <span t-esc="int(o.date.strftime('%Y'))+543"/>
+                     </div>
+                </t>
+             </xpath>
+    </template>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">account_payment.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <notebook>
+                         <page string="Reconcile">
+                        <field name="partial_reconcile_info_ids">
+                            <tree>
+                                <field name="id" invisible="1"/>
+                                <field name="reconciled_line_id" invisible="1"/>
+                                <field name="invoice_date"/>
+                                <field name="move_name"/>
+                                <field name="reference"/>
+                                <field name="reconcile_date"/>
+                                <field name="amount"/>
+                                <field name="status"/>
+                            </tree>
+                        </field>
+                    </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

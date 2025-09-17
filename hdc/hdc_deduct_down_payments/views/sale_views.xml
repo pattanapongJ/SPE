@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_order_form_hdc_deduct_down_payments" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='order_lines']/field[@name='order_line']/form/field[@name='company_id']" position="after">
+                <group>
+                    <field name="is_deduct_downpayment" invisible="1"/>
+                    <field name="is_downpayment" invisible="1"/>
+                    <field name="remain_down_payment" attrs="{'invisible': ['|',('is_downpayment', '=', False),('is_deduct_downpayment', '=', True)]}"/>
+                </group>
+                <div name="deposit_history_ids" attrs="{'invisible': ['|',('is_downpayment', '=', False),('is_deduct_downpayment', '=', True)]}">
+                    <label for="deposit_history_ids"/>
+                    <field name="deposit_history_ids">
+                        <tree>
+                            <field name="deposit_move_id" invisible="1"/>
+                            <field name="deduct_move_id"/>
+                            <field name="deducted_amount" sum="Total Deduct Amount"/>
+                        </tree>
+                    </field>
+                </div>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='company_id']" position="after">
+                <field name="is_downpayment" invisible="1"/>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']" position="after">
+                <page string="Down Payment" name="down_payments">
+                    <field name="order_down_line" widget="section_and_note_one2many">
+                        <tree string="Down Payment Lines">
+                            <field name="display_type" invisible="1"/>
+                            <field name="sequence" widget="handle" />
+                            <field name="product_id"/>
+                            <field name="name" widget="section_and_note_text" optional="show"/>
+                            <field name="price_unit" />
+                        </tree>
+                    </field>
+                 </page>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

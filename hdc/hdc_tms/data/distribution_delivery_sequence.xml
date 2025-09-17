@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- <record id="seq_distribution_delivery" model="ir.sequence">
+            <field name="name">Distribution Delivery Note sequence</field>
+            <field name="code">distribition_delivery_note_sequence</field>
+            <field name="prefix">DN %(year)s%(month)s - </field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="5" name="padding"/>
+            <field eval="True" name="use_date_range" />
+            <field name="implementation">no_gap</field> 
+        </record> -->
+    </data>
+</odoo>

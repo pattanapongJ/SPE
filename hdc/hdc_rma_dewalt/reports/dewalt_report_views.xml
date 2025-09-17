@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="delivery_dewalt_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งของ</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบส่งของ %s " %(object.name)</field>
+           <field name="report_name">hdc_rma_dewalt.delivery_dewalt_so_report</field>
+           <field name="report_file">hdc_rma_dewalt.delivery_dewalt_so_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_rma_dewalt.paperformat_report_sale_dewalt_delivery"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="claim_dewalt_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งงานเคลม</field>
+           <field name="model">sale.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบส่งงานเคลม %s " %(object.name)</field>
+           <field name="report_name">hdc_rma_dewalt.claim_dewalt_so_report</field>
+           <field name="report_file">hdc_rma_dewalt.claim_dewalt_so_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_rma_dewalt.paperformat_report_sale_dewalt_delivery"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="picking_list_report_dewalt_a5" model="ir.actions.report">
+            <field name="name">รายงานใบจัดสินค้า A5</field>
+            <field name="model">crm.claim.ept</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายงานใบจัดสินค้า A5-%s " %(object.name)</field>
+            <field name="report_name">hdc_rma_dewalt.claim_dewalt_picking_list_report_a5</field>
+            <field name="report_file">hdc_rma_dewalt.claim_dewalt_picking_list_report_a5</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_rma_dewalt.paperformat_report_picking_list_dewalt_a5"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

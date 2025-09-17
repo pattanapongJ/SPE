@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="mrp_bom_rounding_view_inherited" model="ir.ui.view">
+        <field name="name">mrp.bom.rounding.view.inherited</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='miscellaneous']/group/group/field[@name='picking_type_id']" position="after">
+                <field name="rounding" />
+            </xpath>
+            
+        </field>
+    </record>
+
+</odoo>

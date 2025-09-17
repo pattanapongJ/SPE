@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_oauth_provider_form_easy_api_inherit" model="ir.ui.view">
+        <field name="name">auth.oauth.provider.form.easy.api.inherit</field>
+        <field name="model">auth.oauth.provider</field>
+        <field name="inherit_id" ref="auth_oauth.view_oauth_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='enabled']" position="after">
+                <field name="api_allowed"/>
+            </xpath>
+            <xpath expr="//field[@name='client_id']" position="after">
+                <field name="client_secret" 
+                attrs="{'required': [('api_allowed','=',True)], 'invisible': [('api_allowed','=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='auth_endpoint']" position="after">
+                <field name="token_endpoint"
+                attrs="{'required': [('api_allowed','=',True)], 'invisible': [('api_allowed','=',False)]}"/>
+                <field name="revoke_endpoint"
+                attrs="{'required': [('api_allowed','=',True)], 'invisible': [('api_allowed','=',False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_oauth_provider_tree_easy_api_inherit" model="ir.ui.view">
+        <field name="name">auth.oauth.provider.tree.easy.api.inherit</field>
+        <field name="model">auth.oauth.provider</field>
+        <field name="inherit_id" ref="auth_oauth.view_oauth_provider_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='enabled']" position="after">
+                <field name="api_allowed"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

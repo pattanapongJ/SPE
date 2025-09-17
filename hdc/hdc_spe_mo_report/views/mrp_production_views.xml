@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="spe_mo_reports_form_view_inherit_mrp_production" model="ir.ui.view">
+        <field name="name">spe.mo.reports.form.view.inherit.mrp.production</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button name="print" string="Print Report"
+                           type="object" class="oe_highlight"/>
+                <!-- <button name="create_mrp_production_state_report" string="Create Mrp Production State Report"
+                           type="object" class="oe_highlight" attrs="{'invisible': [('count_mrp_production_state', '>', 0)]}"/> -->
+           </xpath>
+            <xpath expr="//field[@name='bom_id']" position="after">
+                <field name="est_quantity" />
+                <field name="material_requisition_type_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//button[@name='action_view_mrp_production_childs']" position="before">
+                <button type="object"
+                    name="action_view_mrp_production_state_report"
+                    class="oe_stat_button"
+                    icon="fa-tasks"
+                    groups="base.group_user">
+                    <field name="count_mrp_production_state" widget="statinfo" string="State Report"/>
+                </button>
+            </xpath>
+            <xpath expr="//page[@name='components']" position="inside">
+                <group string="Note" name="note_group">
+                    <div>
+                        <field name="note" class="oe_inline"/>
+                    </div>
+                </group>
+            </xpath>   
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="partner_id" />
+            </xpath>     
+        </field>
+    </record>
+</odoo>

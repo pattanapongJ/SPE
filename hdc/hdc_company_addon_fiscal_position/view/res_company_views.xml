@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_inherit_addon_fiscal_position" model="ir.ui.view">
+        <field name="name">view.company.form.inherit.addon.fiscal.position</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="priority">40</field>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='general_info'][2]/group/group[1]" position="inside">
+                <field name="fiscal_position_id"/>
+            </xpath>    
+        </field>
+    </record>
+</odoo>

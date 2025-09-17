@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <odoo>
+        <record id="view_easy_graphql_doc_tree" model="ir.ui.view">
+            <field name="name">easy.graphql.doc.tree</field>
+            <field name="model">easy.graphql.doc</field>
+            <field name="arch" type="xml">
+                <tree string="GraphQL Doc">
+                    <field name="name"/>
+                    <field name="easy_api_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_easy_graphql_doc_form">
+            <field name="name">easy.graphql.doc.form</field>
+            <field name="model">easy.graphql.doc</field>
+            <field name="priority" eval="15"/>
+            <field name="arch" type="xml">
+                <form string="easy_api" create="false" class="graphql-doc">
+                    <field name="doc_iframe" readonly="1" class="h-100"/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Main Action: easy.graphql.doc -->
+        <record id="action_easy_graphql_doc" model="ir.actions.act_window">
+            <field name="name">GRAPHQL MAIN DOC</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">easy.graphql.doc</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            </p>
+            </field>
+        </record>
+        <!-- Sub Action Form: easy.graphql.doc -->
+        <record id="action_easy_graphql_doc_view_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_easy_graphql_doc_form"/>
+            <field name="act_window_id" ref="action_easy_graphql_doc"/>
+        </record>
+        <!-- Sub Action Tree: easy.graphql.doc -->
+        <record id="action_easy_graphql_doc_view_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_easy_graphql_doc_tree"/>
+            <field name="act_window_id" ref="action_easy_graphql_doc"/>
+        </record>
+
+    </odoo>
+</data>

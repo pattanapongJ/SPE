@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="creditlimit_request_report_view" model="ir.actions.report">
+            <field name="name">แบบฟอร์มขออนุมัติวงเงิน(ชั่วคราว) แบบรวมที่ค้างอนุมัติ</field>
+            <field name="model">temp.credit.request</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_creditlimit_saleteam.hdc_creditlimit_request_report</field>
+            <field name="print_report_name">'แบบฟอร์มขออนุมัติวงเงิน(ชั่วคราว)_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_creditlimit_saleteam.paperformat_report_creditlimit_request"/>
+            <field name="binding_model_id" ref="model_temp_credit_request"/>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="creditlimit_request_report_single_view" model="ir.actions.report">
+            <field name="name">แบบฟอร์มขออนุมัติวงเงิน(ชั่วคราว) 1 ต่อ 1</field>
+            <field name="model">temp.credit.request</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_creditlimit_saleteam.hdc_creditlimit_request_single_report</field>
+            <field name="print_report_name">'แบบฟอร์มขออนุมัติวงเงิน(ชั่วคราว)_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_creditlimit_saleteam.paperformat_report_creditlimit_request"/>
+            <field name="binding_model_id" ref="model_temp_credit_request"/>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="creditlimit_request_report_multi_view" model="ir.actions.report">
+            <field name="name">แบบฟอร์มขออนุมัติวงเงิน(ชั่วคราว) เลือกพิมพ์เฉพาะที่เลือก</field>
+            <field name="model">temp.credit.request</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_creditlimit_saleteam.hdc_tcr_multi_report</field>
+            <field name="print_report_name">'แบบฟอร์มขออนุมัติวงเงิน(ชั่วคราว)_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_creditlimit_saleteam.paperformat_report_creditlimit_request"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

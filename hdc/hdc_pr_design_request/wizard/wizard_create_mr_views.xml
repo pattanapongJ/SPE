@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_create_new_mr_pdr" model="ir.ui.view">
+        <field name="name">Create New Product</field>
+        <field name="model">wizard.pdr.create.mr</field>
+        <field name="arch" type="xml">
+            <form string="Create New Product">
+                <group>
+                    <!-- <group> -->
+                        <field name="company_id" invisible="1"/>
+                        <field name="picking_type_id"/>
+                        <field name="remark"/>
+                    <!-- </group>
+                    <group> -->
+                        <!-- <field name="picking_type_inter_id"/> -->
+                        <field name="pdr_id" invisible="1"/>
+                    <!-- </group> -->
+                </group>
+                <footer>
+                    <button name="generate_new_mr" string="Create New MR" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="view_create_new_mr_pdrconfirm" model="ir.ui.view">
+        <field name="name">Create New Product</field>
+        <field name="model">wizard.pdr.new.product.confirm</field>
+        <field name="arch" type="xml">
+            <form string="Create New Product">
+                <group>
+                    <p>
+                        Do you want to create a new product?
+                    </p>
+                    <field name="pdr_id" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="create_new_product" string="Create New Product" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

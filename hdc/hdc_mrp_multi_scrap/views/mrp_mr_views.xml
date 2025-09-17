@@ -1,0 +1,20 @@
+<odoo>
+    <record id="mrp_mr_view_form_inherited_multi_scrap" model="ir.ui.view">
+        <field name="name">mrp.production.view.inherited</field>
+        <field name="model">mrp.mr</field>
+        <field name="inherit_id" ref="hdc_mrp_mr.mrp_mr_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_transfer_modify']" position="after">
+                <field name="hide_btn_multi_scrap" invisible="1"/>
+                <button name="button_multi_scrap" type="object" string="Multi Scrap" class="btn btn-primary"
+                attrs="{'invisible': [('hide_btn_multi_scrap','=',True)]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_delivery_ids']" position="after">
+                <field name="has_multi_scrap_move" invisible="1"/>
+                <button name="action_see_move_multi_scrap" string="Multi Scraps" type="object"
+                            class="oe_stat_button" icon="fa-arrows-v"
+                            attrs="{'invisible': [('has_multi_scrap_move', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_create_back_order_view" model="ir.ui.view">
+        <field name="name">Create Back Order</field>
+        <field name="model">wizard.create.back.order</field>
+        <field name="arch" type="xml">
+            <form string = "Backorder Delivery Order">
+                <sheet>
+                    <notebook>
+                        <page string="Invoice Lines" name="Quotation_lines">
+                            <field name="invoice_line_ids">
+                                <tree string="Product" editable="bottom" create="1" edit="1">
+                                    <field name="invoice_id" optional="show" options="{'no_create_edit': True,'no_create': True}"/>
+                                    <field name="partner_id" optional="show" readonly="1"/>
+                                    <field name="transport_line_id" optional="show" readonly="1"/>
+                                    <field name="delivery_status" optional="show" readonly="1"/>
+                                    <field name="remark" optional="show"/>
+                                    <field name="submitted_date" optional="hide" readonly="1"/>
+                                    <field name="delivery_address_id" optional="hide" readonly="1"/>
+                                    <field name="company_round_id" optional="hide" readonly="1"/>
+                                    <field name="sale_no" optional="hide" readonly="1"/>
+                                    <field name="delivery_id" optional="hide" readonly="1"/>
+                                    <field name="sale_person" optional="hide" readonly="1"/>
+                                    <field name="invoice_status" optional="hide" readonly="1"/>
+                                    <field name="invoice_date" optional="hide" readonly="1"/>  
+                                    <field name="amount_total" optional="hide" readonly="1"/>    
+                                    <field name="billing_status" optional="hide" readonly="1"/> 
+                                    <field name="finance_type" optional="hide" readonly="1"/>                           
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="create_back_order" string="Back Order" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_create_back_order_view" model="ir.actions.act_window">
+        <field name="name">Create Back Order</field>
+        <field name="res_model">wizard.create.back.order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="wizard_create_back_order_view"/>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

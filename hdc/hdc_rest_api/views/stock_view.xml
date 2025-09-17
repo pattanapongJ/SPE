@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="hdc_rest_api_stock_picking_form_view">
+        <field name="name">stock.picking.form (hdc_rest_api)</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="is_return" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hdc_rest_api_view_picking_type_form">
+        <field name="name">stock.picking.type (in stock_delivery_note)</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence_code']" position="after">
+                <field name="is_return"/>
+                <field name="is_requisition"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_location_form_inherit_location" model="ir.ui.view">
+            <field name="name">view.location.form.inherit.branch</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="before">
+                    <field name="is_requisition"/>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

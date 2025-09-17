@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">purchase_order_form_inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[@name='invoice_info']" position="after">
+                    <group name="finance_dimension_gp" string="Finance Dimension">
+
+                        <field name="finance_dimension_1_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_2_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_3_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+
+                    </group>
+                </xpath>
+                
+                
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_qty']" position="before">
+                    <field name="finance_dimension_1_id" options="{'no_create_edit': True, 'no_quick_create': True}" optional="hide"/>
+                    <field name="finance_dimension_2_id" options="{'no_create_edit': True, 'no_quick_create': True}" optional="hide"/>
+                    <field name="finance_dimension_3_id" options="{'no_create_edit': True, 'no_quick_create': True}" optional="hide"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/form/group/group[2]" position="inside">
+                    <field name="finance_dimension_1_id" options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_2_id" options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_3_id" options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                </xpath>
+
+
+<!--                <xpath expr="//field[@name='order_line']" position="attributes">-->
+<!--                      <attribute name="context">{-->
+<!--                          'default_finance_dimension_1_id': parent.finance_dimension_1_id,-->
+<!--                          'default_finance_dimension_2_id': parent.finance_dimension_2_id,-->
+<!--                          'default_finance_dimension_3_id': parent.finance_dimension_3_id-->
+<!--                      }</attribute>-->
+<!--                </xpath>-->
+
+
+
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_payment_period_form" model="ir.ui.view">
+        <field name="name">account.payment.period.form</field>
+        <field name="model">account.payment.period</field>
+        <field name="arch" type="xml">            
+            <form string="Payment Period">
+                <sheet>
+                    <group name="form_payment_period" string="string">
+                        <field name="code"/>
+                        <field name="name"/>                        
+                        <field name="description"/>
+                    </group>                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_account_payment_period_tree" model="ir.ui.view">
+        <field name="name">account.payment.period.tree</field>
+        <field name="model">account.payment.period</field>
+        <field name="arch" type="xml">
+            <tree string="Payment Period">       
+                <field name="code"/>         
+                <field name="name"/>                
+                <field name="description"/>                
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sub_menu_account_payment_period_action">
+        <field name="name">Payment Period</field>
+        <field name="res_model">account.payment.period</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="sub_menu_account_payment_period" name="Payment Period" parent="hdc_billing_period_route.menu_account_billing_settings" sequence="6" action="hdc_billing_contact.sub_menu_account_payment_period_action" />
+
+</odoo>

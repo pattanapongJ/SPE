@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="wizard_add_billing_form_view">
+        <field name="name">Add Billing</field>
+        <field name="model">wizard.add.billing</field>
+        <field name="arch" type="xml">
+            <form string="Add Billing">
+                    <field name="batch_billing_id" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <field nolabel="1" name="billing_ids"/>
+                <footer>
+                    <button name="action_add_billing" string="Add Billing" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="add_billing_wizard_action">
+        <field name="name">Add Billing</field>
+        <field name="res_model">wizard.add.billing</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_add_billing_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

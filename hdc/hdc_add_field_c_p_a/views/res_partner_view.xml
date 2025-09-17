@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hdc_add_field_inherit_l10n" model="ir.ui.view">
+        <field name="name">hdc.add.field.inherit.l10n</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_th_partner.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name_company']" position="after">
+                <field name="name_eng" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+	

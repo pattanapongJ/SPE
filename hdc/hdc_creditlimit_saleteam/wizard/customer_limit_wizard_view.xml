@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_customer_limit_wizard_form_inherit" model="ir.ui.view">
+            <field name="name">customer.limit.wizard.form.inherit</field>
+            <field name="model">customer.limit.wizard</field>
+            <field name="inherit_id" ref="dev_customer_credit_limit.view_customer_limit_wizard_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="after">
+                  <group>
+                    <group string="Temp Credit limit">
+                        <field name="temp_credit_request"/>
+                        <field name="temp_credit_approved"/>
+                    </group>
+                    <group string="Credit Limit Sale Team" attrs="{'invisible':[('is_cash','!=',False)]}">
+                        <field name="team_id" readonly="1"/>
+                        <field name="credit_limit_show_team" readonly="1"/>
+                        <field name="credit_team_remain" readonly="1"/>
+                        <field name="credit_team" readonly="1"/>
+                        <field name="exceeded_amount_team" readonly="1"/>
+                    </group>
+                </group>
+                </xpath>
+                <xpath expr="//field[@name='credit_limit']" position="replace">
+                    <field name="credit_limit" invisible="1"/>
+                    <field name="credit_type" invisible="1"/>
+                    <field name="credit_limit_show" readonly="1" attrs="{'invisible':[('credit_type','=','new')]}"/>
+                    <field name="cash_limit_show" readonly="1" />
+                </xpath>
+                <xpath expr="//field[@name='credit_limit_on_hold']" position="after">
+                    <field name="credit_remain" readonly="1" attrs="{'invisible':[('credit_type','=','new')]}"/>
+                    <field name="cash_remain" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='credit']" position="replace">
+                    <field name="is_cash" invisible="1"/>
+                    <field name="credit" readonly="1" attrs="{'invisible':[('is_cash','!=',False)]}"/>
+                    <field name="cash" readonly="1" attrs="{'invisible':[('is_cash','=',False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='exceeded_amount']" position="replace">
+                    <field name="exceeded_amount" readonly="1" attrs="{'invisible':[('is_cash','!=',False)]}"/>
+                    <field name="exceeded_amount_cash" readonly="1" attrs="{'invisible':[('is_cash','=',False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='credit_limit_on_hold']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('credit_type','=','new')]}</attribute>
+                </xpath>
+                <xpath expr="//form/span" position="replace">
+                    <div class="o_form_label text-danger" attrs="{'invisible': [('is_cash', '=', False)]}">Cash Limit Exceeded</div>
+                    <div class="o_form_label text-danger" attrs="{'invisible': [('is_cash', '=', True)]}">Credit Limit Exceeded</div>
+                </xpath>
+            </field>
+        </record>
+</odoo>

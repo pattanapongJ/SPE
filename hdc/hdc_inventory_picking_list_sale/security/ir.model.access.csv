@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_create_picking_list,access_wizard_create_picking_list,model_wizard_create_picking_list,base.group_user,1,1,1,1
+access_generate_picking_list,access_generate_picking_list,model_generate_picking_list,base.group_user,1,1,1,1
+access_generate_picking_list_line,access_generate_picking_list_line,model_generate_picking_list_line,base.group_user,1,1,1,1
+access_picking_lists,access_picking_lists,model_picking_lists,base.group_user,1,1,1,1
+access_picking_lists_line,access_picking_lists_line,model_picking_lists_line,base.group_user,1,1,1,1
+access_wizard_confirm_create_picking_list,access_wizard_confirm_create_picking_list,model_wizard_confirm_create_picking_list,base.group_user,1,1,1,1
+access_wizard_picking_list_backorder,access_wizard_picking_list_backorder,model_wizard_picking_list_backorder,base.group_user,1,1,1,1
+access_picking_lists_line_detail,access_picking_lists_line_detail,model_picking_lists_line_detail,base.group_user,1,1,1,1
+access_sub_locations_user,access.sub.locations,model_sub_locations,base.group_user,1,1,1,1

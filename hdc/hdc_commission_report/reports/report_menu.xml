@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="commission_colt_sales_person_detail_report_xlsx"
+            model="wizard.commission.report"
+            string="Commission Colt Sales Person"
+            report_type="xlsx"
+            name="commission_colt_sales_person_detail_report_xlsx"
+            file="Commission Colt Sales Person"
+            attachment_use="False"
+        />
+        <report
+            id="commission_colt_sales_spec_detail_report_xlsx"
+            model="wizard.commission.report"
+            string="Commission Colt Sales Spec"
+            report_type="xlsx"
+            name="commission_colt_sales_spec_detail_report_xlsx"
+            file="Commission Colt Sales Spec"
+            attachment_use="False"
+        />
+        <report
+            id="commission_reynobond_sales_person_detail_report_xlsx"
+            model="wizard.commission.report"
+            string="Commission Reynobond Sales Person"
+            report_type="xlsx"
+            name="commission_reynobond_sales_person_detail_report_xlsx"
+            file="Commission Reynobond Sales Person"
+            attachment_use="False"
+        />
+        <report
+            id="commission_reynobond_sales_spec_detail_report_xlsx"
+            model="wizard.commission.report"
+            string="Commission Reynobond Sales Spec"
+            report_type="xlsx"
+            name="commission_reynobond_sales_spec_detail_report_xlsx"
+            file="Commission ReynobondSales Spec"
+            attachment_use="False"
+        />
+        <report
+            id="commission_silicone_sales_person_detail_report_xlsx"
+            model="wizard.commission.report"
+            string="Commission Silicone Sales Person"
+            report_type="xlsx"
+            name="commission_silicone_sales_person_detail_report_xlsx"
+            file="Commission Silicone Sales Person"
+            attachment_use="False"
+        />
+        <report
+            id="commission_silicone_sales_spec_detail_report_xlsx"
+            model="wizard.commission.report"
+            string="Commission Silicone Sales Spec"
+            report_type="xlsx"
+            name="commission_silicone_sales_spec_detail_report_xlsx"
+            file="Commission Silicone Sales Spec"
+            attachment_use="False"
+        />
+        <report
+            id="commission_industry_sales_person_detail_report_xlsx"
+            model="wizard.commission.report"
+            string="Commission Industry Sales Person"
+            report_type="xlsx"
+            name="commission_industry_sales_person_detail_report_xlsx"
+            file="Commission Industry Sales Person"
+            attachment_use="False"
+        />
+        <report
+            id="commission_rinna_sales_person_detail_report_xlsx"
+            model="wizard.commission.report"
+            string="Commission Rinna Sales Person"
+            report_type="xlsx"
+            name="commission_rinna_sales_person_detail_report_xlsx"
+            file="Commission Rinna Sales Person"
+            attachment_use="False"
+        />
+        <report
+            id="commission_upvc_detail_report_xlsx"
+            model="wizard.commission.report"
+            string="Commission UPVC"
+            report_type="xlsx"
+            name="commission_upvc_detail_report_xlsx"
+            file="Commission UPVC"
+            attachment_use="False"
+        />
+        <report
+            id="commission_market_detail_report_xlsx"
+            model="wizard.commission.report"
+            string="Commission Market"
+            report_type="xlsx"
+            name="commission_market_detail_report_xlsx"
+            file="Commission Market"
+            attachment_use="False"
+        />
+        <report
+            id="export_commission_lines_report_xlsx"
+            model="settle.commissions.mall"
+            string="Commission Sold Out Lines"
+            report_type="xlsx"
+            name="export_commission_lines_report_xlsx"
+            file="Commission Sold Out Lines"
+            attachment_use="False"
+        />
+        <report
+            id="commission_mall_detail_report_xlsx"
+            model="wizard.commission.mall.report"
+            string="Commission Mall"
+            report_type="xlsx"
+            name="commission_mall_detail_report_xlsx"
+            file="Commission Mall"
+            attachment_use="False"
+        />
+        <report
+            id="commission_mall_sold_out_detail_report_xlsx"
+            model="wizard.commission.mall.report"
+            string="Commission Mall Sold Out"
+            report_type="xlsx"
+            name="commission_mall_sold_out_detail_report_xlsx"
+            file="Commission Mall Sold Out"
+            attachment_use="False"
+        />
+    </data>
+</odoo>

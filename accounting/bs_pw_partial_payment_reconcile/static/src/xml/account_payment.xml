@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ShowPaymentInfo">
+          <t t-jquery="a.js_payment_info" t-operation="after">
+              <t t-if="line.reconcile_date">
+                <i class="reconcile-date"/>
+            </t>
+          </t>
+
+        <t t-jquery="a.o_partial_button" t-operation="attributes">
+              <attribute name="title">Reconcile</attribute>
+          </t>
+        <t t-jquery="a.o_partial_button" t-operation="inner">
+              Reconcile
+          </t>
+     </t>
+
+    </templates>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_create_back_order_user,undefined.wizard.create.back.order,model_wizard_create_back_order,base.group_user,1,1,1,1
+access_wizard_create_back_order_line_user,undefined.wizard.create.back.order.line,model_wizard_create_back_order_line,base.group_user,1,1,1,1
+access_wizard_remark_bill_finance_user,undefined.wizard.remark.bill.finance,model_wizard_remark_bill_finance,base.group_user,1,1,1,1

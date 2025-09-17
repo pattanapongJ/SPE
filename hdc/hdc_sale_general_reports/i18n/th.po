@@ -1,0 +1,891 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hdc_sale_general_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230831\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 09:26+0000\n"
+"PO-Revision-Date: 2023-12-20 09:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hdc_sale_general_reports
+#: model:ir.actions.report,print_report_name:hdc_sale_general_reports.quotation_en_dis_report_view
+#: model:ir.actions.report,print_report_name:hdc_sale_general_reports.quotation_en_no_dis_report_view
+#: model:ir.actions.report,print_report_name:hdc_sale_general_reports.quotation_th_dis_report_view
+#: model:ir.actions.report,print_report_name:hdc_sale_general_reports.quotation_th_no_dis_report_view
+msgid "\"Q/%s \" %(object.name)"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.actions.report,print_report_name:hdc_sale_general_reports.sale_order_en_dis_report_view
+#: model:ir.actions.report,print_report_name:hdc_sale_general_reports.sale_order_en_no_dis_report_view
+#: model:ir.actions.report,print_report_name:hdc_sale_general_reports.sale_order_th_dis_report_view
+#: model:ir.actions.report,print_report_name:hdc_sale_general_reports.sale_order_th_no_dis_report_view
+msgid "\"S/%s \" %(object.name)"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+msgid ""
+"<span>\n"
+"                                        บริษัทฯหวังเป็นอย่างยิ่งว่าราคาสินค้าที่ได้เรียนเสนอมานี้คงจะได้รับพิจารณาเห็นชอบจากท่าน \n"
+"                                        และคงจะได้ให้บริการต่อท่าน ณ โอกาสอันใกล้นี้ จึงขอขอบพระคุณมา ณ โอกาสนี้\n"
+"                                        We really hope that our proposal will be of your consideration. We look forward to working closely with you in the near future.\n"
+"                                    </span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid ""
+"<span>\n"
+"                                    บริษัทฯหวังเป็นอย่างยิ่งว่าราคาสินค้าที่ได้เรียนเสนอมานี้คงจะได้รับพิจารณาเห็นชอบจากท่าน \n"
+"                                    และคงจะได้ให้บริการต่อท่าน ณ โอกาสอันใกล้นี้ จึงขอขอบพระคุณมา ณ โอกาสนี้\n"
+"                                    We really hope that our proposal will be of your consideration. We look forward to working closely with you in the near future.\n"
+"\n"
+"                                </span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+msgid ""
+"<span>\n"
+"                                    บริษัทฯหวังเป็นอย่างยิ่งว่าราคาสินค้าที่ได้เรียนเสนอมานี้คงจะได้รับพิจารณาเห็นชอบจากท่าน \n"
+"                                    และคงจะได้ให้บริการต่อท่าน ณ โอกาสอันใกล้นี้ จึงขอขอบพระคุณมา ณ โอกาสนี้\n"
+"                                    We really hope that our proposal will be of your consideration. We look forward to working closely with you in the near future.\n"
+"                                </span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid ""
+"<span>\n"
+"                            BANK DETAILS (ANTI-PHISHING WARNING : NEVER CHANGE THE BANK ACCOUNT NUMBER)\n"
+"                        </span>\n"
+"                        <br/>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid ""
+"<span>\n"
+"                            หมายเหตุ:\n"
+"                        </span>\n"
+"                        <br/>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Address: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Contact: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Currency:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Customer: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Delivery Terms:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Delivery Time:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Document Date:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Email: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Expiration Date:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Fax: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Payment Terms:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Quotation No.:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Sale Person:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Tel: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<span><strong>Tel:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>การจัดส่งสินค้า:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+msgid "<span><strong>กำหนดยืนราคา:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>กำหนดส่งสินค้า:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>ชื่อ: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>ที่อยู่: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>ผู้ติดต่อ: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>พนักงานขาย:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>วันที่เอกสาร:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>อีเมลล์: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>เงื่อนไขการชำระเงิน:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>เลขที่เอกสาร:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>แฟกซ์: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>โทร: </strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<span><strong>โทร:</strong></span>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid ""
+"<span><strong>ใบสั่งขาย</strong></span><br/>\n"
+"                        <span><strong>(Sale Order)</strong></span><br/>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+msgid ""
+"<span><strong>ใบเสนอราคา</strong></span><br/>\n"
+"                        <span><strong>(Quotation)</strong></span><br/>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid ""
+"<span>ต้นฉบับ/Original</span><br/>\n"
+"                        <span>หน้า </span>\n"
+"                        <span class=\"page\"/>\n"
+"                        /\n"
+"                        <span class=\"topage\"/>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+msgid "<strong>Money after discount</strong>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<strong>Total Amount</strong>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "<strong>Untaxed Amount</strong>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<strong>จำนวนเงินรวมทั้งสิ้น</strong>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<strong>มูลค่ารวมก่อนภาษี</strong>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+msgid "<strong>มูลค่ารวมก่อนหักภาษี</strong>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "<strong>ยอดรวมสุทธิ:</strong>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+msgid "<strong>เงินหลังหักส่วนลด</strong>"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model,name:hdc_sale_general_reports.model_res_partner
+msgid "Activity Module"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "Amount"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "Bernuly Supply (1994)Co.Ltd"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,help:hdc_sale_general_reports.field_res_company__branch
+msgid "Branch ID, e.g., 0000, 0001, ..."
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.wizard_sale_report_form_view
+msgid "Cancel"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model,name:hdc_sale_general_reports.model_res_company
+msgid "Companies"
+msgstr "บริษัท"
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model,name:hdc_sale_general_reports.model_res_currency
+msgid "Currency"
+msgstr "สกุลเงิน"
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "Date............/.............../.............."
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+msgid "Discount"
+msgstr "ส่วนลด"
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_company__display_name
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_currency__display_name
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_partner__display_name
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_sale_order__display_name
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report__document
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report__document_sale
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.wizard_sale_report_form_view
+msgid "Documents"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "EMAIL :"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "FAX : +"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_company__fax
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_partner__fax
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_users__fax
+msgid "Fax"
+msgstr "หมายเลขโทรสาร"
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_company__id
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_currency__id
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_partner__id
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_sale_order__id
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_company____last_update
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_currency____last_update
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_partner____last_update
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_sale_order____last_update
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "MANAGING DIRECTOR"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "Material Code"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "No."
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "OVERSEAS SALES OFFICER"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.wizard_sale_report_form_view
+msgid "Print"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.view_inherit_order_form
+msgid "Print Quotation / Sale"
+msgstr "พิมพ์ใบเสนอราคาและใบขาย"
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "Product Description"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+msgid "Purchase approved in accondance with this quotation"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "Purchase approved in accondance with this sale order"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "Quantity"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.actions.act_window,name:hdc_sale_general_reports.action_wizard_sale_report
+msgid "Report"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report__sale_id
+msgid "SO"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model,name:hdc_sale_general_reports.model_sale_order
+msgid "Sales Order"
+msgstr "ใบสั่งขาย"
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_wizard_sale_report__state
+msgid "State"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+msgid "Sub Disc%"
+msgstr "ส่วนลดย่อย%"
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "TEL : +"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields,field_description:hdc_sale_general_reports.field_res_company__branch
+msgid "Tax Branch"
+msgstr "สาขาภาษี"
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "Taxes"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "Unit"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+msgid "Unit Price"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "WEBSITE"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model,name:hdc_sale_general_reports.model_wizard_sale_report
+msgid "wizard.sale.report"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "จำนวน"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "จำนวนเงิน"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "บริษัทเบอร์นูลี่ซัพพลาย(1994)จำกัด"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "ผู้มีอำนาจลงนาม / AUTHORIZED"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "ผู้อนุมัติ / CUSTOMER"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "ภาษีมูลค่าเพิ่ม"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "รหัสสินค้า"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "ราคาขาย"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "รายละเอียด"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "ลำดับ"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "วันที่ / Date............/.............../.............."
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+msgid "ส่วนลด"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "หน่วย"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "อนุมัติสั่งซื้อตามใบเสนอราคานี้"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_quotation_th_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_en_no_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_dis_report_document
+#: model_terms:ir.ui.view,arch_db:hdc_sale_general_reports.hdc_sale_order_th_no_dis_report_document
+msgid "เลขประจำตัวผู้เสียภาษี:"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields.selection,name:hdc_sale_general_reports.selection__wizard_sale_report__document_sale__en_sale_order_discount
+msgid "ใบสั่งขายสินค้าลูกค้า EN (Sale Order) มีแบบส่วนลด"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields.selection,name:hdc_sale_general_reports.selection__wizard_sale_report__document_sale__en_sale_order_no_discount
+msgid "ใบสั่งขายสินค้าลูกค้า EN (Sale Order) ไม่มีแบบส่วนลด"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields.selection,name:hdc_sale_general_reports.selection__wizard_sale_report__document_sale__th_sale_order_discount
+msgid "ใบสั่งขายสินค้าลูกค้า TH (Sale Order) มีแบบส่วนลด"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields.selection,name:hdc_sale_general_reports.selection__wizard_sale_report__document_sale__th_sale_order_no_discount
+msgid "ใบสั่งขายสินค้าลูกค้า TH (Sale Order) ไม่มีแบบส่วนลด"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.actions.report,name:hdc_sale_general_reports.sale_order_th_dis_report_view
+#: model:ir.actions.report,name:hdc_sale_general_reports.sale_order_th_no_dis_report_view
+msgid "ใบสั่งซื้อ"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.actions.report,name:hdc_sale_general_reports.sale_order_en_dis_report_view
+#: model:ir.actions.report,name:hdc_sale_general_reports.sale_order_en_no_dis_report_view
+msgid "ใบสั่งซื้อ EN"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.actions.report,name:hdc_sale_general_reports.quotation_th_dis_report_view
+#: model:ir.actions.report,name:hdc_sale_general_reports.quotation_th_no_dis_report_view
+msgid "ใบเสนอขาย"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.actions.report,name:hdc_sale_general_reports.quotation_en_dis_report_view
+#: model:ir.actions.report,name:hdc_sale_general_reports.quotation_en_no_dis_report_view
+msgid "ใบเสนอขาย EN"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields.selection,name:hdc_sale_general_reports.selection__wizard_sale_report__document__en_quotation_discount
+msgid "ใบเสนอราคาลูกค้า EN (Quotation) มีแบบส่วนลด"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields.selection,name:hdc_sale_general_reports.selection__wizard_sale_report__document__en_quotation_no_discount
+msgid "ใบเสนอราคาลูกค้า EN (Quotation) ไม่แสดงส่วนลด"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields.selection,name:hdc_sale_general_reports.selection__wizard_sale_report__document__th_quotation_discount
+msgid "ใบเสนอราคาลูกค้า TH (Quotation) มีแบบส่วนลด"
+msgstr ""
+
+#. module: hdc_sale_general_reports
+#: model:ir.model.fields.selection,name:hdc_sale_general_reports.selection__wizard_sale_report__document__th_quotation_no_discount
+msgid "ใบเสนอราคาลูกค้า TH (Quotation) ไม่แสดงส่วนลด"
+msgstr ""

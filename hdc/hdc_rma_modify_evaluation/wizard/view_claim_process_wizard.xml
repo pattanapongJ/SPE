@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_claim_picking" model="ir.ui.view">
+        <field name="name">claim_picking</field>
+        <field name="model">claim.process.wizard</field>
+        <field name="inherit_id" ref="rma_ept.view_claim_picking" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='claim_line_id']" position="after">
+                <field name="claim_modify_lines" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_create_sale_order_inherit_product_ref" model="ir.ui.view">
+        <field name="name">Create Sale Order product ref</field>
+        <field name="model">sale.blanket.order.wizard</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_create_sale_order"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']" position="before">
+                <field name="blanket_order_id" invisible="1" nolabel="1"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='product_id']" position="before">
+                <field name="blanket_line_id" required="1"
+                    domain="[('order_id', '=', parent.blanket_order_id),('is_deposit','=',False)]" 
+                />
+            </xpath>
+            <xpath expr="//tree/field[@name='product_id']" position="after">
+                <field name="alternative_ids_m2m" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+                <field name="selected_product_id" required="1"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='product_id']" position="attributes">
+                <attribute name="invisible">1 </attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree" position="attributes">
+                <attribute name="create">1</attribute>
+            </xpath>
+            <xpath expr="//tree/field[@name='qty']" position="after">
+                <field name="external_item" optional="hide" readonly="1" force_save="1"/>
+                <field name="barcode_customer" optional="hide" readonly="1" force_save="1"/>
+                <field name="barcode_modern_trade" optional="hide" readonly="1" force_save="1"/>
+                <field name="description_customer" optional="hide" readonly="1" force_save="1"/>
+                <field name="modify_type_txt" optional="hide" readonly="1" force_save="1"/>
+                <field name="plan_home" optional="hide" readonly="1" force_save="1"/>
+                <field name="room" optional="hide" readonly="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_blanket_warning_wizard_form" model="ir.ui.view">
+        <field name="name">sale.blanket.order.warning.wizard.form</field>
+        <field name="model">sale.blanket.order.warning.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Warning">
+                <group>
+                    <field name="message" readonly="1" nolabel="1"/>
+                    <field name="wizard_id" invisible="1"/>
+                    <field name="lang" invisible="1"/>
+                </group>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        string="OK"
+                        type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': [('lang','=', 'th_TH')]}"
+                    />
+                    <button name="action_cancel" string="Cancel" type="object" class="btn-default" attrs="{'invisible': [('lang','=', 'th_TH')]}"/>
+                    <button name="action_confirm" string="ตกลง" type="object"
+                        class="btn-primary" attrs="{'invisible': [('lang','=', 'en_US')]}"
+                    />
+                    <button name="action_cancel" string="ยกเลิก" type="object" class="btn-default" attrs="{'invisible': [('lang','=', 'en_US')]}"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

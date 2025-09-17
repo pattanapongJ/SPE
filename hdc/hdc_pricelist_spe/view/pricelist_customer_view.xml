@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_pricelist_customer_action" model="ir.actions.act_window">
+        <field name="name">product.pricelist.customer</field>
+        <field name="res_model">product.pricelist.customer</field>
+        <field name="context">{'default_pricelist_id': 'id'}</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="product_pricelist_customer_tree" model="ir.ui.view">
+        <field name="name">product.pricelist.customer.tree</field>
+        <field name="model">product.pricelist.customer</field>
+        <field name="arch" type="xml">
+            <tree string="Service Slot"  editable="bottom">
+                <field name="partner_id" string="Customer" optional="show"/>
+                <!-- <field name="is_default" widget="boolean_toggle"/> -->
+                <field name="is_default"/>
+                <field name="pricelist_id" invisible="1"/>
+                <field name="phone" class="o_force_ltr" optional="show"/>
+                <field name="email" optional="show"/>
+                <field name="user_id" optional="show" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>
+                <field name="city" optional="show"/>
+                <field name="country_id" optional="show" />
+                <field name="vat" optional="hide" />
+                <field name="category_id" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="company_id" optional="show"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

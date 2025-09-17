@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="sequence_settle_commissions" model="ir.sequence">
+            <field name="name">Settle Commissions</field>
+            <field name="code">settle.commissions</field>
+            <field name="prefix">ST-COM%(year)s%(month)s-</field>
+            <field eval="1" name="number_next" />
+            <field eval="1" name="number_increment" />
+            <field name="padding">4</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="sequence_settle_commissions_mall" model="ir.sequence">
+            <field name="name">Settle Commissions Mall</field>
+            <field name="code">settle.commissions.mall</field>
+            <field name="prefix">ST-M-COM%(year)s%(month)s-</field>
+            <field eval="1" name="number_next" />
+            <field eval="1" name="number_increment" />
+            <field name="padding">4</field>
+            <field name="company_id" eval="False" />
+        </record>
+    </data>
+</odoo>

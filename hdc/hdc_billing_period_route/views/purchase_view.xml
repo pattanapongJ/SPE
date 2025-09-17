@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">view.purchase.order.inherit</field>
+        <field name="priority">15</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="hdc_addon_fields_purchase.view_1add_field_purchase_order_form_inherit" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='country_orinal']" position="after">
+                <!-- <field name="billing_period_id" />
+                <field name="billing_route_id" /> -->
+            </xpath>
+           <!--  <xpath expr="//field[@name='order_line']/tree/field[@name='price_tax']" position="after">
+                <field name="etd_date" optional="show"/>
+                <field name="eta_date" optional="show"/>
+                <field name="wh_date" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="lc"/>
+                <field name="tt"/>
+                <field name="da"/>
+                <field name="dp_no"/>
+                <field name="wh_date"/>
+                <label for="import_declaration"/>
+                <div name="import_declaration_div" class="o_row">
+                    <field name="import_declaration"/>
+                    <field name="import_declaration_date"/>
+                </div>
+                <label for="duty_payment"/>
+                <div name="duty_payment_div" class="o_row">
+                    <field name="duty_payment"/>
+                    <field name="duty_payment_date"/>
+                </div>
+                <label for="edt_from"/>
+                <div name="edt_from_div" class="o_row">
+                    <field name="edt_from"/>
+                    <field name="edt_from_date"/>
+                </div>
+                <field name="remark_for_supplier"/>
+                <field name="internal_remark_purchase"/>
+                <field name="performa_invoice"/>
+                <field name="performa_invoice_date"/>
+            </xpath> -->
+        </field>    
+    </record>
+    <!-- <record id="view_2add_field_purchase_order_form_inherit" model="ir.ui.view">
+        <field name="name">view.purchase.order.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_stock.purchase_order_view_form_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='incoterm_id']" position="after">
+                <label for="bl"/>
+                <div name="bl_div" class="o_row">
+                    <field name="bl"/>
+                    <field name="bl_date"/>
+                </div>
+                <label for="awb_no"/>
+                <div name="awb_no_div" class="o_row">
+                    <field name="awb_no"/>
+                    <field name="awb_date"/>
+                </div>
+            </xpath>
+        </field>
+    </record> -->
+</odoo>

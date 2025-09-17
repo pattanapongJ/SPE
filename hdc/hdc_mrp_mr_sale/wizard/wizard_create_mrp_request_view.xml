@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_sale_create_mr" model="ir.ui.view">
+        <field name="name">wizard sale create mr </field>
+        <field name="model">wizard.sale.create.mr</field>
+        <field name="arch" type="xml">
+            <form string="Create MRP Request from Sale Order">
+                <group>
+                    <group>
+                        <field name="sale_order_id" invisible="1"/>
+                        <field name="user_request" invisible="1"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="partner_id" />
+                        <field name="request_type" />
+                        <field name="product_type" />
+                        <field name="picking_type_id" />
+                        <field name="picking_type_do_id" required="1"/>
+                    </group>
+                    <group>
+                        <field name="request_date" />
+                        <field name="delivery_date"/>
+                        <field name="department_id" />
+                        <field name="company_id" readonly="1"/>
+                        <field name="is_modify" invisible="1"/>
+                    </group>
+                </group>
+                <notebook >
+                    <page name="order_line" string="Product List">
+                        <field name="product_line_ids" string="Order Line" nolabel="1" attrs="{'invisible': [('is_modify', '=', True)]}">
+                            <tree editable="top" create="0">
+                                <field name="mr_id" string="MR ID" invisible="1"/>
+                                <field name="product_id"/>
+                                <field name="moq_stock"/>
+                                <field name="demand_qty"/>
+                                <field name="package" />
+                                <field name="uom_id"/>
+                                <field name="available_product_ids" invisible="1"/>
+                            </tree>
+                        </field>
+                        <field name="product_line_modify_ids" string="Order Line" nolabel="1" attrs="{'invisible': [('is_modify', '=', False)]}">
+                            <tree editable="top" create="1">
+                                <field name="mr_id" string="MR ID" invisible="1"/>
+                                <field name="product_id"/>
+                                <field name="name"/>
+                                <field name="demand_qty_modify"/>
+                                <field name="product_uom" />
+                                <field name="product_uom_category_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="generate_new_mr" string="Create MR" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_check_confirm_borrow_done" model="ir.ui.view">
+        <field name="name">check done borrow</field>
+        <field name="model">check.force.done</field>
+        <field name="arch" type="xml">
+            <form string="Reason for the cancellation">
+                <p>
+                    You have not returned the borrowed item. Do you want to continue?
+                </p>
+                <group>
+                    <field name="sale_order_id" widget="selection" invisible="1"/>
+                </group>
+                <footer>
+                    <button
+                        name="confirm_done"
+                        string="Confirm"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_check_borrow_done" model="ir.actions.act_window">
+        <field name="name">check borrow done</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">check.force.done</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_check_confirm_borrow_done" />
+        <field name="target">new</field>
+    </record>
+</odoo>

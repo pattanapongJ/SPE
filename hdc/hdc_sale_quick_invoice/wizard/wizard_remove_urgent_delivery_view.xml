@@ -1,0 +1,32 @@
+<odoo>
+    <record id="wizard_remove_urgent_delivery_form" model="ir.ui.view">
+        <field name="name">wizard.remove.urgent.delivery.form</field>
+        <field name="model">wizard.remove.urgent.delivery</field>
+        <field name="arch" type="xml">
+            <form string="Wizard Remove Urgent Delivery Transfer">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="urgent_delivery_id" invisible="1"/>
+                            <field name="picking_id" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_remove" string="Remove Urgent Delivery" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_remove_urgent_delivery_form_action" model="ir.actions.act_window">
+        <field name="name">Wizard Remove Urgent Delivery Transfer</field>
+        <field name="res_model">wizard.remove.urgent.delivery</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_remove_urgent_delivery_form"/>
+    </record>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tax_invoice_date']" position="after">
+                <field name="branch_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- tax invoice -->
+    <record id="view_tax_invoice_view_tree" model="ir.ui.view">
+        <field name="name">account.move.tax.invoice.tree</field>
+        <field name="model">account.move.tax.invoice</field>
+        <field name="inherit_id" ref="l10n_th_tax_invoice.view_tax_invoice_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="branch_id" />
+            </xpath>
+        </field>
+    </record>
+    
+<!-- payment -->
+    <record id="view_account_payment_form_l10n_th_tax_invoice" model="ir.ui.view">
+        <field name="name">account.payment.branch.view.form.inherit</field>
+        <field name="model">account.payment</field>
+        <field eval="2" name="priority" />
+        <field name="inherit_id" ref="l10n_th_tax_invoice.view_account_payment_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tax_invoice_date']" position="after">
+                <field name="branch_id" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

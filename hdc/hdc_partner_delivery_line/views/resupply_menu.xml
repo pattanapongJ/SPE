@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="hdc_tms.menu_resupply_main"  web_icon="hdc_partner_delivery_line,static/description/icon.png" name="TMS" sequence="35"/>
+        <menuitem id="hdc_tms.menu_transfer_branch_summary" name="Generate Delivery Lists" parent="hdc_tms.menu_resupply_main" action="hdc_tms.transfer_branch_summary_action" sequence="1"/>
+        <menuitem id="hdc_tms.menu_distibution_delivery_note" name="Delivery Lists" parent="hdc_tms.menu_resupply_main" action="hdc_tms.distibution_delivery_note_action" sequence="2"/>
+        
+        <menuitem id="menu_resupply_delivery_round_main" name="Delivery Line" parent="hdc_tms.menu_resupply_main" sequence="4"/>
+        <menuitem id="hdc_tms.menu_resupply_delivery_round" name="Delivery Line" parent="hdc_partner_delivery_line.menu_resupply_delivery_round_main" action="hdc_tms.resupply_delivery_round_master_view_action" sequence="4"/>
+    </data>
+    
+</odoo>

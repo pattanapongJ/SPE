@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View pdc.rc.wizard form -->
+    <record id="view_pdc_rc_wizard_form" model="ir.ui.view">
+        <field name="name">view.pdc.rc.wizard.form</field>
+        <field name="model">pdc.rc.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Pdc Rc Wizard">
+                <group>
+                    <group>
+                        <field name="pdc_id" invisible="1"/>
+                        <field name="journal_id" options="{'no_quick_create':True,'no_create_edit':True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_create_journal_entry" type="object" string="Create and View Entry" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action pdc.rc.wizard -->
+    <record id="action_pdc_rc_wizard" model="ir.actions.act_window">
+        <field name="name">Pdc Rc Wizard</field>
+        <field name="res_model">pdc.rc.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="binding_model_id" ref="bs_pdc.model_pdc_rc_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_partner_form_inherit_pricelist" model="ir.ui.view">
+        <field name="name">res.partner.inherit.pricelist</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="product.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_product_pricelist']" position="replace">
+                <field name="property_product_pricelist" groups="product.group_product_pricelist" attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}"/>
+                <field name="pricelist_ids" widget="many2many_tags" invisible="1"/>
+                <!-- <field name="pricelist_ids" invisible="1">
+                    <tree string="Pricelists" editable="bottom">
+                        <field name="pricelist_id"/>
+                        <field name="is_default"/>
+                    </tree>
+                </field> -->
+            </xpath>
+        </field>
+    </record>
+</odoo>

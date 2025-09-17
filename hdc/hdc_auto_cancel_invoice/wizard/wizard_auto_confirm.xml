@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_auto_confirm_view_form" model="ir.ui.view">
+        <field name="name">wizard.auto.confirm.view.form</field>
+        <field name="model">wizard.auto.confirm</field>
+        <field name="arch" type="xml">
+            <form string="Confirmation">
+                <sheet>
+                    <field name="name" invisible="1"/>
+                    <field name="account_id" invisible="1"/>                        
+                    <p>
+                        Do you need to cancel the Invoice? Please note that once it is canceled, it cannot be reused.
+                    </p>
+                    <footer>
+                        <button name="confirm_ok" string="Confirm" type="object" class="btn-primary" />
+                        <button name="confirm_cancel" string="Discard" type="object" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_auto_confirm_action" model="ir.actions.act_window">
+        <field name="name">รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบสรุป (รายวัน)</field>
+        <field name="res_model">wizard.tms.day</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

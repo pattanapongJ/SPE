@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <record model="res.groups" id="hdc_picking_list_access_right.group_all">
+        <field name="name">Admin Picking Qty</field>
+    </record>
+    <record model="res.groups" id="hdc_picking_list_access_right.group_confirm">
+        <field name="name">Confirm Picking Qty</field>
+    </record>
+    <record model="res.groups" id="hdc_picking_list_access_right.group_validate">
+        <field name="name">Validate Picking Done</field>
+    </record> -->
+
+
+    <!-- <record model="ir.module.category" id="module_picking_list_permission_topic">
+        <field name="name">Confirm Picking/Validation Picking</field>
+        <field name="sequence">100</field>
+        <field name="parent_id" eval="False"/>
+    </record>    
+    <record id="module_picking_list_permission" model="ir.module.category">
+        <field name="name">Picking List</field>
+        <field name="parent_id" ref="module_picking_list_permission_topic"/>
+        <field name="sequence">16</field>
+    </record>
+    <record id="access_right_group_all" model="res.groups">
+        <field name="name">Admin Picking Qty</field>
+        <field name="category_id" ref="module_picking_list_permission" />
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="access_right_group_confirm" model="res.groups">
+        <field name="name">Confirm Picking Qty</field>
+        <field name="category_id" ref="module_picking_list_permission"/>
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="access_right_group_validate" model="res.groups">
+        <field name="name">Validate Picking Done</field>
+        <field name="category_id" ref="module_picking_list_permission" />
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record> -->
+
+
+    <record id="hdc_picking_list_access_right.module_picking_list_permission" model="ir.module.category">
+        <field name="name">Confirm Picking/Validation Picking</field>
+        <field name="description">Picking List</field>
+        <field name="sequence">51</field>
+    </record> 
+    <!-- <record id="hdc_picking_list_access_right.group_all" model="res.groups">
+        <field name="name">Admin Picking Qty</field>
+        <field name="category_id" ref="hdc_picking_list_access_right.module_picking_list_permission" />
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>     -->
+    <record id="hdc_picking_list_access_right.group_confirm" model="res.groups">
+        <field name="name">Confirm Picking Qty</field>
+        <field name="category_id" ref="hdc_picking_list_access_right.module_picking_list_permission"/>
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="hdc_picking_list_access_right.group_validate" model="res.groups">
+        <field name="name">Validate Picking Done</field>
+        <field name="category_id" ref="hdc_picking_list_access_right.module_picking_list_permission" />
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+</odoo>

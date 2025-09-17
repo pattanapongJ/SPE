@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hdc_picking_list_report_document">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+        <div class="header" style="font-family: KanitLight;">
+            <div class="first-page" style="font-family: KanitLight;font-size: 70px;padding-top:200px;">
+                <div class="row">
+                    <div class="col text-center">
+                        <strong>
+                            <!-- <u> -->
+                                <span>
+                                    Report จัดของห้าง
+                                </span>
+                                <span t-if="doc.partner_ids">
+                                    <span t-field="doc.partner_ids[0].name"/>
+                                </span>
+                                <span t-if="not doc.partner_ids">
+                                    -
+                                </span>
+                            <!-- </u>  -->
+                        </strong>      
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col text-center">
+                        <span>
+                            (จำนวน <span class="topage" t-att-data-starting-page="-1"/> ใบ)
+                        </span>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col text-center">
+                        <span>
+                            ของลงมาติดบาร์วันที่  
+                        </span>
+                        <span t-if="doc.delivery_date_from">
+                            <span t-field="doc.delivery_date_from" t-options='{"format": "dd/MM/yyyy"}'/>
+                        </span>
+                        <span t-if="not doc.delivery_date_from">
+                            -
+                        </span>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col text-center">
+                        <span>
+                            **ของเบิกเอาวันถัดไป**
+                        </span>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col text-center">
+                        <span>
+                            วันที่ส่งจัด 
+                        </span>
+                        <span t-if="doc.delivery_date_from">
+                            <span t-esc="(doc.delivery_date_from - datetime.timedelta(days=3)).strftime('%d/%m/%Y')"/>
+                        </span>
+                        <span t-if="not doc.delivery_date_from">
+                            -
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="not-first-page">
+                <div class="row" style="padding-top:36px">
+                    <div class="col text-center">
+                        <span style="font-family: KanitLight;font-size: 21.33px;">
+                            รายงานสั่งจัดสินค้าSPE
+                        </span>
+                    </div>
+                </div>
+                <div class="row" style="font-family: KanitLight;font-size: 12.00px;margin-top:15px;padding-top:6px;border-top: 1px dotted black;border-bottom: 1px dotted black;height: 80px">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-3">
+                                <span><strong>ลูกค้า </strong></span>
+                            </div>
+                            <div class="col-9">
+                                <span t-if="partner">
+                                    <span t-field="partner.name"/>
+                                </span>
+                                <span t-if="not partner">
+                                    -
+                                </span>
+                            </div>
+                        </div>                    
+                        <div class="row">
+                            <div class="col-3">
+                               <span><strong>กำหนดส่ง </strong></span>
+                            </div>
+                            <div class="col-9">
+                                <!-- <span t-if="doc.delivery_date_from">
+                                    <span t-field="doc.delivery_date_from" t-options='{"format": "dd/MM/yyyy"}'/>
+                                </span>
+                                <span t-if="not doc.delivery_date_from">
+                                    -
+                                </span> -->
+                                <span t-if="doc.delivery_date_from">
+                                    <span t-esc="(doc.delivery_date_from - datetime.timedelta(days=3)).strftime('%d/%m/%Y')"/>
+                                </span>
+                                <span t-if="not doc.delivery_date_from">
+                                    -
+                                </span>
+                           </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <span><strong>Warehouse </strong></span>
+                            </div>
+                            <div class="col-9">
+                                <span t-if="doc.warehouse_id">
+                                    <span t-field="doc.warehouse_id.name"/>
+                                </span>
+                                <span t-if="not doc.warehouse_id">
+                                    -
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <span><strong>Taker </strong></span>
+                            </div>
+                            <div class="col-9">
+                                <span t-if="doc.checker">
+                                    <span t-field="doc.checker.name"/>
+                                </span>
+                                <span t-if="not doc.checker">
+                                    -
+                                </span>
+                            </div>
+                        </div>                    
+                    </div>
+                    <div class="col-3" style="font-family: KanitLight;font-size: 12.00px;padding-top:36px;">
+                        <span><strong>Location </strong></span> 
+                        <span t-if="doc.location_id">
+                            <span t-field="doc.location_id.display_name"/>
+                        </span>
+                        <span t-if="not doc.location_id">
+                            -
+                        </span>
+                    </div>
+                    <div class="col-3 text-right" style="font-family: KanitLight;font-size:  12.00px;">
+                        <span><strong>
+                            Print Date Time : 
+                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%y %H:%M:%S')"/>
+                            PM
+                            </strong>
+                        </span>
+                        <br/>
+                        <span><strong>
+                            หน้า 
+                            <span class="page" t-att-data-starting-page="-1"/>/<span class="topage" t-att-data-starting-page="-1"/>
+                        </strong>
+                        </span>                 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <div class="first-page" style="font-family: KanitLight;font-size: 70px;padding-top:220px;">
+                <p style="page-break-before:always;"> </p>
+            </div>
+            <div class="not-first-page"> 
+                <div class="row">
+                    <table class="table" style="font-size: 12.00px;line-height: 18px">
+                        <thead>
+                            <tr>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 10%;">Customer Requestion</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 8%;">Number</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 9%;">Picking Route</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 7%;">Ship Date</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 10.5%;">External Item</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 10%;">Descriptions</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 8%;">สต๊อก 24(AB)</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 7%;">สต๊อก อื่นๆ</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 8%;">สต๊อก ทั้งหมด</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 7%;">จำนวนจัด</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 4%;">หน่วย</th>
+                                <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 11.5%;">Barcode Picking</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-borderless">
+                            <t t-set="list_line_sort" t-value="o.generate_line_ids.picking_list_id.list_line_ids.sorted(key=lambda r: r.product_id.id)"/>
+                            <!-- <t t-set="partner_line" t-value="o.generate_line_ids.picking_list_id.list_line_ids[0].partner_id"/> -->
+                            <t t-set="check_product" t-value=""/>
+                            <t t-set="qty_done_total" t-value="0"/>
+                            <t t-set="first_product" t-value="1"/>
+                            <t t-foreach="list_line_sort" t-as="ol">
+                                <t t-set="partner_line" t-value="ol.picking_lists.partner_id"/>
+                                <t t-set="ext_l" t-value="doc.env['multi.external.product'].search([                                 ('product_tmpl_id.id','=',ol.product_id.product_tmpl_id.id),                                 ('partner_id.id','=',partner_line.id)])"/>
+                                <t t-set="quant_ids" t-value="doc.env['stock.quant'].search([                                 ('product_id','=', ol.product_id.id),                                 ('location_id','!=',ol.location_id.id),                                 ('location_id.usage','=','internal')])"/> 
+                                <t t-set="qty_other" t-value="0"/>   
+                                <t t-set="qty_other" t-value="sum(quant_ids.mapped('available_quantity'))"/>  
+                                <t t-if="ol.product_id != check_product">
+                                    <t t-set="check_product" t-value="ol.product_id"/>
+                                    <t t-if="first_product != 1">
+                                        <tr>
+                                            <td class="text-left" style="width: 10%;"/>
+                                            <td class="text-center" style="width: 8%;"/>
+                                            <td class="text-center" style="width: 9%;"/>
+                                            <td class="text-center" style="width: 7%;"/>
+                                            <td class="text-center" style="width: 10.5%;"/>
+                                            <td class="text-left" style="width: 10%;">  </td>
+                                            <td class="text-right" style="width: 8%;"/>
+                                            <td class="text-right" style="width: 7%;"/>
+                                            <td class="text-right border-top border-bottom" style="width: 8%;">
+                                                <span><strong>Total</strong></span>
+                                            </td>
+                                            <td class="text-right border-top border-bottom" style="width: 7%;">
+                                                <strong><span t-esc="'{0:,}'.format(int(qty_done_total))"/></strong>
+                                            </td>
+                                            <td class="text-center" style="width: 4%;"/>
+                                            <td class="text-center" style="width: 11.5%;"/>
+                                        </tr>                            
+                                    </t>
+                                    <t t-if="first_product == 1">
+                                        <t t-set="first_product" t-value="0"/>
+                                    </t>
+                                    <t t-set="qty_done_total" t-value="0"/>
+                                </t>
+                                <t t-if="ol.product_id == check_product">
+                                    <tr>
+                                        <td class="text-left" style="width: 10%;">
+                                            <span t-if="ol.sale_id">
+                                                <span t-field="ol.sale_id.customer_po"/>
+                                            </span>
+                                            <span t-if="not ol.sale_id">
+                                                -
+                                            </span>
+                                        </td>
+                                        <td class="text-center" style="width: 8%;">
+                                            <span t-if="ol.sale_id">
+                                                <span t-field="ol.sale_id.name"/>
+                                            </span>
+                                            <span t-if="not ol.sale_id">
+                                                -
+                                            </span>
+                                        </td>
+                                        <td class="text-left" style="width: 9%;">
+                                            <span t-if="ol.picking_lists.name">
+                                               <span t-field="ol.picking_lists.name"/>
+                                            </span>
+                                            <span t-if="not ol.picking_lists.name">
+                                                
+                                            </span>
+                                        </td>
+                                        <td class="text-center" style="width: 7%;">
+                                            <span t-if="ol.picking_lists.delivery_date">
+                                               <span t-field="ol.picking_lists.delivery_date" t-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
+                                            </span>
+                                            <span t-if="not ol.picking_lists.delivery_date">
+                                                
+                                            </span>
+                                        </td>
+                                        <td class="text-left" style="width: 10.5%;">
+                                            <span t-if="ext_l.name">
+                                                <span t-field="ext_l.name"/>
+                                            </span>
+                                            <span t-if="not ext_l.name">
+                                                <span t-field="ol.product_id.default_code"/>
+                                            </span>     
+                                        </td>
+                                        <td class="text-left" style="width: 10%;">  
+                                            <span t-if="ext_l.product_description">
+                                                <span t-field="ext_l.product_description"/>
+                                            </span>
+                                            <span t-if="not ext_l.product_description">
+                                                <span t-field="ol.product_id.description_sale"/>
+                                            </span>     
+                                        </td>
+                                        <td class="text-right" style="width: 8%;">
+                                            <span t-if="ol.qty_ava">
+                                                <span t-esc="'{0:,}'.format(int(ol.qty_ava))"/>
+                                            </span>
+                                            <span t-if="not ol.qty_ava">
+                                                -
+                                            </span>
+                                        </td>
+                                        <td class="text-right" style="width: 7%;">
+                                            <span t-if="ol.product_id">
+                                                <span t-esc="'{0:,}'.format(int(qty_other))"/>
+                                            </span>
+                                            <span t-if="not ol.product_id">
+                                                -
+                                            </span>     
+                                        </td>
+                                        <td class="text-right" style="width: 8%;">
+                                            <span t-if="ol.product_id">
+                                                <span t-esc="'{0:,}'.format(int(qty_other + ol.qty_ava))"/>
+                                            </span>
+                                            <span t-if="not ol.product_id">
+                                                -
+                                            </span>     
+                                        </td>
+                                        <td class="text-right" style="width: 7%;">
+                                            <span t-if="ol.amount_arranged">
+                                                <t t-set="qty_done_total" t-value="qty_done_total + ol.amount_arranged"/>
+                                                <span t-esc="'{0:,}'.format(int(ol.amount_arranged))"/>
+                                            </span>
+                                            <span t-if="not ol.amount_arranged">
+                                                -
+                                            </span>
+                                        </td>
+                                        <td class="text-center" style="width: 4%;">
+                                            <span t-if="ol.uom_id">
+                                                <span t-field="ol.uom_id.name"/>
+                                            </span>
+                                            <span t-if="not ol.uom_id">
+                                                -
+                                            </span>
+                                        </td>
+                                        <td class="text-center" style="width: 11.5%;">
+                                            <span t-if="ol.picking_id">
+                                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', ol.picking_id.name, 410, 120)" style="max-height:30pt;max-width:90pt;"/>
+                                            </span>
+                                            <span t-if="not ol.picking_id">
+                                                -
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </t>                
+                            </t>
+                            <tr>
+                                <td class="text-left" style="width: 10%;"/>
+                                <td class="text-center" style="width: 8%;"/>
+                                <td class="text-center" style="width: 10%;"/>
+                                <td class="text-center" style="width: 7%;"/>
+                                <td class="text-center" style="width: 10.5%;"/>
+                                <td class="text-left" style="width: 10%;">  </td>
+                                <td class="text-center" style="width: 8%;"/>
+                                <td class="text-center" style="width: 7%;"/>
+                                <td class="text-right" style="width: 8%; border-top: 1px dotted black;border-bottom: 1px dotted black;">
+                                    <span><strong>Total</strong></span>
+                                </td>
+                                <td class="text-right" style="width: 7%; border-top: 1px dotted black;border-bottom: 1px dotted black;">
+                                    <strong><span t-esc="'{0:,}'.format(int(qty_done_total))"/></strong>
+                                </td>
+                                <td class="text-center" style="width: 4%;"/>
+                                <td class="text-center" style="width: 10.5%;"/>
+                            </tr>                      
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="footer last-page not-first-page" style="font-size: 11px;margin-top:2mm;vertical-align: bottom;font-family: KanitLight;max-height:403px">
+                   
+        </div>
+    </template>
+
+    <template id="ge_pkl_rp">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="x_picking_list_id" t-value="doc.generate_line_ids.picking_list_id[0]"/>
+                <t t-set="partner" t-value="x_picking_list_id.partner_id"/>
+                <t t-call="hdc_inventory_picking_list_sale_report.hdc_picking_list_report_document"/>
+                <!-- <t t-foreach="docs.generate_line_ids" t-as="line">
+                    <t t-set="doc" t-value="line.picking_list_id"/>
+                    <t t-call="hdc_inventory_picking_list_sale_report.hdc_picking_list_report_document" t-lang="docs.partner_id.lang"/>
+                </t> -->
+            </t>
+        </t>
+    </template>
+</odoo>

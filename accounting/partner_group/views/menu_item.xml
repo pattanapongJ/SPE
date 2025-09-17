@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- actions -->
+    <record id="action_contacts_partner_group" model="ir.actions.act_window">
+        <field name="name">Partner Group</field>
+        <field name="res_model">partner.group</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create new Partner Group
+            </p>
+        </field>
+    </record>
+
+    <!-- menu item -->
+    <menuitem
+        id="menu_contact_partner_group"
+        name="Partner Group"
+        parent="contacts.res_partner_menu_config"
+        sequence="16"
+        action="action_contacts_partner_group"
+    />
+
+</odoo>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="API Custom Control" id="submenu_api_custom_control"
+        action="action_api_custom_control"
+        parent="api_framework_base.menu_api_framework_base_config"
+        groups="base.group_erp_manager"/>
+</odoo>

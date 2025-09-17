@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_coupon_apply_code_blanket_view_form" model="ir.ui.view">
+        <field name="name">sale.coupon.apply.code.form</field>
+        <field name="model">sale.coupon.apply.code</field>
+        <field name="inherit_id" ref="sale_coupon.sale_coupon_apply_code_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='coupon_code']" position="after">
+                <field name="is_sale_blanket" invisible="1"/>
+                <field name="is_quotation" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_open_coupon_wizard" model="ir.actions.act_window">
+        <field name="name">Apply Coupon</field>
+        <field name="res_model">sale.coupon.apply.code</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale_coupon_apply_code_blanket_view_form"/>
+        <field name="target">new</field>
+        <field name="context">{'default_is_sale_blanket': True}</field>
+    </record>
+
+    <record id="action_open_coupon_wizard_quotation" model="ir.actions.act_window">
+        <field name="name">Apply Coupon</field>
+        <field name="res_model">sale.coupon.apply.code</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale_coupon_apply_code_blanket_view_form"/>
+        <field name="target">new</field>
+        <field name="context">{'default_is_quotation': True}</field>
+    </record>
+
+</odoo>

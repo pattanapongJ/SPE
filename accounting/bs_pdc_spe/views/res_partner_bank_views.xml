@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- View res.partner.bank form -->
+    <record id="view_res_partner_bank_form" model="ir.ui.view">
+        <field name="name">view.res.partner.bank.form</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="bs_bank_account_type.res_partner_bank_type_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bank_account_type']" position="after">
+                <field name="no_of_signature"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="transfer_branch_summary_view_tree_inherit" model="ir.ui.view">
+        <field name="name">Transfer Branch Summary tree inherit</field>
+        <field name="model">resupply.transfer.branch.summary</field>
+        <field name="inherit_id" ref="hdc_tms.transfer_branch_summary_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='transport_line_id']" position="attributes">
+                <attribute name="string">Delivery Line</attribute>
+             </xpath>
+            <xpath expr="//field[@name='operation_type_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+             </xpath>
+            <xpath expr="//page[@name='detailed']" position="replace">
+                <page string="Product" name="product">
+                    <field name="summary_line_ids">
+                        <tree string="Product" editable="bottom" create="0" edit="1" delete="0">
+                            <field name="invoice_id" optional="show"/>
+                            <field name="so_no" optional="show"/>
+                            <field name="name" optional="show"/>
+                            <field name="qty_available" optional="show"/>
+                            <field name="qty_demand" optional="show" />
+                            <field name="qty_reserved" optional="show"/>
+                            <field name="uom_id" optional="show"/>
+                            <field name="state" invisible="1"/>
+                            <field name="delivery_address" optional="hide" string="Delivery Address"/>
+                            <field name="delivery_line" optional="hide" string="Delivery Line"/>
+                            <button name="delete_related_records" string="Delete"
+                                type="object" class="btn-danger"/>
+                        </tree>
+                    </field>
+                </page>
+             </xpath>
+            <xpath expr="//page[@name='product']" position="after">
+                <page string="Tranfer" name="tranfer">
+                    <field name="summary_delivery_ids">
+                        <tree string="Tranfer" editable="bottom" create="0" edit="1" delete="0">
+                            <field name="name" optional="show" string="Transfer"/>
+                            <field name="scheduled_date" optional="show" string="Schedule Date"/>
+                            <field name="location_id" optional="show"/>
+                            <field name="backorder_id" optional="show"/>
+                            <field name="origin" optional="show"/>
+                            <field name="state" optional="show"/>
+                            <button name="delete_related_records" string="Delete"
+                                type="object" class="btn-danger"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

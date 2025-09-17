@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_commission_report,access.wizard.commission.report,model_wizard_commission_report,base.group_user,1,1,1,1
+access_commission_report_configuration_user,hdc.commission.report.configuration,model_commission_report_configuration,base.group_user,1,1,1,1
+access_commission_report_configuration_line_user,hdc.commission.report.configuration.line,model_commission_report_configuration_line,base.group_user,1,1,1,1
+access_wizard_import_commission_mall,access.wizard.import.commission.mall,model_wizard_import_commission_mall,base.group_user,1,1,1,1
+access_wizard_commission_mall_report,access.wizard.commission.mall.report,model_wizard_commission_mall_report,base.group_user,1,1,1,1
+access_commission_mall_report_configuration_user,hdc.commission.mall.report.configuration,model_commission_mall_report_configuration,base.group_user,1,1,1,1

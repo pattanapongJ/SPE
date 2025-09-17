@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form_inherit_dewalt_repair" model="ir.ui.view">
+            <field name="name">view.order.form.inherit.dewalt</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="hdc_sale.hdc_sale_view_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='delivery_info']" position="after">
+                    <group name="Repair_gp" string="Repair">
+                        <field name="is_repair_type_id" invisible="1"/>
+                        <field name="is_dewalt" invisible="1"/>
+                        <field name="picking_type_id" attrs="{'required': [('is_repair_type_id', '=', True),('is_dewalt', '=', False)]}"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="to_warehouse" attrs="{'required': [('is_repair_type_id', '=', True),('is_dewalt', '=', False)]}"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_order_form_inherit_dewalt" model="ir.ui.view">
+            <field name="name">view.order.form.inherit.dewalt</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_draft']" position="after">
+                    <button name="print_dewalt_report" string="Print Delivery &amp; Claim Report " type="object" class="oe_highlight" attrs="{'invisible': ['|',('is_repair_type_id', '=', False),('state', 'not in', ['done','sale'])]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

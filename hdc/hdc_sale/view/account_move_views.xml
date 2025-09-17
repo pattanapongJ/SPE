@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="hdc_sale_form_inherit_account_move">
+        <field name="name">Hdc Sale Account Invoice</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_user_id']" position="after">
+                <field name="sale_spec" string="Sale Spec"/>
+                <field name="sale_manager_id" string="Sale Manager"/>
+                <field name="user_sale_agreement" string="Sale Taker"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

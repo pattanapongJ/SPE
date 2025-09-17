@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_easy_api_administrator,easy_api administrator,model_easy_api,group_api_administrator,1,1,1,1
+access_easy_api_user,easy_api user,model_easy_api,group_api_user,1,1,0,0
+access_easy_api_user_read_only,easy_api user,model_easy_api,group_api_user_read_only,1,0,0,0

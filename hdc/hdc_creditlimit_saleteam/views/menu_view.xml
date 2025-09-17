@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="menu_credit_limit"
+                name="Credit Limited"
+                web_icon="hdc_creditlimit_saleteam,static/description/odoo_creditcard.png"
+                sequence="8"/>
+
+    <menuitem id="menu_temp_credit_request"
+            name="Temp Credit Request"
+            parent="menu_credit_limit"
+            sequence="2"/>
+
+    <menuitem id="menu_action_credit_request"
+        name="Temp Credit Request"
+        action="action_temp_credit_request"
+        parent="menu_temp_credit_request"
+        sequence="1"/>
+
+    <menuitem id="menu_action_credit_approval"
+        name="Temp Credit Approval"
+        action="action_temp_credit_request_approval"
+        parent="menu_temp_credit_request"
+        groups="hdc_creditlimit_saleteam.group_credit_request_manager"
+        sequence="2"/>
+
+    <menuitem id="menu_temp_credit_request_history"
+          name="Temp Credit Request History"
+          parent="menu_temp_credit_request"
+          action="action_temp_credit_request_history"
+          sequence="3"
+          groups="hdc_creditlimit_saleteam.group_credit_request_manager"/>
+
+    <menuitem id="menu_credit_limit_setting"
+            name="Setting"
+            parent="menu_credit_limit"
+            sequence="4" groups="hdc_creditlimit_saleteam.group_credit_request_admin"/>
+
+    <menuitem id="menu_action_credit_limit_sale"
+        name="Credit Limit Sales"
+        action="action_action_credit_limit_sale"
+        parent="menu_credit_limit_setting"
+        sequence="1"/>
+
+    <menuitem id="menu_action_credit_limit_sale_line"
+        name="Credit Limit Sales Line"
+        action="action_credit_limit_sale_line"
+        parent="menu_credit_limit_setting"
+        groups="hdc_creditlimit_saleteam.group_credit_request_admin"
+        sequence="3"/>
+        
+    <menuitem id="menu_action_customer_credit_import"
+        name="Customer Credit limit"
+        action="action_customer_credit_import"
+        parent="menu_credit_limit_setting"
+        groups="hdc_creditlimit_saleteam.group_credit_request_admin"
+        sequence="4"/>
+
+    <menuitem id="menu_action_new_customer_cash_import"
+        name="Customer Cash limit"
+        action="action_new_customer_cash_import"
+        parent="menu_credit_limit_setting"
+        groups="hdc_creditlimit_saleteam.group_credit_request_admin"
+        sequence="5"/>
+
+    <menuitem id="menu_credit_limit_report"
+            name="Reporting"
+            parent="menu_credit_limit"
+            sequence="3"/>
+        
+    <menuitem id="menu_credit_limit_general_settings"
+        name="Settings"
+        parent="menu_credit_limit_setting"
+        sequence="0"
+        action="action_credit_limit_config_settings"
+        groups="base.group_system"/>
+
+</odoo>

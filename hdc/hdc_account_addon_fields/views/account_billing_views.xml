@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_billing_billing_history_form_inherit" model="ir.ui.view">
+        <field name="name">account.billing.billing.history.form.inherit</field>
+        <field name="model">account.billing</field>
+        <field name="inherit_id" ref="account_billing.view_account_billing_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Billing History">
+                    <field name="billing_history_ids">
+                        <tree string="Billing History" editable="bottom">
+                            <field name="date"/>
+                            <field name="create_uid" readonly="1"/>
+                            <field name="description"/>
+                        </tree>
+                        <!-- <form string="Billing History">
+                            <group>
+                                <field name="date"/>
+                                <field name="create_uid" readonly="1"/>
+                                <field name="description"/>
+                            </group>
+                        </form> -->
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="batch_billing_view" model="ir.ui.view">
+        <field name="name">account.billing.batch</field>
+        <field name="priority">15</field>
+        <field name="inherit_id" ref="account_billing.view_account_billing_form"/>
+        <field name="model">account.billing</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="bill_type" invisible="1"/>
+                <field name="batch_billing_no" attrs="{'invisible': [('bill_type', 'not in', ['out_invoice'])]}" readonly="1" force_save="1" />
+                <field name="batch_billing_status" attrs="{'invisible': [('bill_type', 'not in', ['out_invoice'])]}" readonly="1" force_save="1" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

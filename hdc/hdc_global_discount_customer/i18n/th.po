@@ -1,0 +1,108 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hdc_res_partner_activity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230831\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 07:30+0000\n"
+"PO-Revision-Date: 2023-12-20 07:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner__partner_activity_ids
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_users__partner_activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: hdc_res_partner_activity
+#: model:ir.model,name:hdc_res_partner_activity.model_res_partner
+#: model:ir.model,name:hdc_res_partner_activity.model_res_partner_activity
+msgid "Activity Module"
+msgstr ""
+
+#. module: hdc_res_partner_activity
+#: model_terms:ir.ui.view,arch_db:hdc_res_partner_activity.view_partner_activity_tree
+msgid "Channel"
+msgstr ""
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner__display_name
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner__id
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner__last_activity_update
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity__last_activity_update
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_users__last_activity_update
+msgid "Last Activity Update"
+msgstr "การอัปเดตกิจกรรมล่าสุด"
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner____last_update
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner__not_up_to_date_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity__not_up_to_date_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_users__not_up_to_date_activity
+msgid "Not up-to-date activity (Day)"
+msgstr "กิจกรรมที่ไม่ได้อัปเดต (วัน)"
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: hdc_res_partner_activity
+#: model:ir.actions.act_window,name:hdc_res_partner_activity.view_partner_activity_action
+#: model:ir.ui.menu,name:hdc_res_partner_activity.menu_partner_activity
+msgid "Partner Activity"
+msgstr ""
+
+#. module: hdc_res_partner_activity
+#: model_terms:ir.actions.act_window,help:hdc_res_partner_activity.view_partner_activity_action
+msgid "Res Partner"
+msgstr ""
+
+#. module: hdc_res_partner_activity
+#: model:ir.model.fields,field_description:hdc_res_partner_activity.field_res_partner_activity__show_not_up_to_date_activity
+msgid "Show Not up-to-date activity (Day)"
+msgstr ""
+
+

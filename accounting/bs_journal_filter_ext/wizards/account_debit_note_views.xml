@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- View account.debit.note form -->
+    <record id="view_account_debit_note_form" model="ir.ui.view">
+        <field name="name">view.account.debit.note.form</field>
+        <field name="model">account.debit.note</field>
+        <field name="inherit_id" ref="account_debit_note.view_account_debit_note"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='journal_id']" position="attributes">
+                <attribute name="domain">[('type', '=', journal_type),('show_in_debit_note','=',True)]</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

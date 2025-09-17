@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pricelist_update_view_tree" model="ir.ui.view">
+        <field name="name">"pricelist_update.view.tree</field>
+        <field name="model">pricelist.update</field>
+        <field name="arch" type="xml">
+            <tree string="Pricelist Update View">
+                <field name="name" />
+                <field name="pricelist_id" />
+                <field name="issue_date" />
+                <field name="responsible" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="pricelist_update_view_form" model="ir.ui.view">
+        <field name="name">"pricelist_update.view.form</field>
+        <field name="model">pricelist.update</field>
+        <field name="arch" type="xml">
+            <form string="Pricelist Update Form">
+                <header>
+                    <button id="button_confirm_import" name="action_import_serial"
+                        string="Update Pricelist"
+                        class="btn-primary"
+                        type="object"
+                        attrs="{'invisible':['|',('import_pricelist', '=', False), ('state','=','confirm')]}" />
+                    <button id="button_confirm" name="action_confirm" string="Confirm"
+                        class="btn-primary" type="object" states="draft" />
+                    <button id="button_update_today" name="action_update_today" string="Update Pricelist Today"
+                        class="btn-primary" type="object" states="confirm" />
+                    <button id="button_clear_all" name="action_clear_all" string="Clear"
+                        type="object"
+                        states="draft" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" attrs="{'readonly':[('state','=','confirm')]}"
+                                required="1" />
+                        </h1>
+                    </div>
+                    <group name="pricelist_update_header">
+                        <group name="pricelist_update_left">
+                            <field name="pricelist_id" options="{'no_create': True}" required="1"
+                                attrs="{'readonly':[('state','=','confirm')]}" />
+                            <field name="import_pricelist" filename="file_name_import"
+                                attrs="{'readonly':[('state','=','confirm')]}" />
+                            <field name="file_name_import" invisible="1" />
+
+                        </group>
+                        <group name="pricelist_update_right">
+                            <field name="issue_date" attrs="{'readonly':[('state','=','confirm')]}" />
+                            <field name="responsible" attrs="{'readonly':[('state','=','confirm')]}" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="pricelist_rules" string="Price Rules">
+                            <field name="item_ids_line" nolabel="1"
+                                attrs="{'readonly':[('state','=','confirm')]}">
+                                <tree string="Pricelist Items" editable="bottom">
+                                    <field name="default_code" invisible="1" />
+                                    <field name="product_tmpl_id" />
+                                    <field name="min_quantity" />
+                                    <field name="price" force_save="1" readonly="1" />
+                                    <field name="update_price" required="1" />
+                                    <field name="date_start" required="1" />
+                                    <field name="date_end" />
+                                    <!-- <field name="schedule_action" invisible="1" force_save="1"
+                                    /> -->
+                                    <field name="schedule_action" readonly="1" />
+                                    <field name="triple_discount" optional="show"/>
+                                    <field name="remark" optional="show"/>
+
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pricelist_update" model="ir.actions.act_window">
+        <field name="name">Pricelist Update</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pricelist.update</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="pricelist_update_view_tree" />
+    </record>
+
+    <record id="pricelist_update_line_view_tree" model="ir.ui.view">
+        <field name="name">"pricelist.update.line.view.tree</field>
+        <field name="model">pricelist.update.line</field>
+        <field name="arch" type="xml">
+            <tree string="Pricelist Update List">
+                <field name="product_update_id" />
+                <field name="issue_date" />
+                <field name="pricelist_id" />
+                <field name="product_tmpl_id" />
+                <field name="min_quantity" />
+                <field name="price" force_save="1" readonly="1" />
+                <field name="update_price" required="1" />
+                <field name="date_start" required="1" />
+                <field name="date_end" />
+                <field name="schedule_action" readonly="1" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_pricelist_update_line" model="ir.actions.act_window">
+        <field name="name">Pricelist Update List</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pricelist.update.line</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="pricelist_update_line_view_tree" />
+    </record>
+
+
+    <menuitem
+        action="action_pricelist_update" id="menu_pricelist_update"
+        parent="sale.product_menu_catalog"
+        sequence="6"
+        groups="product.group_sale_pricelist"
+    />
+    <menuitem
+        action="action_pricelist_update_line" id="menu_pricelist_update_line"
+        parent="sale.product_menu_catalog"
+        sequence="6"
+        groups="product.group_sale_pricelist"
+    />
+
+</odoo>

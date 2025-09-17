@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="multi_external_product_form_view" model="ir.ui.view">
+        <field name="name">multi.external.product.form</field>
+        <field name="model">multi.external.product</field>
+        <field name="inherit_id" ref="hdc_external_item_customer.multi_external_product_form_view"/>
+        <field name="arch" type="xml">
+			<xpath expr="//form/sheet/group[2]" position="after">
+				<separator string="Barcode Product"/>
+				<field name="barcode_spe_ids"/>
+			</xpath>
+		</field>
+	</record>
+</odoo>

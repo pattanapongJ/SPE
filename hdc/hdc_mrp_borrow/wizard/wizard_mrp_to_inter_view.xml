@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_mrp_to_intertransfer" model="ir.ui.view">
+        <field name="name">wizard.mrp.borrow</field>
+        <field name="model">wizard.mrp.borrow</field>
+        <field name="arch" type="xml">
+            <form string="Create Product from Job Estimated">
+                <group>
+                    <group>
+                        <field name="mo_id" invisible="1"/>
+                        <field name="is_request" invisible="1"/>
+                        <field name="is_return" invisible="1"/>
+                        <field name="picking_type_id" />
+                        <field name="location_id" />
+                        <field name="user_id" />
+                    </group>
+                    <group>
+                        <field name="request_date" />
+                        <field name="location_dest_id" />
+                    </group>
+                </group>
+                <notebook>
+                    <page name="order_line" string="Order Line">
+                        <group name="attribute_value_group">
+                            <field name="order_line_ids" string="Order Line" nolabel="1">
+                                <tree editable="top">
+                                    <field name="wizard_mrp_borrow_ids" invisible="1"/>
+                                    <field name="product_id"/>
+                                    <field name="location_id" invisible="1"/>
+                                    <field name="qty_available" invisible="1"/>
+                                    <field name="need_to_order_qty"/>
+                                    <field name="incoming_qty" invisible="1"/>
+                                    <field name="date_required" invisible="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_generate_pr" string="Create Stock Request" type="object" class="btn-primary" attrs="{'invisible': [('is_return', '=', True)]}"/>
+                    <button name="action_generate_pr" string="Create Stock Return" type="object" class="btn-primary" attrs="{'invisible': [('is_request', '=', True)]}"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

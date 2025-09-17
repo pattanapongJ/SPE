@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_landed_cost_form_inherit_hdc_landed_cost" model="ir.ui.view">
+        <field name="name">stock.landed.cost.form.inherit.hdc.landed.cost</field>
+        <field name="model">stock.landed.cost</field>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,waiting_adjustment,done"/>
+            </xpath>
+
+            <xpath expr="//button[@name='button_cancel']" position="replace">
+                <button name="button_cancel" string="Cancel" states="draft,waiting_adjustment" type="object"/>
+            </xpath>
+
+            <xpath expr="//button[@name='button_validate']" position="replace">
+                <button name="action_confirm" string="Confirm" states="draft" class="oe_highlight" type="object"/>
+                <button name="button_validate" string="Validate" states="waiting_adjustment" class="oe_highlight" type="object"/>
+                <button name="compute_landed_cost" string="Compute" type="object" class="oe_right btn-secondary" states='draft'/>
+            </xpath>
+
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="receipts_date"/>
+            </xpath>
+            <xpath expr="//field[@name='vendor_bill_id']" position="replace">
+                <field name="vendor_bill_id" widget="many2many_tags"/>
+            </xpath>
+            <xpath expr="//field[@name='picking_ids']" position="after">
+                <field name="allowed_receipt_list_ids" invisible="1"/>
+                <field name="receipt_list_ids" 
+                    widget="many2many_tags" options="{'no_create_edit': True}"
+                    attrs="{'invisible': [('target_model', '!=', 'receipt_list')]}" 
+                    domain="[('state', '=', 'done')]"/>
+            </xpath>
+
+            <xpath expr="//field[@name='vendor_bill_id']" position="after">
+                <field name="target_type" widget="radio"/>
+                <field name="cal_currency_id"/>
+                <field name="exchange_date"/>
+                <field name="exchange_rate" force_save="1"/>
+            </xpath>
+
+            <!-- <xpath expr="//notebook/page[@name='additional_costs']" position="attributes">
+                <attribute name="attrs">{'invisible': [('target_type', '=', 'manual')]}</attribute>
+            </xpath> -->
+
+            <xpath expr="//notebook/page[@name='valuation_adjustments']" position="attributes">
+                <attribute name="attrs">{'invisible': [('target_type', '=', 'manual')]}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='valuation_adjustment_lines']/tree" position="replace">
+                <tree string="Valuation Adjustments" editable="bottom" create="0">
+                    <field name="cost_line_id" readonly="1"/>
+                    <field name="product_id" readonly="1"/>
+                    <field name="item_code"/>
+                    <field name="free_product"/>
+                    <field name="no_cal_landed_cost"/>
+                    <field name="receipt_name"/>
+                    <field name="quantity" readonly="1"/>
+                    <field name="product_uom"/>
+                    <field name="price_unit"/>
+                    <field name="amount_price"/>
+                    <field name="discount"/>
+                    <field name="rate_usd"/>
+                    <field name="price_item"/>
+                    <field name="free_item"/>
+                    <field name="amount_item"/>
+                    <field name="duty"/>
+                    <field name="duty_avg"/>
+                    <field name="duty_avg2"/>
+                    <field name="duty_avg_total"/>
+                    <field name="sh_avg"/>
+                    <field name="do_avg"/>
+                    <field name="ins_avg"/>
+                    <field name="total_duty_sh"/>
+                    <field name="former_cost"/>
+                    <field name="additional_landed_cost"/>
+                    <field name="final_cost" readonly="1"/>
+                    <field name="weight" readonly="1" optional="hide"/>
+                    <field name="volume" readonly="1" optional="hide"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='valuation_adjustments']" position="after">
+                <page string="Valuation Adjustments Manual" name="valuation_adjustments_manual" attrs="{'invisible': [('target_type', '=', 'computed')]}">
+                    <button name="wizard_import_adjustment_manual_lines" string="Import" states="waiting_adjustment" type="object" class="btn btn-success oe_right"/>
+                    <button name="export_adjustment_manual_lines" string="Export" type="object" class="btn btn-warning oe_right" style="margin-left: 10px;margin-right: 10px;"/>
+                    <button name="get_product_manual" string="Get Manual Line" type="object" class="btn btn-primary oe_right " style="margin-left: 10px;" states='draft'/>
+                    <field name="valuation_adjustment_manual_lines">
+                        <form string="Valuation Adjustments Manual">
+                            <group>
+                                <group>
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="hs_code_id"/>
+                                </group>
+                                <group>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="former_cost"/>
+                                    <field name="customs_duty_unit"/>
+                                    <field name="customs_duty_value"/>
+                                    <field name="landed_value"/>
+                                </group>
+                            </group>
+                        </form>
+                        <tree string="Valuation Adjustments Manual" editable="bottom" create="0">
+                            <field name="product_id" readonly="1"/>
+                            <field name="item_code"/>
+                            <field name="free_product"/>
+                            <field name="no_cal_landed_cost"/>
+                            <field name="receipt_name"/>
+                            <field name="quantity" readonly="1"/>
+                            <field name="product_uom"/>
+                            <field name="price_unit"/>
+                            <field name="amount_price"/>
+                            <field name="discount"/>
+                            <field name="rate_usd"/>
+                            <field name="price_item"/>
+                            <field name="free_item"/>
+                            <field name="amount_item"/>
+                            <field name="duty"/>
+                            <field name="duty_avg"/>
+                            <field name="duty_avg2"/>
+                            <field name="duty_avg_total"/>
+                            <field name="sh_avg"/>
+                            <field name="do_avg"/>
+                            <field name="ins_avg"/>
+                            <field name="total_duty_sh"/>
+                            <field name="former_cost"/>
+                            <field name="landed_value"/>
+                            <field name="final_cost" readonly="1"/>
+                            <field name="picking_id" invisible="1" readonly="1" attrs="{'column_invisible': [('parent.target_model', '!=', 'picking')]}"/>
+                            <field name="mrp_production_id" invisible="1" readonly="1" attrs="{'column_invisible': [('parent.target_model', '!=', 'manufacturing')]}"/>
+                            <field name="receipt_list_id" invisible="1" readonly="1" attrs="{'column_invisible': [('parent.target_model', '!=', 'receipt_list')]}"/>
+                            <field name="hs_code_id" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="customs_duty_unit" invisible="1"/>
+                            <field name="customs_duty_value" invisible="1"/>
+                            
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

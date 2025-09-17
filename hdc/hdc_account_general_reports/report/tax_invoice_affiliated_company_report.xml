@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="tax_invoice_affiliated_company_report_document">
+        <t t-name="hdc_account_general_reports.tax_invoice_affiliated_company_report_document">
+            <t t-if="not o and doc">
+                <t t-set="o" t-value="doc"/>
+        </t>
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"/>
+        </t>
+            <t t-set="branch_id" t-value="doc.branch_id"/>
+            <div class="header" style="font-family: KanitLight">
+                <div class="row">
+                    <div class="col-2 text-left">
+                    
+                </div>
+                    <div class="col-8 text-center" style="margin-right:0mm;margin-top:15mm">
+                        <div style="font-size: 17px;font-weight: bold;">
+                            <span t-field="doc.company_id.name_th"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-left">
+                    
+                </div>
+                    <div class="col-8 text-center">
+                        <div style="font-size: 13px">
+                            <span t-field="branch_id.address"/>
+                            <!-- <span t-field="company.street2_th"/>
+                        <span t-field="company.city_th"/>
+                        <span t-field="company.state_th_id.name"/>
+                        <span t-field="company.zip_th"/> -->
+                        </div>
+                    </div>
+                    <div class="col-2 text-right" style="font-size: 13px;margin-left:4mm;">
+                        <span>Page</span>
+                        <span class="page"/>
+                    /
+                        <span class="topage"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-left">
+                    
+                </div>
+                    <div class="col-4 text-right">
+                        <div style="font-size: 13px">
+                        โทร:
+                            <span t-field="branch_id.telephone"/>
+                        </div>
+                    </div>
+                    <div class="col-4 text-left">
+                        <div style="font-size: 13px">
+                        โทรสาร:
+                            <span t-field="branch_id.fax_no"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-left">
+                    
+                </div>
+                    <div class="col-4 text-right">
+                        <div style="font-size: 13px">
+                        เลขประจำตัวผู้เสียภาษีอากร
+                            <span t-field="branch_id.company_id.vat_th"/>
+                        </div>
+                    </div>
+                    <div class="col-4 text-left">
+                        <div style="font-size: 13px">
+                            <t t-if="doc.branch_id.is_head_office">
+                                <span t-field="doc.branch_id.name"/>
+                            </t>
+                            <t t-else="">
+                                <span>สาขาที่ </span>
+                                <span t-field="doc.branch_id.branch_no"/>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-left">
+                    
+                </div>
+                    <div class="col-8 text-center">
+                        <div style="font-size: 17px;font-weight: bold;">
+                        ใบกำกับภาษี / ใบส่งสินค้า / ใบแจ้งหนี้
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-left">
+                    
+                </div>
+                    <div class="col-8 text-center">
+                        <div style="font-size: 17px;font-weight: bold;">
+                        TAX INVOICE / DELIVERY ORDER / INVOICE
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-7 border-dotted-top border-dotted-left border-dotted-right border-dotted-dark">
+                        <div class="row">
+                            <div class="col-2" style="font-size: 13px">
+                                <span style="font-weight: bold;">รหัสผู้ชื้อ</span>
+                            </div>
+                            <div class="col-10 text-left" style="font-size: 12px">
+                                <span t-if="doc.partner_id.ref">
+                                    <span t-field="doc.partner_id.ref"/>
+                            </span>
+                                <span t-if="not doc.partner_id.ref">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2" style="font-size: 13px">
+                                <span style="font-weight: bold;">นามผู้ซื้อ</span>
+                            </div>
+                            <div class="col-5 text-left" style="font-size: 12px">
+                                <span t-if="doc.partner_id.name">
+                                    <span t-field="doc.partner_id.name"/>
+                            </span>
+                                <span t-if="not doc.partner_id.name">
+                                -
+                            </span>
+                            </div>
+                            <div class="col-5 text-left" style="font-size: 13px">
+                                <t t-if="doc.partner_id.is_head_office">
+                                    <span t-field="doc.partner_id.branch_name"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-field="doc.partner_id.branch_name"/>
+                                    <span> สาขาที่ </span>
+                                    <span t-field="doc.partner_id.branch"></span>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2" style="font-size: 13px">
+                                <span style="font-weight: bold;"> ที่อยู่</span>
+                            </div>
+                            <div class="col-10 text-left">
+                                <div style="font-size: 12px">
+                                    <span t-field="doc.partner_id.street"/>
+                                    <span t-field="doc.partner_id.street2"/>
+                                    <span t-field="doc.partner_id.sub_district"/>
+                                    <br/>
+                                    <span t-field="doc.partner_id.city"/>
+                                    <span t-field="doc.partner_id.state_id.name"/>
+                                    <span t-field="doc.partner_id.zip"/>
+                                    <br/>
+                                โทร
+                                    <span t-field="doc.partner_id.phone"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5" style="font-size: 13px;font-weight: bold;padding-bottom:1px;">
+                                <span>เลขประจำตัวผู้เสียภาษีอากรผู้ซื้อ</span>
+                            </div>
+                            <div class="col-7 text-left" style="font-size: 12px">
+                                <span t-if="doc.partner_id.vat">
+                                    <span t-field="doc.partner_id.vat"/>
+                            </span>
+                                <span t-if="not doc.partner_id.vat">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 border-dotted-top border-dotted-left border-dotted-right border-dotted-dark" style="width: 41%;margin-left:6px;">
+                        <div class="row">
+                            <div class="col-5" style="font-size: 13px">
+                                <span style="font-weight: bold;">วันที่/Date: </span>
+                            </div>
+                            <div class="col-7" style="font-size: 13px">
+                                <span t-if="doc.invoice_date">
+                                    <span t-field="doc.invoice_date"/>
+                           </span>
+                                <span t-if="not doc.invoice_date">
+                               -
+                           </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5" style="font-size: 13px">
+                                <span style="font-weight: bold;">เลขที่/No. </span>
+                            </div>
+                            <div class="col-7" style="font-size: 13px">
+                                <span t-if="doc.name">
+                                    <span t-field="doc.name"/>
+                           </span>
+                                <span t-if="not doc.name">
+                               -
+                           </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7" style="font-size: 13px">
+                                <span style="font-weight: bold;">เงื่อนไขการชำระเงิน /Payment term </span>
+                            </div>
+                            <div class="col-5" style="font-size: 13px">
+                                <span t-if="doc.invoice_payment_term_id.name">
+                                    <span t-field="doc.invoice_payment_term_id.name"/>
+                             </span>
+                                <span t-if="not doc.invoice_payment_term_id.name">
+                                -
+                             </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7" style="font-size: 13px">
+                                <span style="font-weight: bold;">วันครบกำหนดชำระ/Due Date </span>
+                            </div>
+                            <div class="col-5" style="font-size: 13px">
+                                <span t-if="doc.invoice_date_due_payment_term">
+                                    <span t-field="doc.invoice_date_due_payment_term"/>
+                             </span>
+                                <span t-if="not doc.invoice_date_due_payment_term">
+                                -
+                             </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7" style="font-size: 13px">
+                                <span style="font-weight: bold;">พนักงานขาย/Sale Person </span>
+                            </div>
+                            <div class="col-5" style="font-size: 13px">
+                                <span t-if="doc.invoice_user_id">
+                                    <span t-field="doc.invoice_user_id.name"/>
+                             </span>
+                                <span t-if="not doc.invoice_user_id">
+                                -
+                             </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="article" style="font-family: KanitLight" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+                <div class="row">
+                    <t t-set="l_no" t-value="0"/>
+                    <table class="table table-borderless" style="font-size: 13px;line-height: 18px;">
+                        <thead>
+                            <tr>
+                                <th class="text-center border-dotted border-dotted-dark" style="width: 6%;">Item</th>
+                                <th class="text-center border-dotted border-dotted-dark" style="width: 40%;">รายการ</th>
+                                <th class="text-center border-dotted border-dotted-dark" style="width: 9%;">จำนวน</th>
+                                <th class="text-center border-dotted border-dotted-dark" style="width: 6%;">หน่วย</th>
+                                <th class="text-center border-dotted border-dotted-dark" style="width: 11%;">ต่อหน่วย</th>
+                                <th class="text-center border-dotted border-dotted-dark" style="width: 9%;">ส่วนลด</th>
+                                <th class="text-center border-dotted border-dotted-dark" style="width: 19%;">จำนวนเงิน</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 13px">
+                            <tr t-foreach="o.invoice_line_ids" t-as="ol">
+                                <td class="text-center" style="padding-top:6px; padding-bottom:6px;">
+                                    <t t-if="not ol.is_component">
+                                        <t t-set="l_no" t-value="l_no + 1"/>
+                                        <t t-esc="l_no"/>
+                            </t>
+                                </td>
+                                <td class="text-left" style="padding-top:6px; padding-bottom:6px;">
+                                    <span t-if="ol.name">
+                                        <span t-field="ol.name"/>
+                            </span>
+                                    <span t-if="not ol.name">
+                                -
+                            </span>
+                                </td>
+                                <td class="text-right" style="padding-top:6px; padding-bottom:6px;">
+                                    <span t-if="ol.quantity">
+                                        <span t-esc="'{:,.2f}'.format(float(ol.quantity))"/>
+                            </span>
+                                    <span t-if="not ol.quantity">
+                                
+                            </span>
+                                </td>
+                                <td class="text-right" style="padding-top:6px; padding-bottom:6px;">
+                                    <span t-if="ol.product_uom_id">
+                                        <span t-field="ol.product_uom_id"/>
+                            </span>
+                                    <span t-if="not ol.product_uom_id">
+                                -
+                            </span>
+                                </td>
+                                <td class="text-right" style="padding-top:6px; padding-bottom:6px;">
+                                    <span t-if="ol.price_unit">
+                                        <span t-esc="'{:,.2f}'.format(float(ol.price_unit))"/>
+                            </span>
+                                    <span t-if="not ol.price_unit">
+                                
+                            </span>
+                                </td>
+                                <td class="text-right" style="padding-top:6px; padding-bottom:6px;">
+                                    <span t-if="ol.triple_discount">
+                                        <span t-field="ol.triple_discount"/>
+                            </span>
+                                    <span t-if="not ol.triple_discount">
+                                
+                            </span>
+                                </td>
+                                <td class="text-right" style="padding-top:6px; padding-bottom:6px;">
+                                    <span t-if="ol.price_total">
+                                        <t t-if="ol.tax_ids">
+                                            <!-- ดึงตัวแรกของ tax_ids มาไว้ในตัวแปร tax -->
+                                            <t t-set="tax" t-value="ol.tax_ids[0]"/>
+                                            <t t-if="tax.price_include">
+                                                <span t-esc="'{:,.2f}'.format(float(ol.price_total))"/>
+                                            </t>
+                                            <t t-else="">
+                                                <span t-esc="'{:,.2f}'.format(float(ol.price_subtotal))"/>
+                                            </t>
+                                        </t>
+                                        <t t-else="">
+                                            <span t-esc="'{:,.2f}'.format(float(ol.price_total))"/>
+                                        </t>
+                                    </span>
+                                    <span t-if="not ol.price_total">
+                                
+                            </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="footer" style="margin-top:0mm;vertical-align: bottom;font-family: KanitLight">
+                <div class="last-page not-first-page">
+                    <div class="row" style="font-size: 13px;">
+                        <div class="col border-dotted border-dotted-dark" style="width: 66%;">
+                        หมายเหตุ
+                            <span t-if="doc.narration and len(doc.narration) &gt; 165">
+                                <span t-esc="doc.narration[:165] + '...'"/>
+                        </span>
+                            <span t-if="doc.narration and len(doc.narration) &lt;= 165">
+                                <span t-field="doc.narration"/>
+                        </span>
+                        </div>
+                        <div class="col" style="width: 34%;">
+                            <div class="row">
+                                <div class="col-6 text-left border-dotted-top border-dotted-bottom border-dotted-dark">รวมราคาสินค้า</div>
+                                <div class="col-6 text-right border-dotted border-dotted-dark" style="width: 51%;">
+                                    <span t-esc="'{0:,.2f}'.format(float(doc.amount_untaxed))"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 text-left border-dotted-bottom border-dotted-dark">ภาษีมูลค่าเพิ่ม 7%</div>
+                                <div class="col-6 text-right border-dotted-bottom border-dotted-left border-dotted-right border-dotted-dark">
+                                    <t t-set="amount_by_group" t-value="doc.amount_by_group"/>
+                                    <t t-if="amount_by_group and len(amount_by_group) &gt; 0 and len(amount_by_group[0]) &gt; 1">
+                                        <t t-if="amount_by_group[0][1]">
+                                            <t t-set="value" t-value="amount_by_group[0][1]"/>
+                                    </t>
+                                        <t t-if="not amount_by_group[0][1]">
+                                        -
+                                    </t>
+                                        <span t-esc="'{0:,.2f}'.format(float(value))"/>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="font-size: 13px;">
+                        <div class="col text-center border-dotted-left border-dotted-right border-dotted-dark" style="width: 66%;">
+                            <div>
+                            (
+                                <span t-esc="doc.currency_id.amount_to_text_th(abs(doc.amount_total), o.currency_id.currency_unit_label)"/> )
+                            </div>
+                        </div>
+                        <div class="col" style="width: 34%;">
+                            <div class="row">
+                                <div class="col-6 text-left border-dotted-dark">จำนวนเงินรวมทั้งสิ้น</div>
+                                <div class="col-6 text-right border-dotted-left border-dotted-right border-dotted-dark">
+                                    <span t-esc="'{0:,.2f}'.format(float(doc.amount_total))"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="font-size: 13px;">
+                        <div class="col-3 text-center border-dotted border-dotted-dark">
+                            <div style="padding-top:20px;">..................................</div>
+                            <div style="font-size: 10.67px;">ผู้รับสินค้า / Recived by</div>
+                            <div style="padding-top:5px;padding-bottom:5px;">วันที่ ........./........../.............</div>
+                        </div>
+                        <div class="col-3 text-center border-dotted-top border-dotted-bottom border-dotted-dark">
+                            <div style="padding-top:20px;">..................................</div>
+                            <div style="font-size: 10.67px;">ผู้ส่งสินค้า / Sent by</div>
+                            <div style="padding-top:5px;padding-bottom:5px;">วันที่ ........./........../.............</div>
+                        </div>
+                        <div class="col-3 text-center border-dotted-top border-dotted-left border-dotted-bottom border-dotted-dark">
+                            <div style="padding-top:20px;">..................................</div>
+                            <div style="font-size: 10.67px;">ผู้จัดสินค้า / Prepared by</div>
+                            <div style="padding-top:5px;padding-bottom:5px;">วันที่ ........./........../.............</div>
+                        </div>
+                        <div class="col-3 text-center border-dotted border-dotted-dark">
+                            <div style="padding-top:20px;">..................................</div>
+                            <div style="font-size: 10.67px;">ผู้อนุมัติ / Approved by</div>
+                            <div style="padding-top:5px;padding-bottom:5px;">วันที่ ........./........../.............</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="tax_invoice_affiliated_company_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hdc_account_general_reports.tax_invoice_affiliated_company_report_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

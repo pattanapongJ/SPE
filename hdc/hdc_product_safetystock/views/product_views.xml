@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="product_template_addon_forecast_form_view" model="ir.ui.view">
+            <field name="name">product.template.addon.forecast.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="voltage"/>
+                </xpath>
+                <xpath expr="//group[@name='group_lots_and_weight']" position="after">
+                    <group name="group_security_stock" string="Security Stock">
+                        <label for="safe_stock"/>
+                        <div class="o_row" name="safe_stock">
+                            <field name="safe_stock"/>
+                        </div>
+
+                        <label for="moq_stock"/>
+                        <div class="o_row" name="moq_stock">
+                            <field name="moq_stock"/>
+                            <span><field name="uom_name"/></span>
+                        </div>
+                        <label for="spq_stock"/>
+                        <div class="o_row" name="spq_stock">
+                            <field name="spq_stock"/>
+                            <span><field name="uom_name"/></span>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_product_addon_safestock_form_view" model="ir.ui.view">
+            <field name="name">product.product.addon.safestock.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group_lots_and_weight']" position="after">
+                    <group name="group_security_stock" string="Security Stock">
+                        <label for="safe_stock"/>
+                        <div class="o_row" name="safe_stock">
+                            <field name="safe_stock"/>
+                        </div>
+
+                        <label for="moq_stock"/>
+                        <div class="o_row" name="moq_stock">
+                            <field name="moq_stock"/>
+                            <span><field name="uom_name"/></span>
+                        </div>
+                        <label for="spq_stock"/>
+                        <div class="o_row" name="spq_stock">
+                            <field name="spq_stock"/>
+                            <span><field name="uom_name"/></span>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+       
+
+    </data>
+</odoo>

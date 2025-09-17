@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="hide_btn_validate_form_view_inherit" model="ir.ui.view">
+        <field name="name">Hide Validate RMA</field>
+        <field name="model">crm.claim.ept</field>
+        <field name="inherit_id" ref="rma_ept.crm_claims_ept_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='process_claim']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='process_claim']" position="after">
+                <button type="object" name="process_claim" string="Validate" class="oe_highlight"
+                        attrs="{'invisible':['|',('state','!=','process'),'&amp;',('state','=','process'),('is_create_po','=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

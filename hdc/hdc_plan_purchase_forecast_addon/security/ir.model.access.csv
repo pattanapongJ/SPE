@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_search_forecast_purchase_user,undefined.search_forecast_purchase,model_search_forecast_purchase,base.group_user,1,1,1,1
+access_search_forecast_purchase_line_user,undefined.search_forecast_purchase_line,model_search_forecast_purchase_line,base.group_user,1,1,1,1
+access_request_for_quotation_wizard_user,undefined.request_for_quotation_wizard,model_request_for_quotation_wizard,base.group_user,1,1,1,1
+access_request_for_mrp_request_wizard_user,undefined.request_for_mrp_request_wizard,model_request_for_mrp_request_wizard,base.group_user,1,1,1,1

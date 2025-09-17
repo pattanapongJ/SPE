@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_partner_view_inherit_addon" model="ir.ui.view">
+        <field name="name">res.partner.view.inherit.addon</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">41</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase']" position="inside">
+                <field name="is_factory"/>
+                <field name="is_trading"/>
+                <field name="carrier_id"/>
+                <field name="employee_id"/>
+                <field name="purchase_team" />
+                <field name="shipping" string="Shipper"/>
+            </xpath>
+            <xpath
+                expr="//field[@name='child_ids']/form//field[@name='contact_person']"
+                position="after"
+            >
+                <field name="vat" attrs="{'invisible': [('type', '=', 'contact')]}" />
+            </xpath>
+            <xpath
+                expr="//field[@name='website']"
+                position="after"
+            >
+                <field name="line_id" />
+            </xpath>
+
+
+            <xpath expr="//group[@name='misc']/field[@name='company_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='misc']/field[@name='ref']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <!-- <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+                <attribute name="string">Partner ID</attribute> -->
+            </xpath>
+
+            <xpath expr="//field[@name='name_company']" position="before">
+                <field name="ref" force_save="1" string="Partner ID"/>
+            </xpath>
+            <xpath expr="//group[@name='misc']/field[@name='industry_id']" position="attributes">
+                <attribute name="string">Business</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="default_context_view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>  <!-- บอกว่าเป็นการสืบทอด (ถ้ามี) -->
+        <field name="arch" type="xml">
+
+            <!-- ชี้ไปที่ child_ids field -->
+            <xpath expr="//field[@name='child_ids']" position="attributes">
+                <attribute name="context">{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_lang': lang, 'default_user_id': user_id, 'default_type': 'other', 'default_customer': customer}</attribute>
+            </xpath>
+
+            <xpath
+                expr="//field[@name='child_ids']/form//field[@name='mobile']"
+                position="after"
+            >
+                <field name="customer" invisible="1"/>
+                <field name="supplier" invisible="1"/>
+            </xpath>
+            
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,888 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hdc_purchase_general_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230831\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 07:48+0000\n"
+"PO-Revision-Date: 2023-12-20 07:48+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hdc_purchase_general_reports
+#: model:ir.actions.report,print_report_name:hdc_purchase_general_reports.purchase_request_report_view
+msgid "\"ใบขอสั่งซื้อ-%s \" %(object.name)"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.actions.report,print_report_name:hdc_purchase_general_reports.purchase_order_rfq_report_view_en
+#: model:ir.actions.report,print_report_name:hdc_purchase_general_reports.purchase_order_rfq_report_view_th
+msgid "\"ใบขอใบเสนอราคา-%s \" %(object.name)"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.actions.report,print_report_name:hdc_purchase_general_reports.purchase_order_report_view_en
+#: model:ir.actions.report,print_report_name:hdc_purchase_general_reports.purchase_order_report_view_th
+msgid "\"ใบสั่งซื้อสินค้า-%s \" %(object.name)"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid ""
+"<span>\n"
+"                            เงื่อนไขการสั่งซื้อ:\n"
+"                        </span>\n"
+"                        <br/> \n"
+"                        <span>\n"
+"                            1. กำหนดส่งสินค้าต้องตรงตามที่ระบุในใบสั่งซื้อ หากล่าช้าบริษัทฯ สงวนสิทธิ์ที่จะยกเลิกการสั่งซื้อ และปฎิเสธการรับสินค้า/บริการนั้น โดยไม่ต้องแจ้งให้ทราบล่วงหน้า <br/>\n"
+"                            2. สินค้า/บริการ ต้องแนบต้นฉบับใบส่งสินค้า หรือต้นฉบับใบกำกับภาษีพร้อมใบสั่งซื้อทุกครั้ง <br/>\n"
+"                            3. ระบุหมายเลขใบสั่งซื้อทุกครั้งในใบส่งสินค้า หรือใบกำกับภาษี <br/>\n"
+"                            4. การรับสินค้า จะรับตามจำนวนและรายการที่สั่งซื้อตามใบสั่งซื้อนี้เท่านั้น หากส่งของไม่ครบหรือเกิน ต้องขออนุมัติจากฝ่ายจัดซื้อก่อนทุกครั้ง <br/>\n"
+"                            5. ผู้ขายจะต้องรับผิดชอบค่าใช้จ่ายต่างๆ ที่ผู้ซื้อจะต้องเสียไป อันเกิดจากการที่ผู้ขายส่งสินค้า/บริการล่าช้ากว่ากำหนด\n"
+"                        </span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid ""
+"<span>\n"
+"                            เงื่อนไขการสั่งซื้อ: รอฉบับ ENG\n"
+"                        </span>\n"
+"                        <br/> \n"
+"                        <span>\n"
+"                            1. กำหนดส่งสินค้าต้องตรงตามที่ระบุในใบสั่งซื้อ หากล่าช้าบริษัทฯ สงวนสิทธิ์ที่จะยกเลิกการสั่งซื้อ และปฎิเสธการรับสินค้า/บริการนั้น โดยไม่ต้องแจ้งให้ทราบล่วงหน้า <br/>\n"
+"                            2. ทุกครั้งที่ส่งสินค้า/บริการ ต้องแนบใบส่งสินค้า หรือใบกำกับภาษีฉบับจริงพร้อมใบสั่งซื้อนี้ด้วยทุกครั้ง <br/>\n"
+"                            3. จะต้องระบุหมายเลขใบสั่งซื้อนี้ทุกครั้งในใบส่งสินค้า หรือใบกำกับภาษี <br/>\n"
+"                            4. การรับสินค้า จะรับตามจำนวนและรายการที่สั่งซื้อตามใบสั่งซื้อนี้เท่านั้น หากส่งของไม่ครบหรือเกิน ต้องขออนุมัติจากฝ่ายจัดซื้อก่อนทุกครั้ง <br/>\n"
+"                            5. ผู้ขายจะต้องรับผิดชอบค่าใช้จ่ายต่างๆ ที่ผู้ซื้อจะต้องเสียไป อันเกิดจากการที่ผู้ขายส่งสินค้า/บริการล่าช้ากว่ากำหนด\n"
+"                        </span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "<span><strong>ADDRESS: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "<span><strong>CONTACT NAME: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "<span><strong>CURRENCY:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "<span><strong>DATE:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "<span><strong>DELIVERY TERMS:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "<span><strong>MODE OF SHIPMENT:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "<span><strong>PAYMENT TERMS:</strong></span>"
+msgstr ""
+
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "<span><strong>PO NO:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "<span><strong>REMARK: </strong></span><br/>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "<span><strong>REQUIRED DATE: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "<span><strong>RFQ NO:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "<span><strong>SHIPPING METHOD:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "<span><strong>TAX ID: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "<span><strong>VENDER ID: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "<span><strong>VENDER NAME: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "<span><strong>VENDER REF: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid "<span><strong>การจัดส่ง:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<span><strong>กำหนดส่ง:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "<span><strong>ชื่อผู้ขอซื้อ: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid "<span><strong>ชื่อผู้ขาย: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid "<span><strong>ชื่อผู้ติดต่อ: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid "<span><strong>ที่อยู่: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<span><strong>ประเภท:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid "<span><strong>รหัสผู้ขาย: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "<span><strong>รายละเอียด: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid ""
+"<span><strong>ร่างใบสั่งซื้อสินค้า</strong></span><br/>\n"
+"                            <span><strong>(Draft Purchase Order)</strong></span><br/>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "<span><strong>วันที่:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "<span><strong>วันที่ต้องการ:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "<span><strong>วันที่หมดอายุ:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<span><strong>วันที่เอกสาร:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<span><strong>หมายเหตุ: </strong></span><br/>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<span><strong>อ้างอิง: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid "<span><strong>เงื่อนไขการจัดส่ง:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<span><strong>เงื่อนไขการชำระเงิน:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<span><strong>เลขที่เอกสาร:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "<span><strong>เลขที่ใบขอซื้อ:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid "<span><strong>เลขที่ใบขอใบเสนอราคา:</strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid "<span><strong>เลขประจำตัวผู้เสียภาษี: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "<span><strong>เอกสารอ้างอิง: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "<span><strong>แผนกที่ขอซื้อ: </strong></span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid ""
+"<span><strong>ใบขอสังซือ</strong></span><br/>\n"
+"                        <span><strong>(Purchase Request)</strong></span><br/>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid ""
+"<span><strong>ใบขอใบเสนอราคา</strong></span><br/>\n"
+"                        <span><strong>(Request for Quotation)</strong></span><br/>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid ""
+"<span><strong>ใบสั่งซื้อสินค้า</strong></span><br/>\n"
+"                            <span><strong>(Purchase Order)</strong></span><br/>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid ""
+"<span>Page </span>\n"
+"                    <span class=\"page\"/>\n"
+"                    /\n"
+"                    <span class=\"topage\"/>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<span>ฉบับร่าง/Draft</span><br/>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "<span>ต้นฉบับ/Original</span><br/>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "<span>รวม: </span>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid ""
+"<span>หน้า </span>\n"
+"                        <span class=\"page\"/>\n"
+"                        /\n"
+"                        <span class=\"topage\"/>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "<strong>AMOUNT TO TEXT:</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "<strong>DISCOUNT</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "<strong>GRAND TOTAL</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "<strong>TOTAL</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<strong>ภาษีมูลค่าเพิ่ม (Vat)</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<strong>มูลค่ารวมก่อนหักส่วนลด</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<strong>มูลค่ารวมส่วนลด</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<strong>มูลค่าสุทธิ</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<strong>มูลค่าหลังหักส่วนลด</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "<strong>ยอดรวมสุทธิ:</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid "<strong>รวมทั้งสิ้น</strong>"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model,name:hdc_purchase_general_reports.model_res_partner
+msgid "Activity Module"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order__approve_order
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request_line__approve_order
+msgid "Approve Order"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_product_product__bill_discount
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_product_template__bill_discount
+msgid "Bill Discount"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,help:hdc_purchase_general_reports.field_res_company__branch
+msgid "Branch ID, e.g., 0000, 0001, ..."
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.view_company_form
+msgid "Branch, e.g., 00000"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.wizard_purchase_report_form_view
+msgid "Cancel"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model,name:hdc_purchase_general_reports.model_res_company
+msgid "Companies"
+msgstr "บริษัท"
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order__contact_person
+msgid "Contact Person"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model,name:hdc_purchase_general_reports.model_res_currency
+msgid "Currency"
+msgstr "สกุลเงิน"
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "DESCRIPTION"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order__delivery_terms
+msgid "Delivery Terms"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order_line__description_purchase
+msgid "Description Purchase"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_product_template__display_name
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request__display_name
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request_line__display_name
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_company__display_name
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_currency__display_name
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_partner__display_name
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report__document
+msgid "Document"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report__document_purchase
+msgid "Documents"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.wizard_purchase_report_form_view
+msgid "Documents Reports"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "EMAIL :"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "FAX : +"
+msgstr "แฟกซ์ : +"
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_company__fax
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_partner__fax
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_users__fax
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.view_company_form
+msgid "Fax"
+msgstr "หมายเลขโทรสาร"
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_product_template__id
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order__id
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request__id
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request_line__id
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_company__id
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_currency__id
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_partner__id
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "ISO:"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_product_template____last_update
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request____last_update
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request_line____last_update
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_company____last_update
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_currency____last_update
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_partner____last_update
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "MANAGING DIRECTOR"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "MATERIAL CODE"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "NO"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "OVERSEAS PURCHASING OFFICER"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order__order_plan
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request_line__order_plan
+msgid "Order Plan"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report__purchase_id
+msgid "PO"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request__purchase_request_id
+msgid "PRQ"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request_line__pending_order
+msgid "Pending QTY"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.wizard_purchase_report_form_view
+msgid "Print"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.inherit_view_id_inherit_module_purchase_request_report_btn
+msgid "Print PR"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.inherit_view_id_inherit_module_purchase_order
+msgid "Print RFQ / PO"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model,name:hdc_purchase_general_reports.model_product_template
+msgid "Product Template"
+msgstr "รูปแบบสินค้า"
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model,name:hdc_purchase_general_reports.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "รายการสั่งซื้อ"
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model,name:hdc_purchase_general_reports.model_purchase_request
+msgid "Purchase Request"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model,name:hdc_purchase_general_reports.model_purchase_request_line
+msgid "Purchase Request Line"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "QUANTITY"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.actions.act_window,name:hdc_purchase_general_reports.action_wizard_purchase_report
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.wizard_purchase_report_form_view
+msgid "Report"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "SUB TOTAL"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_wizard_purchase_report__state
+msgid "State"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "Sub Disc"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "TEL : +"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_res_company__branch
+msgid "Tax Branch"
+msgstr "สาขาภาษี"
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order__total_amount
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order_line__total_amount
+msgid "Total Amount"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_order__total_amount_vat
+msgid "Total Amount Vat"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields,field_description:hdc_purchase_general_reports.field_purchase_request__total_product_qty
+msgid "Total Product Quantity"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+msgid "UNIT PRICE"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+msgid "UOM"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "WEBSITE"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model,name:hdc_purchase_general_reports.model_purchase_order
+msgid "purchase.order"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model,name:hdc_purchase_general_reports.model_wizard_purchase_report
+msgid "wizard.purchase.report"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "คำสั่งซื้อค้างส่ง"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+msgid "จำนวน"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "จำนวนที่ต้องการสั่งซื้อ"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "จำนวนที่อนุมัติให้สั่งซื้อ"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "จำนวนเงิน"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "ผู้ขอซื้อ"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "ผู้จัดทำ"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "ผู้อนุมัติ"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "รหัสสินค้า"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "ราคา/หน่วย"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "รายละเอียด"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "ลำดับ"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid ""
+"วันที่................................................................."
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "สินค้าในสต็อก"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "ส่วนลด"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "หน่วย"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+msgid "หน่วยนับ"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "หัวหน้าแผนก"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_en
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_order_rfq_report_document_th
+#: model_terms:ir.ui.view,arch_db:hdc_purchase_general_reports.hdc_purchase_request_report_document
+msgid "เลขประจำตัวผู้เสียภาษี:"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.actions.report,name:hdc_purchase_general_reports.purchase_request_report_view
+msgid "ใบขอสั่งซื้อ TH"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields.selection,name:hdc_purchase_general_reports.selection__wizard_purchase_report__document__rfq_en
+msgid "ใบขอใบเสนอราคา (EN)"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields.selection,name:hdc_purchase_general_reports.selection__wizard_purchase_report__document__rfq_th
+msgid "ใบขอใบเสนอราคา (TH)"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.actions.report,name:hdc_purchase_general_reports.purchase_order_rfq_report_view_en
+msgid "ใบขอใบเสนอราคา EN"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.actions.report,name:hdc_purchase_general_reports.purchase_order_rfq_report_view_th
+msgid "ใบขอใบเสนอราคา TH"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields.selection,name:hdc_purchase_general_reports.selection__wizard_purchase_report__document__po_en
+#: model:ir.model.fields.selection,name:hdc_purchase_general_reports.selection__wizard_purchase_report__document_purchase__po_en
+msgid "ใบสั่งซื้อสินค้า (EN)"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.model.fields.selection,name:hdc_purchase_general_reports.selection__wizard_purchase_report__document__po_th
+#: model:ir.model.fields.selection,name:hdc_purchase_general_reports.selection__wizard_purchase_report__document_purchase__po_th
+msgid "ใบสั่งซื้อสินค้า (TH)"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.actions.report,name:hdc_purchase_general_reports.purchase_order_report_view_en
+msgid "ใบสั่งซื้อสินค้า EN"
+msgstr ""
+
+#. module: hdc_purchase_general_reports
+#: model:ir.actions.report,name:hdc_purchase_general_reports.purchase_order_report_view_th
+msgid "ใบสั่งซื้อสินค้า TH"
+msgstr ""

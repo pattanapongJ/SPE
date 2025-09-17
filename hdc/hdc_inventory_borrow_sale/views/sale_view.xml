@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="hdc_inventory_borrow_sale_view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <field name="is_borrow" invisible="1"/>
+                <button name="action_create_borrow" string="Create Borrow" type="object" class="btn-primary" 
+                attrs="{'invisible': ['|',('is_borrow', '=', False),('state','not in',['draft','sent'])]}"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button type="object"
+                    name="action_view_borrow"
+                    class="oe_stat_button"
+                    icon="fa-book"
+                    attrs="{'invisible': [('borrow_count', '=', 0)]}" groups="base.group_user">
+                    <field name="borrow_count" widget="statinfo" string="Borrow"/>
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button type="object"
+                    name="action_view_deduct_borrow"
+                    class="oe_stat_button"
+                    icon="fa-book"
+                    attrs="{'invisible': [('deduct_borrow_count', '=', 0)]}" groups="base.group_no_one">
+                    <field name="deduct_borrow_count" widget="statinfo" string="Customer Borrow"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']" position="after">
+                <field name="return_qty" optional="hide"/>
+                <field name="borrow_qty" optional="hide"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

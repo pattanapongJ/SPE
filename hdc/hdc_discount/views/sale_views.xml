@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<odoo>
+    <template id="assets_backend" name="sale order line visibility assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/hdc_discount/static/src/js/hide_discount_lines.js"></script>
+        </xpath>
+    </template>
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="widget">hide_gb_line</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="decoration-danger"> price_subtotal &lt; 0 and is_global_discount == False </attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_total']" position="attributes">
+                <attribute name="options"> {
+                    "bg_color": "red:price_subtotal &lt; 0 and is_global_discount == False",
+                    "fg_color": "white:price_subtotal &lt; 0 and is_global_discount == False"
+                    }</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="before">
+                 <field name="sub_discount" string="Sub Disc%" readonly="1" optional="hide"/>
+                 <field name="is_global_discount" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//group[@name='sale_total']/field[@name='amount_untaxed']" position="before">
+                <field name="amount_before_discount" string="Amount Before Discount" readonly="1" groups="base.group_no_one"/>
+                <field name="total_discount_amount_new" string="Total Discount" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//group[@name='note_group']/group" position="replace">
+                <group string="Discount" name="discount_group" colspan="4" modifiers="{}">
+                    <field name="sub_discount_percentage" string="Sub Disc%" readonly="1" modifiers="{'readonly':true}" id="sub_discount_percentage"/>
+                    <field name="sub_discount_amount" string="Sub Discount Amount" readonly="1" modifiers="{'readonly':true}" id="sub_discount_amount"/>
+                    <label for="global_discount" string="Global Discount" />
+                    <div name="global_discount_div">
+                      <field name="global_discount" on_change="1" modifiers="{}" id="global_discount" class="oe_inline"/> &amp;nbsp; &amp;nbsp;                
+                      <span>(<field name="global_discount_total"/>)</span>
+                    </div>
+                    <field name="total_discount_percentage" string="Total Discount%" readonly="1" modifiers="{'readonly':true}" id="total_discount_percentage"/>
+                    <field name="total_discount_amount" string="Total Discount Amount" readonly="1" modifiers="{'readonly':true}" id="total_discount_amount__4__"/>
+                </group>
+            </xpath>
+
+            <xpath expr="//button[@name='action_open_delivery_wizard']" position="before">
+                <button name="recalculate_global_discount" type="object"
+                        string="Re-Cal"
+                        help="Update Global Discount"
+                        class="btn-link mb-1 px-0" icon="fa-refresh"
+                    />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_inherit_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="customer_po" string="Customer PO No" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_inherit_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="customer_po" string="Customer PO No" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

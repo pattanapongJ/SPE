@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_material_requisition_type,access_material_requisition_type,model_material_requisition_type,base.group_user,1,1,1,1
+access_wizard_mrp_report,access_wizard_mrp_report,model_wizard_mrp_report,base.group_user,1,1,1,1
+access_mrp_production_state,access_mrp_production_state,model_mrp_production_state,base.group_user,1,1,1,1
+access_wizard_mrp_cutting_report,access_wizard_mrp_cutting_report,model_wizard_mrp_cutting_report,base.group_user,1,1,1,1
+access_wizard_mrp_cutting_report_line,access_wizard_mrp_cutting_report_line,model_wizard_mrp_cutting_report_line,base.group_user,1,1,1,1
+access_iso_operation_type_user,undefined.iso.operation.type,model_iso_operation_type,base.group_user,1,1,1,1
+access_report_hdc_spe_mo_report_hdc_mrp_fg_report_user,undefined.report.hdc_spe_mo_report.hdc_mrp_fg_report,model_report_hdc_spe_mo_report_hdc_mrp_fg_report,base.group_user,1,1,1,1

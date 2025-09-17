@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_batch_billing_form" model="ir.ui.view">
+        <field name="name">batch.billing.form</field>
+        <field name="model">batch.billing</field>
+        <field name="arch" type="xml">
+            <form string="Batch Billing">
+                <header>
+                    <button string="Confirm" type="object" name="action_confirm" class="oe_highlight" states="draft"/>
+                    <button string="Validate" type="object" name="action_validate" class="oe_highlight" states="confirm"/>
+                    <button string="Finance Receipt"
+                        type="object"
+                        name="action_finance_receipt"
+                        class="oe_highlight"
+                        states="done"
+                        attrs="{'invisible': [('finance_receipt', '=', True)]}"/>
+                    <button string="Cancel" type="object" name="action_cancel"/>
+                    <button string="Reset to Draft" type="object" name="action_reset_to_draft" states="done,cancelled"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done,cancelled"/>
+                </header>
+                <sheet>
+                    <div class="oe_title" modifiers="{}">
+                        <h1 class="mt0">
+                            <field name="name" id="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <!-- <field name="batch_billing_no" attrs="{'readonly': [('state', '!=', 'draft')]}"/> -->
+                            <field name="responsible_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="billing_route_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="payment_credit" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="company_id" readonly="1"/>
+                            <field name="finance_receipt" readonly="1" force_save="1"/>
+                            <field name="finance_date" readonly="1" force_save="1"/>
+                            <field name="finance_receipt_by" readonly="1" force_save="1"/>
+                        </group>
+                        <group>
+                            <button string="Add Billing" type="object" name="action_add_billing" class="oe_highlight"/>
+                            <button string="Add Invoice" type="object" name="action_add_invoice_line" class="oe_highlight" style="margin-left: -300px;"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Invoices">
+                            <div style="text-align: right; margin-bottom: 5px;">
+                                <button name="action_finance_check_all"
+                                        string="Finance Check All"
+                                        type="object"
+                                        class="btn-primary"/>
+                            </div>
+                            <field name="line_ids">
+                                <tree editable="bottom" string="Billing Lines" >
+                                    <field name="invoice_exclude_ids" invisible="1"/>
+                                    <field name="batch_billing_id" invisible="1"/>
+                                    <field name="batch_billing_route_id" invisible="1"/>
+                                <!-- <tree editable="bottom" string="Billing Lines" context="{'default_partner_id': commercial_partner_id}"> -->
+                                    <!-- context="{'default_move_type': context.get('default_move_type'), 'line_ids': line_ids, 'journal_id': journal_id, 'default_partner_id': commercial_partner_id, 'default_currency_id': currency_id or company_currency_id}" -->
+                                    <field name="partner_id" />
+                                    <field name="billing_no" readonly="1" force_save="1"/>
+                                    <field name="invoice_id" />
+                                    <field name="invoice_date"/>
+                                    <field name="due_date" />
+                                    <field name="payment_term_id" />
+                                    <field name="origin" />
+                                    <field name="billing_route_id" />
+                                    <field name="amount"  sum="Total Amount"/>
+                                    <field name="amount_due" readonly="1" sum="Total Amount Due"/>
+                                    <field name="status" />
+                                    <field name="payment_status" />
+                                    <field name="finance_check" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <separator string="Notes" />
+                    <field
+                        name="notes"
+                        class="oe_inline"
+                    />
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_batch_billing_tree" model="ir.ui.view">
+        <field name="name">batch.billing.tree</field>
+        <field name="model">batch.billing</field>
+        <field name="arch" type="xml">
+            <tree string="Batch Billings">
+                <field name="name" string="No." readonly="1"/>
+                <field name="date" string="Date"/>
+                <field name="responsible_id" string="Responsible"/>
+                <field name="billing_route_id" string="Billing Route"/>
+                <field name="description" string="Description"/>
+                <field name="company_id" string="Company" readonly="1"/>
+                <field name="notes" string="Note"/>
+                <field name="state" string="Status" readonly="1"/>
+                <field name="payment_credit" string="Payment Credit"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_batch_billing" model="ir.actions.act_window">
+        <field name="name">Batch Billing</field>
+        <field name="res_model">batch.billing</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create the first Batch Billing
+            </p>
+        </field>
+</record>
+
+    <menuitem id="menu_batch_billing_root" name="Batch Billing" sequence="12" parent="account.menu_finance_receivables" action="action_batch_billing"/>
+    <!-- <menuitem id="menu_batch_billing_root_1" name="Batch Billing" sequence="12" parent="account.menu_finance_payables" action="action_batch_billing"/> -->
+
+</odoo>

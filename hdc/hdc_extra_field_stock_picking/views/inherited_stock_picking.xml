@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_picking_form_inherit_branch_extra_field" model="ir.ui.view">
+            <field name="name">view.picking.form.inherit.branch.extra.field</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="hdc_inter_transfer_addon_field.inter_transfer_addon_inherit_branch" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='branch_id']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','=','done')],'invisible': [('addition_operation_types_code', '=', 'AO-06')]}</attribute>
+                </xpath>
+                
+            </field>
+        </record>
+    </data>
+</odoo>

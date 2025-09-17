@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View account.journal form -->
+    <record id="view_account_journal_form_inherit" model="ir.ui.view">
+        <field name="name">view.account.journal.form.inherit</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="show_in_credit_note" widget="boolean_toggle" />
+                <field name="show_in_debit_note" widget="boolean_toggle" />
+            </xpath>
+
+            <xpath expr="//page[@name='advanced_settings']/group/group[1]" position="after">
+                <group name="managerial_accounting" string="Managerial Accounting">
+                    <field name="is_m" widget="boolean_toggle" />
+                    <field name="is_g" widget="boolean_toggle" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

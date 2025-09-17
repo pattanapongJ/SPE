@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="shipping_cost_inherit_sale_line_tree" model="ir.ui.view">
+        <field name="name">shipping.cost.inherit.sale.line.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//tree/field[@name='price_unit']" position="after">
+                <field name="shipping_cost" optional="hide" readonly="1" force_save="1"/>
+
+            </xpath>
+
+            <!-- <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']" position="before">
+                <field name="pricelist_line_id" optional="hide" />
+            </xpath> -->
+
+            <!-- <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']" position="after">
+                <field name="sale_uom_map_ids" widget="many2many_tags" invisible="1" />
+                
+            </xpath>   
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom']" position="attributes">
+                <attribute name="domain" >[('id', 'in', sale_uom_map_ids)]</attribute>
+            </xpath>     -->
+
+            <!-- ปิดการทำงานเพราะ ตอนนี้จะมีการใช้ hdc_convert_prod_uom -->
+
+        </field>
+    </record>
+
+    <record id="shipping_cost_inherit_account_line_tree" model="ir.ui.view">
+        <field name="name">shipping.cost.inherit.account.line.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page/field[@name='invoice_line_ids']/tree/field[@name='price_unit']"
+                position="after"
+            >
+                <field name="shipping_cost" optional="show" readonly="1" force_save="1"/>
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

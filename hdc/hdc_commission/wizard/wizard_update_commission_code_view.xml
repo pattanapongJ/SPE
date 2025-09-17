@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_wizard_update_commission_code_form" model="ir.ui.view">
+            <field name="name">Wizard Update Commission Code</field>
+            <field name="model">wizard.update.commission.code</field>
+            <field name="arch" type="xml">
+                <form string="Update Commission Code">
+                    <group>
+                        <field name="update_commission_code_id" invisible="1"/>
+                        <field name="commission_code" widget="many2many_tags" domain="[('is_active', '=', True)]"/>
+                        <field name="commission_remarks"/>
+                    </group>
+                    <notebook>
+                        <page string="Invoice Lines" name="invoice_commission_lines">
+                            <field name="selected"/>
+                            <span class="oe_inline">Select All</span>
+                            <field name="invoice_lines">
+                                <tree string="invoice" editable="bottom" create="0" edit="0">
+                                    <field name="wizard_update_commission_code_id" invisible="1"/>
+                                    <field name="selected"/>
+                                    <field name="commission_code" optional="show" widget="many2many_tags" readonly="1" force_save="1" />
+                                    <field name="invoice_id" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="invoice_line_id" invisible="1"/>
+                                    <field name="invoice_id_date" optional="show" readonly="1" force_save="1"/>
+                                    <field name="form_no" optional="show" readonly="1" force_save="1"/>
+                                    <field name="partner_id" optional="show" readonly="1" force_save="1"/>
+                                    <field name="product_id" optional="show" readonly="1" force_save="1"/>
+                                    <field name="quantity" optional="show" readonly="1" force_save="1"/>
+                                    <field name="product_uom_id" optional="show" readonly="1" force_save="1"/>
+                                    <field name="price_unit" optional="show" readonly="1" force_save="1"/>
+                                    <field name="triple_discount" optional="show" readonly="1" force_save="1"/>
+                                    <field name="price_subtotal" optional="show" readonly="1" force_save="1"/>
+                                    <field name="currency_id" optional="hide" readonly="1" force_save="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="action_update_commission_code" string="Confirm" type="object" class="btn-primary"/>
+                        <button string="Discard" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_update_commission_code" model="ir.actions.act_window">
+            <field name="name">Update Commission Code</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.update.commission.code</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+       
+    </data>
+</odoo>    

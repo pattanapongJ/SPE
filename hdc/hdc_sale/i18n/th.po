@@ -1,0 +1,142 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hdc_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230831\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 09:40+0000\n"
+"PO-Revision-Date: 2023-12-20 09:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hdc_sale
+#: model_terms:ir.ui.view,arch_db:hdc_sale.view_inherit_order_tree
+#: model_terms:ir.ui.view,arch_db:hdc_sale.view_inherit_quotation_tree
+msgid "Customer PO No"
+msgstr "หมายเลข PO ของลูกค้า"
+
+#. module: hdc_sale
+#: model_terms:ir.ui.view,arch_db:hdc_sale.hdc_sale_view_order_form_inherit
+msgid "Customer PO No."
+msgstr "หมายเลข PO ของลูกค้า"
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order__customer_po
+msgid "Customer Po"
+msgstr ""
+
+#. module: hdc_sale
+#: model_terms:ir.ui.view,arch_db:hdc_sale.hdc_sale_view_order_form_inherit
+msgid "Delivery Date"
+msgstr "วันที่จัดส่งสินค้า"
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order__delivery_terms
+#: model_terms:ir.ui.view,arch_db:hdc_sale.hdc_sale_view_order_form_inherit
+msgid "Delivery Terms"
+msgstr "เงื่อนไขจัดส่งสินค้า"
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order__delivery_time
+#: model_terms:ir.ui.view,arch_db:hdc_sale.hdc_sale_view_order_form_inherit
+msgid "Delivery Time"
+msgstr "เวลาที่จัดส่งสินค้า"
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order_line__triple_discount
+msgid "Discount"
+msgstr "ส่วนลด"
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order__display_name
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: hdc_sale
+#: model_terms:ir.ui.view,arch_db:hdc_sale.hdc_sale_view_order_form_inherit
+msgid "Expected:"
+msgstr "ที่คาดหวัง"
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order__global_discount
+msgid "Global Discount"
+msgstr "ส่วนลดต่อ"
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order__global_discount_total
+msgid "Global Discount Total"
+msgstr ""
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order__global_discount_update
+msgid "Global Discount Update"
+msgstr ""
+
+#. module: hdc_sale
+#: model:ir.model.fields.selection,name:hdc_sale.selection__sale_order__priority__2
+msgid "High"
+msgstr ""
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order__id
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order_line__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: hdc_sale
+#: code:addons/hdc_sale/model/sale.py:0
+#, python-format
+msgid "Invalid discount format"
+msgstr ""
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order____last_update
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: hdc_sale
+#: model:ir.model.fields.selection,name:hdc_sale.selection__sale_order__priority__0
+msgid "Low"
+msgstr ""
+
+#. module: hdc_sale
+#: model:ir.model.fields.selection,name:hdc_sale.selection__sale_order__priority__1
+msgid "Normal"
+msgstr ""
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order__offer_validation
+#: model_terms:ir.ui.view,arch_db:hdc_sale.hdc_sale_view_order_form_inherit
+msgid "Offer Validation"
+msgstr "ระยะเวลาหมดอายุของใบเสนอราคา"
+
+#. module: hdc_sale
+#: model:ir.model.fields,field_description:hdc_sale.field_sale_order__priority
+#: model_terms:ir.ui.view,arch_db:hdc_sale.hdc_sale_view_order_form_inherit
+#: model_terms:ir.ui.view,arch_db:hdc_sale.view_inherit_order_tree
+#: model_terms:ir.ui.view,arch_db:hdc_sale.view_inherit_quotation_tree
+msgid "Priority"
+msgstr "ระดับความสำคัญ"
+
+#. module: hdc_sale
+#: model:ir.model,name:hdc_sale.model_sale_order
+msgid "Sales Order"
+msgstr "ใบสั่งขาย"
+
+#. module: hdc_sale
+#: model:ir.model,name:hdc_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "รายการคำสั่งขาย"
+
+#. module: hdc_sale
+#: model:ir.model.fields.selection,name:hdc_sale.selection__sale_order__priority__3
+msgid "Urgent"
+msgstr ""

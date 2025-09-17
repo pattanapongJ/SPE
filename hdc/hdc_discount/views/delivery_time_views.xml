@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="delivery_time_view_search" model="ir.ui.view">
+        <field name="name">delivery.time.view.search</field>
+        <field name="model">delivery.time</field>
+        <field name="arch" type="xml">
+                <search string="Search Opportunities">
+                    <field name="name"/>
+                    <field name="weeks"/>
+                    <field name="months"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+    <record id="delivery_time_view_tree" model="ir.ui.view">
+        <field name="name">delivery.time.tree</field>
+        <field name="model">delivery.time</field>
+        <field name="arch" type="xml">
+            <tree string="Channel" editable="bottom">
+                <field name="name"/>
+                <field name="weeks"/>
+                <field name="months"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Configuration/Lead & Opportunities/won Reasons Menu -->
+    <record id="delivery_time_action" model="ir.actions.act_window">
+        <field name="name">Delivery Time</field>
+        <field name="res_model">delivery.time</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Delivery Time
+          </p>
+        </field>
+    </record>
+
+    <!-- <menuitem
+        name="Delivery Time"
+        id="menu_delivery_time"
+        action="delivery_time_action"
+        parent="sale.prod_config_main"
+    /> -->
+
+</odoo>

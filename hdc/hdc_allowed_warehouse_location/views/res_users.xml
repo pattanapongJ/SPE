@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- Update User form -->
+    <record model="ir.ui.view" id="res_user_form">
+        <field name="name">Users Preferences</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//page[@name='access_rights']//group" position="after">
+                    <group string="Multi Warehouses">
+                        <field name="allowed_warehouse_ids"  widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="allowed_location_ids"  widget="many2many_tags" options="{'no_create': True}" invisible="True"  domain="['|',('warehouse_id', '=', False), ('warehouse_id', 'in', allowed_warehouse_ids)]"/>
+                    </group>
+                    <div class="text-danger">
+                        <p>
+                            Warning! If the user is Inventory / Administrator, 
+                            the Allowed Warehouses configuration is ignored and 
+                            the user will still be able to see all warehouses
+                        </p>
+                    </div>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+</odoo>

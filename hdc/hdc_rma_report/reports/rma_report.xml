@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="rma_report_view" model="ir.actions.report">
+            <field name="name">RMA Reports</field>
+            <field name="model">crm.claim.ept</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_rma_report.hdc_rma_report</field>
+            <field name="print_report_name">'ใบ RMA_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_rma_report.paperformat_report_rma" />
+            <field name="binding_model_id" eval="False" />
+            <field name="binding_type">report</field>
+        </record>
+        <record id="rma_product_change_report_view" model="ir.actions.report">
+            <field name="name">รายงานใบเปลี่ยนสินค้า</field>
+            <field name="model">crm.claim.ept</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายงานใบเปลี่ยนสินค้า-%s " %(object.name)</field>
+            <field name="report_name">hdc_rma_report.hdc_rma_product_change_report</field>
+            <field name="report_file">hdc_rma_report.hdc_rma_product_change_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_rma_report.paperformat_report_rma_product_change"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+    
+
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_finance_contact_tree" model="ir.ui.view">
+        <field name="name">finance.contact.tree</field>
+        <field name="model">finance.contact</field>
+        <field name="arch" type="xml">
+            <tree string="Finance Contact">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_finance_contact_form" model="ir.ui.view">
+        <field name="name">finance.contact.form</field>
+        <field name="model">finance.contact</field>
+        <field name="arch" type="xml">
+            <form string="Finance Contact">
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_finance_contact_tree" model="ir.actions.act_window">
+        <field name="name">Finance Contact</field>
+        <field name="res_model">finance.contact</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_finance_contact_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first finance contact
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_finance_contact_root" name="Finance Contact" parent="account.menu_finance_configuration" sequence="301">
+        <menuitem id="menu_finance_contact_action" name="Finance Contact" action="action_finance_contact_tree"/>
+    </menuitem>
+
+</odoo>

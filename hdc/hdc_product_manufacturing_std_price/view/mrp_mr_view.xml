@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="mr_order_list_view_inherited" model="ir.ui.view">
+        <field name="name">mrp.mr.order.list</field>
+        <field name="model">mrp.mr</field>
+        <field name="inherit_id" ref="hdc_mrp_mr.mrp_mr_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='opertion_list_page']" position="after">
+                <page string="Order List" name="order_list_page">
+                    <field name="order_list" force_save="1">
+                        <tree string="Order List">
+                            <field name="product_id" force_save="1"/>
+                            <field name="demand_qty" force_save="1"/>
+                            <field name="uom_id" force_save="1"/>
+                            <field name="factory_cost" force_save="1"/>
+                            <field name="subtotal"/>
+                        </tree>
+                    </field>
+                    <group name="operation">
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="total">
+                            <field name="amount_order_list" widget="monetary"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

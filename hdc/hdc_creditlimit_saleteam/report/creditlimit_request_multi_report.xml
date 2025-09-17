@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hdc_creditlimit_request_document_multi_report">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+
+        <t t-set="l_no_box" t-value="0"/>
+        <t t-set="total_all" t-value="0"/>
+        <t t-set="last_box" t-value="len(request_box)"/>
+        <div class="header" style="font-family: KanitLight;" >
+            <div class="row" style="padding-top:10px">
+                <div class="col-9 text-right">
+                    
+                </div>
+                <div class="col-3 text-right">
+                    <span style="font-family: KanitLight;font-size: 20.00px;"> 
+                        หน้า <span class="page"/>/<span class="topage"/>
+                    </span>  
+                </div>
+            </div>
+            <div class="row" style="padding-top:15px">
+                <div class="col-9 text-right">
+                    <span style="font-family: KanitLight;font-size: 25.00px;">
+                        <strong>แบบฟอร์มขออนุมัติวงเงิน (ชั่วคราว)</strong>
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="font-family: KanitLight;font-size: 16.00px;">
+                <div class="col-6 text-right">
+
+                </div>
+                <div class="col-6 text-right">
+                    <span><strong>วันที่</strong>
+                        <span style="display:inline-block;width:150px;border-bottom: 1px dotted #000;text-align:center;">
+                            <t t-esc="o.create_date.strftime('%d/%m/%Y')"/>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="font-family: KanitLight;font-size: 16.00px;">
+                <div class="col-6 text-right">
+
+                </div>
+                <div class="col-6 text-right">
+                    <span><strong>เลขที่</strong>
+                    <span style="display:inline-block;width:150px;border-bottom: 1px dotted #000;text-align:center;">
+                            <t t-esc="o.name"/>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <t t-if="last_box != 0">
+                <t t-foreach="request_box" t-as="request_list">
+                    <t t-set="l_no_box" t-value="l_no_box + 1"/>
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                        <div class="col text-left">
+                            <span><strong>1.) ชื่อลูกค้า:</strong>
+                                <span style="display:inline-block;width:650px;border-bottom: 1px dotted #000;text-align:center;">
+                                    <t t-esc="o.partner_id.ref"/> : <t t-esc="o.partner_id.name"/>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                        <div class="col text-left">
+                            <span><strong>2.) เลขที่ Sale Order:</strong>
+                                <span style="display:inline-block;width:235px;border-bottom: 1px dotted #000;text-align:center;">
+                                    <t t-esc="o.order_no.name"/>
+                                </span>
+                                &#160;&#160;ขอวงเงิน&#160;&#160;
+                                <span style="display:inline-block;width:235px;border-bottom: 1px dotted #000;text-align:center;">
+                                    <t t-esc="'{:,.2f}'.format(o.remain_amount)"/>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <t t-set="l_no" t-value="0"/>
+                    <t t-foreach="request_list" t-as="request">
+                        <t t-set="l_no" t-value="l_no + 1"/>
+                        <t t-if="request[0] == 2">
+                            <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                                <div class="col text-left">
+                                    <span style="display:inline-block;width:365px;border-bottom: 1px dotted #000;text-align:left;">
+                                        <t t-esc="request[1]"/>&#160;&#160;&#160;&#160;ขอวงเงิน&#160;&#160;&#160;&#160;<t t-esc="'{:,.2f}'.format(request[2])"/>
+                                    </span>
+                                    <t t-set="total_all" t-value="total_all + request[2]"/>
+                                    <span style="display:inline-block;width:365px;border-bottom: 1px dotted #000;text-align:left;">
+                                        <t t-esc="request[3]"/>&#160;&#160;&#160;&#160;ขอวงเงิน&#160;&#160;&#160;&#160;<t t-esc="'{:,.2f}'.format(request[4])"/>
+                                    </span>
+                                    <t t-set="total_all" t-value="total_all + request[4]"/>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="request[0] == 1">
+                            <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                                <div class="col text-left">
+                                    <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                        <t t-esc="request[1]"/>&#160;&#160;&#160;&#160;ขอวงเงิน&#160;&#160;&#160;&#160;<t t-esc="'{:,.2f}'.format(request[2])"/>
+                                    </span>
+                                    <t t-set="total_all" t-value="total_all + request[2]"/>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                    <t t-foreach="range(5-l_no)" t-as="i">
+                        <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                            <div class="col text-left">
+                                <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-if="l_no_box != last_box">
+                        <div class="row" style="font-family: KanitLight;font-size: 20.00px;padding-top:20px">
+                            <div class="col text-left">
+                                <span><strong>3.) ยอดรวมขอวงเงิน:</strong>
+                                <span style="display:inline-block;width:560px;border-bottom: 1px dotted #000;text-align:center;">
+
+                                </span>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-if="l_no_box == last_box">
+                        <div class="row" style="font-family: KanitLight;font-size: 20.00px;padding-top:20px">
+                            <div class="col text-left">
+                                <t t-set="total_all" t-value="total_all + o.remain_amount"/>
+                                <span><strong>3.) ยอดรวมขอวงเงิน:</strong>
+                                <span style="display:inline-block;width:560px;border-bottom: 1px dotted #000;text-align:center;">
+                                    <t t-esc="'{:,.2f}'.format(total_all)"/>
+                                </span>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                    
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                        <div class="col text-left">
+                            <span><strong>4.) ชื่อโครงการ:</strong>
+                                <span style="display:inline-block;width:610px;border-bottom: 1px dotted #000;text-align:center;">
+                                    <t t-if="o.order_no.project_name">
+                                        <t t-esc="o.order_no.project_name.project_name"/>
+                                    </t>
+                                    <t t-if="not o.order_no.project_name">
+                                        
+                                    </t>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                        <div class="col text-left">
+                            <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                <t t-if="project_name_list">
+                                    <t t-esc="project_name_list"/>
+                                </t>
+                                <t t-if="not project_name_list">
+                                    
+                                </t>
+                            </span>
+                        </div>
+                    </div>
+                    <t t-foreach="range(1)" t-as="i">
+                        <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                            <div class="col text-left">
+                                <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-if="l_no_box != last_box">
+                        <div class="row" style="font-family: KanitLight;font-size: 20.00px;padding-top:20px">
+                            <div class="col text-left">
+                                <span><strong>5.) วงเงินรวม:</strong>
+                                    <span style="display:inline-block;width:245px;border-bottom: 1px dotted #000;text-align:center;">
+                                        
+                                    </span>
+                                    &#160;&#160;ยอดคงค้าง&#160;&#160;
+                                    <span style="display:inline-block;width:245px;border-bottom: 1px dotted #000;text-align:center;">
+                                        
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-if="l_no_box == last_box">
+                        <div class="row" style="font-family: KanitLight;font-size: 20.00px;padding-top:20px">
+                            <div class="col text-left">
+                                <span><strong>5.) วงเงินรวม:</strong>
+                                    <span style="display:inline-block;width:245px;border-bottom: 1px dotted #000;text-align:center;">
+                                        <t t-esc="'{:,.2f}'.format(o.partner_id.credit_limit_show)"/>
+                                    </span>
+                                    &#160;&#160;ยอดคงค้าง&#160;&#160;
+                                    <span style="display:inline-block;width:245px;border-bottom: 1px dotted #000;text-align:center;">
+                                        <t t-esc="'{:,.2f}'.format(o.partner_id.credit_limit)"/>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;padding-top:20px">
+                        <div class="col text-left">
+                            <span><strong>6.) เหตุผลการขอเพิ่มวงเงินเครดิต ของ Sale Order นี้:</strong></span>
+                        </div>
+                    </div>
+                    <t t-if="l_no_box != last_box">
+                        <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                            <div class="col text-left">
+                                <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                    
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                            <div class="col text-left">
+                                <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                    
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                            <div class="col text-left">
+                                <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-if="l_no_box == last_box">
+                        <t t-if="reason_approval_list">
+                            <div class="row" style="font-family: KanitLight;font-size: 20.00px;padding-top:20px">
+                                <div class="col text-left">
+                                    <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                        <span t-if="reason_approval_list and len(reason_approval_list) &gt; 220">
+                                            <span t-esc="reason_approval_list[:220] + '...'" /> 
+                                        </span>
+                                        <span t-if="reason_approval_list and len(reason_approval_list) &lt;= 220">
+                                            <span t-esc="reason_approval_list"/> 
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                                <div class="col text-left">
+                                    <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                        
+                                    </span>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="not reason_approval_list">
+                            <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                                <div class="col text-left">
+                                    <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                        
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                                <div class="col text-left">
+                                    <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                        
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                                <div class="col text-left">
+                                    <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                        
+                                    </span>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                    <t t-if="l_no_box != last_box">
+                        <p style="page-break-before:always;"> </p>
+                    </t>
+                </t>
+            </t>
+            <t t-if="last_box == 0">
+                <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                    <div class="col text-left">
+                        <span><strong>1.) ชื่อลูกค้า:</strong>
+                            <span style="display:inline-block;width:650px;border-bottom: 1px dotted #000;text-align:center;">
+                                <t t-esc="o.partner_id.ref"/> : <t t-esc="o.partner_id.name"/>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                    <div class="col text-left">
+                        <span><strong>2.) เลขที่ Sale Order:</strong>
+                            <span style="display:inline-block;width:235px;border-bottom: 1px dotted #000;text-align:center;">
+                                <t t-esc="o.order_no.name"/>
+                            </span>
+                            &#160;&#160;ขอวงเงิน&#160;&#160;
+                            <span style="display:inline-block;width:235px;border-bottom: 1px dotted #000;text-align:center;">
+                                <t t-esc="'{:,.2f}'.format(o.remain_amount)"/>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                 <t t-foreach="range(5)" t-as="i">
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                        <div class="col text-left">
+                            <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                
+                            </span>
+                        </div>
+                    </div>
+                </t>
+                <div class="row" style="font-family: KanitLight;font-size: 20.00px;padding-top:20px">
+                    <div class="col text-left">
+                        <t t-set="total_all" t-value="total_all + o.remain_amount"/>
+                        <span><strong>3.) ยอดรวมขอวงเงิน:</strong>
+                        <span style="display:inline-block;width:560px;border-bottom: 1px dotted #000;text-align:center;">
+                            <t t-esc="'{:,.2f}'.format(total_all)"/>
+                        </span>
+                        </span>
+                    </div>
+                </div>                
+                <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                    <div class="col text-left">
+                        <span><strong>4.) ชื่อโครงการ:</strong>
+                            <span style="display:inline-block;width:610px;border-bottom: 1px dotted #000;text-align:center;">
+                                <t t-if="o.order_no.project_name">
+                                    <t t-esc="o.order_no.project_name.project_name"/>
+                                </t>
+                                <t t-if="not o.order_no.project_name">
+                                    
+                                </t>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <t t-foreach="range(3)" t-as="i">
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                        <div class="col text-left">
+                            <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                
+                            </span>
+                        </div>
+                    </div>
+                </t>
+                <div class="row" style="font-family: KanitLight;font-size: 20.00px;padding-top:20px">
+                    <div class="col text-left">
+                        <span><strong>5.) วงเงินรวม:</strong>
+                            <span style="display:inline-block;width:245px;border-bottom: 1px dotted #000;text-align:center;">
+                                <t t-esc="'{:,.2f}'.format(o.partner_id.credit_limit_show)"/>
+                            </span>
+                            &#160;&#160;ยอดคงค้าง&#160;&#160;
+                            <span style="display:inline-block;width:245px;border-bottom: 1px dotted #000;text-align:center;">
+                                <t t-esc="'{:,.2f}'.format(o.partner_id.credit_limit)"/>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row" style="font-family: KanitLight;font-size: 20.00px;padding-top:20px">
+                    <div class="col text-left">
+                        <span><strong>6.) เหตุผลการขอเพิ่มวงเงินเครดิต ของ Sale Order นี้:</strong></span>
+                    </div>
+                </div>
+                <t t-if="reason_approval_list">
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;padding-top:20px">
+                        <div class="col text-left">
+                            <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                <span t-if="reason_approval_list and len(reason_approval_list) &gt; 220">
+                                    <span t-esc="reason_approval_list[:220] + '...'" /> 
+                                </span>
+                                <span t-if="reason_approval_list and len(reason_approval_list) &lt;= 220">
+                                    <span t-esc="reason_approval_list"/> 
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                        <div class="col text-left">
+                            <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                
+                            </span>
+                        </div>
+                    </div>
+                </t>
+                <t t-if="not reason_approval_list">
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                        <div class="col text-left">
+                            <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                        <div class="col text-left">
+                            <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row" style="font-family: KanitLight;font-size: 20.00px;">
+                        <div class="col text-left">
+                            <span style="display:inline-block;width:735px;border-bottom: 1px dotted #000;text-align:left;">
+                                
+                            </span>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </div>
+
+        <div class="footer" style="font-size: 11px;margin-top:2mm;vertical-align: bottom;font-family: KanitLight;max-height:403px">
+
+            <div class="row" style="padding-top:56px;font-family: KanitLight;font-size: 16.00px;">
+                <div class="col-3" align="center">
+                    <br/>
+                    <div style="position: relative;">
+                        <span style="display:inline-block;width:150px;border-bottom: 1px solid #000;text-align:left;">
+                                    
+                        </span>
+                    </div>
+                    <br/>
+                    <div style="position: relative;">
+                        <div>วันที่............../............../..............</div>
+                    </div>
+                    <br/>
+                    <div style="position: relative;">
+                        <span t-if="doc.user_employee_id">
+                            <span t-field="doc.user_employee_id.name"/>
+                        </span>
+                        <span t-if="not doc.user_employee_id">
+                            
+                        </span>
+                    </div>
+                    <br/>
+                    <div>(พนักงานขาย)</div>
+                </div>
+                <div class="col-3" align="center">
+                    <br/>
+                    <div style="position: relative;">
+                        <span style="display:inline-block;width:150px;border-bottom: 1px solid #000;text-align:left;">
+                                    
+                        </span>
+                    </div>
+                    <br/>
+                    <div style="position: relative;">
+                        <div>วันที่............../............../..............</div>
+                    </div>
+                    <br/>
+                    <div>(ผู้จัดการแผนก)</div>
+                </div>
+                <div class="col-3" align="center">
+                    <br/>
+                    <div style="position: relative;">
+                        <span style="display:inline-block;width:150px;border-bottom: 1px solid #000;text-align:left;">
+                                    
+                        </span>
+                    </div>
+                    <br/>
+                    <div style="position: relative;">
+                        <div>วันที่............../............../..............</div>
+                    </div>
+                    <br/>
+                    <div>(แผนกการเงิน)</div>
+                </div>
+                <div class="col-3" align="center">
+                    <br/>
+                    <div style="position: relative;">
+                        <span style="display:inline-block;width:150px;border-bottom: 1px solid #000;text-align:left;">
+                                    
+                        </span>
+                    </div>
+                    <br/>
+                    <div style="position: relative;">
+                        <div>วันที่............../............../..............</div>
+                    </div>
+                    <div>ผู้อนุมัติ</div>
+                    <br/>
+                </div>
+            </div>                            
+        </div>
+    </template>
+
+    <template id="hdc_tcr_multi_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hdc_creditlimit_saleteam.hdc_creditlimit_request_document_multi_report" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

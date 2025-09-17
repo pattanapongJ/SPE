@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="picking_list_form_hdc_sale_quick_invoice" model="ir.ui.view">
+        <field name="name">picking.list.form.hdc_sale_quick_invoice</field>
+        <field name="model">picking.lists</field>
+        <field name="inherit_id" ref="hdc_inventory_picking_list_sale.picking_list_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='picking_lists_header']//div" position="after">
+                <field name="is_urgent"/>
+            </xpath>     
+        </field>
+    </record>    
+               
+</odoo>

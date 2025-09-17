@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock.action_warehouse_form" model="ir.actions.act_window">
+        <field name="name">Warehouses</field>
+        <field name="res_model">stock.warehouse</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_id" ref="stock.view_warehouse_tree"/>
+        <field name="domain">[('user_ids','in', uid)]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Define a new warehouse
+          </p>
+        </field>
+    </record>
+
+    <record id="view_warehouse" model="ir.ui.view">
+        <field name="name">stock.warehouse</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="warehouse_description"/>
+                <field name="responsible_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

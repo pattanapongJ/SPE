@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="sale_team_user_employee_inherit_crm_team_view_form" model="ir.ui.view">
+        <field name="name">sale.team.user.employee.inherit.crm.team.view.form</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet" position="before">
+                <header>
+                    <button string="Update Sale Members" name="update_employee_member" type="object" class="oe_highlight"/>
+                </header>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="department_id"/>
+                <field name="user_employee_id"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='members']" position="before">
+                <page name="sale_employee" string="Sale Members">
+                    <field name="sale_employee_ids" widget="many2many" options="{'not_delete': True}">
+                        <kanban quick_create="false" create="true" delete="true">
+                            <field name="id"/>
+                            <field name="name"/>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_global_click" style="max-width: 200px">
+                                        <div class="o_kanban_record_top">
+                                            <img t-att-src="kanban_image('hr.employee', 'image_128', record.id.raw_value)" class="oe_avatar oe_kanban_avatar_smallbox o_image_40_cover mb0" alt="Avatar"/>
+                                            <div class="o_kanban_record_headings ml8">
+                                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                </page>
+                <page name="sale_spec_employee" string="Sale Spec Members">
+                    <field name="sale_spec_employee_ids" widget="many2many" options="{'not_delete': True}">
+                        <kanban quick_create="false" create="true" delete="true">
+                            <field name="id"/>
+                            <field name="name"/>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_global_click" style="max-width: 200px">
+                                        <div class="o_kanban_record_top">
+                                            <img t-att-src="kanban_image('hr.employee', 'image_128', record.id.raw_value)" class="oe_avatar oe_kanban_avatar_smallbox o_image_40_cover mb0" alt="Avatar"/>
+                                            <div class="o_kanban_record_headings ml8">
+                                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_team_user_employee_inherit_crm_team_view_form_addon" model="ir.ui.view">
+        <field name="name">sale.team.user.employee.inherit.crm.team.view.form.addon</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="hdc_sale_team_addon.sale_team_addon_inherit_crm_team_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='sale_spec_members']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_team_user_employee_inherit_crm_team_view_tree" model="ir.ui.view">
+        <field name="name">sale.team.user.employee.inherit.crm.team.view.form</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="department_id"/>
+                <field name="user_employee_id"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_update_employee_member" model="ir.actions.server">
+        <field name="name">Update Sale Members</field>
+        <field name="model_id" ref="crm.model_crm_team"/>
+        <field name="binding_model_id" ref="crm.model_crm_team"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.update_employee_member()
+        </field>
+    </record>
+    </data>
+</odoo>

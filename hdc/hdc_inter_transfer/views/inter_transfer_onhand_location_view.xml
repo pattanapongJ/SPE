@@ -1,0 +1,57 @@
+<odoo>
+    <record id="inter_transfer_onhand_location_form_view" model="ir.ui.view">
+        <field name="name">inter.transfer.onhand.location.form.view</field>
+        <field name="model">inter.transfer.onhand.location</field>
+        <field name="arch" type="xml">
+            <form string="Type">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" invisble="1"/>
+                            <field name="company_id"/>
+                            <field name="location_id" domain="[('usage', '=', 'internal'),('company_id','=',company_id)]"/>
+                        </group>
+                        <group>
+                            <field name="inter_onhand_location_ids" widget="many2many_tags" domain="[('usage', '=', 'internal'),('company_id','=',company_id)]"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="inter_transfer_onhand_location_tree_view" model="ir.ui.view">
+        <field name="name">inter.transfer.onhand.location.tree.view</field>
+        <field name="model">inter.transfer.onhand.location</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="company_id"/>
+                <field name="location_id"/>
+                <field name="inter_onhand_location_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+    <record id="inter_transfer_onhand_location_action" model="ir.actions.act_window">
+        <field name="name">Inter Transfer Onhand Locations Settings</field>
+        <field name="res_model">inter.transfer.onhand.location</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Inter Transfer Onhand Location Setting
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.rule" id="inter_transfer_onhand_location_rule">
+        <field name="name">Inter Transfer Onhand Locations Settings Multi-Company Rule</field>
+        <field name="model_id" ref="model_inter_transfer_onhand_location"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <menuitem
+        id="inter_transfer_onhand_location_menu"
+        parent="stock.menu_stock_config_settings"
+        action="inter_transfer_onhand_location_action"
+        sequence="170"
+    />
+</odoo>

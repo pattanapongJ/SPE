@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_withholding_tax_text_modify" inherit_id="l10n_th_withholding_tax_report.report_withholding_tax_text"><xpath expr="//t" position="replace"><t t-foreach="docs" t-as="o"><t t-esc="o._create_text_modify(o)" /></t></xpath></template>
+    </data>
+</odoo>

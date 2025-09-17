@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inventory_report_view_picking_form_inherit_sale_type_internal_transfer" model="ir.ui.view">
+        <field name="name">inventory.report.view.picking.form.inherit.sale.type.internal.transfer</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_inventory_general_report.inventory_report_view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='do_receipt_print_picking']" position="after">
+                <field name="is_booth_type_id" invisible="1"/>
+                <button name="do_return_from_booth_print_picking" string="Print Return From Booth &amp; Consignment" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|','|',('picking_type_code', '!=', 'incoming'),('addition_operation_types_code', '=', 'AO-05'),('is_booth_type_id','!=',True)]}"/>
+            </xpath>
+            <xpath expr="//button[@name='do_receipt_print_picking']" position="replace">
+                <button name="do_receipt_print_picking" string="Print Receipt" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|','|',('picking_type_code', '!=', 'incoming'),('addition_operation_types_code', '=', 'AO-05'),('is_booth_type_id','=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

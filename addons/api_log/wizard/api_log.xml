@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="api_log_form" model="ir.ui.view">
+        <field name="name">api.log.form</field>
+        <field name="model">api.log</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form style="padding: 0px;">
+                <field name="easy_api_id" invisible="1"/>
+                <field name="iframe_html" readonly="1"/>
+                <footer>
+                    <button string="Close" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_open_wizard_api_log" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">LOG</field>
+        <field name="res_model">api.log</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'dialog_size': 'xl',}</field>
+    </record>
+</odoo>

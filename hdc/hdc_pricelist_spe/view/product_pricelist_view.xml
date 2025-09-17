@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_add_fields_group_pricelist_view" model="ir.ui.view">
+        <field name="name">add_fields_group.pricelist.form</field>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
+        <field name="model">product.pricelist</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='pricelist_settings']" position="after">
+                <group name="pricelist_group">
+                    <!-- <field name="user_admin" widget="many2many_tags"/> -->
+                    <field name="user_is_admin" invisible="1"/>
+                    <field name="user_id" options="{'no_create': True}" attrs="{'readonly':[('user_is_admin','=',False)]}"/>
+                    <field name="sale_team_id" widget="many2many_tags" options="{'no_create': True}"/>
+                    <field name="fiscal_position_id" options="{'no_create': True}"/>
+                    <field name="approve_below_cost" widget="boolean_toggle" />
+                    <!-- <field name="is_oversea"/> -->
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="group_id"/>
+                <field name="pricelist_all"/>
+            </xpath>
+            <xpath expr="//widget[@name='web_ribbon']" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_customer_list" type="object"
+                        class="oe_stat_button" icon="fa-user" >
+                        <div class="o_stat_info">
+                            <field name="customer_lists" class="o_stat_value"/>
+                            <span class="o_stat_text" > Customers </span>
+                        </div>
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='currency_id']" position="attributes">
+                <!-- <attribute name="attrs">{'required': [('is_oversea', '=', False)]}</attribute> -->
+                <attribute name="domain">[('rate_type', '=', 'buy')]</attribute>
+            </xpath>
+          </field>
+    </record>
+
+    <record id="view_product_pricelist_item_group_tree" model="ir.ui.view">
+        <field name="name">product.pricelist.item.tree.inherit</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_tree_view" />
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="group_id"/>
+            </xpath>
+          </field>
+    </record>
+
+    <record id="view_product_pricelist_item_group_tree2" model="ir.ui.view">
+        <field name="name">product.pricelist.item.tree.inherit2</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_tree_view" />
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price']" position="before">
+                <field name="pricelist_cost_price"/>
+            </xpath>
+          </field>
+    </record>
+
+    <record id="view_product_pricelist_item_group_form" model="ir.ui.view">
+        <field name="name">product.pricelist.item.form.inherit</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fixed_price']" position="before">
+                <field name="group_id" invisible="1"/>
+                <field name="net_price"/>
+            </xpath>
+          </field>
+    </record>
+
+    <record id="view_product_pricelist_item_group_form2" model="ir.ui.view">
+        <field name="name">product.pricelist.item.form.inherit2</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fixed_price']" position="after">
+                <field name="pricelist_cost_price"/>
+            </xpath>
+          </field>
+    </record>
+
+    <record id="spe_product_pricelist_view_inherit" model="ir.ui.view">
+        <field name="name">spe.product.pricelist.form.inherit</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='item_ids']//tree//field[@name='min_quantity']" position="after">
+                <field name="pricelist_cost_price" />
+            </xpath>
+        </field>
+    </record>
+
+    
+
+    <record id="product.product_pricelist_item_action" model="ir.actions.act_window">
+        <field name="name">Price Rules</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.pricelist.item</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- เพิ่ม field Internal Reference และ Product Name ใน pricelist_rules page -->
+    <record id="view_product_pricelist_item_internal_ref_name" model="ir.ui.view">
+        <field name="name">product.pricelist.item.tree.internal.ref.name</field>
+        <field name="inherit_id" ref="product.product_pricelist_view_inherit" />
+        <field name="model">product.pricelist</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='item_ids']//tree//field[@name='name']" position="after">
+                <field name="product_default_code" string="Internal Reference" readonly="1"/>
+                <field name="product_name" string="Product Name" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

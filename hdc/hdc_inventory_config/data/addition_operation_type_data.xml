@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="external_transfer_type" model="addition.operation.type">
+            <field name="addition_Operation_type">External Transfer Type</field>
+            <field name="code">AO-01</field>
+            <field name="active">True</field>
+        </record>
+        <record id="request_spare_parts_type" model="addition.operation.type">
+            <field name="addition_Operation_type">Request spare parts Type</field>
+            <field name="code">AO-02</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="request_car_type" model="addition.operation.type">
+            <field name="addition_Operation_type">Request car Type</field>
+            <field name="code">AO-03</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="return_spare_parts_type" model="addition.operation.type">
+            <field name="addition_Operation_type">Return spare parts Type</field>
+            <field name="code">AO-04</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="return_customer" model="addition.operation.type">
+            <field name="addition_Operation_type">Return Customer</field>
+            <field name="code">AO-05</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="inter_transfer" model="addition.operation.type">
+            <field name="addition_Operation_type">Inter Transfer</field>
+            <field name="code">AO-06</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="request_rm_production" model="addition.operation.type">
+            <field name="addition_Operation_type">Request RM Production	</field>
+            <field name="code">AO-07</field>
+            <field name="active">True</field>
+        </record>
+        
+    </data>
+</odoo>

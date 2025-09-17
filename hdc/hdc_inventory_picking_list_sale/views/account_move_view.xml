@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+            <record id="picking_list_accoumt_move_view" model="ir.ui.view">
+                  <field name="name">picking.list.accoumt.move.view</field>
+                  <field name="model">account.move</field>
+                  <field name="inherit_id" ref="account.view_move_form"/>
+                  <field name="priority">60</field>
+                  <field name="arch" type="xml">
+                        <field name="partner_shipping_id" position="after">
+                              <field name="customer_po"/>
+                        </field>
+                        <xpath expr="//field[@name='invoice_vendor_bill_id']" position="after">
+                              <field name="project_name" />
+                        </xpath>
+                        <field name="sale_type_id" position="after">
+                              <field name="modify_type_txt"/>
+                              <field name="plan_home"/>
+                              <field name="room"/>
+                        </field>
+                  </field>
+            </record>
+    </data>
+</odoo>

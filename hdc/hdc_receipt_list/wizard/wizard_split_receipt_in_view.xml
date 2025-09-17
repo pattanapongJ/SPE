@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_split_receipt_in" model="ir.ui.view">
+        <field name="name">Add : Choose Products Receipts</field>
+        <field name="model">wizard.split.receipt.in</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="picking_id" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="location_id" invisible="1"/>
+                            <field name="warehouse_id"/>
+                            <field name="picking_type_id"/>
+                            <field name="location_dest_id"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_date"/>
+                            <field name="user_employee_id"/>
+                            <field name="product_ids" options="{'no_create': True, 'no_open': True}" widget="many2many_tags" domain="[('id', 'in', context.get('allowed_product_ids'))]"/>
+                            <field name="update_product" widget="boolean_toggle"/>
+                            <field name="update_total" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <group class="oe_subtotal_footer oe_right" >
+                        <field name="currency_id" invisible="1" readonly="1" force_save="1"/>
+                        <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1" force_save="1"/>
+                        <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1" force_save="1"/>
+                        <div class="oe_subtotal_footer_separator oe_inline">
+                            <label for="amount_total"/>
+                        </div>
+                        <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                            widget="monetary" options="{'currency_field': 'currency_id'}" readonly="1" force_save="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Product List">
+                            <field name="selected"/>
+                            <span class="oe_inline">Select All</span>
+                            <field name="product_line_ids" widget="one2many_list">
+                                <tree  editable="bottom" create="0" edit="1" delete="1">
+                                    <field name="selected"/>
+                                    <field name="wiz_id" invisible="1"/>
+                                    <field name="move_id" invisible="1"/>
+                                    <field name="product_id" readonly="1" force_save="1"/>
+                                    <field name="picking_id" readonly="1" force_save="1"/>
+                                    <field name="location_id" readonly="1" force_save="1"/> 
+                                    <field name="location_dest_id"/>
+                                    <field name="po_remain" optional="show" readonly="1" force_save="1"/>
+                                    <field name="po_receive_qty" optional="show"/>
+                                    <field name="po_product_uom" optional="show" readonly="1" force_save="1"/>
+                                    <field name="product_uom_qty" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="receive_qty" optional="hide"/>
+                                    <field name="product_uom" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="price_unit" optional="show" string= "Unit Price/After Discount" readonly="1" force_save="1"/>
+                                    <field name="subtotal" optional="show" readonly="1" force_save="1"/>
+                                    <field name="net_price" optional="show" readonly="1" force_save="1"/>
+                                    <field name="currency_id" optional="show" readonly="1" force_save="1"/>
+                                    <field name="taxes_id" optional="show" widget="many2many_tags" string="Taxes" readonly="1" force_save="1"/>
+                                    <field name="price_tax" optional="show" readonly="1" force_save="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_create_receipt_in" string="Create Receipt (IN)" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

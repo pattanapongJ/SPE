@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="billing_contact_view_quotation_form_inherit_hdc_quotation_order" model="ir.ui.view">
+        <field name="name">billing.contact.view.quotation.form.inherit.hdc.quotation.order</field>
+        <field name="model">quotation.order</field>
+        <field name="inherit_id" ref="hdc_quotation_order.view_quotation_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='billing_route_id']" position="after">
+                <field name="billing_terms_id" />
+                <field name="billing_place_id" />
+                <field name="payment_period_id" />
+            </xpath>      
+        </field>
+    </record>
+</odoo>
+
+    

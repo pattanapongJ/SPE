@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="commission_form_inherit_report">
+        <field name="name">Commission Report</field>
+        <field name="model">settle.commissions</field>
+        <field name="inherit_id" ref="hdc_commission.settle_commissions_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='cancel_action']" position="after">
+                <button name="print" string="Print Report" type="object" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

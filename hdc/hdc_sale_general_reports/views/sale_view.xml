@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_inherit_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_quotation_send']" position="after">
+                 <!-- <button name="%(hdc_sale_general_reports.action_wizard_sale_report)d" string="Print Quotation / Sale"
+                            type="action" class="oe_highlight"/> -->
+
+                 <button name="print" string="Print Quotation / Sale"
+                            type="object" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_inherit_hdc_billing_route_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="hdc_billing_period_route.hdc_billing_route_view_order_form_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='billing_route_id']" position="after">
+                <label for="days_delivery"/>
+                <div name="days_delivery_div">
+                    <field name="days_delivery" class="oe_inline"/> days
+                </div>
+            </xpath>      
+        </field>
+    </record>
+
+</odoo>

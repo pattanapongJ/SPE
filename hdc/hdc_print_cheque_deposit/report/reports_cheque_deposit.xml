@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_cheque_deposit_ktb" model="ir.actions.report">
+        <field name="name">Deposit for Cheque - KTB</field>
+        <field name="model">account.check.pay.in</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque_deposit.report_cheque_deposit_ktb</field>
+        <field name="report_file">hdc_print_cheque_deposit.report_cheque_deposit_ktb</field>
+        <field name="binding_model_id" ref="sh_pdc.model_account_check_pay_in" />
+        <field name="paperformat_id" ref="hdc_print_cheque_deposit.paperformat_pdc_deposit_ktb" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_deposit_scb" model="ir.actions.report">
+        <field name="name">Deposit for Cheque - SCB</field>
+        <field name="model">account.check.pay.in</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque_deposit.report_cheque_deposit_scb</field>
+        <field name="report_file">hdc_print_cheque_deposit.report_cheque_deposit_scb</field>
+        <field name="binding_model_id" ref="sh_pdc.model_account_check_pay_in" />
+        <field name="paperformat_id" ref="hdc_print_cheque_deposit.paperformat_pdc_deposit_scb" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_deposit_kbank" model="ir.actions.report">
+        <field name="name">Deposit for Cheque - KBANK</field>
+        <field name="model">account.check.pay.in</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque_deposit.report_cheque_deposit_kbank</field>
+        <field name="report_file">hdc_print_cheque_deposit.report_cheque_deposit_kbank</field>
+        <field name="binding_model_id" ref="sh_pdc.model_account_check_pay_in" />
+        <field name="paperformat_id" ref="hdc_print_cheque_deposit.paperformat_pdc_deposit_kbank" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_deposit_ttb" model="ir.actions.report">
+        <field name="name">Deposit for Cheque - TTB</field>
+        <field name="model">account.check.pay.in</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque_deposit.report_cheque_deposit_ttb</field>
+        <field name="report_file">hdc_print_cheque_deposit.report_cheque_deposit_ttb</field>
+        <field name="binding_model_id" ref="sh_pdc.model_account_check_pay_in" />
+        <field name="paperformat_id" ref="hdc_print_cheque_deposit.paperformat_pdc_deposit_ttb" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_deposit_bay" model="ir.actions.report">
+        <field name="name">Deposit for Cheque - BAY</field>
+        <field name="model">account.check.pay.in</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque_deposit.report_cheque_deposit_bay</field>
+        <field name="report_file">hdc_print_cheque_deposit.report_cheque_deposit_bay</field>
+        <field name="binding_model_id" ref="sh_pdc.model_account_check_pay_in" />
+        <field name="paperformat_id" ref="hdc_print_cheque_deposit.paperformat_pdc_deposit_bay" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_deposit_uob" model="ir.actions.report">
+        <field name="name">Deposit for Cheque - UOB</field>
+        <field name="model">account.check.pay.in</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque_deposit.report_cheque_deposit_uob</field>
+        <field name="report_file">hdc_print_cheque_deposit.report_cheque_deposit_uob</field>
+        <field name="binding_model_id" ref="sh_pdc.model_account_check_pay_in" />
+        <field name="paperformat_id" ref="hdc_print_cheque_deposit.paperformat_pdc_deposit_uob" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_cheque_deposit_bbl" model="ir.actions.report">
+        <field name="name">Deposit for Cheque - BBL</field>
+        <field name="model">account.check.pay.in</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_print_cheque_deposit.report_cheque_deposit_bbl</field>
+        <field name="report_file">hdc_print_cheque_deposit.report_cheque_deposit_bbl</field>
+        <field name="binding_model_id" ref="sh_pdc.model_account_check_pay_in" />
+        <field name="paperformat_id" ref="hdc_print_cheque_deposit.paperformat_pdc_deposit_bbl" />
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

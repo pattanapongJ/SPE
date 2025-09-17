@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_receipt_list_user,hdc.receipt.list,model_receipt_list,base.group_user,1,1,1,0
+access_gen_receipt_list_user,hdc.gen.receipt.list,model_gen_receipt_list,base.group_user,1,1,1,1
+access_gen_receipt_list_line_user,hdc.gen.receipt.list.line,model_gen_receipt_list_line,base.group_user,1,1,1,1
+access_receipt_list_line_user,hdc.receipt.list.line,model_receipt_list_line,base.group_user,1,1,1,1
+access_cancel_receipt_list_wizard_user,hdc.cancel.receipt.list.wizard,model_cancel_receipt_list_wizard,base.group_user,1,1,1,1
+access_purchase_rl_history_user,hdc.purchase.rl.history,model_purchase_rl_history,base.group_user,1,1,1,1
+access_confirm_receipt_list_wizard_user,hdc.confirm.receipt.list.wizard,model_confirm_receipt_list_wizard,base.group_user,1,1,1,1
+access_gen_billing_rl_user,hdc.gen.billing.rl,model_gen_billing_rl,base.group_user,1,1,1,1
+access_gen_billing_rl_line_user,hdc.gen.billing.rl.line,model_gen_billing_rl_line,base.group_user,1,1,1,1
+access_receipt_list_line_service_user,hdc.receipt.list.line.service,model_receipt_list_line_service,base.group_user,1,1,1,1
+access_wizard_split_receipt_in_user,hdc.wizard.split.receipt.in,model_wizard_split_receipt_in,base.group_user,1,1,1,1
+access_wizard_split_receipt_in_line_user,hdc.wizard.split.receipt.in.line,model_wizard_split_receipt_in_line,base.group_user,1,1,1,1
+access_purchases_advance_payment_inv_user,hdc.purchases.advance.payment.inv,model_purchases_advance_payment_inv,base.group_user,1,1,1,1
+access_purchases_advance_payment_inv_rl_line_user,hdc.wizard.split.receipt.in.rl.line,model_purchases_advance_payment_inv_rl_line,base.group_user,1,1,1,1

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_pricelist_shipping_cost_inherit" model="ir.ui.view">
+            <field name="name">product.pricelist.shipping.cost.inherit</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="hdc_sale_triple_discount.product_pricelist_item_form_view_discount" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='triple_discount']" position="after">
+                    <field name="shipping_cost" attrs="{'invisible': [('compute_price', 'in', ['percentage', 'formula'])]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_product_pricelist_item_form" model="ir.ui.view">
+            <field name="name">inherit.product.pricelist.item.form</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="sale_pricelist_item_advanced.product_pricelist_item_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_tmpl_id']" position="after">                
+                    <field name="product_uom_id" attrs="{'invisible':[('product_tmpl_id','=',False)]}"/>
+                    <field name="product_uom_ids_rel" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='fixed_price']" position="after">
+                    <field name="triple_discount" />
+                    <field name="shipping_cost" attrs="{'invisible': [('compute_price', 'in', ['percentage', 'formula'])]}"/>
+                    <field name="dis_price" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="pricelist_item_inherit_hdc_pricelist" model="ir.ui.view">
+            <field name="name">pricelist.item.inherit.hdc.pricelist</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_tree_view_from_product"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='min_quantity']" position="after">
+                    <field name="shipping_cost" />
+                </xpath>
+
+                <xpath expr="//field[@name='fixed_price']" position="after">
+                    <field name="product_uom_id" />
+                    <field name="product_uom_ids_rel" invisible="1"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="product_pricelist_remark_item_form_view" model="ir.ui.view">
+            <field name="name">product.pricelist.item.form</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='pricelist_rule_base']" position="inside" >
+                    <field name="remark" string="Remark"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_add_fields_pricelist_line_view" model="ir.ui.view">
+            <field name="name">add.fields.group.pricelist.form.line</field>
+            <field name="inherit_id" ref="product.product_pricelist_view" />
+            <field name="model">product.pricelist</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='item_ids']/tree/field[@name='date_end']" position="after">
+                    <field name="triple_discount" optional="show"/>
+                    <field name="remark" optional="show"/>
+                </xpath>
+                
+            </field>
+        </record>
+    </data>
+</odoo>

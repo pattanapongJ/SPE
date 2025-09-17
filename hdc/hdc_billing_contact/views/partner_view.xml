@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="billing_contact_view_partner_form_inherit_hdc_billing_period_route" model="ir.ui.view">
+        <field name="name">billing.contact.view.partner.form.inherit.hdc.billing.period.route</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="hdc_billing_period_route.view_partner_property_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='account_billing']" position="inside">
+                <field name="billing_terms_id" />
+                <field name="billing_place_id" />
+                <field name="payment_period_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

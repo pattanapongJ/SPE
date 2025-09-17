@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">view_order_form_inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='sale_info']" position="after">
+                    <group name="Repair_gp" string="Repair">
+                        <field name="is_repair_type_id" invisible="1"/>
+                        <field name="picking_type_id" attrs="{'required': [('is_repair_type_id', '=', True)]}"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="to_warehouse" attrs="{'required': [('is_repair_type_id', '=', True)]}"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record> -->
+
+
+    </data>
+</odoo>

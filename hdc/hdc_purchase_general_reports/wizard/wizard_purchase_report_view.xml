@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_purchase_report_form_view" model="ir.ui.view">
+        <field name="name">Report</field>
+        <field name="model">wizard.purchase.report</field>
+        <field name="arch" type="xml">
+            <form string="Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="state" invisible="1"/>
+                            <field name="purchase_id" invisible="1"/>
+                            <field name="document" widget="selection" string="Documents Reports" attrs="{'invisible': [('state', 'in', ['purchase', 'done'])]}"/>
+                            <field name="document_purchase" widget="selection" string="Documents Reports" attrs="{'invisible': [('state', 'not in', ['purchase', 'done'])]}"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Print" type="object" name="print" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+	<record id="action_wizard_purchase_report" model="ir.actions.act_window">
+		<field name="name">Report</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">wizard.purchase.report</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="view_id" ref="wizard_purchase_report_form_view"/>
+	</record>
+    
+
+    
+</odoo>

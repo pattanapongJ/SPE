@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="commissions_mall_form_inherit_report">
+        <field name="name">Commission Mall  Report</field>
+        <field name="model">settle.commissions.mall</field>
+        <field name="inherit_id" ref="hdc_commission.settle_commissions_mall_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='cancel_action']" position="after">
+                <button name="export_commission_lines" string="Export" type="object" class="oe_highlight"  attrs="{'invisible': [('target_type', '=', 'normal')]}"/>
+                <button name="wizard_import" string="Import" type="object" class="oe_highlight" attrs="{'invisible': [('target_type', '=', 'normal')]}"/>
+                <button name="print" string="Print Report" type="object" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

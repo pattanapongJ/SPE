@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button
+                    name="%(action_stock_picking_cancel)d"
+                    string="Cancel"
+                    type="action"
+                    attrs="{'invisible': [('state', 'in', ('draft', 'cancel'))]}" 
+                    groups="base.group_user"
+                />
+            </xpath>
+
+            <xpath expr="//button[@name='%(stock.act_stock_return_picking)d']" position="attributes">
+                <attribute name="class">oe_highlight</attribute>
+                <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ('waiting_cancel','done')), ('state_before_cancel', 'not in', ('done', False))]}</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='button_scrap']" position="replace">
+                <!-- <button name="button_scrap" type="object" string="Scrap" attrs="{'invisible': ['|','|', '&amp;', ('picking_type_code', '=', 'incoming'), ('state', '!=', 'done'), '&amp;', ('picking_type_code', '=', 'outgoing'), ('state', '=', 'done'), ('state', '=', 'waiting_cancel')]}"/> -->
+                <button name="button_scrap" type="object" string="Scrap" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_toggle_is_locked']" position="replace">
+                <button name="action_toggle_is_locked" attrs="{'invisible': ['|', ('state', 'in', ('draft','cancel','waiting_cancel')), ('is_locked', '=', False)]}" string="Unlock" groups="stock.group_stock_manager" type="object" help="If the picking is unlocked you can edit initial demand (for a draft picking) or done quantities (for a done picking)."/>
+            </xpath>
+
+            <!-- <xpath expr="//button[@name='action_cancel']" position="before">
+                <button name="%(action_stock_picking_cancel)d" attrs="{'invisible': [('state', 'not in', ('assigned', 'confirmed', 'partially_available', 'draft', 'waiting'))]}" string="Cancel" groups="base.group_user" type="action"/>
+                <button
+                    name="%(action_stock_picking_cancel)d"
+                    states="waiting_cancel"
+                    string="Approve Cancel"
+                    type="action"
+                    groups="base.group_user"
+                />
+                 <button name="reject_cancel" type="object" attrs="{'invisible': ['|', ('state', 'not in', ('waiting_cancel')), ('state_before_cancel', 'in', ('done', False))]}" string="Reject"/>
+            </xpath> -->
+
+            <xpath expr="/form/sheet/div/h1" position="after">
+                <field name="state_before_cancel" invisible="1"/>
+                <div attrs="{'invisible': [('state', '!=', 'cancel')]}">
+                    <label for="cancel_reason_id" string="Cancellation reason:" />
+                    <field
+                        name="cancel_reason_id"
+                        class="oe_inline"
+                        options='{"no_open": True}'
+                    />
+                    <div attrs="{'invisible': [('cancel_description', '=', False)]}">
+                        <label for="cancel_description" string="Description:" />
+                        <field name="cancel_description" />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_cancel_reason_form" model="ir.ui.view">
+        <field name="name">Stock Picking Cancel Reason</field>
+        <field name="model">stock.picking.cancel.reason</field>
+        <field name="arch" type="xml">
+            <form string="Stock Picking Cancel Reasons">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field name="active" invisible="True" />
+                    <group>
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_cancel_reason_tree" model="ir.ui.view">
+        <field name="name">Stock Picking Cancel Reason</field>
+        <field name="model">stock.picking.cancel.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Picking Cancel Reasons">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_cancel_reason_search" model="ir.ui.view">
+        <field name="name">Stock Picking Cancel Reason</field>
+        <field name="model">stock.picking.cancel.reason</field>
+        <field name="arch" type="xml">
+            <search string="Stock Picking Cancel Reasons">
+                <field name="name" />
+                <filter
+                    name="filter_inactive"
+                    string="Archived"
+                    domain="[('active','=',False)]"
+                />
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_stock_picking_cancel_reason" model="ir.actions.act_window">
+        <field name="name">Stock Picking Cancel Reason</field>
+        <field name="res_model">stock.picking.cancel.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_stock_picking_cancel_reason"
+        parent="stock.menu_stock_config_settings"
+        name="Stock Picking Cancel Reasons"
+        action="action_stock_picking_cancel_reason"
+        sequence="150"
+        groups="stock.group_stock_manager"
+    />
+    <!-- <record id="view_sale_order_cancel1_inherit_form" model="ir.ui.view">
+        <field name="name">sale.order.cancel</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="dev_customer_credit_limit.view_sale_order_confirm_inherit_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="replace">
+            </xpath>
+        </field>
+    </record>
+    <record id="view_sale_order_cancel2_inherit_form" model="ir.ui.view">
+        <field name="name">sale.order.cancel</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="replace">
+                <button name="action_cancel1" type="object" string="Cancel" attrs="{'invisible': ['|',('state', 'not in', ['sent','sale']),('id','=',False)]}"/>
+                
+                <button name="action_cancel" type="object" string="Cancel" attrs="{'invisible': [('state', 'not in', ['draft','waiting_cancel'])]}"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="status_cancel" invisible="1" />
+            </xpath>
+        </field>
+    </record> -->
+</odoo>

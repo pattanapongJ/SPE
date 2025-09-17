@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="customer_return_request_view_form_inherit_user_employee" model="ir.ui.view">
+        <field name="name">customer.return.request.view.form.inherit.user.employee</field>
+        <field name="model">customer.return.request</field>
+        <field name="inherit_id" ref="hdc_rma_multi.customer_return_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="user_employee_id"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>    
+</odoo>

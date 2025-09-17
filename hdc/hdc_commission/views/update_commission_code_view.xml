@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="update_commission_code_view_form" model="ir.ui.view">
+        <field name="name">update.commission.code.form</field>
+        <field name="model">update.commission.code</field>
+        <field name="arch" type="xml">
+            <form string="Search">
+                <header>
+                    <button string="Search" name="search_action" type="object" class="oe_highlight"/>
+                    <button string="Clear All" name="clear_all_action" type="object" class="oe_highlight"/>
+                    <button string="Update Commission Code" name="wizard_update_commission_code" type="object" class="oe_highlight"/>
+                </header>
+				<group>
+					<group>
+                        <field name="team_id" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="target_type"  widget="radio"/>
+                        <field name="invoice_user_employee_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type', '!=', 'sale_person')]}"/>
+                        <field name="sale_spec_employee" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type', '!=', 'sale_spec')]}"/>
+                        <field name="sale_manager_employee_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type', '!=', 'sale_manager')]}"/>
+                        <field name="sale_employee_ids" invisible="1"/>
+                        <field name="sale_spec_employee_ids" invisible="1"/>
+                        <field name="manager_member_id" invisible="1"/>
+					</group>
+					<group>
+                        <label for="invoice_date_form"/>
+                        <div class="o_row">
+                            <field name="invoice_date_form"/> to
+                            <field name="invoice_date_to" />
+                        </div>
+                        <field name="partner_ids" widget="many2many_tags"/>
+                        <field name="invoice_search_type" widget="radio"/>
+                        <field name="invoice_ids" widget="many2many_tags" string="Invoice No" attrs="{'invisible': [('invoice_search_type', '!=', 'invoice')]}"/>
+                        <field name="invoice_ids" widget="many2many_tags" string="SPE Invoice" attrs="{'invisible': [('invoice_search_type', '!=', 'spe_invoice')]}"/>
+					</group>
+				</group>
+                <notebook>
+                    <page string="Invoice Lines" name="invoice_commission_lines">
+                        <field name="selected"/>
+                        <span class="oe_inline">Select All</span>
+                        <field name="invoice_lines">
+                            <tree string="invoice" editable="bottom" create="0" edit="0">
+                                <field name="update_commission_code_id" invisible="1"/>
+                                <field name="selected"/>
+                                <field name="commission_code" widget="many2many_tags" readonly="1" force_save="1" optional="show"/>
+                                <field name="invoice_id" optional="hide" readonly="1" force_save="1"/>
+                                <field name="invoice_line_id" invisible="1"/>
+                                <field name="invoice_id_date" optional="show" readonly="1" force_save="1"/>
+                                <field name="form_no" optional="show" readonly="1" force_save="1"/>
+                                <field name="partner_id" optional="show" readonly="1" force_save="1"/>
+                                <field name="product_id" optional="show" readonly="1" force_save="1"/>
+                                <field name="quantity" optional="show" readonly="1" force_save="1"/>
+                                <field name="product_uom_id" optional="show" readonly="1" force_save="1"/>
+                                <field name="price_unit" optional="show" readonly="1" force_save="1"/>
+                                <field name="triple_discount" optional="show" readonly="1" force_save="1"/>
+                                <field name="price_subtotal" optional="show" readonly="1" force_save="1"/>
+                                <field name="currency_id" optional="hide" readonly="1" force_save="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+			</form>
+        </field>
+    </record>
+
+    <record id="update_commission_code_action" model="ir.actions.act_window">
+        <field name="name">Update Commission Code</field>
+        <field name="res_model">update.commission.code</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Update Commission Code
+          </p>
+        </field>
+    </record>
+</odoo>

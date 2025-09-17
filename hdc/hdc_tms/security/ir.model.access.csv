@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_resupply_delivery_schedule_master_user,undefined.resupply.delivery.schedule.master,model_resupply_delivery_schedule_master,base.group_user,1,1,1,1
+access_resupply_location_tab_user,undefined.resupply.location.tab,model_resupply_location_tab,base.group_user,1,1,1,1
+access_delivery_round_user,undefined.delivery.round,model_delivery_round,base.group_user,1,1,1,1
+access_resupply_transfer_branch_summary_user,undefined.resupply.transfer.branch.summary,model_resupply_transfer_branch_summary,base.group_user,1,1,1,1
+access_search_branch_summary_line_user,undefined.search.branch.summary.line,model_search_branch_summary_line,base.group_user,1,1,1,1
+access_distribition_delivery_note_user,undefined.distribition.delivery.note,model_distribition_delivery_note,base.group_user,1,1,1,1
+access_distribition_delivery_note_line_user,undefined.distribition.delivery.note.line,model_distribition_delivery_note_line,base.group_user,1,1,1,1
+access_wizard_confirm_delivery_noted_user,undefined.wizard.confirm.delivery.noted,model_wizard_confirm_delivery_noted,base.group_user,1,1,1,1
+access_search_invoice_line_user,undefined.search.invoice.line,model_search_invoice_line,base.group_user,1,1,1,1
+access_company_delivery_round_user,undefined.company.delivery.round,model_company_delivery_round,base.group_user,1,1,1,1
+access_distribition_invoice_line_user,undefined.distribition.invoice.line,model_distribition_invoice_line,base.group_user,1,1,1,1
+access_wizard_billing_finance_user,undefined.wizard.billing.finance,model_wizard_billing_finance,base.group_user,1,1,1,1
+access_driver_model_user,undefined.model_driver_model,model_driver_model,base.group_user,1,1,1,1
+access_wizard_tms_report,undefined.wizard.tms.report,model_wizard_tms_report,base.group_user,1,1,1,1
+access_billing_status_tms,undefined.billing.status.tms,model_billing_status_tms,base.group_user,1,1,1,1
+access_delivery_status_tms,undefined.delivery.status.tms,model_delivery_status_tms,base.group_user,1,1,1,1

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sh_pdc_payment_form_view_inherit" model="ir.ui.view">
+            <field name="name">sh_pdc_payment_form_view_inherit</field>
+            <field name="model">pdc.wizard</field>
+            <field name="inherit_id" ref="sh_pdc.sh_pdc_payment_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="area_type"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

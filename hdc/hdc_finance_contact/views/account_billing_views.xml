@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hdc_finance_contact_view_account_billing_form" model="ir.ui.view">
+        <field name="name">finance.contact.account.billing.form</field>
+        <!-- <field name="priority">15</field> -->
+        <field name="inherit_id" ref="account_billing.view_account_billing_form"/>
+        <field name="model">account.billing</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="billing_remark"/>
+                <field name="responsible_id"/>
+                <field name="finance_contact_id" attrs="{'invisible': [('bill_type', 'in', ['in_invoice'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

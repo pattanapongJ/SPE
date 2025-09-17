@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_blanket_order_inherit_addon" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form.inherit.addon</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_confirm']" position="after">
+                <button name="action_force_done" states="open" string="Force Done" class="btn-secondary" type="object"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" options="{&quot;always_reload&quot;: True}"/>
+                <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}" options="{&quot;always_reload&quot;: True}"/>
+                <field name="contact_person" context="{'show_name_only': True }" options='{"always_reload": True}' domain="['|', ('id', '=', partner_id), '&amp;', ('parent_id', '=', partner_id), ('type', '=', 'contact')]"/>
+                <field name="customer_po" />
+                <field name="po_date"/>
+                <field name="expire_date"/>
+                <field name="outline_agreement"/>
+                <field name="customer_contact_date"/>
+                <field name="client_order_ref"/>
+                <field name="priority" widget="priority" string="Priority"/>
+                <field name="warehouse_id"/>
+                <field name="branch_id" domain="[('company_id', '=', company_id)]" required="1"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'no_create': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='team_id']" position="attributes">
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sale_spec']" position="attributes">
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='administrator']" position="attributes">
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='currency_id']" position="attributes">
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sale_type_id']" position="attributes">
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='payment_method_id']" position="attributes">
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='billing_period_id']" position="attributes">
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='validity_date']" position="after">
+                <field name="pricelist_id" attrs="{'required': [('state', '=', 'draft')]}" options="{'no_open':True,'no_create': True}"/>
+                <field name="currency_id" readonly='0' domain="[('rate_type', '=', 'buy'),('active', '=', True)]"/>
+                <field name="sale_type_id" string="Sales Type" required="1"/>
+                <field name="modify_type_txt"/>
+                <field name="plan_home"/>
+                <field name="room"/>
+                <field name="port_of_loading"/>
+                <field name="shipment_by_id"/>
+                
+                <field name="payment_method_id"/>    
+                <field name="can_edit_payment_terms" invisible="1"/>        
+                <field name="payment_term_id" force_save="1" options="{'no_open':True,'no_create': True}"/>
+                <field name="fiscal_position_id"/>
+                <field name="billing_period_id"/>  
+                <field name="billing_route_id"/>  
+                <field name="billing_terms_id"/>       
+                <field name="billing_place_id"/>      
+                <field name="payment_period_id"/>           
+                <label for="days_delivery"/>
+                <div name="days_delivery_div">
+                    <field name="days_delivery" class="oe_inline"/> days
+                </div>
+                <field name="pricelist_ids" invisible="1"/>
+                <field name="sale_team_ids" invisible="1"/>
+            </xpath>
+            <xpath expr="//group[@name='project_detail']" position="after">
+                <group name="order_details">
+                    <group string="Responsible">
+                        <field name="team_id" />
+                        <field name="user_id" />
+                        <field name="sale_spec" />
+                        <field name="sale_manager_id" domain="[('share', '=', False)]"/>
+                        <field name="administrator" string="Sale Taker" readonly='0'/>
+                        <field name="remark" />
+                    </group>
+                    <group name="delivery_info" string="Delivery">
+                        <field name="requested_ship_date"/>
+                        <field name="requested_receipt_date"/>
+                        <field name="inter_company_transactions" invisible="1"/>
+                        <field name="delivery_trl" attrs="{'required': [('inter_company_transactions', '!=', True)]}" domain="[('status_active', '=', True)]"/>
+                        <field name="delivery_trl_description" />
+                        <field name="delivery_company" string="Mode of delivery" attrs="{'required': [('inter_company_transactions', '!=', True)]}" domain="[('status_active', '=', True)]"/>
+                        <field name="delivery_company_description" string="Mode of delivery Description" />
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='validity_date']" position="attributes">
+                <attribute name="string">Expiration QT/SA</attribute>
+            </xpath>
+            <!-- <xpath expr="//group[@name='invoicing']" position="after">
+                <group name="finance_dimension_gp" string="Finance Dimension">
+
+                    <field name="finance_dimension_1_id"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_2_id"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_3_id"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                </group>
+            </xpath> -->
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='product_id']" position="after">
+                <field name="tags_product_sale_ids" string="Product Tags" widget="many2many_tags" options="{'no_create': True}" optional="hide"/>
+            </xpath>
+            <xpath expr="//button[@name='%(sale_blanket_order.action_create_sale_order)d']" position="after">
+                <field name="agreement_done" invisible="1"/>
+                <button name="create_sale_order" string="Create Sale Order" class="btn-primary" type="object" 
+                attrs="{'invisible': ['|',('state', '!=', 'expired'),('agreement_done', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']" position="attributes">
+                <attribute name="widget" >hide_gb_line</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='date_schedule']" position="attributes">
+                <attribute name="optional" >show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='ordered_uom_qty']" position="attributes">
+                <attribute name="optional" >show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='invoiced_uom_qty']" position="attributes">
+                <attribute name="optional" >show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='delivered_uom_qty']" position="attributes">
+                <attribute name="optional" >show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='remaining_uom_qty']" position="attributes">
+                <attribute name="optional" >show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='price_subtotal']" position="attributes">
+                <attribute name="optional" >show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='product_uom']" position="attributes">
+                <attribute name="optional" >show</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='taxes_id']" position="attributes">
+                <attribute name="optional" >show</attribute>
+                <attribute name="readonly" >1</attribute>
+                <attribute name="force_save" >1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='sequence']" position="after">
+                <field name="state" invisible="1"/>
+                <field name="sequence2"/>
+                <field name="display_type" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='remaining_uom_qty']" position="after">
+                <field name="return_qty" optional="hide"/>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='original_uom_qty']" position="before">
+                <field name="name" widget="section_and_note_text" optional="show" attrs="{'readonly': [('parent.state', 'in', ('open','expired'))]}"/>
+                <field name="pick_location_id" attrs="{
+                    'readonly': [('state', 'in', ('done','expired'))]
+                    }"/>
+                <field name="warehouse_id" invisible="1" />
+                <field name="qty_available" readonly="1" optional="hide"/>
+                <field name="free_qty" readonly="1" optional="hide"/>
+                <field name="barcode" optional="show"/>
+                <!-- <field name="external_product_id" invisible="1"/>  -->
+                <field name="external_item" optional="hide" readonly="1" force_save="1"/>
+                <field name="barcode_customer" optional="hide" readonly="1" force_save="1"/>
+                <field name="barcode_modern_trade" optional="hide" readonly="1" force_save="1"/>
+                <field name="description_customer" optional="hide" readonly="1" force_save="1"/>
+
+                <field name="modify_type_txt" optional="hide" readonly="1" force_save="1"/>
+                <field name="plan_home" optional="hide" readonly="1" force_save="1"/>
+                <field name="room" optional="hide" readonly="1" force_save="1"/>
+                <field name="note" widget="section_and_note_text" string="Note" optional="hide" readonly="0"/>
+                <!-- <field name="finance_dimension_1_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                    optional="hide"/>
+                <field name="finance_dimension_2_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                    optional="hide"/> -->
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='taxes_id']" position="after">
+                <field name="discount" invisible="1"/>
+                <field name="discount_pricelist" force_save="1" optional="show"/>
+                <field name="sub_discount" string="Sub Disc%" readonly="1" optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='price_subtotal']" position="after">
+                <field name="rounding_price" optional="hide" attrs="{'readonly': [('parent.state', 'in', ('open','expired'))]}"/>
+                <field name="price_total" options="{
+                    'bg_color': 'red:price_total &lt; 0 and is_global_discount == False',
+                    'fg_color': 'white:price_total &lt; 0 and is_global_discount == False'
+                    }" string="Net Amount" widget="monetary" attrs="{'readonly': [('parent.state', 'in', ('open','expired'))]}" />
+                <field name="currency_id" invisible="1"/>
+                <field name="price_tax" invisible="1"/>
+                <field name="company_id" invisible="1"/>
+                <field name="is_global_discount" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/form/group/group[1]" position="inside">
+                <field name="state" invisible="1"/>
+                <field name="sequence2"/>
+                <field name="display_type" invisible="1"/>
+                <label for="name" string="Description" attrs="{'invisible': [('display_type', '!=', False)]}"/>
+                <label for="name" string="Section Name (eg. Products, Services)" attrs="{'invisible': [('display_type', '!=', 'line_section')]}"/>
+                <label for="name" string="Note" attrs="{'invisible': [('display_type', '!=', 'line_note')]}"/>
+                <field name="name"/>
+                <field name="pick_location_id" attrs="{
+                    'readonly': [('state', 'in', ('done','expired'))]
+                    }"/>
+                <field name="warehouse_id" invisible="1" />
+                <field name="qty_available" readonly="1" optional="hide"/>
+                <field name="free_qty" readonly="1" optional="hide"/>
+                <field name="barcode" optional="show"/>
+                <field name="note" widget="section_and_note_text" optional="hide" attrs="{'readonly': [('state', 'in', ('done','expired'))]}"/>
+                <!-- <field name="finance_dimension_1_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                    optional="hide"/>
+                <field name="finance_dimension_2_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                    optional="hide"/> -->
+                <field name="discount" invisible="1"/>
+                <field name="triple_discount" attrs="{'readonly': [('parent.state', 'in', ('open','expired'))]}"/>
+                <field name="discount_pricelist"/>
+                <field name="sub_discount" string="Sub Disc%" readonly="1" optional="hide"/>
+                <field name="rounding_price" optional="hide" />
+                <field name="price_total" widget="monetary" />
+                <field name="currency_id" invisible="1"/>
+                <field name="price_tax" invisible="1"/>
+                <field name="company_id" invisible="1"/>
+                <field name="is_global_discount" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook/page/group" position="replace">
+                <div class="oe_right">
+                    <button name="recalculate_global_discount" type="object"
+                        string="Re-Cal"
+                        help="Update Global Discount"
+                        class="btn-link mb-1 px-0" icon="fa-refresh"
+                    />
+                    <button string="Rounding" name="action_rounding_wizard" type="object" />
+                </div>
+                <group name="note_group" col="6" class="mt-2 mt-md-0">
+                    <group string="Discount" name="discount_group" colspan="4" modifiers="{}">
+                        <field name="sub_discount_percentage" string="Sub Disc%" readonly="1" modifiers="{'readonly':true}" id="sub_discount_percentage"/>
+                        <field name="sub_discount_amount" string="Sub Discount Amount" readonly="1" modifiers="{'readonly':true}" id="sub_discount_amount"/>
+                        <label for="global_discount" string="Global Discount" />
+                        <div name="global_discount_div">
+                          <field name="global_discount" on_change="1" modifiers="{}" id="global_discount" class="oe_inline"/> &amp;nbsp; &amp;nbsp;
+                          <span>(<field name="global_discount_total"/>)</span>
+                        </div>
+                        <field name="total_discount_percentage" string="Total Discount%" readonly="1" modifiers="{'readonly':true}" id="total_discount_percentage"/>
+                        <field name="total_discount_amount" string="Total Discount Amount" readonly="1" modifiers="{'readonly':true}" id="total_discount_amount__4__"/>
+                    </group>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                        <field name="amount_before_discount" string="Amount Before Discount" readonly="1" groups="base.group_no_one"/>
+                        <field name="total_discount_amount_new" string="Total Discount" readonly="1"/>
+                        <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                            <label for="amount_total" />
+                        </div>
+                        <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <field name="rounding_untax" force_save= "1" readonly="1" groups="base.group_no_one"/>
+                        <field name="rounding_taxes" force_save= "1" readonly="1" groups="base.group_no_one"/>
+                        <field name="rounding_total" force_save= "1" readonly="1" groups="base.group_no_one"/>
+                    </group>
+                    <div class="oe_clear"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='sequence']" position="before">
+                <control>
+                    <create name="add_product_control" string="Add a product" attrs="{'readonly': [('parent.state', 'in', ('open','expired'))]}"/>
+                    <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}" attrs="{'readonly': [('parent.state', 'in', ('open','expired'))]}"/>
+                    <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}" attrs="{'readonly': [('parent.state', 'in', ('open','expired'))]}"/>
+                </control>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='original_uom_qty']" position="attributes">
+                <attribute name="attrs">{'required': [('display_type', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem
+        id="sale_blanket_order.menu_blanket_order_config"
+        active="False"
+    />
+    <menuitem
+        id="menu_blanket_order_config"
+        name = "Sale Agreement"
+        parent="sale.sale_order_menu"
+        sequence="20"
+        action="sale_blanket_order.act_open_blanket_order_view"
+    />
+</odoo>

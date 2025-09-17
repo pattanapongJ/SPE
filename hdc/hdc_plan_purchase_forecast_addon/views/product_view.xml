@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="product_plan_purchase_tree_view_inherit" model="ir.ui.view">
+        <field name="name">product.plan.purchase.tree.view.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="hdc_plan_purchase_forecast.product_plan_purchase_tree_view"/>
+        <field name="arch" type="xml">         
+            <xpath expr="//field[@name='months_s_t_b_o_po']" position="after"> 
+                <field name="draft_rfq_total"/>
+                <field name="draft_mrp_total"/>
+            </xpath>
+        </field>
+    </record> 
+    <record id="plan_purchase_product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">plan.purchase.product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="product_type_mr"/>
+            </xpath>
+        </field>
+    </record>        
+</odoo>

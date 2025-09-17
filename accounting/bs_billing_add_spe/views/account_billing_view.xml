@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="bs_billing_add_speaccount_billing_form" model="ir.ui.view">
+        <field name="name">bs.billing.add.spe.account.billing.form</field>
+        <field name="model">account.billing</field>
+        <field name="inherit_id" ref="account_billing.view_account_billing_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="sales_person_id" attrs="{'invisible': [('bill_type', '=', 'in_invoice')]}" />
+                <field name="percentage" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+            </field>
+            <xpath expr="//field[@name='billing_line_ids']/tree/field[@name='total']" position="replace">
+                <field
+                    name="total"
+                    sum="Total Amount"
+                    readonly="1"
+                    force_save="1"
+                    string="Amount Due"
+                />
+            </xpath>
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="branch_id"/>
+            </xpath>
+            <!-- billing line -->
+            <xpath expr="//field[@name='billing_line_ids']/tree/field[@name='total']" position="before">
+                <field name="service" />
+                <field name="amount_total" readonly="1" force_save="1"/>
+            </xpath>
+            <xpath expr="//field[@name='billing_line_ids']/tree/field[@name='total']" position="after">
+                <field name="percentage"/>
+                <field name="bill_total" readonly="1" force_save="1"/>
+                <field name="bill_balance" readonly="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="menu_action_customer_billing_spe" name="Customer Billing" sequence='99' web_icon="bs_billing_add_spe,static/description/icon.png" active="False" />
+    <menuitem
+        action="account_billing.action_customer_billing"
+        id="menu_action_customer_billing_spe"
+        sequence="15"
+    />
+
+</odoo>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="batch_billing_total_report_document">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <t t-set="total_amount" t-value="0"/>
+        <div class="header" style="font-family: KanitLight">
+            <div class="row">
+                <div class="col-2 text-left">
+                    
+                </div>
+                <div class="col-8 text-center">
+                    <div style="font-size: 16px;font-weight: bold;">
+                        ใบรับบัญชี
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-4 text-left">
+                    
+                </div>
+                <div class="col-3 text-center">
+
+                </div>
+                <div class="col-3 text-center">
+                    <div class="row">
+                        <div class="col-5" style="font-size: 12px">
+                            <span style="font-weight: bold;">เลขที่เอกสาร</span>
+                        </div>
+                        <div class="col-7 text-left" style="font-size: 12px">
+                            <span t-if="doc.name">
+                                <span t-field="doc.name"/>
+                            </span>
+                            <span t-if="not doc.name">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 text-left" style="font-size: 12px;margin-left:4mm;">
+                    <span class="page"/>
+                    /
+                    <span class="topage"/>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="row">
+                <div class="col text-center" style="width: 50%">
+                    <div class="row">
+                        <div class="col-3" style="font-size: 12px">
+                            <span style="font-weight: bold;">สายการวางบิล</span>
+                        </div>
+                        <div class="col-3 text-left text-nowrap" style="font-size: 12px">
+                            <span t-if="doc.billing_route_id">
+                                <span t-field="doc.billing_route_id.name"/>
+                            </span>
+                            <span t-if="not doc.billing_route_id">
+                                -
+                            </span>
+                        </div>
+                        <div class="col-6 text-left text-nowrap" style="font-size: 12px">
+                            <span t-if="doc.billing_route_id">
+                                <span t-field="doc.billing_route_id.description"/>
+                            </span>
+                            <span t-if="not doc.billing_route_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 25%">
+                    <div class="row">
+                        <div class="col-2" style="font-size: 12px">
+                            <span style="color: white;">-</span>
+                        </div>
+                        <div class="col-5 text-right" style="font-size: 12px">
+                            <span style="font-weight: bold;">เงื่อนไขเครดิต</span>
+                        </div>
+                        <div class="col-5 text-left" style="font-size: 12px">
+                            <span t-if="doc.payment_credit">
+                                <span t-field="doc.payment_credit"/>
+                            </span>
+                            <span t-if="not doc.payment_credit">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-center" style="width: 25%">
+                    <div class="row">
+                        <div class="col-6" style="font-size: 12px">
+                            <span style="font-weight: bold;">วันที่เอกสาร</span>
+                        </div>
+                        <div class="col-6 text-left" style="font-size: 12px">
+                            <span t-if="doc.date">
+                                <span t-field="doc.date"/>
+                            </span>
+                            <span t-if="not doc.date">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+
+        </div>
+  <div class="article" style="font-family: KanitLight" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+    <t t-set="l_no" t-value="0"/>
+    <t t-set="already_rendered_keys" t-value="[]"/>
+    <t t-set="max_rows_per_page" t-value="20"/>
+    <t t-set="actual_row_count" t-value="0"/>
+
+    <table class="table table-borderless" style="font-size: 12px; line-height: 18px;">
+        <thead>
+            <tr>
+                <th class="text-center border-dotted border-dotted-dark" style="width: 6%;">ใบที่</th>
+                <th class="text-center border-dotted border-dotted-dark" style="width: 23%;">ชื่อลูกค้า</th>
+                <th class="text-center border-dotted border-dotted-dark" style="width: 14%;">เลขที่ใบวางบิล</th>
+                <th class="text-center border-dotted border-dotted-dark" style="width: 10%;">วันที่วางบิล</th>
+                <th class="text-center border-dotted border-dotted-dark" style="width: 13%;">จำนวนเงิน</th>
+                <th class="text-center border-dotted border-dotted-dark" style="width: 16%;">ผู้ตัด บ / ช  เช็ค / สด</th>
+            </tr>
+        </thead>
+        <tbody>
+            <t t-set="displayed_rows" t-value="[]"/>
+            <t t-foreach="o.line_ids" t-as="ol">
+                <t t-set="pid" t-value="ol.partner_id.id"/>
+                <t t-set="bill" t-value="ol.billing_no or ''"/>
+                <t t-set="key" t-value="[pid, bill]"/>
+
+                <t t-if="key not in already_rendered_keys">
+                    <t t-set="repeat_count" t-value="0"/>
+                    <t t-set="sum_amount" t-value="0.0"/>
+
+                    <!-- หาจำนวนที่ซ้ำ -->
+                    <t t-foreach="o.line_ids" t-as="sub">
+                        <t t-if="sub.partner_id.id == pid and (sub.billing_no or '') == bill">
+                            <t t-set="repeat_count" t-value="repeat_count + 1"/>
+                            <t t-set="sum_amount" t-value="sum_amount + sub.amount"/>
+                        </t>
+                    </t>
+
+                    <!-- กรณีรวม -->
+                    <t t-if="bill and repeat_count &gt; 1">
+                        <t t-set="l_no" t-value="l_no + 1"/>
+                        <t t-set="actual_row_count" t-value="actual_row_count + 1"/>
+                        <tr>
+                            <td class="text-left border-dotted-left border-dotted-right border-dotted-dark">
+                                <t t-esc="l_no"/>
+                            </td>
+                            <td class="text-left border-dotted-left border-dotted-right border-dotted-dark">
+                                <span t-field="ol.partner_id.display_name"/>
+                            </td>
+                            <td class="text-left border-dotted-left border-dotted-right border-dotted-dark">
+                                <t t-esc="bill"/>
+                            </td>
+                            <td class="text-center border-dotted-left border-dotted-right border-dotted-dark">-</td>
+                            <td class="text-right border-dotted-left border-dotted-right border-dotted-dark">
+                                <t t-esc="'{0:,.2f}'.format(sum_amount)"/>
+                                <t t-set="total_amount" t-value="total_amount + sum_amount"/>
+                            </td>
+                            <td class="border-dotted-left border-dotted-right border-dotted-dark"/>
+                        </tr>
+                    </t>
+
+                    <!-- กรณีแสดงแต่ละบรรทัด -->
+                    <t t-if="not bill or repeat_count &lt;= 1">
+                        <t t-foreach="o.line_ids" t-as="sub">
+                            <t t-if="sub.partner_id.id == pid and (sub.billing_no or '') == bill">
+                                <t t-set="l_no" t-value="l_no + 1"/>
+                                <t t-set="actual_row_count" t-value="actual_row_count + 1"/>
+                                <tr>
+                                    <td class="text-center border-dotted-left border-dotted-right border-dotted-dark">
+                                        <t t-esc="l_no"/>
+                                    </td>
+                                    <td class="text-left border-dotted-left border-dotted-right border-dotted-dark">
+                                        <span t-field="sub.partner_id.display_name"/>
+                                    </td>
+                                    <td class="text-left border-dotted-left border-dotted-right border-dotted-dark">
+                                        <span t-field="sub.billing_no"/>
+                                    </td>
+                                    <td class="text-center border-dotted-left border-dotted-right border-dotted-dark">
+                                        <span t-field="sub.invoice_date"/>
+                                    </td>
+                                    <td class="text-right border-dotted-left border-dotted-right border-dotted-dark">
+                                        <t t-esc="'{0:,.2f}'.format(sub.amount)"/>
+                                        <t t-set="total_amount" t-value="total_amount + sub.amount"/>
+                                    </td>
+                                    <td class="border-dotted-left border-dotted-right border-dotted-dark"/>
+                                </tr>
+                            </t>
+                        </t>
+                    </t>
+                    <t t-set="already_rendered_keys" t-value="already_rendered_keys + [key]"/>
+                </t>
+            </t>
+
+            <!-- เติมแถวเปล่าให้ครบ max_rows_per_page -->
+            <t t-set="remainder_rows" t-value="actual_row_count % max_rows_per_page"/>
+            <t t-if="remainder_rows &gt; 0">
+                <t t-set="num_empty_rows" t-value="max_rows_per_page - remainder_rows"/>
+                <t t-foreach="range(num_empty_rows)" t-as="empty_row">
+                    <tr>
+                        <td class="border-dotted-left border-dotted-right border-dotted-dark"><span style="color:white;">-</span></td>
+                        <td class="border-dotted-left border-dotted-right border-dotted-dark"><span style="color:white;">-</span></td>
+                        <td class="border-dotted-left border-dotted-right border-dotted-dark"><span style="color:white;">-</span></td>
+                        <td class="border-dotted-left border-dotted-right border-dotted-dark"><span style="color:white;">-</span></td>
+                        <td class="border-dotted-left border-dotted-right border-dotted-dark"><span style="color:white;">-</span></td>
+                        <td class="border-dotted-left border-dotted-right border-dotted-dark"><span style="color:white;">-</span></td>
+                    </tr>
+                </t>
+            </t>
+            <tfoot>
+                <tr>
+                    <td class="border-dotted-left border-dotted-right border-dotted-bottom border-dotted-dark"><span style="color:white;">-</span></td>
+                    <td class="border-dotted-left border-dotted-right border-dotted-bottom border-dotted-dark"><span style="color:white;">-</span></td>
+                    <td class="border-dotted-left border-dotted-right border-dotted-bottom border-dotted-dark"><span style="color:white;">-</span></td>
+                    <td class="border-dotted-left border-dotted-right border-dotted-bottom border-dotted-dark"><span style="color:white;">-</span></td>
+                    <td class="border-dotted-left border-dotted-right border-dotted-bottom border-dotted-dark"><span style="color:white;">-</span></td>
+                    <td class="border-dotted-left border-dotted-right border-dotted-bottom border-dotted-dark"><span style="color:white;">-</span></td>
+                </tr>
+            </tfoot>            
+        </tbody>
+    </table>
+</div>
+
+    <div class="footer last-page not-first-page" style="margin-top:0mm; vertical-align: bottom; font-family: KanitLight;">
+     <table style="width:100%; font-size: 12px; border-collapse: collapse;" class="table table-borderless">
+        <!-- แถวรวมบิล -->
+        <tr>
+            <td colspan="2" class="border-dotted-left border-dotted-top border-dotted-dark"/>
+            <td colspan="2" class="border-dotted-left border-dotted-top border-dotted-dark text-center">
+                <table style="width: 100%; border-collapse: collapse; line-height: 1.0;">
+                    <tr>
+                        <td class="text-left" style="padding: 1px 2px;">รวมบิล</td>
+                        <td class="text-center" style="padding: 1px 2px;"><t t-esc="len(already_rendered_keys)"/></td>
+                        <td class="text-right" style="padding: 1px 2px;">ใบ</td>
+                    </tr>
+                </table>
+            </td>
+            <td class="border-dotted-left border-dotted-top border-dotted-dark text-right">
+                <t t-esc="'{0:,.2f}'.format(total_amount)"/>
+            </td>
+            <td class="border-dotted-left border-dotted-right border-dotted-top border-dotted-dark"/>
+        </tr>
+
+        <!-- แถวผู้ลงบัญชี -->
+        <tr>
+            <td colspan="2" class="border-dotted-left border-dotted-top border-dotted-bottom border-dotted-dark" style="line-height: 1.2; padding: 2px 5px;">
+                <br/>
+                ผู้ลงบัญชี.........................................................................................<br/>
+                <br/>
+                วันที่ลง...........................................................................................<br/>
+            </td>
+            <td colspan="2" class="border-dotted-left border-dotted-top border-dotted-bottom border-dotted-dark" style="line-height: 1.2; padding: 2px 5px;">
+                <br/>
+                ผู้รับบัญชี.........................................................................................<br/>
+                <br/>
+                วันที่ลง...........................................................................................<br/>
+            </td>
+            <td colspan="2" class="border-dotted-left border-dotted-right border-dotted-top border-dotted-bottom border-dotted-dark" style="line-height: 1.2; padding: 2px 5px;">
+                <br/>
+                ผู้ตัดบัญชี.........................................................................................<br/>
+                <br/>
+                วันที่ลง...........................................................................................<br/>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+
+    </template>
+
+    <template id="batch_billing_total_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hdc_account_general_reports.batch_billing_total_report_document" t-lang="doc.responsible_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

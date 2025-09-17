@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="res_config_settings_view_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.view.inherit</field>
+            <field name="model">res.config.settings</field>
+             <field name="inherit_id" ref="sh_pdc.sh_pdc_account_setting_inherit" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='pdc_vendor']/../../../.." position="after">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="allow_automatic_pdc_creation" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="allow_automatic_pdc_creation" />
+                            <div class="text-muted">
+                                <p>
+                                    If this is checked, will create PDC automatically after registering payment.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

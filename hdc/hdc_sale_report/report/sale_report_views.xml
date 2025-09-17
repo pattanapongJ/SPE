@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_report_categorie_detail_excel_view" model="ir.actions.report">
+            <field name="name">รายงานยอดขายประเภทสินค้า</field>
+            <field name="model">wizard.sale.reporting</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">hdc_sale_report.sale_reporting</field>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

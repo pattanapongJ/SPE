@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View pdc.wizard form -->
+    <record id="view_pdc_wizard_form_inherit" model="ir.ui.view">
+        <field name="name">view.pdc.wizard.form.herit</field>
+        <field name="model">pdc.wizard</field>
+        <field name="inherit_id" ref="sh_pdc.sh_pdc_payment_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button name="action_rc_button" states="done,bounced" class="oe_highlight" string="RC" type="object"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_cancel']" position="replace">
+                <button name="action_cancel" class="oe_highlight" states="draft,registered,returned,bounced" string="Cancel" type="object"/>
+
+            </xpath>
+
+            <xpath expr="//sheet/group/group[1]" position="inside">
+                <field name="cheque_formate_id"/>
+                <field name="partner_text"/>
+                <field name="cheque_no" string='Cross "Or Bearer"' placeholder='e.g. / /'/>
+                <field name="text_free"/>
+                <field name="is_acc_pay" invisible="1"/>
+                <field name="crossed_text" attrs="{'invisible':[('is_acc_pay','=',False)]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="groups">base.group_multi_company</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='done_date']" position="after">
+                <field name="company_id" position="move"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_pdc_tree_form_sh_pdc" model="ir.ui.view">
+        <field name="name">pdc.wizard.view.form.inherit.com</field>
+        <field name="model">pdc.wizard</field>
+        <field name="inherit_id" ref="sh_pdc.sh_pdc_tree_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="company_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

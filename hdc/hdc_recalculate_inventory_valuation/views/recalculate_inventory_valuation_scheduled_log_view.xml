@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="recalculate_inventory_valuation_scheduled_log_view_tree" model="ir.ui.view">
+        <field name="name">recalculate.inventory.valuation.scheduled.log.view.tree</field>
+        <field name="model">recalculate.inventory.valuation.scheduled.log</field>
+        <field name="arch" type="xml">
+            <tree string="Scheduled Actions Recal Inventory Valuation Log" multi_edit="0" create="false">
+                <field name="recalculate_date" readonly="1" force_save="1"/>
+                <field name="total_record" readonly="1" force_save="1"/>
+                <field name="total_product" readonly="1" force_save="1"/>
+                <field name="range_month" readonly="1" force_save="1"/>
+                <field name="company_id" readonly="1" force_save="1"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="recalculate_inventory_valuation_scheduled_log_view_form" model="ir.ui.view">
+        <field name="name">recalculate.inventory.valuation.scheduled.log.view.form</field>
+        <field name="model">recalculate.inventory.valuation.scheduled.log</field>
+        <field name="arch" type="xml">
+            <form string="Scheduled Actions Recal Inventory Valuation Log">
+                <sheet>
+                    <group>
+                        <field name="recalculate_date" readonly="1" force_save="1"/>
+                        <field name="total_record" readonly="1" force_save="1"/>
+                        <field name="total_product" readonly="1" force_save="1"/>
+                        <field name="range_month" readonly="1" force_save="1"/>
+                        <field name="company_id" readonly="1" force_save="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="recalculate_inventory_valuation_scheduled_log_view_action" model="ir.actions.act_window">
+        <field name="name">Scheduled Actions Recal Inventory Valuation Log</field>
+        <field name="res_model">recalculate.inventory.valuation.scheduled.log</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="recalculate_inventory_valuation_scheduled_log"
+            name="Scheduled Actions Recal Inventory Valuation Log"
+            parent="mail.mail_menu_technical"
+            action="recalculate_inventory_valuation_scheduled_log_view_action"
+            sequence="6"/>
+</odoo>

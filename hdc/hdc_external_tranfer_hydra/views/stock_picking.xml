@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="action_create_expenses_to">
+        <field name="name">Expenses for Tranfer</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.expense</field>
+        <field name="view_mode">form,tree</field>
+        <field name="domain">[('requisition_id','=',active_id)]</field>
+        <field name="context">{
+            "default_requisition_id":active_id,
+            }
+        </field>
+    </record>
+    <record id="view_external_tran_form" model="ir.ui.view">
+        <field name="name">stock.picking.external</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/div[1]/button[@name='action_see_move_scrap']" position="before">
+                    <button class="oe_stat_button" type="object" name="get_expense"
+                        icon="fa-credit-card-alt"  attrs="{'invisible':['|',('expense_count', '=', 0),('external_tranfer_types','=',False)]}">
+                        <field string="Expenses" name="expense_count" widget="statinfo"/>
+                    </button>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_report_delivery)d']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('check_all','=',True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//form/sheet/group[1]/group[1]/div[1]/label[1]" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|',('check_all','=',True),('picking_type_code', '!=', 'outgoing')]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="employee_name" string="Requestor" attrs="{'invisible': [('external_tranfer_types','=',False)]}"/>
+                <field name="department_id" string="Department" attrs="{'invisible': [('external_tranfer_types','=',False)]}"/>
+                <field name="check_all"  invisible="1"/>
+                <field name="external_tranfer_types"  invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='scheduled_date']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('check_all','=',True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//form/sheet/group[1]/group[2]/label[1]" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('check_all','=',True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_done']" position="before">
+                <field name="schedule_req" string="Request Date" attrs="{'invisible': [('external_tranfer_types','=',False)]}"/>
+                <field name="scheduled_date" string="Pickup Date" attrs="{'invisible': [('external_tranfer_types','=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='date_done']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|',('state','!=','done'),('check_all','=',True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_done']" position="after">
+                <field name="date_done" string="Tranfer Date" attrs="{'invisible': ['|',('state','!=','done'),('external_tranfer_types','=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='date_done']" position="after">
+                <field name="external_tranfer_types" attrs="{'invisible': 1}"/>
+                <field name="company_id" attrs="{'invisible': 1}"/>
+            </xpath>
+            <xpath expr="//header/button[1]" position="before">
+                <button name="%(action_create_expenses_to)d" type="action" string="Create Expenses" attrs="{'invisible': [('external_tranfer_types','=',False)]}" class="btn btn-primary"/>
+            </xpath>
+            <xpath expr="//group[@name='other_infos']" position="after">
+                <group string="Approval" attrs="{'invisible': [('external_tranfer_types','=',False)]}">
+                    <field name="approved_reviewer"/>
+                    <field name="approved"/>
+                </group>
+            </xpath>
+
+            <!--move_line-->
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom_qty']" position="replace">
+                <field name="product_uom_qty" attrs="{'readonly': ['|',('state', '=', 'waiting'),('state', '=', 'done'),('state', '=', 'cancel')]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_show_details']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': False}
+                </attribute>
+            </xpath>
+            <xpath expr="//page[@name='detailed_operations_hidden']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': True}
+                </attribute>
+            </xpath>
+            <xpath expr="//page[@name='detailed_operations_shown']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': True}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+<!--    <record id="view_stock_move_operations_inherit_form" model="ir.ui.view">-->
+<!--        <field name="name">stock.move.operations.inherit</field>-->
+<!--        <field name="model">stock.move.line</field>-->
+<!--        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree" />-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='lot_id']" position="replace">-->
+<!--                <field name="lot_id"  groups="stock.group_production_lot"-->
+<!--                            attrs="{'readonly': ['&amp;', ('package_level_id', '!=', False), ('parent.picking_type_entire_packs', '=', True)]}"-->
+<!--                            invisible="not context.get('show_lots_text')"-->
+<!--                        />-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="view_external_expense_form" model="ir.ui.view">
+        <field name="name">hr.expense.external</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="hr_expense.hr_expense_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='employee_id']" position="before">
+                <field name="requisition_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

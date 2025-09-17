@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hdc_requestion_cutting_mo_report_document">
+
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+
+        <div class="header font-inventory-div" style="font-family: KanitLight;" >
+            <div class="row" style="margin: 0px;height: 20px;">
+                <!-- <div class="col-2 text-left" style="margin: 0px; padding-top: 15px;">
+                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')" class="pull-left img-logo" style="max-height: 50px; max-width: 50px;"/>
+                </div> -->
+                <div class="col-4 text-left"/>
+                <div class="col-4 text-center" style="font-size: 15.12px;padding-top: 15px;">
+                    <span style="font-size: 16.67px; ">ใบเบิก/ตัดวัตถุดิบ</span><br/>
+                </div>
+                <div class="col-4" style="font-family: KanitLight;font-size: 12.00px;">
+                    <div class="row ">
+                        <div class="col text-left" style="width: 30%;">
+                            <strong><span>เลขที่: </span> </strong>
+                        </div>
+                        <div class="col text-left text-nowrap" style="border-bottom: 1px dotted black;width: 70%;"> 
+                           <span t-if="doc.name">
+                                <span t-field="doc.name"/>
+                            </span>
+                            <span t-if="not doc.name">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col text-left" style="width: 30%;">
+                            <strong><span>วันที่: </span> </strong>
+                        </div>
+                        <div class="col text-left text-nowrap" style="border-bottom: 1px dotted black;width: 70%;"> 
+                           <span t-if="doc.create_date">
+                            <span t-field="doc.create_date" t-options='{"format": "dd/MM/yyyy"}'/>
+                            </span>
+                            <span t-if="not doc.create_date">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col text-left" style="width: 30%;">
+                            <strong><span>คลังสินค้า: </span> </strong>
+                        </div>
+                        <div class="col text-left text-nowrap" style="border-bottom: 1px dotted black;width: 70%;"> 
+                           <span t-if="doc.location_src_id">
+                                <span t-field="doc.location_src_id.complete_name"/>
+                            </span>
+                            <span t-if="not doc.location_src_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+            
+            <div class="row" style="font-family: KanitLight;font-size: 12.00px;padding-top: 40px;">
+                <div class="col-6" >
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <strong><span>ลูกค้า: </span> </strong>
+                        </div>
+                        <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                            <t t-set="partner_name" t-value="doc.get_partner_id_name()"/>
+                            <span t-esc="partner_name"/>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <strong><span>รหัสสินค้า: </span> </strong>
+                        </div>
+                        <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                           <span t-if="doc.product_id.default_code">
+                                <span t-field="doc.product_id.default_code"/>
+                            </span>
+                            <span t-if="not doc.product_id.default_code">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <strong><span>สินค้าสั่งผลิต: </span> </strong>
+                        </div>
+                        <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                           <span t-if="doc.product_id">
+                                <span t-field="doc.product_id.name"/>
+                            </span>
+                            <span t-if="not doc.product_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <strong><span>เลขที่ใบขอผลิต: </span> </strong>
+                        </div>
+                        <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                           <span t-if="doc.mr_id">
+                                <span t-field="doc.mr_id.name"/>
+                            </span>
+                            <span t-if="not doc.mr_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <strong><span>จำนวนสั่งผลิต: </span> </strong>
+                        </div>
+                        <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                           <span t-if="doc.product_qty">
+                                <span t-field="doc.product_qty"/> <span t-field="doc.product_id.uom_id.name"/>
+                            </span>
+                            <span t-if="not doc.product_qty">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <strong><span>จำนวนประเมินได้: </span> </strong>
+                        </div>
+                        <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                           <span t-if="doc.est_quantity">
+                                <span t-field="doc.est_quantity"/>
+                            </span>
+                            <span t-if="not doc.est_quantity">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <strong><span>ประเภทเบิก: </span> </strong>
+                        </div>
+                        <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                           <span t-if="material_requisition_type_id">
+                                <span t-field="material_requisition_type_id.name"/>
+                            </span>
+                            <span t-if="not material_requisition_type_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <strong><span>โรงงาน: </span> </strong>
+                        </div>
+                        <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                           <span t-if="doc.picking_type_id">
+                                <span t-field="doc.picking_type_id.warehouse_id.name"/>
+                            </span>
+                            <span t-if="not doc.picking_type_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <strong><span>ส่วนงาน: </span> </strong>
+                        </div>
+                        <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                            <span t-if="operation_id.workcenter_id">
+                                <span t-field="operation_id.workcenter_id.name"/>
+                            </span>
+                            <span t-if="not operation_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <strong><span>ส่วนงานต่อไป: </span> </strong>
+                        </div>
+                        <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                            <span t-if="operation_id.workcenter_next_id">
+                                <span t-field="operation_id.workcenter_next_id.name"/>
+                            </span>
+                            <span t-if="not operation_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <span t-if="mrp_id_origin">
+                        <div class="row ">
+                            <div class="col-5 text-left">
+                                <strong><span>สินค้าผลิตสำเร็จรูป: </span> </strong>
+                            </div>
+                            <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                                <span t-if="mrp_id_origin.product_id">
+                                    <span t-field="mrp_id_origin.product_id.name"/>
+                                </span>
+                                <span t-if="not mrp_id_origin.product_id">
+                                    -
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-4 text-left">
+                                <strong><span>อ้างอิงเลขที่สั่งผลิต: </span> </strong>
+                            </div>
+                            <div class="col-8 text-left" style="border-bottom: 1px dotted black"> 
+                                <span t-if="mrp_id_origin">
+                                    <span t-field="mrp_id_origin.name"/>
+                                </span>
+                                <span t-if="not mrp_id_origin">
+                                    -
+                                </span>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article font-inventory-div" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <div class="row">
+                <t t-set="l_no" t-value="0"/>
+                <!-- <table class="table table-bordered" style="font-size: 12.00px;line-height: 18px"> -->
+                <table class="table" style="font-size: 12.00px;line-height: 18px">
+                    <thead>
+                        <tr class="border-dotted border-dotted-dark">
+                            <th class="text-center border font-inventory-th border-dotted border-dotted-dark text-nowrap" style="width: 5%;">No.</th>
+                            <th class="text-center border font-inventory-th border-dotted border-dotted-dark text-nowrap" style="width: 11%;">รหัสสินค้า</th>
+                            <th class="text-center border font-inventory-th border-dotted border-dotted-dark text-nowrap" style="width: 20%;">รายการเบิก</th>
+                            <th class="text-center border font-inventory-th border-dotted border-dotted-dark text-nowrap" style="width: 14%;">Lot No.</th>
+                            <th class="text-center border font-inventory-th border-dotted border-dotted-dark text-nowrap" style="width: 10%;">จำนวนชิ้น/กก</th>
+                            <th class="text-center border font-inventory-th border-dotted border-dotted-dark text-nowrap" style="width: 10%;">ตัดขนาด (มม)</th>
+                            <th class="text-center border font-inventory-th border-dotted border-dotted-dark text-nowrap" style="width: 10%;">จำนวน (ชิ้น)</th>
+                            <th class="text-center border font-inventory-th border-dotted border-dotted-dark text-nowrap" style="width: 10%;">เศษส่งคืน (kg)</th>
+                            <th class="text-center border font-inventory-th border-dotted border-dotted-dark text-nowrap" style="width: 10%;">หน่วย</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-borderless" style="font-size: 10.00px;">
+                        <!-- <t t-set="has_barcode" t-value="any(move_line.product_id and move_line.product_id.sudo().barcode or move_line.package_id for move_line in o.move_line_ids)"/>
+                        <t t-set="has_serial_number" t-value="any(move_line.lot_id or move_line.lot_name for move_line in o.move_line_ids)" groups="stock.group_production_lot"/> -->
+                        <span t-if="operation_id">
+                            <span t-foreach="o.move_raw_ids" t-as="move" t-if="move.operation_id.id == operation_id.id">
+                                <tr >
+                                    <td class="text-center"> 
+                                        <t t-set="item_index" t-value="l_no"/>
+                                        <t t-set="l_no" t-value="l_no + 1"/>
+                                        <t t-esc="l_no"/>
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <span t-if="move.product_id.default_code">
+                                            <span t-field="move.product_id.default_code"/>
+                                        </span>
+                                        <span t-if="not move.product_id.default_code">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <span t-if="move.product_id">
+                                            <span t-field="move.product_id.name"/>
+                                        </span>
+                                        <span t-if="not move.product_id">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="move.lot_ids">
+                                            <span t-field="move.lot_ids"/>
+                                        </span>
+                                        <span t-if="not move.lot_ids">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="quantity_qty_lines[item_index]">
+                                            <span t-esc="quantity_qty_lines[item_index]"/>
+                                        </span>
+                                        <span t-if="not quantity_qty_lines[item_index]">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="quantity_qty_cuts[item_index]">
+                                            <span t-esc="quantity_qty_cuts[item_index]"/>
+                                        </span>
+                                        <span t-if="not quantity_qty_cuts[item_index]">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="move.quantity_done">
+                                            <span t-field="move.quantity_done"/>
+                                        </span>
+                                        <span t-if="not move.quantity_done">
+                                            0.00
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="returned_scrap[item_index]">
+                                            <span t-esc="returned_scrap[item_index]"/>
+                                        </span>
+                                        <span t-if="not returned_scrap[item_index]">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="move.product_id.uom_id.name">
+                                            <span t-field="move.product_id.uom_id.name"/>
+                                        </span>
+                                        <span t-if="not move.product_id.uom_id.name">
+                                            -
+                                        </span>
+                                    </td>
+                                </tr>
+                            </span>
+                        </span>
+                        <span t-if="not operation_id">
+                            <span t-foreach="o.move_raw_ids" t-as="move">
+                                <tr >
+                                    <td class="text-center"> 
+                                        <t t-set="item_index" t-value="l_no"/>
+                                        <t t-set="l_no" t-value="l_no + 1"/>
+                                        <t t-esc="l_no"/>
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <span t-if="move.product_id.default_code">
+                                            <span t-field="move.product_id.default_code"/>
+                                        </span>
+                                        <span t-if="not move.product_id.default_code">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <span t-if="move.product_id">
+                                            <span t-field="move.product_id.name"/>
+                                        </span>
+                                        <span t-if="not move.product_id">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="move.lot_ids">
+                                            <span t-field="move.lot_ids"/>
+                                        </span>
+                                        <span t-if="not move.lot_ids">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="quantity_qty_lines[item_index]">
+                                            <span t-esc="quantity_qty_lines[item_index]"/>
+                                        </span>
+                                        <span t-if="not quantity_qty_lines[item_index]">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="quantity_qty_cuts[item_index]">
+                                            <span t-esc="quantity_qty_cuts[item_index]"/>
+                                        </span>
+                                        <span t-if="not quantity_qty_cuts[item_index]">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="move.quantity_done">
+                                            <span t-field="move.quantity_done"/>
+                                        </span>
+                                        <span t-if="not move.quantity_done">
+                                            0.00
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="returned_scrap[item_index]">
+                                            <span t-esc="returned_scrap[item_index]"/>
+                                        </span>
+                                        <span t-if="not returned_scrap[item_index]">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="move.product_id.uom_id.name">
+                                            <span t-field="move.product_id.uom_id.name"/>
+                                        </span>
+                                        <span t-if="not move.product_id.uom_id.name">
+                                            -
+                                        </span>
+                                    </td>
+                                </tr>
+                            </span>
+                        </span>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+        <div class="footer last-page not-first-page font-inventory-div" style="font-family: KanitLight;margin-top:5mm;vertical-align: bottom;overflow: hidden">
+            <div class="row" style="font-size: 12.00px;">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-2 text-right">
+                            <strong><span>หมายเหตุ </span></strong>
+                        </div>
+                        <div class="col-9 text-left" style="border-bottom: 1px dotted black">
+                            <span t-if="doc.note and len(doc.note) &gt; 220">
+                                <span t-esc="doc.note[:220] + '...'" />
+                            </span>
+                            <span t-if="doc.note and len(doc.note) &lt;= 220">
+                                <span t-field="doc.note"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="font-size: 12.00px; padding-top: 15px;">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <strong><span>ผู้ขอเบิก </span></strong>
+                        </div>
+                        <div class="col-6 text-left" style="border-bottom: 1px dotted black">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <strong><span>วันที่ </span></strong>
+                        </div>
+                        <div class="col-6 text-left" style="border-bottom: 1px dotted black">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-5 text-right">
+                            <strong><span>ผู้รับ </span></strong>
+                        </div>
+                        <div class="col-7 text-left" style="border-bottom: 1px dotted black">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 text-right">
+                            <strong><span>วันที่ </span></strong>
+                        </div>
+                        <div class="col-7 text-left" style="border-bottom: 1px dotted black">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <strong><span>พนักงานคลังสินค้า </span></strong>
+                        </div>
+                        <div class="col-6 text-left" style="border-bottom: 1px dotted black">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <strong><span>วันที่ </span></strong>
+                        </div>
+                        <div class="col-6 text-left" style="border-bottom: 1px dotted black">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    
+                </div>
+            </div>
+            <div class="row" style="font-size: 12.00px; padding-top: 15px;">
+                <div class="col-12 text-right">
+                    <span><span t-esc="iso_number"/></span>
+                </div>
+            </div>
+        </div>
+
+    </template>
+
+    <template id="hdc_requestion_cutting_mo_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hdc_spe_mo_report.hdc_requestion_cutting_mo_report_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

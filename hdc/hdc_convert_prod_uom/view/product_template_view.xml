@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="prod_uom_view_template_form_inherit" model="ir.ui.view">
+        <field name="name">prod.uom.view.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='description']" position="after">
+                <field name="sale_uom_map_ids" widget="many2many_tags" invisible="1"/>
+                <field name="purchase_uom_map_ids" widget="many2many_tags" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//group[field[@name='description']]" position="after">
+                <group string="Product Unit Conversion" col="1">
+                    <field name="uom_map_ids" nolabel="1" widget="hide_gb_line" context="{'default_sequence': 10}">
+                        <tree editable="bottom" default_order="sequence">
+                            <field name="sequence" widget="handle" />
+                            <field name="product_id" invisible="1" />
+                            <field name="uom_id" />
+                            <field name="factor_base" />
+                            <field name="uom_type" />
+                            <field name="is_default_sale" />
+                            <field name="is_default_purchase" />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

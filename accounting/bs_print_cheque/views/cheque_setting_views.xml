@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- View cheque.setting form -->
+    <record id="view_cheque_setting_form" model="ir.ui.view">
+        <field name="name">view.cheque.setting.form</field>
+        <field name="model">cheque.setting</field>
+        <field name="inherit_id" ref="dev_print_cheque.cheque_setting_form_view"/>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[11]" position="replace">
+                <group string="Crossed Cheque">
+                    <group>
+                        <field name="is_acc_pay"/>
+                        <field name="crossed_text"/>
+                    </group>
+                    <group>
+                        <field name="acc_pay_m_top" string="From Top" attrs="{'required':[('is_acc_pay','=',True)]}"/>
+                        <field name="acc_pay_m_left" string="From Left" attrs="{'required':[('is_acc_pay','=',True)]}"/>
+                    </group>
+                </group>
+            </xpath>
+
+            
+
+        </field>
+    </record>
+
+</odoo>

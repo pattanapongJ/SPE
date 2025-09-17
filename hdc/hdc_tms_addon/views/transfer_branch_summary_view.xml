@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="transfer_branch_summary_view_tree_inherit" model="ir.ui.view">
+        <field name="name">transfer.branch.summary.view.tree.inherit</field>
+        <field name="model">resupply.transfer.branch.summary</field>
+        <field name="inherit_id" ref="hdc_tms.transfer_branch_summary_view_tree"/>
+        <field name="arch" type="xml">         
+            <xpath expr="//field[@name='is_create']" position="replace"> 
+                <field name="is_create" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='delivery_order_ids']" position="after"> 
+                <field name="note_type" widget="radio"/>
+                <field name="filter_debit_note_ids"
+                    attrs="{'invisible': [('note_type', '!=', 'debit')]}"
+                    widget="many2many_tags"/>
+
+                <field name="filter_credit_note_ids"
+                    attrs="{'invisible': [('note_type', '!=', 'credit')]}"
+                    widget="many2many_tags"/>
+
+                <field name="filter_invoice_cancel_ids"
+                    attrs="{'invisible': [('note_type', '!=', 'cancel')]}"
+                    widget="many2many_tags"/>
+                <!-- <field name="is_debit_note"/>
+                <field name="is_credit_note"/>
+                <field name="is_invoice_cancel"/> -->
+            </xpath>
+            <xpath expr="//field[@name='is_create']" position="after"> 
+                <field name="delivery_resend" invisible="0"/>
+                <field name="invoice_date"
+                    attrs="{'invisible': [('note_type', '=', 'tms')]}"/>
+
+                <field name="spe_invoice"
+                    attrs="{'invisible': [('note_type', '=', 'tms')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='delivery_order_ids']" position="attributes"> 
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_ids']" position="after"> 
+                <field name="delivery_order_ids" widget="many2many_tags"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_person']" position="after"> 
+                <field name="resend_status" optional="hide"/>
+                <field name="company_id" optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="attributes"> 
+                <attribute name = "invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>   
+</odoo>

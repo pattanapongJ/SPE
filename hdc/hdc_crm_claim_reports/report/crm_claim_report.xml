@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_claim_template" model="ir.actions.report">
+        <field name="name">ใบรับเรื่องร้องเรียนลูกค้า</field>
+        <field name="model">crm.claim</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hdc_crm_claim_reports.report_crm_claim</field>
+        <field name="report_file">hdc_crm_claim_reports.report_crm_claim</field>
+        <field name="print_report_name">'ใบรับเรื่องร้องเรียนลูกค้า - %s' % (object.code)</field>
+        <field name="paperformat_id" ref="hdc_crm_claim_reports.paperformat_report_crm_claim"/>
+        <field name="binding_model_id" ref="model_crm_claim"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_logo_style">
+      <!-- เช็คชื่อบริษัทและกำหนดค่า logo_style -->
+      <t t-if="company.name in ['Colt Plus (Thailand) Co.,Ltd.', 
+                                 'Siam Modern Home Co.,Ltd.', 
+                                 'Siam Techno Industry Co., Ltd.']">
+         <t t-set="logo_style">margin-top:30px;</t>
+      </t>
+      <t t-elif="company.name == 'Saeng Charoen Patana Enterprise Co., Ltd.'">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+      <t t-else="">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+
+      <img t-if="company.logo"
+            t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')"
+            class="pull-left img-logo"
+            t-attf-style="{{ logo_style }}; max-height: 140px; max-width: 140px;" />
+   </template>
+</odoo>

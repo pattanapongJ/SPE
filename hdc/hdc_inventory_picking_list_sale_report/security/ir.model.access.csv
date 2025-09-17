@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_picking_list_report_user,undefined.wizard.picking.list.report,model_wizard_picking_list_report,base.group_user,1,1,1,1
+access_generate_picking_list_report_user,undefined.generate.picking.list.report,model_generate_picking_list_report,base.group_user,1,1,1,1
+access_wizard_generate_picking_list_report_user,undefined.wizard.generate.picking.list.report,model_wizard_generate_picking_list_report,base.group_user,1,1,1,1
+access_generate_picking_list_report_line_user,undefined.generate.picking.list.report.line,model_generate_picking_list_report_line,base.group_user,1,1,1,1

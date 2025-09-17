@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="generate_picking_list_form" model="ir.ui.view">
+        <field name="name">generate.picking.list.form</field>
+        <field name="model">generate.picking.list</field>
+        <field name="arch" type="xml">
+            <form string="Generate Picking Lists">
+                <header>
+                    <button name="action_search" type="object" string="Search" class="oe_highlight" />
+                    <button name="action_clear" type="object" string="Clear all"/>
+                    <button name="action_create_picking" type="object" string="Create Picking Lists" class="oe_highlight" />
+
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="partner_shipping_id" attrs="{'required': [('type_pl', '=', 'sale')]}"/>
+                            <field name="sale_id" widget="many2many_tags"  options="{'no_quick_create':True,'no_create_edit': True, 'no_create': True}"/>
+                            <field name="warehouse_id" options="{'no_quick_create':True,'no_create_edit': True, 'no_create': True}"/>
+                            <field name="is_sale_id" invisible="1"/>
+                            <field name="type_pl"/>
+                        </group>
+                        <group>
+                            <field name="order_date"/>
+                            <field name="delivery_date"/>
+                            <field name="location_id" options="{'no_quick_create':True,'no_create_edit': True, 'no_create': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Product Lists">
+                            <field name="line_ids">
+                                <tree string="Product Lists" editable="bottom" delete="1" create="0">
+                                    <field name="sale_id"/>
+                                    <field name="product_id"/>
+                                    <field name="categ_id"/>
+                                    <field name="pick_location_id"/>
+                                    <field name="demand_qty"/>
+                                    <field name="virtual_available" string="On Hand"/>
+                                    <field name="picking_draft"/>
+                                    <field name="picked_qty"/>
+                                    <field name="canceled_qty"/>
+                                    <field name="qty"/>
+                                    <field name="picking_id"/>
+                                    <field name="uom_id"/>
+                                    <field name="external_item" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="barcode_customer" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="barcode_modern_trade" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="description_customer" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="modify_type_txt" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="plan_home" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="room" optional="hide" readonly="1" force_save="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="generate_picking_list_form_action" model="ir.actions.act_window">
+        <field name="name">Generate Picking Lists</field>
+        <field name="res_model">generate.picking.list</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="generate_picking_list_form"/>
+    </record>
+
+    <record id="picking_list_tree" model="ir.ui.view">
+        <field name="name">picking.lists.tree</field>
+        <field name="model">picking.lists</field>
+        <field name="arch" type="xml" >
+            <tree create="false" duplicate="false">
+                <field name="name"/>
+                <field name="partner_id" />
+                <field name="date" />
+                <field name="delivery_date" />
+                <field name="checker" />
+                <field name="state" 
+                    widget="badge"
+                    decoration-success="state == 'done'"
+                    decoration-warning="state == 'waiting_pick'"
+                    decoration-info="state == 'draft'"
+                    decoration-danger="state == 'cancel'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="picking_list_form" model="ir.ui.view">
+        <field name="name">picking.lists.form</field>
+        <field name="model">picking.lists</field>
+        <field name="arch" type="xml">
+            <form string="Picking Lists" create="false" duplicate="false">
+                <header>
+                    <button name="action_auto_fill" states="waiting_pick" type="object" string="Auto Fill" class="oe_highlight" />
+                    <button name="action_available" attrs="{'invisible': ['|',('state', '!=', 'waiting_pick'),('show_check_availability', '=', False)]}" string="Check Availability" type="object" class="oe_highlight"/>
+                    <button name="do_unreserve" string="Unreserve" groups="base.group_user" type="object" attrs="{'invisible': ['|',('state', '!=', 'waiting_pick'),('show_check_availability', '!=', False)]}"/>
+                    <button name="action_confirm" states="draft" type="object" string="Confirmed" class="oe_highlight" />
+                    <button name="action_validate" states="waiting_pick" type="object" string="Validation" class="oe_highlight" />
+                    <button name="action_cancel" states="draft,waiting_pick" type="object" string="Cancel" class="oe_highlight" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,waiting_pick,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group name="picking_lists_header">
+                        <group>
+                            <field name="partner_id" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                            <field name="user_id"/>
+                            <field name="warehouse_id"/>
+                            <field name="location_id"/>
+                            <field name="origin"/>
+                            <field name="sale_id" widget="many2many_tags"/>
+                            <field name="show_check_availability" invisible="1"/>
+                            <!-- <field name="invoice_check" invisible="1"/> -->
+                        </group>
+                        <group>
+                            <field name="date" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                            <field name="delivery_date" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                            <label for="checker" string="Checker"/>
+                            <div>
+                                <field name="checker" class="oe_inline"/>
+                                <span>&amp;nbsp;</span>
+                                <field name="checker_date" class="oe_inline"/>
+                            </div>
+                        </group>
+                        <group string="โครงการบ้าน">
+                                <field name="project_name"/>
+                                <field name="land"/>
+                                <field name="home"/>
+                                <field name="room"/>
+                        </group>                            
+                        <group>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Product Lists">
+                            <field name="list_line_ids" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}">
+                                <tree string="Product Lists" editable="bottom" delete="0" create="0" edit="0">
+                                    <field name="product_id"/>
+                                    <field name="categ_id"/>
+                                    <field name="sale_id"/>
+                                    <field name="move_id" invisible="1"/>
+                                    <field name="picking_done_qty" optional="hide"/>
+                                    <field name="picking_id"/>
+                                    <field name="invoice_id" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="invoice_state" optional="hide"/>
+                                    <field name="location_id"/>
+                                    <field name="sub_location_id" optional="hide"/>
+                                    <field name="reserved_availability"/>
+                                    <field name="qty_ava"/>
+                                    <field name="qty_sale_order" optional="hide"/>
+                                    <field name="qty" optional="show"/>
+                                    <field name="amount_arranged" optional="show"/>
+                                    <field name="qty_done"/>
+                                    <field name="uom_id"/>
+                                    <field name="external_item" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="barcode_customer" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="barcode_modern_trade" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="description_customer" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="modify_type_txt" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="plan_home" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="room" optional="hide" readonly="1" force_save="1"/>
+                                    <field name="date_order" optional="hide"/>
+                                    <field name="delivery_date" optional="hide"/>
+                                    <field name="move_location_id" invisible="1"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="move_state" invisible="1"/>
+                                    <button name="action_show_details" type="object" icon="fa-list" width="0.1" options="{&quot;warn&quot;: true}"/>       
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group string="Remark">
+                        <field name="remark" nolabel="1" placeholder="Remark"/>
+                      </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_picking_lists_line_tree_popup" model="ir.ui.view">
+        <field name="name">picking.lists.line.tree.popup</field>
+        <field name="model">picking.lists.line</field>
+        <field name="arch" type="xml">
+            <tree string="Product Lists">
+                <field name="sequence2"/>
+                <field name="product_id"/>
+                <field name="categ_id"/>
+                <field name="picking_id"/>
+                <field name="qty"/>
+                <field name="amount_arranged" readonly="1"/>
+                <field name="qty_done"/>
+                <field name="uom_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_picking_lists_line_detail" model="ir.ui.view">
+            <field name="name">picking.lists.line.detail.form</field>
+            <field name="model">picking.lists.line</field>
+            <field name="priority">1000</field>
+            <field name="arch" type="xml">
+                <form string="Picking List Line Detail">
+                    <field name="company_id" invisible="1"/>
+                    <field name="state" invisible="1"/>
+                    <field name="move_location_id" invisible="1"/>
+                    <field name="picking_lists" invisible="1"/>
+                    <field name="has_tracking" invisible="1"/>
+                    <group>
+                        <group>
+                            <field name="product_id" readonly="1"/>
+                            <field name="location_id" invisible="0" readonly="1"/>
+                            <label for="qty"/>
+                            <div class="o_row">
+                                <span><field name="qty" readonly="1" nolabel="1"/></span>
+                                <span><field name="uom_id" readonly="1" nolabel="1"/></span>
+                            </div>
+                            <label for="qty_done"/>
+                            <div class="o_row">
+                                <span><field name="qty_done" readonly="1" nolabel="1"/></span>
+                                <span attrs="{'invisible': [('state', '=', 'done')]}"> / </span>
+                                <span><field name="reserved_availability" nolabel="1" attrs="{'invisible': [('state', '=', 'done')]}"/></span>
+                                <span><field name="uom_id" readonly="1" nolabel="1"/></span>
+                            </div>                            
+                        </group>
+                    </group>
+                    <field name="list_line_detail_ids" attrs="{'readonly': [('state', 'in', ['done','cancel'])]}" context="{'default_company_id': company_id,'default_product_id': product_id,'default_location_id': location_id,'default_uom_id': uom_id,}">
+                        <tree string="Product Lists Detail" editable="bottom" delete="1" create="1" edit="1">
+                            <field name="picking_lists_line" invisible="1" force_save="1"/>
+                            <field name="company_id" invisible="1" force_save="1"/>
+                            <field name="product_id" invisible="1" force_save="1"/>  
+                            <field name="location_id" invisible="1" readonly="1" force_save="1" />  
+                            <field name="lot_id" attrs="{'column_invisible': [('parent.has_tracking', '!=', 'lot')],'required':[('parent.has_tracking', '=', 'lot')]}"/>
+                            <field name="qty_ava" force_save="1"/>
+                            <field name="reserved_availability"/>
+                            <field name="amount_arranged"/>
+                            <field name="qty_done"/>
+                            <field name="uom_id" readonly="1" force_save="1"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button name="confirm_detail" string="Confirm" type="object" class="oe_highlight"/>
+                        <button string="Discard" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    <record id="picking_list_form_action" model="ir.actions.act_window">
+        <field name="name">Picking Lists</field>
+        <field name="res_model">picking.lists</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="picking_list_tree"/>
+    </record>
+
+    <menuitem id="menu_picking_list_main_root" web_icon="hdc_inventory_picking_list_sale,static/description/hand.png" name="Picking Lists" sequence="1" />
+
+    <menuitem name="Picking Lists" id='menu_picking_list_sub' parent="menu_picking_list_main_root" sequence="1" action="picking_list_form_action" />
+
+    <menuitem name="Generate Picking Lists" id='menu_generate_picking_list_sub' parent="menu_picking_list_main_root" sequence="2" action="generate_picking_list_form_action" />
+
+    <menuitem name="Picking List" id='menu_picking_list' parent="sale.sale_menu_root" sequence="3"/>
+
+    <menuitem
+        action="generate_picking_list_form_action"
+        id="generate_picking_list_menu"
+        parent="menu_picking_list" sequence="1"/>
+
+    <menuitem
+        action="picking_list_form_action"
+        id="picking_list_menu"
+        parent="menu_picking_list" sequence="2"/>
+
+
+
+</odoo>

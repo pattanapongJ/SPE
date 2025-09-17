@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View bs.downpayment View Tree -->
+    <record id="view_bs_downpayment_tree" model="ir.ui.view">
+        <field name="name">view.bs.downpayment.tree</field>
+        <field name="model">bs.downpayment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="payment_date"/>
+                <field name="amount" widget="monetary"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="state" widget="badge" decoration-muted="state == 'draft'" decoration-info="state == 'confirm'"
+                       decoration-success="state == 'post'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- View bs.downpayment form -->
+    <record id="view_bs_downpayment_form" model="ir.ui.view">
+        <field name="name">view.bs.downpayment.form</field>
+        <field name="model">bs.downpayment</field>
+        <field name="arch" type="xml">
+            <form string="Down Payment">
+                <header>
+                    <!--                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight"-->
+                    <!--                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>-->
+                    <!--                    <button name="action_draft" string="Reset To Draft" type="object" class="btn btn-secondary"-->
+                    <!--                            attrs="{'invisible': [('state', '!=', 'confirm')]}"/>-->
+                    <button name="action_create_downpayment_entry" string="Create Entry" type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,post"/>
+                </header>
+
+                <sheet>
+                    <field name="has_downpayment_entry" invisible="1"/>
+                    <field name="has_journal_items" invisible="1"/>
+                    <div name="button_box" class="oe_button_box">
+                        <button name="open_journal_entry" attrs="{'invisible':[('has_journal_items','=',False)]}"
+                                class="oe_stat_button" icon="fa-list" type="object" string="Journal Entry"/>
+                        <button name="open_journal_entry" context="{'open_downpayment_entry':True}"
+                                attrs="{'invisible':[('has_downpayment_entry','=',False)]}"
+                                class="oe_stat_button" icon="fa-list" type="object" string="Down Payment Entry"/>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Name..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="left_group">
+                            <field name="payment_type" widget="radio" invisible="1"/>
+                            <field name="partner_id"/>
+                            <field name="company_id"/>
+                            <field name="product_id" options="{'no_create_edit': True,'no_create': True, 'no_quick_create': True}"/>
+
+                            <label for="amount"/>
+                            <div name="amount_div" class="o_row">
+                                <field name="amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       groups="base.group_multi_currency"/>
+                            </div>
+                            <field name="payment_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="reference"/>
+                        </group>
+                        <group name="right_group">
+                        </group>
+                    </group>
+                </sheet>
+                <div class="o_attachment_preview"/>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Action bs.downpayment -->
+    <record id="action_bs_customer_downpayment" model="ir.actions.act_window">
+        <field name="name">Customer Down Payment</field>
+        <field name="res_model">bs.downpayment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('payment_type', '=', 'inbound')]</field>
+        <field name="context">{'default_payment_type': 'inbound'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create!
+            </p>
+        </field>
+    </record>
+
+    <!-- Action bs.downpayment -->
+    <record id="action_bs_vendor_downpayment" model="ir.actions.act_window">
+        <field name="name">Vendor Down Payment</field>
+        <field name="res_model">bs.downpayment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('payment_type', '=', 'outbound')]</field>
+        <field name="context">{'default_payment_type': 'outbound'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_bs_customer_downpayment" name="Customer Down Payment" parent="account.menu_finance_receivables"
+              action="action_bs_customer_downpayment"/>
+    <menuitem id="menu_bs_vendor_downpayment" name="Vendor Down Payment" parent="account.menu_finance_payables"
+              action="action_bs_vendor_downpayment"/>
+
+</odoo>

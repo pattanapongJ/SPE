@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<templates xml:space="preserve">
+
+    <t t-name="bs_payment_widget_ext" t-inherit="account.ShowPaymentInfo" t-inherit-mode="extension">
+
+        <xpath expr="//a[hasclass('outstanding_credit_assign')]" position="after">
+            <span t-esc="line.move_name" style="margin-left: 5px;margin-right: 5px;"/>
+        </xpath>
+    </t>
+
+</templates>

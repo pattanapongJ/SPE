@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_api_auth_apikey_administrator,api_auth_apikey_administrator,model_api_auth_apikey,api_framework_base.group_api_administrator,1,1,1,1
+access_api_auth_apikey_user,api_auth_apikey_user,model_api_auth_apikey,api_framework_base.group_api_user,1,1,0,0
+access_api_auth_apikey_user_read_only,api_auth_apikey_user_read_only,model_api_auth_apikey,api_framework_base.group_api_user_read_only,1,0,0,0

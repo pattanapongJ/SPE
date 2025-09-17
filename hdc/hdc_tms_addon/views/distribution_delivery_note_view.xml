@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="distibution_delivery_note_form_inherit" model="ir.ui.view">
+        <field name="name">distribition.delivery.note.form.inherit</field>
+        <field name="model">distribition.delivery.note</field>
+        <field name="inherit_id" ref="hdc_tms.distibution_delivery_note_view_form"/>
+        <field name="arch" type="xml">     
+            <xpath expr="//button[@name='closed_action']" position="replace"> 
+                <button string="Closed" name="closed_action2" type="object" class="oe_highlight" attrs="{'invisible': [('state','!=','delivery')]}"/>
+            </xpath>       
+            <xpath expr="//field[@name='driver_id']" position="attributes"> 
+                <attribute name = "attrs"> {'readonly': [('state','=','close')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='car_registration']" position="attributes"> 
+                <attribute name = "attrs"> {'readonly': [('state','=','close')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='schedule_date']" position="attributes"> 
+                <attribute name = "attrs"> {'readonly': [('state','=','close')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes"> 
+                <attribute name = "attrs"> {'readonly': [('state','=','close')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']" position="attributes"> 
+                <attribute name = "attrs"> {'readonly': [('state','=','close')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='remark']" position="before"> 
+                <field name="invoice_cancel_state" optional="show" force_save="1" readonly="1"/>
+                <field name="finance_type" optional="show" force_save="1" attrs="{'readonly': [('billing_status','!=','to_finance')]}"/>
+            </xpath>
+            <xpath expr="//sheet" position="after"> 
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </xpath>
+        </field>
+    </record> 
+</odoo>

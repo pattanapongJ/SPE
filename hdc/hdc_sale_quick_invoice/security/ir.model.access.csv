@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_search_urgent_delivery_user,search_urgent_delivery_user,model_search_urgent_delivery,base.group_user,1,1,1,1
+access_search_urgent_delivery_line_user,search_urgent_delivery_line_user,model_search_urgent_delivery_line,base.group_user,1,1,1,1
+access_urgent_delivery_user,urgent_delivery_user,model_urgent_delivery,base.group_user,1,1,1,1
+access_wizard_add_urgent_delivery_user,wizard_add_urgent_delivery_user,model_wizard_add_urgent_delivery,base.group_user,1,1,1,1
+access_urgent_delivery_line_user,urgent_delivery_line_user,model_urgent_delivery_line,base.group_user,1,1,1,1
+access_wizard_remove_urgent_delivery_user,wizard_remove_urgent_delivery_user,model_wizard_remove_urgent_delivery,base.group_user,1,1,1,1

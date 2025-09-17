@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="inter_transfer_type_inherit" model="ir.ui.view">
+        <field name="name">inter.transfer.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_inter_transfer.inter_transfer_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='to_warehouse']" position="after">
+                <field name="inter_type_id" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')] , 'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                <field name="inter_type_id" readonly="1" force_save="1" attrs="{'invisible': [('check_inter_transfer_base_id', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="borrow_type_inherit" model="ir.ui.view">
+        <field name="name">borrow.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_inventory_borrow.inventory_borrow_inherit" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='requestor_emp']" position="after">
+                <!-- attrs="{'invisible': [('request_spare_parts_type','=',False)]}" -->
+                <field name="borrow_type_id" attrs="{'invisible': [('request_spare_parts_type', '=', False)] , 'readonly': [('state', 'in', ('done','cancel'))]}" />
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

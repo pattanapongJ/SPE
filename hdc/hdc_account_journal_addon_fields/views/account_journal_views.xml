@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_journal_addon_fields_inherit_account_journal" model="ir.ui.view">
+        <field name="name">account.journal.addon.fields.form.inherit.account.journal</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="sale_example"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_journal_addon_fields_inherit_vouchur" model="ir.ui.view">
+        <field name="name">account.journal.addon.fields.form.inherit.voucher</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='bank_account']/group" position="inside">
+                <group string="Journals Voucher">
+                    <field name="journal_voucher_th" />
+                    <field name="journal_voucher_en" />
+                </group>
+            </xpath>
+        </field>
+    </record>       
+</odoo>

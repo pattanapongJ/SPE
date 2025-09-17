@@ -1,0 +1,12 @@
+
+@font-face {
+	font-family: 'KanitLight';
+	src: local('KanitLight'), local('KanitLight'),
+	url(/hdc_purchase_general_reports/static/src/fonts/KanitLight.ttf) format('truetype');
+}
+
+/* .img-logo {
+	position: relative;
+	left: -10px;
+	top: 25px;
+  } */

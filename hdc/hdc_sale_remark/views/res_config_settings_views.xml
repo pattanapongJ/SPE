@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_remark_delivery" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='category_id']"
+                position="after"
+            >
+                <field name="remark_delivery" widget="textarea" attrs="{'invisible': [('type', '!=', 'delivery')]}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//field[name='group_performa_sales']" position="after">
+                <field name="remark" widget="textarea" string="Remark"/>
+            </xpath> -->
+        <xpath expr="//div[@id='proforma_configuration']" position="after">
+            <div class="col-12 col-lg-6 o_setting_box" id="remark_en">
+                <div class="o_setting_left_pane">
+                    <field name="remark_en" string="Default Remark EN"/>
+                </div>
+                <div class="o_setting_right_pane">
+                    <label for="remark_text_en"/>
+                    <div class="text-muted">
+                        <field name="remark_text_en" widget="textarea"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+        
+        <xpath expr="//div[@id='no_edit_order']" position="after">
+            <div class="col-12 col-lg-6 o_setting_box" id="remark_th">
+                <div class="o_setting_left_pane">
+                    <field name="remark_th" string="Default Remark TH"/>
+                </div>
+                <div class="o_setting_right_pane">
+                    <label for="remark_text_th"/>
+                    <div class="text-muted">
+                        <field name="remark_text_th" widget="textarea"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+
+        </field>
+    </record>
+
+</odoo>

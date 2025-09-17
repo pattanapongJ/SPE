@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_confirm_create_picking_list_form" model="ir.ui.view">
+        <field name="name">wizard.confirm.create.picking.list.form</field>
+        <field name="model">wizard.confirm.create.picking.list</field> 
+        <field name="arch" type="xml">
+            <form string = "Confirm Create Picking">
+                <sheet>
+                    <field name="create_picking_list" invisible="1"/>
+                    <field name="generate_picking_list" invisible="1"/>
+                    <span>รายการสินค้าที่มีสถานะ Draft จะถูกยกเลิกเนื่องจากจำนวนที่กำลังสั่งจัดเกินกว่าที่จะหยิบ</span>
+                </sheet>
+                <footer>
+                    <button string="Confirm" name="action_confirm" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_confirm_create_picking_list" model="ir.actions.act_window">
+        <field name="name">Confirm Create Picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.confirm.create.picking.list</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_confirm_create_picking_list_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

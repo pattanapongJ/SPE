@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="master_key_view_picking_type_form">
+        <field name="name">stock.picking.type.master_key</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence_code']" position="after">
+                <field name="is_master_key"/>
+                <field name="is_transfer_master_key"/>
+                <field name="is_internal_transfer_master_key"/>
+            </xpath>
+
+            <xpath expr="//field[@name='addition_operation_types']" position="after">
+                <field name="is_master_key_resupply_subcontract"/>
+                <field name="receipt_master_key_subcontract_id" attrs="{'invisible': [('is_master_key_resupply_subcontract', '!=', True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="master_key_stock_picking_form_view">
+        <field name="name">stock.picking.form.master_key</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="is_master_key" invisible="1" />
+                <field name="is_transfer_master_key" invisible="1"/>
+                <field name="is_internal_transfer_master_key" invisible="1"/>
+                <field name="is_resupply_master_key" invisible="1"/>
+            </xpath>
+            <xpath expr="//button[@name='action_picking_move_tree']" position="before">
+                <button type="object"
+                    name="action_view_so_receipt_master_key"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    attrs="{'invisible': [('count_so_receipt_master_key', '=', 0)]}"
+                    >
+                    <field name="count_so_receipt_master_key" widget="statinfo" string="Source SO Receipt MTK"/>
+                </button>
+
+                <button type="object"
+                    name="action_view_so_transfer_master_key"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    attrs="{'invisible': [('count_so_transfer_master_key', '=', 0)]}"
+                    >
+                    <field name="count_so_transfer_master_key" widget="statinfo" string="Source SO Transfer MTK"/>
+                </button>
+
+                <button type="object"
+                    name="action_view_so_internal_transfer_master_key"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    attrs="{'invisible': [('count_so_internal_transfer_master_key', '=', 0)]}"
+                    >
+                    <field name="count_so_internal_transfer_master_key" widget="statinfo" string="Source SO Internal Transfer MTK"/>
+                </button>
+
+                <button type="object"
+                    name="action_view_po_receipt_master_key"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    attrs="{'invisible': [('count_po_receipt_master_key', '=', 0)]}"
+                    >
+                    <field name="count_po_receipt_master_key" widget="statinfo" string="Source Purchase MTK"/>
+                </button>
+
+
+                <button type="object"
+                    name="action_view_po_resupply_master_key"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    attrs="{'invisible': [('count_po_resupply_master_key', '=', 0)]}"
+                    >
+                    <field name="count_po_resupply_master_key" widget="statinfo" string="Source Purchase MTK"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//header/button[@name='do_print_picking']" position="after">
+                <button name="print_master_key" string="Print Master Key" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|',('picking_type_code', '!=', 'internal'),('is_internal_transfer_master_key', '!=', True)]}"/>
+                <button name="print_master_key" string="Print Master Key" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|',('picking_type_code', '!=', 'incoming'),('is_master_key', '!=', True)]}"/>
+                <button name="print_master_key" string="Print Master Key" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|',('picking_type_code', '!=', 'outgoing'),('is_master_key', '!=', True)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

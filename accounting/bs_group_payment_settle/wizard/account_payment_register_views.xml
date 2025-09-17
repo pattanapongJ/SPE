@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View account.payment.register form -->
+    <record id="view_account_payment_register_form" model="ir.ui.view">
+        <field name="name">view.account.payment.register.form</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form" />
+        <field name="arch" type="xml">
+
+            <!-- <xpath expr="//field[@name='amount']" position="attributes">
+                <attribute name="attrs">
+                    {'readonly':[('has_settle_lines','!=',False)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath> -->
+
+           
+
+            <xpath
+                expr="//group[@name='group3']" position="before">
+                <group name="group_payment_settle_id" colspan="6">
+                    <field name="has_settle_lines" invisible="1" />
+                    <field name="total_settle_amount" invisible="1" />
+                    <field name="show_group_payment_different" invisible="1" />
+                    <field name="settle_line_ids"
+                        attrs="{'invisible': ['|',('can_group_payments', '=', False),('group_payment', '=', False)]}">
+                        <tree delete="0" create="0" edit="1" editable="bottom">
+                            <field name="payment_register_id" attrs="{'column_invisible':True}" />
+                            <field name="currency_id" attrs="{'column_invisible':True}" />
+                            <field name="move_id" force_save="1" />
+                            <field name="due_amount" sum="Total Amount Due" />
+                            <field name="settle_amount" sum="Total Settle Amount" />
+                            <field name="balance" sum="Balance Amount" />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+
+             <xpath
+                expr="//group[@name='group3']" position="attributes">
+                <attribute name="attrs">{'invisible':[('show_group_payment_different', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

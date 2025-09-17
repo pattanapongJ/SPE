@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_form_payment_state" model="ir.ui.view">
+        <field name="name">purchase.order.form.view.payment.state</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//group[@name='invoice_info']//field[@name='invoice_status']"
+                       position="after">
+                    <field name="payment_state" widget="badge" string="Bill Payment Status"
+                           decoration-danger="payment_state == 'not_paid'"
+                           decoration-warning="payment_state in ('partial', 'in_payment')"
+                           decoration-success="payment_state in ('paid')"
+                           optional="show"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+    <record id="bill_purchase_order_view_tree_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.tree.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="after">
+                <field name="payment_state" widget="badge" string="Bill Payment Status"
+                       decoration-danger="payment_state == 'not_paid'"
+                       decoration-warning="payment_state in ('partial', 'in_payment')"
+                       decoration-success="payment_state in ('paid')"
+                       optional="show"/>
+            </field>
+        </field>
+    </record>
+</odoo>

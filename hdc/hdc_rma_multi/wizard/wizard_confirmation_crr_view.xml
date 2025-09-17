@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_force_done_crr_confirmation_wizard" model="ir.ui.view">
+        <field name="name">crr.force.done.confirmation.wizard.view</field>
+        <field name="model">crr.force.done.confirmation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Warning">
+                <sheet>
+                    <group>
+                        <div>
+                            <field name="crr_id" invisible="1"/>
+                            <field name="lang_code" invisible="1"/>
+                            <field name="message" readonly="1" nolabel="1"/>
+                        </div>
+                    </group>
+                    <footer>
+                        <button name="action_confirm" string="Confirm" type="object" class="btn-primary" attrs="{'invisible': [('lang_code', '=', 'th_TH')]}"/>
+                        <button name="action_confirm" string="ยืนยัน" type="object" class="btn-primary" attrs="{'invisible': [('lang_code', '!=', 'th_TH')]}"/>
+                        <button name="action_discard" string="Discard" type="object" class="btn-secondary" attrs="{'invisible': [('lang_code', '=', 'th_TH')]}"/>
+                        <button name="action_discard" string="ละทิ้ง" type="object" class="btn-secondary" attrs="{'invisible': [('lang_code', '!=', 'th_TH')]}"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_cancel_crr_confirmation_wizard" model="ir.ui.view">
+        <field name="name">crr.cancel.confirmation.wizard.view</field>
+        <field name="model">crr.cancel.confirmation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Warning">
+                <sheet>
+                    <group>
+                        <!-- Fixed label tag -->
+                        <div>
+                            <field name="crr_id" invisible="1"/>
+                            <field name="lang_code" invisible="1"/>
+                            <field name="message" readonly="1" nolabel="1"/>
+                        </div>
+                    </group>
+                    <footer>
+                        <button name="action_confirm" string="Confirm" type="object" class="btn-primary" attrs="{'invisible': [('lang_code', '=', 'th_TH')]}"/>
+                        <button name="action_confirm" string="ยืนยัน" type="object" class="btn-primary" attrs="{'invisible': [('lang_code', '!=', 'th_TH')]}"/>
+                        <button name="action_discard" string="Discard" type="object" class="btn-secondary" attrs="{'invisible': [('lang_code', '=', 'th_TH')]}"/>
+                        <button name="action_discard" string="ละทิ้ง" type="object" class="btn-secondary" attrs="{'invisible': [('lang_code', '!=', 'th_TH')]}"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

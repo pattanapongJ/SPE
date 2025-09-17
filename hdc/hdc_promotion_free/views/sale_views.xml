@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_order_form_inherit_free_product" model="ir.ui.view">
+        <field name="name">sale.order.form.free.product</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
+                <field name="free_product_check" string="Free Product Check" invisible="1"/>
+                <field name="free_product" string="Free Product" widget="boolean" optional="show" attrs="{'invisible': [('free_product_check', '=', False)]}"/>
+            </xpath>        
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="attrs">{'readonly': [('free_product', '=', True)]}</attribute>
+            </xpath>          
+        </field>
+    </record>
+
+    <record id="view_quotation_order_form_inherit" model="ir.ui.view">
+        <field name="name">quotation.order.form.free.product</field>
+        <field name="model">quotation.order</field>
+        <field name="inherit_id" ref="hdc_quotation_order.view_quotation_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quotation_line']/tree/field[@name='product_id']" position="before">
+                <field name="free_product_check" string="Free Product Check" invisible="1"/>
+                <field name="free_product" string="Free Product" widget="boolean" optional="show" attrs="{'invisible': [('free_product_check', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='quotation_line']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="attrs">{'readonly': ['|', ('state', 'in', ('sale','done','cancel')), ('free_product', '=', True)]}</attribute>
+            </xpath>          
+        </field>
+    </record>
+
+    <record id="view_blanket_order_form_inherit_free_product" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form.free.product</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='product_id']" position="before">
+                <field name="free_product_check" string="Free Product Check" invisible="1"/>
+                <field name="free_product" string="Free Product" widget="boolean" optional="show" attrs="{'invisible': [('free_product_check', '=', False)]}"/>
+            </xpath>        
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="attrs">{'readonly': ['|', ('parent.state', 'in', ('open', 'expired')), ('free_product', '=', True)]}</attribute>
+            </xpath>        
+        </field>
+    </record>
+
+</odoo>

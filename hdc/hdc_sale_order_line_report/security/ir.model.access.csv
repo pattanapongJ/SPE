@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_sale_order_line_report_user,undefined.wizard.sale.order.line.report,model_wizard_sale_order_line_report,base.group_user,1,1,1,1
+access_report_so_line_customer_xlsx_user,undefined.report.so_line_customer_xlsx,model_report_so_line_customer_xlsx,base.group_user,1,1,1,1
+access_report_so_line_item_xlsx_user,undefined.report.so_line_item_xlsx,model_report_so_line_item_xlsx,base.group_user,1,1,1,1
+access_report_so_line_sale_xlsx_user,undefined.report.so_line_sale_xlsx,model_report_so_line_sale_xlsx,base.group_user,1,1,1,1

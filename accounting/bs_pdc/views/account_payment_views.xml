@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_cheque_formate_form_inherit" model="ir.ui.view">
+        <field name="name">view_account_cheque_formate_form_inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='cheque_formate_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+             <xpath expr="//field[@name='partner_text']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+             <xpath expr="//field[@name='cheque_no']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+             <xpath expr="//field[@name='text_free']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+        </field>
+    </record>
+</odoo>

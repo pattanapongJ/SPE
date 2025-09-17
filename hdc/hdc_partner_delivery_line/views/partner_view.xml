@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--   ปิดโชว์ delivery_line ไปใช้ฟิล delivery trl -->
+<!--        <record id="view_partner_simple_form_partner_delivery_line" model="ir.ui.view">-->
+<!--            <field name="name">Add Partner delivery Line on partner</field>-->
+<!--            <field name="model">res.partner</field>-->
+<!--            <field name="inherit_id" ref="base.view_partner_simple_form" />-->
+<!--            <field name="arch" type="xml">-->
+<!--                <field name="type" position="after">-->
+<!--                    <field name="delivery_line" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" attrs="{'invisible': ['|',('type', '=', False),('type', 'not in', ['delivery', 'contact'])]}"/>-->
+<!--                </field>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="res_partner_view_delivery_line" model="ir.ui.view">-->
+<!--            <field name="name">res.partner.view.delivery.line</field>-->
+<!--            <field name="model">res.partner</field>-->
+<!--            <field name="inherit_id" ref="base.view_partner_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <field name="type" position="after">-->
+<!--                    <field name="delivery_line" options="{'no_create_edit': True,'no_create': True, 'no_open': True}" attrs="{'invisible': ['|',('type', '=', False),('type', 'not in', ['delivery', 'contact'])]}" domain="[('status_active', '=', True)]"/>-->
+<!--                </field>-->
+<!--                <xpath-->
+<!--                    expr="//field[@name='child_ids']/form/sheet/group[1]/group[2]"-->
+<!--                    position="inside"-->
+<!--                >-->
+<!--                    <field name="delivery_line" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" attrs="{'invisible': ['|',('type', '=', False),('type', 'not in', ['delivery', 'contact'])]}" domain="[('status_active', '=', True)]"/>-->
+<!--                    &lt;!&ndash; <field name="delivery_company" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" attrs="{'invisible': ['|',('type', '=', False),('type', 'not in', ['delivery', 'contact'])]}" domain="[('status_active', '=', True)]"/> &ndash;&gt;-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+</odoo>

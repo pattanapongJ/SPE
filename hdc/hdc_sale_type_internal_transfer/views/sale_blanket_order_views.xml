@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_blanket_order_inherit_retail" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form.inherit.retail</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="hdc_sale_agreement_addon.sale_blanket_order_inherit_addon"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='delivery_trl']" position="replace">
+                <field name="is_retail_type_id" invisible="1"/>
+                <field name="is_booth_type_id" invisible="1"/>
+                <field name="delivery_trl" attrs="{'readonly': [('state', 'in', ('done','expired'))]}" domain="[('status_active', '=', True)]"/>
+            </xpath>
+            <xpath expr="//field[@name='delivery_trl_description']" position="replace">
+                <field name="delivery_trl_description" attrs="{'readonly': [('state', 'in', ('done','expired'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='delivery_company']" position="replace">
+                <field name="delivery_company" string="Mode of delivery" attrs="{'readonly': [('state', 'in', ('done','expired'))]}" domain="[('status_active', '=', True)]"/>
+            </xpath>
+            <xpath expr="//field[@name='delivery_company_description']" position="replace">
+                <field name="delivery_company_description" string="Mode of delivery Description" attrs="{'readonly': [('state', 'in', ('done','expired'))]}"/>
+            </xpath>
+            
+        </field>
+    </record>
+    <record id="quotation_order_inherit_retail" model="ir.ui.view">
+        <field name="name">quotation.order.form.inherit.retail</field>
+        <field name="model">quotation.order</field>
+        <field name="inherit_id" ref="hdc_quotation_order.view_quotation_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='delivery_trl']" position="replace">
+                <field name="is_retail_type_id" invisible="1"/>
+                <field name="is_booth_type_id" invisible="1"/>
+                <field name="delivery_trl" attrs="{'readonly': [('state', 'in', ('done','expired'))]}" domain="[('status_active', '=', True)]"/>
+            </xpath>
+            <xpath expr="//field[@name='delivery_trl_description']" position="replace">
+                <field name="delivery_trl_description" attrs="{'readonly': [('state', 'in', ('done','expired'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='delivery_company']" position="replace">
+                <field name="delivery_company" string="Mode of delivery" attrs="{'readonly': [('state', 'in', ('done','expired'))]}" domain="[('status_active', '=', True)]"/>
+            </xpath>
+            <xpath expr="//field[@name='delivery_company_description']" position="replace">
+                <field name="delivery_company_description" string="Mode of delivery Description" attrs="{'readonly': [('state', 'in', ('done','expired'))]}"/>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

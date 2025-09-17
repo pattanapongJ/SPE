@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_template_barcode_customer" model="ir.ui.view">
+        <field name="name">product.template.barcode.customer.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="hdc_barcode_spe.view_product_template_barcode_spe_from"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[field[@name='barcode_spe_ids']]" position="after">
+                <page string="Barcode Customer">
+                    <field name="external_product_ids" options="{'no_create': True}" context="{'default_product_tmpl_id': active_id}" colspan="4" nolabel="1">
+                        <tree string="Barcode Customer" editable="bottom">
+                            <field name="product_tmpl_id" readonly="1" force_save="1"/>
+                            <field name="name" string="External Item"/>
+                            <field name="barcode_modern_trade" string="Barcode Customer"/>
+                            <field name="uom_id" string="Unit of Measure"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

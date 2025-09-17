@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_search_branch_summary_delivery_user,undefined.search.branch.summary.delivery,model_search_branch_summary_delivery,base.group_user,1,1,1,1
+access_company_delivery_round_user,undefined.company.delivery.round,model_company_delivery_round,base.group_user,1,1,1,1

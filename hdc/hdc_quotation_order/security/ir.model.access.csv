@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_quotation_order_user,quotation.order,model_quotation_order,base.group_user,1,1,1,1
+access_quotation_order_line_user,quotation.order.line,model_quotation_order_line,base.group_user,1,1,1,1
+access_wizard.create.sale.order,access_wizard_create_sale_order,model_wizard_create_sale_order,base.group_user,1,1,1,1
+access_wizard.create.sale.order.line,access_wizard_create_sale_order_line,model_wizard_create_sale_order_line,base.group_user,1,1,1,1
+access_wizard.quotation.report,access_wizard_quotation_report,model_wizard_quotation_report,base.group_user,1,1,1,1
+access_wizard_quotation_change_total_user,undefined.wizard.quotation.change.total,model_wizard_quotation_change_total,base.group_user,1,1,1,1
+access_confirm_below_cost_wizard,confirm_below_cost_wizard,model_confirm_below_cost_wizard,base.group_user,1,1,1,1
+access_approve_below_cost_wizard,approve_below_cost_wizard,model_approve_below_cost_wizard,base.group_user,1,1,1,1
+access_wizard_quotation_bo_user,undefined.wizard.quotation.bo,model_wizard_quotation_bo,base.group_user,1,1,1,1
+access_wizard_quotation_department_user,undefined.wizard.quotation.department,model_wizard_quotation_department,base.group_user,1,1,1,1
+access_quotation_bom_line,quotation_bom_line,model_quotation_bom_line,base.group_user,1,1,1,1

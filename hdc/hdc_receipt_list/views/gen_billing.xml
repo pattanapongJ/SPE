@@ -1,0 +1,136 @@
+<odoo>
+    <record id="gen_billing_rl_form_view" model="ir.ui.view">
+        <field name="name">gen.billing.rl.form</field>
+        <field name="model">gen.billing.rl</field>
+        <field name="arch" type="xml">
+            <form string="Generate Billing">
+                <header>
+                    <button name="search_value" string="Search" type="object" class="oe_highlight"/>
+                    <button name="clear_value" string="Clear all" type="object"/>
+                    <button name="create_bills" string="Create Billing" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="company_id"/>
+                            <field name="vendor_ref"/>
+                            <field name="purchase_ids" widget="many2many_tags"/>
+                            <field name="purchase_type"/>
+                            <field name="is_service"/>
+                            <field name="receipt_done_type" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="receipt_list_ids" widget="many2many_tags"/>
+                            <label for="rl_date_form" string="Receipt Date From" />
+                                <div>
+                                    <div class="o_row">
+                                        <field
+                                            name="rl_date_form"
+                                            class="oe_inline"
+                                        />
+                                        <span class="oe_inline">To</span>
+                                        <field
+                                            name="rl_date_to"
+                                            class="oe_inline"
+                                        />
+                                    </div>
+                                </div>
+                            <field name="performa_invoice"/>
+                            <label for="per_invoice_date_form" string="Performa Invoice Date From" />
+                                <div>
+                                    <div class="o_row">
+                                        <field
+                                            name="per_invoice_date_form"
+                                            class="oe_inline"
+                                        />
+                                        <span class="oe_inline">To</span>
+                                        <field
+                                            name="per_invoice_date_to"
+                                            class="oe_inline"
+                                        />
+                                    </div>
+                                </div>
+                            <field name="commercial_invoice"/>
+                            <label for="com_invoice_date_form" string="Commercial Invoice Date From" />
+                                <div>
+                                    <div class="o_row">
+                                        <field
+                                            name="com_invoice_date_form"
+                                            class="oe_inline"
+                                        />
+                                        <span class="oe_inline">To</span>
+                                        <field
+                                            name="com_invoice_date_to"
+                                            class="oe_inline"
+                                        />
+                                    </div>
+                                </div>
+                            <field name="picking_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <button name="select_all" string="Select All" type="object" class="oe_highlight"/>
+                    <field name="line_ids" nolabel="1">
+                        <tree create="false" editable="bottom">
+                            <button name="action_remove_line" type="object" icon="fa-trash" title="Delete" class="btn-link text-danger"/>
+                            <field name="select" string=" "/>
+                            <field name="move_id" invisible="1"/>
+                            <field name="default_code">
+                            <field name="product_id"/>
+                            <field name="date"/>
+                            <field name="receipt_list_id"/>
+                            <field name="reference"/>
+                            <field name="warehouse_id"/>
+                            <field name="location_dest_id"/>
+                            <field name="group_id" string='PO NO'/>
+                            <field name="batch_no" readonly="1"/>
+                            <field name="demand_total" string='PO Demand'/>
+                            <field name="shipped_qty" readonly="1"/>
+                            <field name="receipt_qty" optional="hide" force_save="1" readonly="1"/>
+                            <field name="receipt_done" optional="hide" string='PO Receipt Done'/>
+                            <field name="demand" optional="hide"/>
+                            <field name="po_product_uom" optional="show"/>
+                            <field name="price" string= "Unit Price/After Discount" readonly="1"/>
+                            <field name="currency_id" optional="show" readonly="1" force_save="1"/>
+                            <field name="subtotal"/>
+                            <field name="taxes_id" widget="many2many_tags" string="Taxes" optional="show" />
+                            <field name="price_tax" optional="show" string= "Tax"/>
+                            <field name="net_price" string='Net Amount' optional="show"/>
+                            <field name="discount" string='Discount' optional="show"/>
+                            <field name="std_price" optional="hide"/>
+                            <field name="duty" optional="show"/>
+                            <field name="hs_code" optional="hide"/>                           
+                            <field name="barcode" optional="hide"/>
+                            <field name="product_categ_id" optional="hide"/>
+                            <field name="product_tag_ids" widget="many2many_tags" optional="hide"/>
+                            <field name="all_stock" optional="hide"/>
+                            <field name="available_stock" optional="hide"/>
+                            <field name="external_barcodes" widget="many2many_tags" optional="hide"/>
+                            <field name="remark" optional="hide"/>
+                            <field name="box" optional="hide"/>
+                            <field name="crate" optional="hide"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="untaxed_amount"/>
+                        <field name="vat_amount"/>
+                        <div class="oe_subtotal_footer_separator oe_inline">
+                            <label for="total_amount"/>
+                        </div>
+                        <field name="total_amount" nolabel="1" class="oe_subtotal_footer_separator" options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gen_billing_rl" model="ir.actions.act_window">
+        <field name="name">Generate Billing RL</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gen.billing.rl</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="gen_billing_rl_form_view"/>
+    </record>
+
+</odoo>

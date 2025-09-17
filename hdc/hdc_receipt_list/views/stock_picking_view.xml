@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_form_inherit_receipt_list" model="ir.ui.view">
+        <field name="name">view.picking.form.inherit.receipt.list</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="purchase_id" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']" position="after">
+                <field name="gross_unit_price" string= "Unit Price" optional="hide" attrs="{'column_invisible': ['|', ('parent.purchase_id', '=', False), ('parent.picking_type_code', '!=', 'incoming')]}"/>
+                <field name="price_unit" optional="show" string= "Unit Price/After Discount" attrs="{'column_invisible': ['|',('parent.purchase_id', '=', False), ('parent.picking_type_code','!=','incoming')]}"/>
+                <field name="currency_id" optional="show" readonly="1" force_save="1"/>
+                <field name="taxes_id" widget="many2many_tags" string="Taxes" optional="show" attrs="{'column_invisible': ['|', ('parent.purchase_id', '=', False), ('parent.picking_type_code', '!=', 'incoming')]}"/>
+                <field name="subtotal" optional="show" string= "Subtotal" attrs="{'column_invisible': ['|',('parent.purchase_id', '=', False), ('parent.picking_type_code','!=','incoming')]}"/>
+                <field name="price_tax" optional="show" string= "Tax" attrs="{'column_invisible': ['|',('parent.purchase_id', '=', False), ('parent.picking_type_code','!=','incoming')]}"/>
+                <field name="net_price" optional="show" string= "Net Price" attrs="{'column_invisible': ['|',('parent.purchase_id', '=', False), ('parent.picking_type_code','!=','incoming')]}"/>
+            </xpath>
+            <xpath expr="//notebook/page[@name='operations']" position='inside'>
+                <group class="oe_subtotal_footer oe_right" attrs="{'invisible': ['|', ('purchase_id','=', False), ('picking_type_code','!=','incoming')]}">
+                    <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <div class="oe_subtotal_footer_separator oe_inline">
+                        <label for="amount_total"/>
+                    </div>
+                    <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </group>
+            </xpath>
+            <xpath expr="//header/button[@name='action_confirm']" position="after">
+                <button name="action_split_receipt_in" attrs="{'invisible': ['|', ('purchase_id','=', False), ('picking_type_code','!=','incoming')]}" string="Split Receipt IN" type="object" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="invoice_date" attrs="{'invisible': ['|', ('purchase_id','=', False), ('picking_type_code','!=','incoming')]}"/>
+                <field name="invoice_no" attrs="{'invisible': ['|', ('purchase_id','=', False), ('picking_type_code','!=','incoming')]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_picking_form_inherit_rl" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.rl</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_inter_transfer.inter_transfer_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='free_qty']" position="after">
+                <field name="demand_total" attrs="{'column_invisible': ['|',('parent.purchase_id', '=', False), ('parent.picking_type_code','!=','incoming')]}"/>
+                <field name="po_remain" attrs="{'column_invisible': ['|',('parent.purchase_id', '=', False), ('parent.picking_type_code','!=','incoming')]}"/>
+                <field name="po_qty_counted" attrs="{'column_invisible': ['|',('parent.purchase_id', '=', False), ('parent.picking_type_code','!=','incoming')], 'readonly': ['|',('parent.warehouse_status', '!=', 'warehouse'),('parent.state','!=','assigned')]}"/>
+                <field name="po_reserve" attrs="{'column_invisible': ['|',('parent.purchase_id', '=', False), ('parent.picking_type_code','!=','incoming')]}"/>
+                <field name="po_quantity_done" attrs="{'column_invisible': ['|',('parent.purchase_id', '=', False), ('parent.picking_type_code','!=','incoming')]}"/>
+                <field name="po_product_uom" attrs="{'column_invisible': ['|',('parent.purchase_id', '=', False), ('parent.picking_type_code','!=','incoming')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

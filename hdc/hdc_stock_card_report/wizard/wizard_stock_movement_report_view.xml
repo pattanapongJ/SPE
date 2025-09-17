@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_movement_report_view" model="ir.ui.view">
+        <field name="name">Stock Movement Report</field>
+        <field name="model">wizard.stock.movement.report</field>
+        <field name="arch" type="xml">
+            <form string="Stock Movement Report">
+                <group string="วันที่ค้นหา">
+                    <group>
+                        <field name="date_from" required="1"/>
+                    </group>
+                    <group>
+                        <field name="date_to" required="1"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="warehouse_ids" widget="many2many_tags"/>
+                    </group>
+                </group>
+
+                <group string="สินค้า">
+                </group>
+                <field name="product_id" domain="[('type','!=','service')]" >
+                    <tree string="Product" editable="bottom">
+                        <field name="name" string="ชื่อสินค้า"/>
+                    </tree>
+                </field>
+
+                <footer>
+                    <button
+                        name="button_export_html"
+                        string="View"
+                        type="object"
+                        default_focus="1"
+                        class="oe_highlight"
+                    />
+                    <button name="get_report" string="พิมพ์ Excel" type="object" class="oe_highlight"/>
+                    <button string="ยกเลิก" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stock_movement_report_view" model="ir.actions.act_window">
+        <field name="name">รายงานการเคลื่อนไหวของสินค้า (Stock Movement Report)</field>
+        <field name="res_model">wizard.stock.movement.report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="stock_movement_report_view"/>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_stock_movement_report"
+        name="Stock Movement Report"
+        action="action_stock_movement_report_view"
+        sequence="1"
+        parent="hdc_stock_card_report.menu_stock_operation_reports"
+    />
+</odoo>

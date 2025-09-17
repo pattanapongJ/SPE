@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action -->
+    <record id="action_debit_credit_note_reason" model="ir.actions.act_window">
+        <field name="name">Debit/Credit Note Reasons</field>
+        <field name="res_model">debit.credit.note.reason</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create reasons for Debit and Credit Notes.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_debit_credit_note_reason_tree" model="ir.ui.view">
+        <field name="name">debit.credit.note.reason.tree</field>
+        <field name="model">debit.credit.note.reason</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+<!-- 
+    <record id="view_debit_credit_note_reason_form" model="ir.ui.view">
+        <field name="name">debit.credit.note.reason.form</field>
+        <field name="model">debit.credit.note.reason</field>
+        <field name="arch" type="xml">
+            <form string="Reason">
+                <group>
+                    <field name="name"/>
+                    <field name="type"/>
+                </group>
+            </form>
+        </field>
+    </record> -->
+
+    <!-- Menu -->
+    <menuitem id="menu_debit_credit_note_reason"
+          name="Debit Note, Credit Note Reason"
+          parent="account.menu_finance_configuration"
+          action="action_debit_credit_note_reason"
+          sequence="2"/>
+
+</odoo>

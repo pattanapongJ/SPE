@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>    
+
+    <record id="view_filter_inherit_picking_list" model="ir.ui.view">
+        <field name="name">view.filter.inherit.picking.list</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id" ref="hdc_inventory_picking_list_sale.view_sale_advance_payment_inv_inherit_picking_list" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_list']" position="after">
+                <field name="sale_id" invisible="1" />
+            </xpath>            
+        </field>
+    </record>
+</odoo>

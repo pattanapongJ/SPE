@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="resupply_delivery_schedule_master_action" model="ir.actions.act_window">
+        <field name="name">Delivery Schedule</field>
+        <field name="res_model">resupply.delivery.schedule.master</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="resupply_delivery_schedule_master_view_tree" model="ir.ui.view">
+        <field name="name">resupply delivery schedule master tree</field>
+        <field name="model">resupply.delivery.schedule.master</field>
+        <field name="arch" type="xml">
+            <tree string="Delivery Schedule" sample="1" >
+                <field name="name"/>
+                <field name="warehouse_selection"/>
+                <field name="branch_id"/>
+                <field name="status_active"/>
+                <field name="max_weight"/>
+                <field name="min_weight"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="resupply_delivery_schedule_master_view_form" model="ir.ui.view">
+        <field name="name">resupply delivery schedule master view form</field>
+        <field name="model">resupply.delivery.schedule.master</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Schedule">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="warehouse_selection" widget="radio" options="{'horizontal': true}"/>
+                            <field name="branch_id" attrs="{'invisible':[('warehouse_selection','=','distribution_center')]}"/>
+                            <field name="delivery_round_id"/>
+                            <field name="status_active"/>
+                        </group>
+                        <group>
+                            <label for="max_weight"/>
+                            <div >
+                                <span><field name="max_weight"/> Kg</span>
+                            </div>
+                            <label for="min_weight"/>
+                            <div >
+                                <span><field name="min_weight"/> Kg</span>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Location" >
+                            <field name="location_line_ids">
+                                <tree string="Location Lines" editable="bottom">
+                                    <field name="location_id" />
+                                    <field name="delivery_start_time" widget="float_time" />
+                                    <field name="delivery_end_time" widget="float_time" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

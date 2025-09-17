@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_purchase_request_type_form_inherit_mrp_create_pr" model="ir.ui.view">
+        <field name="name">view.purchase.request.type.formm.inherit.mrp.create.pr</field>
+        <field name="model">purchase.request.type</field>
+        <field name="inherit_id" ref="purchase_request_type.view_purchase_request_type_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reduce_step']" position="after">
+                <field name="currency_id" domain="[('rate_type', '=', 'sell')]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

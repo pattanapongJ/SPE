@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="crm_claim_report_form_view">
+        <field name="name">crm.claim.report.form.view</field>
+        <field name="model">crm.claim</field>
+        <field name="inherit_id" ref="crm_claim.crm_case_claims_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stage_id']" position="before">
+                <button name="print" string="Print Report" type="object" class="oe_highlight"/>
+           </xpath>
+        </field>
+    </record>
+</odoo>

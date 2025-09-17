@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="branch_res_branch_view_form_inherit">
+        <field name="name">res.branch.form (hdc_rest_api)</field>
+        <field name="model">res.branch</field>
+        <field name="inherit_id" ref="branch.branch_res_branch_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form//sheet/group" position="after">
+                <group name="api_picking_setting" string="API Setting">
+                    <group name="api_picking_setting" string="Picking Setting">
+                        <field name="picking_type_id"/>
+                        <field name="picking_type_return_id"/>
+                        <field name="location_id"/>
+                        <field name="location_dest_id"/>
+                    </group>
+                    <group name="api_account_setting" string="Account Setting">
+                        <field name="bank_journal_id"/>
+                        <field name="cash_journal_id"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

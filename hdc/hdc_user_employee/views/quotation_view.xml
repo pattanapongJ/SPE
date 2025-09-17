@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_quotation_order_form_form_inherit_user_employee" model="ir.ui.view">
+        <field name="name">quotation.order.form.user.employee</field>
+        <field name="model">quotation.order</field>
+        <field name="inherit_id" ref="hdc_quotation_order.view_quotation_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="sale_employee_ids" invisible="1"/>
+                <field name="user_employee_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='sale_spec']" position="before">
+                <field name="team_department_id" invisible="1"/>
+                <field name="sale_spec_employee_ids" invisible="1"/>
+                <field name="sale_spec_employee" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_spec']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='sale_manager_id']" position="before">
+                <field name="sale_manager_employee_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_manager_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='user_sale_agreement']" position="before">
+                <field name="user_sale_agreement_employee" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='user_sale_agreement']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='other_information']/group/group[@name='sales_person']/field[@name='user_id']" position="before">
+                <field name="user_employee_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+            </xpath>
+
+            <xpath expr="//page[@name='other_information']/group/group[@name='sales_person']/field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+            <xpath expr="//page[@name='other_information']/group/group[@name='sales_person']/field[@name='team_id']" position="after">
+                <field name="department_id" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+            </xpath>
+        </field>
+    </record>    
+</odoo>

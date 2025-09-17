@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<menuitem id="hdc_stock_inventory_menu"
+		parent="stock.menu_stock_root"
+		action="action_transfer_line"
+		sequence="2"
+		name="Transfer Lines" />
+</odoo>

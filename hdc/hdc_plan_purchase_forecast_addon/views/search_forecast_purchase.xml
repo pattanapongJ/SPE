@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="search_purchase_forecast_view_tree" model="ir.ui.view">
+        <field name="name">search.forecast.purchase.tree</field>
+        <field name="model">search.forecast.purchase</field>
+        <field name="arch" type="xml">
+            <form string="Search">
+                <header>
+                    <button string="Search" name="search_action" type="object" class="oe_highlight"/>
+                    <button string="Generate RFQ" name="create_purchase_order_action" type="object" class="oe_highlight" attrs="{'invisible': [('product_type', '=', 'plan_to_stock')]}"/>
+                    <button string="Generate Mrp Request" name="create_mrp_request_action" type="object" class="oe_highlight" attrs="{'invisible': [('product_type', '=', 'plan_to_order')]}"/>
+                    <button string="Clear All" name="clear_all_action" type="object" class="oe_highlight"/>
+                    <button string="Select All" name="selected_all_action" type="object"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" invisible="1"/>
+                            <field name="partner_id" options="{'no_create_edit': True,'no_create': True, 'no_open': True}"/>
+                            <field name="product_ids" widget="many2many_tags"/>
+                            <field name="product_type"  widget="radio"/>
+                            <field name="selected_count" invisible="1"/>
+                            <!-- <field name="suggest_status" /> -->
+                            <!-- <field name="warehouse_ids" widget="many2many_tags"/> -->
+                        </group>
+                        <group>
+                            <field name="product_categ_ids" widget="many2many_tags"/>
+                            <field name="company_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detailed" name="Detailed">
+                            <field name="product_line_ids">
+                                <tree string="Detailed" editable="bottom" create='0' edit='1'>
+                                    <field name="selected"/>
+                                    <field name="name" invisible="1"/>
+                                    <field name="product_id" optional="show"/>
+                                    <field name="product_categ_id" optional="show"/>
+                                    <!-- <field name="warehouse_id" optional="show"/> -->
+                                    <field name="moq_stock" optional="show"/>
+                                    <field name="spq_stock" optional="show"/>
+                                    <field name="suggest_qty" optional="show"/>
+                                    <field name="rfq_qty" optional="show"/>
+                                    <!-- <field name="suggest_status" optional="show"/> -->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="search_purchase_forecast_action" model="ir.actions.act_window">
+        <field name="name">Forecast Purchase Order</field>
+        <field name="res_model">search.forecast.purchase</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Searching Purchase Forecast
+          </p>
+        </field>
+    </record>
+</odoo>

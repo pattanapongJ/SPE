@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_mr_search_filter" model="ir.ui.view">
+        <field name="name">mrp mr tree search</field>
+        <field name="model">mrp.mr</field>
+        <field name="arch" type="xml">
+            <search string="Search MRP Request Line">
+                <field name="name" string="Reference" />
+                <field name="partner_id" string="Customer" />
+                <field name="user_request" string="Request" />
+                <field name="state" string="Status" />
+                <group expand="1" string="Group By">
+                    <filter name="name" string="Reference" context="{'group_by':'name'}" />
+                    <filter name="partner_id" string="Customer" context="{'group_by':'partner_id'}" />
+                    <filter name="user_request" string="Request" context="{'group_by':'user_request'}" />
+                    <filter name="state" string="Status" context="{'group_by':'state'}" />
+                    <separator />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="mrp_mr_view_tree" model="ir.ui.view">
+        <field name="name">mrp mr tree</field>
+        <field name="model">mrp.mr</field>
+        <field name="arch" type="xml">
+            <tree string="MRP Request" >
+                <field name="name" readonly="1"/>
+                <field name="user_request"/>
+                <field name="request_date"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="mrp_mr_view_form" model="ir.ui.view">
+        <field name="name">mrp mr view form</field>
+        <field name="model">mrp.mr</field>
+        <field name="arch" type="xml">
+            <form string="MRP Request">
+                <header>
+                    <field name="hide_btn_create_mo" invisible="1"/>
+                    <field name="hide_btn_transfer" invisible="1"/>
+                    <field name="hide_btn_create_receive" invisible="1"/>
+                    <field name="hide_btn_modify_transfer" invisible="1"/>
+                    <field name="hide_btn_create_mo_modify" invisible="1"/>
+                    <field name="hide_btn_create_transfer_modify" invisible="1"/>
+                    <button name="action_create_receive" string="Create Receive" attrs="{'invisible': ['|',('is_modify', '=', False),('hide_btn_create_receive','=',True)]}" type="object" class="btn btn-primary"/>
+                    <button name="action_modify_transfer" string="Modify Transfer" attrs="{'invisible': ['|',('is_modify', '=', False),('hide_btn_modify_transfer','=',True)]}" type="object" class="btn btn-primary"/>
+                    <button name="action_create_mo_modify" string="Create MO Modify" attrs="{'invisible': ['|',('is_modify', '=', False),('hide_btn_create_mo_modify','=',True)]}" type="object" class="btn btn-primary"/>
+                    <button name="action_transfer_modify" string="Create Transfer" attrs="{'invisible': ['|',('is_modify', '=', False),('hide_btn_create_transfer_modify','=',True)]}" type="object" class="btn btn-primary"/>
+                    <button name="action_force_done" string="Force Done" attrs="{'invisible': [('state','in',['done'])]}" type="object" class="btn btn-primary"/>
+                    <button name="action_confirme"          type="object" string="Confirmed"        class="oe_highlight"  attrs="{'invisible':[('state','!=','draft')]}"/>
+                    <!-- <button name="action_to_approve"        type="object" string="To Approved"      class="oe_highlight"  attrs="{'invisible':[('state','!=','confirmed')]}"/> -->
+                    <button name="action_approved"          type="object" string="Approved"         class="oe_highlight"  attrs="{'invisible':[('state','!=','waiting_approve')]}" groups="hdc_mrp_mr.group_mr_approve"/>
+                    <button name="action_create_mo"         type="object" string="Create MO"        class="oe_highlight"  attrs="{'invisible':['|',('state','not in',['approved','in_progress']),('hide_btn_create_mo','=',True)]}"/>
+                    <button name="action_revise"            type="object" string="Revise"           class="oe_highlight"  attrs="{'invisible':[('state','!=','waiting_approve')]}"/>
+                    <button name="action_transfer"          type="object" string="Inter Transfer"         class="oe_highlight"  attrs="{'invisible':[('hide_btn_transfer','=',True)]}"/>
+                    <button name="action_cancel"            type="object" string="Cancel"           attrs="{'invisible':[('state', 'in', ['done','cancel','approved','in_progress','delivery'])]}"/>
+                    <button name="action_revise"            type="object" string="Reset to Draft"   attrs="{'invisible':[('state', 'not in', ['cancel'])]}"/>
+                    
+                    <field name="state" widget="statusbar" statusbar_visible="draft,waiting_approve,approved,in_progress,delivery,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="action_show_recieve_ids" type="object" icon="fa-truck" attrs="{'invisible': [('receive_count', '=', 0)]}">
+                            <field name="receive_count" widget="statinfo" string="Receive"/>
+                        </button>
+                        <button class="oe_stat_button" name="action_show_transfer_modify_ids" type="object" icon="fa-truck" attrs="{'invisible': [('transfer_modify_count', '=', 0)]}">
+                            <field name="transfer_modify_count" widget="statinfo" string="Transfer Modify"/>
+                        </button>
+                        <button class="oe_stat_button" name="action_mo_ids" type="object" icon="fa-bars" attrs="{'invisible': [('mo_count', '=', 0)]}">
+                            <field name="mo_count" widget="statinfo" string="Manufacturing"/>
+                        </button>
+                        <button class="oe_stat_button" name="action_delivery_ids" type="object" icon="fa-truck" attrs="{'invisible': [('delivery_count', '=', 0)]}">
+                            <field name="delivery_count" widget="statinfo" string="Delivery"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_request" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                            <field name="partner_id" options='{"no_create": True}' attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                            <field name="request_type" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                            <field name="product_type" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                            <field name="picking_type_id"  attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                            <field name="picking_type_do_id" required="1" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                        </group>
+                        <group>
+                            <field name="request_date" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                            <field name="delivery_date" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                            <field name="sale_person"/>
+                            <field name="department_id" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                            <field name="delivery_method" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}" widget="radio"/>
+                            <field name="ref_no" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                            <field name="company_id"/>
+                            <field name="is_modify" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Product List" name="product_list_page">
+                            <field name="product_line_ids" attrs="{'readonly':[('state','not in',['draft','waiting_approve','approved'])],'invisible': [('is_modify', '=', True)]}">
+                                <tree string="Product List" editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="moq_stock"/>
+                                    <field name="demand_qty"/>
+                                    <field name="product_qty_mo" optional="show"/>
+                                    <field name="produced_qty" optional="show"/>
+                                    <field name="shipping_qty" optional="hide"/>
+                                    <field name="delivery_qty" optional="show"/>
+                                    <field name="package"/>
+                                    <field name="uom_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                                    <field name="product_uom_category_id" invisible="1"/>
+                                    <field name="note_text" />
+                                    <field name="state" optional="show"/>
+                                    <field name="ref_no" optional="hide"/>
+                                </tree>
+                            </field>
+                            <field name="product_line_modify_ids" attrs="{'readonly':[('state','not in',['draft','confirmed'])],'invisible': [('is_modify', '=', False)]}">
+                                <tree string="Product Modify List" editable="bottom">
+                                    <button
+                                        name="open_detail_modify"
+                                        type="object"
+                                        string="Detail Modify"
+                                        icon="fa-cogs"
+                                    />
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="demand_qty_modify"/>
+                                    <field name="receive_qty_modify_draft" optional="show"/>
+                                    <field name="receive_qty_modify" optional="show"/>
+                                    <field name="receive_qty_modify_factory" optional="show"/>
+                                    <field name="product_qty_mo" optional="show"/>
+                                    <field name="produced_qty" optional="show"/>
+                                    <field name="delivery_qty_draft" optional="show"/>
+                                    <field name="delivery_qty" optional="show"/>
+                                    <field name="product_uom" options="{'no_create': True, 'no_create_edit': True}"/>
+                                    <field name="product_uom_category_id" invisible="1"/>
+                                    <field name="note_text" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Operation" name="opertion_list_page">
+                            <field name="operation_line_ids" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}">
+                                <tree string="Operation" editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                    <field name="unit_price"/>
+                                    <field name="tax_ids" widget="many2many_tags" />
+                                    <field name="subtotal"/>
+                                    <field name="tax_included" invisible="1"/>
+                                    <field name="tax_excluded" invisible="1"/>
+                                </tree>
+                            </field>
+                            <group name="operation">
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="total">
+                                    <field name="untax_amount" widget="monetary"/>
+                                    <field name="tax_amount" widget="monetary"/>
+                                    <field name="total" widget="monetary"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Other info" name="other_page">
+                            <group>
+                                <label for="design_group"/>
+                                <div name="design_group_div" class="o_row">
+                                    <field name="design_group" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/> &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                    <button name="action_open_url_design" type="object" class="btn btn-outline-info" string="Go To URL" attrs="{'invisible': [ (('design_group', '=', False))]}"/>
+                                </div>
+                                <field name="remark" attrs="{'readonly':[('state','not in',['draft','confirmed'])]}"/>
+                                
+                            </group>
+                        </page>
+                        <page string="Remark" name="remark">
+                            <field name="remark_text" string="Note"
+                                placeholder="Add an internal note that will be printed on the Picking Operations sheet" />
+                        </page>
+                        <page string="Cancel Reason">
+                            <group>
+                                <field name="cancel_to"/>
+                                <field name="cancel_remark"/>
+                                <field name="cancel_date"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="mrp_mr_action" model="ir.actions.act_window">
+        <field name="name">MRP Request</field>
+        <field name="res_model">mrp.mr</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_mr_search_filter"/>
+    </record>
+
+    <record id="view_mr_product_list_line_filter" model="ir.ui.view">
+        <field name="name">MRP Request Line</field>
+        <field name="model">mr.product.list.line</field>
+        <field name="arch" type="xml">
+            <search string="Search MRP Request Line">
+                <field name="product_id" string="Product" />
+                <field name="ref_mr" string="Reference" />
+                <field name="partner_id" string="Customer" />
+                <field name="user_request" string="Request" />
+                <field name="state" string="Status" />
+                <group expand="1" string="Group By">
+                    <filter name="product_id" string="Product" context="{'group_by':'product_id'}" />
+                    <filter name="ref_mr" string="Reference" context="{'group_by':'ref_mr'}" />
+                    <filter name="partner_id" string="Customer" context="{'group_by':'partner_id'}" />
+                    <filter name="user_request" string="Request" context="{'group_by':'user_request'}" />
+                    <filter name="state" string="Status" context="{'group_by':'state'}" />
+                    <separator />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="mrp_mr_line_view_tree" model="ir.ui.view">
+        <field name="name">mrp mr tree</field>
+        <field name="model">mr.product.list.line</field>
+        <field name="arch" type="xml">
+            <tree string="MRP Request Line">
+                <field name="mr_id" string="MR ID"/>
+                <field name="product_id"/>
+                <field name="partner_id"/>
+                <field name="ref_mr"/>
+                <field name="delivery_date"/>
+                <field name="demand_qty"/>
+                <field name="product_qty_mo"/>
+                <field name="produced_qty"/>
+                <field name="user_request"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="mrp_mr_line_action" model="ir.actions.act_window">
+        <field name="name">MRP Request Line</field>
+        <field name="res_model">mr.product.list.line</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_mr_product_list_line_filter"/>
+    </record>
+
+    <record id="view_mr_product_list_modify_line_filter" model="ir.ui.view">
+        <field name="name">MRP Request Modify Line Filter</field>
+        <field name="model">mr.product.list.modify.line</field>
+        <field name="arch" type="xml">
+            <search string="Search MRP Request Modify Line">
+                <field name="product_id" string="Product" />
+                <field name="ref_mr" string="Reference" />
+                <field name="partner_id" string="Customer" />
+                <field name="user_request" string="Request" />
+                <field name="state" string="Status" />
+                <group expand="1" string="Group By">
+                    <filter name="product_id" string="Product" context="{'group_by':'product_id'}" />
+                    <filter name="ref_mr" string="Reference" context="{'group_by':'ref_mr'}" />
+                    <filter name="partner_id" string="Customer" context="{'group_by':'partner_id'}" />
+                    <filter name="user_request" string="Request" context="{'group_by':'user_request'}" />
+                    <filter name="state" string="Status" context="{'group_by':'state'}" />
+                    <separator />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="mrp_mr_modify_line_view_tree" model="ir.ui.view">
+        <field name="name">MRP Request Modify Line Tree</field>
+        <field name="model">mr.product.list.modify.line</field>
+        <field name="arch" type="xml">
+            <tree string="MRP Request Modify Line">
+                <field name="mr_id" string="MR ID"/>
+                <field name="product_id"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="ref_mr"/>
+                <field name="delivery_date"/>
+                <field name="demand_qty_modify"/>
+                <field name="product_qty_mo"/>
+                <field name="produced_qty"/>
+                <field name="user_request"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="mrp_mr_modify_line_action" model="ir.actions.act_window">
+        <field name="name">MRP Request Modify Line</field>
+        <field name="res_model">mr.product.list.modify.line</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_mr_product_list_modify_line_filter"/>
+    </record>
+
+    <record id="mrp_mr_product_list_modify_line_detail_form" model="ir.ui.view">
+        <field name="name">mr.product.list.modify.line.detail.form</field>
+        <field name="model">mr.product.list.modify.line</field>
+        <field name="arch" type="xml">
+            <form string="MRP Request Type">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="product_id" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="demand_qty_modify" readonly="1"/>
+                            <field name="is_refurbish"/>
+                        </group>
+                        <group>
+                            <field name="product_refurbish_id" attrs="{'invisible': [('is_refurbish', '=', False)], 'required': [('is_refurbish', '=', True)]}"/>
+                            <field name="lot_ids" attrs="{'invisible': [('is_refurbish', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Part" name="part">
+                            <field name="product_modify_detail_ids">
+                                <tree string="Product Modify List" editable="bottom">
+                                    <field name="product_line_modify_id" invisible="1"/>
+                                    <field name="type"/>
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="lot_id"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="product_uom"/>
+                                    <field name="product_uom_category_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page> 
+                    </notebook>
+                </sheet>
+                <footer class="oe_edit_only">
+                    <button string="Confirm" special="save" class="oe_highlight"/>
+                    <button string="Discard" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_product_list_modify_line" model="ir.actions.act_window">
+        <field name="name">Product Modify</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mr.product.list.modify.line</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

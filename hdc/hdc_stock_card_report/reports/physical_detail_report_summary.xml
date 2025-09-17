@@ -1,0 +1,289 @@
+<odoo>
+
+    <template
+        id="assets_backend"
+        name="hdc_physical_detail_report_summary assets"
+        inherit_id="web.assets_backend"
+    >
+        <xpath expr="." position="inside">
+            <link
+                href="/hdc_stock_card_report/static/src/css/report.css"
+                rel="stylesheet"
+            />
+            <script
+                type="text/javascript"
+                src="/hdc_stock_card_report/static/src/js/stock_card_report_backend.js"
+            />
+        </xpath>
+    </template>
+
+    <template id="hdc_stock_card_report.physical_detail_summary_internal_layout">
+        <div class="article">
+            <link
+                href="/hdc_stock_card_report/static/src/css/report.css"
+                rel="stylesheet"
+            />
+            <t t-raw="0" />
+        </div>
+        <div class="footer">
+            <div class="row">
+                <div class="col-6 custom_footer">
+                    <span
+                        t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"
+                    />
+                </div>
+                <div class="col-6 text-right custom_footer">
+                    <span class="page" />/<span class="topage" />
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_physical_detail_summary_buttons">
+        <div class="button_row">
+            <!-- <button class="o_stock_card_reports_print btn btn-sm oe_button"><span
+                    class="fa fa-print"
+                />Print</button> -->
+            <button class="o_stock_card_reports_export btn btn-sm oe_button"><span
+                    class="fa fa-print"
+                />Print</button>
+            <button class="o_stock_card_reports_export btn btn-sm oe_button"><span
+                    class="fa fa-download"
+                />Export</button>
+        </div>
+    </template>
+
+    <template id="report_physical_detail_report_summary_html">
+        <div class="o_stock_card_reports_page">
+            <t t-call="hdc_stock_card_report.report_physical_detail_summary_buttons" />
+            <t t-call="hdc_stock_card_report.report_physical_detail_report_summary_base" />
+        </div>
+    </template>
+
+    <template id="hdc_stock_card_report.report_physical_detail_report_summary_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="hdc_stock_card_report.internal_layout">
+                    <t t-call="hdc_stock_card_report.report_physical_detail_report_summary_base" />
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="hdc_stock_card_report.report_physical_detail_report_summary_base">        
+            <div class="page"> 
+                <div class="row">
+                    <t t-set="title">SPE Stock card - Physical (Detail) Summary</t>          
+                    <h4 class="mt0" t-esc="title" style="text-align: center;" />
+                </div>        
+                        
+                <!-- Display filters -->
+                <t t-call="hdc_stock_card_report.report_physical_detail_report_summary_filters" />
+                <!-- Display stock card table -->
+                <div class="act_as_table data_table mt4" style="width: 100%;">
+                    <!-- Display header line-->
+                    <t t-call="hdc_stock_card_report.report_physical_detail_summary_lines_header" />
+                    <!-- Display each lines -->
+                    <t t-set="first_product" t-value="1"/>
+                    <t t-set="check_product" t-value=""/>
+                    <t t-set="before_total_qty" t-value="0"/>
+                    <t t-set="internal_total_qty" t-value="0"/>
+                    <t t-set="transit_total_qty" t-value="0"/>
+                    <t t-set="amount_total" t-value="0"/>
+                    <t t-set="grand_before_total" t-value="0"/>
+                    <t t-set="grand_internal_total" t-value="0"/>
+                    <t t-set="grand_transit_total" t-value="0"/>
+                    <t t-set="grand_amount_total" t-value="0"/>
+                    <t t-foreach="o.results" t-as="product_line">
+                        <t t-if="first_product != 1">
+                            <t t-set="grand_before_total" t-value="grand_before_total + before_total_qty"/>
+                            <t t-set="grand_internal_total" t-value="grand_internal_total + internal_total_qty"/>
+                            <t t-set="grand_transit_total" t-value="grand_transit_total + transit_total_qty"/>
+                            <t t-set="grand_amount_total" t-value="grand_amount_total + amount_total"/>
+                            <t t-set="before_total_qty" t-value="0"/>
+                            <t t-set="internal_total_qty" t-value="0"/>
+                            <t t-set="transit_total_qty" t-value="0"/>
+                        </t>
+                        <t t-if="first_product == 1">
+                            <t t-set="first_product" t-value="0"/>
+                        </t>
+                        <div class="act_as_row lines">
+                            <div class="act_as_cell left">
+                                <t t-esc="product_line.default_code" />
+                            </div>
+                            <div class="act_as_cell left">
+                                <t t-esc="product_line.product_id.name" />
+                            </div>
+                            <div class="act_as_cell right">
+                                <t t-esc="product_line.location_dest_id.complete_name" />
+                            </div>
+                            <div class="act_as_cell right">
+                                <t t-esc="product_line.product_uom_id.name" />
+                            </div>
+                            <div class="act_as_cell right">
+                                <t t-if="product_line.qty_available">
+                                    <t t-esc="'{0:,.2f}'.format(product_line.qty_available)" />
+                                    <t t-set="before_total_qty" t-value="before_total_qty + product_line.qty_available"/>
+                                </t>
+                                <t t-if="not product_line.qty_available">
+                                    
+                                </t>     
+                            </div>
+                            <div class="act_as_cell right">
+                                <t t-if="product_line.qty_in">
+                                    <t t-esc="'{0:,.2f}'.format(product_line.qty_in)" />
+                                    <t t-set="internal_total_qty" t-value="internal_total_qty + product_line.qty_in"/>
+                                </t>
+                                <t t-if="not product_line.qty_in">
+                                    
+                                </t>                                    
+                            </div>
+                            <div class="act_as_cell right">
+                                <t t-if="product_line.qty_out">
+                                    <t t-esc="'{0:,.2f}'.format(product_line.qty_out)" />
+                                    <t t-set="transit_total_qty" t-value="transit_total_qty + product_line.qty_out"/>
+                                </t>
+                                <t t-if="not product_line.qty_out">
+                                    
+                                </t>        
+                            </div>
+                            <div class="act_as_cell right">
+                                <t t-if="product_line.amount_qty">
+                                    <t t-esc="'{0:,.2f}'.format(product_line.amount_qty)" />
+                                    <t t-set="amount_total" t-value="product_line.amount_qty"/>
+                                </t>
+                                <t t-if="not product_line.amount_qty">
+                                    
+                                    <t t-set="amount_total" t-value="0"/> 
+                                </t>        
+                            </div>
+                        </div>
+                        <div class="act_as_row lines">
+                            <div class="act_as_cell left"></div>
+                            <div class="act_as_cell left"></div>
+                            <div class="act_as_cell right"></div>
+                            <div class="act_as_cell right"></div>
+                            <div class="act_as_cell right">Total</div>
+                            <div class="act_as_cell right">
+                                <t t-if="product_line.qty_in">
+                                    <t t-esc="'{0:,.2f}'.format(product_line.qty_in)" />
+                                </t>
+                                <t t-if="not product_line.qty_in">
+                                    <t t-esc="'{0:,.2f}'.format(0)" />
+                                </t>                                    
+                            </div>
+                            <div class="act_as_cell right">
+                                <t t-if="product_line.qty_out">
+                                    <t t-esc="'{0:,.2f}'.format(product_line.qty_out)" />
+                                </t>
+                                <t t-if="not product_line.qty_out">
+                                    <t t-esc="'{0:,.2f}'.format(0)" />
+                                </t>        
+                            </div>
+                            <div class="act_as_cell right">
+                                <t t-if="product_line.amount_qty">
+                                    <t t-esc="'{0:,.2f}'.format(product_line.amount_qty)" />
+                                </t>
+                                <t t-if="not product_line.amount_qty">
+                                    <t t-esc="'{0:,.2f}'.format(0)" />
+                                </t>        
+                            </div>
+                        </div>
+                    </t>
+                    <t t-set="grand_before_total" t-value="grand_before_total + before_total_qty"/>
+                    <t t-set="grand_internal_total" t-value="grand_internal_total + internal_total_qty"/>
+                    <t t-set="grand_transit_total" t-value="grand_transit_total + transit_total_qty"/>
+                    <t t-set="grand_amount_total" t-value="grand_amount_total + amount_total"/>
+                    <div class="act_as_row lines">
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell left" style="background-color:#92D050;"><b>GRAND TOTAL</b></div>
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell"></div>
+                        <div class="act_as_cell right">
+                            <t t-if="grand_before_total">
+                                <t t-esc="'{0:,.2f}'.format(grand_before_total)"/>
+                            </t>
+                            <t t-if="not grand_before_total">
+                                0
+                            </t>      
+                        </div>
+                        <div class="act_as_cell right">
+                            <t t-if="grand_internal_total">
+                                <t t-esc="'{0:,.2f}'.format(grand_internal_total)"/>
+                            </t>
+                            <t t-if="not grand_internal_total">
+                                0
+                            </t>      
+                        </div>
+                        <div class="act_as_cell right">
+                            <t t-if="grand_transit_total">
+                                <t t-esc="'{0:,.2f}'.format(grand_transit_total)"/>
+                            </t>
+                            <t t-if="not grand_transit_total">
+                                0
+                            </t>      
+                        </div>
+                        <div class="act_as_cell right">
+                            <t t-if="grand_amount_total">
+                                <t t-esc="'{0:,.2f}'.format(grand_amount_total)"/>
+                            </t>
+                            <t t-if="not grand_amount_total">
+                                0
+                            </t>    
+                        </div>
+                    </div>
+                </div>
+                <p style="page-break-before:always;" />
+            </div>
+    </template>
+
+    <template id="hdc_stock_card_report.report_physical_detail_report_summary_filters">
+        <div class="act_as_table data_table" style="width: 100%;">
+            <div class="act_as_row labels">
+                <div class="act_as_cell">Date From</div>
+                <div class="act_as_cell">Date To</div>
+                <div class="act_as_cell">Warehouse</div>
+                <div class="act_as_cell">Location</div>
+            </div>
+            <div class="act_as_row">
+                <div class="act_as_cell">
+                    <span t-field="o.date_from" />
+                </div>
+                <div class="act_as_cell">
+                    <span t-field="o.date_to" />
+                </div>
+                <div class="act_as_cell">
+                    <span t-field="o.warehouse_ids" />
+                </div>
+                <div class="act_as_cell">
+                    <span t-field="o.location_ids" />
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="hdc_stock_card_report.report_physical_detail_summary_lines_header">
+        <div class="act_as_thead">
+            <div class="act_as_row labels">
+                <div class="act_as_cell_borderless"></div>
+                <div class="act_as_cell_borderless"></div>
+                <div class="act_as_cell_borderless"></div>
+                <div class="act_as_cell_borderless"></div>
+                <div class="act_as_cell">ยอดยกมา</div>
+                <div class="act_as_cell">รับเข้า</div>
+                <div class="act_as_cell">จ่ายออก</div>
+                <div class="act_as_cell">ยอดคงเหลือ</div>
+            </div>
+            <div class="act_as_row labels">
+                <div class="act_as_cell">รหัสสินค้า</div>
+                <div class="act_as_cell">ชื่อสินค้า</div>
+                <div class="act_as_cell">Config</div>
+                <div class="act_as_cell">หน่วย</div>
+                <div class="act_as_cell">จำนวน</div>
+                <div class="act_as_cell">จำนวน</div>
+                <div class="act_as_cell">จำนวน</div>
+                <div class="act_as_cell">จำนวน</div>
+            </div>
+        </div>
+    </template>
+</odoo>

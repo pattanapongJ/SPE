@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="easy_api_log_inherit" model="ir.ui.view">
+        <field name="name">easy.api.log.inherit</field>
+        <field name="model">easy.api</field>
+        <field name="priority" eval="5"/>
+        <field name="inherit_id" ref="api_framework_base.view_easy_api_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_log" type="object" class="oe_stat_button" icon="fa-history" attrs="{'invisible':[('logfile','=','')]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Log</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='page_size']" position="after">
+                <field name="logfile" widget="char" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hdc_inventory_adj_confirm.confirm_inventery_adjust" model="ir.module.category">
+        <field name="name">Confirm/Validate Inventory Adjustment</field>
+        <field name="description">Warehouse Inventory </field>
+        <field name="sequence">50</field>
+    </record> 
+    <record id="hdc_inventory_adj_confirm.group_warehouse_adj" model="res.groups">
+        <field name="name">Warehouse</field>
+        <field name="category_id" ref="hdc_inventory_adj_confirm.confirm_inventery_adjust"/>
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="hdc_inventory_adj_confirm.group_inventory_adj" model="res.groups">
+        <field name="name">Inventory</field>
+        <field name="category_id" ref="hdc_inventory_adj_confirm.confirm_inventery_adjust" />
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

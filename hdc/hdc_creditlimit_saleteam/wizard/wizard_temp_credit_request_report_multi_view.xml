@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_temp_credit_request_report_multi_form_view" model="ir.ui.view">
+        <field name="name">Temp Credit Request Report</field>
+        <field name="model">wizard.temp.credit.request.report.multi</field>
+        <field name="arch" type="xml">
+            <form string="Choose Temp Credit Request">
+                <group>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="user_employee_id"/>
+                        <field name="document_state"/>
+                        <field name="document_type" widget="radio"/>
+                        <field name="temp_credit_ids" widget="many2many_tags" string="Temp Credit Request" options="{'no_create': True, 'no_create_edit': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print" string="Print" type="object" class="btn-primary"/>
+                    <button string="Discard" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_wizard_temp_credit_request_report_multi" model="ir.actions.act_window">
+		<field name="name">Temp Credit Request Report</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">wizard.temp.credit.request.report.multi</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="view_id" ref="wizard_temp_credit_request_report_multi_form_view"/>
+	</record>
+
+    <menuitem id="menu_action_temp_credit_request_report_multi"
+        name="Temp Credit Request Report"
+        action="action_wizard_wizard_temp_credit_request_report_multi"
+        parent="hdc_creditlimit_saleteam.menu_credit_limit_report"
+        sequence="1"/>
+</odoo>

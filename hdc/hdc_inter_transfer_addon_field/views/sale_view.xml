@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="inter_transfer_addon_inherit_sale" model="ir.ui.view">
+        <field name="name">inter.transfer.addon.form.inherit.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button name="create_inter_transfer" type="object" string="Create Inter Transfer"/>
+            </xpath>
+
+            <xpath expr="//button[@name='preview_sale_order']" position="before"> 
+                <button name="action_view_inter_transfer_detail"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-solid fa-file"
+                        attrs="{'invisible': [('inter_transfer_num', '=', 0)]}">
+                        <span>ฺInter Transfer</span>
+                        <field name="inter_transfer_num"/>
+                </button>
+        </xpath>
+        </field>
+    </record>
+</odoo>

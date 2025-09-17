@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_payment_register_form_bs_pdc" model="ir.ui.view">
+        <field name="name">account.payment.register.view.form.inherit.spe.label1</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="bs_pdc.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='cheque_ref']" position="after">
+                <field name="payment_label"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

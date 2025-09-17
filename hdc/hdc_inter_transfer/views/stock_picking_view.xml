@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="inter_transfer_inherit" model="ir.ui.view">
+        <field name="name">inter.transfer.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']" position="attributes">
+                <attribute name="context">
+                    {'tree_view_ref': 'stock.view_stock_move_line_detailed_operation_tree', 'default_picking_id': id, 'default_company_id': company_id, 'default_addition_operation_types_code': addition_operation_types_code,'location': location_id, 'location_dest': location_dest_id,'transit_location': transit_location}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="check_origin_inter" invisible="1"/>
+                <field name="addition_operation_types" invisible="1"/>
+                <field name="addition_operation_types_code" invisible="1"/>
+                <field name="user_id" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/>
+                <field name="approve_inter" readonly="1" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/>
+                <field name="from_warehouse" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')], 'required': [('addition_operation_types_code', '=', 'AO-06')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='location_id']" position="replace">
+                <field name="location_id" options="{'no_create': True}" groups="stock.group_stock_multi_locations" attrs="{'invisible': ['|',('picking_type_code', '=', 'incoming'),('addition_operation_types_code', '=', 'AO-06')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='location_dest_id']" position="replace">
+                <field name="location_dest_id" options="{'no_create': True}" groups="stock.group_stock_multi_locations" attrs="{'invisible': ['|',('picking_type_code', '=', 'outgoing'),('addition_operation_types_code', '=', 'AO-06')]}"/>
+                <field name="transit_location" string="Source Location" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')], 'required': [('addition_operation_types_code', '=', 'AO-06')]}"/>
+                <field name="location_dest_id" string="Transit Location" options="{'no_create': True}" groups="stock.group_stock_multi_locations" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/>
+                <!-- <field name="location_id" string="Destination Location" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')], 'required': [('addition_operation_types_code', '=', 'AO-06')]}"/> -->
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">  
+                <field name="location_id" string="Destination Location" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')], 'required': [('addition_operation_types_code', '=', 'AO-06')]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='origin']" position="before">
+                <field name="return_picking_form_id" invisible="1"/>
+                <field name="approve_date" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/>
+                <field name="inter_transfer_base_id" invisible="1"/>
+                <field name="check_inter_transfer_base_id" invisible="1"/>
+                <field name="to_warehouse" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')], 'required': [('addition_operation_types_code', '=', 'AO-06')]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='has_tracking']" position="after">
+                <field name="delivery_count" invisible="1"/>
+                <button name="open_delivery"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        type="object"
+                        string="Delivery &amp; Receipts" attrs="{'invisible': [('delivery_count', '=', 0)]}">
+                </button>
+
+                <field name="return_count" invisible="1"/>
+                <button name="open_return"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        type="object"
+                        string="Return Orders" attrs="{'invisible': [('return_count', '=', 0)]}">
+                </button>
+
+            </xpath>
+
+            <xpath expr="//field[@name='quantity_done']" position="replace">
+                <field name="check_receipt" invisible="1"/>
+                <field name="location_id" string="Source Location"/>
+                <!-- ต้องมาทำใน module นี้เพราะ inter tranfers มีการ replace  BER 396 -->
+                <field name="free_qty" optional="show" attrs="{'column_invisible': [('parent.addition_operation_types_code', '!=','AO-06')]}"/>
+                <field name="product_uom_qty" string="Demand" attrs="{'readonly': ['&amp;', ('state', '!=', 'draft'), ('check_receipt', '=', True)]}"/>
+                <field name="urgent_pick_inter" optional="hide" attrs="{'column_invisible': [('parent.addition_operation_types_code', '!=','AO-06')]}"/>
+                <field name="urgent_pick" optional="hide" force_save="1" readonly="1" attrs="{'column_invisible': [('parent.check_origin_inter', '!=',True)]}"/>
+                <field name="urgent_location_ids" widget="many2many_tags" optional="hide" force_save="1" readonly="1" attrs="{'column_invisible': [('parent.addition_operation_types_code', '!=','AO-06'),'|',('parent.picking_type_code', '!=','incoming'),('parent.check_origin_inter', '!=',True)]}"/>
+                <field name="urgent_remain_done" optional="hide" force_save="1" readonly="1" attrs="{'column_invisible': [('parent.addition_operation_types_code', '!=','AO-06')]}"/>
+                <field name="urgent_remain" optional="hide" force_save="1" readonly="1" attrs="{'column_invisible': ['|',('parent.picking_type_code', '!=','incoming'),('parent.check_origin_inter', '!=',True)]}"/>
+                <field name="quantity_done" string="Done" attrs="{'readonly': [('is_quantity_done_editable', '=', False)]}"/>
+                <field name="reserved_availability" string="Reserved"/>
+                <field name="delivery_done" optional="hide"/>
+                <field name="delivery_done_out" optional="hide" readonly="1"/>
+                <field name="receipt_done" optional="hide"/>
+                <field name="return_done" optional="hide"/>
+            </xpath>
+
+            <xpath expr="//header" position="attributes">
+                <attribute name="attrs">
+                        {'invisible': [('addition_operation_types_code', '=', 'AO-06')]}
+                </attribute>
+            </xpath>
+
+            <xpath expr="//header" position="after">
+                <header attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}">
+                    <button name="to_approve" class="oe_highlight" type="object" string="To Approve" attrs="{'invisible': [('inter_state', '!=', 'draft')]}"/>
+                    <button name="cancel_inter" type="object" string="Cancel" attrs="{'invisible': [('inter_state', '!=', 'draft')]}"/>
+
+                    <button name="approve" class="oe_highlight" type="object" string="Approve" attrs="{'invisible': [('inter_state', '!=', 'approve')]}"
+                            groups="hdc_inter_transfer.approve_inter_tran"/>
+                    <button name="revise"  type="object" string="Revise"
+                            attrs="{'invisible': [('inter_state', '!=', 'approve')]}" groups="hdc_inter_transfer.approve_inter_tran"/>
+                    <button name="cancel_inter" type="object" string="Cancel" attrs="{'invisible': [('inter_state', 'not in', ('approve', 'delivery'))]}"
+                            groups="hdc_inter_transfer.approve_inter_tran"/>
+                    <field name="show_force_done" invisible="1"/>
+                    <button name="force_done_inter" type="object" class="oe_highlight" string="Force Done"
+                            attrs="{'invisible': [('inter_state', '!=', 'delivery')]}"
+                            confirm="Are you sure you want to proceed with Force Done?"/>
+                    <field name="inter_state" widget="statusbar" statusbar_visible="draft,approve,delivery,done" />
+                </header>
+            </xpath>
+
+            <xpath expr="//field[@name='origin']" position="after">  
+                <field name="inter_state_name" string="Delivery Status" readonly="1" attrs="{'invisible': [('addition_operation_types_code', '!=', 'AO-06')]}"/>
+            </xpath>
+
+             <!-- <xpath expr="//page[@name='detailed_operations_hidden']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': True}
+                </attribute>
+            </xpath>
+            <xpath expr="//page[@name='detailed_operations_shown']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': True}
+                </attribute>
+            </xpath> -->
+
+
+        </field>
+    </record>
+
+    <record id="view_picking_tree_inherit_inter_transfer" model="ir.ui.view">
+        <field name="name">stock.picking.tree.inter_transfer</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="inter_state" string="Delivery Status" optional="show" widget="badge" decoration-success="state == 'done'" decoration-info="state not in ('done', 'cancel')"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_picking_type_form">
+        <field name="name">Operation Types</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form" />
+        <field name="arch" type="xml">
+            <field name="return_picking_type_id" position="after">
+                <field
+                    name="return_inter_picking_type_id"
+                    attrs='{"invisible": [("code", "not in", ["incoming"])]}'
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_return_picking_form" model="ir.ui.view">
+        <field name="name">Return lines</field>
+        <field name="model">stock.return.picking</field>
+        <field name="inherit_id" ref="stock.view_stock_return_picking_form" />
+        <field name="arch" type="xml">
+           <xpath expr="//field[@name='product_id']" position="after">
+                <field name="tracking" invisible="1"/>
+                <!-- <field name="lot_ids" domain="[('product_id', '=', product_id)]"/> -->
+                <field name="lot_ids" domain="[('product_id', '=', product_id)]" attrs="{'readonly': [('tracking', '!=', 'lot')]}"/>
+                <!-- <field name="lot_ids" domain="[('product_id', '=', product_id)]" widget="many2many_tags" attrs="{'readonly': [('tracking', '!=', 'lot')]}"/> -->
+            </xpath>
+        </field>
+    </record>
+    <!-- ปิดเมนู -->
+    <!-- <menuitem id="delivery.menu_delivery_packagings" name="Delivery Packages" parent="delivery.menu_delivery" action="delivery.action_delivery_packaging_view" groups="stock.group_tracking_lot"  active="False"/> -->
+    <!-- ปิดเมนู -->
+    <record id="view_warehouse_inherit_inter_tranfer" model="ir.ui.view">
+        <field name="name">view.warehouse.inherit.inter_tranfer</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="mrp.view_warehouse_inherit_mrp"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='manu_type_id']" position="after">
+                <field name="inter_transfer_receive"/>
+                <field name="inter_transfer_delivery"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_update_description_picking" model="ir.actions.server">
+        <field name="name">Update Description Form Product Name</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="binding_view_types">form,list</field>
+        <field name="code">
+            action = records.update_description_picking_product_name()
+        </field>
+    </record>
+</odoo>

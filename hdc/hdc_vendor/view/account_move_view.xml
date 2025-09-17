@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="hdc_vendor_view_move_form_inherit" model="ir.ui.view">
+        <field name="name">hdc_vendor.view.move.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="import_info" string="Import Info" attrs="{'invisible': [('move_type', 'not in', ['in_invoice','in_refund'])]}">
+                    <group>
+                        <label for="bl_awb_no"/>
+                        <div>
+                            <field name="bl_awb_no" class="oe_inline" />
+                            <field name="bl_awb_no_date" class="oe_inline" />
+                        </div>
+                        <label for="import_declaration_no"/>
+                        <div>
+                            <field name="import_declaration_no" class="oe_inline" />
+                            <field name="import_declaration_no_date" class="oe_inline" />
+                        </div>
+                        <label for="duty_payment_no"/>
+                        <div>
+                            <field name="duty_payment_no" class="oe_inline" />
+                            <field name="duty_payment_no_date" class="oe_inline" />
+                        </div>
+                        <label for="edt_form_no"/>
+                        <div>
+                            <field name="edt_form_no" class="oe_inline" />
+                            <field name="edt_form_no_date" class="oe_inline" />
+                        </div>
+                        <label for="shipper"/>
+                        <div>
+                            <field name="shipper" class="oe_inline" />
+                        </div>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_claim_line_modify_user,undefined.claim.line.modify,model_claim_line_modify,base.group_user,1,1,1,1
+access_mr_repair_product_list_line_user,undefined.mr.repair.product.list.line,model_mr_repair_product_list_line,base.group_user,1,1,1,1

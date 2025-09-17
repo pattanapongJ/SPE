@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem name="API" id="menu_main_api"
+        web_icon="api_framework_base,static/description/icon.png"
+        groups="group_api_user_read_only"
+        sequence="1"/>
+    <menuitem name="API Settings" id="submenu_easy_api"
+        action="action_easy_api"
+        parent="menu_main_api"
+        groups="group_api_user_read_only"
+        sequence="2"/>
+    <menuitem id="menu_api_framework_base_config"
+        name="Configuration"
+        parent="menu_main_api"
+        groups="group_api_administrator"
+        sequence="50"/>
+    <menuitem id="menu_api_framework_base_general_settings"
+        name="Settings"
+        sequence="1"
+        action="action_api_framework_base_config_settings"
+        groups="group_api_administrator"
+        parent="menu_api_framework_base_config"/>
+
+</odoo>

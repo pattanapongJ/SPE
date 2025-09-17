@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cost_pricelist_user,hdc.cost_pricelist,model_cost_pricelist,base.group_user,1,1,1,1
+access_pricelist_configuration_user,hdc.pricelist_configuration,model_pricelist_configuration,base.group_user,1,1,1,1
+access_pricelist_type_user,undefined.pricelist.type,model_pricelist_type,base.group_user,1,1,1,1
+access_product_source_history_user,product_source_history,model_product_source_history,base.group_user,1,1,1,1

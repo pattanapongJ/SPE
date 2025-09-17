@@ -1,0 +1,122 @@
+.act_as_table {
+    display: table !important;
+    background-color: white;
+}
+.act_as_row {
+    display: table-row !important;
+    page-break-inside: avoid;
+}
+.act_as_cell {
+    display: table-cell !important;
+    page-break-inside: avoid;
+}
+.act_as_cell_left {
+    display: table-cell !important;
+    page-break-inside: avoid;
+    background-color: #92D050;
+}
+.act_as_cell_right {
+    display: table-cell !important;
+    page-break-inside: avoid;
+    background-color: #92D050;
+}
+.act_as_cell_top_bot {
+    display: table-cell !important;
+    page-break-inside: avoid;
+    background-color: #92D050;
+}
+.act_as_cell_borderless {
+    display: table-cell !important;
+    page-break-inside: avoid;
+    background-color: #f9f9f9;
+}
+.act_as_thead {
+    display: table-header-group !important;
+}
+.act_as_row.labels {
+    background-color: #92D050 !important;
+}
+.act_as_cell.labels {
+    background-color: #92D050;
+}
+.data_table {
+    width: 100% !important;
+    border-left: 0px;
+    border-right: 0px;
+    text-align: center;
+    font-size: 10px;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-collapse: collapse;
+}
+.data_table .act_as_cell {
+    border: 1px solid lightGrey;
+    text-align: center;
+}
+.data_table .act_as_cell_left {
+    border-left: 1px solid lightGrey;
+    border-top: 1px solid lightGrey;
+    border-bottom: 1px solid lightGrey;
+    text-align: center;
+}
+.data_table .act_as_cell_right {
+    border-right: 1px solid lightGrey;
+    border-top: 1px solid lightGrey;
+    border-bottom: 1px solid lightGrey;
+    text-align: center;
+}
+.data_table .act_as_cell_top_bot {
+    border-top: 1px solid lightGrey;
+    border-bottom: 1px solid lightGrey;
+    text-align: center;
+}
+.data_table .act_as_cell_borderless {
+    border-left: 1px solid #f9f9f9;
+    border-top: 1px solid #f9f9f9;
+    text-align: center;
+}
+.data_table .act_as_cell {
+    word-wrap: break-word;
+}
+.data_table .act_as_cell_left {
+    word-wrap: break-word;
+    font-weight: bold;
+}
+.data_table .act_as_cell_right {
+    word-wrap: break-word;
+    font-weight: bold;
+}
+.data_table .act_as_cell_top_bot {
+    word-wrap: break-word;
+    font-weight: bold;
+}
+.data_table .act_as_cell_borderless {
+    word-wrap: break-word;
+}
+.data_table .act_as_row.labels {
+    font-weight: bold;
+}
+.act_as_cell.left {
+    text-align: left;
+}
+.act_as_cell.right {
+    text-align: right;
+}
+.act_as_cell_left.left {
+    text-align: left;
+}
+.custom_footer {
+    font-size: 7px !important;
+}
+.button_row {
+    padding-bottom: 10px;
+}
+.o_stock_card_reports_page {
+    padding-top: 10px;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: Helvetica, Arial;
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="users_sale_team_history_view_tree" model="ir.ui.view">
+        <field name="name">users.sale.team.history.view.tree</field>
+        <field name="model">users.sale.team.history</field>
+        <field name="arch" type="xml">
+            <tree string="Users Sale Team History" multi_edit="0" create="false">
+                <field name="user_id" readonly="1" force_save="1"/>
+                <field name="team_id" readonly="1" force_save="1"/>
+                <field name="team_id_date_time"/>
+                <field name="member_type" readonly="1" force_save="1"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="users_sale_team_history_view_form" model="ir.ui.view">
+        <field name="name">users.sale.team.history.view.form</field>
+        <field name="model">users.sale.team.history</field>
+        <field name="arch" type="xml">
+            <form string="Users Sale Team History">
+                <sheet>
+                    <group>
+                        <field name="user_id" readonly="1" force_save="1"/>
+                        <field name="team_id" readonly="1" force_save="1"/>
+                        <field name="team_id_date_time"/>
+                        <field name="member_type" widget="radio" readonly="1" force_save="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="users_sale_team_history_view_action" model="ir.actions.act_window">
+        <field name="name">Sales History</field>
+        <field name="res_model">users.sale.team.history</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="sales_teams_history_config"
+            name="Sales History"
+            parent="sale.sales_team_config"
+            action="users_sale_team_history_view_action"
+            sequence="5"/>
+</odoo>

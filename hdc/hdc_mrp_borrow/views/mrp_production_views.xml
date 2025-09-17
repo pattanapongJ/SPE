@@ -1,0 +1,25 @@
+<odoo>
+    <record id="inter_transfer_from_mrp_view_inherited" model="ir.ui.view">
+        <field name="name">inter transfer from mrp view inherited</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_unbuild']" position="after">
+                <button name="action_open_wizard_mrp_borrow" string="Create Stock Request" type="object"
+                        class="btn-primary" 
+                        attrs="{'invisible': [('state', 'not in', ['confirmed','progress','done'])]}"/>
+                <button name="action_open_wizard_mrp_return" string="Return" type="object"
+                        class="btn-primary" 
+                        attrs="{'invisible': [('state', 'not in', ['confirmed','progress','done'])]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_view_mo_delivery']" position="after">
+                <button name="open_internal_transfer_borrow" type="object" class="oe_stat_button" icon="fa-exchange"  attrs="{'invisible': [('borrow_count', '=', 0)]}">
+                    <field name="borrow_count" widget="statinfo" string="Stock Request"/>
+                </button>
+                <button name="open_internal_transfer_return" type="object" class="oe_stat_button" icon="fa-exchange"  attrs="{'invisible': [('return_count', '=', 0)]}">
+                    <field name="return_count" widget="statinfo" string="Stock Return"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

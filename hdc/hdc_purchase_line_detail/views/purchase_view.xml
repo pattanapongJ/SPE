@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_purchase_order_line_detail_form_inherit" model="ir.ui.view">
+        <field name="name">purchase order form inherit line detail</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="hdc_on_the_way.view_purchase_inherit_on_the_way_tab"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='purchase_otw_tab']" position="after">
+                <page string="Line Detail" name="line_detail">
+                    <field name="order_line_detail" mode="tree" readonly="1">
+                        <tree string="Purchase Order Lines" editable="bottom">
+                            <field name="product_id" optional="show"/>
+                            <field name="item_eng" optional="show"/>
+                            <field name="categ_id" optional="show"/>
+                            <field name="name" optional="show"/>
+                            <field name="hs_code" optional="show"/>
+                            <field name="user_id" string="Duty" optional="show"/>
+                            <field name="duty_mail" string="Mail Account" optional="show"/>
+                            <field name="product_qty" optional="show"/>
+                            <field name="product_uom" optional="show"/>
+                            <field name="gross_unit_price" string="Unit Price" optional="show"/>
+                            <field name="multi_disc" string="Discount" optional="show"/>
+                            <field name="taxes_id" widget="many2many_tags" string="Vat"  optional="show"/>
+                            <field name="price_total" string="Net Amount" optional="hide"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hdc_purchase_line_detail_view_purchase_form" model="ir.ui.view">
+        <field name="name">view.purchase.form.line_detail.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='products']/field[@name='order_line']/tree/field[@name='product_id']" position="before">
+                <field name="product_default_code" optional="show"/>
+            </xpath>
+
+            <xpath expr="//page[@name='products']/field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                <field name="tags_product_sale_ids" string="Product Tags" widget="many2many_tags" options="{'no_create': True}" optional="hide"/>
+                <field name="hs_code" optional="show"/>
+                <field name="item_eng" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

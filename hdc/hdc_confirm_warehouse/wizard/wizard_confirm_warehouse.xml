@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_confirm_warehouse_form" model="ir.ui.view">
+        <field name="name">wizard.confirm.warehouse.form</field>
+        <field name="model">wizard.confirm.warehouse</field> 
+        <field name="arch" type="xml">
+            <form string = "Confirm Warehouse">
+                <sheet>
+                    <field name="picking_id" invisible="1"/>
+                    <span>มีรายการสินค้าบางรายการที่มีจำนวนเป็น 0 ยืนยันจะทำงานต่อหรือไม่</span>
+                </sheet>
+                <footer>
+                    <button string="Confirm" name="action_confirm" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_confirm_warehouse" model="ir.actions.act_window">
+        <field name="name">Confirm Warehouse</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.confirm.warehouse</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_confirm_warehouse_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

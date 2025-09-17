@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="tranfers_inventory_report_llk_view" model="ir.actions.report">
+            <field name="name">ใบจัดสินค้าลาดหลุมแก้ว</field>
+            <field name="model">hdc.transfer.line</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_transfer_line.transfer_line_report</field>
+            <field name="print_report_name">'ใบจัดสินค้าลาดหลุมแก้ว_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_tranfers_llk_inventory"/>
+            <field name="binding_model_id" ref="model_hdc_transfer_line"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

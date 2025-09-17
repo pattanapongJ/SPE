@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_inter_company_transactions" model="ir.ui.view">
+        <field name="name">purchase.order.form.view</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <field name="inter_so_company_count" invisible="1"/>
+                <button name="action_so_inter_company" type="object" class="oe_stat_button" icon="fa-file-text-o"
+                        attrs="{'invisible': [('inter_so_company_count', '=', 0)]}">
+                    <span class="o_stat_text">SO Inter Company</span>
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_ref']" position="replace">
+                <field name="inter_company_transactions" invisible="1"/>
+                <field name="inter_so_company" invisible="1"/>
+                <field name="partner_ref" attrs="{'required':[('inter_company_transactions','=',True)]}"/>
+            </xpath>
+
+            <xpath expr="//button[@name='button_confirm']" position="attributes">
+                <attribute name="name">button_confirm_inter_com</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='branch_id']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='team_id']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='button_confirm']" position="attributes">
+                <attribute name="name">button_confirm_inter_com</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inter_company_transactions_purchase_order_type_view_inherit" model="ir.ui.view">
+        <field name="name">inter.company.transactions.purchase.order.type.view.inherit</field>
+        <field name="model">purchase.order.type</field>
+        <field name="inherit_id" ref="purchase_order_type.view_purchase_order_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]/group[1]" position="inside">
+                <field name="inter_company_transactions"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

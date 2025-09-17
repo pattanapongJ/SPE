@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_create_multi_rma" model="ir.ui.view">
+        <field name="name">Create Multiple RMA</field>
+        <field name="model">wizard.create.multi.rma</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="return_request_id" invisible="1"/>
+                            <field name="is_modern_trede" invisible="1"/>
+                            <field name="company_id"/>
+                            <field name="location_id"/>
+                            <field name="available_invoice_ids" invisible="1"/>
+                            <field name="no_invoice"/>
+                            <field name="spe_invoice"/>
+                            <field name="invoice_id" attrs="{'required': [('no_invoice', '=', False)]}"  />
+                            <field name="delivery_id" attrs="{'required': [('no_invoice', '=', False)]}"/>
+                            <field name="customer_requisition"/>
+                        </group>
+                        <group>
+                            <field name="name" string="Subject"/>
+                            <field name="partner_id" readonly="1"/>
+                            <!-- <field name="partner_address_id" readonly="1"/> -->
+                            <field name="sale_id" attrs="{'required': [('is_modern_trede', '=', False),('no_invoice', '=', False)]}"/>
+                            <field name="rma_reason_id"/>
+                            <field name="customer_ref" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Product Return">
+                            <field name="product_line_ids" widget="one2many_list">
+                                <tree  editable="bottom" create="0" edit="1" delete="0">
+                                    <field name="choose"/>
+                                    <field name="return_request_line" invisible="1"/>
+                                    <field name="product_id" readonly="1" force_save="1"/>
+                                    <field name="name" readonly="1" force_save="1"/>
+                                    <!-- <field name="invoice_id" string="Invoice No" domain="[('state', '=', 'posted'),('move_type', '=', 'out_invoice'),('invoice_origin', '!=', False)]"/>
+                                    <field name="delivery_id" string="Delivery No"  domain="['&amp;', ('picking_type_code', '=', 'outgoing'), '&amp;', ('state', '=', 'done'), '|', ('sale_id', '!=', False), ('rma_sale_id', '!=', False)]" options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                    <field name="sale_id" string="So No" /> -->
+                                    <field name="receive_qty" string="Demand Receive" readonly="1" force_save="1"/>
+                                    <field name="quantity" string="Quantity"/>
+                                    <field name="rma_qty" string="RMA QTY" readonly="1" force_save="1"/>
+                                    <field name="uom" readonly="1"/>
+                                    <field name="remark" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_create_rma" string="Create RMA" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

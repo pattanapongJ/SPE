@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_mrp_to_intertransfer" model="ir.ui.view">
+        <field name="name">wizard.mrp.create.rfq</field>
+        <field name="model">wizard.mrp.create.rfq</field>
+        <field name="arch" type="xml">
+            <form string="Create RFQ">
+                <group>
+                    <group>
+                        <field name="mo_id" invisible="1"/>
+                        <field name="partner_id" domain="[('supplier', '=', True)]"/>
+                        <field name="purchase_type" />
+                        <button name="action_clear_lines_mo_create_rfq" type="object"
+                                class="btn-primary"
+                                title="Clear All"
+                                confirm="ต้องการลบทั้งหมดใช่หรือไม่ ?">
+                            <span>Clear All</span>
+                        </button>
+                    </group>
+                    <group>
+                        <field name="currency_id" />
+                        <field name="order_deadline" />
+                    </group>
+                </group>
+
+                <notebook>
+                    <page name="order_line" string="Order Line">
+                        <group name="attribute_value_group">
+                            <field name="order_line_ids" string="Order Line" nolabel="1">
+                                <tree editable="top">
+                                    <field name="wizard_mrp_create_rfq_ids" invisible="1"/>
+                                    <field name="product_id" options="{'no_create_edit': True, 'no_create': True}"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="gross_unit_price"/>
+                                    <field name="qty_available"/>
+                                    <field name="incoming_qty"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_create_rfq" string="Create RFQ" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

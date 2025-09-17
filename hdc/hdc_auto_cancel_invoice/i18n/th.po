@@ -1,0 +1,163 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hdc_auto_cancel_invoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230901\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-08 15:30+0000\n"
+"PO-Revision-Date: 2025-05-08 15:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_wizard_auto_confirm__account_id
+msgid "Account"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model_terms:ir.ui.view,arch_db:hdc_auto_cancel_invoice.hdc_auto_cancel_inv_view_move_form
+msgid "Cancel Entry Auto"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields.selection,name:hdc_auto_cancel_invoice.selection__picking_lists_line__state__cancel
+msgid "Cancelled"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model_terms:ir.ui.view,arch_db:hdc_auto_cancel_invoice.wizard_auto_confirm_view_form
+msgid "Confirm"
+msgstr "ยืนยัน"
+
+#. module: hdc_auto_cancel_invoice
+#: model_terms:ir.ui.view,arch_db:hdc_auto_cancel_invoice.wizard_auto_confirm_view_form
+msgid "Confirmation"
+msgstr "ยืนยัน"
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_wizard_auto_confirm__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_wizard_auto_confirm__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model_terms:ir.ui.view,arch_db:hdc_auto_cancel_invoice.wizard_auto_confirm_view_form
+msgid "Discard"
+msgstr "ละทิ้ง"
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_account_move__display_name
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_picking_lists__display_name
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_picking_lists_line__display_name
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_wizard_auto_confirm__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: hdc_auto_cancel_invoice
+#: model_terms:ir.ui.view,arch_db:hdc_auto_cancel_invoice.wizard_auto_confirm_view_form
+msgid ""
+"Do you need to cancel the Invoice? Please note that once it is canceled, it "
+"cannot be reused."
+msgstr ""
+"ต้องยกเลิกเอกสาร Invoice Auto ใช่หรือไม่ กรณีที่ท่านยกเลิกแล้ว "
+"จะไม่สามารถกลับมาใช้งานที่ใบเดิมได้ระบบจะทำการยกเลิกคืนสินค้าและยกเลิกหน้า "
+"Sale Order"
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields.selection,name:hdc_auto_cancel_invoice.selection__picking_lists_line__state__done
+msgid "Done"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields.selection,name:hdc_auto_cancel_invoice.selection__picking_lists_line__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_account_move__id
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_account_move_line__id
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_picking_lists__id
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_picking_lists_line__id
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_wizard_auto_confirm__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model,name:hdc_auto_cancel_invoice.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model,name:hdc_auto_cancel_invoice.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_account_move____last_update
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_picking_lists____last_update
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_picking_lists_line____last_update
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_wizard_auto_confirm____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_wizard_auto_confirm__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_wizard_auto_confirm__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_wizard_auto_confirm__name
+msgid "Name"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model,name:hdc_auto_cancel_invoice.model_picking_lists_line
+msgid "Picking List Line"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model,name:hdc_auto_cancel_invoice.model_picking_lists
+msgid "Picking Lists"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_picking_lists_line__state_cancel
+msgid "State Cancel"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields,field_description:hdc_auto_cancel_invoice.field_picking_lists_line__state
+msgid "Status"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model.fields.selection,name:hdc_auto_cancel_invoice.selection__picking_lists_line__state__waiting_pick
+msgid "Waiting for pickup"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.model,name:hdc_auto_cancel_invoice.model_wizard_auto_confirm
+msgid "wizard.auto.confirm"
+msgstr ""
+
+#. module: hdc_auto_cancel_invoice
+#: model:ir.actions.act_window,name:hdc_auto_cancel_invoice.wizard_auto_confirm_action
+msgid "รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบสรุป (รายวัน)"
+msgstr ""

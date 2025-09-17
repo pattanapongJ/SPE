@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_tms_confirm_enumerate_view_form" model="ir.ui.view">
+        <field name="name">wizard.tms.confirm.enumerate.view.form</field>
+        <field name="model">wizard.tms.enumerate</field>
+        <field name="arch" type="xml">
+            <form string="รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบแจกแจง">
+                <sheet>
+                    <group>
+                        <label for="from_date" />
+                        <div class="o_row">
+                            <field name="from_date" />
+                            <p class="font-weight-bold">To</p>
+                            <field name="to_date" />
+                        </div> 
+                        <field name="transport_desc_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="delivery_status" widget="many2many_tags" domain="[('name', '!=', 'False')]" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="billing_status" widget="many2many_tags" domain="[('name', '!=', 'False')]" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="driver_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="tms_remark" />
+                    </group>
+                    <footer>
+                        <button name="print_pdf" string="Print PDF" type="object"
+                            class="btn-primary" />
+                        <button name="print_excel" string="Print Excel" type="object"
+                            class="btn-primary" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_tms_confirm_enumerate_action" model="ir.actions.act_window">
+        <field name="name">รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบแจกแจง</field>
+        <field name="res_model">wizard.tms.enumerate</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_tms_confirm_enumerate_report" name="รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบแจกแจง" parent="hdc_tms.menu_tms_reporting_main"
+        action="wizard_tms_confirm_enumerate_action" sequence="2" />
+
+</odoo>

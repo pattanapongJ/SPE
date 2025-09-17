@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="material_requestion_template" model="ir.actions.report">
+            <field name="name">ใบเบิก/ขอเบิก</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_spe_mo_report.hdc_requestion_mo_report</field>
+            <field name="report_file">hdc_spe_mo_report.hdc_requestion_mo_report</field>
+            <field name="paperformat_id" ref="hdc_spe_mo_report.paperformat_report_requestion_mo"/>
+            <!-- <field name="binding_model_id" ref="mrp.model_mrp_production"/> -->
+            <field name="binding_type">report</field>
+        </record>
+        <record id="material_requestion_cutting_template" model="ir.actions.report">
+            <field name="name">ใบเบิก/ตัดวัตถุดิบ</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_spe_mo_report.hdc_requestion_cutting_mo_report</field>
+            <field name="report_file">hdc_spe_mo_report.hdc_requestion_cutting_mo_report</field>
+            <field name="paperformat_id" ref="hdc_spe_mo_report.paperformat_report_requestion_mo"/>
+            <!-- <field name="binding_model_id" ref="mrp.model_mrp_production"/> -->
+            <field name="binding_type">report</field>
+        </record>
+        <record id="mrp_production_state_template" model="ir.actions.report">
+            <field name="name">ใบรายงานสถานะการผลิต</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_spe_mo_report.hdc_mrp_production_state_report</field>
+            <field name="report_file">hdc_spe_mo_report.hdc_mrp_production_state_report</field>
+            <field name="paperformat_id" ref="hdc_spe_mo_report.paperformat_report_mrp_production_state"/>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="action_report_mrp_fg_ls" model="ir.actions.report">
+            <field name="name">ใบรับผลิตเสร็จ</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_spe_mo_report.hdc_mrp_fg_report</field>
+            <field name="report_file">hdc_spe_mo_report.hdc_mrp_fg_report</field>
+            <field name="paperformat_id" ref="hdc_spe_mo_report.paperformat_report_mrp_fg_ls"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

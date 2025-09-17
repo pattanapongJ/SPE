@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="wizard_borrow_form_view">
+        <field name="name">borrow.wizard.form</field>
+        <field name="model">wizard.borrow.report</field>
+        <field name="arch" type="xml">
+            <form string="Borrow Reports">
+                <group >
+                    <group>
+                        <field name="is_delivery_note" invisible="1"/>
+                        <field name="documents" widget="selection" string="Documents" attrs="{'invisible': [('is_delivery_note', '=', True)]}"/>
+                        <field name="documents_delivery_note" widget="selection" string="Documents" attrs="{'invisible': [('is_delivery_note', '=', False)]}"/>
+                    </group>
+                    <!-- <group>
+                        <field name="end_date"/>
+                    </group> -->
+                </group>
+                <footer>
+                    <button name="print" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="forecast_report_wizard_action">
+        <field name="name">Borrow Reports</field>
+        <field name="res_model">wizard.borrow.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_borrow_form_view"/>
+        <field name="target">new</field>
+    </record>
+<!-- 
+     <menuitem id="menu_forecast_report_wizard_action"
+          parent="sale.menu_sale_report"
+          action="forecast_report_wizard_action"
+          sequence="2"/> -->
+<!-- 
+    <menuitem id="menu_report_product_all"
+            name="Sales"
+            action="action_order_report_all"
+            parent="menu_sale_report"
+            sequence="1"/> -->
+
+
+</odoo>

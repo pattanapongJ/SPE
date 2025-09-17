@@ -1,0 +1,50 @@
+<odoo>
+    <record id="mrp_production_form_view_purchase" model="ir.ui.view">
+        <field name="name">mrp.production.inherited.form.purchase</field>
+        <field name="model">mrp.production</field>
+        <field name="priority">32</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_purchase_orders']" position="before">
+                <button class="oe_stat_button" name="action_view_create_rfq" type="object" icon="fa-credit-card" groups="purchase.group_purchase_user" attrs="{'invisible': [('create_rfq_count', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field name="create_rfq_count"/></span>
+                        <span class="o_stat_text">RFQ</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="create_rfq_from_mrp_view_inherited" model="ir.ui.view">
+        <field name="name">create rfq from mrp view inherited</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//button[@name='action_cancel']" position="after">
+                <button name="action_open_wizard_mrp_create_rfq" string="Create RFQ" type="object"
+                        class="btn-primary" 
+                        attrs="{'invisible': [('state', 'in', ['draft','cancel'])]}"/>
+            </xpath> -->
+            <xpath expr="//field[@name='bom_id']" position="after">
+                <field name="partner_id_vendor" domain="[('supplier', '=', True)]" string="Vendor"></field>
+            </xpath>
+            <!-- <xpath expr="//button[@name='action_view_mo_delivery']" position="after">
+                <button name="open_internal_transfer_borrow" type="object" class="oe_stat_button" icon="fa-exchange"  attrs="{'invisible': [('borrow_count', '=', 0)]}">
+                    <field name="borrow_count" widget="statinfo" string="Borrow"/>
+                </button>
+            </xpath> -->
+        </field>
+    </record>
+
+    <record id="bom_vendor_from_mrp_view_inherited" model="ir.ui.view">
+        <field name="name">vendor bom from mrp view inherited</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+              <field name="partner_id_vendor" string="Vendor" domain="[('supplier', '=', True)]" attrs="{'invisible': [('type','!=','normal')]}"></field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

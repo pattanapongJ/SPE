@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_shipping_view_quotation_order" model="ir.ui.view">
+        <field name="name">inherit.shipping.view.quotation.order</field>
+        <field name="model">quotation.order</field>
+        <field name="inherit_id" ref="hdc_quotation_order.view_quotation_order_form" /> 
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='sale_price_marketing']" position="after">
+                <field name="shipping_cost" optional="hide" readonly="1" force_save="1"/>
+            </xpath>
+
+            <xpath expr="//tree/field[@name='product_uom']" position="replace">
+                <field name="sale_uom_map_ids" widget="many2many_tags" invisible="1" force_save="1"/>
+                <field name="product_uom" force_save="1" string="UoM" attrs="{'required': [('display_type', '=', False)], 'readonly': [('state', 'in', ('sale','done','cancel'))]}" context="{'company_id': parent.company_id}" groups="uom.group_uom" options="{&quot;no_open&quot;: True}" optional="show" domain="[('id', 'in', sale_uom_map_ids)]" />
+            </xpath>        
+        </field>
+    </record>
+    
+</odoo>

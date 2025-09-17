@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="rma_inter_transfer_inherit" model="ir.ui.view">
+        <field name="name">rma.inter.transfer.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='scheduled_date']" position="after">
+                <field name="is_repair_type_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="MRP Request" attrs="{'invisible': [('is_repair_type_id', '=', False)]}">
+                    <group>
+                        <group>
+                            <field name="product_type_mr" attrs="{'required': [('is_repair_type_id', '=', True)]}"/>
+                            <field name="request_type_mr" attrs="{'required': [('is_repair_type_id', '=', True)]}"/>
+                        </group>
+                        <group>
+                            
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="rma_operation_types_inherit" model="ir.ui.view">
+        <field name="name">rma.operation.types.form.inherit</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="hdc_inventory_config.view_stock_picking_type_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='addition_operation_types']" position="after">
+                <field name="is_factory"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

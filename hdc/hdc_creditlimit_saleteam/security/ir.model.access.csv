@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_temp_credit_request_user,hdc.temp.credit.request,model_temp_credit_request,base.group_user,1,1,1,1
+access_credit_limit_sale_user,hdc.credit.limit.sale,model_credit_limit_sale,base.group_user,1,1,1,1
+access_credit_limit_sale_line_user,hdc.credit.limit.sale.line,model_credit_limit_sale_line,base.group_user,1,1,1,1
+access_customer_credit_limit_user,hdc.customer.credit.limit,model_customer_credit_limit,base.group_user,1,1,1,1
+access_below_cost_warning_wizard,below_cost_warning_wizard,model_below_cost_warning_wizard,base.group_user,1,1,1,1
+access_temp_credit_request_history_user,hdc.temp.credit.request.history,model_temp_credit_request_history,base.group_user,1,1,1,1
+access_customer_cash_limit_user,hdc.customer.cash.limit,model_customer_cash_limit,base.group_user,1,1,1,1
+access_wizard_temp_credit_request_report_user,undefined.wizard.temp.credit.request.report,model_wizard_temp_credit_request_report,base.group_user,1,1,1,1
+access_wizard_temp_credit_request_report_multi_user,undefined.wizard.temp.credit.request.report.multi,model_wizard_temp_credit_request_report_multi,base.group_user,1,1,1,1
+access_credit_limit_sale_person_line_user,hdc.credit.limit.sale.person.line,model_credit_limit_sale_person_line,base.group_user,1,1,1,1

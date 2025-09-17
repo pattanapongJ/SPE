@@ -1,0 +1,38 @@
+
+@font-face {
+	font-family: 'KanitLight';
+	src: local('KanitLight'), local('KanitLight'),
+	url(/hdc_sale_general_reports/static/src/fonts/KanitLight.ttf) format('truetype');
+}
+
+.border-dotted {
+   border: 1px dotted #dee2e6 !important;
+}
+
+.border-dotted-top {
+   border-top: 1px dotted #dee2e6 !important;
+}
+
+.border-dotted-right {
+   border-right: 1px dotted #dee2e6 !important;
+}
+
+.border-dotted-bottom {
+   border-bottom: 1px dotted #dee2e6 !important;
+}
+
+.border-dotted-left {
+   border-left: 1px dotted #dee2e6 !important;
+}
+
+.border-dotted-dark {
+	border-color: #0e0e0e !important;
+ }
+
+
+/* 
+.img-logo {
+	position: relative;
+	left: -10px;
+	top: 25px;
+  } */

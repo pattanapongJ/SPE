@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record model="res.groups" id="inventory_Recalculate_user">
+        <field name="name">Inventory Recalculate</field>
+    </record>
+
+    <record model="ir.rule" id="recalculate_inventory_valuation_manual_log_rule">
+        <field name="name">Manual Recal Inventory Valuation Log</field>
+        <field name="model_id" ref="model_recalculate_inventory_valuation_manual_log" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record model="ir.rule" id="recalculate_inventory_valuation_scheduled_log_rule">
+        <field name="name">Scheduled Actions Recal Inventory Valuation Log</field>
+        <field name="model_id" ref="model_recalculate_inventory_valuation_scheduled_log" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

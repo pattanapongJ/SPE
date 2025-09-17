@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_remark_bill_finance_view" model="ir.ui.view">
+        <field name="name">Remark Bill Finance</field>
+        <field name="model">wizard.remark.bill.finance</field>
+        <field name="arch" type="xml">
+            <form string = "Remark Bill Finance">
+                <sheet>
+                    <field name="invoice_ids" invisible="0"/>
+                    <group string="Remark">
+                        <field name="remark_billing" nolabel="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="remark_bill_finance" string="Remark Bill Finance" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_remark_bill_finance_view" model="ir.actions.act_window">
+        <field name="name">Remark Bill Finance</field>
+        <field name="res_model">wizard.remark.bill.finance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_remark_bill_finance_view"/>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

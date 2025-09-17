@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="stock_valuation_layer_tree_inherit" model="ir.ui.view">
+            <field name="name">stock_valuation_layer_tree_inherit</field>
+            <field name="model">stock.valuation.layer</field>
+            <field name="inherit_id" ref="bs_finance_dimension.stock_valuation_layer_tree_inherit"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='finance_dimension_3_id']" position="after">
+                   <field name="finance_dimension_4_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_5_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_6_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_7_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_8_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_9_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_10_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="stock_valuation_layer_form_inherit" model="ir.ui.view">
+            <field name="name">stock_valuation_layer_form_inherit</field>
+            <field name="model">stock.valuation.layer</field>
+            <field name="inherit_id" ref="bs_finance_dimension.stock_valuation_layer_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='finance_dimension_gp']/field[@name='finance_dimension_3_id']"
+                       position="after">
+                    <field name="finance_dimension_4_id" readonly="1" force_save="1"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_5_id" readonly="1" force_save="1"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_6_id" readonly="1" force_save="1"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_7_id" readonly="1" force_save="1"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_8_id" readonly="1" force_save="1"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_9_id" readonly="1" force_save="1"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_10_id" readonly="1" force_save="1"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_tms_month,undefined.wizard.tms.month,model_wizard_tms_month,base.group_user,1,1,1,1
+access_wizard_tms_day,undefined.wizard.tms.day,model_wizard_tms_day,base.group_user,1,1,1,1
+access_wizard_tms_trl,undefined.wizard.tms.trl,model_wizard_tms_trl,base.group_user,1,1,1,1
+access_wizard_tms_enumerate,undefined.wizard.tms.enumerate,model_wizard_tms_enumerate,base.group_user,1,1,1,1
+access_delivery_status,undefined.delivery.status,model_delivery_status,base.group_user,1,1,1,1
+access_billing_status,undefined.billing.status,model_billing_status,base.group_user,1,1,1,1

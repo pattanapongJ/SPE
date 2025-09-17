@@ -1,0 +1,16 @@
+<odoo>
+    <record id="sale_type_internal_transfer_sale_order_type_form_inherit" model="ir.ui.view">
+        <field name="name">sale.type.internal.transfer.sale.order.type.form.inherit</field>
+        <field name="model">sale.order.type</field>
+        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[2]/group[2]" position="inside">
+              <field name="is_retail"/>
+              <field name="is_booth"/>
+              <field name="is_no_spe_invoice"/>
+              <field name="picking_type_id" attrs="{'invisible': [('is_retail', '!=', True),('is_booth', '!=', True)],'required': ['|',('is_retail', '=', True),('is_booth', '=', True)]}" domain="[('code', '=', 'internal'),('company_id','=',company_id)]"/>
+              <field name="is_online"/>            
+            </xpath>
+        </field>
+    </record>
+</odoo>

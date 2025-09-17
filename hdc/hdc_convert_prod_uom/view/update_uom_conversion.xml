@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fix_default_uom_wizard_form" model="ir.ui.view">
+        <field name="name">fix.default.uom.wizard.form</field>
+        <field name="model">fix.default.uom.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Update UoM Conversion">
+                <div class="alert alert-info" role="alert">
+                    <strong>คำแนะนำ:</strong> ระบบจะแก้ไขข้อมูล default UOM สำหรับสินค้าที่เลือก โดยย้าย default ไปที่ base UOM ทั้งหมด
+                </div>
+                <group>
+                    <field name="product_ids" widget="many2many_tags" options="{'no_create': True}" nolabel="1"/>
+                </group>
+                <footer>
+                    <button name="action_fix_default_uom" string="Update UoM Conversion" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fix_default_uom_wizard" model="ir.actions.act_window">
+        <field name="name">Update UoM Conversion</field>
+        <field name="res_model">fix.default.uom.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'active_ids': active_ids}</field>
+    </record>
+</odoo>

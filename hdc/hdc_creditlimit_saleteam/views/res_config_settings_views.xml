@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_default_credit_limit_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.credit</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="General Settings" string="Credit Limit Settings" data-key="dev_customer_credit_limit">
+                        <h2>Default Credit Limit</h2>
+                        <div class="row mt16 o_settings_container" name="credit_limit_setting_container">
+                            <div class="col-12 col-lg-6 o_setting_box" id="div_set_credit_limit">
+                                <div class="o_setting_right_pane">
+                                    <label for="default_credit_limit"/>
+                                    <div>
+                                        <field name="default_credit_limit"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+    <record id="action_credit_limit_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_default_credit_limit_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'dev_customer_credit_limit', 'bin_size': False}</field>
+    </record>
+</odoo>
+

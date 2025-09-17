@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_move_form_inherit_user_employee" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.user.employee</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="hdc_sale.hdc_sale_form_inherit_account_move"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='invoice_user_id']" position="before">
+                <field name="sale_employee_ids" invisible="1"/>
+                <field name="invoice_user_employee_id"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='sale_spec']" position="before">
+                <field name="sale_spec_employee_ids" invisible="1"/>
+                <field name="sale_spec_employee"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_spec']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='sale_manager_id']" position="before">
+                <field name="sale_manager_employee_id"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_manager_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='user_sale_agreement']" position="before">
+                <field name="user_sale_agreement_employee"/>
+            </xpath>
+            <xpath expr="//field[@name='user_sale_agreement']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='team_id']" position="after">
+                <field name="department_id"/>
+            </xpath>
+        </field>
+    </record>    
+</odoo>

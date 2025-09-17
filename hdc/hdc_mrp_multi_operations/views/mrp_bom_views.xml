@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mrp_bom_form_view_inherit_hdc_mrp_multi_operations" model="ir.ui.view">
+        <field name="name">view.sale.form.inherit.hdc_check_payment</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='operations']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//page[@name='operations']" position="after">
+                <page string="Operations"
+                    name="routing"
+                    attrs="{'invisible': [('type', 'not in',('normal','phantom'))]}"
+                    groups="mrp.group_mrp_routings">
+                    <field name="routing_ids"                        
+                        attrs="{'invisible': [('type','not in',('normal','phantom'))]}"
+                        groups="mrp.group_mrp_routings"
+                        widget="one2many" context="{'default_bom_id': id}">
+                        <tree string="Components" editable="bottom">
+                            <field name="operation_ids" required="1" domain="['|', ('bom_id', '=', False), ('bom_id.active', '=', True)]"/>
+                            <field name="workcenter_id"/>
+                            <field name="avg_produced_time"/>
+                            <field name="time_cycle"/>                           
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

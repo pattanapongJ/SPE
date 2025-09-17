@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sync_db_order_user,sync_db_order,model_sync_db_order,base.group_user,1,1,1,1
+access_sync_app_list_user,sync_app_list,model_sync_app_list,base.group_user,1,1,1,1
+access_invoice_sync_line_user,invoice.sync.line,model_invoice_sync_line,base.group_user,1,1,1,1
+access_payment_sync_line_user,payment.sync.line,model_payment_sync_line,base.group_user,1,1,1,1

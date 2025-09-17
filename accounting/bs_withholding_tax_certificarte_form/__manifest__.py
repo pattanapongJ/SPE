@@ -1,0 +1,21 @@
+{
+    'name': 'bs_withholding_tax_certificarte_form',
+    'version': '14.0.0.2',
+    'author': 'Basic-Solution Co., Ltd.',
+    'website': 'https://www.basic-solution.com/',
+    "license": "AGPL-3",
+    "category": "Report",
+    "depends": ["web",
+        "l10n_th_withholding_tax_cert",
+        "l10n_th_amount_to_text",
+        'l10n_th_withholding_tax_cert_form',
+        "l10n_th_fonts",],
+    'data': [  
+        'report/report_bs_withholding_tax_certificarte_form_page.xml',  
+        'report/bs_withholding_tax_certificarte_form_template.xml',  
+        'report/request_report.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'license': 'LGPL-3',
+}

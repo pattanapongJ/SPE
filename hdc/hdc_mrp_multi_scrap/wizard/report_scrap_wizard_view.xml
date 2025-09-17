@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_mrp_report_scrap" name="Scrap Report"
+              parent="mrp.menu_mrp_reporting" sequence="20"
+              action="hdc_multi_scrap.action_report_scrap_wizard"/>
+</odoo>

@@ -1,0 +1,12 @@
+<odoo>
+    <record id="sale_type_dewalt_sale_order_type_form_inherit" model="ir.ui.view">
+        <field name="name">sale.type.dewalt.sale.order.type.form.inherit</field>
+        <field name="model">sale.order.type</field>
+        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[2]/group[2]" position="inside">
+              <field name="is_dewalt"/>        
+            </xpath>
+        </field>
+    </record>
+</odoo>

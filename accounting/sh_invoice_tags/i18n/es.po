@@ -1,0 +1,98 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_invoice_tags
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.1alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-08 08:21+0000\n"
+"PO-Revision-Date: 2020-10-08 08:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_invoice_tags
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_sh_invoice_tags__color
+msgid "Color Index"
+msgstr "Indice de color"
+
+#. module: sh_invoice_tags
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_sh_invoice_tags__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sh_invoice_tags
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_sh_invoice_tags__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sh_invoice_tags
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_account_move__display_name
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_sh_invoice_tags__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: sh_invoice_tags
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_account_move__id
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_account_move_line__id
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_sh_invoice_tags__id
+msgid "ID"
+msgstr "CARNÉ DE IDENTIDAD"
+
+#. module: sh_invoice_tags
+#: model:ir.actions.act_window,name:sh_invoice_tags.sh_invoice_tags_action
+#: model:ir.model,name:sh_invoice_tags.model_sh_invoice_tags
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_account_bank_statement_line__invoice_tag_ids
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_account_move__invoice_tag_ids
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_account_move_line__invoice_tag_ids
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_account_payment__invoice_tag_ids
+#: model_terms:ir.ui.view,arch_db:sh_invoice_tags.sh_invoice_tags_tree
+msgid "Invoice Tags"
+msgstr "Etiquetas de factura"
+
+#. module: sh_invoice_tags
+#: model:ir.ui.menu,name:sh_invoice_tags.sh_invoice_tags_menu
+msgid "Invoice tags"
+msgstr "Etiquetas de factura"
+
+#. module: sh_invoice_tags
+#: model:ir.model,name:sh_invoice_tags.model_account_move
+msgid "Journal Entry"
+msgstr "Entrada de diario"
+
+#. module: sh_invoice_tags
+#: model:ir.model,name:sh_invoice_tags.model_account_move_line
+msgid "Journal Item"
+msgstr "Artículo de diario"
+
+#. module: sh_invoice_tags
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_account_move____last_update
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_sh_invoice_tags____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sh_invoice_tags
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_sh_invoice_tags__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por última vez por"
+
+#. module: sh_invoice_tags
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_sh_invoice_tags__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: sh_invoice_tags
+#: model:ir.model.fields,field_description:sh_invoice_tags.field_sh_invoice_tags__name
+msgid "Tag Name"
+msgstr "Nombre de etiqueta"
+
+#. module: sh_invoice_tags
+#: model:ir.model.constraint,message:sh_invoice_tags.constraint_sh_invoice_tags_name_uniq
+msgid "Tag name already exists !"
+msgstr "¡El nombre de la etiqueta ya existe!"

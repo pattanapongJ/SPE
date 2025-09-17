@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_mrp_mr_action" name="MRP Request" parent="mrp.menu_mrp_manufacturing" action="mrp_mr_action" sequence="1"/>
+    <menuitem id="menu_mr_request_config" name="Master MRP Request" parent="mrp.menu_mrp_configuration" sequence="2"/>
+    <menuitem id="menu_mr_request_type_master" name="Request Type" parent="menu_mr_request_config" action="action_mr_request_type_form" sequence="1"/>
+    <menuitem id="menu_mr_product_type_master" name="Product Type" parent="menu_mr_request_config" action="action_mr_product_type_form" sequence="2"/>
+    <menuitem id="menu_mrp_mr_line" name="MRP Request Line" parent="mrp.menu_mrp_manufacturing" action="mrp_mr_line_action" sequence="2"/>
+    <menuitem id="menu_mrp_mr_modify_line" name="MRP Request Modify Line" parent="mrp.menu_mrp_manufacturing" action="mrp_mr_modify_line_action" sequence="3"/>
+    <!-- Menu Icon -->
+
+    <menuitem id="menu_mrp_main_root" web_icon="hdc_mrp_mr,static/description/SelectProduct.png" name="MRP Request" sequence="41" />
+
+    <menuitem id="menu_mrp_mr_action_inherit" name="MRP Request" parent="menu_mrp_main_root" action="mrp_mr_action" sequence="1"/>
+
+    <menuitem id="menu_mrp_mr_line_inherit" name="MRP Request Line" parent="menu_mrp_main_root" action="mrp_mr_line_action" sequence="2"/>
+    
+    <menuitem id="menu_mrp_mr_modify_line_inherit" name="MRP Request Modify Line" parent="menu_mrp_main_root" action="mrp_mr_modify_line_action" sequence="3"/>
+</odoo>

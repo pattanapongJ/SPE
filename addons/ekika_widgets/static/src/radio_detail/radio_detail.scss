@@ -1,0 +1,42 @@
+.o_field_radio_detail {
+    > span, > button {
+        flex: 0 0 auto;
+    }
+    @include media-breakpoint-down(md) {
+        display: inline-block;
+    }
+    .o_radio_input {
+        outline: none;
+    }
+    .form-check-input[disabled] ~ .form-check-label, .form-check-input:disabled ~ .form-check-label{
+        opacity: 1;
+    }
+    .o_radio_item {
+        flex: 0 0 auto;
+    }
+
+    .oe_radio_icon {
+        width: 30px;
+        max-height: 30px;
+        min-width: 30px;
+        max-width: 23%;
+        float: left;
+        margin-right: 5px;
+    }
+
+    .o_horizontal {
+        display: inline-flex;
+        flex-wrap: wrap;
+        .o_radio_item {
+            margin-right: $o-form-spacing-unit * 2;
+            max-width: 100%;
+        }
+    }
+
+    .o_vertical {
+        flex-flow: column nowrap;
+        .o_radio_item {
+            margin-bottom: $o-form-spacing-unit;
+        }
+    }
+}

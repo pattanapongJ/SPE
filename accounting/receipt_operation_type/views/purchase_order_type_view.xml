@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_type_oeration_type_view_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.type.operation</field>
+        <field name="model">purchase.order.type</field>
+        <field name="inherit_id" ref="purchase_order_type.view_purchase_order_type_form"/>
+        <field name="arch" type="xml">
+           <xpath expr="//group/group/field[@name='company_id']" position="after">
+                <field name="picking_type_id" />
+           </xpath>
+
+           <xpath expr="//group/field[@name='incoterm_id']" position="after">
+                <field name="journal_id" />
+           </xpath>
+        
+        </field>
+
+    </record>
+
+
+</odoo>

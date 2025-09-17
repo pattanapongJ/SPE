@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_add_field_inherit_ac_first" model="ir.ui.view">
+        <field name="name">account.add.field.inherit.ac.first</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="sale_order_type.sot_invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_type_id']" position="before">
+                <field name="due_payment" readonly="0"/>
+            </xpath>
+
+            <xpath expr="//page[@id='other_tab']/group[@id='other_tab_group']/group[@name='accounting_info_group']/field[@name='to_check']" position="after">
+                <field name="pdc_date"/>
+                <field name="pdc_no"/>
+                <field name="pdc_status"/>
+                <field name="commission_date"/>
+                <field name="number_paid_at"/>
+                <field name="payment_date"/>
+                <field name="payment_no"/>
+                <field name="billing_date"/>
+                <field name="billing_no"/>
+                <field name="batch_billing_no"/>
+            </xpath>
+        </field>
+    </record>  
+
+    <record id="account_add_field_inherit_ac_second" model="ir.ui.view">
+        <field name="name">account.add.field.inherit.ac.second</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="hdc_account_addon_fields.account_addon_fields_inherit_move"/>
+        <field name="arch" type="xml">
+        <xpath expr="//field[@name='ps_order']" position="after">
+            <field name="cn_reference"/>
+            <field name="dn_reference"/>
+            <field name="customer_account"/>
+            <field name="customer_code"/>
+            <field name="financial_note"/>
+            <field name="accounting_note"/>    
+             <field name="delivery_tracking" attrs="{'invisible': [('move_type', 'not in', ['out_invoice','out_refund'])]}"/>     
+        </xpath>
+        </field>
+    </record>
+</odoo>

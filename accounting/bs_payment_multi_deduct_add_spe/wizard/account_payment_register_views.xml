@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View account.payment.register form -->
+    <record id="view_account_payment_register_form" model="ir.ui.view">
+        <field name="name">view.account.payment.register.form</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="bs_payment_multi_deduct_add.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+           <field name="add_gl_items" position="attributes">
+                <attribute name="domain">[('parent_state','=','posted'),('full_reconcile_id','=',False),('account_id.reconcile','=',True),('balance', '!=', 0),('display_type', 'not in', ('line_section', 'line_note')),('id','not in',line_ids)]</attribute>
+           </field>
+        </field>
+    </record>
+
+</odoo>

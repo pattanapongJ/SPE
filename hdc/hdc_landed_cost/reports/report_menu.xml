@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="export_adjustment_manual_line_report_xlsx"
+            model="stock.landed.cost"
+            string="Landed Cost - Valuation Adjustments Manual"
+            report_type="xlsx"
+            name="export_adjustment_manual_line_report_xlsx"
+            file="Landed Cost - Valuation Adjustments Manual"
+            attachment_use="False"
+        />
+    </data>
+</odoo>

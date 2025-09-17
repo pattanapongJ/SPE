@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <record id="hdc_contact_addon.contact_product_access" model="ir.module.category">
+        <field name="name">Contact/Product Access</field>
+        <field name="description">Contact/Product Access </field>
+        <field name="sequence">53</field>
+    </record> 
+
+    <record id="factory_access_user" model="res.groups">
+        <field name="name">Factory Access User</field>
+        <field name="category_id" ref="hdc_contact_addon.contact_product_access"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="all_access_user" model="res.groups">
+        <field name="name">All Access User</field>
+        <field name="category_id" ref="hdc_contact_addon.contact_product_access"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="factory_access_user_contact_responsible_rule" model="ir.rule">
+        <field name="name">Factory Access User Contact Access</field>
+        <field ref="base.model_res_partner" name="model_id"/>
+        <field name="domain_force">['|',('is_factory','=',True),('user_ids','!=',False)]</field>
+        <field name="groups" eval="[(4, ref('hdc_contact_addon.factory_access_user'))]"/>
+    </record>
+
+    <record id="all_access_user_contact_responsible_rule" model="ir.rule">
+        <field name="name">All Access User Contact Access</field>
+        <field ref="base.model_res_partner" name="model_id"/>
+        <field name="domain_force">['|', ('type', '!=', 'private'), ('type', '=', False)]</field>
+        <field name="groups" eval="[(4, ref('hdc_contact_addon.all_access_user'))]"/>
+    </record>
+
+    <record id="factory_access_user_product_template_responsible_rule" model="ir.rule">
+        <field name="name">Factory Access User Product Template Access</field>
+        <field ref="product.model_product_template" name="model_id"/>
+        <field name="domain_force">[('is_factory','=',True)]</field>
+        <field name="groups" eval="[(4, ref('hdc_contact_addon.factory_access_user'))]"/>
+    </record>
+
+    <record id="all_access_user_product_template_responsible_rule" model="ir.rule">
+        <field name="name">All Access User Product Template Access</field>
+        <field ref="product.model_product_template" name="model_id"/>
+        <field name="domain_force">['|', ('is_factory','=',True), ('is_factory', '=', False)]</field>
+        <field name="groups" eval="[(4, ref('hdc_contact_addon.all_access_user'))]"/>
+    </record>
+
+    <record id="base.res_partner_rule_private_employee" model="ir.rule">
+        <field name="name">res.partner.rule.private.employee</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="domain_force">
+            [('user_ids','!=',False)]
+        </field>
+        <field name="groups" eval="[
+            (4, ref('base.group_user')),
+        ]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="branch.product_template_branch_manager_rule" model="ir.rule">
+        <field name="name">Product Template Branch Manager</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="global" eval="True"/>
+        <field name="active" eval="False"/>
+        <field name="domain_force"></field>
+        <field name="groups" eval="[(4, ref('branch.group_branch_user_manager'))]"/>
+    </record>
+    <record id="branch.product_template_branch_rule" model="ir.rule">
+        <field name="name">Product Template Branch</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="global" eval="True"/>
+        <field name="active" eval="False"/>
+        <field name="domain_force"></field>
+        <field name="groups" eval="[(4, ref('branch.group_branch_user'))]"/>
+    </record>
+    <record id="branch.product_product_branch_manager_rule" model="ir.rule">
+        <field name="name">Product Product Branch Manager</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="global" eval="True"/>
+        <field name="active" eval="False"/>
+        <field name="domain_force"></field>
+        <field name="groups" eval="[(4, ref('branch.group_branch_user_manager'))]"/>
+    </record>
+    <record id="branch.product_product_branch_rule" model="ir.rule">
+        <field name="name">Product Product Branch</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="global" eval="True"/>
+        <field name="active" eval="False"/>
+        <field name="domain_force"></field>
+        <field name="groups" eval="[(4, ref('branch.group_branch_user'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="commission_form_inherit_account_payment">
+        <field name="name">Commission Account Payment</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='journal_id']" position="after">
+                <field name="is_settle_commission_sale_manager" invisible="1"/>
+                <field name="is_settle_commission_salesperson" invisible="1"/>
+                <field name="is_settle_commission_sale_spec" invisible="1"/>
+            </xpath>
+            <xpath expr="//group[@name='group2']" position="inside">
+                <field name="no_commission"/>
+                <field name="commission_remark"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

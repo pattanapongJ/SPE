@@ -1,0 +1,229 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hdc_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230831\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 09:38+0000\n"
+"PO-Revision-Date: 2023-12-20 09:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hdc_discount
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_order_form_inherit
+msgid "&amp;nbsp; &amp;nbsp;"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time__active
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation__active
+msgid "Active"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_product_product__bns_code
+#: model:ir.model.fields,field_description:hdc_discount.field_product_template__bns_code
+msgid "BNS CODE"
+msgstr "รหัส BNS"
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order_line__bns_code
+#: model_terms:ir.ui.view,arch_db:hdc_discount.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_order_form_inherit
+msgid "BNS Code"
+msgstr "รหัส BNS"
+
+#. module: hdc_discount
+#: model_terms:ir.ui.view,arch_db:hdc_discount.delivery_time_view_tree
+#: model_terms:ir.ui.view,arch_db:hdc_discount.offer_validation_view_tree
+msgid "Channel"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time__create_uid
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time__create_date
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hdc_discount
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_inherit_order_tree
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_inherit_quotation_tree
+msgid "Customer PO No"
+msgstr "หมายเลข PO ของลูกค้า"
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order__customer_po
+msgid "Customer Po"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.actions.act_window,name:hdc_discount.delivery_time_action
+#: model:ir.ui.menu,name:hdc_discount.menu_delivery_time
+#: model_terms:ir.actions.act_window,help:hdc_discount.delivery_time_action
+msgid "Delivery Time"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time__name
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation__name
+msgid "Description"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order_line__description_sale
+msgid "Description Sale"
+msgstr ""
+
+#. module: hdc_discount
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_order_form_inherit
+msgid "Discount"
+msgstr "ส่วนลด"
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time__display_name
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation__display_name
+#: model:ir.model.fields,field_description:hdc_discount.field_product_product__display_name
+#: model:ir.model.fields,field_description:hdc_discount.field_product_template__display_name
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order__display_name
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: hdc_discount
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_order_form_inherit
+msgid "Global Discoun"
+msgstr "ส่วนลดต่อ"
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time__id
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation__id
+#: model:ir.model.fields,field_description:hdc_discount.field_product_product__id
+#: model:ir.model.fields,field_description:hdc_discount.field_product_template__id
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order__id
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order_line__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time____last_update
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation____last_update
+#: model:ir.model.fields,field_description:hdc_discount.field_product_product____last_update
+#: model:ir.model.fields,field_description:hdc_discount.field_product_template____last_update
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order____last_update
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time__write_uid
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time__write_date
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time__months
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation__months
+msgid "Months"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.actions.act_window,name:hdc_discount.offer_validation_action
+#: model:ir.model,name:hdc_discount.model_offer_validation
+#: model:ir.ui.menu,name:hdc_discount.menu_offer_validation
+#: model_terms:ir.actions.act_window,help:hdc_discount.offer_validation_action
+msgid "Offer Validation"
+msgstr "ระยะเวลาหมดอายุของใบเสนอราคา"
+
+#. module: hdc_discount
+#: model:ir.model,name:hdc_discount.model_product_product
+msgid "Product"
+msgstr "สินค้า"
+
+#. module: hdc_discount
+#: model:ir.model,name:hdc_discount.model_product_template
+msgid "Product Template"
+msgstr "รูปแบบสินค้า"
+
+#. module: hdc_discount
+#: model:ir.model,name:hdc_discount.model_sale_order
+msgid "Sales Order"
+msgstr "ใบสั่งขาย"
+
+#. module: hdc_discount
+#: model:ir.model,name:hdc_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "รายการคำสั่งขาย"
+
+#. module: hdc_discount
+#: model_terms:ir.ui.view,arch_db:hdc_discount.delivery_time_view_search
+#: model_terms:ir.ui.view,arch_db:hdc_discount.offer_validation_view_search
+msgid "Search Opportunities"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order_line__sub_discount
+msgid "Sub Disc %"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order__sub_discount_percentage
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_order_form_inherit
+msgid "Sub Disc%"
+msgstr "ส่วนลดย่อย%"
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order__sub_discount_amount
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_order_form_inherit
+msgid "Sub Discount Amount"
+msgstr "รวมส่วนลดย่อย"
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order__total_discount
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_order_form_inherit
+msgid "Total Discount"
+msgstr "ส่วนลดรวม"
+
+#. module: hdc_discount
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_order_form_inherit
+msgid "Total Discount Amount"
+msgstr "จำนวนส่วนลดทั้งหมด"
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order__total_discount_percentage
+msgid "Total Discount Percentage"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_sale_order__total_discount_amount
+#: model_terms:ir.ui.view,arch_db:hdc_discount.view_order_form_inherit
+msgid "Total Discount%"
+msgstr "ส่วนลดรวม%"
+
+#. module: hdc_discount
+#: model:ir.model.fields,field_description:hdc_discount.field_delivery_time__weeks
+#: model:ir.model.fields,field_description:hdc_discount.field_offer_validation__weeks
+msgid "Weeks"
+msgstr ""
+
+#. module: hdc_discount
+#: model:ir.model,name:hdc_discount.model_delivery_time
+msgid "delivery time"
+msgstr ""

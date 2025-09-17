@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="sale_inter_company_xlsx"
+            model="wizard.sale.inter.company.report"
+            string="รายงานซื้อขายระหว่างกัน"
+            report_type="xlsx"
+            name="sale_inter_company_xlsx"
+            file="รายงานซื้อขายระหว่างกัน"
+            attachment_use="False"
+        />
+        <report
+            id="sale_po_inter_company_xlsx"
+            model="wizard.sale.po.inter.company.report"
+            string="รายงานซื้อขายระหว่างกัน SO/PO"
+            report_type="xlsx"
+            name="sale_po_inter_company_xlsx"
+            file="รายงานซื้อขายระหว่างกัน"
+            attachment_use="False"
+        />
+    </data>
+</odoo>

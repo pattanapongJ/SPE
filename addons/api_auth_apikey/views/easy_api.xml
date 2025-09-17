@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="easy_api_auth_apikey_inherit" model="ir.ui.view">
+        <field name="name">easy.api.auth.apikey.inherit</field>
+        <field name="model">easy.api</field>
+        <field name="priority" eval="20"/>
+        <field name="inherit_id" ref="api_framework_base.view_easy_api_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='authentication_detail']" position="inside">
+                    <field name="api_key_ids" attrs="{'invisible':[('authentication_type','!=','apikey')]}">
+                        <tree editable="top">
+                            <field name="user_id"/>
+                            <field name="api_key_choice"/>
+                            <field name="expiry"/>
+                            <field name="apikey" attrs="{'readonly':[('api_key_choice','=','auto')],'required':[('api_key_choice','=','manual')]}" widget="CopyClipboardChar"/>
+                        </tree>
+                    </field>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

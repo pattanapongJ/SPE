@@ -1,0 +1,12 @@
+<odoo>
+    <record id="create_pr_from_purchase_request_view_inherited" model="ir.ui.view">
+        <field name="name">create.pr.from.purchase.request.view.inherited</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='requested_by']" position="before">
+                <field name="is_create_pr" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

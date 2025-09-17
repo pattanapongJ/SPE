@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_document_stamp_state_tree" model="ir.ui.view">
+        <field name="name">document.stamp.state.tree</field>
+        <field name="model">document.stamp.state</field>
+        <field name="arch" type="xml">
+            <tree string="Document Stamp State">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_document_stamp_state_form" model="ir.ui.view">
+        <field name="name">document.stamp.state.form</field>
+        <field name="model">document.stamp.state</field>
+        <field name="arch" type="xml">
+            <form string="Document Stamp State">
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_document_stamp_state_tree" model="ir.actions.act_window">
+        <field name="name">Document Stamp State</field>
+        <field name="res_model">document.stamp.state</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_document_stamp_state_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Document Stamp State
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_document_stamp_state_root" name="Document Stamp State" parent="account.menu_finance_configuration" sequence="302">
+        <menuitem id="menu_document_stamp_state_action" name="Document Stamp State" action="action_document_stamp_state_tree"/>
+    </menuitem>
+
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit the account.move form view -->
+        <record id="view_account_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit.partial.reconcile</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@id='other_tab_entry']" position="after">
+                    <page string="Reconcile">
+                        <field name="partial_reconcile_info_ids">
+                            <tree>
+                                <field name="id" invisible="1"/>
+                                <field name="reconciled_line_id" invisible="1"/>
+                                <field name="invoice_date"/>
+                                <field name="move_name"/>
+                                <field name="reference"/>
+                                <field name="reconcile_date"/>
+                                <field name="amount"/>
+                                <field name="status"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

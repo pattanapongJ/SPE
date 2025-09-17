@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_view_view_blanket_order" model="ir.ui.view">
+        <field name="name">sale.blanket.order.view.form.inherit</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]" position="after">
+                <group name="project_detail" string="Project Details">
+                   <group name="project_group">
+                        <field name="project_name" options="{'no_create': True}"/>
+                        <label for="start_date" string="Project Period" />
+                        <div>
+                            <div class="o_row">
+                                <field
+                                    name="start_date"
+                                    class="oe_inline"
+                                    widget="date" 
+                                    options="{'date_format': 'dd/MM/yyyy'}" 
+                                    attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                />
+                                <span class="oe_inline">To</span>
+                                <field
+                                    name="end_date"
+                                    class="oe_inline"
+                                    widget="date" 
+                                    options="{'date_format': 'dd/MM/yyyy'}" 
+                                    attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                />
+                            </div>
+                        </div>
+                        
+                    </group>
+
+                    <group>
+                      
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="inherit_view_change_position" model="ir.ui.view">
+        <field name="name">sale.blanket.order.view.form.inherit</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form"/>
+        <field name="arch" type="xml">  
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="team_id"/>               
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="inside">
+                <field name="user_id"/> 
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="sale_spec"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_spec']" position="after">
+                <field name="administrator"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

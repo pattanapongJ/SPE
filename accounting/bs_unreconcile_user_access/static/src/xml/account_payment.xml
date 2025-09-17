@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="BSPaymentPopOver" t-inherit="account.PaymentPopOver" t-inherit-mode="extension">
+        <!-- Use the correct xpath expression with contains() -->
+        <xpath expr="//button[contains(@class, 'js_unreconcile_payment')]" position="attributes">
+
+            <attribute name="t-if">show_unreconcile_button</attribute>
+
+        </xpath>
+    </t>
+    </templates>

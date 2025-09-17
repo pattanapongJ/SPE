@@ -1,0 +1,56 @@
+<odoo>
+    <!-- Form View -->
+    <record id="view_source_spe_form" model="ir.ui.view">
+        <field name="name">source.spe.form</field>
+        <field name="model">source.spe</field>
+        <field name="arch" type="xml">
+            <form string="Source SPE">
+                <sheet>
+                    <group>
+                        <field name="origin"/>
+                        <field name="description" required="1"/>
+                        <field name="country_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Tree View -->
+    <record id="view_source_spe_tree" model="ir.ui.view">
+        <field name="name">source.spe.tree</field>
+        <field name="model">source.spe</field>
+        <field name="arch" type="xml">
+            <tree string="Source SPE">
+                <field name="origin"/>
+                <field name="description" required="1"/>
+                <field name="country_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_source_spe_search" model="ir.ui.view">
+        <field name="name">source.spe.search</field>
+        <field name="model">source.spe</field>
+        <field name="arch" type="xml">
+            <search string="Source SPE">
+                <field name="origin"/>
+                <field name="description"/>
+                <field name="country_ids"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_source_spe" model="ir.actions.act_window">
+        <field name="name">Source SPE</field>
+        <field name="res_model">source.spe</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_source_spe" id="menu_source_spe_inv"
+        parent="stock.menu_stock_inventory_control"
+        sequence="103"/>
+</odoo>

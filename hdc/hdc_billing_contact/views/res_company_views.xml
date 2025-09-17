@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="billing_contact_view_company_form_inherit_hdc_billing_period_route" model="ir.ui.view">
+        <field name="name">billing.contact.view.company.form.inherit.hdc.billing.period.route</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="hdc_company_hydra.view_company_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='branch_name']" position="after">
+                <field name="billing_remark_en"/>
+            </xpath>    
+            <xpath expr="//field[@name='branch_name_th']" position="after">
+                <field name="billing_remark_th"/>
+            </xpath>       
+        </field>
+    </record>
+</odoo>

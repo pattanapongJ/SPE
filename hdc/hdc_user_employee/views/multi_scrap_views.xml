@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="multi_stock_scrap_form_view_inherit_user_employee" model="ir.ui.view">
+        <field name="name">multi.stock.scrap.form.view.inherit.user.employee</field>
+        <field name="model">multi.stock.scrap</field>
+        <field name="inherit_id" ref="hdc_multi_scrap.multi_stock_scrap_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="user_employee_id" attrs="{'readonly': [('state', 'in', ['done', 'cancel'])]}"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>    
+    <record id="multi_stock_scrap_form_view2_inherit_user_employee" model="ir.ui.view">
+        <field name="name">multi.stock.scrap.form.view2.inherit.user.employee</field>
+        <field name="model">multi.stock.scrap</field>
+        <field name="inherit_id" ref="hdc_multi_scrap.multi_stock_scrap_form_view2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="user_employee_id"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>    
+</odoo>

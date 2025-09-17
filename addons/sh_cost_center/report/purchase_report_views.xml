@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="sh_purchase_report_view_search" model="ir.ui.view">
+        <field name="name">sh.purchase.report.inherit.view.search</field>
+        <field name="model">purchase.report</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='company']" position="after">
+                <filter name="sh_cost_center_group_by" string="Cost Center" domain="[]" context="{'group_by': 'sh_cost_center_id'}" />
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

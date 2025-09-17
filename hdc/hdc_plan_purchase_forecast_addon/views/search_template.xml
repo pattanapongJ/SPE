@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="search_forecast_purchase_backend" name="search_forecast_purchase" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/hdc_plan_purchase_forecast_addon/static/src/js/search_purchase_forecast.js"></script>
+        </xpath>
+   </template>
+</odoo>

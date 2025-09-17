@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_type_internal_transfer_view_order_form_inherit_inter_company" model="ir.ui.view">
+            <field name="name">sale.type.internal.transfer.view.order.form.inherit.inter_company</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="hdc_inter_company_transactions.hdc_transactions_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type_id']" position="after">
+                    <field name="location_id" attrs="{'invisible': [('is_booth_type_id', '!=', True)],'required': [('is_booth_type_id', '=', True)]}" domain="[('is_booth', '=', True)]"/>
+                    <field name="b_c_urgent_delivery_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='delivery_trl']" position="replace">
+                    <field name="is_retail_type_id" invisible="1"/>
+                    <field name="is_booth_type_id" invisible="1"/>
+                    <field name="delivery_trl" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" domain="[('status_active', '=', True)]"/>
+                </xpath>
+                <xpath expr="//field[@name='delivery_trl_description']" position="replace">
+                    <field name="delivery_trl_description" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='delivery_company']" position="replace">
+                    <field name="delivery_company" string="Mode of delivery" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}" domain="[('status_active', '=', True)]"/>
+                </xpath>
+                <xpath expr="//field[@name='delivery_company_description']" position="replace">
+                   <field name="delivery_company_description" string="Mode of delivery Description" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+                </xpath>
+                <!-- <xpath expr="//field[@name='delivery_trl']" position="replace">
+                    <field name="is_retail_type_id" invisible="1"/>
+                    <field name="is_booth_type_id" invisible="1"/>
+                    <field name="delivery_trl" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))], 'required': [('inter_company_transactions', '!=', True),('is_retail_type_id', '!=', True),('is_booth_type_id', '!=', True)]}" domain="[('status_active', '=', True)]"/>
+                </xpath>
+                <xpath expr="//field[@name='delivery_trl_description']" position="replace">
+                    <field name="delivery_trl_description" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))], 'required': [('inter_company_transactions', '!=', True),('is_retail_type_id', '!=', True),('is_booth_type_id', '!=', True)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='delivery_company']" position="replace">
+                    <field name="delivery_company" string="Mode of delivery" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))], 'required': [('inter_company_transactions', '!=', True),('is_retail_type_id', '!=', True),('is_booth_type_id', '!=', True)]}" domain="[('status_active', '=', True)]"/>
+                </xpath>
+                <xpath expr="//field[@name='delivery_company_description']" position="replace">
+                   <field name="delivery_company_description" string="Mode of delivery Description 1150" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))], 'required': [('inter_company_transactions', '!=', True),('is_retail_type_id', '!=', True),('is_booth_type_id', '!=', True)]}"/>
+                </xpath> -->
+                <xpath expr="//button[@name='action_inter_company'][2]" position="replace">
+                    <button name="action_inter_company" type="object" string="Create Inter Company" class="oe_highlight"
+                        attrs="{'invisible': [
+                        '|','|','|',
+                        ('state', 'not in', ('sale','done')),
+                        ('inter_company_transactions', '=', True),
+                        ('is_booth_type_id', '=', True),
+                        ('is_retail_type_id', '=', True),
+                        ]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="sale_type_internal_transfer_inherit_sale" model="ir.ui.view">
+            <field name="name">sale.type.internal.transfer.form.inherit.sale</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_cancel']" position="after">
+                    <button name="create_internal_transfer" type="object" class="btn-primary" string="Create Internal Transfer" attrs="{'invisible': ['|',('is_retail_type_id', '!=', True),('state', 'in', ('sale', 'done','cancel'))]}"/>
+                    <button name="create_picking_booth" type="object" class="btn-primary" string="Create Picking Booth &amp; Consignment" attrs="{'invisible': ['|',('is_booth_type_id', '!=', True),('state', 'in', ('sale', 'done','cancel'))]}"/>
+                    <button name="action_create_booth_consign_urgent_delivery" type="object" class="btn-primary" string="Create Booth &amp; Consignment Urgent" attrs="{'invisible': ['|',('is_booth_type_id', '!=', True),('state', 'in', ('sale', 'done','cancel'))]}"/>
+                </xpath>
+                <xpath expr="//button[@name='preview_sale_order']" position="before"> 
+                    <button name="action_view_internal_transfer_detail"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-solid fa-file"
+                            attrs="{'invisible': [('internal_transfer_num', '=', 0)]}">
+                            <field name="internal_transfer_num" widget="statinfo" string="Internal Transfer"/>
+                    </button>
+                    <button name="action_view_picking_booth"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-solid fa-file"
+                            attrs="{'invisible': [('picking_booth_num', '=', 0)]}">
+                            <field name="picking_booth_num" widget="statinfo" string="Picking Booth &amp; Consignment"/>
+                    </button>
+                    <button name="action_view_booth_consign_urgent_delivery"
+                            string="Booth &amp; Consignment Urgent"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-solid fa-truck"
+                            attrs="{'invisible': [('b_c_urgent_delivery_id', '=', False)]}">
+                    </button>
+                </xpath>
+            </field>
+        </record>
+        <record id="sale_type_internal_transfer_inherit_inventory_picking_list_sale" model="ir.ui.view">
+            <field name="name">sale.type.internal.transfer.form.inherit.inventory.picking.list.sale</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="hdc_inventory_picking_list_sale.view_order_form_inherit_hdc_inventory_picking_list_sale"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_create_picking']" position="replace">
+                    <button name="action_create_picking" id="action_create_picking" string="Create Picking"
+                        class="btn-primary" type="object" attrs="{'invisible': ['|','|',('state', 'not in', ('sale', 'done')),('is_booth_type_id', '=', True),('is_retail_type_id', '=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="sale_type_internal_transfer_inherit_mrp_mr_sale" model="ir.ui.view">
+            <field name="name">sale.type.internal.transfer.form.inherit.mrp.mr.sale</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="hdc_mrp_mr_sale.sale_create_mrp_request_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='open_wizard_mrp_request']" position="replace">
+                    <button name="open_wizard_mrp_request" string="Create MR" type="object" class="oe_highlight" attrs="{'invisible': ['|','|',('state', 'not in', ['draft','sale']),('is_booth_type_id', '=', True),('is_retail_type_id', '=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

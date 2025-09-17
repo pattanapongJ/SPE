@@ -1,0 +1,41 @@
+<!-- <odoo>
+    <record id="view_generate_picking_list_report_form" model="ir.ui.view">
+        <field name="name">generate.picking.list.report.form</field>
+        <field name="model">generate.picking.list.report</field>
+        <field name="arch" type="xml">
+            <form string="Generate Picking List Report" create="false" edit="false">
+                <header>
+                    <button name="action_generate_report" type="object" string="Generate Report" class="btn-primary"/>
+                </header>
+                <group>
+                    <field name="picking_list_ids"/>
+                    <field name="project_name"/>
+                    <field name="partner_id"/>
+                    <field name="origin"/>
+                    <field name="sale_id"/>
+                    <field name="state"/>
+                    <field name="warehouse_id"/>
+                    <field name="location_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_generate_picking_list_report" model="ir.actions.act_window">
+        <field name="name">Generate Picking List Report</field>
+        <field name="res_model">generate.picking.list.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem 
+        id="menu_generate_picking_list_report" 
+        name="Generate Picking Lists Report" 
+        parent="hdc_inventory_picking_list_sale.menu_picking_list_main_root"
+        sequence="3"
+        action="action_generate_picking_list_report"
+    />
+
+</odoo> -->

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View withholding.tax.cert form -->
+    <record id="view_withholding_tax_cert_form" model="ir.ui.view">
+        <field name="name">view.withholding.tax.cert.form</field>
+        <field name="model">withholding.tax.cert</field>
+        <field name="inherit_id" ref="l10n_th_withholding_tax_cert.view_withholding_tax_cert_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/h1" position="before">
+                <div class="oe_title">
+                    <h1>
+                        <field name="tax_cert_name"/>
+                    </h1>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='company_taxid']" position="after">
+                <field name="reference"/>
+            </xpath>
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="show_signature_and_date"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_withholding_tax_cert_tree" model="ir.ui.view">
+        <field name="name">view.withholding.tax.cert.tree</field>
+        <field name="model">withholding.tax.cert</field>
+        <field name="inherit_id" ref="l10n_th_withholding_tax_cert.view_withholding_tax_cert_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="tax_cert_name"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

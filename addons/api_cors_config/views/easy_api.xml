@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="easy_api_api_cors_config_inherit" model="ir.ui.view">
+        <field name="name">easy.api.cors.config.inherit</field>
+        <field name="model">easy.api</field>
+        <field name="priority" eval="20"/>
+        <field name="inherit_id" ref="api_framework_base.view_easy_api_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='page_size']" position="after">
+                    <field name="allowed_origins" attrs="{'readonly':[('state', 'in', ['active'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="multi_external_product_vendor_tree_view" model="ir.ui.view">
+        <field name="name">multi.external.vendor.tree</field>
+        <field name="model">multi.external.vendor</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1" sample="1">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="product_description"/>
+                <field name="barcode"/>
+                <field name="qty_package"/>
+                <field name="package"/>
+                <field name="note"/>                
+            </tree>
+        </field>
+    </record>
+
+    <record id="multi_external_product_vendor_form_view" model="ir.ui.view">
+        <field name="name">multi.external.vendor.form</field>
+        <field name="model">multi.external.vendor</field>
+        <field name="arch" type="xml">
+            <form string="External Items - Vendor">
+                <sheet>
+                <div class="oe_button_box" name="company_chain_customer">
+                    <button name="company_chain_customer" type="object" class="oe_stat_button" string="Customers"  icon="fa-user">
+                        <field name="number_company_chain" string="Customers"/>
+                    </button>
+                </div>
+                    <group name="external_product_header">
+                        <group name="external_product_detail1">
+                            <field name="product_tmpl_id"/>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="company_chain_id" />
+                            <field name="product_description"/>
+                        </group>
+                        <group name="external_product_detail2">
+                            <field name="barcode"/>
+                            <field name="barcode_modern_trade"/>
+                            <field name="qty_package"/>
+                            <field name="package"/>
+                            <field name="uom_id"/>
+                        </group>
+                    </group>
+                    <group name="external_product_footer">
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="multi_external_product_vendor_action" model="ir.actions.act_window">
+        <field name="name">External Items - Vendor</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">multi.external.vendor</field>  
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="multi_external_product_vendor_tree_view"/>
+    </record>
+
+        <!-- Menu Item -->
+    <menuitem
+        id="menu_multi_external_product"
+        name="External Items - Vendor"
+        parent="stock.menu_stock_config_settings"
+        action="multi_external_product_vendor_action"
+        groups="hdc_external_item_vendor.access_external_vendor"
+        sequence="155"/>
+</odoo>

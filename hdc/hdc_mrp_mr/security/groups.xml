@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="res.groups" id="hdc_mrp_mr.group_mr_approve">
+        <field name="name">Approve MRP Request</field>
+    </record>
+</odoo>

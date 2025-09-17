@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="menu_commission_main" web_icon="hdc_commission,static/description/odoo_commission.png" name="Commissions"
+        sequence="9" groups="hdc_commission.group_commission_user"/>
+    
+    <menuitem id="menu_generate_settle_commissions" name="Generate Settle Commissions"
+        parent="menu_commission_main" sequence="1" />
+    <menuitem id="sub_menu_generate_settle_commissions" name="Generate Settle Commissions"
+        parent="menu_generate_settle_commissions" action="generate_settle_commissions_action" sequence="1" />
+    <menuitem id="sub_menu_generate_settle_commissions_mall" name="Generate Settle Commissions Mall"
+        parent="menu_generate_settle_commissions" action="generate_settle_commissions_mall_action" sequence="2" />
+    <menuitem id="sub_menu_update_commission_code" name="Update Commission Code"
+        parent="menu_generate_settle_commissions" action="update_commission_code_action" sequence="3" />
+    
+    <menuitem id="menu_settle_commissions" name="Settle Commissions"
+        parent="menu_commission_main" sequence="2" />
+    <menuitem id="menu_payment_invoice_settle_commissions" name="Settle Commissions"
+        parent="menu_settle_commissions" action="settle_commissions_action" sequence="1" />
+    <menuitem id="menu_settle_commissions_mall" name="Settle Commissions Mall"
+        parent="menu_settle_commissions" action="settle_commissions_mall_action" sequence="2" />
+    
+    <menuitem id="menu_commissions_configuration" name="Configuration"
+        parent="menu_commission_main" sequence="10" groups="hdc_commission.group_commission_manager" />
+    <menuitem id="menu_sale_commissions_configuration" name="Sales Commission"
+        parent="menu_commissions_configuration" sequence="5" />
+    <menuitem id="sub_menu_sale_commissions_type_configuration" name="Commission Types"
+        parent="menu_sale_commissions_configuration" action="sub_menu_commission_type_action" sequence="1" />
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+         <menuitem
+            id="menu_plan_purchase_forecast"
+            parent="purchase.menu_purchase_config"
+            sequence="41"
+            action="product_plan_purchase_action"
+        />
+        <menuitem
+            id="menu_plan_purchase_forecast_report"
+            parent="purchase.menu_purchase_config"
+            sequence="42"
+            action="action_plan_purchase_forecast_wizard"
+        />
+
+      <report
+            id="plan_purchase_forecast_xlsx"
+            model="plan.purchase.forecast"
+            string="Plan Purchase Forecast"
+            report_type="xlsx"
+            name="plan_purchase_forecast_xlsx"
+            file="Plan Purchase Forecast"
+            attachment_use="False"
+        />
+    </data>
+</odoo>
+
+

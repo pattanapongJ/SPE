@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_product_template_properties_from" model="ir.ui.view">
+        <field name="name">product.template.properties.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Properties">
+                    <group>
+                        <group string="Costing (TH)">
+                            <field name="costing_th"/>
+                            <field name="ocpb_th"/>
+                            <field name="ocpb_en"/>
+                            <field name="cost_description"/>
+                            <field name="detail"/>
+                            <field name="feature"/>
+                            <field name="how_to_use"/>
+                            <field name="tip"/>
+                            <field name="warning"/>
+                            
+
+                            <separator string="3.คุณสมบัติ/วิธีใช้งาน" />
+                            <field name="how_to_use_th"/>
+                            <field name="how_to_use_en"/>
+                            <field name="suggestion_th"/>
+                            <field name="suggestion_en"/>
+                            <field name="material_th"/>
+                            <field name="material_en"/>
+                            <field name="highlights_th"/>
+                            <field name="highlights_en"/>
+                            <field name="props_th"/>
+                            <field name="props_en"/>
+                        </group>
+
+                        <group string="&#160;&#160;">
+                            <field name="pc_no"/>
+                            <field name="pc_pro"/>
+                            <field name="pc_updated"/>
+
+                            <field name="sd_no"/>
+                            <field name="sd_pro"/>
+                            <field name="box_per_unit"/>
+                            <field name="cnt_per_unit"/>
+                            <field name="sd_updated"/>
+
+                            <field name="sh1_no"/>
+                            <field name="sh1_pro"/>
+                            <field name="sh1_updated"/>
+
+                            <field name="su_no"/>
+                            <field name="su_pro"/>
+                            <field name="su_updated"/>
+
+                            <field name="sh3_no"/>
+                            <field name="sh3_pro"/>
+                            <field name="sh3_updated"/>
+                            <field name="sh1_pro_cost"/>
+                            <field name="sh1_date_end"/>
+                            <field name="promotion_pc"/>
+                            <field name="other_province_cost"/>
+                            <field name="upvc_cost"/>
+                            <field name="costumer"/>
+
+                            <!-- <field name="sh1_date_end"/> -->
+                            <field name="costing_en"/>
+
+                            <field name="rsp_normal"/>
+                            <!-- <field name="ocpb_en"/> -->
+                            <field name="date_start_and_end"/>
+                            <field name="recommend_sell_other_provinces"/>
+                            <field name="recommend_sell_upvc"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- <record id="product_product_view_form_addfields" model="ir.ui.view">
+        <field name="name">product.product.addfields.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']//field[@name='hs_code']" position="after">
+                <field name="box" string="กล่องละ"/>
+                <field name="crate" string="ลังละ"/>
+            </xpath>
+        </field>
+    </record> -->
+
+</odoo>

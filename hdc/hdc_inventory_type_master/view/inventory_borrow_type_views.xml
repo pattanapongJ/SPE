@@ -1,0 +1,49 @@
+<odoo>
+    <record id="view_inventory_borrow_type_tree" model="ir.ui.view">
+        <field name="name">inventory.borrow.type.tree</field>
+        <field name="model">inventory.borrow.type</field>
+        <field name="arch" type="xml">
+            <tree string="Inventory Borrow Type">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="type_borrow"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_inventory_borrow_type_form" model="ir.ui.view">
+        <field name="name">inventory.borrow.type.form</field>
+        <field name="model">inventory.borrow.type</field>
+        <field name="arch" type="xml">
+            <form string="Inventory Adjustment Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    <group>
+                        <field name="type_borrow"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_inventory_borrow_type" model="ir.actions.act_window">
+        <field name="name">Inventory Borrow Type</field>
+        <field name="res_model">inventory.borrow.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Inventory Borrow Type for use in inventory operations.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_inventory_borrow_type"
+        name="Inventory Borrow Type"
+        parent="stock.menu_stock_config_settings"
+        action="action_inventory_borrow_type"
+        sequence="160"/>
+</odoo>

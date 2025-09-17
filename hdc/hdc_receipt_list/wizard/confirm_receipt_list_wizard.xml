@@ -1,0 +1,26 @@
+<odoo>
+    <record id="confirm_receipt_list_wizard_view" model="ir.ui.view">
+        <field name="name">confirm.receipt.list.wizard.form</field>
+        <field name="model">confirm.receipt.list.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create a Backorder">
+                <group>
+                    <p>
+                        Create a backorder if you expect to process the remaining products later. Do not create a backorder if you will not process the remaining products.
+                    </p>
+                </group>
+                <footer>
+                    <button name="confirm_backorder"
+                        string="Confirm"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button name="confirm_cancel"
+                        string="Cancel"
+                        type="object"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

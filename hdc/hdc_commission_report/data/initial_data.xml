@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="commission_report_configuration_commission_upvc" model="commission.report.configuration">
+            <field name="code">commission_upvc</field>
+            <field name="name">รายงานทีม UPVC</field>
+            <field name="target_type">sale_manager_id</field>
+            <field name="settle_type">settle_payment</field>
+            <field name="report_id" ref="hdc_commission_report.commission_upvc_detail_report_xlsx"/>
+            <field name="is_requried_commission">True</field>
+            <field name="number_commission_type">3</field>
+        </record>
+        <record id="commission_report_configuration_commission_market" model="commission.report.configuration">
+            <field name="code">commission_market</field>
+            <field name="name">รายงานทีมการตลาด</field>
+            <field name="target_type">sale_manager_id</field>
+            <field name="settle_type">settle_invoice</field>
+            <field name="report_id" ref="hdc_commission_report.commission_market_detail_report_xlsx"/>
+            <field name="is_requried_commission">False</field>
+            <field name="number_commission_type">0</field>
+        </record>
+        <record id="commission_report_configuration_commission_colt_salesperson" model="commission.report.configuration">
+            <field name="code">commission_colt_salesperson</field>
+            <field name="name">Salesperson ทีมcolt</field>
+            <field name="target_type">user_id</field>
+            <field name="settle_type">settle_payment</field>
+            <field name="report_id" ref="hdc_commission_report.commission_colt_sales_person_detail_report_xlsx"/>
+            <field name="is_requried_commission">False</field>
+            <field name="number_commission_type">0</field>
+        </record>
+        <record id="commission_report_configuration_commission_reynobond_salesperson" model="commission.report.configuration">
+            <field name="code">commission_reynobond_salesperson</field>
+            <field name="name">Salesperson ทีมreynobond</field>
+            <field name="target_type">user_id</field>
+            <field name="settle_type">settle_payment</field>
+            <field name="report_id" ref="hdc_commission_report.commission_reynobond_sales_person_detail_report_xlsx"/>
+            <field name="is_requried_commission">True</field>
+            <field name="number_commission_type">1</field>
+        </record>
+        <record id="commission_report_configuration_commission_silicone_salesperson" model="commission.report.configuration">
+            <field name="code">commission_silicone_salesperson</field>
+            <field name="name">Salesperson ทีมชิลิโคน</field>
+            <field name="target_type">user_id</field>
+            <field name="settle_type">settle_payment</field>
+            <field name="report_id" ref="hdc_commission_report.commission_silicone_sales_person_detail_report_xlsx"/>
+            <field name="is_requried_commission">True</field>
+            <field name="number_commission_type">2</field>
+        </record>
+        <record id="commission_report_configuration_commission_industry_salesperson" model="commission.report.configuration">
+            <field name="code">commission_industry_salesperson</field>
+            <field name="name">Salesperson ทีมอุตสาหกรรม</field>
+            <field name="target_type">user_id</field>
+            <field name="settle_type">settle_payment</field>
+            <field name="report_id" ref="hdc_commission_report.commission_industry_sales_person_detail_report_xlsx"/>
+            <field name="is_requried_commission">True</field>
+            <field name="number_commission_type">2</field>
+        </record>
+        <record id="commission_report_configuration_commission_rinna_salesperson" model="commission.report.configuration">
+            <field name="code">commission_rinna_salesperson</field>
+            <field name="name">Salesperson รายงานคุณรินนา</field>
+            <field name="target_type">user_id</field>
+            <field name="settle_type">settle_payment</field>
+            <field name="report_id" ref="hdc_commission_report.commission_rinna_sales_person_detail_report_xlsx"/>
+            <field name="is_requried_commission">True</field>
+            <field name="number_commission_type">2</field>
+        </record>
+        <record id="commission_report_configuration_commission_colt_sale_spec" model="commission.report.configuration">
+            <field name="code">commission_colt_sale_spec</field>
+            <field name="name">Sale Spec ทีมcolt</field>
+            <field name="target_type">sale_spec</field>
+            <field name="settle_type">settle_payment</field>
+            <field name="report_id" ref="hdc_commission_report.commission_colt_sales_spec_detail_report_xlsx"/>
+            <field name="is_requried_commission">False</field>
+            <field name="number_commission_type">0</field>
+        </record>
+        <record id="commission_report_configuration_commission_reynobond_sale_spec" model="commission.report.configuration">
+            <field name="code">commission_reynobond_sale_spec</field>
+            <field name="name">Sale Spec ทีมreynobond</field>
+            <field name="target_type">sale_spec</field>
+            <field name="settle_type">settle_payment</field>
+            <field name="report_id" ref="hdc_commission_report.commission_reynobond_sales_spec_detail_report_xlsx"/>
+            <field name="is_requried_commission">False</field>
+            <field name="number_commission_type">0</field>
+        </record>
+        <record id="commission_report_configuration_commission_silicone_sale_spec" model="commission.report.configuration">
+            <field name="code">commission_silicone_sale_spec</field>
+            <field name="name">Sale Spec ทีมชิลิโคน</field>
+            <field name="target_type">sale_spec</field>
+            <field name="settle_type">settle_payment</field>
+            <field name="report_id" ref="hdc_commission_report.commission_silicone_sales_spec_detail_report_xlsx"/>
+            <field name="is_requried_commission">True</field>
+            <field name="number_commission_type">2</field>
+        </record>
+        <record id="commission_mall_report_configuration_commission_mall" model="commission.mall.report.configuration">
+            <field name="code">commission_mall</field>
+            <field name="name">รายงานทีมห้าง</field>
+            <field name="target_type">normal</field>
+            <field name="report_id" ref="hdc_commission_report.commission_mall_detail_report_xlsx"/>
+        </record>
+        <record id="commission_mall_report_configuration_commission_mall_sold_out" model="commission.mall.report.configuration">
+            <field name="code">commission_mall_sold_out</field>
+            <field name="name">รายงานทีมห้าง sold out</field>
+            <field name="target_type">sold_out</field>
+            <field name="report_id" ref="hdc_commission_report.commission_mall_sold_out_detail_report_xlsx"/>
+        </record>
+    </data>
+</odoo>

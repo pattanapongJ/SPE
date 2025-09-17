@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+
+<odoo>
+    <record id="purchase_order_form_inherit_fourth" model="ir.ui.view">
+        <field name="name">purchase.order.form.fourth</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="hdc_purchase_addon_fields.purchase_addon_fields_inherit_purchase"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='customer']" position="after">
+                <field name="fiscal_position_id" />
+                <field name="user_id" />
+                <field name="team_id" />
+                <field name="company_id" />
+                <field name="picking_type_id" />
+            </xpath>
+
+        </field>
+    </record>
+	
+    <record id="purchase_order_form_inherit_first" model="ir.ui.view">
+        <field name="name">purchase.order.form.first</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='purchase_delivery_invoice']/group/group/field[@name='fiscal_position_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='purchase_delivery_invoice']/group/group/field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='purchase_delivery_invoice']/group/group/field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="purchase_order_form_inherit_second" model="ir.ui.view">
+        <field name="name">purchase.order.form.second</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_team.purchase_order_form_inherit"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='team_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+   
+
+    <record id="purchase_order_form_inherit_third" model="ir.ui.view">
+        <field name="name">purchase.order.form.third</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_stock.purchase_order_view_form_inherit"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='picking_type_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="MPF_receipt_voucher_report_document">
+		<t t-if="not o and doc">
+			<t t-set="o" t-value="doc" />
+		</t>
+		<t t-if="o and 'company_id' in o">
+			<t t-set="company" t-value="o.company_id.sudo()" />
+		</t>
+		<t t-if="not o or not 'company_id' in o">
+			<t t-set="company" t-value="res_company" />
+		</t>
+		<div class="header" style="font-family: Kanit">
+			<div class="row">
+				<div class="col-7 text-left">
+					<img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')" class="pull-left" style="max-height: 140px; max-width: 140px;" />
+				</div>
+				<div class="col-5 text-right" style="margin-right:0mm;margin-top:3mm">
+					<div style="font-size: 23px">
+						<span>
+							<strong>
+								รายวันรับ (Receipt Voucher)
+							</strong>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="font-size: 15px;margin-top:3mm">
+				<div class="col-7">
+					<div class="row">
+						<div class="col-3">
+							<span>
+								<strong>
+									กิจการ:
+								</strong>
+							</span>
+						</div>
+						<div class="col-9">
+							<span t-field="company.name" />
+						</div>
+					</div>
+				</div>
+				<div class="col-5" style="background-color:#ECECEC">
+					<div class="row">
+						<div class="col-4">
+							<span>
+								<strong>
+									เลขที่เอกสาร:
+								</strong>
+							</span>
+						</div>
+						<div class="col-8">
+							<span t-if="doc.name">
+								<span t-field="doc.name" />
+							</span>
+							<span t-if="not doc.name">
+								-
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<span>
+								<strong>
+									วันที่ออก:
+								</strong>
+							</span>
+						</div>
+						<div class="col-8">
+							<span t-if="doc.move_id.date">
+								<span t-field="doc.move_id.date" />
+							</span>
+							<span t-if="not doc.move_id.date">
+								-
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<span>
+								<strong>
+									สมุดบัญชี:
+								</strong>
+							</span>
+						</div>
+						<div class="col-8">
+							<span t-if="doc.journal_id.name">
+								<span t-field="doc.journal_id.name" />
+							</span>
+							<span t-if="not doc.journal_id.name">
+								-
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<span>
+								<strong>
+									อ้างอิง:
+								</strong>
+							</span>
+						</div>
+						<div class="col-8">
+							<span t-if="doc.move_id.ref">
+								<span t-field="doc.move_id.ref" />
+							</span>
+							<span t-if="not doc.move_id.ref">
+								-
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="font-size: 15px;margin-top:3mm;border-top: 1px solid black">
+				<div class="col-7">
+					<div class="row">
+						<div class="col-3">
+							<span>
+								<strong>
+									คู่ค้า:
+								</strong>
+							</span>
+						</div>
+						<div class="col-9">
+							<span t-if="doc.partner_id.name">
+								<span t-field="doc.partner_id.name" />
+							</span>
+							<span t-if="not doc.partner_id.name">
+								-
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3">
+							<span>
+								<strong>
+									ที่อยู่:
+								</strong>
+							</span>
+						</div>
+						<div class="col-9">
+							<span t-if="doc.partner_id.street">
+								<span t-field="doc.partner_id.street" />
+							</span>
+							<span t-if="doc.partner_id.street2">
+								<span t-field="doc.partner_id.street2" />
+							</span>
+							<span t-if="doc.partner_id.sub_district">
+								<span t-field="doc.partner_id.sub_district" />
+							</span>
+							<span t-if="doc.partner_id.city">
+								<span t-field="doc.partner_id.city" />
+							</span>
+							<span t-if="doc.partner_id.state_id.name">
+								<span t-field="doc.partner_id.state_id.name" />
+							</span>
+							<span t-if="doc.partner_id.zip">
+								<span t-field="doc.partner_id.zip" />
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3">
+							<span>
+								<strong>
+									เลขที่ภาษี:
+								</strong>
+							</span>
+						</div>
+						<div class="col-9">
+							<span t-if="doc.partner_id.vat">
+								<span t-field="doc.partner_id.vat" />
+							</span>
+							<span t-if="not doc.partner_id.vat">
+								-
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="article" style="font-family: Kanit" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+			<div class="row" style="border-top: 1px solid black">
+				<div style="padding: 5px;height: 500px">
+					<t t-set="l_no" t-value="0" />
+					<t t-set="sum_debit" t-value="0" />
+					<t t-set="sum_credit" t-value="0" />
+					<table class="table" style="font-size: 15px;line-height: 18px; width: 900px;">
+						<thead style="background-color:#ECECEC">
+							<tr>
+								<th class="text-center" style="width: 15%;">
+									เลขที่บัญชี
+								</th>
+								<th class="text-center" style="width: 20%;">
+									ชื่อบัญชี
+								</th>
+								<th class="text-center" style="width: 35%;">
+									คำอธิบาย
+								</th>
+								<th class="text-center" style="width: 15%;">
+									เดบิต
+								</th>
+								<th class="text-center" style="width: 15%;">
+									เครดิต
+								</th>
+							</tr>
+						</thead>
+						<tbody style="font-size: 15px;">
+							<t t-set="set_no_vat" t-value="0" />
+							<t t-set="set_vat" t-value="0" />
+							<t t-set="set_dis" t-value="0" />
+							<t t-set="debitArray" t-value="[]" />
+							<t t-set="creditArray" t-value="[]" />
+							<t t-foreach="o.move_id.line_ids" t-as="ol">
+								<t t-if="ol.debit">
+									<t t-set="debitArray" t-value="debitArray+[ol]" />
+								</t>
+								<t t-if="ol.credit">
+									<t t-set="creditArray" t-value="creditArray+[ol]" />
+								</t>
+							</t>
+							<tr t-foreach="debitArray" t-as="ol_d">
+								<td class="text-left">
+									<span t-if="ol_d.account_id.code">
+										<span t-esc="ol_d.account_id.code" />
+									</span>
+									<span t-if="not ol_d.account_id.code">
+										-
+									</span>
+								</td>
+								<td class="text-left">
+									<span t-if="ol_d.account_id.name">
+										<span t-esc="ol_d.account_id.name" />
+									</span>
+									<span t-if="not ol_d.account_id.name">
+										-
+									</span>
+								</td>
+								<td class="text-left">
+									<span t-if="ol_d.name">
+										<span t-esc="ol_d.name" />
+									</span>
+									<span t-if="not ol_d.name">
+										-
+									</span>
+								</td>
+								<td class="text-right">
+									<span t-if="ol_d.debit">
+										<span t-esc="'{0:,.2f}'.format(float(ol_d.debit))" />
+										<t t-set="sum_debit" t-value="sum_debit + ol_d.debit" />
+									</span>
+									<span t-if="not ol_d.debit">
+										-
+									</span>
+								</td>
+								<td class="text-right">
+									<span t-if="ol_d.credit">
+										<span t-esc="'{0:,.2f}'.format(float(ol_d.credit))" />
+										<t t-set="sum_credit" t-value="sum_credit + ol_d.credit" />
+									</span>
+									<span t-if="not ol_d.credit">
+										-
+									</span>
+								</td>
+							</tr>
+							<tr t-foreach="creditArray" t-as="ol_c">
+								<td class="text-left">
+									<span t-if="ol_c.account_id.code">
+										<span t-esc="ol_c.account_id.code" />
+									</span>
+									<span t-if="not ol_c.account_id.code">
+										-
+									</span>
+								</td>
+								<td class="text-left">
+									<span t-if="ol_c.account_id.name">
+										<span t-esc="ol_c.account_id.name" />
+									</span>
+									<span t-if="not ol_c.account_id.name">
+										-
+									</span>
+								</td>
+								<td class="text-left">
+									<span t-if="ol_c.name">
+										<span t-esc="ol_c.name" />
+									</span>
+									<span t-if="not ol_c.name">
+										-
+									</span>
+								</td>
+								<td class="text-right">
+									<span t-if="ol_c.debit">
+										<span t-esc="'{0:,.2f}'.format(float(ol_c.debit))" />
+										<t t-set="sum_debit" t-value="sum_debit + ol_c.debit" />
+									</span>
+									<span t-if="not ol_c.debit">
+										-
+									</span>
+								</td>
+								<td class="text-right">
+									<span t-if="ol_c.credit">
+										<span t-esc="'{0:,.2f}'.format(float(ol_c.credit))" />
+										<t t-set="sum_credit" t-value="sum_credit + ol_c.credit" />
+									</span>
+									<span t-if="not ol_c.credit">
+										-
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="footer" style="margin-top:0mm;vertical-align: bottom;font-family: Kanit">
+			<div class="last-page not-first-page" style="font-size: 15px">
+				<div class="row justify-content-end">
+					<br />
+					<div class="col-5" style="background-color:#ECECEC">
+						<div class="row">
+							<div class="col-4 text-center">
+								<strong>
+									ยอดรวม
+								</strong>
+							</div>
+							<div class="col-8 text-right" style="border-top: 1px solid black; border-bottom: 4px double black;">
+								<div class="row">
+									<div class="col-6">
+										<span t-esc="'{0:,.2f}'.format(float(sum_debit))" />
+									</div>
+									<div class="col-6">
+										<span t-esc="'{0:,.2f}'.format(float(sum_credit))" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-end mt-2" style="border-top: 1px solid black;">
+				<div class="col-5">
+					<div class="row justify-content-end">
+						<div class="col-4 text-center">
+							ลงชื่อ
+							<br />
+							<br />
+							<br />
+							<br />
+							ผู้จัดทำ
+							<br />
+							<span class="mt-5">
+								........./........../..........
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-5">
+					<div class="row">
+						<div class="col-4 text-center">
+							ลงชื่อ
+							<br />
+							<br />
+							<br />
+							<br />
+							ผู้อนุมัติ
+							<br />
+							<span class="mt-5">
+								........./........../..........
+							</span>
+						</div>
+						<div class="col-8 text-center">
+							ลงชื่อ
+							<br />
+							<br />
+							<br />
+							<br />
+							ผู้ตรวจสอบ
+							<br />
+							<span class="mt-5">
+								........./........../..........
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row text-right" style="font-size: 15px; border-top: 1px solid black">
+				<div class="col-12 text-right">
+					<span>
+						Page
+					</span>
+					<span class="page" />
+					/
+					<span class="topage" />
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="MPF_receipt_voucher_report">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="doc">
+				<t t-call="hdc_account_general_reports.MPF_receipt_voucher_report_document" t-lang="doc.partner_id.lang" />
+			</t>
+		</t>
+	</template>
+</odoo>

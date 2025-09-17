@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="purchase_rma_reason_ept_tree_view">
+        <field name="name">Purchase RMA Reason Ept Tree</field>
+        <field name="model">purchase.rma.reason.ept</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="action"/>
+                <field name="journal_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="purchase_rma_reason_ept_form_view">
+        <field name="name">Purchase RMA Reason Ept Form</field>
+        <field name="model">purchase.rma.reason.ept</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="action"/>
+                        <field name="journal_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="purchase_rma_reason_ept_action">
+        <field name="name">RMA Reasons</field>
+        <field name="res_model">purchase.rma.reason.ept</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_rma_reason_ept_purchase" name="RMA Reasons" parent="menu_crm_claim_ept_after_sale_purchase"
+        action="purchase_rma_reason_ept_action" groups="rma_ept.group_rma_user_ept" sequence="2"/>
+
+</odoo>

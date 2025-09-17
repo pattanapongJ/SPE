@@ -1,0 +1,9 @@
+<odoo noupdate="1">
+    <record id="sequence_revision" model="ir.sequence">
+        <field name="name">Revision Code</field>
+        <field name="code">base.revision</field>
+        <field name="implementation">no_gap</field>
+        <field eval="4" name="padding" />
+        <field name="prefix">S%(y)s%(month)s-</field>
+    </record>
+</odoo>

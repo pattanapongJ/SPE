@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="easy_api_auth_jwt_inherit" model="ir.ui.view">
+        <field name="name">easy.api.auth.jwt.inherit</field>
+        <field name="model">easy.api</field>
+        <field name="priority" eval="20"/>
+        <field name="inherit_id" ref="api_framework_base.view_easy_api_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='authentication_detail']" position="inside">
+                <div class="d-flex justify-content-end" attrs="{'invisible':[('authentication_type','!=','api_jwt')]}">
+                    <button name="action_update_jwt_keys" type="object"
+                    string="Update JWT Keys"
+                    class="btn-primary w-full"/>
+                </div>
+                <group name="api_jwt_authentication" attrs="{'invisible':[('authentication_type','!=','api_jwt')]}">
+                    <field name="api_jwt_algo"/>
+                    <field name="jwt_expiry_time_hours"/>
+                    <field name="jwt_secret_key"/>
+                    <field name="jwt_private_key"/>
+                    <field name="jwt_public_key"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="0">
+        <!-- JSONAPI DATA -->
+        <!-- User Based Jsonapi API Key-Auth -->
+        <record id="easy_api_user_jsonapi_apikey" model="easy.api">
+            <field name="name">JsonAPI User Based With API Key</field>
+            <field name="description">JsonAPI User Based With API Key</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">user-jsonapi-apikey</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">apikey</field>
+            <field name="resource_control_type">user_based</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- User Based Jsonapi User-Auth -->
+        <record id="easy_api_user_jsonapi_apiuser" model="easy.api">
+            <field name="name">JsonAPI User Based With API User</field>
+            <field name="description">JsonAPI User Based With API User</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">user-jsonapi-apiuser</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">apiuser</field>
+            <field name="resource_control_type">user_based</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- User Based Jsonapi Basic-Auth -->
+        <record id="easy_api_user_jsonapi_apibasic" model="easy.api">
+            <field name="name">JsonAPI User Based With Basic</field>
+            <field name="description">JsonAPI User Based With Basic</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">user-jsonapi-basic</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">basic</field>
+            <field name="resource_control_type">user_based</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- User Based Jsonapi OAuth2 -->
+        <record id="easy_api_user_jsonapi_oauth2" model="easy.api">
+            <field name="name">JsonAPI User Based With OAuth2</field>
+            <field name="description">JsonAPI User Based With OAuth2</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">user-jsonapi-oauth2</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">oauth2</field>
+            <field name="resource_control_type">user_based</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Full Access Jsonapi API Key-Auth -->
+        <record id="easy_api_sudo_jsonapi_apikey" model="easy.api">
+            <field name="name">JsonAPI Full Access With API Key</field>
+            <field name="description">JsonAPI Full Access With API Key</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">sudo-jsonapi-apikey</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">apikey</field>
+            <field name="resource_control_type">full_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Full Access Jsonapi User-Auth -->
+        <record id="easy_api_sudo_jsonapi_apiuser" model="easy.api">
+            <field name="name">JsonAPI Full Access With API User</field>
+            <field name="description">JsonAPI Full Access With API User</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">sudo-jsonapi-apiuser</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">apiuser</field>
+            <field name="resource_control_type">full_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Full Access Jsonapi Basic-Auth -->
+        <record id="easy_api_sudo_jsonapi_apibasic" model="easy.api">
+            <field name="name">JsonAPI Full Access With Basic</field>
+            <field name="description">JsonAPI Full Access With Basic</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">sudo-jsonapi-basic</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">basic</field>
+            <field name="resource_control_type">full_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Full Access Jsonapi OAuth2 -->
+        <record id="easy_api_sudo_jsonapi_oauth2" model="easy.api">
+            <field name="name">JsonAPI Full Access With OAuth2</field>
+            <field name="description">JsonAPI Full Access With OAuth2</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">sudo-jsonapi-oauth2</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">oauth2</field>
+            <field name="resource_control_type">full_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Custom Access Jsonapi API Key-Auth -->
+        <record id="easy_api_custom_jsonapi_apikey" model="easy.api">
+            <field name="name">JsonAPI Custom Access With API Key</field>
+            <field name="description">JsonAPI Custom Access With API Key</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">custom-jsonapi-apikey</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">apikey</field>
+            <field name="resource_control_type">custom_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Custom Access Jsonapi User-Auth -->
+        <record id="easy_api_custom_jsonapi_apiuser" model="easy.api">
+            <field name="name">JsonAPI Custom Access With API User</field>
+            <field name="description">JsonAPI Custom Access With API User</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">custom-jsonapi-apiuser</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">apiuser</field>
+            <field name="resource_control_type">custom_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Custom Access Jsonapi Basic-Auth -->
+        <record id="easy_api_custom_jsonapi_apibasic" model="easy.api">
+            <field name="name">JsonAPI Custom Access With Basic</field>
+            <field name="description">JsonAPI Custom Access With Basic</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">custom-jsonapi-basic</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">basic</field>
+            <field name="resource_control_type">custom_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Custom Access Jsonapi OAuth2 -->
+        <record id="easy_api_custom_jsonapi_oauth2" model="easy.api">
+            <field name="name">JsonAPI Custom Access With OAuth2</field>
+            <field name="description">JsonAPI Custom Access With OAuth2</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">custom-jsonapi-oauth2</field>
+            <field name="api_type">jsonapi</field>
+            <field name="authentication_type">oauth2</field>
+            <field name="resource_control_type">custom_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- GRAPHQL DATA -->
+        <!-- User Based GraphQL API Key-Auth -->
+        <record id="easy_api_user_graphql_apikey" model="easy.api">
+            <field name="name">GraphQL User Based With API Key</field>
+            <field name="description">GraphQL User Based With API Key</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">user-graphql-apikey</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">apikey</field>
+            <field name="resource_control_type">user_based</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- User Based GraphQL User-Auth -->
+        <record id="easy_api_user_graphql_apiuser" model="easy.api">
+            <field name="name">GraphQL User Based With API User</field>
+            <field name="description">GraphQL User Based With API User</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">user-graphql-apiuser</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">apiuser</field>
+            <field name="resource_control_type">user_based</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- User Based GraphQL Basic-Auth -->
+        <record id="easy_api_user_graphql_apibasic" model="easy.api">
+            <field name="name">GraphQL User Based With Basic</field>
+            <field name="description">GraphQL User Based With Basic</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">user-graphql-basic</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">basic</field>
+            <field name="resource_control_type">user_based</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- User Based GraphQL OAuth2 -->
+        <record id="easy_api_user_graphql_oauth2" model="easy.api">
+            <field name="name">GraphQL User Based With OAuth2</field>
+            <field name="description">GraphQL User Based With OAuth2</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">user-graphql-oauth2</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">oauth2</field>
+            <field name="resource_control_type">user_based</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Full Access GraphQL API Key-Auth -->
+        <record id="easy_api_sudo_graphql_apikey" model="easy.api">
+            <field name="name">GraphQL Full Access With API Key</field>
+            <field name="description">GraphQL Full Access With API Key</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">sudo-graphql-apikey</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">apikey</field>
+            <field name="resource_control_type">full_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Full Access GraphQL User-Auth -->
+        <record id="easy_api_sudo_graphql_apiuser" model="easy.api">
+            <field name="name">GraphQL Full Access With API User</field>
+            <field name="description">GraphQL Full Access With API User</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">sudo-graphql-apiuser</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">apiuser</field>
+            <field name="resource_control_type">full_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Full Access GraphQL Basic-Auth -->
+        <record id="easy_api_sudo_graphql_apibasic" model="easy.api">
+            <field name="name">GraphQL Full Access With Basic</field>
+            <field name="description">GraphQL Full Access With Basic</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">sudo-graphql-basic</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">basic</field>
+            <field name="resource_control_type">full_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Full Access GraphQL OAuth2 -->
+        <record id="easy_api_sudo_graphql_oauth2" model="easy.api">
+            <field name="name">GraphQL Full Access With OAuth2</field>
+            <field name="description">GraphQL Full Access With OAuth2</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">sudo-graphql-oauth2</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">oauth2</field>
+            <field name="resource_control_type">full_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Custom Access GraphQL API Key-Auth -->
+        <record id="easy_api_custom_graphql_apikey" model="easy.api">
+            <field name="name">GraphQL Custom Access With API Key</field>
+            <field name="description">GraphQL Custom Access With API Key</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">custom-graphql-apikey</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">apikey</field>
+            <field name="resource_control_type">custom_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Custom Access GraphQL User-Auth -->
+        <record id="easy_api_custom_graphql_apiuser" model="easy.api">
+            <field name="name">GraphQL Custom Access With API User</field>
+            <field name="description">GraphQL Custom Access With API User</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">custom-graphql-apiuser</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">apiuser</field>
+            <field name="resource_control_type">custom_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Custom Access GraphQL Basic-Auth -->
+        <record id="easy_api_custom_graphql_apibasic" model="easy.api">
+            <field name="name">GraphQL Custom Access With Basic</field>
+            <field name="description">GraphQL Custom Access With Basic</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">custom-graphql-basic</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">basic</field>
+            <field name="resource_control_type">custom_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- Custom Access GraphQL OAuth2 -->
+        <record id="easy_api_custom_graphql_oauth2" model="easy.api">
+            <field name="name">GraphQL Custom Access With OAuth2</field>
+            <field name="description">GraphQL Custom Access With OAuth2</field>
+            <field name="state">active</field>
+            <field name="base_endpoint">custom-graphql-oauth2</field>
+            <field name="api_type">graphql</field>
+            <field name="authentication_type">oauth2</field>
+            <field name="resource_control_type">custom_access</field>
+            <field name="error_debug">True</field>
+            <field name="error_detail">True</field>
+        </record>
+
+        <!-- API-KEY DATA -->
+        <!-- API-KEY JsonAPI User-Based Access for Admin User -->
+        <record id="apikey_jsonapi_user_based_admin_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_user_jsonapi_apikey"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY JsonAPI User-Based Access For Demo User -->
+        <record id="apikey_jsonapi_user_based_demo_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_user_jsonapi_apikey"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY JsonAPI Full-Access for Admin User -->
+        <record id="apikey_jsonapi_sudo_based_admin_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_sudo_jsonapi_apikey"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY JsonAPI Full-Access for Demo User -->
+        <record id="apikey_jsonapi_sudo_based_demo_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_sudo_jsonapi_apikey"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY JsonAPI Custom-Access for Admin User -->
+        <record id="apikey_jsonapi_custom_based_admin_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_custom_jsonapi_apikey"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY JsonAPI Custom-Access for Demo User -->
+        <record id="apikey_jsonapi_custom_based_demo_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_custom_jsonapi_apikey"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY GraphQL User-Based Access for Admin User -->
+        <record id="apikey_graphql_user_based_admin_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_user_graphql_apikey"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY GraphQL User-Based Access For Demo User -->
+        <record id="apikey_graphql_user_based_demo_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_user_graphql_apikey"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY GraphQL Full-Access for Admin User -->
+        <record id="apikey_graphql_sudo_based_admin_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_sudo_graphql_apikey"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY GraphQL Full-Access for Demo User -->
+        <record id="apikey_graphql_sudo_based_demo_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_sudo_graphql_apikey"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY GraphQL Custom-Access for Admin User -->
+        <record id="apikey_graphql_custom_based_admin_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_custom_graphql_apikey"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+        <!-- API-KEY GraphQL Custom-Access for Demo User -->
+        <record id="apikey_graphql_custom_based_demo_user" model="api.auth.apikey">
+            <field name="easy_api_id" ref="easy_api_custom_graphql_apikey"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="expiry" eval="(datetime.now()+ relativedelta(days=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="api_key_choice">auto</field>
+        </record>
+    </data>
+</odoo>

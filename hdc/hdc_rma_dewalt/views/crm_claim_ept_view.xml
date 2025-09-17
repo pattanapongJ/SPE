@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="dewalt_rma_ept_form_view_inherit">
+        <field name="name">RMA Dewalt</field>
+        <field name="model">crm.claim.ept</field>
+        <field name="inherit_id" ref="hdc_rma_modify_evaluation.crm_claims_ept_form_view_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='rma_type']" position="after">
+                <field name="is_dewalt" attrs="{'invisible':[('rma_type', '!=', 'receive_modify')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='rma_reason_id']" position="after">
+                <field name="warranty_type" attrs="{'readonly':[('state','!=','draft')]}" widget="radio" required="1"/>
+            </xpath>
+            <xpath expr="//field[@name='account_id']" position="replace">
+                <field name="available_invoice_ids" invisible="1"/>
+                <field name="spe_invoice" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <!-- <field name="account_id" domain="[('state', '=', 'posted'),('move_type', '=', 'out_invoice'),('invoice_origin', '!=', False)]" 
+                    attrs="{'readonly': [('state', '!=', 'draft')] ,
+                            'required': [('rma_type', '=', 'receive')],}"/> -->
+                <field name="account_id" domain="[('id', 'in', invoice_ids)]"
+                    attrs="{'readonly': [('state', '!=', 'draft')] , }"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="dewalt_rma_main_form_view_inherit">
+        <field name="name">RMA Dewalt</field>
+        <field name="model">crm.claim.ept</field>
+        <field name="inherit_id" ref="rma_ept.crm_claims_ept_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reason_cancel']" position="after">
+                <field name="customer_requisition"/>
+                <field name="customer_ref"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="crm_claims_form_view_inherit_job_no">
+        <field name="name">CRM - Claims Ept Form</field>
+        <field name="model">crm.claim.ept</field>
+        <field name="inherit_id" ref="rma_ept.crm_claims_ept_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reason_cancel']" position="after">
+                <field name="is_job_no" attrs="{'required':[('warranty_type', '!=', 'out')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

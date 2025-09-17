@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_product_template_barcode_spe_from" model="ir.ui.view">
+        <field name="name">product.template.barcode.spe.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Barcode Product">
+                    <field name="barcode_spe_ids" options="{'no_create': True}" context="{'default_product_tmpl_id': active_id}" colspan="4" nolabel="1">
+                        <tree string="Barcode SPE" editable="bottom">
+                            <!-- <field name="product_id" optional="hide" /> -->
+                            <field name="product_tmpl_id" readonly="1" force_save="1"/>
+                            <field name="ref" />
+                            <field name="barcode_modern_trade" />
+                            <field name="uom_id" />
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="product_product_view_form_barcode_spe" model="ir.ui.view">
+        <field name="name">product.product.barcode.spe.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+             <notebook position="inside">
+                <page string="Barcode Product">
+                    <field name="barcode_spe_ids" options="{'no_create': True}" context="{'default_product_tmpl_id': active_id}"  colspan="4" nolabel="1">
+                        <tree string="Barcode SPE" editable="bottom">
+                            <!-- <field name="product_id" optional="hide" /> -->
+                            <field name="product_tmpl_id" readonly="1" force_save="1"/>
+                            <field name="ref" />
+                            <field name="barcode_modern_trade" />
+                            <field name="uom_id" />
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+    <record id="view_product_template_tree_barcode_spe" model="ir.ui.view">
+        <field name="name">product tree view: add barcode spe</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="barcode_spe_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- เพิ่ม Search View สำหรับ product.template เพื่อให้ค้นหา external_code และ barcode_modern_trade ได้ -->
+    <record id="product_template_search_barcode_spe" model="ir.ui.view">
+        <field name="name">product.template.search.barcode.spe</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <!-- เพิ่ม search fields สำหรับ barcode_modern_trade และ external_code -->
+                <field name="barcode_spe_ids" 
+                       string="Barcode Modern Trade" 
+                       filter_domain="[('barcode_spe_ids.barcode_modern_trade', 'ilike', self)]"/>
+                <field name="barcode_spe_ids" 
+                       string="External Code" 
+                       filter_domain="[('barcode_spe_ids.external_code', 'ilike', self)]"/>
+                
+                <!-- เพิ่ม filters -->
+                <filter string="Has Barcode SPE" 
+                        name="has_barcode_spe" 
+                        domain="[('barcode_spe_ids', '!=', False)]"/>
+                <filter string="Has External Code" 
+                        name="has_external_code" 
+                        domain="[('barcode_spe_ids.external_code', '!=', False)]"/>
+                
+                <!-- เพิ่ม group by -->
+                <group expand="0" string="Group By">
+                    <filter string="Customer (Barcode SPE)" 
+                            name="group_by_barcode_customer" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- เพิ่ม Search View สำหรับ product.product เพื่อให้ค้นหา external_code และ barcode_modern_trade ได้ -->
+    <record id="product_product_search_barcode_spe" model="ir.ui.view">
+        <field name="name">product.product.search.barcode.spe</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <!-- เพิ่ม search fields สำหรับ barcode_modern_trade และ external_code -->
+                <field name="product_tmpl_id" 
+                       string="Barcode Modern Trade" 
+                       filter_domain="[('product_tmpl_id.barcode_spe_ids.barcode_modern_trade', 'ilike', self)]"/>
+                <field name="product_tmpl_id" 
+                       string="External Code" 
+                       filter_domain="[('product_tmpl_id.barcode_spe_ids.external_code', 'ilike', self)]"/>
+                
+                <!-- เพิ่ม filters -->
+                <filter string="Has Barcode SPE" 
+                        name="has_barcode_spe" 
+                        domain="[('product_tmpl_id.barcode_spe_ids', '!=', False)]"/>
+                <filter string="Has External Code" 
+                        name="has_external_code" 
+                        domain="[('product_tmpl_id.barcode_spe_ids.external_code', '!=', False)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

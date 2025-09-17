@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_sale_create_mr_user,undefined.wizard.sale.create.mr,model_wizard_sale_create_mr,base.group_user,1,1,1,1
+access_wizard_sale_create_mr_line_user,undefined.wizard.sale.create.mr.line,model_wizard_sale_create_mr_line,base.group_user,1,1,1,1
+access_wizard_sale_create_mr_modify_line_user,undefined.wizard.sale.create.mr.modify.line,model_wizard_sale_create_mr_modify_line,base.group_user,1,1,1,1

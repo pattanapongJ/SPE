@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_cost_center_form_view" model="ir.ui.view">
+        <field name="name">sh.cost.center.form.view</field>
+        <field name="model">sh.cost.center</field>
+        <field name="arch" type="xml">
+            <form string="Cost Centers">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sh_code" />
+                            <field name="sh_title" />
+                            <field name="company_id" />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="sh_cost_center_tree_view" model="ir.ui.view">
+        <field name="name">sh.cost.center.tree.view</field>
+        <field name="model">sh.cost.center</field>
+        <field name="arch" type="xml">
+            <tree string="Cost Centers">
+                <field name="sh_code" />
+                <field name="sh_title" />
+                <field name="company_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="sh_cost_center_action" model="ir.actions.act_window">
+        <field name="name">Cost Centers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sh.cost.center</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Cost Centers" id="menu_cost_center" parent="account.menu_finance_configuration" action="sh_cost_center_action" groups="sh_cost_center.sh_group_cost_center" />
+</odoo>

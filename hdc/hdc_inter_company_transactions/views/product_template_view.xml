@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_template_form_view_inter_company_inherited" model="ir.ui.view">
+        <field name="name">product.template.form.inherit_inter.company</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="before">
+                <field name="cost_group" string="Cost Group"/>
+                <field name="remark_cost_group" string="Remark Cost Group"/>
+                <field name="cost_purchase" string="Cost Purchase"/>
+                <field name="remark_cost_purchase" string="Remark Cost Purchase"/>
+                <field name="cost_future" string="Cost Future"/>
+                <field name="remark_cost_future" string="Remark Cost Future"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

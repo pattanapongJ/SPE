@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_inherit" model="ir.ui.view">
+        <field name="name">res.partner.sale_type.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+           <xpath expr="//group[@name='sale']/field[@name='sale_type']" position="after">
+               <field name="area_sale_code" string="Area Sale Code"></field>
+            </xpath>
+            <!-- <group name="sale" position="inside">
+                <field name="area_sale_code" />
+            </group> -->
+        </field>
+    </record>
+</odoo>

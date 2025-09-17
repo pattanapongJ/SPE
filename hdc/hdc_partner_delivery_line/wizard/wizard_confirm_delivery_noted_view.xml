@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_confirm_delivery_note_inherit" model="ir.ui.view">
+        <field name="name">Cofirm Delivery Noted Inherit</field>
+        <field name="model">wizard.confirm.delivery.noted</field>
+        <field name="inherit_id" ref="hdc_tms.wizard_confirm_delivery_note"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='transport_round_id']" position="attributes">
+                <attribute name="string">Delivery Line</attribute>
+                <attribute name="required">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

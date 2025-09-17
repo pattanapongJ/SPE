@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="rma_multi_operation_types_inherit" model="ir.ui.view">
+        <field name="name">rma.multi.operation.types.form.inherit</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="hdc_inventory_config.view_stock_picking_type_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='addition_operation_types']" position="after">
+                <field name="is_rg"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="crr_return_report_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='do_print_picking']" position="after">
+                <field name="is_return_request" invisible="1"/>
+                <!-- <button name="do_crr_return_customer_print" string="Print ใบรับสินค้าคืน" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|','|',('picking_type_code', '!=', 'incoming'),('addition_operation_types_code', '!=', 'AO-05'),('is_return_request', '=', False)]}"/> -->
+                <button name="print_crr_list" string="Print ใบรับสินค้าคืน" groups="stock.group_stock_user" type="object" attrs="{'invisible': ['|','|',('picking_type_code', '!=', 'incoming'),('addition_operation_types_code', '!=', 'AO-05'),('is_return_request', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='location_dest_id']" position="after">
+                <field name="customer_requisition"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

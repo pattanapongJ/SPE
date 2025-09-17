@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="easy_api_jsonapi_inherit" model="ir.ui.view">
+        <field name="name">easy.api.jsonapi.inherit</field>
+        <field name="model">easy.api</field>
+        <field name="priority" eval="2"/>
+        <field name="inherit_id" ref="api_framework_base.view_easy_api_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="jsonapi_url_maker" type="object" class="oe_stat_button" icon="fa-link" attrs="{'invisible':['|',('api_type','!=','jsonapi'),('state','not in',['open','active'])]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">JSON:API</span>
+                        <span class="o_stat_text">URL Maker</span>
+                    </div>
+                </button>
+                <!-- ToDo: documentation view -->
+                <!-- <button name="action_jsonapi_doc" type="object" class="oe_stat_button" icon="fa-book" attrs="{'invisible':[('api_type','!=','jsonapi')]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">JSON:API</span>
+                        <span class="o_stat_text">Doc.</span>
+                    </div>
+                </button> -->
+            </xpath>
+            <xpath expr="//field[@name='api_type']" position="attributes">
+                <attribute name="jsonapi_text" position="add">JSON:API is a specification for building APIs using JSON that standardizes the format of API responses, emphasizing resource-based URLs, structured resource objects, relationships, and pagination.</attribute>
+                <attribute name="jsonapi_icon" position="add">/easy_jsonapi/static/src/img/jsonapi.png</attribute>
+            </xpath>
+            <xpath expr="//notebook[@id='api_framework_base_notebook']" position="inside" >
+                <page name="jsonapi_meta_info" string="JsonAPI Meta" attrs="{'invisible':[('api_type','!=','jsonapi')]}">
+                    <group>
+                        <group>
+                            <field name="meta_author_name"/>
+                            <field name="meta_author_email"/>
+                            <field name="meta_documentation_link"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='error_detail']" position="before">
+                <field name="jsonapi_use_body_for_get" widget="boolean_toggle" attrs="{'invisible':[('api_type','!=','jsonapi')], 'readonly': [('state', 'in', ['active'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

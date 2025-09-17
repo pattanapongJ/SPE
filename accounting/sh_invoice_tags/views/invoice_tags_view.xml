@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Invoice Tags Tree -->
+    <record id="sh_invoice_tags_tree" model="ir.ui.view">
+        <field name="name">sh.invoice.tags.tree</field>
+        <field name="model">sh.invoice.tags</field>
+        <field name="arch" type="xml">
+            <tree string="Invoice Tags" editable="bottom">
+                <field name="name" />
+                <field name="color" widget="color_picker" />
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Invoice Tags Action -->
+    <record id="sh_invoice_tags_action" model="ir.actions.act_window">
+        <field name="name">Invoice Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sh.invoice.tags</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Invoice Tags Menu -->
+    <menuitem id="sh_invoice_tags_menu" action="sh_invoice_tags_action" name="Invoice tags" parent="account.account_invoicing_menu" />
+</odoo>

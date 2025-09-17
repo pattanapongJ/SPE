@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hdc_quotation_project_bo_document">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <div class="header" style="font-family: KanitLight;height: 50px" >
+            <div class="row">
+                 <div class="col-7 text-left">
+                    <span style="font-size: 16.67px">SPE Quotation Project (Bo)</span><br/>
+                    <span style="font-size: 12.67px">Saeng Charoen Group</span><br/>
+                </div>
+                <div class="col-3 text-right" style="margin-right:0mm;margin-top:3mm">
+                    <div style="font-size: 9.18px">
+                        <span>Page <span class="page"/> of <span class="topage"/></span><br/>
+                         <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="article" style="font-family: KanitLight" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">    
+            <div class="row">
+            <!-- ;border-top: 1px solid black; border-bottom: 1px solid black; -->
+                <table class="table" style="font-size: 8.64px;line-height: 12px">
+                    <thead>
+                        <tr>
+                            <th class="text-left" style="width: 7%;">
+                                <div>Quotation</div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div>Itemid</div>
+                            </th>
+                            <th class="text-left" style="width: 12%;">
+                                <div>Customer Name</div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                            </th>
+                            <th class="text-left" style="width: 5%;">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div/>
+                                <div/>
+                                <div>Vat</div>
+                            </th>
+                            <th class="text-left" colspan="2" style="width: 7%;">
+                                <div>QuotDate</div>
+                                <br/>
+                                <br/>
+                                <div>Exp. Date</div>
+                                <br/>
+                                <br/>
+                                <div style="display: inline-block; width: 100%;">
+                                    <span style="display: inline-block; width: 50%; text-align: left;">จำนวน</span>
+                                    <span style="display: inline-block; width: 40%; text-align: left;">หน่วย</span>
+                                </div>
+                            </th>
+                            <th class="text-left" style="width: 7%;">
+                                <div>Amount</div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div>ราคาเสนอลูกค้า</div>
+                            </th>
+                            <th class="text-left" colspan="2" style="width: 14%;">
+                                <div>Sales Respond</div>
+                                <br/>
+                                <br/>
+                                <div>Sales Spec</div>
+                                <br/>
+                                <br/>
+                                <div style="display: inline-block; width: 100%;">
+                                    <span style="display: inline-block; width: 55%; text-align: left;">Disc. per1</span>
+                                    <span style="display: inline-block; width: 40%; text-align: left;">Disc. per2</span>
+                                </div>
+                            </th>
+                            <th class="text-left" colspan="3" style="width: 14%;">
+                                <div>Customer Req.</div>
+                                <br/>
+                                <br/>
+                                <div>Remark</div>
+                                <br/>
+                                <br/>
+                                <div style="display: inline-block; width: 100%;">
+                                    <span style="display: inline-block; width: 33%; text-align: left;">จำนวนเงิน</span>
+                                    <span style="display: inline-block; width: 33%; text-align: left;">ราคาตั้ง</span>
+                                    <span style="display: inline-block; width: 33%; text-align: left;">transfer 24</span> 
+                                </div>
+                            </th>
+                            <th class="text-left" colspan="2" style="width: 13%;">
+                                <div>Project Description</div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div style="display: inline-block; width: 100%;">
+                                    <span style="display: inline-block; width: 40%; text-align: left;">transfer อื่น</span>
+                                    <span style="display: inline-block; width: 50%; text-align: center;">ค้างรับ</span>
+                                </div>
+                            </th>
+                            <th class="text-left" style="width: 7%;">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div>ค้างส่ง</div>
+                            </th>
+                            <th class="text-left" style="width: 7%;">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div>Physical Inv</div>
+                            </th>
+                            <th class="text-left" style="width: 7%;">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div>02-SP-PRO</div>
+                            </th>
+                            <th class="text-left" style="width: 7%;">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div>02-SPวันที่</div>
+                                <div>เริ่มต้น-สิ้นสุด</div>
+                            </th>
+                        </tr>
+                        <tr style="height: 100px;border-bottom: 1px solid #dee2e6;">
+                            <td style="width: 7%; text-align: left;">
+                                <span t-if="doc.name">
+                                    <span t-field="doc.name"/>
+                                </span>
+                            </td>
+                            <td style="width: 12%; text-align: left;">
+                                <span t-if="doc.partner_id">
+                                    <span t-field="doc.partner_id.name"/>
+                                </span>
+                            </td>
+                            <td style="width: 5%; text-align: left;">
+                                <span t-if="doc.quotation_line">
+                                    <span t-esc="', '.join(map(lambda x: (x.name), doc.quotation_line.tax_id))"/>
+                                </span>
+                            </td>
+                            <td colspan="2" style="width: 7%; text-align: left;">
+                                <div>
+                                    <div>
+                                        <span t-if="doc.date_order" style="display: block; margin-bottom: 10px;">
+                                            <span t-if="doc.date_order" t-esc="doc.date_order"/>
+                                        </span>
+                                        <span t-if="doc.validity_date" style="display: block; margin-top: 10px;">
+                                            <span t-if="doc.validity_date" t-esc="doc.validity_date"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="width: 7%; text-align: left;">
+                                <!-- <t t-set="check_amount_total" t-value="[line.price_unit for line in doc.quotation_line]" />
+                                <t t-set="max_amount_total" t-value="sum(check_amount_total)" />
+                                <span t-if="doc.quotation_line">
+                                    <span t-esc="max_amount_total"></span>
+                                </span> -->
+                                <span t-if="doc.amount_total">
+                                    <span t-field="doc.amount_total"/>
+                                </span>
+                            </td>
+                            <td colspan="2" style="width: 14%; text-align: left;">
+                                <div>
+                                    <span t-if="doc.user_id" style="display: block; margin-bottom: 10px;">
+                                        <span t-if="doc.user_id" t-esc="doc.user_id.name"/>
+                                    </span>
+                                    <span t-if="doc.sale_spec" style="display: block; margin-top: 10px;">
+                                        <span t-if="doc.sale_spec" t-esc="doc.sale_spec.name"/>
+                                    </span>
+                                </div>
+                            </td>
+                            <td colspan="3" style="width: 14%; text-align: left;">
+                                <div>
+                                    <span style="display: block; margin-bottom: 10px;">
+                                        <span t-field="doc.partner_id.name"/>
+                                    </span>
+                                    <span t-if="doc.remark" style="display: block; margin-top: 10px;">
+                                        <span t-field="doc.remark"/>
+                                    </span>
+                                </div>
+                            </td>
+                            <td colspan="3" style="width: 13%; text-align: left;">
+                                <div>
+                                    <span t-if="doc.project_name.project_name">
+                                        <span t-field="doc.project_name.project_name"/>
+                                    </span>
+                                </div>
+                            </td>
+                            <!-- <td style="width: 7%; text-align: left;">
+                            </td> -->
+                            <td style="width: 7%; text-align: left;">
+                                <!-- <span> Physical Inv</span> -->
+                            </td>
+                            <td style="width: 7%; text-align: left;">
+                                <!-- <span>02-SP-PRO</span> -->
+                            </td>
+                            <td style="width: 7%; text-align: left;">
+                                <!-- <span>02-SP-PRO</span> -->
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody class="table-borderless">
+                        <t t-foreach="doc.quotation_line" t-as="line">
+                            <tr>
+                                <td style="width: 7%; text-align: left">
+                                    <span t-if="line.product_id.default_code">
+                                        <span t-field="line.product_id.default_code"/>
+                                    </span>
+                                </td>
+                                <td style="width: 12%; text-align: left">
+                                    <span t-if="line.product_id">
+                                        <span t-field="line.product_id.name"/>
+                                    </span>
+                                </td>
+                                <td style="width: 5%; text-align: left;">
+                                    <span t-if="line.tax_id">
+                                        <span t-esc="', '.join(map(lambda x: (x.name), line.tax_id))"/>
+                                    </span>
+                                </td>
+                                <td colspan="2" style="width: 7%;padding: 0;">
+                                    <table class="table-borderless" style="border-collapse: collapse; width: 100%;">
+                                        <tr>
+                                            <td class="text-right" style="width: 50%;">
+                                                <span t-if="line.product_uom_qty" style="width: 100%; display: block;">
+                                                    <span t-field="line.product_uom_qty"/>
+                                                </span>
+                                            </td>
+                                            <td class="text-left" style="width: 50%;">
+                                                <span t-if="line.product_uom" style="width: 100%; display: block;">
+                                                    <span t-field="line.product_uom.name"/>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="width: 7%; text-align: left;">
+                                    <span t-if="line.price_unit">
+                                        <span t-field="line.price_unit"/>
+                                    </span>
+                                </td>
+                                <td colspan="2" style="width: 14%;padding: 0;">
+                                    <table class="table-borderless" style="border-collapse: collapse; width: 100%;">
+                                        <tr>
+                                            <td class="text-left" style="width: 50%;">
+                                                <span style="width: 100%; display: block;">
+                                                    <span>Disc per.1</span>
+                                                </span>
+                                            </td>
+                                            <td class="text-left" style="width: 50%;">
+                                                <span style="width: 100%; display: block;">
+                                                    <span>Disc per.2</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+                                <td colspan="3" style="width: 14%;padding: 0;">
+                                    <table class="table-borderless" style="border-collapse: collapse; width: 100%;">
+                                        <tr>
+                                            <td class="text-left" style="width: 33%;">
+                                                <span t-if="line.product_uom_qty" style="width: 100%; display: block;">
+                                                    <span t-esc="line.product_uom_qty * line.price_unit"/>
+                                                </span>
+                                            </td>
+                                            <td class="text-left" style="width: 33%;">
+                                                <span t-if="doc.pricelist_id" style="width: 100%; display: block;">
+                                                    <span t-esc="doc.pricelist_id.item_ids.filtered(lambda item: item.product_id.id == line.product_id.id).sorted(key=lambda item: item.write_date, reverse=True)[0].price if doc.pricelist_id and doc.pricelist_id.item_ids.filtered(lambda item: item.product_id.id == line.product_id.id) else '0'"/>
+                                                </span>
+                                            </td>
+                                            <td class="text-left" style="width: 33%;">
+                                                <span style="width: 100%; display: block;">
+                                                    <span t-esc="transfer24.get(line.product_id.id, 0)"/>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td colspan="2" style="width: 13%;padding: 0;">
+                                    <table class="table-borderless" style="border-collapse: collapse; width: 100%;">
+                                        <tr>
+                                            <td class="text-left" style="width: 50%;">
+                                                <span style="width: 100%; display: block;">
+                                                    <span t-esc="transfer_other.get(line.product_id.id, 0)"/>
+                                                </span>
+                                            </td>
+                                            <td class="text-left" style="width: 50%;">
+                                                <span style="width: 100%; display: block;">
+                                                    <span t-esc="batch.get(line.product_id.id, 0)"/>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="width: 7%; text-align: left;">
+                                    <span t-esc="picking_list.get(line.product_id.id, 0)"/>
+                                </td>
+                                <td style="width: 7%; text-align: left;">
+                                    <t t-esc="physical_inv.get(line.product_id.id, {}).get('total_amount', 0)"/>
+                                </td>
+                                <td style="width: 7%; text-align: left;">
+                                    <span>02-SP-PRO</span>
+                                </td>
+                                <td style="width: 7%; text-align: left;">
+                                    <span>02-เริ่มสิ้น</span>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>      
+        </div>
+    </template>
+
+    <template id="hdc_quotation_project_bo">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hdc_quotation_order.hdc_quotation_project_bo_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

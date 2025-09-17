@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_plan_purchase_tree_view" model="ir.ui.view">
+            <field name="name">product.product.tree</field>
+            <field name="model">product.product</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Product Variants" multi_edit="1" duplicate="false" sample="1">
+                    <field name="default_code" optional="show" readonly="1"/>
+                    <field name="name" readonly="1"/>
+                    <field name="uom_id" readonly="1"/>
+
+                    <field name="plan_partner_id" readonly="1"/>
+                    <field name="plan_origin" readonly="1"/>
+                    <field name="plan_to_order" readonly="1"/>
+                    <field name="plan_to_stock" readonly="1"/>
+                    <field name="plan_packing_qty" readonly="1"/>
+                    <field name="plan_packing_unit" readonly="1"/>
+                    <field name="plan_so_before" readonly="1"/>
+
+                    <field name="three_months_ago_so" readonly="1"/>
+                    <field name="two_months_ago_so" readonly="1"/>
+                    <field name="one_month_ago_so" readonly="1"/>
+                    <field name="current_month_so" readonly="1"/>
+
+                    <field name="so_remain" readonly="1"/>
+                    <field name="so_total" readonly="1"/>
+                    <field name="in_before" readonly="1"/>
+
+                    <field name="three_months_ago_po" readonly="1"/>
+                    <field name="two_months_ago_po" readonly="1"/>
+                    <field name="one_month_ago_po" readonly="1"/>
+                    <field name="current_month_po" readonly="1"/>
+
+                    <field name="po_total" readonly="1"/>
+                    <field name="three_months_ago_qty" readonly="1"/>
+                    <field name="two_months_ago_qty" readonly="1"/>
+                    <field name="one_month_ago_qty" readonly="1"/>
+                    <field name="current_month_qty" readonly="1"/>
+
+                    <field name="qty_total" readonly="1"/>
+                    <field name="sale_out_total" readonly="1"/>
+                    <field name="stock_total" readonly="1"/>
+                    <field name="months_s_t" readonly="1"/>
+                    <field name="months_s_t_b_o" readonly="1"/>
+                    <field name="po_order" readonly="1"/>
+                    <field name="months_s_t_b_o_po" readonly="1"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_plan_purchase_action" model="ir.actions.act_window">
+            <field name="name">Plan Purchase Forecast </field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('product_plan_purchase_tree_view')})]"/>
+        </record>
+    </data>
+</odoo>

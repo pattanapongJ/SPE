@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form_hdc_recal" model="ir.ui.view">
+        <field name="name">stock picking Recal</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="new_date_cost" attrs="{'invisible': [('picking_type_code', 'not in', ['incoming', 'outgoing'])], 'readonly': [('state', 'in', ['done', 'cancel'])]}"/>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='name']" position="after">
+                <field name="new_date_cost" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

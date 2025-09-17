@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hdc_tms_all_report_document">
+        <div class="header font-tms-div " style="font-family: KanitLight; text-align: center;">
+            <div class="font-weight-bold" style="font-size: 16px;">
+                <span>รายงานจัดส่งสินค้าตามผู้จัดส่ง-แบบสรุป (รายวัน)</span>
+            </div>
+            <span class=" font-weight-bold" style="font-size: 16px;"> จากวันที่&#160;&#160;<t
+                    t-esc="from_date" />&#160;&#160;&#160;ถึง&#160;&#160;<t t-esc="to_date" /></span>
+        </div>
+        <div class="article font-tms-div " style="font-family: KanitLight;">
+            <div class="row">
+                <t t-set="l_no" t-value="0" />
+                <table class="table table-bordered"
+                    style="font-size: 13.64px; line-height: 18px; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th class="text-center font-tms-th"
+                            >ลำดับ</th>
+                            <th class="text-center font-tms-th" >ชื่อผู้จัดส่ง</th>
+                            <th class="text-center font-tms-th" style="width: 12%">จำนวนบิล/ใบ</th>
+                            <th class="text-center font-tms-th">ยอดเงิน</th>
+                            <th class="text-center font-tms-th">สายส่ง TRL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="tms_remark" t-value="tms_remark"/>
+                        <t t-foreach="distribution_deli_notes" t-as="doc">
+                            <tr>
+                                <td style="text-align: center;">
+                                    <t t-set="l_no" t-value="l_no + 1" />
+                                    <t t-esc="l_no" />
+                                </td>
+                                <td style="text-align: center;">
+                                    <span t-esc="doc.driver_id.name" />
+                                </td>
+                                <td style="text-align: center;">
+                                    <t t-if="tms_remark">
+                                        <span t-esc="len(doc.invoice_line_ids.filtered(lambda x: x.tms_remark == tms_remark))" />
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="len(doc.invoice_line_ids)" />
+                                    </t>
+                                </td>
+                                <td style="text-align: left;">
+                                    <t t-if="tms_remark">
+                                        <span t-esc="'{:,.2f}'.format(sum(line.amount_total for line in doc.invoice_line_ids.filtered(lambda x: x.tms_remark == tms_remark)))" />
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="'{:,.2f}'.format(sum(line.amount_total for line in doc.invoice_line_ids))" />
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-esc="doc.transport_line_id.name" />
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot class="font-weight-bold">
+                        <tr>
+                            <td></td>
+                            <td style="text-align: center;">
+                                <span>รวมทั้งสิ้น </span>
+                            </td>
+                            <td style="text-align: center;">
+                                <t t-esc="sum_count" />
+                            </td>
+                            <td>
+                                <t t-esc="'{:,.2f}'.format(sum_total_price)" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </template>
+    <template id="hdc_tms_all_report">
+        <t t-call="web.html_container">
+            <t t-call="hdc_tms_general_report.hdc_tms_all_report_document" />
+        </t>
+    </template>
+
+    <template id="tms_month_report_document">
+        <div class="header font-tms-div " style="font-family: KanitLight;">
+            <div style="text-align: center;">
+                <div class="font-weight-bold" style="font-size: 16px;">
+                    <span>รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบสรุป (รายเดือน)</span>
+                </div>
+                <span class="" style="font-size: 14px;">จากวันที่&#160;&#160;<t
+                        t-esc="from_date" />&#160;&#160;&#160;ถึง&#160;&#160;<t t-esc="to_date" /></span>
+            </div>
+            <span class="" style="font-size: 14px;">พิมพ์วันที่ <t
+                t-esc="formatted_date" /> เวลา: <t
+                t-esc="formatted_time" /></span>
+            
+        </div>
+        <div class="article font-tms-div " style="font-family: KanitLight;">
+            <div class="row">
+                <t t-set="l_no" t-value="0" />
+                <table class="table table-bordered"
+                    style="font-size: 13.64px; line-height: 18px; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th class="text-center font-tms-th"
+                            style="width: 10%">ลำดับ</th>
+                            <th class="text-center font-tms-th">ชื่อผู้จัดส่ง</th>
+                            <th class="text-center font-tms-th" style="width: 20%">จำนวนบิล/ใบ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="list_driver" t-as="doc">
+                            <tr>
+                                <td style="text-align: center;">
+                                    <t t-set="l_no" t-value="l_no + 1" />
+                                    <t t-esc="l_no" />
+                                </td>
+                                <td style="text-align: left;">
+                                    <span t-esc="doc.get('name')" />
+                                </td>
+                                <td style="text-align: center;">
+                                    <span t-esc="doc.get('quantity')" />
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot class="font-weight-bold">
+                        <tr>
+                            <td></td>
+                            <td style="text-align: left;">
+                                <span>รวมทั้งสิ้น </span>
+                            </td>
+                            <td style="text-align: center;">
+                                <t t-esc="sum_count" />
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </template>
+    <template id="tms_month_report">
+        <t t-call="web.html_container">
+            <t t-call="hdc_tms_general_report.tms_month_report_document" />
+        </t>
+    </template>
+
+
+    <template id="tms_day_report_document">
+        <div class="header font-tms-div " style="font-family: KanitLight;">
+            <div style="text-align: center;">
+                <div class="font-weight-bold" style="font-size: 16px;">
+                    <span>รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบสรุป (รายวัน)</span>
+                </div>
+                <span class="" style="font-size: 14px;">จากวันที่&#160;&#160;<t
+                        t-esc="from_date" />&#160;&#160;&#160;ถึง&#160;&#160;<t t-esc="to_date" /></span>
+            </div>
+            <span class="" style="font-size: 14px;">พิมพ์วันที่ <t
+                t-esc="formatted_date" /> เวลา: <t
+                t-esc="formatted_time" /></span>
+            
+        </div>
+        <div class="article font-tms-div " style="font-family: KanitLight;">
+            <div class="row">
+                <t t-set="l_no" t-value="0" />
+                <table class="table table-bordered"
+                    style="font-size: 13.64px; line-height: 18px; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th class="text-center font-tms-th"
+                            style="width: 10%" >ลำดับ</th>
+                            <th class="text-center font-tms-th" style="width: 50%">ชื่อผู้จัดส่ง</th>
+                            <th class="text-center font-tms-th" style="width: 20%">จำนวนบิล/ใบ</th>
+                            <th class="text-center font-tms-th" style="width: 20%">ยอดเงิน</th>
+                            <!-- <th class="text-center font-tms-th">สายส่ง TRL</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="distribution_deli_notes" t-as="doc">
+                            <tr>
+                                <td style="text-align: center;">
+                                    <t t-set="l_no" t-value="l_no + 1" />
+                                    <t t-esc="l_no" />
+                                </td>
+                                <td style="text-align: left;">
+                                    <span t-esc="doc.driver_id.name" />
+                                </td>
+                                <td style="text-align: center;">
+                                    <t t-if="tms_remark">
+                                        <span t-esc="len(doc.invoice_line_ids.filtered(lambda x: x.tms_remark == tms_remark))" />
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="len(doc.invoice_line_ids)" />
+                                    </t>
+                                </td>
+                                <td style="text-align: right;">
+                                    <t t-if="tms_remark">
+                                        <span t-esc="'{:,.2f}'.format(sum(line.amount_total for line in doc.invoice_line_ids.filtered(lambda x: x.tms_remark == tms_remark)))" />
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="'{:,.2f}'.format(sum(line.amount_total for line in doc.invoice_line_ids))" />
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot class="font-weight-bold">
+                        <tr>
+                            <td></td>
+                            <td style="text-align: left;">
+                                <span>รวมทั้งสิ้น </span>
+                            </td>
+                            <td style="text-align: center;">
+                                <t t-esc="sum_count" />
+                            </td>
+                            <td style="text-align: right;">
+                                <t t-esc="'{:,.2f}'.format(total_price)" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </template>
+    <template id="tms_day_report">
+        <t t-call="web.html_container">
+            <t t-call="hdc_tms_general_report.tms_day_report_document" />
+        </t>
+    </template>
+
+
+    <template id="tms_trl_report_document">
+        <div class="header font-tms-div " style="font-family: KanitLight;">
+            <div style="text-align: center;">
+                <div class="font-weight-bold" style="font-size: 16px;">
+                    <span>รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบสรุป (รายวัน)</span>
+                </div>
+                <span class="" style="font-size: 14px;">จากวันที่&#160;&#160;<t
+                        t-esc="from_date" />&#160;&#160;&#160;ถึง&#160;&#160;<t t-esc="to_date" /></span>
+            </div>
+            <span class="" style="font-size: 14px;">พิมพ์วันที่ <t
+                t-esc="formatted_date" /> เวลา: <t
+                t-esc="formatted_time" /></span>
+            
+        </div>
+        <div class="article font-tms-div " style="font-family: KanitLight;">
+            <div class="row">
+                <t t-set="l_no" t-value="0" />
+                <table class="table table-bordered"
+                    style="font-size: 13.64px; line-height: 18px; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th class="text-center font-tms-th"
+                            style="width: 10%" >ลำดับ</th>
+                            <th class="text-center font-tms-th" style="width: 30%">ชื่อผู้จัดส่ง</th>
+                            <th class="text-center font-tms-th" style="width: 15%">จำนวนบิล/ใบ</th>
+                            <th class="text-center font-tms-th" style="width: 15%">ยอดเงิน</th>
+                            <th class="text-center font-tms-th">สายส่ง TRL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="tms_remark" t-value="tms_remark"/>
+                        <t t-foreach="distribution_deli_notes" t-as="doc">
+                            <tr>
+                                <td style="text-align: center;">
+                                    <t t-set="l_no" t-value="l_no + 1" />
+                                    <t t-esc="l_no" />
+                                </td>
+                                <td style="text-align: left;">
+                                    <span t-esc="doc.driver_id.name" />
+                                </td>
+                                <td style="text-align: center;">
+                                    <t t-if="tms_remark">
+                                        <span t-esc="len(doc.invoice_line_ids.filtered(lambda x: x.tms_remark == tms_remark))" />
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="len(doc.invoice_line_ids)" />
+                                    </t>
+                                </td>
+                                <td style="text-align: right;">
+                                    <t t-if="tms_remark">
+                                        <span  t-esc="'{:,.2f}'.format(sum(line.amount_total for line in doc.invoice_line_ids.filtered(lambda x: x.tms_remark == tms_remark)))" />
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="'{:,.2f}'.format(sum(line.amount_total for line in doc.invoice_line_ids))" />
+                                    </t>
+                                </td>
+                                <td style="text-align: left;">
+                                    <span t-esc="doc.transport_line_id.name" />
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot class="font-weight-bold">
+                        <tr>
+                            <td></td>
+                            <td style="text-align: center;">
+                                <span>รวมทั้งสิ้น </span>
+                            </td>
+                            <td style="text-align: center;">
+                                <t t-esc="sum_count" />
+                            </td>
+                            <td style="text-align: right;">
+                                <t t-esc="'{:,.2f}'.format(total_price)" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </template>
+    <template id="tms_trl_report">
+        <t t-call="web.html_container">
+            <t t-call="hdc_tms_general_report.tms_trl_report_document" />
+        </t>
+    </template>
+
+    <template id="enon_report_document">
+
+        <div class="header font-tms-div " style="font-family: KanitLight;">
+            <div class="row d-flex justify-content-end font-weight-bold">
+                <div style="font-size: 16px;">
+                    <span>หน้า </span>
+                <span class="page" /> / <span class="topage" />
+                </div>
+            </div>
+
+            <span class="" style="font-size: 14px;">พิมพ์วันที่ <t
+                t-esc="formatted_date" /> เวลา: <t
+                t-esc="formatted_time" /></span>
+
+            <div style="text-align: center;margin-bottom:5mm;margin-top:5mm">
+                <span class=" font-weight-bold" style="font-size: 20px;">
+                    รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบแจกแจง</span>
+            </div>
+
+            <div style="text-align: center;margin-bottom:5mm;margin-top:5mm">
+                <span class="" style="font-size: 16px;">จากวันที่&#160;&#160;<t
+                    t-esc="from_date" />&#160;&#160;&#160;ถึง&#160;&#160;<t t-esc="to_date" /></span>
+            </div>
+
+            <div class="col-12 text-left">
+                <span class="row font-weight-bold">
+                    <div style="margin-right: 40px;">ผู้จัดทำ: </div>
+                    <div style="margin-right: 40px;">ผู้จัดส่ง: </div>
+                    <div>สายส่ง TRL: </div>
+                </span>
+            </div>
+        </div>
+
+        <div class="article font-tms-div " style="font-family: KanitLight;">
+            <div class="row">
+                <t t-set="l_no" t-value="0" />
+                <table class="table table-borderless"
+                    style="font-size: 13.64px;line-height: 18px; width: 100%;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid black;border-top: 1px solid black;">
+                            <th class="text-center font-tms-th"
+                            >ลำดับ</th>
+                            <th class="text-center font-tms-th" style="width: 12%">วันที่ Invoice</th>
+                            <th class="text-center font-tms-th">SPE Invoice</th>
+                            <th class="text-center font-tms-th">ชื่อลูกค้า</th>
+                            <th class="text-center font-tms-th">เลขที่เอกสาร</th>
+                            <th class="text-center font-tms-th">วันที่เอกสาร</th>
+                            <th class="text-center font-tms-th">สายส่งTRL</th>
+                            <th class="text-center font-tms-th">Invoice Id</th>
+                            <th class="text-center font-tms-th">จำนวนเงิน</th>
+                            <th class="text-center font-tms-th">Billing Status</th>
+                            <th class="text-center font-tms-th">Payment</th>
+                            <th class="text-center font-tms-th">หมายเหตุ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        
+                            <tr>
+                                <td style="text-align: center;">
+                                    
+                                </td>
+                                <td style="text-align: center;">
+                                    
+                                </td>
+                                <td style="text-align: center;">
+                                   
+                                </td>
+                                <td style="text-align: left;">
+                                   
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td style="text-align: center;">
+                                    
+                                </td>
+                                <td style="text-align: center;">
+                                   
+                                </td>
+                                <td style="text-align: center;">
+                                   
+                                </td>
+                                <td style="text-align: right; width: fit-content;">
+                                    
+                                </td>
+                                <td style="text-align: right;">
+                                   
+                                </td>
+                                <td style="text-align: center;">
+                                    
+                                </td>
+                                <td style="text-align: center;">
+                                    
+                                </td>
+                            </tr>
+                    </tbody>
+                    <t t-if="page == topage">
+                        <tfoot class="font-weight-bold">
+                            <tr style="border-bottom: 2px solid black;border-top: 2px solid black;">
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: center;">
+                                    <span>รวมทั้งสิ้น </span>
+                                </td>
+                                <td style="text-align: light;">
+                                    
+                                    <span> รายการ</span>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;">
+                                    
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </t>
+
+                </table>
+            </div>
+
+        </div>
+
+        <t t-if="page == topage">
+            <div class="footer last-page not-first-page font-tms-div  font-weight-bold"
+                style="font-family: KanitLight;margin-top:5mm;vertical-align: bottom;overflow: hidden">
+
+                <div class="row" style="font-size: 16px;">
+
+                    <div class="col-6" align="center">
+                        <div style="position: relative;">
+                            <div>
+                                ชื่อผู้รับ............................................................</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div>
+                                วันที่:.................../..................../.....................&#160;</div>
+                        </div>
+                    </div>
+
+                    <div class="col-6" align="center">
+                        <div style="position: relative;">
+                            <div
+                                style="position: absolute; top: -7px; width: 100%; text-align: center;">
+                            </div>
+                            <div>
+                                ชื่อผู้จัดทำ....................................................................................</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div
+                                style="position: absolute; top: -7px; width: 100%; text-align: center;">
+                            </div>
+                            <div>
+                                วันที่:......................................................................................&#160;</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </t>
+
+    </template>
+
+    <template id="enum_report_document">
+
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc" />
+        </t>
+
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()" />
+        </t>
+
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company" />
+        </t>
+
+        <div class="header font-tms-div " style="font-family: KanitLight;">
+            <div class="row d-flex justify-content-end font-weight-bold">
+                <div style="font-size: 16px;">
+                    <span>หน้า </span>
+                    <span class="page" /> / <span class="topage" /><br/>
+                    <t t-if="keep_billing_status">
+                        <t t-if="'to_finance' in keep_billing_status">
+                            <!-- <span class=" font-weight-bold" style="font-size: 20px;">
+                        รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบแจกแจง</span> -->
+                            <span>To Finance</span>
+                        </t>
+                        <t t-elif="'to_billing' in keep_billing_status">
+                            <!-- <span class=" font-weight-bold" style="font-size: 20px;">
+                        รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบแจกแจง</span> -->
+                            <span>To Billing</span>
+                        </t>
+                        <t t-elif="'none' in keep_billing_status">
+                            <span>None</span>
+                        </t>
+                    </t>
+                </div>
+            </div>
+
+            <span class="" style="font-size: 14px;">พิมพ์วันที่ <t
+                t-esc="formatted_date" /> เวลา: <t
+                t-esc="formatted_time" /></span>
+
+            <div style="text-align: center;margin-bottom:5mm;margin-top:5mm">
+                <span class=" font-weight-bold" style="font-size: 20px;">
+                    รายงานการจัดส่งสินค้าตามผู้จัดส่ง-แบบแจกแจง</span>
+            </div>
+
+            <div style="text-align: center;margin-bottom:5mm;margin-top:5mm">
+                <span class="" style="font-size: 16px;">จากวันที่&#160;&#160;<t
+                    t-esc="from_date" />&#160;&#160;&#160;ถึง&#160;&#160;<t t-esc="to_date" /></span>
+            </div>
+
+            <div class="col-12 text-left">
+                <span class="row font-weight-bold">
+                    <div style="margin-right: 40px;">ผู้จัดทำ: <span t-field="doc.user_id.name" /></div>
+                    <div style="margin-right: 40px;">ผู้จัดส่ง: <span t-field="doc.driver_id.name" /></div>
+                    <div>สายส่ง TRL: <span t-field="doc.transport_line_id.code" />&#160;&#160;<span
+                            t-field="doc.transport_line_id.name" /></div>
+                </span>
+            </div>
+        </div>
+
+        <div class="article font-tms-div " style="font-family: KanitLight;"
+            t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <div class="row">
+                <t t-set="l_no" t-value="0" />
+                <table class="table table-borderless"
+                    style="font-size: 13.64px;line-height: 18px; width: 100%;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid black;border-top: 1px solid black;">
+                            <th class="text-center font-tms-th"
+                            >ลำดับ</th>
+                            <th class="text-center font-tms-th" style="width: 12%">วันที่ Invoice</th>
+                            <th class="text-center font-tms-th">เลขที่เอกสาร</th>
+                            <th class="text-center font-tms-th">เลขที่ ATR</th>
+                            <th class="text-center font-tms-th">SPE / Invoice No.</th>
+                            <th class="text-center font-tms-th">ชื่อลูกค้า</th>
+                            <!-- <th class="text-center font-tms-th">เลขที่เอกสาร</th> -->
+                            <th class="text-center font-tms-th">วันที่เอกสาร</th>
+                            <th class="text-center font-tms-th">สายส่งTRL</th>
+                            <th class="text-center font-tms-th">จำนวนเงิน</th>
+                            <!-- <th class="text-center font-tms-th">Billing Status</th> -->
+                            <th class="text-center font-tms-th">Payment</th>
+                            <th class="text-center font-tms-th">หมายเหตุ22222</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <t t-set="total_sum" t-value="0" />
+                        <t t-set="total_count" t-value="0" />
+                        <t t-set="invoice_line_ids" t-value="o.invoice_line_ids" />
+                        <t t-if="tms_remark">
+                            <t t-set="invoice_line_ids" t-value="invoice_line_ids.filtered(lambda x: x.tms_remark == tms_remark)"/>
+                        </t>
+                        <t t-if="keep_delivery_status">
+                            <t t-set="invoice_line_ids" t-value="invoice_line_ids.filtered(lambda x: x.delivery_status in keep_delivery_status)"/>
+                        </t>
+                        <t t-if="keep_billing_status">
+                            <t t-set="invoice_line_ids" t-value="invoice_line_ids.filtered(lambda x: x.billing_status in keep_billing_status)"/>
+                        </t>
+                        <t t-foreach="sorted(invoice_line_ids, key=lambda line: line.spe_invoice)" t-as="line">
+                        <!-- <t t-foreach="invoice_line_ids" t-as="line"> -->
+                            <!-- <span t-if="(line.billing_status and line.billing_status in keep_billing_status) and (line.delivery_status and line.delivery_status in keep_delivery_status)">  -->
+                            
+                                <t t-set="total_sum" t-value="total_sum + (line.amount_total or 0)" />
+                                <t t-set="total_count" t-value="total_count + 1" />
+
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <t t-set="l_no" t-value="l_no + 1" />
+                                        <t t-esc="l_no" />
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <span t-field="line.invoice_date" />
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <span t-field="line.distribition_id.name" />
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <span t-field="line.tms_remark" />
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <t t-if="line.invoice_id.form_no">
+                                            <span t-field="line.invoice_id.form_no"/>
+                                        </t>
+                                        <t t-else="">
+                                            <span t-field="line.invoice_id.name"/>
+                                        </t>
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <span t-field="line.partner_id" />
+                                    </td>
+
+                                    <!-- <td style="text-align: center;">
+                                        <span t-field="line.sale_no" />
+                                    </td> -->
+                                    <td style="text-align: center;">
+                                        <span t-field="line.distribition_id.delivery_date" />
+                                    </td> 
+
+                                    <td>
+                                        <span t-field="line.transport_line_id.code" />
+                                    </td>
+                                    <td style="text-align: right; width: fit-content;">
+                                        <span t-if="line.amount_total">
+                                            <span t-field="line.amount_total" />
+                                        </span>
+                                        <span t-if="not line.amount_total">
+                                            -
+                                        </span>
+                                    </td>
+                                    <!-- <td style="text-align: center;">
+                                        <span t-field="line.billing_status" />
+                                    </td> -->
+                                    <td style="text-align: center;">
+                                        <span t-field="line.finance_type" />
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <span t-field="line.remark" />
+                                    </td>
+                                </tr>
+
+                            
+                                                        
+                        </t>
+                    </tbody>
+                    <t t-if="page == topage">
+                        <tfoot class="font-weight-bold">
+                            <tr style="border-bottom: 2px solid black;border-top: 2px solid black;">
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: center;">
+                                    <span>รวมทั้งสิ้น </span>
+                                </td>
+                                <td style="text-align: light;">
+                                    <!-- <span t-esc="len(o.invoice_line_ids)" /> -->
+                                    <span t-esc="total_count" />  
+                                    <span> รายการ</span>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;">
+                                    <!-- <span
+                                        t-esc="'{:,.2f}'.format(sum(line.amount_total for line in o.invoice_line_ids))" /> -->
+                                        <t t-esc="'{:,.2f}'.format(total_sum)" />
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </t>
+
+                </table>
+            </div>
+
+        </div>
+
+        <t t-if="page == topage">
+            <div class="footer last-page not-first-page font-tms-div  font-weight-bold"
+                style="font-family: KanitLight;margin-top:5mm;vertical-align: bottom;overflow: hidden">
+
+                <div class="row" style="font-size: 16px;">
+
+                    <div class="col-6" align="center">
+                        <div style="position: relative;">
+                            <div>
+                                ชื่อผู้รับ............................................................</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div>
+                                วันที่:.................../..................../.....................&#160;</div>
+                        </div>
+                    </div>
+
+                    <div class="col-6" align="center">
+                        <div style="position: relative;">
+                            <div
+                                style="position: absolute; top: -7px; width: 100%; text-align: center;">
+                                <!-- <span t-field="doc.user_id.name" /> -->
+                            </div>
+                            <div>
+                                ชื่อผู้จัดทำ....................................................................................</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div
+                                style="position: absolute; top: -7px; width: 100%; text-align: center;">
+                                <!-- <span t-field="doc.create_date_print" t-options='{"format": "dd/MM/yyyy"}' /> -->
+                            </div>
+                            <div>
+                                วันที่:......................................................................................&#160;</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </t>
+
+    </template>
+
+    <template id="enum_report">
+        <t t-call="web.html_container">
+            <t t-if="distribution_deli_notes">
+                <t t-foreach="distribution_deli_notes" t-as="doc">
+                    <t t-call="hdc_tms_general_report.enum_report_document" />
+                </t>   
+            </t>
+            <t t-if="not distribution_deli_notes">
+                <t t-call="hdc_tms_general_report.enon_report_document" />
+            </t>
+        </t>
+    </template>
+
+</odoo>

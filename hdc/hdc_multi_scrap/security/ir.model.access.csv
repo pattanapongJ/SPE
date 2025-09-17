@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_multi_stock_scrap_user,multi_stock_scrap,model_multi_stock_scrap,stock.group_stock_user,1,1,1,1
+access_reason_scrap_user,reason_scrap,model_reason_scrap,stock.group_stock_user,1,1,1,1
+access_report_scrap_user,report_scrap,model_report_scrap,base.group_user,1,1,1,1

@@ -1,0 +1,31 @@
+<odoo>
+    <record id="wizard_add_urgent_delivery_form" model="ir.ui.view">
+        <field name="name">wizard.add.urgent.delivery.form</field>
+        <field name="model">wizard.add.urgent.delivery</field>
+        <field name="arch" type="xml">
+            <form string="Wizard Add Urgent Delivery Transfer">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="picking_id" options="{'no_create': True, 'no_open': True}" domain="[('state', '=', 'waiting_pick'),('urgent_delivery_id', '=', False)]"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_add" string="Add Urgent Delivery" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_add_urgent_delivery_form_action" model="ir.actions.act_window">
+        <field name="name">Wizard Add Urgent Delivery Transfer</field>
+        <field name="res_model">wizard.add.urgent.delivery</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_add_urgent_delivery_form"/>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_pricelist_sale_form" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pricelist_id']" position="replace">
+                <field name="pricelist_id"
+                    options="{'no_open': True, 'no_create': True}"
+                    attrs="{'invisible': [('is_oversea', '=', True)], 'required': [('is_oversea', '=', False)]}"/>
+                <field name="pricelist_ids" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='currency_id']" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="readonly">0</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

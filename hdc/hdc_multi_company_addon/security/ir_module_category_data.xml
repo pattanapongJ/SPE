@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="res.groups" id="group_multi_company_all">
+            <field name="name">Multi Companies All</field>
+            <field name="category_id" ref="base.module_category_usability"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_multi_company'))]"/>
+        </record>
+        <record model="res.groups" id="group_multi_company_unique">
+            <field name="name">Multi Companies Unique</field>
+            <field name="category_id" ref="base.module_category_usability"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_multi_company'))]"/>
+        </record>
+    </data>
+</odoo>

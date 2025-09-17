@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <!-- stock.location inherit search view -->
+    <record id="view_location_search" model="ir.ui.view">
+        <field name="name">stock.location.inherit.view.search</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="after">
+                <field name="warehouse_id" string="Warehouse"/>
+                <group  expand='0' string='Group by...'>
+                   <filter string='Warehouse' name="warehouse_id" domain="[]" context="{'group_by' : 'warehouse_id'}"/>
+               </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock.action_location_form" model="ir.actions.act_window">
+        <field name="name">Locations</field>
+        <field name="res_model">stock.location</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="stock.view_location_tree2"/>
+        <field name="search_view_id" ref="stock.view_location_search"/>
+        <field name="context">{'search_default_in_location':1}</field>
+        <field name="domain">['|', ('warehouse_id', '=', False), ('warehouse_id.user_ids','in', uid)]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Add a new location
+          </p><p>
+            Define your locations to reflect your warehouse structure and
+            organization. Odoo is able to manage physical locations
+            (warehouses, shelves, bin, etc), partner locations (customers,
+            vendors) and virtual locations which are the counterpart of
+            the stock operations like the manufacturing orders
+            consumptions, inventories, etc.
+          </p><p>
+            Every stock operation in Odoo moves the products from one
+            location to another one.  For instance, if you receive products
+            from a vendor, Odoo will move products from the Vendor
+            location to the Stock location. Each report can be performed on
+            physical, partner or virtual locations.
+          </p>
+        </field>
+    </record>
+</odoo>

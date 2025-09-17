@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_move_debit_credit_note_reason" model="ir.ui.view">
+        <field name="name">account.field.note.reason</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="hdc_add_field_cus_inv.account_add_field_inherit_ac_first"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='batch_billing_no']" position="after">
+                <field name="debit_credit_note_reason_id"/>
+            </xpath>
+        </field>
+    </record>  
+</odoo>

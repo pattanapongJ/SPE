@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mr_request_type_tree" model="ir.ui.view">
+        <field name="name">request.type.mr.tree</field>
+        <field name="model">request.type.mr</field>
+        <field name="arch" type="xml">
+            <tree string="Request Type" editable="bottom">
+                <field name="name"/>
+                <field name="request_type"/>
+                <field name="is_design"/>
+                <field name="active"/>
+                <field name="is_modify"/>
+                <field name="is_claim"/>
+                <field name="is_repack"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mr_request_type_form" model="ir.ui.view">
+        <field name="name">request.type.mr.form</field>
+        <field name="model">request.type.mr</field>
+        <field name="arch" type="xml">
+            <form string="MRP Request Type">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="request_type"/>
+                        </group>
+                        <group>
+                            <field name="is_design"/>
+                            <field name="active"/>
+                            <field name="is_modify"/>
+                            <field name="receipt_picking_type_id" attrs="{'invisible': [('is_modify', '=', False)]}"/>
+                            <field name="is_claim"/>
+                            <field name="is_repack"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mr_request_type_search" model="ir.ui.view">
+        <field name="name">request.type.mr.search</field>
+        <field name="model">request.type.mr</field>
+        <field name="arch" type="xml">
+            <search string="Search Request Type">
+                <field name="name"/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mr_request_type_form" model="ir.actions.act_window">
+        <field name="name">Request Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">request.type.mr</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

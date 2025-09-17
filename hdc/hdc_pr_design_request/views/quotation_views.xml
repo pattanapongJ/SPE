@@ -1,0 +1,119 @@
+<odoo>
+    <record id="quotation_pdr_view_inherited" model="ir.ui.view">
+        <field name="name">quotation.order.view.inherit.product.design</field>
+        <field name="model">quotation.order</field>
+        <field name="inherit_id" ref="hdc_quotation_order.view_quotation_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_confirm']" position="before">
+                <field name="pdr_active_count" invisible="1"/>
+                <button name="create_product_disign_request" string="Product Design" type="object" 
+                    class="oe_highlight" attrs="{'invisible': ['|',('state', 'in', ['sale','done','cancel']),('pdr_active_count', '!=',0 )]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_view_sale_orders']" position="before">
+                <button type="object"
+                    name="open_product_request_request"
+                    class="oe_stat_button"
+                    icon="fa-bars"
+                    attrs="{'invisible': [('pdr_count', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Product Design</span>
+                        <field name="pdr_count"/>
+                    </div>
+                    
+                </button>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']" position="after">
+                <page string="Product Design Lists" name="product_list_page">
+                    <field name="pdr_id" invisible="1"/>
+                    <field name="state_pdr" invisible="1"/>
+                    <field name="check_access_role_pdr" invisible="1"/>
+
+                    <field name="product_line_ids">
+                        <tree string="Product List" create="false">
+                            <field name="product_name" attrs="{'column_invisible': [('parent.state_pdr','in', ['done'])]}"/>
+                            <field name="product_id" attrs="{'column_invisible': [('parent.state_pdr','in', ['draft','confirmed','waiting_approve','new_product'])]}"/>
+                            <field name="demand_qty"/>
+                            <field name="triple_discount"/>
+                            <field name="sale_price_marketing"/>
+                            <field name="sale_price_a"/>
+                            <field name="sale_price_b"/>
+                            <field name="discount_sale_price_marketing"/>
+                            <field name="uom_id"/>
+                            <field name="remark"/>
+                            <field name="design_icon"/>
+                        </tree>
+                        <form string="Product">
+                            <group>
+                                <group>
+                                    <field name="state" invisible="1"/>
+                                    <field name="product_id" attrs="{'invisible':[('product_id','=',False)]}"/>
+                                    <field name="product_name"/>
+                                    <field name="categ_id"/>
+                                    <field name="barcode"/>
+                                    <field name="default_code" />
+                                    <field name="list_price" attrs="{'invisible': [('parent.check_access_role_pdr', 'in', ['user','admin'])]}"/>
+                                    <field name="sale_price_marketing" attrs="{'invisible': [('parent.check_access_role_pdr', 'in', ['user','admin'])]}" />
+                                    <field name="discount_sale_price_marketing" invisible="1" />
+                                    <field name="sale_price_a" attrs="{'invisible': [('parent.check_access_role_pdr', 'in', ['user','admin'])]}" />
+                                    <field name="sale_price_b" attrs="{'invisible': [('parent.check_access_role_pdr', 'in', ['user','admin'])]}" />
+                                </group>
+                                <group>
+                                    <field name="uom_id"/>
+                                    <field name="demand_qty"/>
+                                    <field name="design_icon"/>
+                                    <field name="remark"/>
+                                    <field name="standard_price" attrs="{'invisible': [('parent.check_access_role_pdr', 'in', ['user','admin'])]}"/>
+                                    <field name="standard_price_lp" attrs="{'invisible': [('parent.check_access_role_pdr', 'in', ['user','admin'])]}"/>
+                                </group>
+                            </group>
+                            <notebook>
+                                <page string="Product BOM" name="product_list_page" attrs="{'invisible': [('parent.check_access_role_pdr', 'in', ['user','access'])]}">
+                                    <field name="bom_component" attrs="{'readonly': [('parent.state_pdr', 'not in', ['waiting_approve'])]}">
+                                        <tree string="Product BOM" editable="bottom">
+                                            <field name="product_id"/>
+                                            <field name="product_qty"/>
+                                            <field name="uom_id"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <!-- ลาดพร้าว -->
+                                <page string="Product BOM" name="product_list_page" attrs="{'invisible': [('parent.check_access_role_pdr', 'not in', ['user','access'])]}">
+                                    <field name="bom_component" readonly="1">
+                                        <tree string="Product BOM" editable="bottom">
+                                            <field name="product_id"/>
+                                            <field name="product_qty"/>
+                                            <field name="uom_id"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Manufactory Price" name="manufactory_price_page" attrs="{'invisible': [('parent.check_access_role_pdr', 'in', ['user','access'])]}">
+                                    <group>
+                                        <group>
+                                            <field name="factory_price"/>
+                                        </group>
+                                        <group>
+                                            
+                                        </group>
+                                    </group>
+                                
+                                </page>
+                                <page string="Discount" name="discount_page" attrs="{'invisible': [('parent.check_access_role_pdr', 'in', ['user','admin'])]}">
+                                    <group>
+                                        <group>
+                                            <field name="triple_discount"/>
+                                        </group>
+                                        <group>
+                                            
+                                        </group>
+                                    </group>
+                                
+                                </page>
+                            </notebook>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

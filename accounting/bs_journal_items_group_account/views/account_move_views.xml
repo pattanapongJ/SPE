@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- View account.move form -->
+    <record id="view_account_move_form" model="ir.ui.view">
+        <field name="name">view.account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@id='aml_tab']" position="after">
+                <page name="aml_gp_tab" string="Group Accounting">
+                   <field name="move_line_group_ids">
+                       <tree default_order="debit desc, credit desc">
+                           <field name="id" invisible="1"/>
+                           <field name="move_id" invisible="1"/>
+                           <field name="account_id"/>
+                           <field name="name"/>
+                           <field name="debit" sum="Total Debit"/>
+                           <field name="credit" sum="Total Credit"/>
+                       </tree>
+                   </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

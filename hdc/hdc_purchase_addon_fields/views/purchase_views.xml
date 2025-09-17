@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_addon_fields_inherit_purchase" model="ir.ui.view">
+        <field name="name">purchase.addon.fields.form.inherit.purchase</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="customer"/>
+            </xpath>
+            <xpath expr="//group[@name='other_info']" position="inside">
+                <field name="carrier_id"/>
+                <field name="bank_account_id"/>
+                <field name="partner_group_id" readonly="1" force_save="1"/>
+                <field name="payment_method_id"/>
+                <field name="branch_no" readonly="1" force_save="1"/>
+                <field name="company_chain_id" readonly="1" force_save="1"/>
+                <field name="partner_invoice_id"/>
+                <field name="employee_id"/>
+                <field name="shipper"/>
+                <field name="spot_rate"/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    type="object"
+                    name="action_view_purchase_request_line"
+                    class="oe_stat_button"
+                    attrs="{'invisible':[('line_count', '=', 0)]}"
+                    icon="fa-list"
+                >
+                    <field name="line_count" widget="statinfo" string="Purchase Requests" />
+                </button>
+            </xpath>
+            <xpath expr="//notebook/page[@name='products']/field[@name='order_line']/tree/field[@name='product_qty']" position="before">
+                <field name="requisition" optional="hide"/>
+                <field name="spot_rate" optional="show"/>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_ref']" position="before">
+                <field name="po_reference" />
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='products']/field[@name='order_line']/tree/field[@name='product_uom']" position="after">
+                <field name="remark_1" optional="hide"/>
+                <field name="remark_2" optional="hide"/>
+                <field name="last_supplier_id" optional="hide" readonly="1"/>
+                <field name="last_supplier_date" optional="hide" readonly="1"/>
+                <field name="last_purchase_date" optional="hide" readonly="1"/>
+                <field name="last_purchase_price" optional="hide" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_request_line_make_purchase_order_inherit" model="ir.ui.view">
+        <field name="name">view.purchase.request.line.make.purchase.order.inherit</field>
+        <field name="model">purchase.request.line.make.purchase.order</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_line_make_purchase_order"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_id']" position="after">
+                <field name="mix"/>
+                <field name="max"/>
+                <field name="box_qty"/>
+                <field name="crate_qty"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

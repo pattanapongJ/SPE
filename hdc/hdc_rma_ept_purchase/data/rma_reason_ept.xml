@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="purchase_rma_ept_refund" model="purchase.rma.reason.ept">
+        <field name="name">Refund</field>
+        <field name="action">refund</field>
+    </record>
+
+    <record id="purchase_rma_ept_replace_with_same_product" model="purchase.rma.reason.ept">
+        <field name="name">Replace With Same Product</field>
+        <field name="action">replace_same_product</field>
+    </record>
+
+    <record id="purchase_rma_ept_replace_with_other_product" model="purchase.rma.reason.ept">
+        <field name="name">Replace With Other Product</field>
+        <field name="action">replace_other_product</field>
+    </record>
+
+</odoo>

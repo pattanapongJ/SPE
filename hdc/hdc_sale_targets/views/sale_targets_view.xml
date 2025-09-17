@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="sale_targets_view_tree" model="ir.ui.view">
+        <field name="name">sale.targets.view.tree</field>
+        <field name="model">sale.targets</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" string="Sales Targets" >
+                <field name="team_id" required="1"/>
+                <field name="member_ids" invisible="1"/>
+                <field name="user_id"/>
+                <field name="fiscal_year_id" required="1"/>
+                <field name="target_team" force_save="1" attrs="{'readonly':[('user_id','!=',False)],'required': [('team_id','!=',False)]}"/>
+                <field name="target_sales" attrs="{'readonly':[('user_id','=',False)],'required': [('user_id','!=',False)]}"/> 
+            </tree>
+        </field>
+    </record>
+    
+    <record id="sale_targets_view_form" model="ir.ui.view">
+        <field name="name">sale.targets.view.form</field>
+        <field name="model">sale.targets</field>
+        <field name="arch" type="xml">
+            <form string="Sales Targets">
+                <sheet>
+                    <group>
+                        <field name="team_id" required="1"/>
+                        <field name="member_ids" invisible="1"/>
+                        <field name="user_id"/>
+                        <field name="fiscal_year_id" required="1"/>
+                        <field name="target_team" force_save="1" attrs="{'readonly':[('user_id','!=',False)],'required': [('team_id','!=',False)]}"/>
+                        <field name="target_sales" attrs="{'readonly':[('user_id','=',False)],'required': [('user_id','!=',False)]}"/> 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_targets_view_action" model="ir.actions.act_window">
+        <field name="name">Sales Targets</field>
+        <field name="res_model">sale.targets</field>
+        <field name="view_id" ref="sale_targets_view_tree"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="sale_target_config"
+            name="Sales Targets"
+            parent="sale.sales_team_config"
+            action="sale_targets_view_action"
+            sequence="3"/>
+</odoo>

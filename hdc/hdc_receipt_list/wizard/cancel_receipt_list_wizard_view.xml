@@ -1,0 +1,21 @@
+<odoo>
+    <record id="cancel_receipt_list_wizard_view" model="ir.ui.view">
+        <field name="name">cancel.receipt.list.wizard.form</field>
+        <field name="model">cancel.receipt.list.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="reason" />
+                </group>
+                <footer>
+                    <button name="confirm_cancel"
+                        string="Confirm"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

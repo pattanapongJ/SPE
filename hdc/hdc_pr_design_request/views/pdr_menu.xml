@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_mrp_pdr_action" name="Product Design Request" parent="mrp.menu_mrp_manufacturing" action="mrp_pdr_action" sequence="0"/>
+    <menuitem id="hdc_mrp_mr.menu_mrp_mr_action" name="MRP Request" parent="mrp.menu_mrp_manufacturing" action="hdc_mrp_mr.mrp_mr_action" sequence="1"/>
+    <menuitem action="mrp.mrp_production_action" id="mrp.menu_mrp_production_action" parent="mrp.menu_mrp_manufacturing" sequence="4"/>
+
+    <menuitem id="menu_mrp_pdr_action_inherit" name="Product Design Request" parent="hdc_mrp_mr.menu_mrp_main_root" action="mrp_pdr_action" sequence="0"/>
+
+</odoo>

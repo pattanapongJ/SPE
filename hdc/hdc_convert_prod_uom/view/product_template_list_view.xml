@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="prod_uom_view_template_list_inherit" model="ir.ui.view">
+        <field name="name">prod.uom.view.template.list.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <button name="fix_existing_default_uom_data"
+                    string="Fix Default UOM Data"
+                    type="object"
+                    class="btn-secondary"
+                    confirm="คุณต้องการแก้ไขข้อมูล default UOM สำหรับสินค้าที่เลือกหรือไม่? ระบบจะย้าย default ไปที่ base UOM ทั้งหมด"
+                    attrs="{'invisible': [('uom_id', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

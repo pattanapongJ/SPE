@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="return_rg_to_stock" model="addition.operation.type">
+            <field name="addition_Operation_type">Return RG to Stock</field>
+            <field name="code">AO-08</field>
+            <field name="active">True</field>
+        </record>        
+    </data>
+</odoo>

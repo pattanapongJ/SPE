@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hdc_picking_list_report_document_th_history_a5_multi">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+        <t t-if="len(doc.list_line_ids)>0">
+            <t t-set="sale_id" t-value="doc.list_line_ids[0].sale_id"/>
+        </t>
+
+        <div class="header" style="font-family: KanitLight;">
+            <div class="row" style="padding-top:15px;font-family: KanitLight;font-size: 12.00px; border: 1px solid none;">
+                <div class="col-2 text-left" style="padding-top:9px;">
+                    <!--<span><strong>รหัสลูกค้า :</strong></span>-->
+                </div>
+                <div class="col-2 text-left" style="padding-top:9px;">
+                    <!--<span t-if="doc.partner_id">-->
+                    <!--    <span t-field="doc.partner_id.ref"/>-->
+                    <!--</span>-->
+                    <!--<span t-if="not doc.partner_id">-->
+                    <!--</span>-->
+                </div>
+                <div class="col-4 text-center">
+                    <span style="font-family: KanitLight;font-size: 21.33px;">
+                        <strong>ใบจัดสินค้า</strong>
+                    </span>
+                </div>
+                <div class="col-4 text-left" style="padding-top:9px;">
+                    
+                </div>
+            </div>
+            
+            <div class="row" style="font-family: KanitLight;font-size: 12.00px; border: 1px solid none;">
+                <div class="col-6">        
+                
+                <div class="row" style="font-family: KanitLight;font-size: 12.00px;">
+                <div class="col-4 text-left">
+                    <span><strong>รหัสลูกค้า :</strong></span>
+                </div>
+                <div class="col-8 text-left">
+                    <span t-if="doc.partner_id">
+                        <span t-field="doc.partner_id.ref"/>
+                    </span>
+                    <span t-if="not doc.partner_id">
+                        -
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="font-family: KanitLight;font-size: 12.00px;">
+                <div class="col-4 text-left">
+                    <span><strong>ชื่อลูกค้า :</strong></span>
+                </div>
+                <div class="col-8 text-left">
+                    <span t-if="doc.partner_id">
+                        <span t-field="doc.partner_id.name"/>
+                    </span>
+                    <span t-if="not doc.partner_id">
+                        -
+                    </span>
+                </div>
+            </div>
+                
+                    <div class="row">
+                        <div class="col-4 text-left">
+                           <span><strong>ที่อยู่ :</strong></span>
+                        </div>
+                        <div class="col-8 text-left">
+                            <span t-if="sale_id.partner_shipping_id.street">
+                                <span t-field="sale_id.partner_shipping_id.street"/>
+                            </span>
+                            <span t-if="sale_id.partner_shipping_id.street2">
+                                <span t-field="sale_id.partner_shipping_id.street2"/>
+                            </span>
+                            <span t-if="sale_id.partner_shipping_id.sub_district">
+                                <span t-field="sale_id.partner_shipping_id.sub_district"/>
+                            </span>
+                            <br/>
+                            <span t-if="sale_id.partner_shipping_id.city">
+                                <span t-field="sale_id.partner_shipping_id.city"/>
+                            </span>
+                            <span t-if="sale_id.partner_shipping_id.state_id.name">
+                                <span t-field="sale_id.partner_shipping_id.state_id.name"/>
+                            </span>
+                            <span t-if="sale_id.partner_shipping_id.zip">
+                                <span t-field="sale_id.partner_shipping_id.zip"/>
+                            </span>
+                            <br/>
+                            <span>โทร.</span>
+                            <span t-if="doc.partner_id.phone">
+                                <span t-field="doc.partner_id.phone"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 text-left">
+                            <span style="color: black;"><strong>ประเภทการขาย</strong></span>
+                        </div>
+                        <div class="col-8 text-left">
+                            <t t-set="val_count" t-value="0"/>
+                            <t t-foreach="doc.sale_id.sorted(key=lambda ml: ml.name)" t-as="so">
+                                <t t-if="val_count == 0">
+                                    <span t-if="so.type_id">
+                                        <span t-field="so.type_id.name"/>
+                                    </span>
+                                    <span t-if="not so.type_id">
+                                        -
+                                    </span>
+                                </t>          
+                                <t t-set="val_count" t-value="val_count + 1"/>
+                            </t>  
+                        </div>
+                    </div>   
+                </div>
+                <div class="col-6" style="font-family: KanitLight;font-size:  12.00px;">
+                  <div class="row">
+                        <div class="col-4 text-left">
+                            <span><strong>เลขที่เอกสาร </strong></span>
+                        </div>
+                        <div class="col-8 text-left">
+                            <span t-if="doc.name">
+                                <span t-field="doc.name"/>
+                            </span>
+                            <span t-if="not doc.name">
+                                -
+                            </span>
+                        </div>
+                    </div> 
+                    <div class="row" style="border: 1px solid none; padding-top: 5px;">
+                      <div class="col-4 text-left">
+                        </div>
+                      <div class="col-8 text-left">
+                           <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;quiet=%s' % ('Code128', doc.name, 400, 100, 0)" style="height:30px" alt="Barcode"/>
+                        </div>
+                    </div> 
+                    <div class="row" style="border: 1px solid none;">
+                        <div class="col-4 text-left">
+                            <span><strong>วันที่พิมพ์เอกสาร </strong></span>
+                        </div>
+                        <div class="col-8 text-left">
+                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%y %H:%M')"/>
+                        </div>
+                    </div> 
+                    <div class="row">
+                       
+                    </div> 
+                    <div class="row">
+                        <div class="col-4 text-left">
+                            <span><strong>สถานที่จัดส่ง </strong></span>
+                        </div>
+                        <div class="col-8 text-left">
+                            <span t-if="sale_id.partner_shipping_id">
+                                <span t-field="sale_id.partner_shipping_id.name"/>
+                            </span>
+                            <span t-if="not sale_id.partner_shipping_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 text-left">
+                            <span><strong>วันที่จัดส่ง </strong></span>
+                        </div>
+                        <div class="col-8 text-left">
+                            <span t-if="doc.delivery_date">
+                                <span t-field="doc.delivery_date" t-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
+                            </span>
+                            <span t-if="not doc.delivery_date">
+                                -
+                            </span>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4 text-left">
+                            <span><strong>Location: </strong></span>
+                        </div>
+                        <div class="col-8 text-left">
+                            <span t-if="doc.location_id">
+                                <span t-field="doc.location_id.display_name"/>
+                            </span>
+                            <span t-if="not doc.location_id">
+                                -
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <div class="row">
+                <t t-set="l_no" t-value="0"/>
+                <table class="table" style="font-size: 12.00px;line-height: 16px">
+                    <thead>
+                        <tr>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 3%;">ลำดับ</th>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 20%;"/>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 21%;">ชื่อสินค้า</th>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 8%;">Picking</th>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 9%;">SO No.</th>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 7%;">Sub Location</th>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 7%;">24A</th>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 7%;">24B</th>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 7%;">สต็อกอื่น</th>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 4%;">หน่วย</th>
+                            <th class="border text-center align-middle border-dotted border-dotted-dark" style="width: 7%;">จำนวนจัด</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-borderless">
+                        <t t-foreach="o.list_line_ids" t-as="ol">
+                            <tr>
+                                <td class="text-center" style="width: 3%;">
+                                    <t t-set="l_no" t-value="l_no + 1"/>
+                                    <t t-esc="l_no"/>
+                                </td>
+                                <td class="text-left" style="width: 20%;">
+                                    <span t-if="ol.product_id.default_code">
+                                        <span t-field="ol.product_id.default_code"/>
+                                    </span>
+                                    <span t-if="not ol.product_id">
+                                        -
+                                    </span>     
+                                </td>
+                                <td class="text-left" style="width: 21%;">
+                                    <span t-if="ol.product_id.name">
+                                        <span t-field="ol.product_id.name"/>
+                                    </span>
+                                    <span t-if="not ol.product_id.name">
+                                        -
+                                    </span>     
+                                </td>
+                                <td class="text-left" style="width: 8%;">
+                                    <span t-if="doc.name">
+                                        <span t-field="doc.name"/>
+                                    </span>
+                                    <span t-if="not doc.name">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 9%;">
+                                    <span t-if="ol.sale_id">
+                                        <span t-field="ol.sale_id.name"/>
+                                    </span>
+                                    <span t-if="not ol.sale_id">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-left" style="width: 7%;">
+                                    <t t-set="sub_location" t-value="o.env['sub.locations'].search([('product_id', '=', ol.product_id.id), ('location_id', '=', doc.location_id.id)], limit=1)"/>
+                                    <span t-if="sub_location">
+                                        <span t-esc="sub_location.name"/>
+                                    </span>
+                                    <span t-if="not sub_location">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-left" style="width: 7%;">
+                                    <t t-set="stock_24A" t-value="doc.get_stock_24A(ol)"/>
+                                    <span t-if="stock_24A">
+                                        <span t-esc="'{0:,}'.format(int(stock_24A))"/>
+                                    </span>
+                                    <span t-if="not stock_24A">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-left" style="width: 7%;">
+                                    <t t-set="stock_24B" t-value="doc.get_stock_24B(ol)"/>
+                                    <span t-if="stock_24B">
+                                        <span t-esc="'{0:,}'.format(int(stock_24B))"/>
+                                    </span>
+                                    <span t-if="not stock_24B">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-left" style="width: 7%;">
+                                    <t t-set="stock_other" t-value="doc.get_stock_other(ol)"/>
+                                    <span t-if="stock_other">
+                                        <span t-esc="'{0:,}'.format(int(stock_other))"/>
+                                    </span>
+                                    <span t-if="not stock_other">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-center" style="width: 4%;">
+                                    <span t-if="ol.uom_id">
+                                        <span t-field="ol.uom_id.name"/>
+                                    </span>
+                                    <span t-if="not ol.uom_id">
+                                        -
+                                    </span>
+                                </td>
+                                <td class="text-right" style="width: 7%;">
+                                    <span t-if="ol.amount_arranged">
+                                        <span t-esc="'{0:,}'.format(int(ol.amount_arranged))"/>
+                                    </span>
+                                    <span t-if="not ol.amount_arranged">
+                                        -
+                                    </span>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+
+        <div class="footer" style="font-size: 11px;margin-top:2mm;vertical-align: bottom;font-family: KanitLight;max-height:403px">
+            <div class="row" style="padding-top:5px;font-family: KanitLight;font-size: 12.00px; border: 1px solid none; overflow: hidden; max-height: 25px;">
+                <span>
+                    หมายเหตุ :  
+                </span>
+                <span>
+                    <span t-field="doc.remark"/>
+                </span>
+            </div>  
+            <div class="row" style="padding-top:5px;font-family: KanitLight;font-size: 12.00px;">
+                
+            </div>
+            <div class="row" style="padding-top:5px;font-family: KanitLight;font-size: 12.00px;">
+                <div class="col-3 border border-dotted border-dotted-dark" align="center">
+                    <br/>
+                    <div style="position: relative;">
+                        <div>..........................................</div>
+                    </div>
+                    <br/>
+                    <div>ผู้จัดสินค้า</div>
+                    <br/>
+                    <div style="position: relative;">
+                        <div>วันที่............../............../..............</div>
+                    </div>
+                </div>
+                <div class="col-6 text-left">
+                    
+                </div>
+                <div class="col-3 border border-dotted border-dotted-dark" align="center">
+                    <br/>
+                    <div style="position: relative;">
+                        <div>..........................................</div>
+                    </div>
+                    <div style="position: relative;">
+                        <span t-if="doc.user_id">
+                            <span t-field="doc.user_id.name"/>
+                        </span>
+                        <span t-if="not doc.user_id">
+                            
+                        </span>
+                    </div>
+                    <br/>
+                    <div>พนักงานออกเอกสาร</div>
+                    <br/>
+                    <div style="position: relative;">
+                        <div>วันที่............../............../..............</div>
+                    </div>
+                </div>
+            </div>          
+        </div>
+    </template>
+
+    <template id="hdc_picking_list_report_th_history_a5_multi">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hdc_inventory_picking_list_sale_report.hdc_picking_list_report_document_th_history_a5_multi" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

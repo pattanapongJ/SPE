@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_inventory_form_inherit_master" model="ir.ui.view">
+            <field name="name">view.stock.inventory.form.inherit.master</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="hdc_inv_adj_type.view_stock_inventory_form_inherit_branch"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type_action']" position="attributes">
+                   <attribute name="readonly">1</attribute>
+                   <attribute name="force_save">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='type_action']" position="before">
+                    <field name="type_master_id" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

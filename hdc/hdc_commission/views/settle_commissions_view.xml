@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="settle_commissions_view_tree" model="ir.ui.view">
+        <field name="name">settle.commissions.tree</field>
+        <field name="model">settle.commissions</field>
+        <field name="arch" type="xml">
+            <tree string="Settle Commissions">       
+                <field name="name"/>   
+                <field name="team_id"/>
+                <field name="user_id"/>
+                <field name="sale_spec"/>
+                <field name="sale_manager_id"/>      
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'settled'" decoration-danger="state == 'cancel'"/>  
+                <field name="settle_type"/>          
+            </tree>
+        </field>
+    </record>
+    <record id="settle_commissions_view_form" model="ir.ui.view">
+        <field name="name">settle.commissions.form</field>
+        <field name="model">settle.commissions</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Confirm" name="confirm_action" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ['settled','cancel'])]}"/>  
+                    <button string="Set to Draft" name="set_to_draft" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ['draft','cancel'])]}"/>                  
+                    <button string="Cancel" name="cancel_action" type="object" class="oe_highlight" attrs="{'invisible': [('state', '=', 'cancel')]}"/>                    
+                    <field name="state" widget="statusbar" statusbar_visible="draft,settled,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="team_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="target_type" widget="radio"/>
+                            <field name="user_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type', '!=', 'user_id')]}"/>
+                            <field name="sale_spec" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type', '!=', 'sale_spec')]}"/>
+                            <field name="sale_manager_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('target_type', '!=', 'sale_manager_id')]}"/>
+                            <field name="member_ids" invisible="1"/>
+                            <field name="spec_member_ids" invisible="1"/>
+                            <field name="manager_member_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="settle_type"  widget="radio"/>
+                            <field name="commission_date"/>
+                            <label for="receipted_date_form" attrs="{'invisible': [('settle_type', '=', 'settle_invoice')]}"/>
+                            <div class="o_row" attrs="{'invisible': [('settle_type', '=', 'settle_invoice')]}">
+                                <field name="receipted_date_form"/> to
+                                <field name="receipted_date_to" />
+                            </div>
+                            <label for="invoice_date_form"/>
+                            <div class="o_row">
+                                <field name="invoice_date_form"/> to
+                                <field name="invoice_date_to" />
+                            </div>
+                            <field name="period_date" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Commission Lines" name="payment_commission_lines" attrs="{'invisible': [('settle_type', '=', 'settle_invoice')]}">
+                            <field name="payment_lines">
+                                <tree string="payment" editable="bottom" create="0" edit="0">
+                                    <field name="settle_commissions_id" invisible="1"/>
+                                    <field name="payment_id" optional="show"/>
+                                    <field name="payment_id_create_date" optional="show"/>
+                                    <field name="payment_id_date" optional="show"/>
+                                    <field name="invoice_id" optional="hide"/>
+                                    <field name="invoice_id_date" optional="show"/>
+                                    <field name="form_no" optional="show"/>
+                                    <field name="partner_id" optional="show"/>
+                                    <field name="product_id" optional="show"/>
+                                    <field name="total_amount_tax" optional="show"/>
+                                    <field name="total_amount_untax" optional="show"/>
+                                    <field name="note" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Commission Lines" name="invoice_commission_lines" attrs="{'invisible': [('settle_type', '=', 'settle_payment')]}">
+                            <field name="invoice_lines">
+                                <tree string="invoice" editable="bottom" create="0" edit="0">
+                                    <field name="settle_commissions_id" invisible="1"/>
+                                    <field name="invoice_id" optional="hide"/>
+                                    <field name="invoice_id_date" optional="show"/>
+                                    <field name="form_no" optional="show"/>
+                                    <field name="partner_id" optional="show"/>
+                                    <field name="product_id" optional="show"/>
+                                    <field name="total_amount_tax" optional="show"/>
+                                    <field name="total_amount_untax" optional="show"/>
+                                    <field name="note" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+			</form>
+        </field>
+    </record>
+
+    <record id="settle_commissions_action" model="ir.actions.act_window">
+        <field name="name">Settle Commissions</field>
+        <field name="res_model">settle.commissions</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

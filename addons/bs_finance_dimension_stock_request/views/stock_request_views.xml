@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_request_order_form_inherit" model="ir.ui.view">
+            <field name="name">stock_request_order_form_inherit</field>
+            <field name="model">stock.request.order</field>
+            <field name="inherit_id" ref="stock_request.stock_request_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook" position="inside">
+                    <page name="other_info_tab" string="Other Info">
+                        <group>
+                            <group name="finance_dimension_gp" string="Finance Dimension">
+
+                                <field name="finance_dimension_1_id"
+                                       attrs="{'readonly':[('state','!=','draft')]}"
+                                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                                <field name="finance_dimension_2_id"
+                                       attrs="{'readonly':[('state','!=','draft')]}"
+                                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                                <field name="finance_dimension_3_id"
+                                       attrs="{'readonly':[('state','!=','draft')]}"
+                                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+
+                            </group>
+                            <group></group>
+                        </group>
+                    </page>
+
+                </xpath>
+
+                <xpath expr="//field[@name='stock_request_ids']/tree/field[@name='name']" position="after">
+                    <field name="finance_dimension_1_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_2_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_3_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="view_stock_request_form_inherit" model="ir.ui.view">
+            <field name="name">view_stock_request_form_inherit</field>
+            <field name="model">stock.request</field>
+            <field name="inherit_id" ref="stock_request.view_stock_request_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//sheet/group" position="inside">
+                    <group name="finance_dimension_gp" string="Finance Dimension">
+
+                        <field name="finance_dimension_1_id"
+                               attrs="{'readonly':[('state','!=','draft')]}"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_2_id"
+                               attrs="{'readonly':[('state','!=','draft')]}"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_3_id"
+                               attrs="{'readonly':[('state','!=','draft')]}"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+
+                    </group>
+
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

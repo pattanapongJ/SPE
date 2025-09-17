@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_stock_move_form_inherited" model="ir.ui.view">
+        <field name="name">stock_move_batch.form</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form"/>
+        <field name="mode">primary</field>
+        <field name="priority" eval="1000"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="replace">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,assigned,done"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_stock_move_tranfer_tree" model="ir.ui.view">
+        <field name="name">stock_move_tranfer_batch.tree</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Batch Transfer"  create="0">
+                <field name="product_id" />
+                <field name="reference" />
+                <field name="location_id" />
+                <field name="location_dest_id" />
+                <field name="partner_id"/>
+                <field name="date"/>
+                <field name="origin"/>
+                <field name="company_id" />
+                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state in ('draft', 'in_progress')"/>
+            </tree>
+        </field>
+    </record>
+    <record id="stock_picking_batch_form_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.batch.form.inherit</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="partner_id" required="1"/>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="origin_country" />
+                <field name="shipping_provider" />
+                <field name="warehouse_id" attrs="{'invisible':[('state','=','draft')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='scheduled_date']" position="before">
+                <field name="invoice_no" />
+            </xpath>
+            <xpath expr="//button[@name='action_print']" position="after">
+                <button name="action_revise" states="in_progress" string="Revise" type="object"/>
+            </xpath>
+            <xpath expr="//field[@name='scheduled_date']" position="after">
+                <!-- <field name="invoice_date" />
+                <field name="invoice_no" /> -->
+                <field name="etd" />
+                <field name="eta" />
+                <field name="wh_date" />
+                <field name="delivery_mode" />
+                <field name="origin" />
+            </xpath>
+             <xpath expr="//field[@name='picking_type_id']" position="attributes">
+                <attribute name="required">1</attribute>
+            </xpath>
+
+            <xpath expr="//notebook" position="before">
+                <button name="action_fill_on_the_way" string="Fill Shipped" type="object" class="oe_highlight oe_right"/>
+            </xpath>
+
+            <!-- <xpath expr="//notebook" position="after">
+                <group name="remark" string="Remark">
+                    <div>
+                        <field name="remark" class="oe_inline"/>
+                    </div>
+                </group>
+            </xpath> -->
+
+            <xpath expr="//notebook" position="replace">
+                <notebook>
+                    <page string="Detailed Operations" invisible="1">
+                        <field name="move_line_tranfer_ids" context="{'tree_view_ref': 'stock_picking_batch.view_move_line_tree'}"/>
+                    </page>
+                    <page string="Detailed Operations old" invisible="1">
+                        <field name="move_line_ids" context="{'tree_view_ref': 'stock_picking_batch.view_move_line_tree'}"/>
+                        <button class="oe_highlight" name="action_put_in_pack" type="object" string="Put in Pack" attrs="{'invisible': [('state', 'in', ('draft', 'done', 'cancel'))]}" groups="stock.group_tracking_lot"/>
+                    </page>
+                    <page string="Operations" attrs="{'invisible': [('state', '=', 'draft')]}">
+                        <!-- <field name="move_ids" context="{'tree_view_ref': 'stock_picking_batch.view_picking_move_tree_inherited'}"/> -->
+                        <field name="move_ids" mode="tree,kanban" >
+                            <tree string="Stock Moves" editable="bottom">
+                                <field name="name" invisible="1"/>
+                                <field name="state" invisible="1" readonly="0"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <field name="product_id"/>
+                                <field name="picking_id" string="Transfer"/>
+                                <field name="product_uom_qty" string="Demand"/>
+                                <field name="reserved_availability" string="Reserved"/>
+                                <field name="quantity_done" string="Done"/>
+                                <field name="product_uom" attrs="{'readonly': [('state', '!=', 'draft'), ('id', '!=', False)]}" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom"/>
+                                <button name="action_show_details" type="object" icon="fa-list" width="0.1" options="{&quot;warn&quot;: true}"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Transfers">
+                        <field name="allowed_move_line_tranfer_ids" invisible="1"/>
+                        <field name="move_tranfer_ids" widget="many2many" mode="tree,kanban"
+                            context="{'form_view_ref': 'stock_picking_batch.view_stock_move_form_inherited', 'tree_view_ref': 'hdc_on_the_way.view_stock_move_tranfer_tree'}" >
+                            <tree name="move_tranfer_ids" editable="bottom">
+                                <field name="batch_state" invisible="1"/>
+                                <field name="company_id" readonly="1" invisible="1"/>
+                                <field name="product_id" readonly="1"/>
+                                <field name="lot_serial_num" />
+                                <field name="location_dest_id" string="To"/>
+                                <field name="reference" string="Tranfers" readonly="1"/>
+                                <field name="origin" readonly="1"/>
+                                <field name="date" readonly="1"/>
+                                <field name="product_uom_qty" string="Demand" readonly="1"/>
+                                <field name="on_the_way" attrs="{'readonly': [('batch_state', 'not in', ['draft',False])]}"/>
+                                <field name="price_unit" />
+                                <field name="price_subtotal" options="{'currency_field': 'currency_id'}" widget="monetary" />
+                                <field name="state" />
+                            </tree>
+                        </field>
+                        <!-- <group class="oe_left" name="remark" colspan="4" string="Remark">
+                            <div class="text-muted">
+                                <field name="remark" widget="textarea" nolabel="1" class="oe_inline"/>
+                            </div>
+                        </group> -->
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="batch_transfer_total">
+                            <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                <label for="price_total"/>
+                            </div>
+                            <field name="price_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </page>
+                    <page string="Transfers old" invisible="1">
+                        <field name="allowed_picking_ids" invisible="1"/>
+                        <field name="picking_ids" widget="many2many" mode="tree,kanban"
+                            context="{'form_view_ref': 'stock_picking_batch.view_picking_form_inherited'}">
+                            <tree>
+                                <field name="name"/>
+                                <field name="scheduled_date"/>
+                                <field name="location_id"/>
+                                <field name="backorder_id"/>
+                                <field name="origin"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <group name="remark" string="Remark">
+                    <div>
+                        <field name="remark" class="oe_inline"/>
+                    </div>
+                </group>
+            </xpath>
+            
+        </field>
+    </record>
+
+    
+    <record id="view_purchase_inherit_on_the_way_tab" model="ir.ui.view">
+        <field name="name">view_purchase_inherit_on_the_way_tab</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+                <page string="On The Way" name="purchase_otw_tab" >
+                    <field name="stock_moves" widget="many2many" mode="tree,kanban">
+                        <tree name="stock_moves">
+                            <field name="company_id" readonly="1" invisible="1"/>
+                            <field name="product_id" readonly="1"/>
+                            <field name="reference" string="Transfers" readonly="1"/>
+                            <field name="location_id" readonly="1"/>
+                            <field name="backorder_id" readonly="1"/>
+                            <field name="date" readonly="1"/>
+                            <field name="product_uom_qty" string="Demand" readonly="1"/>
+                            <field name="on_the_way"/>
+                            <field name="picking_state" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="stock_move_picking_state" model="ir.ui.view">
+        <field name="name">stock.move.form.state</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reference']" position="after">
+                <field name="picking_state" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_v_tree_shipping_qty" model="ir.ui.view">
+        <field name="name">product tree view: add Shipping qty</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field name="qty_available" position="after">
+                <field name="shipping_qty" string="Shipped" optional="show"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_product_template_tree_shipping_qty" model="ir.ui.view">
+        <field name="name">product tree view: add Shipping qty</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <field name="qty_available" position="after">
+                <field name="shipping_qty" string="Shipped" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+        <record id="view_move_line_tree_hdc_on_the_way" model="ir.ui.view">
+        <field name="name">stock_picking_batch.move.line.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock_picking_batch.view_move_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_dest_id']" position="replace">
+                <field name="domain_warehouse_id" invisible="1"/>
+                <field name="location_dest_id" domain="[('warehouse_id','=', domain_warehouse_id)]" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

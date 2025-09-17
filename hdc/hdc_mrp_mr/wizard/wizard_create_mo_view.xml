@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_mr_create_mo" model="ir.ui.view">
+        <field name="name">wizard mr create mo </field>
+        <field name="model">wizard.mr.create.mo</field>
+        <field name="arch" type="xml">
+            <form string="Create Product from Job Estimated">
+                <group>
+                    <group>
+                        <field name="mr_id" invisible="1"/>
+                        <field name="user_id" invisible="1"/>
+                        <field name="partner_id" />
+                        <field name="request_type" />
+                        <field name="picking_type_id" />
+                    </group>
+                    <group>
+                        <field name="scheduled_date" />
+                        <field name="delivery_date"/>
+                        <field name="product_type" />
+                    </group>
+                </group>
+                <notebook >
+                    <page name="order_line" string="Order Line">
+                        <group name="attribute_value_group">
+                            <field name="order_line_ids" string="Order Line" nolabel="1" >
+                                <tree editable="top" create="false">
+                                    <field name="wizard_mr_to_mo_ids" invisible="1"/>
+                                    <field name="product_id"/>
+                                    <field name="moq"/>
+                                    <field name="demand_qty" force_save="1" readonly="1"/>
+                                    <field name="to_be_produce" force_save="1" readonly="1"/>
+                                    <field name="produce_qty" />
+                                    <field name="uom_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                                    <field name="product_uom_category_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="generate_mr" string="Create MO" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

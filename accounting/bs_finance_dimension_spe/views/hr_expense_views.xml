@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View hr.expense form -->
+    <record id="view_hr_expense_form_inherit" model="ir.ui.view">
+        <field name="name">view.hr.expense.form.inherit</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="bs_finance_dimension.view_hr_expense_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='finance_dimension_3_id']" position="after">
+                <field name="finance_dimension_4_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_5_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_6_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_7_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_8_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_9_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                <field name="finance_dimension_10_id"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record id="view_hr_expense_sheet_form" model="ir.ui.view">
+        <field name="name">view.hr.expense.sheet.form.inherit</field>
+        <field name="model">hr.expense.sheet</field>
+        <field name="inherit_id" ref="bs_finance_dimension.view_hr_expense_sheet_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='finance_dimension_3_id']" position="after">
+                <field name="finance_dimension_4_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                       optional="hide"/>
+                <field name="finance_dimension_5_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                       optional="hide"/>
+                <field name="finance_dimension_6_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                       optional="hide"/>
+                <field name="finance_dimension_7_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                       optional="hide"/>
+                <field name="finance_dimension_8_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                       optional="hide"/>
+                <field name="finance_dimension_9_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                       optional="hide"/>
+                <field name="finance_dimension_10_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                       optional="hide"/>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

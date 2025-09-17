@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_purchase_request_form_inherit" model="ir.ui.view">
+            <field name="name">view_purchase_request_form_inherit</field>
+            <field name="model">purchase.request</field>
+            <field name="inherit_id" ref="bs_finance_dimension_purchase_request.view_purchase_request_form_inherit"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@name='other_info_tab']/group/group[@name='finance_dimension_gp']/field[@name='finance_dimension_3_id']"
+                       position="after">
+
+                    <field name="finance_dimension_4_id"
+                           attrs="{'readonly':[('state','!=','draft')]}"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_5_id"
+                           attrs="{'readonly':[('state','!=','draft')]}"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_6_id"
+                           attrs="{'readonly':[('state','!=','draft')]}"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_7_id"
+                           attrs="{'readonly':[('state','!=','draft')]}"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_8_id"
+                           attrs="{'readonly':[('state','!=','draft')]}"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_9_id"
+                           attrs="{'readonly':[('state','!=','draft')]}"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_10_id"
+                           attrs="{'readonly':[('state','!=','draft')]}"
+                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+
+                </xpath>
+
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='finance_dimension_3_id']" position="after">
+                    <field name="finance_dimension_4_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_5_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_6_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_7_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_8_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_9_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                    <field name="finance_dimension_10_id" options="{'no_create_edit': True, 'no_quick_create': True}"
+                           optional="hide"/>
+                </xpath>
+
+
+                <xpath expr="//field[@name='line_ids']/form/sheet/group[@name='main']/group[@name='finance_dimension_gp']/field[@name='finance_dimension_3_id']"
+                       position="after">
+                        <field name="finance_dimension_4_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_5_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_6_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_7_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_8_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_9_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_10_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

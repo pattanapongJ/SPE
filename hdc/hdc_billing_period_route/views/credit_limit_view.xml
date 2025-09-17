@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_credit_limit_billing_period_inherit_form">
+        <field name="name">credit.limit.sale.form</field>
+        <field name="model">credit.limit.sale</field>
+        <field name="inherit_id" ref="hdc_creditlimit_saleteam.view_credit_limit_sale_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_method_id']" position="after">
+                <field name="billing_period_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+

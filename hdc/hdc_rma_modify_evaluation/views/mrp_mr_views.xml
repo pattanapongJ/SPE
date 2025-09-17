@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="rma_modify_evaluation_mrp_pdr_to_mr_view_inherited" model="ir.ui.view">
+        <field name="name">rma.modify.evaluation.mrp.mr.view.inherited</field>
+        <field name="model">mrp.mr</field>
+        <field name="inherit_id" ref="hdc_mrp_mr.mrp_mr_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="is_repair" invisible="1"/>
+            </xpath>
+            <xpath expr="//page[@name='remark']" position="after">
+                <page string="Component" name="Component_page" attrs="{'invisible': [('is_repair', '=', False)]}">
+                    <field name="repair_product_line_ids">
+                        <tree string="Component" editable="bottom">
+                            <field name="company_id" invisible="1" force_save="1"/>
+                            <field name="product_uom_category_id" invisible="1"/>
+                            <field name="type"/>
+                            <field name="product_id"/>
+                            <field name="name"/>
+                            <field name="product_uom_qty"/>
+                            <field name="product_uom"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

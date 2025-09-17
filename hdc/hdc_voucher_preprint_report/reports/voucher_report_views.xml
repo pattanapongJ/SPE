@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="voucher_preprint" model="ir.actions.report">
+            <field name="name">ใบสำคัญบันทึกบัญชี Pre Print</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"ใบสำคัญบันทึกบัญชี Pre Print"</field>
+            <field name="report_name">hdc_voucher_preprint_report.voucher_preprint_report</field>
+            <field name="report_file">hdc_voucher_preprint_report.voucher_preprint_report</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="paperformat_id" ref="hdc_voucher_preprint_report.paperformat_voucher_preprint"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

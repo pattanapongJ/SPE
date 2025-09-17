@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="back_order_customer_report" model="ir.actions.report">
+            <field name="name">Back Order by Customer Reports</field>
+            <field name="model">sale.order.line</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_back_order_report.back_order_with_customer</field>
+            <field name="print_report_name">'SPE สินค้าค้างรับ - ส่ง'</field>
+            <field name="paperformat_id" ref="hdc_back_order_report.paperformat_report_back_order" />
+            <field name="binding_model_id" eval="False" />
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="back_order_sale_response_report" model="ir.actions.report">
+            <field name="name">Back Order by Sale Response Reports</field>
+            <field name="model">sale.order.line</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_back_order_report.back_order_with_sale_response</field>
+            <field name="print_report_name">'SPE สินค้าค้างรับ - ส่ง'</field>
+            <field name="paperformat_id" ref="hdc_back_order_report.paperformat_report_back_order" />
+            <field name="binding_model_id" eval="False" />
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="back_order_product_report" model="ir.actions.report">
+            <field name="name">Back Order by Item Reports</field>
+            <field name="model">sale.order.line</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_back_order_report.back_order_with_product</field>
+            <field name="print_report_name">'SPE สินค้าค้างรับ - ส่ง'</field>
+            <field name="paperformat_id" ref="hdc_back_order_report.paperformat_report_back_order" />
+            <field name="binding_model_id" eval="False" />
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="back_order_project_report" model="ir.actions.report">
+            <field name="name">Back Order by Project Reports</field>
+            <field name="model">sale.order.line</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_back_order_report.back_order_with_project</field>
+            <field name="print_report_name">'SPE สินค้าค้างรับ - ส่ง'</field>
+            <field name="paperformat_id" ref="hdc_back_order_report.paperformat_report_back_order" />
+            <field name="binding_model_id" eval="False" />
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+
+</odoo>

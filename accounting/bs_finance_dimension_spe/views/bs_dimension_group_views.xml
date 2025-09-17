@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- View bs.dimension.group View Tree -->
+        <record id="view_bs_dimension_group_tree" model="ir.ui.view">
+            <field name="name">view.bs.dimension.group.tree</field>
+            <field name="model">bs.dimension.group</field>
+            <field name="inherit_id" ref="bs_finance_dimension.view_bs_dimension_group_tree"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ref_model"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- View bs.dimension.group form -->
+        <record id="view_bs_dimension_group_form" model="ir.ui.view">
+            <field name="name">view.bs.dimension.group.form</field>
+            <field name="model">bs.dimension.group</field>
+            <field name="inherit_id" ref="bs_finance_dimension.view_bs_dimension_group_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='finance_dimension_ids']/tree/field[@name='name']" position="before">
+                    <field name="res_id" readonly="1" force_save="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <!-- Action bs.finance.dimension -->
+        <record id="action_bs_finance_dimension_4" model="ir.actions.act_window">
+            <field name="name">Finance Dimension 4</field>
+            <field name="res_model">bs.finance.dimension</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain" eval="[('group_id', '=', ref('bs_finance_dimension_spe.bs_dimension_4'))]"/>
+            <field name="context" eval="{'default_group_id':ref('bs_finance_dimension_spe.bs_dimension_4')}"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Bs Finance Dimension.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_bs_finance_dimension_5" model="ir.actions.act_window">
+            <field name="name">Finance Dimension 5</field>
+            <field name="res_model">bs.finance.dimension</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain" eval="[('group_id', '=', ref('bs_finance_dimension_spe.bs_dimension_5'))]"/>
+            <field name="context" eval="{'default_group_id':ref('bs_finance_dimension_spe.bs_dimension_5')}"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Bs Finance Dimension.
+                </p>
+            </field>
+        </record>
+
+
+        <record id="action_bs_finance_dimension_6" model="ir.actions.act_window">
+            <field name="name">Finance Dimension 6</field>
+            <field name="res_model">bs.finance.dimension</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain" eval="[('group_id', '=', ref('bs_finance_dimension_spe.bs_dimension_6'))]"/>
+            <field name="context" eval="{'default_group_id':ref('bs_finance_dimension_spe.bs_dimension_6')}"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Bs Finance Dimension.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_bs_finance_dimension_7" model="ir.actions.act_window">
+            <field name="name">Finance Dimension 7</field>
+            <field name="res_model">bs.finance.dimension</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain" eval="[('group_id', '=', ref('bs_finance_dimension_spe.bs_dimension_7'))]"/>
+            <field name="context" eval="{'default_group_id':ref('bs_finance_dimension_spe.bs_dimension_7')}"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Bs Finance Dimension.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_bs_finance_dimension_8" model="ir.actions.act_window">
+            <field name="name">Finance Dimension 8</field>
+            <field name="res_model">bs.finance.dimension</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain" eval="[('group_id', '=', ref('bs_finance_dimension_spe.bs_dimension_8'))]"/>
+            <field name="context" eval="{'default_group_id':ref('bs_finance_dimension_spe.bs_dimension_8')}"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Bs Finance Dimension.
+                </p>
+            </field>
+        </record>
+
+
+        <record id="action_bs_finance_dimension_9" model="ir.actions.act_window">
+            <field name="name">Finance Dimension 9</field>
+            <field name="res_model">bs.finance.dimension</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain" eval="[('group_id', '=', ref('bs_finance_dimension_spe.bs_dimension_9'))]"/>
+            <field name="context" eval="{'default_group_id':ref('bs_finance_dimension_spe.bs_dimension_9')}"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Bs Finance Dimension.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_bs_finance_dimension_10" model="ir.actions.act_window">
+            <field name="name">Finance Dimension 10</field>
+            <field name="res_model">bs.finance.dimension</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain" eval="[('group_id', '=', ref('bs_finance_dimension_spe.bs_dimension_10'))]"/>
+            <field name="context" eval="{'default_group_id':ref('bs_finance_dimension_spe.bs_dimension_10')}"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Bs Finance Dimension.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_finance_dimension_4" name="Dimension 4"
+                  parent="bs_finance_dimension.menu_finance_dimension_categ"
+                  action="action_bs_finance_dimension_4" sequence="4"/>
+        <menuitem id="menu_finance_dimension_5" name="Dimension 5"
+                  parent="bs_finance_dimension.menu_finance_dimension_categ"
+                  action="action_bs_finance_dimension_5" sequence="5"/>
+        <menuitem id="menu_finance_dimension_6" name="Dimension 6"
+                  parent="bs_finance_dimension.menu_finance_dimension_categ"
+                  action="action_bs_finance_dimension_6" sequence="6"/>
+        <menuitem id="menu_finance_dimension_7" name="Dimension 7"
+                  parent="bs_finance_dimension.menu_finance_dimension_categ"
+                  action="action_bs_finance_dimension_7" sequence="7"/>
+        <menuitem id="menu_finance_dimension_8" name="Dimension 8"
+                  parent="bs_finance_dimension.menu_finance_dimension_categ"
+                  action="action_bs_finance_dimension_8" sequence="8"/>
+        <menuitem id="menu_finance_dimension_9" name="Dimension 9"
+                  parent="bs_finance_dimension.menu_finance_dimension_categ"
+                  action="action_bs_finance_dimension_9" sequence="9"/>
+        <menuitem id="menu_finance_dimension_10" name="Dimension 10"
+                  parent="bs_finance_dimension.menu_finance_dimension_categ"
+                  action="action_bs_finance_dimension_10" sequence="10"/>
+
+    </data>
+</odoo>

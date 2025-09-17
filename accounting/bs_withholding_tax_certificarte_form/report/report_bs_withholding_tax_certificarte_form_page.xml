@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="report_bs_withholding_tax_certificarte_form">
+		<style>
+			@font-face {
+			font-family: 'THSarabunPSK';
+			src: url('/bs_withholding_tax_certificarte_form/static/src/fonts/THSarabunPSK.ttf') format('truetype');
+			font-style: normal;
+			}
+		</style>
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="bs_withholding_tax_certificarte_form.request_layout">
+					<!-- Wrap everything in a "page" container -->
+					<div class="page">
+						<!-- Header row with 4 columns (6/2/2/2) -->
+						<div class="row" style=" font-size:15px;border: 1px solid black; border-radius:5px;">
+							<!-- 1) Column for ประเภทเงินได้ (width 6) -->
+							<div class="col-6" style="border-right:1px solid black; text-align:center;">
+								<strong>
+									ประเภทเงินได้พึงประเมินจ่าย
+								</strong>
+							</div>
+							<!-- 2) Column for วัน เดือน ปีที่จ่าย (width 2) -->
+							<div class="col-2" style="border-right:1px solid black; text-align:center;">
+								<strong>
+									วัน เดือน หรือปีภาษี ที่จาย
+								</strong>
+							</div>
+							<!-- 3) Column for จำนวนเงินที่จ่าย (width 2) -->
+							<div class="col-2" style="border-right:1px solid black; text-align:center;">
+								<strong>
+									จำนวนเงินที่จ่าย
+								</strong>
+							</div>
+							<!-- 4) Column for ภาษีที่หักและนำส่ง (width 2) -->
+							<div class="col-2" style="text-align:center;">
+								<strong>
+									ภาษีที่หักและ นำส่ง
+								</strong>
+							</div>
+						</div>
+						<!--
+						Now a second row containing nested tables or divs,
+						so you can list each line item (1, 2, 3, etc.) in sync.
+						-->
+						<t t-set="year" t-value="(int((o.date).strftime('%Y')))+543" />
+						<t t-set="date" t-value="'%s/%s' %((o.date).strftime('%d/%m'),year)" />
+						<t t-set="group_line_ids" t-value="o._group_wt_line(o.wt_line)" />
+						<div class="row" style=" font-size: 13px; border: 1px solid black; border-radius:5px; margin-top:-1px;">
+							<!-- Column 1 (width 6): List of ประเภทเงินได้ -->
+							<div class="col-6" style="border-right:1px solid black;">
+								<div style="padding-top:5px; padding-bottom:5px;">
+									<table style="width:100%; border-collapse:collapse;">
+										<t t-foreach="group_line_ids" t-as="line_dict">
+											<tr>
+												<td>
+													1. เงินเดือน ค่าจ้าง ฯ ตามมาตรา 40(1)
+												</td>
+											</tr>
+											<tr>
+												<td>
+													2. ค่าธรรมเนียม ค่าบางหน้า ฯ ตามมาตรา 40(2)
+												</td>
+											</tr>
+											<tr>
+												<td>
+													3. ค่าลิขสิทธิ์ ฯ ตามมาตรา 40(3)
+												</td>
+											</tr>
+											<tr>
+												<td>
+													4.(ก) ค่าตอบแทน ฯ ตามมาตรา 40(4)(ก)
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 10px;">
+													(ข) เงินปันผล/เงินส่วนแบ่งกำไร ฯ ตามมาตรา 40(4)(ข)
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 20px;">
+													(1)  กรณีผู้ได้รับเงินปันผลได้รับเครดิตภาษี โดยจายจากกำไรสุทธิของกิจการที่ต้องเสียภาษีเงินได้นิติบุคคลในอัตราดังนี้
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 30px;">
+													(1.1) อัตราร้อยละ 30 ของกำไรสุทธิ
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 30px;">
+													(1.2) อัตราร้อยละ 25 ของกำไรสุทธิ
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 30px;">
+													(1.3) อัตราร้อยละ 20 ของกำไรสุทธิ
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 30px;">
+													<t t-if="line_dict['wt_cert_income_type'] == '4B14'">
+														<span>
+															(1.4) อัตราอื่น ๆ (ระบุ)
+														</span>
+														<span style="display:inline-block; min-width: 40px; border-bottom: 1px dotted black; margin: 0 4px; text-align: center;">
+															<t t-esc="o._compute_desc_type_other(o.wt_line, 'wt_cert_income_desc', '4B14') or '&#160;'" />
+														</span>
+														<span>
+															ของกำไรสุทธิ
+														</span>
+													</t>
+													<t t-else="">
+														<span>
+															(1.4) อัตราอื่น ๆ (ระบุ)
+														</span>
+														<span style="display:inline-block; min-width: 40px; border-bottom: 1px dotted black; margin: 0 4px; text-align: center;">
+														</span>
+														<span>
+															ของกำไรสุทธิ
+														</span>
+													</t>
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 20px;">
+													(2) กรณีผู้ได้รับเงินปันผลไม่ได้รับเ	ครดิตภาษี เนื่องจากจายจาก
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 30px;">
+													(2.1) กำไรสุทธิของกิจการที่ได้รับยกเว้นภาษีเงินได้นิติบุคคล
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 30px;">
+													(2.2) เงินปันผลหรือเงินส่วนแบ่งของกำไรที่ได้รับยกเว้นไม่ต้องนำ
+													<br />
+													มารวมคำนวณเป็นรายได้เพื่อเสียภาษีเงินได้นิติบุคคล
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 30px;">
+													(2.3) กำไรสุทธิส่วนที่ได้หักผลขาดทุนสุทธิยกมาไม่เกิน 5 ปีก่อนรอบระยะเวลาบัญชีปีปัจจุบัน
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 30px;">
+													(2.4) กำไรที่รับรู้ทางบัญชีโดยวิธีส่วนได้เสีย (equity method)
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-left: 30px;">
+													<t t-if="line_dict['wt_cert_income_type'] == '4B25'">
+														<span>
+															(2.5) อัตราอื่น ๆ (ระบุ)
+														</span>
+														<span style="display:inline-block; min-width: 220px; border-bottom: 1px dotted black; margin: 0 4px; text-align: left;">
+															<t t-esc="o._compute_desc_type_other(o.wt_line, 'wt_cert_income_desc', '4B25') or '&#160;'" />
+														</span>
+													</t>
+													<t t-else="">
+														<span>
+															(2.5) อัตราอื่น ๆ (ระบุ)
+														</span>
+														<span style="display:inline-block; min-width: 220px; border-bottom: 1px dotted black; margin: 0 4px;">
+														</span>
+													</t>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													5. การจ่ายเงินได้ที่ต้องหักภาษี ณ ที่จ่าย ตามคำสั่งกรมสรรพากรที่ออกตามมาตรา 3
+													<span style="padding-left:10px;">
+														เตรส เชน รางวัล สวนลดหรือประโยชนใด ๆ เนื่องจากการส่งเสริมการขาย
+													</span>
+													<span style="padding-left:10px;">
+														รางวัลในการประกวด การแข่งขัน การชิงโชค ค่าแสดงของนักแสดงสาธารณะ
+													</span>
+													<span style="padding-left:10px;">
+														ค่าจ้างทำของ ค่าโฆษณา ค่าเช่า ค่าขนส่ง ค่าบริการ ค่าเบี้ยประกันวินาศภัย ฯลฯ
+													</span>
+												</td>
+											</tr>
+											<!-- Set up the data -->
+											<t t-set="other_lines" t-value="[l for l in o.wt_line if l.wt_cert_income_type == '6']" />
+											<t t-set="desc_list" t-value="[l.wt_cert_income_desc for l in other_lines]" />
+											<!-- Row 1: with label -->
+											<tr style="height: 14px;">
+												<td>
+													<span>
+														6. อื่น ๆ (ระบุ)
+													</span>
+													<span style="display:inline-block; min-width: 250px; border-bottom: 1px dotted black; margin: 0 4px; text-align: left;">
+														<t t-if="len(desc_list) > 0">
+															<t t-esc="desc_list[0]" />
+														</t>
+														<t t-else="">&#160;</t>
+													</span>
+												</td>
+											</tr>
+											<!-- Row 2–5: indented description lines only -->
+											<tr style="height: 14px;">
+												<td>
+													<span style="display:inline-block; min-width: 250px; margin-left: 77px; border-bottom: 1px dotted black;">
+														<t t-if="len(desc_list) > 1">
+															<t t-esc="desc_list[1]" />
+														</t>
+														<t t-else="">&#160;</t>
+													</span>
+												</td>
+											</tr>
+											<tr style="height: 14px;">
+												<td>
+													<span style="display:inline-block; min-width: 250px; margin-left: 77px; border-bottom: 1px dotted black;">
+														<t t-if="len(desc_list) > 2">
+															<t t-esc="desc_list[2]" />
+														</t>
+														<t t-else="">&#160;</t>
+													</span>
+												</td>
+											</tr>
+											<tr style="height: 14px;">
+												<td>
+													<span style="display:inline-block; min-width: 250px; margin-left: 77px; border-bottom: 1px dotted black;">
+														<t t-if="len(desc_list) > 3">
+															<t t-esc="desc_list[3]" />
+														</t>
+														<t t-else="">&#160;</t>
+													</span>
+												</td>
+											</tr>
+											<tr style="height: 14px;">
+												<td>
+													<span style="display:inline-block; min-width: 250px; margin-left: 77px; border-bottom: 1px dotted black;">
+														<t t-if="len(desc_list) > 4">
+															<t t-esc="desc_list[4]" />
+														</t>
+														<t t-else="">&#160;</t>
+													</span>
+												</td>
+											</tr>
+										</t>
+									</table>
+								</div>
+							</div>
+							<!-- Column 2 (width 2): วัน เดือน ปีที่จ่าย for each row above -->
+							<div class="col-2" style="border-right:1px solid black; padding-left:0; padding-right:0;">
+								<div style="padding-top:5px; padding-bottom:5px;">
+									<table style="width:100%; border-collapse:collapse; text-align:center;">
+										<t t-foreach="group_line_ids" t-as="line_dict">
+											<tr style="border-bottom:1px solid black; height:15px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '1'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '2'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '3'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4A'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:62px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B11'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B12'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B13'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B14'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:22px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B21'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:20px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B22'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:19px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B23'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B24'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B25'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:78px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '5'">
+														<t t-esc="date" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:10px;">
+												<td>
+												</td>
+											</tr>
+											<t t-set="other_lines" t-value="[l for l in o.wt_line if l.wt_cert_income_type == '6']" />
+											<t t-set="desc_list" t-value="[l.wt_cert_income_desc for l in other_lines]" />
+											<tr style="height:14px;">
+												<td>
+													<t t-if="len(desc_list) > 0">
+														<t t-esc="date" />
+													</t>
+													<t t-else="">&#160;</t>
+												</td>
+											</tr>
+											<tr style="height:14px;">
+												<td>
+													<t t-if="len(desc_list) > 1">
+														<t t-esc="date" />
+													</t>
+													<t t-else="">&#160;</t>
+												</td>
+											</tr>
+											<tr style="height:14px;">
+												<td>
+													<t t-if="len(desc_list) > 2">
+														<t t-esc="date" />
+													</t>
+													<t t-else="">&#160;</t>
+												</td>
+											</tr>
+											<tr style="height:14px;">
+												<td>
+													<t t-if="len(desc_list) > 3">
+														<t t-esc="date" />
+													</t>
+													<t t-else="">&#160;</t>
+												</td>
+											</tr>
+											<tr style="height:14px;">
+												<td>
+													<t t-if="len(desc_list) > 4">
+														<t t-esc="date" />
+													</t>
+													<t t-else="">&#160;</t>
+												</td>
+											</tr>
+										</t>
+									</table>
+								</div>
+							</div>
+							<!-- Column 3 (width 2): จำนวนเงินที่จ่าย for each row above -->
+							<div class="col-2" style="border-right:1px solid black; padding-left:0; padding-right:0;">
+								<div style="padding-top:5px; padding-bottom:5px;">
+									<table style="width:100%; border-collapse:collapse; text-align:center;">
+										<t t-foreach="group_line_ids" t-as="line_dict">
+											<tr style="border-bottom:1px solid black; height:15px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '1'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '2'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '3'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4A'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:62px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B11'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B12'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B13'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B14'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:22px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B21'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:20px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B22'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:19px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B23'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B24'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B25'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:78px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '5'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['base'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:10px;">
+												<td>
+												</td>
+											</tr>
+											<t t-set="base_list" t-value="[l.base for l in o.wt_line if l.wt_cert_income_type == '6']" />
+											<tr style="height:14px;">
+												<td>
+													<t t-if="len(base_list) > 0">
+														<t t-esc="'{0:,.2f}'.format(base_list[0])" />
+													</t>
+													<t t-else="">&#160;</t>
+												</td>
+											</tr>
+											<tr style="height:14px;">
+												<td>
+													<t t-if="len(base_list) > 1">
+														<t t-esc="'{0:,.2f}'.format(base_list[1])" />
+													</t>
+													<t t-else="">&#160;</t>
+												</td>
+											</tr>
+											<tr style="height:14px;">
+												<td>
+													<t t-if="len(base_list) > 2">
+														<t t-esc="'{0:,.2f}'.format(base_list[2])" />
+													</t>
+													<t t-else="">&#160;</t>
+												</td>
+											</tr>
+											<tr style="height:14px;">
+												<td>
+													<t t-if="len(base_list) > 3">
+														<t t-esc="'{0:,.2f}'.format(base_list[3])" />
+													</t>
+													<t t-else="">&#160;</t>
+												</td>
+											</tr>
+											<tr style="height:14px;">
+												<td>
+													<t t-if="len(base_list) > 4">
+														<t t-esc="'{0:,.2f}'.format(base_list[4])" />
+													</t>
+													<t t-else="">&#160;</t>
+												</td>
+											</tr>
+										</t>
+									</table>
+								</div>
+							</div>
+							<!-- Column 4 (width 2): ภาษีที่หักและนำส่ง for each row above -->
+							<div class="col-2" style="text-align:center; padding-left:0; padding-right:0;">
+								<div style="padding-top:5px; padding-bottom:5px;">
+									<table style="width:100%; border-collapse:collapse;">
+										<t t-foreach="group_line_ids" t-as="line_dict">
+											<tr style="border-bottom:1px solid black; height:15px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '1'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '2'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '3'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4A'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:62px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B11'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B12'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B13'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B14'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:22px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B21'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:20px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B22'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:19px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:17px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B23'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:19px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B24'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '4B25'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:78px;">
+												<td>
+												</td>
+											</tr>
+											<tr style="border-bottom:1px solid black; height:18px;">
+												<td>
+													<t t-if="line_dict['wt_cert_income_type'] == '5'">
+														<t t-esc="'{0:,.2f}'.format(line_dict['amount'])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:9px;">
+												<td>
+												</td>
+											</tr>
+											<t t-set="amount_list" t-value="[l.amount for l in o.wt_line if l.wt_cert_income_type == '6']" />
+											<tr style="height:15px;">
+												<td>
+													<t t-if="len(amount_list) > 0">
+														<t t-esc="'{0:,.2f}'.format(amount_list[0])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:15px;">
+												<td>
+													<t t-if="len(amount_list) > 1">
+														<t t-esc="'{0:,.2f}'.format(amount_list[1])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:15px;">
+												<td>
+													<t t-if="len(amount_list) > 2">
+														<t t-esc="'{0:,.2f}'.format(amount_list[2])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:15px;">
+												<td>
+													<t t-if="len(amount_list) > 3">
+														<t t-esc="'{0:,.2f}'.format(amount_list[3])" />
+													</t>
+												</td>
+											</tr>
+											<tr style="height:15px;">
+												<td>
+													<t t-if="len(amount_list) > 4">
+														<t t-esc="'{0:,.2f}'.format(amount_list[4])" />
+													</t>
+												</td>
+											</tr>
+										</t>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="row" style=" font-size: 13px; border: 1px solid black; border-radius:5px; margin-top:-1px; ">
+							<t t-set="total_amount_base" t-value="sum(o.wt_line.mapped('base'))" />
+							<t t-set="total_amount_tax" t-value="sum(o.wt_line.mapped('amount'))" />
+							<div class="col-12">
+								<div class="row">
+									<div class="col-8" style="text-align:center; border-right:1px solid black; font-weight:bold;">
+										<span>
+											รวมเงินที่จ่ายและภาษีที่หักนำส่ง
+										</span>
+									</div>
+									<div class="col-2" style="text-align:center; border-right:1px solid black; border-bottom:1px solid black; padding-left:0; padding-right:0;">
+										<t t-esc="'{0:,.2f}'.format(total_amount_base)" />
+									</div>
+									<div class="col-2" style="text-align:center; border-bottom:1px solid black; padding-left:0; padding-right:0;">
+										<t t-esc="'{0:,.2f}'.format(total_amount_tax)" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-4" style="text-align:center; font-weight:bold;">
+										<span>
+											รวมเงินที่จ่ายและภาษีที่หักนำส่ง (ตัวอักษร)
+										</span>
+									</div>
+									<div class="col-8" style="text-align:center; ">
+										<t t-esc="o.currency_id.with_context({'lang': 'th_TH'}).amount_to_text(total_amount_tax)" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" style=" font-size: 11.4px; border: 1px solid black; border-radius:5px; margin-top:-1px; padding-top:5px; padding-bottom:5px; padding-left:0; padding-right:0;">
+							<div class="col-6">
+								<span style="font-weight:bold;">
+									เงินที่จ่ายเข้า
+								</span>
+								<span>
+									กบข./กสจ./กองทุนสงเคราะห์ครูโรงเรียนเอกชน......................บาทจ่าย
+								</span>
+							</div>
+							<div class="col-3">
+								<span>
+									กองทุนประกันสังคม ..................... บาท
+								</span>
+							</div>
+							<div class="col-3">
+								<span>
+									กองทุนสำรองเลี้ยงชีพ ......................บาท
+								</span>
+							</div>
+						</div>
+						<div class="row" style=" font-size: 13px; border: 1px solid black; border-radius:5px; margin-top:-1px; padding-top:5px; padding-bottom:5px;">
+							<div class="col-2">
+								<span style="font-weight:bold;">
+									ผู้จ้ายเงิน
+								</span>
+							</div>
+							<div class="col-10">
+								<div class="row">
+									<div class="col-3">
+										<t t-if="o.tax_payer == 'withholding'">
+											<label>
+												<input type="checkbox" checked="checked" />
+												(1) หัก ณ ที่จ่าย
+											</label>
+										</t>
+										<t t-if="o.tax_payer != 'withholding'">
+											<label>
+												<input type="checkbox" />
+												(1) หัก ณ ที่จ่าย
+											</label>
+										</t>
+									</div>
+									<div class="col-3">
+										<t t-if="o.tax_payer == 'paid_all_time'">
+											<label>
+												<input type="checkbox" checked="checked" />
+												(2) ออกให้ตลอดไป
+											</label>
+										</t>
+										<t t-if="o.tax_payer != 'paid_all_time'">
+											<label>
+												<input type="checkbox" />
+												(2) ออกให้ตลอดไป
+											</label>
+										</t>
+									</div>
+									<div class="col-3">
+										<t t-if="o.tax_payer == 'paid_one_time'">
+											<label>
+												<input type="checkbox" checked="checked" />
+												(3) ออกให้ครั้งเดียว
+											</label>
+										</t>
+										<t t-if="o.tax_payer != 'paid_one_time'">
+											<label>
+												<input type="checkbox" />
+												(3) ออกให้ครั้งเดียว
+											</label>
+										</t>
+									</div>
+									<div class="col-3">
+										<label>
+											<input type="checkbox" />
+											(4) อื่น ๆ (ระบุ)..........
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+</odoo>

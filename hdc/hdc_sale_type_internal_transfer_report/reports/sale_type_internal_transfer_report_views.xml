@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="sale_type_internal_transfer_report_booth" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้าบูธ</field>
+         <field name="model">stock.picking</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้าบูธ-%s " %(object.name)</field>
+         <field name="report_name">hdc_sale_type_internal_transfer_report.hdc_sale_type_booth</field>
+         <field name="report_file">hdc_sale_type_internal_transfer_report.hdc_sale_type_booth</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_sale_type_internal_transfer_report.paperformat_report_sale_type"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="sale_type_internal_transfer_report_road_show" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้า Road Show</field>
+         <field name="model">stock.picking</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้า Road Show-%s " %(object.name)</field>
+         <field name="report_name">hdc_sale_type_internal_transfer_report.hdc_sale_type_road_show</field>
+         <field name="report_file">hdc_sale_type_internal_transfer_report.hdc_sale_type_road_show</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_sale_type_internal_transfer_report.paperformat_report_sale_type"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="sale_type_internal_transfer_report_sale_consignment" model="ir.actions.report">
+         <field name="name">รายงานใบจัดสินค้าฝากขาย</field>
+         <field name="model">stock.picking</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"รายงานใบจัดสินค้าฝากขาย-%s " %(object.name)</field>
+         <field name="report_name">hdc_sale_type_internal_transfer_report.hdc_sale_type_sale_consignment</field>
+         <field name="report_file">hdc_sale_type_internal_transfer_report.hdc_sale_type_sale_consignment</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_sale_type_internal_transfer_report.paperformat_report_sale_type"/>
+         <field name="binding_type">report</field>
+      </record>
+
+      <record id="sale_type_internal_transfer_report_consignment" model="ir.actions.report">
+         <field name="name">ใบส่งสินค้าเข้าคลัง Consignment</field>
+         <field name="model">stock.picking</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"ใบส่งสินค้าเข้าคลัง Consignment-%s " %(object.name)</field>
+         <field name="report_name">hdc_sale_type_internal_transfer_report.hdc_sale_type_consignment</field>
+         <field name="report_file">hdc_sale_type_internal_transfer_report.hdc_sale_type_consignment</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_sale_type_internal_transfer_report.paperformat_report_sale_type"/>
+         <field name="binding_type">report</field>
+      </record>
+      <record id="sale_type_internal_transfer_report_consignment_return" model="ir.actions.report">
+         <field name="name">ใบรับคืนสินค้า Consignment</field>
+         <field name="model">stock.picking</field>
+         <field name="report_type">qweb-pdf</field>
+         <field name="print_report_name">"ใบรับคืนสินค้า Consignment-%s " %(object.name)</field>
+         <field name="report_name">hdc_sale_type_internal_transfer_report.hdc_sale_type_consignment_return</field>
+         <field name="report_file">hdc_sale_type_internal_transfer_report.hdc_sale_type_consignment_return</field>
+         <field name="binding_model_id" eval="False"/>
+         <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_receipt_inventory"/>
+         <field name="binding_type">report</field>
+      </record>
+   </data>
+
+   <template id="report_logo_style">
+      <!-- เช็คชื่อบริษัทและกำหนดค่า logo_style -->
+      <t t-if="company.name in ['Colt Plus (Thailand) Co.,Ltd.', 
+                                 'Siam Modern Home Co.,Ltd.', 
+                                 'Siam Techno Industry Co., Ltd.']">
+         <t t-set="logo_style">margin-top:30px;</t>
+      </t>
+      <t t-elif="company.name == 'Saeng Charoen Patana Enterprise Co., Ltd.'">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+      <t t-else="">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+
+      <img t-if="company.logo"
+            t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')"
+            class="pull-left img-logo"
+            t-attf-style="{{ logo_style }}; max-height: 140px; max-width: 140px;" />
+   </template>
+</odoo>

@@ -1,0 +1,332 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hdc_company_hydra
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230831\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 07:42+0000\n"
+"PO-Revision-Date: 2023-12-20 07:42+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__active
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__active
+msgid "Active"
+msgstr "เปิดใช้งาน"
+
+#. module: hdc_company_hydra
+#: model:ir.model,name:hdc_company_hydra.model_res_partner
+msgid "Activity Module"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_partner_form_inherit
+msgid "Address"
+msgstr "ที่อยู่"
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+msgid "Archived"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__billing_date
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__billing_date
+msgid "Billing Date"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__branch_name
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__branch_name_th
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__branch_name
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__branch_name
+msgid "Branch Name"
+msgstr "ชื่อสาขา"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__branch_number
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__branch_number_th
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__branch_number
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__branch_number
+msgid "Branch Number"
+msgstr "หมายเลขสาขา"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__cheque_date
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__cheque_date
+msgid "Cheque Date"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__city_th
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+msgid "City"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model,name:hdc_company_hydra.model_res_company
+msgid "Companies"
+msgstr "บริษัท"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__company_registry_th
+msgid "Company Registry"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__country_th_id
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+msgid "Country"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__customer_type
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__customer_type
+msgid "Customer Type"
+msgstr "ประเภทลูกค้า"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__date_logo
+msgid "Date Logo"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__display_name
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__email_th
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__email_tax_invoice
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__email_tax_invoice
+msgid "Email"
+msgstr "อีเมล"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__facebook
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__facebook_th
+msgid "Facebook"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__fax
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__fax_th
+msgid "Fax"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__state_th_id
+msgid "Fed. State"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+msgid "General Information(EN)"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+msgid "General Information(TH)"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__id
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company____last_update
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__last_update_image
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__last_update_image
+msgid "Latest Update"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__line
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__line_th
+msgid "Line"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__mobile
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__mobile_th
+msgid "Mobile"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__name_tax_invoice
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__name_tax_invoice
+msgid "Name"
+msgstr "ชื่อ"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__name_th
+msgid "Name TH"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__phone_th
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__phone
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__phone_tax_invoice
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__phone
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__phone_tax_invoice
+msgid "Phone"
+msgstr "โทรศัพท์"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__report_header_th
+msgid "Report Header"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__report_header_eng
+msgid "Report Header ENG"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__sale_channel
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__sale_channel_tax_invoice
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__sale_channel
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__sale_channel_tax_invoice
+msgid "Sale Channel"
+msgstr "ช่องทางการขาย"
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+msgid "State"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__street_tax_invoice
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__street_tax_invoice
+msgid "Stree1"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__street2_tax_invoice
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__street2_tax_invoice
+msgid "Stree2"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__street
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__street_th
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__street
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__street
+msgid "Street"
+msgstr "ที่อยู่"
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_partner_form_inherit
+msgid "Street 2..."
+msgstr "ที่อยู่ บรรทัดที่ 2"
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_partner_form_inherit
+msgid "Street..."
+msgstr "ที่อยู่ บรรทัดที่ 1"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__street2
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__street2_th
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__street2
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__street2
+msgid "Street2"
+msgstr "ที่อยู่ บรรทัดที่ 2"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__vat
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__vat_th
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__vat
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__vat_tax_invoice
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__vat
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__vat_tax_invoice
+msgid "Tax ID"
+msgstr "เลขประจำตัวผู้เสียภาษี"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,help:hdc_company_hydra.field_res_company__vat
+#: model:ir.model.fields,help:hdc_company_hydra.field_res_partner__vat
+#: model:ir.model.fields,help:hdc_company_hydra.field_res_users__vat
+msgid ""
+"The Tax Identification Number. Complete it if the contact is subjected to "
+"government taxes. Used in some legal statements."
+msgstr ""
+"หมายเลขประจำตัวผู้เสียภาษี กรอกให้ครบถ้วนหากผู้ติดต่อต้องเสียภาษีของรัฐบาล "
+"ใช้ในแถลงการณ์ทางกฎหมายบางฉบับ"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__is_customer
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__is_customer
+msgid "Type Is Customer"
+msgstr "ประเภทลูกค้า"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__is_purchase
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__is_purchase
+msgid "Type Is Purchase"
+msgstr "ประเภทการซื้อ"
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_partner_form_inherit
+msgid "Update"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__website_th
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+msgid "Website"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_partner_form_inherit
+msgid "ZIP"
+msgstr "รหัสไปรษณีย์"
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__zip
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_company__zip_th
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__zip
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_partner__zip_tax_invoice
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__zip
+#: model:ir.model.fields,field_description:hdc_company_hydra.field_res_users__zip_tax_invoice
+msgid "Zip"
+msgstr "รหัสไปรษณีย์"
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_company_form_inherit
+msgid "e.g. https://www.odoo.com"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model_terms:ir.ui.view,arch_db:hdc_company_hydra.view_partner_form_inherit
+msgid "ข้อมูลใบกำกับภาษี"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields.selection,name:hdc_company_hydra.selection__res_partner__customer_type__company
+msgid "นิติบุคคล"
+msgstr ""
+
+#. module: hdc_company_hydra
+#: model:ir.model.fields.selection,name:hdc_company_hydra.selection__res_partner__customer_type__person
+msgid "บุคคลธรรมดา"
+msgstr ""

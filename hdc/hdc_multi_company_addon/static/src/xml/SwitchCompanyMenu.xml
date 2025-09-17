@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="HDCSwitchCompanyMenu" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/hdc_multi_company_addon/static/src/scss/switch_company_menu.scss"/>
+            <script type="text/javascript" src="/hdc_multi_company_addon/static/src/js/widgets/switch_company_menu.js"></script>
+        </xpath>
+    </template>
+</odoo>

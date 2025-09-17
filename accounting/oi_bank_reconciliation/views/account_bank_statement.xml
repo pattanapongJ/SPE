@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="view_bank_statement_form" model="ir.ui.view">
+		<field name="name">account.bank.statement.form.reconciliation</field>
+		<field name="model">account.bank.statement</field>
+		<field name="inherit_id" ref="account.view_bank_statement_form" />
+		<field name="arch" type="xml">
+			<header>
+				<button name="action_transaction_generate" type="object" attrs="{'invisible': [('state', '!=', 'open')]}" string="Generate Transactions" />
+				<button name="action_reconcile" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'posted')]}" string="Reconcile" />
+			</header>
+			<div name="button_box" position="inside">
+				<button class="oe_stat_button" name="action_view_lines" string="Transactions" type="object" icon="fa-list-alt">
+					
+				</button>
+			</div>
+			
+			<button name="button_undo_reconciliation" position="after">
+				<button name="button_reconciliation" type="object" attrs="{'invisible': [('is_reconciled', '=', True)], 'column_invisible': [('parent.state', '!=', 'posted')]}" string="Reconcile" icon="fa-puzzle-piece"/>				
+			</button>
+
+			<field name="balance_end_real" position="after">
+				<button name="auto_balance_end" type="object" string="Compute" attrs="{'invisible' : [('state','!=','open')]}" class="oe_edit_only oe_link oe_inline" />
+			</field>	
+			
+		</field>
+	</record>
+
+</odoo>

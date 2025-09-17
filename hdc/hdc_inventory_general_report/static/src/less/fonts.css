@@ -1,0 +1,54 @@
+/* 
+@font-face {
+	font-family: 'KanitLight';
+    font-family: KanitLight;
+	font-weight: normal;
+	font-style: normal;
+	src: local('KanitLight'), local('KanitLight'),
+	url(/hdc_sale_general_reports/static/src/fonts/KanitLight.ttf) format('truetype');
+} */
+
+@font-face {
+    font-family: 'KanitLight';
+	font-family: KanitLight;
+	font-weight: 100;
+	font-style: normal;
+    src: url(/hdc_inventory_general_report/static/src/fonts/KanitThin.ttf) format('truetype');
+}
+
+.font-inventory-div {
+	font-family: 'KanitLight';
+	font-family: KanitLight;
+	font-weight: 100;
+	font-style: normal;
+	}
+
+.font-inventory-th {
+	font-family: 'KanitLight';
+	font-family: KanitLight;
+	font-weight: 100;
+	font-style: normal;
+	}
+
+
+.img-logo {
+	position: relative;
+	left: -10px;
+	top: -10px;
+  }
+
+.main-tranfers { 
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+
+.main-tranfers { 
+	display: block;
+}
+

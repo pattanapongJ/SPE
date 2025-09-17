@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_back_order_report_form" model="ir.ui.view">
+        <field name="name">wizard.back.order.report.form</field>
+        <field name="model">wizard.back.order.report</field>
+        <field name="arch" type="xml">
+            <form string="รายงาน SPE สินค้าค้างรับ - ส่ง">
+                <sheet>
+                    <group>
+                        <label for="from_date" />
+                        <div class="o_row">
+                            <field name="from_date" />
+                            <p class="font-weight-bold">To</p>
+                            <field name="to_date" />
+                        </div>
+                        <field name="back_order_by_type" widget="radio" />
+
+                        <field name="partner_many_ids" widget="many2many_tags" attrs="{'invisible': [('back_order_by_type', '!=', 'by_customer')]}" />
+                        <field name="user_many_ids" widget="many2many_tags" attrs="{'invisible': [('back_order_by_type', '!=', 'by_sale_person')]}" />
+                        <field name="product_many_ids" widget="many2many_tags" attrs="{'invisible': [('back_order_by_type', '!=', 'by_item')]}" />
+                        <field name="project_many_names" widget="many2many_tags" attrs="{'invisible': [('back_order_by_type', '!=', 'by_project')]}" />
+
+                    </group>
+                    <footer>
+                        <!-- <button name="print_pdf" string="Print PDF" type="object"  class="btn-primary" /> -->
+                        <button name="print_excel" string="Print Excel" type="object" class="btn-primary" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_back_order_action" model="ir.actions.act_window">
+        <field name="name">รายงาน SPE สินค้าค้างรับ - ส่ง</field>
+        <field name="res_model">wizard.back.order.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_report_back_order"
+        name="SPE Back order"
+        action="wizard_back_order_action"
+        parent="sale.menu_sale_report"
+        sequence="2"/>
+
+</odoo>

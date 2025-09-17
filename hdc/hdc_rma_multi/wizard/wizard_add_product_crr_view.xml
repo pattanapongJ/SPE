@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_add_product_crr" model="ir.ui.view">
+        <field name="name">Add Product CRR</field>
+        <field name="model">wizard.add.product.crr</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <field name="return_request_id" invisible="1"/>
+                    <group name="spe_invoice">
+                        <field name="available_invoice_ids" invisible="1"/>
+                        <field name="spe_invoice"/>
+                    </group>
+                    <notebook>
+                        <page string="Product Return">
+                            <field name="product_line_ids" widget="one2many_list">
+                                <tree  editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="receive_qty" string="Receive"/>
+                                    <field name="uom"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_add_product" string="Create Receive" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+    <template
+        id="report_assets_common"
+        name="kanit fonts common assets"
+        inherit_id="web.report_assets_common"
+    >
+        <xpath expr="." position="inside">
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/custom_fonts/static/src/scss/custom_font.scss"
+            />
+        </xpath>
+    </template>
+</odoo>

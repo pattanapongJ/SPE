@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_sale_dewalt_report_form_view" model="ir.ui.view">
+        <field name="name">Dewalt Report</field>
+        <field name="model">wizard.sale.dewalt.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sale_id" invisible="1"/>
+                            <field name="document" widget="selection" string="Documents"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Print" type="object" name="print" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+	<record id="action_wizard_sale_dewalt_report" model="ir.actions.act_window">
+		<field name="name">Dewalt Report</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">wizard.sale.dewalt.report</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="view_id" ref="wizard_sale_dewalt_report_form_view"/>
+	</record>
+    
+
+    
+</odoo>

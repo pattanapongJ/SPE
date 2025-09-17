@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">view_picking_form_inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[@name='other_infos']" position="after">
+                    <group name="finance_dimension_gp" string="Finance Dimension">
+
+                        <field name="finance_dimension_1_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_2_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                        <field name="finance_dimension_3_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"/>
+
+                    </group>
+                </xpath>
+                
+                
+                <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='description_picking']" position="after">
+                    <field name="finance_dimension_1_id" options="{'no_create_edit': True, 'no_quick_create': True}" optional="hide"/>
+                    <field name="finance_dimension_2_id" options="{'no_create_edit': True, 'no_quick_create': True}" optional="hide"/>
+                    <field name="finance_dimension_3_id" options="{'no_create_edit': True, 'no_quick_create': True}" optional="hide"/>
+                </xpath>
+
+                <xpath expr="//field[@name='move_ids_without_package']/form/group/field[@name='description_picking']" position="after">
+                    <field name="finance_dimension_1_id" options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_2_id" options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                    <field name="finance_dimension_3_id" options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

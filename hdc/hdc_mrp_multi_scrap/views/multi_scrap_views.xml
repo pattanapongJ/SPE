@@ -1,0 +1,13 @@
+<odoo>
+    <record id="multi_stock_scrap_form_view_inherited_mrp" model="ir.ui.view">
+        <field name="name">multi.stock.scrap.form.inherited.mrp</field>
+        <field name="model">multi.stock.scrap</field>
+        <field name="inherit_id" ref="hdc_multi_scrap.multi_stock_scrap_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_id']" position="after">
+                <field name="mo_id" invisible="1"/>
+                <field name="mr_id" invisible="1"/>
+            </xpath>            
+        </field>
+    </record>
+</odoo>

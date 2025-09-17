@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_quotation_change_total_form" model="ir.ui.view">
+        <field name="name">wizard.quotation.change.total.form</field>
+        <field name="model">wizard.quotation.change.total</field>
+        <field name="arch" type="xml">
+            <form string="Change Total Rounding">
+                <group>
+                    <field name="rounding_untax"/>
+                    <field name="rounding_taxes"/>
+                    <field name="rounding_total"/>
+                </group>
+                <footer>
+                    <button string="Confirm" type="object" name="update_quotation_total" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_quotation_change_total" model="ir.actions.act_window">
+        <field name="name">Change Total Rounding</field>
+        <field name="res_model">wizard.quotation.change.total</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_wizard_quotation_change_total_form"/>
+    </record>
+</odoo>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+# Copyright 2023 Basic Solution Co., Ltd. (www.basic-solution.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="account_check_deposit_view_form" model="ir.ui.view">
+        <field name="model">account.check.pay.in</field>
+        <field name="arch" type="xml">
+            <form>
+                    <header>
+                    <button
+                        name="validate_deposit"
+                        states="draft"
+                        string="Validate"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="backtodraft"
+                        states="done"
+                        string="Reset to Draft"
+                        type="object"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,done"
+                    />
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button name="open_pdc_items" class="oe_stat_button" icon="fa-list-alt" type="object" string="Cheque Payment"/>
+                    </div>
+                    <div class="oe_title">
+                        <label string="Check Deposit" for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="main">
+                        <group name="left">
+                            <field
+                                name="deposit_date"
+                                options="{'datepicker': {'warn_future': true}}"
+                            />
+                            <field name="journal_id" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group name="right">
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="payment_total_amount"/>
+                        </group>
+                    </group>
+                    <group string="Check Registered" name="check_pay_in_id">
+                        <field
+                            name="pdc_wizard_ids"
+                            nolabel="1"
+                            widget="many2many">
+                            <tree>
+                                <field name="due_date" optional="show"/>
+                                <field name="bank_id" optional="show"/>
+                                <field name="bank_branch" optional="show"/>
+                                <field name="reference" optional="show" />
+                                <field name="partner_id" optional="show"/>
+                                <field name="name" optional="show" />
+                                <field name="journal_id" optional="show" />
+                                <field name="payment_amount" sum="1" optional="show" />
+                                <field name="state" optional="show" />
+                            </tree>
+                        </field>
+                    </group>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers" />
+                <field name="activity_ids" widget="mail_activity" />
+                <field name="message_ids" widget="mail_thread" />
+            </div>
+            </form>
+        </field>
+    </record>
+    <record id="account_check_deposit_view_tree" model="ir.ui.view">
+        <field name="name">account.check.deposit.tree</field>
+        <field name="model">account.check.pay.in</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" decoration-bf="1" />
+                <field name="deposit_date" />
+                <field name="journal_id" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'draft'"
+                    decoration-success="state == 'done'"
+                />
+            </tree>
+        </field>
+    </record>
+    <record id="view_check_deposit_search" model="ir.ui.view">
+        <field name="name">account.check.deposit.search</field>
+        <field name="model">account.check.pay.in</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Checks Deposit" />
+                <field
+                    name="journal_id"
+                    domain="[('type', '=', 'bank')]"
+                />
+                <filter
+                    name="draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
+                <group string="Group By" name="groupby">
+                    <filter
+                        name="date_groupby"
+                        string="Deposit Date"
+                        context="{'group_by': 'deposit_date'}"
+                    />
+                    <filter
+                        name="journal_groupby"
+                        string="Journal"
+                        context="{'group_by': 'journal_id'}"
+                    />
+                    <filter
+                        name="state_groupby"
+                        string="State"
+                        context="{'group_by': 'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+</record>
+
+    <record id="action_check_deposit_tree" model="ir.actions.act_window">
+        <field name="name">Checks Deposits</field>
+        <field name="res_model">account.check.pay.in</field>
+        <field name="view_id" ref="account_check_deposit_view_tree" />
+         <field name="search_view_id" ref="view_check_deposit_search" />
+    </record>
+
+    <!-- <menuitem
+        action="action_check_deposit_tree"
+        id="menu_check_deposit_tree"
+        name="Checks Deposits"
+        parent="account.menu_finance_entries_accounting_miscellaneous"
+        sequence="100"/> -->
+
+    <menuitem id="menu_pdc_checks_depotis" name="Checks Deposits" groups="account.group_account_invoice" parent="sh_pdc.base_menu_pdc_payment" sequence="2" action="action_check_deposit_tree" />
+
+    <record id="view_pdc_wizard_form" model="ir.ui.view">
+        <field name="model">pdc.wizard</field>
+        <field name="inherit_id" ref="sh_pdc.sh_pdc_tree_form" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field
+                    name="check_pay_in_id"
+                    readonly="True"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sh_pdc_payment_form" model="ir.ui.view">
+        <field name="model">pdc.wizard</field>
+        <field name="inherit_id" ref="sh_pdc.sh_pdc_payment_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pdc_bounce_reason']" position="after">
+                <field name="check_deposit" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

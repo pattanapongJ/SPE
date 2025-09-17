@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_branch_view_delivery_line" model="ir.ui.view">
+        <field name="name">res.branch.view.delivery.line</field>
+        <field name="model">res.branch</field>
+        <field name="inherit_id" ref="branch.branch_res_branch_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='address']" position="after" >
+                <field name="choose_only_one" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

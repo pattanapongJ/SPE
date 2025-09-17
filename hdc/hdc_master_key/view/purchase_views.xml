@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="master_key_purchase_order_type_view_inherit" model="ir.ui.view">
+        <field name="name">master_key.purchase.order.type.view.inherit</field>
+        <field name="model">purchase.order.type</field>
+        <field name="inherit_id" ref="purchase_order_type.view_purchase_order_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]/group[1]" position="inside">
+                <field name="is_master_key_type"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="master_key_purchase_inherit" model="ir.ui.view">
+        <field name="name">purchase.inherit.master.key</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_unlock']" position="after">
+                <button name="action_edit_price" 
+                string="Change Price" type="object"
+                />
+            </xpath>
+
+            <!-- <field name="partner_id" position="replace">
+                <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'supplier', 'show_vat': True}" attrs="{'readonly': ['|', ('is_quantity_copy', '=', 'none'), ('state', 'in', ['purchase', 'done', 'cancel'])]}" placeholder="Name, TIN, Email, or Reference" force_save="1" required="0"/></field>
+            </field> -->
+
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="attrs">
+                    {
+                        'required': [('is_master_key', '=', False)],
+                        'readonly': ['&amp;', ('is_master_key', '=', False), '|', ('is_quantity_copy', '=', 'none'), ('state', 'in', ['purchase','done','cancel'])]
+                    }
+                </attribute>
+            </xpath>
+
+
+
+            <!-- <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="vendor_code" readonly="1" force_save="1"/>
+            </xpath> -->
+
+            <!-- <xpath expr="//button[@name='action_view_picking']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|', ('is_master_key','=',True), ('picking_ids','=',[])]}
+                </attribute>
+            </xpath> -->
+
+            <xpath expr="//div[hasclass('oe_button_box')]/button[@name='action_view_picking']" position="replace">
+                <field name="show_picking_button" invisible="1"/>
+                <button type="object"
+                        name="action_view_picking"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        attrs="{'invisible': [('show_picking_button', '=', False)]}">
+                <field name="picking_count" widget="statinfo" string="Receipt" help="Incoming Shipments"/>
+                <field name="picking_ids" invisible="1"/>
+                </button>
+            </xpath>
+            
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <field name="is_master_key" invisible="1" />
+                <field name="resupply_master_key_picking_id" invisible="1" />
+                <field name="receipt_master_key_subcontract_id" invisible="1" />
+
+                <button type="object"
+                    name="action_so_view_purchase_master_key"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    attrs="{'invisible': [('count_so_purchase_master_key', '=', 0)]}"
+                    >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="count_so_purchase_master_key" />
+                        </span>
+                        <span class="o_stat_text">Source SO Master Key</span>
+                    </div>
+                </button>
+
+                <button type="object"
+                        name="action_view_resupply_picking"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        attrs="{'invisible': [('resupply_master_key_picking_id','=',False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Resupply Picking</span>
+                    </div>
+                </button>
+
+                <button type="object"
+                        name="action_view_receipt_subcontract"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        attrs="{'invisible': [('receipt_master_key_subcontract_id','=',False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Receipt Subcontract</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>   
+</odoo>

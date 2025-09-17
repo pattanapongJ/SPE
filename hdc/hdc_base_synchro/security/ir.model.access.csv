@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+base_synchro_server,base.synchro.server,model_base_synchro_server,base.group_system,1,1,1,1
+base_synchro_obj, base.synchro.obj,model_base_synchro_obj,base.group_system,1,1,1,1
+base_synchro_obj_avoid,base.synchro.obj.avoid,model_base_synchro_obj_avoid,base.group_system,1,1,1,1
+base_synchro_obj_line,base.synchro.obj.line,model_base_synchro_obj_line,base.group_system,1,1,1,1
+base_synchro_res_request,synchro.res.request,model_res_request,base.group_system,1,1,1,1
+base_synchro_res_ext_id_update,synchro.res.ext.id.update,model_res_ext_id_update,base.group_system,1,1,1,1
+
+base_synchro,base.synchro,model_base_synchro,base.group_system,1,1,1,1
+
+access_wizard_edit_fields_not_sync_user,hdc.wizard.edit.fields.not.sync,model_wizard_edit_fields_not_sync,base.group_user,1,1,1,1
+access_wizard_edit_fields_not_sync_line_user,hdc.wizard.edit.fields.not.sync.line,model_wizard_edit_fields_not_sync_line,base.group_user,1,1,1,1

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="pricelist_group_action" model="ir.actions.act_window">
+        <field name="name">Pricelist Groups</field>
+        <field name="res_model">pricelist.groups</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_pricelist_group_tree" model="ir.ui.view">
+        <field name="name">pricelist.groups.tree</field>
+        <field name="model">pricelist.groups</field>
+        <field name="arch" type="xml">
+            <tree string="Service Slot"  editable="bottom">
+                <field name="name" />
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+    <menuitem id="menu_pricelist_group" 
+        name="Pricelist Groups" 
+        parent="sale.product_menu_catalog" 
+        action="pricelist_group_action" 
+        sequence="20"
+        />
+        <!-- groups="hdc_pricelist_spe.access_rule_administrator" -->
+
+</odoo>

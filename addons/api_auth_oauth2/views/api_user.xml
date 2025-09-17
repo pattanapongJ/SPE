@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--API User List View -->
+        <record id="view_api_user_tree" model="ir.ui.view">
+            <field name="name">api.user.tree</field>
+            <field name="model">api.user</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="client_user_id"/>
+                    <field name="user_id"/>
+                    <field name="provider_id"/>
+                    <field name="easy_api_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--API User Form View -->
+        <record id="view_api_user_form" model="ir.ui.view">
+            <field name="name">api.user.form</field>
+            <field name="model">api.user</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="client_user_id"/>
+                            <field name="user_id"/>
+                            <field name="provider_id"/>
+                            <field name="easy_api_id"/>
+                            <field name="access_token" widget="CopyClipboardText"/>
+                            <field name="refresh_token" widget="CopyClipboardText"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Main Action: api.user -->
+        <record id="api_user_action" model="ir.actions.act_window">
+            <field name="name">API User</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">api.user</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                All important API User Track handle here
+            </p><p>
+                Ekika helps you track, manage and maintain your API Users activity in the software.
+            </p>
+            </field>
+        </record>
+        <!-- Sub Action Tree: api.user -->
+        <record id="api_user_action_tree_view" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_api_user_tree"/>
+            <field name="act_window_id" ref="api_user_action"/>
+        </record>
+        <!-- Sub Action Form: api.user -->
+        <record id="api_user_action_form_view" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_api_user_form"/>
+            <field name="act_window_id" ref="api_user_action"/>
+        </record>
+
+        <!--API User Action -->
+        <record id="action_api_user" model="ir.actions.act_window">
+            <field name="name">API User</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">api.user</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--API User Menu -->
+        <menuitem id="menu_api_user" name="API User" parent="base.menu_administration"
+                  action="api_user_action" groups="base.group_system"/>
+    </data>
+</odoo>

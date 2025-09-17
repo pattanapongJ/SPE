@@ -1,0 +1,193 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hdc_inventory_borrow
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20230227\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-25 07:49+0000\n"
+"PO-Revision-Date: 2023-10-25 07:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,help:hdc_inventory_borrow.field_stock_picking__state
+msgid ""
+" * Draft: The transfer is not confirmed yet. Reservation doesn't apply.\n"
+" * Waiting another operation: This transfer is waiting for another operation before being ready.\n"
+" * Waiting: The transfer is waiting for the availability of some products.\n"
+"(a) The shipping policy is \"As soon as possible\": no product could be reserved.\n"
+"(b) The shipping policy is \"When all products are ready\": not all the products could be reserved.\n"
+" * Ready: The transfer is ready to be processed.\n"
+"(a) The shipping policy is \"As soon as possible\": at least one product has been reserved.\n"
+"(b) The shipping policy is \"When all products are ready\": all product have been reserved.\n"
+" * Done: The transfer has been processed.\n"
+" * Cancelled: The transfer has been cancelled."
+msgstr ""
+"* ฉบับร่าง: การโอนยังไม่ได้รับการยืนยัน ไม่สามารถใช้การจองได้\n"
+"  * กำลังรอการดำเนินการอื่น: การถ่ายโอนนี้กำลังรอการดำเนินการอื่นก่อนที่จะพร้อม\n"
+"  * กำลังรอ: การโอนกำลังรอสินค้าบางส่วนพร้อมจำหน่าย\n"
+"(ก) นโยบายการจัดส่งคือ \"โดยเร็วที่สุด\": ไม่สามารถจองสินค้าได้\n"
+"(b) นโยบายการจัดส่งคือ \"เมื่อสินค้าทั้งหมดพร้อม\": ไม่สามารถจองสินค้าทั้งหมดได้\n"
+"  * พร้อม: การโอนพร้อมดำเนินการ\n"
+"(ก) นโยบายการจัดส่งคือ \"โดยเร็วที่สุด\": มีการจองผลิตภัณฑ์อย่างน้อยหนึ่งรายการ\n"
+"(b) นโยบายการจัดส่งคือ \"เมื่อสินค้าทั้งหมดพร้อม\": สินค้าทั้งหมดได้ถูกจองไว้แล้ว\n"
+"  * เสร็จสิ้น: ดำเนินการโอนแล้ว\n"
+"  * ยกเลิก: การโอนถูกยกเลิก"
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__operation_types
+msgid "Addition Operation Type"
+msgstr "ประเภทการดำเนินการเพิ่มเติม"
+
+#. module: hdc_inventory_borrow
+#: model_terms:ir.ui.view,arch_db:hdc_inventory_borrow.inventory_borrow_inherit
+msgid "Approval"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__approver_return
+msgid "Approver"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__borrow_date
+msgid "Borrowed Date"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_return_picking__check_done
+msgid "Check Done"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__operation_type_rm
+msgid "Code"
+msgstr "รหัส"
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__department_name
+#: model_terms:ir.ui.view,arch_db:hdc_inventory_borrow.inventory_borrow_inherit
+msgid "Department"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_move__display_name
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_return_picking__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_move__id
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__id
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_return_picking__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_move____last_update
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_return_picking____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__order_return
+msgid "Order Return"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields.selection,name:hdc_inventory_borrow.selection__stock_picking__state__ready_delivery
+msgid "Ready Delivery"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__request_date
+msgid "Request Date"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__request_spare_parts_type
+msgid "Request spare parts Type"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__requestor_emp
+#: model_terms:ir.ui.view,arch_db:hdc_inventory_borrow.inventory_borrow_inherit
+msgid "Requestor"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_move__return_value
+#: model_terms:ir.ui.view,arch_db:hdc_inventory_borrow.stock_move_line_demand
+msgid "Return"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__return_date
+msgid "Return Date"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model_terms:ir.ui.view,arch_db:hdc_inventory_borrow.inventory_borrow_inherit
+msgid "Return Order"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model,name:hdc_inventory_borrow.model_stock_return_picking
+msgid "Return Picking"
+msgstr "ส่งคืนการหยิบ"
+
+#. module: hdc_inventory_borrow
+#: model:ir.actions.act_window,name:hdc_inventory_borrow.act_stock_return_picking_borrow
+msgid "Reverse Transfer Borrow"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__reviewer_return
+msgid "Reviewer"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,help:hdc_inventory_borrow.field_stock_picking__transfer_date
+msgid ""
+"Scheduled time for the first part of the shipment to be processed. Setting "
+"manually a value here would set it as expected date for all the stock moves."
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_move__scrap_return
+msgid "Scrap Return"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_move__scrap_value
+msgid "Scrap Value"
+msgstr ""
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__state
+msgid "Status"
+msgstr "สถานะ"
+
+#. module: hdc_inventory_borrow
+#: model:ir.model,name:hdc_inventory_borrow.model_stock_move
+msgid "Stock Move"
+msgstr "ย้ายสต็อก"
+
+#. module: hdc_inventory_borrow
+#: model:ir.model,name:hdc_inventory_borrow.model_stock_picking
+msgid "Transfer"
+msgstr "การโอน"
+
+#. module: hdc_inventory_borrow
+#: model:ir.model.fields,field_description:hdc_inventory_borrow.field_stock_picking__transfer_date
+#: model_terms:ir.ui.view,arch_db:hdc_inventory_borrow.inventory_borrow_inherit
+msgid "Transfer Date"
+msgstr ""

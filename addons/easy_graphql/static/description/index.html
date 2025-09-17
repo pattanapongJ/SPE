@@ -1,0 +1,1218 @@
+<!-- Start Ekika LOGO Section -->
+<section id="ekika-logo" class="text-dark">
+  <div class="container mb-4">
+    <div class="d-flex justify-content-around text-dark">
+      <div class="align-self-center">
+        <div class="align-self-center p-4 border rounded shadow"><img
+            src="assets/ekika-assets/EKIKA-Logo.png" loading="lazy" height="50px" alt="Ekika">
+        </div>
+        <div class="w-100 mt-3 shadow-lg fs-5 p-2 text-center border rounded-3">
+          <a href="mailto:hello@ekika.co" class="text-dark">Email: hello@ekika.co</a>
+        </div>
+      </div>
+      <div class="" style="width: 42%;"> <!-- w-25 -->
+        <table class="table table-bordered text-center shadow">
+            <tbody class="text-center">
+                <tr>
+                    <th style="width:30%" class="p-1 text-muted">Supported Versions</th> <!-- small -->
+                    <th>12.0</th>
+                    <th>13.0</th>
+                    <th>14.0</th>
+                    <th>15.0</th>
+                    <th>16.0</th>
+                    <th>17.0</th>
+                    <th>18.0</th>
+                </tr>
+                <tr>
+                    <td class="p-1 text-secondary">Community</td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                </tr>
+                <tr>
+                    <td class="p-1 text-primary">Enterprise</td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                    <td class="p-1"><i class="fa fa-check-square-o"></i></td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="w-100 shadow-lg fs-5 p-2 text-center border rounded-3">
+          https://www.ekika.co/support
+        </p>
+      </div>
+    </div>
+  </div>
+  <ul class="fs-3">
+    <li>Our All API Addons: <a href="https://apps.odoo.com/apps/modules/browse?author=EKIKA&search=api&series=14.0">EKIKA API Addons</a></li>
+    <li>All-in-One is "api_framework" (Buy): <a href="https://apps.odoo.com/apps/modules/14.0/api_framework">Easy API Framework</a></li>
+  <ul>
+</section>
+<!-- End Ekika LOGO Section -->
+
+<!-- Start Main Body Content Section -->
+<section id="main-section" class="container-fluid rounded shadow-lg border my-5 text-dark">
+    <img class="rounded shadow-sm img-fluid position-absolute h-100 w-100" src="assets/bg/1.jpg" alt="Background Image" loading="lazy" style="opacity: 0.5;"/>
+    <div id="graphql-tab" class="rounded m-3" style="z-index: 10;">
+
+    <!-- Start GraphQL LOGO Section -->
+      <section id="graphql-logo" class="rounded">
+        <div class="py-4 text-center img-thumbnail my-4" style="background-color:ghostwhite; border: 1px solid #E10098;">
+          <h6><b class="text-muted">IMPLEMENTATION OF</b></h6>
+          <div class="d-flex w-50 align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2 mx-auto" style="border-radius:100px">
+            <b class="px-3" style="color: #001F3F;">HTTP</b>
+            <div class="vr text-muted" style="width: 3px;"></div>
+            <div class="d-flex text-break fs-5 p-1 px-3"><b style="color:#001F3F;">https://graphql.org/</b>
+            </div>
+          </div>
+          <img class="w-50 h-auto" src="assets/graphql-logo/graphql_logo_icon.png" style="height: 100px;" alt="json-logo-image">
+          <h6><b class="text-muted">A QUERY LANGUAGE FOR YOUR API</b></h6>
+            <div class="text-center mx-auto mt-4 w-75">
+              <p>GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.</p>
+              <span>Reference <span class="py-1 fs-5" style="color: #E10098;">https://graphql.org/</span></span>
+            </div>
+        </div>
+      </section>
+      <!-- End GraphQL LOGO Section -->
+
+      <!-- Start GraphQL Introduction Section -->
+      <section id="GraphQL-introduction" class="border border-dark rounded my-4">
+        <div class="m-4">
+          <h3 id="graphqlapi" style="font-family: 'Open Sans', 'Helvetica', 'Sans';">Introduction</h3>
+          <p>GraphQL is an open-source data query language for APIs and a runtime for executing those queries by using a type system you define for your data. It allows clients to request exactly the data they need. This query is a set of parameters used in a GraphQL API request. These parameters define how the API should respond and what data should be included.</p>
+          <h3 id="how-it-works" style="font-family: 'Open Sans', 'Helvetica', 'Sans';">Two key features of GraphQL:</h3>
+          <ul>
+            <li><b>Declarative Data Fetching</b>: GraphQL allows clients to request only the data they need and nothing more. Clients can specify the shape and structure of the response, reducing the over-fetching and under-fetching of data that often occurs in REST APIs.</li>
+            <li><b>Hierarchical Structure</b>: GraphQL queries have a hierarchical structure, mirroring the shape of the response data. Clients can request nested fields, and the server responds with a JSON object that matches the requested structure.</li>
+          </ul>
+          <h3 id="how-it-works" style="font-family: 'Open Sans', 'Helvetica', 'Sans';">How It Works:</h3>
+          <p class="m-0">In GraphQL, queries and mutations are two types of operations used to interact with the API:</p>
+          <ul>
+            <li><b>Query Operation</b>: A query in GraphQL is used to read or fetch data from the server. Clients can specify exactly what data they need, and the server will return only the requested data, no more and no less. Queries are similar to GET requests in REST APIs.</li>
+            <li><b>Mutation Operation</b>: A mutation in GraphQL is used to modify data on the server. Mutations are similar to POST, PUT, PATCH, or DELETE requests in REST APIs. Mutations can be used for creating, updating, or deleting records.</li>
+          </ul>
+          <p class="fs-4 m-0" style="font-family: 'Open Sans', 'Helvetica', 'Sans';">You'll see this both operations in detail below.</p>
+        </div>
+      </section>
+      <!-- End GraphQL Introduction Section -->
+
+      <!-- Start GraphQL Full Tab Section -->
+      <section id="graphql-tabs" class="rounded mb-4">
+
+        <div id="graphql-api-detailed" class="p-2 border border-dark rounded">
+        
+          <!-- Start GraphQL API Records Call Content -->
+          <div class="container" id="graphql-api-get-records-call">
+            <div class="d-flex my-2" style="border: 2px solid #001F3F;">
+        
+              <!-- Start GraphQL API Rercords Side Bar from here -->
+              <ul class="nav nav-tabs col-md-2 p-2 flex-column" style="background-color: #001F3F; border-bottom: unset;">
+                <!-- <h5 class="text-warning m-0"><b>Get Record's</b></h5> -->
+                <!-- 1. Overview (overview-graphql-content) -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#overview-graphql-api-get-records" class="nav-link rounded active" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Overview
+                  </a>
+                </li>
+                <!-- 2. Get Record's  -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-gr" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Get Record's
+                  </a>
+                </li>
+                <!-- 3. Get Single Record -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-gsr" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Get Single Record
+                  </a>
+                </li>
+                <!-- 4. Create Records -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-cr" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Create Records
+                  </a>
+                </li>
+                <!-- 5. Update Records -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-ur" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Update Records
+                  </a>
+                </li>
+                <!-- 6. Delete Records -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-dr" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Delete Records
+                  </a>
+                </li>
+                <!-- 7. Exports -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-export" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Export
+                  </a>
+                </li>
+                <!-- 8. GQL Method Execution -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-me" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Method Execution
+                  </a>
+                </li>
+                <!-- 9. GQL Search Read -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-sr" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Search Read
+                  </a>
+                </li>
+                <!-- 10. GQL Search -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-search" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Search
+                  </a>
+                </li>
+                <!-- 11. GQL Read -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-read" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Read
+                  </a>
+                </li>
+                <!-- 12. GQL Read Group -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-rg" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Read Group
+                  </a>
+                </li>
+                <!-- 13. GQL Search Count -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-sc" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Search Count
+                  </a>
+                </li>
+                <!-- 14. GQL Fields Get -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-fg" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Fields Get
+                  </a>
+                </li>
+                <!-- 15. GQL Access Rights -->
+                <li class="nav-item w-100 rounded my-1" style="background-color: lightcyan;">
+                  <a href="#graphql-ar" class="nav-link rounded" data-bs-toggle="tab"
+                    style="color: #001F3F; text-align: left; ">
+                    Access Rights
+                  </a>
+                </li>
+              </ul>
+              <!-- End GraphQL API Rercords Side Bar here -->
+        
+              <!-- Start GraphQL API Tab Content From Here -->
+              <div class="tab-content col-md-10"> <!-- h-100 -->
+        
+                <!-- 1. Start Overview (overview-graphql-content) Content -->
+                <div id="overview-graphql-api-get-records" class="tab-pane p-2 active">
+                  <h4 class="">GraphQL API Get Request Overview:</h4>
+                  <p>A GraphQL query is used to fetch specific data from a server, like retrieving records from Odoo. Instead of
+                    specifying an endpoint, you define the fields and data structure in the query, allowing precise control over
+                    the response. The server returns only the requested fields in JSON format or an error message.</p>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3"><span class="text-info">{domain[:port]}</span>/<span
+                        class="text-primary">{endpoint}</span>/<span class="text-muted">{model}</span>
+                    </div>
+                  </div>
+                  <ul class="text-break">
+                    <li>This is the main query parameters which is mandatory to write when you are working with APIs.</li>
+                    <li>Use "<b>HTTP Get Method</b>" to retrieve specific record from odoo.</li>
+                    <li><b>Domain</b> is specified your wesite's domain address. The port number is optional.</li>
+                    <li><b>Endpoint</b> is the specific path within the API that identifies the particular resource or action.
+                      This part of the URL tells the server what type of operation is being requested.</li>
+                    <li><b>Model</b> is Odoo's technical name of entities and also known as model name, record's model or
+                      entities. You can identify it from the URL shown below.</li>
+                    <img src="assets/domain_image/domain.png" alt="Domain Image" class="img-fluid">
+                    <li><b>Headers</b> in an API request are key-value pairs sent between the client and the server, providing
+                      additional information about the request or the client itself. They are part of the HTTP protocol and can
+                      carry various types of metadata.</li>
+                    <li>Add "<b>Content-Type</b>" and "<b>x-api-key</b>" keys with their specific values. GraphQL API's media
+                      type designation is "<b>application/json</b>". Add this in Content-Type's value field and also add your
+                      API Key.</li>
+                    <li><b>Variables</b> are defined separately from the query itself and are typically passed as a JSON object
+                      when executing the query. GraphQL supports passing variables in formats other than JSON, although JSON is
+                      the most common format used in practice.</li>
+                    <div class="text-center my-1">
+                      <img src="assets/graphql_images/graphql_header/graphql-header.png" alt="GraphQL API Query Headers"
+                        class="img-thumbnail border">
+                    </div>
+                  </ul>
+                </div>
+                <!-- End Overview (overview-graphql-content) Content -->
+        
+                <!-- 2. Start GraphQL Get Records Content -->
+                <div id="graphql-gr" class="tab-pane p-2">
+                  <h4 class="">Get Records:</h4>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/user-graphql-apikey</div>
+                  </div>
+                  <p>See the Example with Query, Variables & Output:</p>
+                  <div class="d-flex justify-content-center">
+                    <span class="text-info">Query</span>
+                  </div>
+                  <div class="row p-1 justify-content-center">
+                    <div class="col-md-12">
+                      <img src="assets/graphql_images/get_records/gql-gr-query.png" alt="GraphQL Query"
+                        class="img-thumbnail border">
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center mt-4">
+                    <span class="text-info">Output</span>
+                  </div>
+                  <div class="row p-1 justify-content-center">
+                    <div class="col-md-12">
+                      <img src="assets/graphql_images/get_records/gql-gr-op.png" alt="GraphQL Query Output"
+                        class="img-thumbnail border">
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">Query</span>:
+                  </div>
+                  <div class="tab-pane col-8">
+                    <pre class="bg-white p-2 border shadow-sm">
+query MyQuery($offset: Int, $limit: Int, $order: String, $domain: [[Any]]) {
+  ResPartner(
+    offset: $offset
+    limit: $limit
+    order: $order
+    domain: $domain
+  )
+  {
+    id
+    name
+    phone
+    email
+    is_company
+    country_id{
+      name
+      code
+    }
+    user_id{
+      name
+      active
+    }
+    company_id{
+      name
+    }
+  }
+}
+</pre>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">GraphQL Variables</span>:
+                  </div>
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+{
+  "offset": 0,
+  "limit": 6,
+  "order": "name,id desc",
+  "domain": [["is_company","=",true]]
+}
+</pre>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">GraphQL Variables Explanation:</span>:
+                    <ul class="text-break">
+                      <li><span class="fw-bold">offset: 0</span>: This sets the offset to 0, meaning that the query will start
+                        fetching records from the beginning.</li>
+                      <li><span class="fw-bold">limit: 6</span>: This sets the limit to 6, indicating that the query should
+                        return a maximum of 6 records.</li>
+                      <li><span class="fw-bold">order: "name,id decs"</span>: This means "order the data by name, and if names
+                        are the same, order them by id in descending order.</li>
+                      <li><span class="fw-bold">domain</span>: This means "filter the data to include only records where the
+                        'is_company' field is equal to true."</li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- End GraphQL Get Records Content -->
+        
+                <!-- 3. Start GraphQL Get Single Record Content -->
+                <div id="graphql-gsr" class="tab-pane p-2">
+                  <h4 class="">Get Single Record:</h4>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/user-graphql-apikey</div>
+                  </div>
+                  <p>See the Example with Query & Output:</p>
+                  <div class="d-flex justify-content-center">
+                    <span class="text-info">Query</span>
+                  </div>
+                  <div class="row p-1">
+                    <div class="col-md-12 text-center">
+                      <img src="assets/graphql_images/get_single_records/gql-gsr-query.png" alt="GraphQL Query"
+                        class="img-thumbnail border">
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center mt-4">
+                    <span class="text-info">Output</span>
+                  </div>
+                  <div class="row p-1">
+                    <div class="col-md-12 text-center">
+                      <img src="assets/graphql_images/get_single_records/gql-gsr-op.png" alt="GraphQL Query Output"
+                        class="img-thumbnail border">
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">Query</span>:
+                  </div>
+                  <div class="tab-pane col-8">
+                    <pre class="bg-white p-2 border shadow-sm">
+query MyQuery($offset: Int, $limit: Int, $order: String, $domain: [[Any]]) {
+  ResPartner(
+    offset: $offset
+    limit: $limit
+    order: $order
+    domain: $domain
+  )
+  {
+    id
+    name
+    phone
+    email
+    is_company
+    country_id{
+      name
+      code
+    }
+    user_id{
+      name
+      active
+    }
+    company_id{
+      name
+    }
+  }
+}
+</pre>
+                  </div>
+                </div>
+                <!-- End GraphQL Get Single Record Content -->
+        
+                <!-- 4. Start GraphQL Create Record Content -->
+                <div id="graphql-cr" class="tab-pane p-2">
+                  <h4 class="">Create Record:</h4>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/user-graphql-apikey</div>
+                  </div>
+                  <p class="mt-3"><span class="fw-bold">Mutation Create</span>: A mutation in GraphQL is a type of request used
+                    to modify data on the server. It's often used to perform operations such as creating, updating, or deleting
+                    data. Unlike queries, which are used for fetching data, mutations are used for making modifications to the
+                    data.</p>
+                  <p>See the Example with Query & Output:</p>
+                  <div class="d-flex justify-content-center">
+                    <span class="text-info">Query</span>
+                  </div>
+                  <div class="row p-1">
+                    <div class="col-md-6">
+                      <img src="assets/graphql_images/create_records/gql-cr-query.png" alt="GraphQL Query"
+                        class="img-thumbnail border">
+                    </div>
+                    <div class="col-md-6">
+                      <img src="assets/graphql_images/create_records/gql-cr-query2.png" alt="GraphQL Query"
+                        class="img-thumbnail border">
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center mt-4">
+                    <span class="text-info">Output</span>
+                  </div>
+                  <div class="row p-1">
+                    <div class="col-md-12 text-center">
+                      <img src="assets/graphql_images/create_records/gql-cr-op.png" alt="GraphQL Query Output"
+                        class="img-thumbnail border">
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">Query</span>:
+                  </div>
+                  <div class="tab-pane col-8">
+                    <pre class="bg-white p-2 border shadow-sm">
+mutation Create {
+  createResPartner: ResPartner(
+      ResPartnerValues: {
+          active: true,
+          name: "Ekika Corporation New",
+          category_id: [4, 3]
+          company_type: "company",
+          bank_ids: [
+        [0, 0, {
+          sequence: 10,
+          bank_id: 2,
+          acc_number: "11212121212",
+          allow_out_payment: true,
+          acc_holder_name: false
+        }],
+        [0, 0, {
+          sequence: 11,
+          bank_id: 3,
+          acc_number: "3434343434343434",
+          allow_out_payment: true,
+          acc_holder_name: false
+        }]
+      ]
+          city: "Gandhinagar",
+          street: "Gandhinagar",
+          street2: "",
+          zip: "382421",
+          comment: "&lt;p&gt;Comment Here&lt;/p&gt;",
+          phone: "5554444555444",
+          mobile: "1010101",
+          website: "http://www.ekika.co",
+          email: "hello@ekika.co",
+      }
+  )
+  {
+      active
+      category_id
+      bank_ids
+      city
+      comment
+      company_type
+      id
+      name
+      phone
+      mobile
+      email
+      street
+      zip
+  }
+}
+</pre>
+                  </div>
+                </div>
+                <!-- End GraphQL Get Single Record Content -->
+        
+                <!-- 5. Start GraphQL Update Records Content -->
+                <div id="graphql-ur" class="tab-pane p-2">
+                  <h4 class="">Update Records:</h4>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/user-graphql-apikey</div>
+                  </div>
+                  <p>See the Example with Query & Output:</p>
+                  <div class="d-flex justify-content-center">
+                    <span class="text-info">Query</span>
+                  </div>
+                  <div class="row p-1">
+                    <div class="col-md-12 text-center">
+                      <img src="assets/graphql_images/update_records/gql-ur-query.png" alt="GraphQL Query"
+                        class="img-thumbnail border">
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center mt-4">
+                    <span class="text-info">Output</span>
+                  </div>
+                  <div class="row p-1">
+                    <div class="col-md-12 text-center">
+                      <img src="assets/graphql_images/update_records/gql-ur-op.png" alt="GraphQL Query Output"
+                        class="img-thumbnail border">
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">Query</span>:
+                  </div>
+                  <div class="tab-pane col-8">
+                    <pre class="bg-white p-2 border shadow-sm">
+query MyQuery($offset: Int, $limit: Int, $order: String, $domain: [[Any]]) {
+  ResPartner(
+    offset: $offset
+    limit: $limit
+    order: $order
+    domain: $domain
+  )
+  {
+    id
+    name
+    phone
+    email
+    is_company
+    country_id{
+      name
+      code
+    }
+    user_id{
+      name
+      active
+    }
+    company_id{
+      name
+    }
+  }
+}
+</pre>
+                  </div>
+                </div>
+                <!-- End GraphQL Update Records Content -->
+        
+                <!-- 6. Start GraphQL Delete Records Content -->
+                <div id="graphql-dr" class="tab-pane p-2">
+                  <h4 class="">Delete Records:</h4>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/user-graphql-apikey</div>
+                  </div>
+                  <p>See the Example with Query & Output:</p>
+                  <div class="d-flex justify-content-center">
+                    <span class="text-info">Query</span>
+                  </div>
+                  <div class="row p-1">
+                    <div class="col-md-12 text-center">
+                      <img src="assets/graphql_images/delete_records/gql-dr-query.png" alt="GraphQL Query"
+                        class="img-thumbnail border">
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center mt-4">
+                    <span class="text-info">Output</span>
+                  </div>
+                  <div class="row p-1">
+                    <div class="col-md-12 text-center">
+                      <img src="assets/graphql_images/delete_records/gql-dl-op.png" alt="GraphQL Query Output"
+                        class="img-thumbnail border">
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">Query</span>:
+                  </div>
+                  <div class="tab-pane col-8">
+                    <pre class="bg-white p-2 border shadow-sm">
+mutation Delete {
+  deleteResPartner: ResPartner(
+      id: 50, 
+  )
+}
+        </pre>
+                  </div>
+                </div>
+                <!-- End GraphQL Update Records Content -->
+        
+                <!-- 7. Start Get Records Export Content -->
+                <div id="graphql-export" class="tab-pane p-2">
+                  <h4>Export:</h4>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/demotest-graphql</div>
+                  </div>
+                  <!-- <ul>
+                              <li>The endpoint<span class="fw-bold">/export</span> exports data by returning an Excel file encoded in base64, following Odoo's standard export format
+                              </li>
+                            </ul> -->
+                  <p>See the Example with Query & Output:</p>
+                  <p><b>Example</b>: This GraphQL API query enables users to retrieve Excel export data from the server.</p>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-center mt-2">
+                      <span class="text-info">Query</span>
+                    </div>
+                    <div class="col-md-12 mt-2">
+                      <img src="assets/graphql_images/export_records/gql-export-query.png" alt="Ekika GraphQL API Exports Query"
+                        class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="row p-1 justify-content-center">
+                    <div class="col-md-6 mt-2">
+                      <img src="assets/graphql_images/export_records/gql-export-variables.png"
+                        alt="Ekika GraphQL API Exports Query" class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-center mt-2">
+                      <span class="text-info">Output</span>
+                    </div>
+                    <div class="col-md-12 mt-2">
+                      <img src="assets/graphql_images/export_records/gql-export-op.png"
+                        alt="Ekika GraphQL API Exports Query Output" class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <span class="fw-bold">Query</span>:
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+query ExportQuery {
+  ExportData(
+      values: $export_data
+  )
+}
+        </pre>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">GraphQL Variables</span>:
+                  </div>
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+{
+  "export_data":{
+  "import_compat": false,
+  "context": {
+    "lang": "en_US",
+    "tz": "Asia/Calcutta",
+    "uid": 2,
+    "allowed_company_ids": [
+      1
+    ]
+  },
+  "domain": [
+    [
+      "user_id",
+      "=",
+      2
+    ]
+  ],
+  "fields": [
+    {
+      "name": "name",
+      "label": "Order Reference",
+      "type": "char"
+    },
+    {
+      "name": "display_name",
+      "label": "Display Name",
+      "type": "char"
+    },
+    {
+      "name": "activity_ids",
+      "label": "Activities",
+      "type": "one2many"
+    },
+    {
+      "name": "create_date",
+      "label": "Creation Date",
+      "type": "datetime"
+    },
+    {
+      "name": "partner_id",
+      "label": "Customer",
+      "type": "many2one"
+    },
+    {
+      "name": "user_id",
+      "label": "Salesperson",
+      "type": "many2one"
+    },
+    {
+      "name": "user_id/name",
+      "label": "Salesperson/Name",
+      "type": "char"
+    },
+    {
+      "name": "state",
+      "label": "Status",
+      "type": "selection"
+    },
+    {
+      "name": "amount_total",
+      "label": "Total",
+      "type": "monetary"
+    }
+  ],
+  "groupby": [],
+  "ids": [
+    7,
+    6
+  ],
+  "model": "sale.order"
+  }
+}
+        </pre>
+                  </div>
+                </div>
+                <!-- End Get Records Exports Content -->
+        
+                <!-- 8. Start GQL Method Execution Content -->
+                <div id="graphql-me" class="tab-pane p-2">
+                  <h4>Method Execution:</h4>
+                  <p>In GraphQL, method execution refers to calling a predefined function or method on the server to perform a
+                    specific action. This is commonly done using mutations in GraphQL, which are designed to execute actions,
+                    such as updating, creating, or deleting data.</p>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/demotest-graphql</div>
+                  </div>
+                  <!-- <ul>
+                              <li>The endpoint<span class="fw-bold">/export</span> exports data by returning an Excel file encoded in base64, following Odoo's standard export format
+                              </li>
+                            </ul> -->
+                  <p>See the Example with Query & Output:</p>
+                  <p><b>Example</b>: This GraphQL API query executes the action_draft method, and change the quotation from
+                    draft state to quotation state.</p>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-around mt-2">
+                      <span class="text-info">Query</span>
+                      <span class="text-info">Output</span>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                      <img src="assets/graphql_images/method_execution/gql-me-query.png"
+                        alt="GraphQL API Method Execution Query" class="img-thumbnail border" />
+                    </div>
+                    <div class="col-md-6 mt-2">
+                      <img src="assets/graphql_images/method_execution/gqp-me-op.png"
+                        alt="GraphQL API Method Execution Query Output" class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-center mt-2">
+                      <span class="text-info">Before, the quotation is on Draft State.</span>
+                    </div>
+                    <div class="col-md-12 mt-2">
+                      <img src="assets/graphql_images/method_execution/quotation.png"
+                        alt="GraphQL API Draft State Method Execution" class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-center mt-2">
+                      <span class="text-info">After, the quotation is on Quotation State.</span>
+                    </div>
+                    <div class="col-md-12 mt-2">
+                      <img src="assets/graphql_images/method_execution/gql-quotation-op.png"
+                        alt="GraphQL API Quotation State Method Execution" class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <span class="fw-bold mt03">Query</span>:
+                  </div>
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+mutation Method {
+    methodSaleOrder: SaleOrder(
+        id: 6, 
+        method_name: "action_draft",
+        method_parameters: {}
+    ){
+    id
+  }
+}
+        </pre>
+                  </div>
+                </div>
+                <!-- End GQL Method Execution Content -->
+
+                <!-- 9. Start GQL Method Execution Search Read Content -->
+                <div id="graphql-sr" class="tab-pane p-2">
+                  <h4>Search Read:</h4>
+                  <p>In GraphQL, search_read is used to retrieve records by combining search and read operations in one method execution. search_read is purely for reading data and can be customized to return targeted information based on the request.</p>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/demotest-graphql</div>
+                  </div>
+                  <p>See the Example with Query & Output:</p>
+                  <p><b>Example</b>: This GraphQL API query executes the search_read method, to retrieve the fields like id, name etc, from the res.partner model.</p>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-around mt-2">
+                      <span class="text-info">Query</span>
+                      <span class="text-info">Output</span>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                      <img src="assets/graphql_images/method_execution/search_read/method_execution_search_read_query.png"
+                        alt="Method Execution Search Read Method Query" class="img-thumbnail border" />
+                    </div>
+                    <div class="col-md-6 mt-2">
+                      <img src="assets/graphql_images/method_execution/search_read/method_execution_search_read_query_op.png"
+                        alt="Method Execution Search Read Method Query Output" class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <span class="fw-bold mt03">Query</span>:
+                  </div>
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+mutation Method {
+  methodResPartner: ResPartner(
+      method_name: "search_read",
+      method_parameters: {
+          domain:[["is_company", "=", true]]
+          fields: ["id", "name", "email", "is_company"]
+          limit: 4
+      }
+  )
+}
+</pre>
+                  </div>
+                </div>
+
+                <!-- 10. Start GQL Method Execution Search Content -->
+                <div id="graphql-search" class="tab-pane p-2">
+                  <h4>Search:</h4>
+                  <p>In GraphQL, the search operation is used to locate specific records in a dataset by applying filters or criteria to narrow down the results. In Odoo, search queries can retrieve lists of record IDs that match defined conditions, allowing users to identify records that meet particular parameters without loading full record details.</p>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/demotest-graphql</div>
+                  </div>
+                  <p>See the Example with Query & Output:</p>
+                  <p><b>Example</b>: This GraphQL API query executes the search method, to retrieve the record of companies using is_company = true parameter from the res.partner model.</p>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-around mt-2">
+                      <span class="text-info">Query</span>
+                      <span class="text-info">Output</span>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                      <img src="assets/graphql_images/method_execution/search/method_execution_search_query.png"
+                        alt="Method Execution Search Method Query" class="img-thumbnail border" />
+                    </div>
+                    <div class="col-md-6 mt-2">
+                      <img src="assets/graphql_images/method_execution/search/method_execution_search_query_op.png"
+                        alt="Method Execution Search Method Query Output" class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <span class="fw-bold mt03">Query</span>:
+                  </div>
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+mutation Method {
+  methodResPartner: ResPartner(
+      method_name: "search",
+      method_parameters: {
+          domain:[["is_company", "=", true]]
+          limit: 5
+      }
+  )
+}
+</pre>
+                  </div>
+                </div>
+
+                <!-- 11. Start GQL Method Execution Read Content -->
+                <div id="graphql-read" class="tab-pane p-2">
+                  <h4>Read:</h4>
+                  <p>In GraphQL, the read operation retrieves detailed information directly from specific records in the database based on given record IDs. In Odoo, read is used to obtain precise data for requested fields, providing in-depth details about each record without additional search or filtering.</p>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/demotest-graphql</div>
+                  </div>
+                  <p>See the Example with Query & Output:</p>
+                  <p><b>Example</b>: This GraphQL API query read the specified record fields using id.</p>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-center mt-2">
+                      <span class="text-info">Query</span>
+                    </div>
+                    <div class="col-md-12 mt-2 text-center">
+                      <img src="assets/graphql_images/method_execution/read/method_execution_read.png" alt="Method Execution Read Method"
+                        class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">Query</span>:
+                  </div>
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+mutation Method {
+  methodResPartner: ResPartner(
+      id: 10
+      method_name: "read",
+      method_parameters: {
+          fields: ["name", "email", "is_company", "country_id"]
+      }
+  )
+}
+</pre>
+                  </div>
+                </div>
+
+                <!-- 12. Start GQL Method Execution Read Group Content -->
+                <div id="graphql-rg" class="tab-pane p-2">
+                  <h4>Read Group:</h4>
+                  <p>In GraphQL, the read_group operation is used to aggregate and group data records based on specified fields. In Odoo, read_group allows you to retrieve summarized data, such as counts, sums, or averages, grouped by particular fields or categories.</p>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/demotest-graphql</div>
+                  </div>
+                  <p>See the Example with Query & Output:</p>
+                  <p><b>Example</b>: This GraphQL API query executes the read_group method, to retrieve specified fileds and group them using groupby country_id.</p>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-around mt-2">
+                      <span class="text-info">Query</span>
+                      <span class="text-info">Output</span>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                      <img src="assets/graphql_images/method_execution/read_group/method_execution_read_group_query.png"
+                        alt="Method Execution Read Group Query" class="img-thumbnail border" />
+                    </div>
+                    <div class="col-md-6 mt-2">
+                      <img src="assets/graphql_images/method_execution/read_group/method_execution_read_group_query_op.png"
+                        alt="Method Execution Read Group Query Output" class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <span class="fw-bold mt03">Query</span>:
+                  </div>
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+mutation Method {
+  methodResPartner: ResPartner(
+      method_name: "read_group",
+      method_parameters: {
+          domain: [["is_company", "=", false]],
+          fields: ["name", "country_id", "comment", "is_company"],
+          groupby: country_id
+    },
+      
+  )
+}
+</pre>
+                  </div>
+                </div>
+
+                <!-- 13. Start GQL Method Execution Search Count Content -->
+                <div id="graphql-sc" class="tab-pane p-2">
+                  <h4>Search Count:</h4>
+                  <p>In GraphQL, the search_count operation is used to quickly determine the number of records that match specific search criteria without retrieving the actual data. In Odoo, search_count allows you to count the total number of records that meet certain conditions, providing an efficient way to assess the size of a dataset.</p>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/demotest-graphql</div>
+                  </div>
+                  <p>See the Example with Query & Output:</p>
+                  <p><b>Example</b>: This GraphQL API query give count of the records where the parameter is_company = true.</p>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-center mt-2">
+                      <span class="text-info">Query</span>
+                    </div>
+                    <div class="col-md-12 mt-2 text-center">
+                      <img src="assets/graphql_images/method_execution/search_count/method_execution_search_count.png" alt="Method Execution Search Count Method"
+                        class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">Query</span>:
+                  </div>
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+mutation Method {
+    methodResPartner: ResPartner(
+        method_name: "search_count",
+        method_parameters: {
+            domain:[["is_company", "=", true]]
+        }
+    )
+}
+</pre>
+                  </div>
+                </div>
+
+                <!-- 14. Start GQL Method Execution Fields Get Content -->
+                <div id="graphql-fg" class="tab-pane p-2">
+                  <h4>Fields Get:</h4>
+                  <p>In GraphQL, the fields_get operation is used to retrieve metadata about the fields available in a specific model, including details like field names, types, and possible selection options. In Odoo, fields_get provides information about the structure and configuration of the fields in a model, allowing users to understand the data schema.</p>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/demotest-graphql</div>
+                  </div>
+                  <p>See the Example with Query & Output:</p>
+                  <p><b>Example</b>: This GraphQL API query shows the list of fields in res.partner model.</p>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-center mt-2">
+                      <span class="text-info">Query</span>
+                    </div>
+                    <div class="col-md-12 mt-2 text-center">
+                      <img src="assets/graphql_images/method_execution/fields_get/method_execution_fields_get.png" alt="Method Execution Fileds Get Method"
+                        class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">Query</span>:
+                  </div>
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+mutation Method {
+  methodAccessRights: ResPartner(
+    method_name: "fields_get",
+    method_parameters: {
+        attributes: ["type", "string"]
+    },
+  )
+}
+</pre>
+                  </div>
+                </div>
+
+                <!-- 15. Start GQL Method Execution Check Access Rights Content -->
+                <div id="graphql-ar" class="tab-pane p-2">
+                  <h4>Check Access Rights:</h4>
+                  <p>In GraphQL, the check_access_rights operation is used to verify whether a user has the necessary permissions to access or perform actions on a specific resource. In Odoo, check_access_rights is used to validate whether the current user has the appropriate rights to read, write, or modify records in a given model.</p>
+                  <div class="d-flex align-items-center border shadow-sm bg-white p-2 fs-5 my-1 mb-2"
+                    style="border-radius: 100px;"><b class="px-3" style="color: #AD7A03;">POST</b>
+                    <div class="vr text-dark"></div>
+                    <div class="d-flex flex-wrap fs-5 p-1 px-3">https://api.17.dev.ekika.co/demotest-graphql</div>
+                  </div>
+                  <p>See the Example with Query & Output:</p>
+                  <p><b>Example</b>: This GraphQL API query shows the access rights, if the user have the rights to access the res.partner model.</p>
+                  <div class="row p-1">
+                    <div class="d-flex justify-content-center mt-2">
+                      <span class="text-info">Query</span>
+                    </div>
+                    <div class="col-md-12 mt-2 text-center">
+                      <img src="assets/graphql_images/method_execution/check_access_rights/method_execution_check_access_rights.png" alt="Method Execution Check Access Rights Method"
+                        class="img-thumbnail border" />
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <span class="fw-bold">Query</span>:
+                  </div>
+                  <div class="tab-pane col-6">
+                    <pre class="bg-white p-2 border shadow-sm">
+mutation Method {
+  methodAccessRights: ResPartner(
+    method_name: "check_access_rights",
+    method_parameters: {
+        operation: "read",
+    },
+  )
+}
+</pre>
+                  </div>
+                </div>
+
+        
+              </div>
+              <!-- End GraphQL API Tab Content here -->
+        
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+</section>
+
+<!-- Our Other Apps -->
+<section id="crousel-other-apps" class="rounded">
+  <div class="oe_screenshot border rounded shadow p-5 text-white" style="background-color: #001F3F;">
+    <a href="https://apps.odoo.com/apps/modules/browse?series=14.0&search=Ekika" target="_blank">
+      <div class="col-md-12 col-sm-12 mt32" style="padding:8px; font-size:18px; line-height:initial">
+          <h4 class="oe_slogan mt0 align-items-center m-0 fs-3 text-white"><b>Our Other Apps</b></h4>
+      </div>
+    </a>
+    <div id="demo" class="row carousel slide mt32 mb32">
+      <div id="apps-card">
+        <div class="row justify-content-center" style="justify-content: center;">
+          <div class="col-md-4 p-2">
+            <a href="https://apps.odoo.com/apps/modules/14.0/api_framework" target="_blank">
+              <div style="border-radius:10px">
+                <img class="img img-responsive w-100 center-block" style="border-radius:10px; border: 2px solid white;"
+                  alt="Odoo API Framework v15" src="assets/other-apps/api_framework.png">
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 p-2">
+            <a href="https://apps.odoo.com/apps/modules/14.0/api_cors_config" target="_blank">
+              <div style="border-radius:10px">
+                <img class="img img-responsive w-100 center-block" style="border-radius:10px; border: 2px solid white;"
+                  alt="API CORS Config" src="assets/other-apps/api_cors_config.png">
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 p-2">
+            <a href="https://apps.odoo.com/apps/modules/14.0/api_framework_base" target="_blank">
+              <div style="border-radius:10px">
+                <img class="img img-responsive w-100 center-block" style="border-radius:10px; border: 2px solid white;"
+                  alt="Odoo API Base" src="assets/other-apps/api_framework_base.png">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Services -->
+<section id="services-ekika-provides">
+  <div style="background-color:#fff9e5" class="container text-center my-5 p-4 shadow rounded border"> 
+    <h2 class="my-4" style="color:#001F3F">Services EKIKA Provides</h2>
+    <!-- <h6 style="color:#001F3F; letter-spacing:2px">FEATURES</h6> -->
+    <div class="w-100 d-flex align-items-center flex-column">
+      <p class="w-75">EKIKA is your destination for expert Odoo ERP implementation and customization. We pride ourselves on building reliable, trust-based partnerships that give you full transparency and control over your business processes.</p>
+      <p class="w-75">With over 12 years of experience, we can assist you with eCommerce platforms, production planning, point-of-sale systems, managing inventory adjustments, and providing advanced field worker tracking solutions to optimize your workflows and boost operational efficiency.</p>
+    </div>
+
+    <div class="row">
+      <!-- Implementation Card -->
+      <div class="col-md-4 mb-4">
+        <div style="border-bottom:5px solid #ffa500;" class="card h-100 rounded-3 shadow">
+          <div class="card-body">
+            <img src="assets/our-services/implementation.png" alt="Ekika Odoo Implementation" class="img-fluid mb-3" style="max-width:120px; height:auto">
+            <h3 class="card-title" style="color:#001f3f">Implementation</h3>
+            <p class="card-text fs-5" style="color:#757575">Utilise Odoo ERP tailored for your business needs for smooth operations.</p>
+          </div>
+          <div class="card-footer" style="background-color: #ffffff; border: none;">
+            <a href="skype:amshukla17?chat" class="btn btn-success rounded py-2 px-4" style="background-color: #001f3f;">Contact Us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customization Card -->
+      <div class="col-md-4 mb-4">
+        <div style="border-top:5px solid #ffa500;" class="card h-100 rounded-3 shadow">
+          <div class="card-body">
+            <img src="assets/our-services/customization.png" alt="Ekika Odoo Customization" class="img-fluid mb-3" style="max-width:180px; height:auto">
+            <h3 class="card-title" style="color:#001f3f">Customization</h3>
+            <p class="card-text fs-5" style="color:#757575">Personalized adjustments to Odoo modules for seamless management.</p>
+          </div>
+          <div class="card-footer" style="background-color: #ffffff; border: none;">
+            <a href="skype:amshukla17?chat" class="btn btn-success rounded py-2 px-4" style="background-color: #001f3f;">Contact Us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Support Card -->
+      <div class="col-md-4 mb-4">
+        <div style="border-bottom:5px solid #ffa500;" class="card h-100 rounded-3 shadow">
+          <div class="card-body">
+            <img src="assets/our-services/support.png" alt="Ekika Odoo Support" class="img-fluid mb-3" style="max-width:120px; height:auto">
+            <h3 class="card-title" style="color:#001f3f">Support</h3>
+            <p class="card-text fs-5" style="color:#757575">Ongoing assistance and maintenance to optimize your Odoo system's performance.</p>
+          </div>
+          <div class="card-footer" style="background-color: #ffffff; border: none;">
+            <a href="skype:amshukla17?chat" class="btn btn-success rounded py-2 px-4" style="background-color: #001f3f;">Contact Us</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-100 d-flex align-items-center flex-column">
+        <p class="w-75">Are you struggling with disorganized operations, high operational costs, or lack of transparency in your processes? What sets us apart is our commitment to personalized solutions tailored to your unique business needs and our proactive support, ensuring seamless integration and ongoing success.</p>
+        <p class="w-75">Would you like to explore Odoo ERP for your business? Schedule a free consultation with EKIKA today!</p>
+        <div class="my-3 rounded bg-dark" style="border:none; background: silver;">
+          <a href="mailto:hello@ekika.co" class="btn btn-outline-success rounded py-3 px-5 fs-5"><span class="fa fa-envelope" style="font-size:30px;"></span><span class="align-middle px-4">Email</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="quotation_th_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย</field>
+           <field name="model">quotation.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_quotation_order.hdc_quotation_th_dis_report</field>
+           <field name="report_file">hdc_quotation_order.hdc_quotation_th_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_quotation_order.paperformat_report_quotation_th_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="quotation_d_th_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย</field>
+           <field name="model">quotation.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_quotation_order.hdc_quotation_d_th_dis_report</field>
+           <field name="report_file">hdc_quotation_order.hdc_quotation_d_th_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_quotation_order.paperformat_report_quotation_th_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="quotation_th_no_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย</field>
+           <field name="model">quotation.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_quotation_order.hdc_quotation_th_no_dis_report</field>
+           <field name="report_file">hdc_quotation_order.hdc_quotation_th_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_quotation_order.paperformat_report_quotation_th_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="quotation_d_th_no_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย</field>
+           <field name="model">quotation.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_quotation_order.hdc_quotation_d_th_no_dis_report</field>
+           <field name="report_file">hdc_quotation_order.hdc_quotation_d_th_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_quotation_order.paperformat_report_quotation_th_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <!-- Quotation EN -->
+
+        <record id="quotation_en_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย EN</field>
+           <field name="model">quotation.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_quotation_order.hdc_quotation_en_dis_report</field>
+           <field name="report_file">hdc_quotation_order.hdc_quotation_en_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_quotation_order.paperformat_report_quotation_en_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="quotation_en_no_dis_report_view" model="ir.actions.report">
+           <field name="name">ใบเสนอขาย EN</field>
+           <field name="model">quotation.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Q/%s " %(object.name)</field>
+           <field name="report_name">hdc_quotation_order.hdc_quotation_en_no_dis_report</field>
+           <field name="report_file">hdc_quotation_order.hdc_quotation_en_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_quotation_order.paperformat_report_quotation_en_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <!-- #Proforma INVOICE EN -->
+
+        <record id="proforma_en_dis_report_view" model="ir.actions.report">
+           <field name="name">PROFORMA QO EN DIS</field>
+           <field name="model">quotation.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"PROFORMA QO/%s " %(object.name)</field>
+           <field name="report_name">hdc_quotation_order.hdc_proforma_en_dis_report</field>
+           <field name="report_file">hdc_quotation_order.hdc_proforma_en_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_quotation_order.paperformat_report_qo_proforma_en_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="proforma_en_no_dis_report_view" model="ir.actions.report">
+           <field name="name">PROFORMA QO EN NO DIS</field>
+           <field name="model">quotation.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"PROFORMA QO/%s " %(object.name)</field>
+           <field name="report_name">hdc_quotation_order.hdc_proforma_en_no_dis_report</field>
+           <field name="report_file">hdc_quotation_order.hdc_proforma_en_no_dis_report</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_quotation_order.paperformat_report_qo_proforma_en_no_dis"/>
+           <field name="binding_type">report</field>
+        </record>
+
+
+        <record id="quotation_project_bo_view" model="ir.actions.report">
+           <field name="name">Quotation Project (Bo)</field>
+           <field name="model">quotation.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Quotation Project (Bo)"</field>
+           <field name="report_name">hdc_quotation_order.hdc_quotation_project_bo</field>
+           <field name="report_file">hdc_quotation_order.hdc_quotation_project_bo</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_quotation_order.paperformat_report_quotation_project_bo"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <record id="quotation_project_depart_view" model="ir.actions.report">
+           <field name="name">Quotation Project (Department)</field>
+           <field name="model">quotation.order</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"Quotation Project (Department)"</field>
+           <field name="report_name">hdc_quotation_order.hdc_quotation_project_depart</field>
+           <field name="report_file">hdc_quotation_order.hdc_quotation_project_depart</field>
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_quotation_order.paperformat_report_quotation_project_bo"/>
+           <field name="binding_type">report</field>
+        </record>
+
+        <report
+            id="quotation_project_bo_xlsx"
+            model="wizard.quotation.bo"
+            string="Quotation Project Bo Report"
+            report_type="xlsx"
+            name="quotation_project_bo_xlsx"
+            file="Excel Quotation Project Bo"
+            attachment_use="False"
+        />
+
+        <report
+            id="quotation_project_department_xlsx"
+            model="wizard.quotation.department"
+            string="Quotation Project Department Report"
+            report_type="xlsx"
+            name="quotation_project_department_xlsx"
+            file="Excel Quotation Project Department"
+            attachment_use="False"
+        />
+    </data>
+
+    <template id="report_logo_style">
+      <!-- เช็คชื่อบริษัทและกำหนดค่า logo_style -->
+      <t t-if="company.name in ['Colt Plus (Thailand) Co.,Ltd.', 
+                                 'Siam Modern Home Co.,Ltd.', 
+                                 'Siam Techno Industry Co., Ltd.']">
+         <t t-set="logo_style">margin-top:30px;</t>
+      </t>
+      <t t-elif="company.name == 'Saeng Charoen Patana Enterprise Co., Ltd.'">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+      <t t-else="">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+
+      <img t-if="company.logo"
+            t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')"
+            class="pull-left img-logo"
+            t-attf-style="{{ logo_style }}; max-height: 140px; max-width: 140px;" />
+   </template>
+</odoo>

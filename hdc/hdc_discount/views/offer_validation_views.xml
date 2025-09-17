@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="offer_validation_view_search" model="ir.ui.view">
+        <field name="name">offer.validation.view.search</field>
+        <field name="model">offer.validation</field>
+        <field name="arch" type="xml">
+                <search string="Search Opportunities">
+                    <field name="name"/>
+                    <field name="weeks"/>
+                    <field name="months"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+    <record id="offer_validation_view_tree" model="ir.ui.view">
+        <field name="name">offer.validation.tree</field>
+        <field name="model">offer.validation</field>
+        <field name="arch" type="xml">
+            <tree string="Channel" editable="bottom">
+                <field name="name"/>
+                <field name="weeks"/>
+                <field name="months"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Configuration/Lead & Opportunities/won Reasons Menu -->
+    <record id="offer_validation_action" model="ir.actions.act_window">
+        <field name="name">Offer Validation</field>
+        <field name="res_model">offer.validation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Offer Validation
+          </p>
+        </field>
+    </record>
+
+    <!-- <menuitem
+        name="Offer Validation"
+        id="menu_offer_validation"
+        action="offer_validation_action"
+        parent="sale.prod_config_main"
+    /> -->
+    <!-- <menuitem id="menu_offer_validation" name="Win Reasons" parent="crm.menu_crm_config_lead" action="offer_validation_action" sequence="7"/> -->
+
+</odoo>

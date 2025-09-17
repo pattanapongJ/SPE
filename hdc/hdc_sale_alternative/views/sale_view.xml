@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_inherit_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_quotation_send']" position="after">
+                 <button name="check_low_stock" string="Check Product" attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
+                            type="object" class="oe_highlight" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_alter_native_product" model="ir.ui.view">
+        <field name="name">alternative.product.wizard</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_subtotal']"
+                position="after"
+            >
+                <field name="product_original_id" invisible="1"/>
+                <button
+                    name="open_alternative_product_wizard"
+                    type="object"
+                    string="Alternative Product"
+                    icon="fa-book"
+                    attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
+                />
+
+            </xpath>
+
+
+        </field>
+    </record>
+
+</odoo>

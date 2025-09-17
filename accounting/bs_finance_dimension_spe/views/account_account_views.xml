@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <odoo>
+      
+    <!-- View account.account form -->
+    <record id="view_account_account_form_inherit" model="ir.ui.view">
+      <field name="name">view.account.account.form.inherit</field>
+      <field name="model">account.account</field>
+      <field name="inherit_id" ref="bs_finance_dimension.view_account_account_form_inherit"/>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='need_finance_dimension_3']" position="after">
+            <field name="need_finance_dimension_4" widget="boolean_toggle"/>
+            <field name="need_finance_dimension_5" widget="boolean_toggle"/>
+            <field name="need_finance_dimension_6" widget="boolean_toggle"/>
+            <field name="need_finance_dimension_7" widget="boolean_toggle"/>
+            <field name="need_finance_dimension_8" widget="boolean_toggle"/>
+            <field name="need_finance_dimension_9" widget="boolean_toggle"/>
+            <field name="need_finance_dimension_10" widget="boolean_toggle"/>
+
+          </xpath>
+      </field>
+  </record>
+
+  </odoo>

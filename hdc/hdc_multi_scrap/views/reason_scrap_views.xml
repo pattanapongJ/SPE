@@ -1,0 +1,25 @@
+<odoo>
+    <record id="reason_scrap_tree_view" model="ir.ui.view">
+        <field name="name">reason.scrap.tree</field>
+        <field name="model">reason.scrap</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_reason_scrap">
+        <field name="name">Reason Scrap</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">reason.scrap</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+        id="menu_reason_scrap"
+        name="Reason Scrap"
+        parent="stock.menu_stock_config_settings"
+        action="action_reason_scrap"
+        sequence="151"/>
+</odoo>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="voucher_preprint_report_document">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <div class="header" style="font-family: 'KanitLight'; border: 1px solid white;">
+            <div class="header-top" style="margin-top: 40px; padding-bottom: 10px; height: 82px;">
+                <div class="d-flex justify-content-end" style="font-size:12px; position: absolute;top: 92px;right: 16px;">
+                    <span>Page </span><span class="page"/>
+                </div>
+            </div>
+                
+            
+            <div class="header-bottom d-flex" style="font-size:12px; margin-top: 10px;">
+
+                <div style="padding-left: 80px;">
+                    <div class="d-flex">
+                        <!-- [1] -->
+                        <span style="margin-right: 5px;">
+                          <span t-field="doc.partner_id.ref"/>
+                        </span>
+                        <!-- [2] -->
+                        <span t-field="doc.partner_id.name"/>
+                    </div>
+                        
+                   
+                    <div>
+                        <div class="d-flex">
+                          <span t-field="doc.partner_id.street"/>
+                          <span t-field="doc.partner_id.street2"/>
+                          <span t-field="doc.partner_id.zip_id.name"/>
+                          <span t-field="doc.partner_id.sub_district"/>
+                        </div>
+                        <div class="d-flex">
+                          <span t-field="doc.partner_id.city"/>
+                          <span t-field="doc.partner_id.state_id.name"/>
+                          <span t-field="doc.partner_id.zip"/>
+                        </div>                
+                    </div>                       
+                                         
+                    <div class="d-flex" style="width: 500px; max-height: 56px; overflow: hidden; border: 1px solid none;">
+                        <!-- [6] -->
+                        <span t-field="doc.narration"/>
+                    </div>                                   
+                </div>
+
+                <div style="position: absolute;top: 130px;right: 54px;">
+                    <div>
+                        <!-- [7] -->
+                        <span t-field="doc.name"/>                    
+                    </div>
+                    <div>
+                        <!-- [8] -->
+                        <span t-field="doc.date"/>
+                    </div>                                   
+                    <div style="width: 80px; max-width: 80px; overflow: hidden; white-space: nowrap;">
+                        <!-- [9] -->
+                        <span t-field="doc.ref"/>
+                    </div>                                   
+                    <div>
+                        <!-- [10] -->
+                        <span t-field="doc.invoice_date"/>
+                    </div>                                   
+                    <div class="d-flex" style="">
+                        <div style="">
+                            <t t-if="doc.invoice_date_due">
+                                <span t-field="doc.invoice_date_due"/>
+                            </t>
+                            <t t-elif="doc.invoice_payment_term_id.name">
+                                <span t-field="doc.invoice_date_due_payment_term"/>
+                            </t>
+                            <t t-else="">
+                            </t>    
+                        </div>
+                    </div>                
+                    <div class="d-flex">
+                        <!-- [20] -->
+                        <t t-set="compute_rate" t-value="1"/>
+                        <t t-if="doc.currency_id.rate_ids">
+                            <t t-set="time_now" t-value="doc.date"/>
+                            <t t-foreach="doc.currency_id.rate_ids.sorted(key=lambda r: r.name)" t-as="rate_line">
+                                <t t-if="rate_line.name">                                    
+                                    <t t-if="time_now &gt;= rate_line.name">
+                                        <t t-set="compute_rate" t-value="rate_line.inverse_company_rate"/>
+                                    </t>
+                                </t>
+                            </t>
+
+                          <!-- <span t-esc="'{:,.2f}'.format(doc.currency_id.rate_ids.inverse_company_rate)"/> -->
+                        </t>
+
+                        <span t-esc="'{:,.2f}'.format(compute_rate)"/> /
+
+                        <!-- [13] -->
+                        <div style="margin-left: 5px;">
+                            <span t-field="doc.currency_id.name"/>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="article" style="font-family: 'KanitLight'; font-size:12px">
+            <t t-set="l_no" t-value="0"/>
+                <table class="table table-borderless" style="line-height: 10px; width: 100%;">
+                    <tbody>
+                      <t t-foreach="o.invoice_group_account_line_ids.sorted(key=lambda m: m.invoice_group_account_debit, reverse=True)" t-as="line">
+                            <tr>
+                                <td style="text-align: center;">
+                                    <t t-set="l_no" t-value="l_no + 1"/>
+                                    <t t-esc="l_no"/>
+                                </td>
+                                <td style="text-align: left;">
+                                    <!-- [15]  -->                                    
+                                    <span t-esc="doc.get_type_partner_id(line.invoice_group_account_account_id.code)"/>
+                                </td>
+                                <td style="text-align: left;">
+                                    <!-- [16]  -->                                    
+                                    <t t-esc="doc.get_type_partner_name(line.invoice_group_account_account_id.name)"/>
+                                </td>
+                                
+                                <td style="text-align: right;">
+                                    <!-- [17]  -->                                    
+                                    <t t-if="doc.get_value_debit(line.invoice_group_account_debit)">
+                                      <t t-set="account_debit" t-value="doc.get_value_debit(line.invoice_group_account_debit)"/>
+                                      <span t-esc="'{:,.2f}'.format(account_debit)"/>
+                                    </t>
+                                </td>
+                                <td style="text-align: right;">
+                                    <!-- [18]  -->                                    
+                                    <t t-if="doc.get_value_credit(line.invoice_group_account_credit)">
+                                      <t t-set="account_credit" t-value="doc.get_value_credit(line.invoice_group_account_credit)"/>
+                                      <span t-esc="'{:,.2f}'.format(account_credit)"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <t t-if="page == topage">
+                        <tfoot class="font-weight-bold">
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td style="text-align: right; border-bottom: 1px dotted black; border-top: 1px dotted black;">
+                                  <span t-esc="'{:,.2f}'.format(sum(line.invoice_group_account_credit for line in o.invoice_group_account_line_ids))"/>
+                                </td>          
+                                <td style="text-align: right; border-bottom: 1px dotted black; border-top: 1px dotted black;">
+                                    <span t-esc="'{:,.2f}'.format(sum(line.invoice_group_account_debit for line in o.invoice_group_account_line_ids))"/>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </t>
+                </table>
+        </div>
+    </template>
+
+    <template id="voucher_preprint_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hdc_voucher_preprint_report.voucher_preprint_report_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="iso_operation_type_view_tree" model="ir.ui.view">
+        <field name="name">iso.operation.type.view.tree</field>
+        <field name="model">iso.operation.type</field>
+        <field name="arch" type="xml">
+            <tree string="ISO Operation Type" multi_edit="1">
+                <field name="name"/>
+                <field name="doc_name"  required="1"/>
+                <field name="iso_number"  required="1"/>
+                <!-- <field name="product_produce_type"  required="1"/> -->
+                <field name="operation_type_id"  required="1"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="iso_operation_type_view_form" model="ir.ui.view">
+        <field name="name">iso.operation.type.view.form</field>
+        <field name="model">iso.operation.type</field>
+        <field name="arch" type="xml">
+            <form string="ISO Operation Type">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="ISO Operation Type" nolabel="1" readonly="1" force_save="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="doc_name" required="1"/>
+                            <!-- <field name="product_produce_type" required="1"/> -->
+                        </group>
+                        <group>
+                            <field name="iso_number" required="1"/>
+                            <field name="operation_type_id" required="1" domain="[('code', '=', 'mrp_operation')]"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="iso_operation_type_view_action" model="ir.actions.act_window">
+        <field name="name">ISO Operation Type</field>
+        <field name="res_model">iso.operation.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p
+                class="oe_view_nocontent_create"
+            >Click to set a new type for manufacturing orders.</p>
+        </field>
+    </record>
+
+
+    <!-- <record id="product_produce_type_view_tree" model="ir.ui.view">
+        <field name="name">product.produce.type.view.tree</field>
+        <field name="model">product.produce.type</field>
+        <field name="arch" type="xml">
+            <tree string="Product Produce Type" multi_edit="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="product_produce_type_view_form" model="ir.ui.view">
+        <field name="name">product.produce.type.view.form</field>
+        <field name="model">product.produce.type</field>
+        <field name="arch" type="xml">
+            <form string="Product Produce Type">
+                <sheet>
+                    <group>
+                        <field name="name" required="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="product_produce_type_view_action" model="ir.actions.act_window">
+        <field name="name">Product Produce Type</field>
+        <field name="res_model">product.produce.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p
+                class="oe_view_nocontent_create"
+            >Click to set a new type for product produce.</p>
+        </field>
+    </record> -->
+    <menuitem id="menu_iso_type_root" name="ISO Type" parent="mrp.menu_mrp_configuration" sequence="10"/>
+    <menuitem id="menu_iso_operation_type" name="ISO Operation Type" parent="menu_iso_type_root" sequence="1" action="iso_operation_type_view_action"/>
+    <!-- <menuitem id="menu_product_produce_type" name="Product Produce Type" parent="menu_iso_type_root" sequence="2" action="product_produce_type_view_action"/> -->
+</odoo>

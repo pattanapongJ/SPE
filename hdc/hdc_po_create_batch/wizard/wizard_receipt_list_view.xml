@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_receipt_list" model="ir.ui.view">
+        <field name="name">wizard.receipt.list</field>
+        <field name="model">wizard.receipt.list</field>
+        <field name="arch" type="xml">
+            <form string="Create Receipt List">
+                <group>
+                    <group>
+                        <field name="po_id" invisible="1"/>
+                        <field name="warehouse_id"/>
+                        <field name="operation_type_id"/>
+                        <field name="location_dest_id"/>
+                    </group>
+                    <group>
+                        <field name="schedule_date"/>
+                        <field name="user_id"/>
+                    </group>
+                </group>
+
+                <notebook>
+                    <page name="receipt_list_ids" string="Receipt List">
+                        <group name="receipt_list_line">
+                            <field name="receipt_list_ids" string="Receipt List Line" nolabel="1">
+                                <tree editable="top" create="0" delete="0">
+                                    <field name="wizard_receipt_list_ids" invisible="1"/>
+                                    <field name="product_id"/>
+                                    <field name="move_tranfer_ids" invisible="1"/>
+                                    <field name="product_categ_id"/>
+                                    <field name="location_id"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="product_uom"/>
+                                    <field name="price_unit" string="Sub Total"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_create_batch" string="Create" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

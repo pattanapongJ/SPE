@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_type_internal_transfer_form_inherit_location" model="ir.ui.view">
+            <field name="name">sale.type.internal.transfer.form.inherit.location</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='return_location']" position="after">
+                    <field name="is_retail"/>
+                    <field name="is_booth"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

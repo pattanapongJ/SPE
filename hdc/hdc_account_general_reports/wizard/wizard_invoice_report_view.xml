@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_invoice_report_form_view" model="ir.ui.view">
+        <field name="name">wizard.invoice.report.form.view</field>
+        <field name="model">wizard.invoice.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="account_id" invisible="1"/>
+                            <field name="document"/>
+                            <field name="type" attrs="{'invisible': ['|','|','|','|','|','|', ('document', '=', 'delivery_price'), ('document', '=', 'temp_delivery_price'), ('document', '=', 'temp_delivery'), ('document', '=', 'delivery'), ('document', '=', 'borrow_free_invoice'), ('document', '=', 'borrow_return_invoice'), ('document', '=', 'borrow_test_money_invoice')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="พิมพ์" type="object" name="print" class="oe_highlight"/>
+                    <button string="ยกเลิก" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+	<record id="action_wizard_invoice_report" model="ir.actions.act_window">
+		<field name="name">รายงาน</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">wizard.invoice.report</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="view_id" ref="wizard_invoice_report_form_view"/>
+	</record>
+</odoo>

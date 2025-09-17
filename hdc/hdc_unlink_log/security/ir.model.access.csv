@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_record_deletion_log_user,undefined.record.deletion.log,model_record_deletion_log,base.group_user,1,1,1,0
+access_record_deletion_log_setting_user,undefined.record.deletion.log.setting,model_record_deletion_log_setting,base.group_user,1,1,1,1

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_form_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="l10n_th_tax_invoice.view_account_payment_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">-->
+<!--                    <button name="button_open_tax_journal_entries" type="object" class="oe_stat_button" icon="fa-bars"-->
+<!--                            attrs="{'invisible': [('tax_journal_entry_count','=', 0)]}">-->
+<!--                        <field name="tax_journal_entry_count"/>-->
+<!--                        <span attrs="{'invisible': [('tax_journal_entry_count','&gt;', 1)]}">Tax Journal Entry</span>-->
+<!--                        <span attrs="{'invisible': [('tax_journal_entry_count','&lt;=', 1)]}">Tax Journal Entries</span>-->
+<!--                    </button>-->
+<!--                </xpath>-->
+
+                <xpath expr="//field[@name='tax_invoice_move_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

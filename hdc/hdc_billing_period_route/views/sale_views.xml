@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="hdc_billing_route_view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="hdc_sale.hdc_sale_view_order_form_inherit"/>
+        <field name="arch" type="xml">            
+            <xpath expr="//field[@name='fiscal_position_id']" position="after">
+                <field name="billing_period_id" />
+                <field name="billing_route_id" />
+            </xpath>            
+        </field>
+    </record>
+    <record id="sale_payment_method_view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">            
+            <xpath expr="//field[@name='payment_term_id']" position="replace">
+                <field name="payment_method_id" />
+                <field name="can_edit_payment_terms" invisible="1"/>
+                <field name="payment_term_id" force_save="1" options="{'no_open':True,'no_create': True}" attrs="{'readonly': [('state', 'in', ('sale','done','cancel'))]}"/>
+            </xpath> 
+            
+        </field>
+    </record>
+
+</odoo>
+
+    

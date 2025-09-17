@@ -1,0 +1,17 @@
+<odoo>
+    <record id="sh_invoice_tags_category" model="ir.module.category">
+        <field name="name">Enable Update Mass Tags</field>
+        <field name="sequence">60</field>
+    </record>
+    <record id="sh_invoice_tags_user_id" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="sh_invoice_tags.sh_invoice_tags_category" />
+    </record>
+
+    <record model="ir.rule" id="sh_invoice_tags_comp_rule">
+        <field name="name">Invoice Tag multi-company</field>
+        <field name="model_id" ref="model_sh_invoice_tags" />
+        <field name="global" eval="True" />
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

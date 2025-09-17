@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <t t-name="JsonapiDocumentations">
+        <iframe src="/jsonapiext/doc" class="apps-client" style="width: 100%; height: calc(100vh - 60px);"></iframe>
+    </t>
+</template>

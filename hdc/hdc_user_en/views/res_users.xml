@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="res_user_firstname_lastname_form">
+        <field name="name">Users Addon Firstname/Lastname</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <data>
+                <!-- <xpath expr="//div[hasclass('oe_title')]//label[@for='login']" position="before">
+                    <field name="firstname_en"/>
+                    <field name="lastname_en"/>
+                    <field name="fullname_en" readonly="1"/>
+                </xpath> -->
+                <xpath expr="//div[hasclass('oe_title')]//label[@for='login']" position="before">
+                    <group>
+                        <field name="firstname_en"/>
+                        <field name="lastname_en"/>
+                        <field name="fullname_en" readonly="1"/>
+                    </group>
+                </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>

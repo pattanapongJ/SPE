@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="crm_claims_ept_form_view_inherit">
+        <field name="name">CRM - Claims Ept Form inherit</field>
+        <field name="model">crm.claim.ept</field>
+        <field name="inherit_id" ref="rma_ept.crm_claims_ept_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group/field[@name='date_deadline']" position="after">
+                <field name="rma_type" widget='radio'/>
+            </xpath>
+            <xpath expr="//field[@name='claim_line_ids']" position="after">
+                <field name="claim_modify_line_ids" mode="tree" nolabel="1" attrs="{'invisible':[('rma_type', '=', 'receive')]}">
+                    <tree editable="bottom" create="1" edit="true">
+                        <field name="product_id" options="{'no_quick_create': True, 'no_create_edit': True}" 
+                            attrs="{'readonly': [('parent.state', 'not in', ['draft'])], 'required': [('parent.state', 'in', ['draft'])]}"/>
+                        <field name="description" attrs="{'readonly': [('parent.state', 'not in', ['draft'])]}"/>
+                        <field name="done_qty" invisible= "1"/>
+                        <field name="done_qty_update" invisible= "1"/>
+                        <field name="quantity" attrs="{'readonly': [('parent.state', 'not in', ['draft'])], 'required': [('parent.state', 'in', ['draft'])]}"/>
+                        <field name="rma_reason_id" attrs="{'readonly': [('parent.state', 'not in', ['draft'])], 'required': [('parent.state', 'in', ['draft'])]}"/>
+                        <field name="return_qty" readonly="True"/>
+                        <field name="claim_type" force_save="1"
+                            attrs="{'readonly': [('parent.state', 'not in', ['process'])], 'required': [('parent.state', 'in', ['process'])]}"/>
+                        <field name="serial_lot_ids" widget="many2many_tags" groups="stock.group_production_lot"
+                            domain="[('product_id',  '=', product_id)]" options="{'no_create_edit': True}"
+                            attrs="{'readonly': [('parent.state', 'in', ['close'])]}"/>
+                        <!-- <button name="action_claim_refund_process_ept" icon="fa-cogs" title="Set product to be replace" type="object"
+                            attrs="{'invisible': [ ('parent.state', 'in', ['draft', 'close'])]}"/> -->
+                        <field name="move_id" invisible="1"/>
+                    </tree>
+                    <form>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="claim_type"/>
+                            </group>
+                            <group>
+                                <field name="quantity"/>
+                            </group>
+                        </group>
+                    </form>
+                </field>
+            </xpath>
+            <xpath expr="//field[@name='sale_id']" position="replace">
+                <field name="sale_id" required="0" domain="[('state', 'in', ('done', 'sale'))]" attrs="{'invisible':[('rma_type', '=', 'receive_modify')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='picking_id']" position="replace">
+                <field name="picking_id" invisible="1"/>
+                <!-- <field name="picking_id" context="{'rma_model': True}" required="0" attrs="{'readonly': [('state', '!=', 'draft')],'invisible':[('rma_type', '=', 'receive_modify')]}"
+                        domain="['&amp;', ('picking_type_code', '=', 'outgoing'), '&amp;', ('state', '=', 'done'), '|', ('sale_id', '!=', False), ('rma_sale_id', '!=', False)]" options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/> -->
+                <field name="picking_type_id" attrs="{'readonly': [('state', '!=', 'draft')],'invisible': [('rma_type', '=', 'receive')],'required':[('rma_type', '=', 'receive_modify')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='account_id']" position="replace">
+                <!-- <field name="account_id" attrs="{'readonly': [('state', '!=', 'draft')] ,'required': [('rma_type', '=', 'receive')],'invisible':[('rma_type', '=', 'receive_modify')]}"/> -->
+                <field name="account_id" attrs="{'readonly': [('state', '!=', 'draft')] ,'invisible':[('rma_type', '=', 'receive_modify')]}"/>
+
+                <!-- <field name="account_id" domain="[('state', '=', 'posted'),('move_type', '=', 'out_invoice'),('invoice_origin', '!=', False)]" attrs="{'readonly': [('state', '!=', 'draft')] ,'required': [('rma_type', '=', 'receive')],'invisible':[('rma_type', '=', 'receive_modify')]}"/> -->
+            </xpath>
+            <xpath expr="//field[@name='email_from']" position="replace">
+                <field name="email_from" widget="email" attrs="{'readonly': [('state', '!=', 'draft')] ,'required': [('rma_type', '=', 'receive')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_phone']" position="replace">
+                <field name="partner_phone" attrs="{'readonly': [('state', '!=', 'draft')],'required': [('rma_type', '=', 'receive_modify')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_delivery_id']" position="replace">
+                <field name="partner_delivery_id" 
+                    attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_quick_create': True,'no_create_edit': True,'no_open': True}" required="1"/>
+            </xpath>
+            <xpath expr="//field[@name='return_partner_delivery_id']" position="replace">
+                <field name="return_partner_delivery_id" 
+                    attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_quick_create': True,'no_create_edit': True,'no_open': True}" required="1"/>
+            </xpath>
+            <xpath expr="//field[@name='claim_line_ids']" position="attributes">
+                <attribute name="attrs">{'invisible': [('rma_type', '=', 'receive_modify')]}</attribute>
+            </xpath>
+            <xpath expr="//page[@name='followup']" position="after">
+                <page string="Claim Supplier" name="claim_supp">
+                    <group>
+                        <group>
+                            <label for="is_claim_supplier" string="เคลม Supplier" />
+                            <div class="o_row">
+                                <field name="is_claim_supplier" />
+                                <field name="claim_supplier" />
+                            </div>
+                            <field name="is_not_claim" />
+                            <field name="is_cn" />
+                            <field name="claim_qty" />
+                            <field name="claim_date" />
+                            <field name="claim_doc_no" />
+                            <field name="claim_remark" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="description_picking_inherit" model="ir.ui.view">
+        <field name="name">move description inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='description_picking']" position="replace">
+                <field name="description_picking" string="Description" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

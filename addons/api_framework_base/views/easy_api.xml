@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree: easy.api -->
+    <record model="ir.ui.view" id="view_easy_api_tree">
+        <field name="name">tree.easy.api</field>
+        <field name="model">easy.api</field>
+        <field name="priority" eval="16" />
+        <field name="arch" type="xml">
+            <tree string="easy_api">
+                <field name="name" />
+                <field name="base_endpoint" />
+                <field name="error_debug" />
+                <!-- <field name="dirty"/> -->
+            </tree>
+        </field>
+    </record>
+    <!-- Form: easy.api -->
+    <record model="ir.ui.view" id="view_easy_api_form">
+        <field name="name">form.easy_api</field>
+        <field name="model">easy.api</field>
+        <field name="priority" eval="15" />
+        <field name="arch" type="xml">
+            <form string="easy_api">
+                <header>
+                    <button name="action_open" string="Open" type="object" states="draft"
+                        class="btn-primary" />
+                    <button name="action_publish" string="Publish" type="object" states="open"
+                        class="btn-primary" />
+                    <button name="action_cancel" string="Cancel" type="object" states="active"
+                        class="btn-primary" />
+                    <button name="action_debug_enable" string="Enable Debug Mode" type="object"
+                        class="btn-secondary border border-primary"
+                        attrs="{'invisible': ['|', ('error_debug','=',True), ('state','!=','active')]}">
+                        <span>
+                            <img src="/api_framework_base/static/src/img/bug.svg" alt="Debug On" width="17"
+                                height="17" />
+                        </span>
+                    </button>
+                    <button name="action_debug_disable" string="Disable Debug Mode" type="object"
+                        class="btn-secondary border border-primary"
+                        attrs="{'invisible': ['|', ('error_debug','=',False), ('state','!=','active')]}">
+                        <span>
+                            <img src="/api_framework_base/static/src/img/bug-slash.svg" alt="Debug Off"
+                                width="17" height="17" />
+                        </span>
+                    </button>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <widget name="web_ribbon" title="Debug" bg_color="bg-warning"
+                        attrs="{'invisible':[('error_debug','!=',True)]}" />
+                    <div class="oe_title">
+                        <label for="name" states="draft" />
+                        <h2 class="d-flex">
+                            <field name="name" class="w-100" placeholder="Name Your API" />
+                        </h2>
+                        <label for="base_endpoint" />
+                        <h2>
+                            <div class="o_cell d-flex">
+                                <field name="base_url" class="oe_inline" nolabel="1" widget="url" />
+                                <field name="base_endpoint" class="o_field_widget o_field_text"
+                                    nolabel="1" placeholder="Initial Path (i.e. jsonapi)"
+                                    attrs="{'readonly': [('state','in',['open','active'])]}" />
+                            </div>
+                        </h2>
+                    </div>
+                    <br />
+                    <group colspan="4" name="api_config">
+                        <group>
+                            <field name="api_type" widget="radio_detail"
+                                attrs="{'readonly': [('state','in',['open','active'])]}" />
+                        </group>
+                        <group>
+                            <field name="authentication_type" widget="radio" required="1"
+                                attrs="{'readonly': [('state','in',['open','active'])]}" />
+                            <field name="resource_control_type" widget="radio" required="1"
+                                attrs="{'readonly': [('state','in',['open','active'])]}" />
+                        </group>
+                        <group name="auth_detail">
+                            <!-- All auth modules will add their setup procedure here, -->
+                        </group>
+                        <group>
+                            <field name="user_id" states="open,active" />
+                            <field name="page_size" states="open,active" />
+                            <field name="error_detail" widget="boolean_toggle" states="open,active" />
+                        </group>
+                    </group>
+                    <group>
+                        <!-- Invisible Fields -->
+                        <field name="error_debug" invisible="1" />
+                    </group>
+                    <notebook id='api_framework_base_notebook'>
+                        <page name="description_page" string="Description" autofocus="True">
+                            <field name="description" placeholder="API description..." />
+                        </page>
+                        <page name="authentication_detail" states="open,active"
+                            string="Authentication">
+                        </page>
+                        <page name="access_control_detail" states="open,active"
+                            string="Access Control">
+                        </page>
+                        <page string="Help" name="help">
+                            <div class="oe_row">
+                                <field name="page_size_help" nolabel="1" />
+                                <field name="api_type_help" nolabel="1" />
+                                <field name="authentication_type_help" nolabel="1" />
+                                <field name="error_debug_help" nolabel="1" />
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- Main Action: easy.api -->
+    <record id="action_easy_api" model="ir.actions.act_window">
+        <field name="name">API Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">easy.api</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                All important API Settings
+            </p>
+            <p>
+                Ekika helps you track, manage and maintain your API Settings.
+            </p>
+        </field>
+    </record>
+    <!-- Sub Action Tree: easy.api -->
+    <record id="action_easy_api_view_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_easy_api_tree" />
+        <field name="act_window_id" ref="action_easy_api" />
+    </record>
+    <!-- Sub Action Form: easy.api -->
+    <record id="action_easy_api_view_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_easy_api_form" />
+        <field name="act_window_id" ref="action_easy_api" />
+    </record>
+
+</odoo>

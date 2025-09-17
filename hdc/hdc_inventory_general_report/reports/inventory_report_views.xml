@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="receipt_inventory_report_view" model="ir.actions.report">
+            <field name="name">Receipt Report</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_recepit_inventory_report</field>
+            <field name="print_report_name">'ใบรับสินค้า_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_receipt_inventory"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="receipt_inventory_en_report_view" model="ir.actions.report">
+            <field name="name">Receipt EN Report</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_recepit_inventory_en_report</field>
+            <field name="print_report_name">'ใบรับสินค้า_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_receipt_en_inventory"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="receipt_shortage_overage_report_view" model="ir.actions.report">
+            <field name="name">รายงานใบรับสินค้า ขาด/เกิน</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_receipt_shortage_overage</field>
+            <field name="print_report_name">'รายงานใบรับสินค้า ขาด/เกิน_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_receipt_s_o"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="internal_tranfer_inventory_report_view" model="ir.actions.report">
+            <field name="name">Internal Tranfer Report</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_internal_tranfer_inventory_report</field>
+            <field name="print_report_name">'ใบโอนย้ายภายใน_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_internal_inventory"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="delivery_inventory_report_view" model="ir.actions.report">
+            <field name="name">Delivery Report</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_delivery_inventory_report</field>
+            <field name="print_report_name">'ใบส่งสินค้า_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_delivery_inventory"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="inter_tranfer_inventory_report_view" model="ir.actions.report">
+            <field name="name">Inter Tranfer Report</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_inter_report</field>
+            <field name="print_report_name">'โอนย้ายระหว่างคลัง_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_inter_inventory"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="requestion_inventory_report_view" model="ir.actions.report">
+            <field name="name">Requestion Report</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_requestion_report</field>
+            <field name="print_report_name">'ใบเบิกสินค้า_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_requestion_inventory"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="requestion_inventory_report_ls_view" model="ir.actions.report">
+            <field name="name">Requestion Report Landscape</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_requestion_ls_report</field>
+            <field name="print_report_name">'ใบเบิกสินค้า_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_requestion_ls_inventory"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="return_cus_inventory_report_view" model="ir.actions.report">
+            <field name="name">Return Customer Report</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_return_cus_report</field>
+            <field name="print_report_name">'ใบรับคืนสินค้า_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_return_inventory"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="tranfers_inventory_report_ls_view" model="ir.actions.report">
+            <field name="name">Tranfers Report Landscape</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_tranfers_ls_report</field>
+            <field name="print_report_name">'Tranfers_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_tranfers_ls_inventory"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="batch_tranfer_report_view" model="ir.actions.report">
+            <field name="name">Batch Report</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_batch_report</field>
+            <field name="print_report_name">'ใบรับสินค้า_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_batch_inventory"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!-- <record id="sale_order_quotation_report_view" model="ir.actions.report">
+            <field name="name">KC Quotation Sale Order</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_sale_general_report_ev.hdc_sale_order_quotation_report</field>
+            <field name="paperformat_id" ref="hdc_sale_general_report_ev.paperformat_report_sale_order"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record> -->
+        <record id="inventory_picking_list_report_view_th_history_portrait" model="ir.actions.report">
+            <field name="name">รายงานใบจัดสินค้า</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายงานใบจัดสินค้า-%s " %(object.name)</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_inventory_picking_list_report_th_history_portrait</field>
+            <field name="report_file">hdc_inventory_general_report.hdc_inventory_picking_list_report_th_history_portrait</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_inventory_picking_list_th_history_portrait"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="inventory_picking_list_report_view_th_history_a5" model="ir.actions.report">
+            <field name="name">รายงานใบจัดสินค้า A5</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายงานใบจัดสินค้า A5-%s " %(object.name)</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_inventory_picking_list_report_th_history_a5</field>
+            <field name="report_file">hdc_inventory_general_report.hdc_inventory_picking_list_report_th_history_a5</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_inventory_picking_list_th_history_a5"/>
+            <field name="binding_type">report</field>
+         </record>
+
+         <record id="tranfers_inventory_report_llk_view" model="ir.actions.report">
+            <field name="name">ใบจัดสินค้าลาดหลุมแก้ว</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_tranfers_llk_report</field>
+            <field name="print_report_name">'ใบจัดสินค้าลาดหลุมแก้ว_%s' % (object.name)</field>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_tranfers_llk_inventory"/>
+            <field name="binding_model_id" ref="model_stock_picking"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="stock.action_report_inventory" model="ir.actions.report">
+            <field name="name">Count Sheet</field>
+            <field name="model">stock.inventory</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hdc_inventory_general_report.hdc_inv_adj_report</field>
+            <field name="report_file">hdc_inventory_general_report.hdc_inv_adj_report</field>
+            <field name="print_report_name">'Inventory - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="stock.model_stock_inventory"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="inventory_borrow_new_report_view" model="ir.actions.report">
+           <field name="name">ใบส่งสินค้าตัวอย่าง (Preprint)</field>
+           <field name="model">stock.picking</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="print_report_name">"ใบส่งสินค้าตัวอย่าง/%s " %(object.name)</field>
+           <field name="report_name">hdc_inventory_general_report.inventory_borrow_preprint_report</field>
+           <field name="report_file">hdc_inventory_general_report.inventory_borrow_preprint_report</field>
+           <!-- <field name="binding_model_id" ref="model_stock_picking"/> -->
+           <field name="binding_model_id" eval="False"/>
+           <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_inventory_borrow_preprint"/>
+           <field name="binding_type">report</field>
+        </record>
+        <record id="inventory_borrow_report_view" model="ir.actions.report">
+            <field name="name">ใบส่งสินค้าตัวอย่าง</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"SB/%s " %(object.name)</field>
+            <field name="report_name">hdc_inventory_general_report.inventory_borrow_report</field>
+            <field name="report_file">hdc_inventory_general_report.inventory_borrow_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_inventory_general_report.paperformat_report_inventory_borrow_a4"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+
+    <template id="report_logo_style">
+      <!-- เช็คชื่อบริษัทและกำหนดค่า logo_style -->
+      <t t-if="company.name in ['Colt Plus (Thailand) Co.,Ltd.', 
+                                 'Siam Modern Home Co.,Ltd.', 
+                                 'Siam Techno Industry Co., Ltd.']">
+         <t t-set="logo_style">margin-top:30px;</t>
+      </t>
+      <t t-elif="company.name == 'Saeng Charoen Patana Enterprise Co., Ltd.'">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+      <t t-else="">
+         <t t-set="logo_style">margin-top:0px;</t>
+      </t>
+
+      <img t-if="company.logo"
+            t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')"
+            class="pull-left img-logo"
+            t-attf-style="{{ logo_style }}; max-height: 140px; max-width: 140px;" />
+   </template>
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   <record id="master_keyview_inherit_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_quotation_send']" position="after">
+                <field name="is_master_key" invisible="1"/>
+                <button name="action_create_purchase_master_key" string="Create Purchase MTK"
+                            type="object" class="oe_highlight" attrs="{'invisible': [('is_master_key', '=', False)]}"/>
+                <button name="action_create_receipt_master_key" string="Create Receipt MTK"
+                            type="object" class="oe_highlight" attrs="{'invisible': [('is_master_key', '=', False)]}"/>
+                <button name="action_create_transfer_master_key" string="Create Transfer MTK"
+                            type="object" class="oe_highlight" attrs="{'invisible': [('is_master_key', '=', False)]}"/>
+                <button name="action_create_internal_transfer_master_key" string="Create Internal Transfer MTK"
+                            type="object" class="oe_highlight" attrs="{'invisible': [('is_master_key', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button type="object"
+                    name="action_view_receipt_master_key"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    attrs="{'invisible': [('count_receipt_master_key', '=', 0)]}"
+                    >
+                    <field name="count_receipt_master_key" widget="statinfo" string="Receipt MTK"/>
+                </button>
+
+                <button type="object"
+                    name="action_view_transfer_master_key"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    attrs="{'invisible': [('count_transfer_master_key', '=', 0)]}"
+                    >
+                    <field name="count_transfer_master_key" widget="statinfo" string="Transfer MTK"/>
+                </button>
+
+                <button type="object"
+                    name="action_view_internal_transfer_master_key"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    attrs="{'invisible': [('count_internal_transfer_master_key', '=', 0)]}"
+                    >
+                    <field name="count_internal_transfer_master_key" widget="statinfo" string="Internal Transfer MTK"/>
+                </button>
+
+                 <button type="object"
+                    name="action_view_purchase_master_key"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    attrs="{'invisible': [('count_purchase_master_key', '=', 0)]}"
+                    >
+                    <field name="count_purchase_master_key" widget="statinfo" string="Purchase MTK"/>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='type_id']" position="before">
+                <field name="receipt_master_key_id" invisible="1"/>
+                <field name="transfer_master_key_id" invisible="1"/>
+                <field name="internal_transfer_master_key_id" invisible="1"/>
+                <field name="purchase_master_key_id" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='customer_signature']" position="after">
+                <page string="Internal Transfer Master Key" name="internal_transfer_mtk_page" attrs="{'invisible': [('is_master_key', '=', False)]}">
+                    <group colspan="4">
+                        <group>
+                            <field name="internal_mtk_type_id" colspan="2" options="{'no_create_edit': True, 'no_create': True}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

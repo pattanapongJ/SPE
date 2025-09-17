@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo><data>
+    <record id="customer_return_request_view_form" model="ir.ui.view">
+        <field name="name">customer.return.request.view.form</field>
+        <field name="model">customer.return.request</field>
+        <field name="arch" type="xml">
+            <form string="Customer Return Request">
+                <header>
+					<button name="action_confirm" string="Confirm" attrs="{'invisible': [('state', '!=', 'draft')]}" type="object" class="btn btn-primary" />
+                    <button name="action_create_receive" string="Create Receive" attrs="{'invisible': [('state', '!=', 'confirm')]}" type="object" class="btn btn-primary"/>
+					<button name="action_create_rma" string="Create RMA" attrs="{'invisible': [('state', '!=', 'confirm')]}" type="object" class="btn btn-primary"/>
+					<button name="action_print" string="Print" type="object" />
+                    <button name="action_cancel"
+                        string="Cancel"
+                        type="object"
+                        class="btn btn-primary"
+                        attrs="{'invisible': [('state', 'not in', ['draft','confirm'])]}"/>
+                    <button name="action_force_done"
+                        string="Force Done"
+                        type="object"
+                        class="btn btn-primary"
+                        attrs="{'invisible': [('state', 'not in', ['confirm'])]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_return" type="object" class="oe_stat_button" icon="fa-truck"
+                            attrs="{'invisible': [('return_count', '=', 0)]}">
+                            <field name="return_count" widget="statinfo" string="Return Customer"/>
+                        </button>
+                        <button name="action_view_rma" type="object" class="oe_stat_button" icon="fa-mail-reply"
+                            attrs="{'invisible': [('rma_count', '=', 0)]}">
+                        <field name="rma_count" widget="statinfo" string="RMA"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name"/>
+                        </div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" />
+                            <!-- <field name="partner_address_id" /> -->
+                            <field name="picking_type_id" required="1"/>
+                            <field name="location_id" />
+                            <field name="is_modern_trede" />
+                            <field name="customer_requisition" />
+                        </group>
+                        <group>
+                            <field name="date" />
+                            <field name="user_id" />
+                            <field name="receive_method_id" />
+                            <field name="receive_by" />
+                            <field name="customer_ref" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Product Lines">
+                            <field name="return_request_lines" widget="one2many_list">
+                                <tree  editable="bottom" create="0" delete="0">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="invoice_id" string="Invoice No" domain="[('state', '=', 'posted'),('move_type', '=', 'out_invoice'),('invoice_origin', '!=', False)]"/>
+                                    <field name="delivery_id" string="Delivery No" domain="['&amp;', ('picking_type_code', '=', 'outgoing'), '&amp;', ('state', '=', 'done'), '|', ('sale_id', '!=', False), ('rma_sale_id', '!=', False)]" options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                    <field name="sale_id" string="So No"/>
+                                    <field name="receive_qty" string="Demand Receive"/>
+                                    <field name="on_hand_qty_rg" string="On Hand RG"/>
+                                    <field name="receive_done" string="Receive Done"/>
+                                    <field name="rma_qty" string="RMA QTY" readonly="1  "/>
+                                    <field name="remain_qty" string="Remain QTY"/>
+                                    <field name="uom"/>
+                                    <field name="remark"/>
+                                    <field name="state" invisible="1"/>
+                                </tree>
+                            </field>
+                            <group string="Remark" name="remark_group">
+                                <div>
+                                    <field name="remark" class="oe_inline"/>
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="customer_return_request_view_tree" model="ir.ui.view">
+        <field name="name">customer.return.request.view.tree</field>
+        <field name="model">customer.return.request</field>
+        <field name="arch" type="xml">
+            <tree string="Customer Return Request Templates">
+                <field name="name"/>
+                <field name="partner_id" />
+                <field name="date" />
+                <field name="user_id" />
+                <field name="receive_method_id" />
+                <field name="receive_by" />
+                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state in ('draft', 'confirm')"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="customer_return_request_action" model="ir.actions.act_window">
+        <field name="name">Customer Return Request</field>
+        <field name="res_model">customer.return.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    
+    <menuitem id="customer_return_request_menu"
+    parent="rma_ept.base_crm_claim_ept_action_root"
+    action="customer_return_request_action"
+    sequence="1"/>
+
+</data>
+</odoo>

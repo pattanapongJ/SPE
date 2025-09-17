@@ -1,0 +1,36 @@
+<odoo>
+    <record id="stock_valuation_layer_inherited_recalculate_tree" model="ir.ui.view">
+        <field name="name">stock.valuation.layer.inherited.recalculate.tree</field>
+        <field name="model">stock.valuation.layer</field>
+        <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='create_date']" position="after">
+                <field name="cal_date_cost"/>
+                <field name="new_date_cost" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_valuation_layer_inherited_recalculate_form" model="ir.ui.view">
+        <field name="name">stock.valuation.layer.inherited.recalculate.form</field>
+        <field name="model">stock.valuation.layer</field>
+        <field name="inherit_id" ref="stock_account.stock_valuation_layer_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='create_date']" position="after">
+                <field name="cal_date_cost"/>
+                <field name="new_date_cost" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_inventory_form_recalculate" model="ir.ui.view">
+        <field name="name">view.inventory.form.recalculate</field>
+        <field name="model">stock.inventory</field>
+        <field name="inherit_id" ref="stock.view_inventory_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='accounting_date']" position="before">
+                <field name="new_date_cost"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

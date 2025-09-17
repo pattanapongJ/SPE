@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="back_order_with_customer_document">
+        <div class="header font-tms-div " style="font-family: KanitLight;">
+            <div class="row d-flex justify-content-start font-weight-bold">
+                <span>SPE Back order lines by customer</span>
+            </div>
+            <div class="row d-flex justify-content-end font-weight-bold">
+                <div style="font-size: 10px; width: 100px;">
+                    <span style="">Page </span>
+                    <span class="page" style=""/> of <span class="topage" style=""/>                    
+                </div>
+            </div>
+            <span>Saeng Charoen Group</span>
+        </div>
+        <div class="article font-tms-div " style="font-family: KanitLight; font-size: 10px;">
+                <div class="row">                    
+                    <table class="table table-borderless">
+                        <thead>   
+                            <tr style="border-bottom: 1px solid black;border-top: 1px solid black;">
+                                <th class="text-center font-tms-th">Ship date</th>
+                                <th class="text-center font-tms-th">Sales order</th>
+                                <th class="text-center font-tms-th">Item number</th>
+                                <th class="text-center font-tms-th">Item Name</th>
+                                <th class="text-center font-tms-th">So Status</th>
+                                <th class="text-center font-tms-th">Line Status</th>
+                                <th class="text-center font-tms-th">Remark</th>
+                                <th class="text-center font-tms-th">Unit Price</th>
+                                <th class="text-center font-tms-th">Discount</th>
+                                <th class="text-center font-tms-th">Amount ordered</th>
+                                <th class="text-center font-tms-th">Unit</th>
+                                <th class="text-center font-tms-th">Quantity</th>
+                                <th class="text-center font-tms-th">Delivery</th>
+                                <th class="text-center font-tms-th">Delivery Remainder</th>
+                                <th class="text-center font-tms-th">ค้างส่ง/ย่อย</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <t t-foreach="lines_by_customer" t-as="line">
+                                <tr>
+                                    <td>
+                                        <t t-esc="line.order_partner_id.ref"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.order_partner_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <t t-esc="line.last_date_delivered"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.order_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.product_id.default_code"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.product_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span>Backorder</span>
+                                    </td>
+                                    <td>
+                                        <span>Backorder</span>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.note"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.price_unit"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.dis_price"/>
+                                    </td>
+                                    <td>
+                                        <t t-set="amount_order" t-value="(line.price_unit * line.product_uom_qty) - line.dis_price"/>
+                                        <t t-esc="amount_order"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.product_uom.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.product_uom_qty"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.qty_delivered"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.product_uom_qty - line.qty_delivered"/>
+                                    </td>
+                                    <td>
+                                        <span>ค้างส่ง/ย่อย</span>
+                                    </td>
+                                </tr>
+                            </t> 
+                            
+                        </tbody>
+                        <tfoot class="font-weight-bold">
+                            <tr>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+
+        </div>
+        
+    </template>
+    <template id="back_order_with_customer">
+        <t t-call="web.html_container">
+            <t t-call="hdc_back_order_report.back_order_with_customer_document" />
+        </t>
+    </template>
+
+
+    <template id="back_order_with_sale_response_document">
+        <div class="header font-tms-div " style="font-family: KanitLight;">
+            <div class="row d-flex justify-content-start font-weight-bold">
+                <span>SPE Back order lines by Sales Respond</span>
+            </div>
+            <div class="row d-flex justify-content-end font-weight-bold">
+                <div style="font-size: 10px; width: 100px;">
+                    <span style="">Page </span>
+                    <span class="page" style=""/> of <span class="topage" style=""/>                    
+                </div>
+            </div>
+            <span>Saeng Charoen Group</span>
+        </div>
+        <div class="article font-tms-div " style="font-family: KanitLight; font-size: 10px;">
+            <div class="row">                    
+                <table class="table table-borderless">
+                    <thead>   
+                        <tr style="border-bottom: 1px solid black;border-top: 1px solid black;">
+                            <th class="text-center font-tms-th">Ship date</th>
+                            <th class="text-center font-tms-th">Cust Name</th>
+                            <th class="text-center font-tms-th">Sales order</th>
+                            <th class="text-center font-tms-th">Item number</th>
+                            <th class="text-center font-tms-th">Product Name</th>
+                            <th class="text-center font-tms-th">Unit Price</th>
+                            <th class="text-center font-tms-th">Discount</th>
+                            <th class="text-center font-tms-th">Amount ordered</th>
+                            <th class="text-center font-tms-th">Unit</th>
+                            <th class="text-center font-tms-th">Quantity</th>
+                            <th class="text-center font-tms-th">Delivery</th>
+                            <th class="text-center font-tms-th">Delivery Remainder</th>
+                            <th class="text-center font-tms-th">ค้างส่ง/ย่อย</th>
+                            <th class="text-center font-tms-th">On order</th>
+                            <th class="text-center font-tms-th">Invoice No</th>
+                            <th class="text-center font-tms-th">Spe Invoice No.</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <t t-foreach="lines_by_sale_respond" t-as="line">
+                            <tr>
+                                <td>
+                                    <span>Code Sale Resp</span>
+                                </td>
+                                <td>
+                                    <t t-esc="line.order_id.user_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <t t-esc="line.last_date_delivered"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.order_id.partner_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.order_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_id.default_code"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.price_unit"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.dis_price"/>
+                                </td>
+                                <td>
+                                    <t t-set="amount_order" t-value="(line.price_unit * line.product_uom_qty) - line.dis_price"/>
+                                    <t t-esc="amount_order"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_uom.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_uom_qty"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.qty_delivered"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_uom_qty - line.qty_delivered"/>
+                                </td>
+                                <td>
+                                    <span>ค้างส่ง/ย่อย</span>
+                                </td>
+                                <td>
+                                    <span>On order</span>
+                                </td>
+                                <td>
+                                    <span>Invoice No</span>
+                                </td>
+                                <td>
+                                    <span>Spe Invoice No</span>
+                                </td>
+                            </tr>
+                        </t> 
+                        
+                    </tbody>
+                    <tfoot class="font-weight-bold">
+                        <tr>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+        
+    </template>
+    <template id="back_order_with_sale_response">
+        <t t-call="web.html_container">
+            <t t-call="hdc_back_order_report.back_order_with_sale_response_document" />
+        </t>
+    </template>
+
+    <template id="back_order_with_product_document">
+        <div class="header font-tms-div " style="font-family: KanitLight;">
+            <div class="row d-flex justify-content-start font-weight-bold">
+                <span>SPE Back order lines by Item</span>
+            </div>
+            <div class="row d-flex justify-content-end font-weight-bold">
+                <div style="font-size: 10px; width: 100px;">
+                    <span style="">Page </span>
+                    <span class="page" style=""/> of <span class="topage" style=""/>                    
+                </div>
+            </div>
+            <span>Saeng Charoen Group</span>
+        </div>
+        <div class="article font-tms-div " style="font-family: KanitLight; font-size: 10px;">
+            <div class="row">                    
+                <table class="table table-borderless">
+                    <thead>   
+                        <tr style="border-bottom: 1px solid black;border-top: 1px solid black;">
+                            <th class="text-center font-tms-th">Ship date</th>
+                            <th class="text-center font-tms-th">Customer</th>
+                            <th class="text-center font-tms-th">Cust Name</th>
+                            <th class="text-center font-tms-th">Custname Eng</th>
+                            <th class="text-center font-tms-th">Sales order</th>
+                            <th class="text-center font-tms-th">Po Date</th>
+                            <th class="text-center font-tms-th">Req. Receipt Date</th>
+                            <th class="text-center font-tms-th">Req. Ship Date</th>
+                            <th class="text-center font-tms-th">Customer Req.</th>
+                            <th class="text-center font-tms-th">Delivery Date</th>
+                            <th class="text-center font-tms-th">So Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <t t-foreach="lines_by_product" t-as="line">
+                            <tr>
+                                <td>
+                                    <t t-esc="line.product_id.default_code"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <t t-esc="line.last_date_delivered"/>
+                                </td>
+                                <td>
+                                    <span>Customer</span>
+                                </td>
+                                <td>
+                                    <t t-esc="line.order_partner_id.name"/>
+                                </td>
+                                <td>
+                                    <span>Custname Eng</span>
+                                </td>
+                                <td>
+                                    <t t-esc="line.order_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.order_id.po_date"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.order_id.requested_receipt_date"/>
+                                </td>
+                                <td>
+                                    <span>Req. Ship Date</span>
+                                </td>
+                                <td>
+                                    <span>Customer Req.</span>
+                                </td>
+                                <td>
+                                    <t t-esc="line.order_id.commitment_date"/>
+                                </td>
+                                <td>
+                                    <span>Backorder</span>
+                                </td>
+                               
+                            </tr>
+                        </t> 
+                        
+                    </tbody>
+                    <tfoot class="font-weight-bold">
+                        <tr>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+        
+    </template>
+    <template id="back_order_with_product">
+        <t t-call="web.html_container">
+            <t t-call="hdc_back_order_report.back_order_with_product_document" />
+        </t>
+    </template>
+
+    <template id="back_order_with_project_document">
+        <div class="header font-tms-div " style="font-family: KanitLight;">
+            <div class="row d-flex justify-content-start font-weight-bold">
+                <span>SPE Back order (Project)</span>
+            </div>
+            <div class="row d-flex justify-content-end font-weight-bold">
+                <div style="font-size: 10px; width: 100px;">
+                    <span style="">Page </span>
+                    <span class="page" style=""/> of <span class="topage" style=""/>                    
+                </div>
+            </div>
+            <span>Saeng Charoen Group</span>
+        </div>
+        <div class="article font-tms-div " style="font-family: KanitLight; font-size: 10px;">
+            <div class="row">                    
+                <table class="table table-borderless">
+                    <thead>   
+                        <tr style="border-bottom: 1px solid black;border-top: 1px solid black;">
+                            <th class="text-center font-tms-th">Ship date</th>
+                            <th class="text-center font-tms-th">Sales order</th>
+                            <th class="text-center font-tms-th">Item number</th>
+                            <th class="text-center font-tms-th">Item Name</th>
+                            <th class="text-center font-tms-th">So Status</th>
+                            <th class="text-center font-tms-th">Line Status</th>
+                            <th class="text-center font-tms-th">Remark</th>
+                            <th class="text-center font-tms-th">Unit Price</th>
+                            <th class="text-center font-tms-th">Discount</th>
+                            <th class="text-center font-tms-th">Amount ordered</th>
+                            <th class="text-center font-tms-th">Unit</th>
+                            <th class="text-center font-tms-th">Quantity</th>
+                            <th class="text-center font-tms-th">Delivery</th>
+                            <th class="text-center font-tms-th">Delivery Remainder</th>
+                            <th class="text-center font-tms-th">ค้างส่ง/ย่อย</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <!-- <t t-foreach="lines_by_customer" t-as="line">
+                            <tr>
+                                <td>
+                                    <t t-esc="line.order_partner_id.ref"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.order_partner_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <t t-esc="line.last_date_delivered"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.order_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_id.default_code"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_id.name"/>
+                                </td>
+                                <td>
+                                    <span>Backorder</span>
+                                </td>
+                                <td>
+                                    <span>Backorder</span>
+                                </td>
+                                <td>
+                                    <t t-esc="line.note"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.price_unit"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.dis_price"/>
+                                </td>
+                                <td>
+                                    <t t-set="amount_order" t-value="(line.price_unit * line.product_uom_qty) - line.dis_price"/>
+                                    <t t-esc="amount_order"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_uom.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_uom_qty"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.qty_delivered"/>
+                                </td>
+                                <td>
+                                    <t t-esc="line.product_uom_qty - line.qty_delivered"/>
+                                </td>
+                                <td>
+                                    <span>ค้างส่ง/ย่อย</span>
+                                </td>
+                            </tr>
+                        </t>  -->
+                        
+                    </tbody>
+                    <tfoot class="font-weight-bold">
+                        <tr>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+        
+    </template>
+    <template id="back_order_with_project">
+        <t t-call="web.html_container">
+            <t t-call="hdc_back_order_report.back_order_with_project_document" />
+        </t>
+    </template>
+
+</odoo>

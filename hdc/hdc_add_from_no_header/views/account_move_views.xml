@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="hdc_account_invoice_form_inherit_add_form_no">
+        <field name="name">Account Invoice Add Form No</field>
+        <field name="priority">15</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="hdc_creditlimit_saleteam.hdc_account_invoice_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='temp_credit_request']" position="after">
+                <field name="move_type" invisible="1"/>
+                <field name="is_no_spe_invoice" invisible="1"/>
+                <field name="form_no" attrs="{'readonly': [('state', 'in', ['posted'])], 'invisible': [('move_type', 'not in', ['out_invoice','out_refund'])],'required': [('move_type', '=', 'out_invoice'), ('is_no_spe_invoice', '=', False),('sale_type_id', '!=', False)]}"/>
+                <field name="old_spe_invoice"  attrs="{'readonly': [('state', 'in', ['posted'])], 'invisible': [('move_type', 'not in', ['out_invoice','out_refund'])]}"/>
+            </xpath>
+        </field>
+    </record>  
+
+</odoo>

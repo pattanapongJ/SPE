@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="purchase_claim_reject_message_tree_view">
+        <field name="name">Purchase Claim Reject MessageTree</field>
+        <field name="model">purchase.claim.reject.message</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="purchase_claim_reject_message_form_view">
+        <field name="name">Purchase Claim Reject Message Form</field>
+        <field name="model">purchase.claim.reject.message</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="purchase_claim_reject_message_action">
+        <field name="name">Purchase Claim Reject Message</field>
+        <field name="res_model">purchase.claim.reject.message</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_claim_reject_message_ept_purchase" action="purchase_claim_reject_message_action"
+        parent="menu_crm_claim_ept_after_sale_purchase" name="Claim Reject Message"
+        groups="rma_ept.group_rma_user_ept" sequence="3"/>
+
+</odoo>

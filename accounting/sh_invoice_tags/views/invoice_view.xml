@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Invoice Journals Entries Tree view -->
+    <record id="sh_invoice_tags_inherit_move_entries_tree" model="ir.ui.view">
+        <field name="name">account.move.entries.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_tree"></field>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="invoice_tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Invoice Form view -->
+    <record id="sh_invoice_tags_inherit_form" model="ir.ui.view">
+        <field name="name">account.invoice.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"></field>
+        <field name="arch" type="xml">
+            <field name="ref" position="after">
+                <field name="invoice_tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_invoice_tags_inherit_list" model="ir.ui.view">
+        <field name="name">account.invoice.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"></field>
+        <field name="arch" type="xml">
+            <field name="invoice_date" position="after">
+                <field name="invoice_tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_invoice_tags_inherit_kanban" model="ir.ui.view">
+        <field name="name">invoice.kanban.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_move_kanban"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//templates//div[@t-attf-class='oe_kanban_global_click']//div" position="inside">
+                <div class="col-lg-12">
+                    <span>
+                        <field name="invoice_tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" />
+                    </span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Account Move Search view -->
+    <record id="view_account_move_search_with_tag" model="ir.ui.view">
+        <field name="name">account.move.search</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_move_filter" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="invoice_tag_ids" string="Tag" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Account Move Invoice Search view -->
+    <record id="view_account_move_invoice_search_with_tag" model="ir.ui.view">
+        <field name="name">account.move.search</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="invoice_tag_ids" string="Tag" />
+            </field>
+        </field>
+    </record>
+</odoo>

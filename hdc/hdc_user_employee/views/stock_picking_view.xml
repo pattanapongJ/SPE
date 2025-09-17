@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_picking_confirm_warehouse_form_inherit_user_employee" model="ir.ui.view">
+        <field name="name">view.picking.confirm.warehouse.form.inherit.user.employee</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_confirm_warehouse.view_picking_confirm_warehouse_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_confirm_warehouse_id']" position="before">
+                <field name="user_confirm_warehouse_employee_id" readonly="1" attrs="{'invisible': ['|',('type_of_operation', 'not in', ('incoming','outgoing')),('addition_operation_types_code', '=', 'AO-06')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='user_confirm_warehouse_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_warehouse_in_id']" position="before">
+                <field name="user_warehouse_in_employee_id" class="oe_inline" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='user_warehouse_in_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_warehouse_out_id']" position="before">
+                <field name="user_warehouse_out_employee_id" class="oe_inline" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='user_warehouse_out_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='validate_user_id']" position="before">
+                <field name="validate_user_employee_id" class="oe_inline" readonly="1" attrs="{'invisible': ['|',('type_of_operation', 'not in', ('incoming','outgoing')),('addition_operation_types_code', '=', 'AO-06')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='validate_user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_extra_field_inventory_borrow_inherit_inherit_user_employee" model="ir.ui.view">
+        <field name="name">view.extra.field.inventory.borrow.inherit.inherit.user.employee</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_extra_field_stock_picking.view_extra_field_inventory_borrow_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="sale_employee_ids" invisible="1"/>
+                <field name="user_employee_id"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_picking_form_inherit_user_employee" model="ir.ui.view">
+        <field name="name">view.picking.form.inherit.user.employee</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra']//group[@name='other_infos']//field[@name='user_id']" position="before">
+                <field name="user_employee_id"/>
+            </xpath>
+            <xpath expr="//page[@name='extra']//group[@name='other_infos']//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="inventory_borrow_inherit_user_employee" model="ir.ui.view">
+        <field name="name">inventory.borrow.form.inherit.user.employee</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="hdc_inventory_borrow.inventory_borrow_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='requestor_emp']" position="before">
+                <field name="requestor_emp_employee" string="Requestor" attrs="{'readonly':[('state','=','done')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='requestor_emp']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

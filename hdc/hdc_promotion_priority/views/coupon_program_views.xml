@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_promotion_priority_form_inherit" model="ir.ui.view">
+            <field name="name">coupon.program.priority.inherit.form</field>
+            <field name="model">coupon.program</field>
+            <field name="inherit_id" ref="coupon.coupon_program_view_promo_program_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='rule_date_to']" position="after">
+                    <label for="maximum_use_free_product" string="Maximum number" attrs="{'invisible': [('reward_type', '!=', 'product')]}"/>
+                    <div name="maximum_use_free_div" attrs="{'invisible': [('reward_type', '!=', 'product')]}">
+                        <field name="maximum_use_free_product" class="oe_inline"/>
+                        <span class="o_form_label oe_inline"></span> <span class="oe_grey">if 0, infinite use</span>
+                    </div>
+                    <field name="pricelists" widget="many2many_tags" options="{'no_create_edit': True, 'no_create': True}"/>
+                    <field name="sale_team_ids" widget="many2many_tags" options="{'no_create_edit': True, 'no_create': True}"/>
+                    <field name="valid_product_ids" widget="many2many_tags" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_coupon_program_form" model="ir.ui.view">
+            <field name="name">coupon.program.form</field>
+            <field name="model">coupon.program</field>
+            <field name="inherit_id" ref="coupon.coupon_program_view_form_common"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="replace">
+                    <field name="company_id" widget="many2many_tags" options="{'no_create_edit': True, 'no_create': True}"/>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="replace">
+                    <field name="company_id" widget="many2many_tags" options="{'no_create_edit': True, 'no_create': True}"/>
+                </xpath>
+                <xpath expr="//field[@name='discount_percentage']" position="after">
+                    <field name="formula_discount" attrs="{'invisible': [('discount_type', '!=', 'formula')],'required': [('discount_type', '=', 'formula')]}" class="oe_inline"/>
+                </xpath>
+                <xpath expr="//field[@name='discount_apply_on']" position="after">
+                    <field name="discount_apply_on" attrs="{'invisible':
+                    ['|', ('reward_type', 'in', ('product', 'free_shipping')), ('discount_type', '!=', 'formula')]}" widget="radio"/>
+                    <field name="discount_specific_product_ids" widget='many2many_tags' attrs="{'invisible': ['|', '|', ('discount_apply_on', '!=', 'specific_products'),('discount_type', '!=', 'formula'), ('reward_type', 'in', ('product', 'free_shipping'))], 'required': [('reward_type', '=', 'discount'),('discount_apply_on', '=', 'specific_products'),('discount_type', '=', 'formula')]}" placeholder="Select products"/>
+                            
+                    <label for="discount_max_amount" string="Max Discount Amount" attrs="{'invisible': ['|', ('reward_type', 'in', ('product', 'free_shipping')), ('discount_type', '!=', 'formula')]}"/>
+                    <div attrs="{'invisible': ['|', ('reward_type', 'in', ('product', 'free_shipping')), ('discount_type', '!=', 'formula')]}">
+                        <field name="discount_max_amount" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <span class="oe_grey">if 0, no limit</span>
+                    </div>
+                </xpath>
+            </field>
+            
+        </record>
+
+    </data>
+</odoo>

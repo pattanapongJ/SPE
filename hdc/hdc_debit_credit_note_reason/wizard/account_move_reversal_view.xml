@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_move_reversal_note_reason" model="ir.ui.view">
+        <field name="name">account.move.reversal.note.reason</field>
+        <field name="model">account.move.reversal</field>
+        <field name="inherit_id" ref="account.view_account_move_reversal"/>
+        <field name="arch" type="xml">
+            <field name="date_mode" position="after">
+                <field name="debit_credit_note_reason_id" domain="[('type','=','credit')]" options="{'no_create': True}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

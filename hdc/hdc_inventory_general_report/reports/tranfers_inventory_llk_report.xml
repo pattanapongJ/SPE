@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hdc_tranfers_llk_report">
+        <t t-call="web.html_container">
+            <t t-set="doc_id" t-value="0"/>
+            <t t-set="iso_detail" t-value="0"/>
+            <t t-foreach="docs" t-as="doc">
+              <t t-set="check_iso" t-value="'hdc_inventory_general_report.hdc_tranfers_llk_report'"/>
+              <t t-set="iso_detail" t-value="doc.check_iso_name(check_iso)"/>
+              <t t-set="print_status" t-value="doc.print_llk_status_change()"/>
+            </t> 
+            <div class="header font-inventory-div" style="font-family: KanitLight;">
+
+              <div style="font-family: KanitLight;text-align: center;margin-bottom:5mm;margin-top:5mm">
+                  <h4 style="font-size: 15.64px;"><strong>ใบจัดสินค้า</strong></h4>
+              </div>
+
+
+              <div class="row" style="font-family: KanitLight;font-size: 10.64px;margin-bottom:1mm;margin-top:2mm">
+                <div class="col-6">
+                  <div class="row">
+                    <span>Page </span> <span class="page"/> / <span class="topage"/><br/>
+                    <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/><br/>
+                    <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M:%S')"/>
+                  </div>
+                </div>
+                
+                <div class="col-6" style="position: relative;">
+                  <div style="position: absolute; bottom: 0;right: 0;">
+                    <span>
+                      <span t-esc="iso_detail"/>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="article font-inventory-div" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+              <div class="row">
+                <t t-set="l_no" t-value="0"/>
+                <t t-set="doc_id" t-value="0"/>
+                
+                <table class="table table-borderless" style="font-size: 10.64px;line-height: 11px;">
+                  <t t-foreach="docs" t-as="doc">
+                    <t t-set="o" t-value="doc"/>
+                    <thead>
+                        <tr>
+                            <th class="text-left  font-inventory-th" style="width: 5%;border-bottom: 1px solid black;font-weight: bold;padding-left: 5px;padding-right: 5px;">Journal name</th>
+                            <th class="text-left  font-inventory-th" style="width: 17%;border-bottom: 1px solid black;font-weight: bold;padding-left: 5px;padding-right: 5px;">Transfer</th>
+                            <th class="text-left  font-inventory-th" style="width: 5%;border-bottom: 1px solid black;font-weight: bold;padding-left: 5px;padding-right: 5px;">Date</th>
+                            <th class="text-left  font-inventory-th" style="width: 5%;border-bottom: 1px solid black;font-weight: bold;padding-left: 5px;padding-right: 5px;">Description</th>
+                            <th class="text-center  font-inventory-th" style="width: 5%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 5%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 8%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 5%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 5%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 5%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 5%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 6%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 7%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 5%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 7%;border-bottom: 1px solid black; "/>
+                            <th class="text-center  font-inventory-th" style="width: 5%;border-bottom: 1px solid black; "/>
+                        </tr>
+                    </thead>
+                    <span t-foreach="o.move_ids_without_package" t-as="move">
+                      <tbody>
+                        <t t-if ="doc_id != o.id">
+                          <t t-set="doc_id" t-value="o.id"/>
+                          <!--แถวที่หนึ่ง-->
+                          <tr>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                              <span>
+                                -
+                              </span>
+                            </td>
+                    
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                              <span t-if="doc.name">
+                                <span t-field="doc.name"/>
+                              </span>
+                              <span t-if="not doc.name">
+                                  -
+                              </span>
+                            </td>
+                            
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                              <span t-if="doc.date">
+                                <span t-field="doc.date" t-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
+                              </span>
+                              <span t-if="not doc.date">
+                                  -
+                              </span>
+                            </td>
+                            
+                            <td class="text-left" colspan="13" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                              <span t-if="doc.note">
+                                  <span t-field="doc.note"/>
+                              </span>
+                              <span t-if="not doc.note">
+                                    -
+                              </span>
+                            </td>
+                          </tr>
+                          <!--แถวที่สอง-->
+                          <tr>
+                            <td class="text-center" colspan="7" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                              <span>
+
+                              </span>
+                            </td>
+                            <td class="text-center" colspan="2" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                From
+                              </span>
+                            </td>
+                            <td class="text-center" colspan="2" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                To
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                Qty
+                              </span>
+                            </td>
+                            <td class="text-center" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                              <span>
+                                
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                To
+                              </span>
+                            </td>
+                            <td class="text-center" colspan="2" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                              <span>
+
+                              </span>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                รหัสสินค้า
+                              </span>
+                            </td>
+                            <td class="text-left" colspan="2" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                ชื่อสินค้า
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                Lots
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                จำนวน
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                หน่วย
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                หมายเหตุ
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                WH
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                Location
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                WH
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                Location/Sub
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                ส่งลูกค้า
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                คงเหลือเก็บ24
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                WH Onh
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                ผู้ตรวจสอบ
+                              </span>
+                            </td>
+                            <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;font-weight: bold;">
+                              <span>
+                                ผู้เก็บ
+                              </span>
+                            </td>
+                          </tr>
+                        </t>
+                        <!--แถวที่สาม-->
+                        <tr>
+                          <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="move.product_id.default_code">
+                                <span t-field="move.product_id.default_code"/>
+                            </span>
+                            <span t-if="not move.product_id.default_code">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-left" colspan="2" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="move.product_id.name">
+                                <span t-field="move.product_id.name"/>
+                            </span>
+                            <span t-if="not move.product_id.name">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-center" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span>
+                              -
+                            </span>
+                          </td>
+                          <td class="text-right" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="move.product_uom_qty">
+                                <span t-field="move.product_uom_qty"/>
+                            </span>
+                            <span t-if="not move.product_uom_qty">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="move.product_uom">
+                                <span t-field="move.product_uom.name"/>
+                            </span>
+                            <span t-if="not move.product_uom">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="move.remark">
+                                <span t-field="move.remark"/>
+                            </span>
+                            <span t-if="not move.remark">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="doc.to_warehouse">
+                                <span t-field="doc.to_warehouse.name"/>
+                            </span>
+                            <span t-if="not doc.to_warehouse">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">         
+                            <span t-if="move.location_id">
+                                <span t-field="move.location_id.complete_name"/>
+                            </span>
+                            <span t-if="not move.location_id">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="doc.from_warehouse">
+                                <span t-field="doc.from_warehouse.name"/>
+                            </span>
+                            <span t-if="not doc.from_warehouse">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-left" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="move.location_dest_id">
+                                <span t-field="move.location_dest_id.complete_name"/>
+                            </span>
+                            <span t-if="not move.location_dest_id">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-center" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="move.urgent_pick">
+                                <span t-field="move.urgent_pick"/>
+                            </span>
+                            <span t-if="not move.urgent_pick">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-right" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="move.product_uom_qty">
+                                <t t-set="remain_stock" t-value="move.product_uom_qty - move.urgent_remain"/>
+                                <span t-esc="remain_stock"/>
+                            </span>
+                            <span t-if="not move.product_uom_qty">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-right" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <t t-set="stock_warehouse" t-value="doc.get_stock_warehouse(move,doc.from_warehouse)"/>
+                              <span t-if="stock_warehouse">
+                                  <span t-esc="'{0:,}'.format(int(stock_warehouse))"/>
+                              </span>
+                              <span t-if="not stock_warehouse">
+                                  -
+                              </span>
+                          </td>
+                          <td class="text-center" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span t-if="doc.approve_inter">
+                                <span t-field="doc.approve_inter.name"/>
+                            </span>
+                            <span t-if="not doc.approve_inter">
+                                -
+                            </span>
+                          </td>
+                          <td class="text-center" style="padding-top: 4px;padding-bottom: 4px;padding-left: 5px;padding-right:5px;">
+                            <span>
+                              -
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </span>
+                  </t>
+                </table>     
+              </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

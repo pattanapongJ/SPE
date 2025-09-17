@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+# Copyright 2023 Basic Solution Co., Ltd. (www.basic-solution.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo noupdate="1">
+    <record id="seq_account_check_pay_in" model="ir.sequence">
+        <field name="name">Account Check Pay In</field>
+        <field name="code">account.check.pay.in</field>
+        <field name="prefix">DEP</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+    </record>
+</odoo>

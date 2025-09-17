@@ -1,0 +1,11 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_receive_method_user,receive_method group_user,model_receive_method,base.group_user,1,1,1,1
+access_customer_return_request_user,customer_return_request group_user,model_customer_return_request,base.group_user,1,1,1,1
+access_customer_return_request_line_user,customer_return_request_line group_user,model_customer_return_request_line,base.group_user,1,1,1,1
+access_wizard_create_multi_rma_user,wizard_create_multi_rma group_user,model_wizard_create_multi_rma,base.group_user,1,1,1,1
+access_wizard_create_multi_rma_line_user,wizard_create_multi_rma group_user,model_wizard_create_multi_rma_line,base.group_user,1,1,1,1
+access_wizard_add_product_crr_user,wizard_add_product_crr group_user,model_wizard_add_product_crr,base.group_user,1,1,1,1
+access_wizard_add_product_crr_line_user,wizard_add_product_crr_line group_user,model_wizard_add_product_crr_line,base.group_user,1,1,1,1
+access_crr_cancel_confirmation_wizard_user,undefined.crr.cancel.confirmation.wizard,model_crr_cancel_confirmation_wizard,base.group_user,1,1,1,1
+access_crr_force_done_confirmation_wizard_user,undefined.crr.force.done.confirmation.wizard,model_crr_force_done_confirmation_wizard,base.group_user,1,1,1,1
+access_wizard_crr_report_list_user,undefined.wizard.crr.report.list,model_wizard_crr_report_list,base.group_user,1,1,1,1

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_batch_billing_user,undefined.batch.billing,model_batch_billing,base.group_user,1,1,1,1
+access_batch_billing_line_user,undefined.batch.billing.line,model_batch_billing_line,base.group_user,1,1,1,1
+access_wizard_add_billing_user,undefined.wizard.add.billing,model_wizard_add_billing,base.group_user,1,1,1,1
+access_wizard_add_invoice_line_user,undefined.wizard.add.invoice.line,model_wizard_add_invoice_line,base.group_user,1,1,1,1

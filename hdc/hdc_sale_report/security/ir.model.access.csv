@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_sale_reporting_user,undefined.wizard.sale.reporting,model_wizard_sale_reporting,base.group_user,1,1,1,1
+access_report_hdc_sale_report_sale_reporting_user,undefined.report.hdc_sale_report.sale_reporting,model_report_hdc_sale_report_sale_reporting,base.group_user,1,1,1,1

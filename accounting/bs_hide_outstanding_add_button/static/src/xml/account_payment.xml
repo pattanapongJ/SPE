@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ShowPaymentInfo">
+
+        <t t-jquery="a.outstanding_credit_assign" t-operation="attributes">
+            <attribute name="style">display: none;</attribute>
+        </t>
+     </t>
+
+    </templates>

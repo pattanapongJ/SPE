@@ -1,0 +1,87 @@
+<odoo>
+  <!-- Kanban Picking Type -->
+    <record id="stock.stock_picking_type_action" model="ir.actions.act_window">
+        <field name="name">Inventory Overview</field>
+        <field name="res_model">stock.picking.type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="domain">[('user_ids','in', uid)]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new operation type
+          </p><p>
+            The operation type system allows you to assign each stock
+            operation a specific type which will alter its views accordingly.
+            On the operation type you could e.g. specify if packing is needed by default,
+            if it should show the customer.
+          </p>
+        </field>
+    </record>
+  <!-- list Picking Type -->
+    <record id="stock.action_picking_type_list" model="ir.actions.act_window">
+      <field name="name">Operations Types</field>
+      <field name="res_model">stock.picking.type</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">['|', ('warehouse_id', '=', False), ('user_ids','in', uid)]</field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              No transfer found. Let's create one!
+          </p><p>
+              Transfers allow you to move products from one location to another.
+          </p>
+      </field>
+
+  </record>
+
+    <!-- Tree Operation Tranfer -->
+    <record id="stock.action_picking_tree_all" model="ir.actions.act_window">
+      <field name="name">Transfers</field>
+      <field name="res_model">stock.picking</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="view_mode">tree,kanban,form,calendar</field>
+      <field name="domain">[('picking_type_id.user_ids','in', uid)]</field>
+      <field name="context">{'contact_display': 'partner_address', 'default_company_id': allowed_company_ids[0]}</field>
+      <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              No transfer found. Let's create one!
+          </p><p>
+              Transfers allow you to move products from one location to another.
+          </p>
+      </field>
+  </record>
+
+<!-- Tree Inventory Overview -->
+  <record id="stock.stock_picking_action_picking_type" model="ir.actions.act_window">
+    <field name="name">All Transfers</field>
+    <field name="res_model">stock.picking</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_mode">tree,kanban,form,calendar</field>
+    <field name="domain">[('picking_type_id.user_ids','in', uid)]</field>
+    <field name="context">{'contact_display': 'partner_address'}</field>
+    <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+    <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+            No transfer found. Let's create one!
+        </p><p>
+            Transfers allow you to move products from one location to another.
+        </p>
+    </field>
+</record>
+
+<!-- <record id="view_picking_form_inventory_test" model="ir.ui.view">
+  <field name="name">stock.picking.form.inventory</field>
+  <field name="model">stock.picking</field>
+  <field name="inherit_id" ref="stock.view_picking_form" />
+  <field eval="12" name="priority"/>
+  <field name="arch" type="xml">
+
+    <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="replace">
+      <field name="product_id" style="width: 50%; max-width: 40px;" string= "test product" required="1" context="{'default_type': 'product'}" attrs="{'readonly': ['|', '&amp;', ('state', '!=', 'draft'), ('additional', '=', False), ('has_move_lines', '=', True)]}"/>
+    </xpath>
+     
+  </field>
+</record> -->
+
+</odoo>

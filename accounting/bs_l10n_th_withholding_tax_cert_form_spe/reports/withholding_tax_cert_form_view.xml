@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="withholding_layout_report" inherit_id="bs_withholding_tax_cert_add.withholding_layout_report">
+            <xpath expr="//div[hasclass('article')]/t[starts-with(@t-if,'o.create_uid.employee_id and o.create_uid.employee_id.signature')]" position="replace">
+                <t t-if="o.create_uid.employee_id and o.create_uid.employee_id.signature and o.show_signature_and_date">
+                    <img t-att-src="image_data_uri(o.create_uid.employee_id.signature)" alt="Signature"
+                         style="position: fixed; box-sizing: content-box; width: 200px; height: 30px; top: 1410px; right:40px; object-fit: contain;"/>
+                </t>
+            </xpath>
+
+            <xpath expr="//div[hasclass('article')]//t[starts-with(@t-if,'o.date')]" position="replace">
+                <t t-if="o.date and o.show_signature_and_date">
+                    <div style="position: fixed; box-sizing: content-box; width: 250px; height: 30px; top: 1435px; right:230px;">
+                        <span t-esc="o.date.strftime('%d')" style="margin-right: 70px;"/>
+                        <span t-esc="o.date.strftime('%m')" style="margin-right: 80px;"/>
+                        <span t-esc="int(o.date.strftime('%Y'))"/>
+                    </div>
+                </t>
+            </xpath>
+
+        </template>
+
+
+    </data>
+</odoo>

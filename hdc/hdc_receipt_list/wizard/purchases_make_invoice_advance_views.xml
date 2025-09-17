@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="purchases_advance_payment_inv" model="ir.ui.view">
+            <field name="name">Create Bill</field>
+            <field name="model">purchases.advance.payment.inv</field>
+            <field name="arch" type="xml">
+                <form string="Create Vendor Bill">
+                    <group>
+                        <field name="advance_payment_method" class="oe_inline" widget="radio"/>
+                        <field name="receipt_list_ids" widget="many2many_tags" attrs="{'invisible': [('advance_payment_method','!=', 'receipt_list')], 'required': [('advance_payment_method','=', 'receipt_list')]}" options="{'no_create': True}"/>
+                    </group>
+                    <notebook attrs="{'invisible': [('advance_payment_method','!=', 'receipt_list')]}">
+                        <page string="Product List" >
+                            <field name="product_line_ids" widget="one2many_list" options="{'no_create': True}">
+                                <tree  editable="bottom" create="0" edit="1" delete="1">
+                                    <field name="wiz_id" invisible="1"/>
+                                    <field name="receipt_list_line_id" invisible="1"/>
+                                    <field name="receipt_list_line_service_id" invisible="1"/>
+                                    <field name="purchase_line_id" invisible="1"/>
+                                    <field name="product_id" readonly="1" force_save="1"/>
+                                    <field name="categ_id" readonly="1" force_save="1"/>
+                                    <field name="receipt_list_id" readonly="1" force_save="1"/> 
+                                    <field name="location_dest_id"  readonly="1" force_save="1"/>
+                                    <field name="receipt_done" readonly="1" force_save="1"/>
+                                    <field name="qty_to_bill_remain" readonly="1" force_save="1"/>
+                                    <field name="qty_to_bill"/>
+                                    <field name="product_uom" readonly="1" force_save="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="create_invoices" id="create_invoice_open" string="Create and View Bill" type="object"
+                            context="{'open_invoices': True}" class="btn-primary"/>
+                        <button name="create_invoices" id="create_invoice" string="Create Bill" type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+</odoo>

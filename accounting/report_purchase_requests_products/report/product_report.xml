@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paper_format_landscape" model="report.paperformat">
+        <field name="name">A4 - Landscape</field>
+        <field name="name">European A4 low margin</field>
+	    <field name="default" eval="True" />
+	    <field name="format">A4</field>
+	    <field name="page_height">0</field>
+	    <field name="page_width">0</field>
+	    <field name="orientation">Landscape</field>
+	    <field name="margin_top">50</field>
+	    <field name="margin_bottom">15</field>
+	    <field name="margin_left">8</field>
+	    <field name="margin_right">8</field>
+	    <field name="header_line" eval="False" />
+	    <field name="header_spacing">45</field>
+	    <field name="dpi">90</field>
+    </record>
+
+    <report
+        string="ใบขอซื้อสินค้า (FM)"
+        id="report_purchase_requests_products"
+        model="purchase.request"
+        report_type="qweb-pdf"
+        name="report_purchase_requests_products.product_report_template"
+        file="report_purchase_requests_products.product_report_template"
+        paperformat="report_purchase_requests_products.paper_format_landscape" />
+</odoo>

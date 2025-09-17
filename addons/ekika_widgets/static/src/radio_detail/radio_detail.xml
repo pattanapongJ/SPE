@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="ekika_utils.RadioDetailField" t-inherit="web.RadioField" owl="1">
+        <xpath expr="//label[hasclass('form-check-label')]" position="after">
+            <t t-set="radioIcon" t-value="specificIcon(item[0])"/>
+            <t t-set="radioText" t-value="specificText(item[0])"/>
+            <br/>
+                <div t-if="radioIcon or radioText" class="d-flex">
+                    <img t-if="radioIcon" class="oe_radio_icon" alt="icon" t-att-src="radioIcon"/>
+                    <div t-if="radioText">
+                        <t t-out="radioText"/>
+                    </div>
+                </div>
+        </xpath>
+    </t>
+
+</templates>

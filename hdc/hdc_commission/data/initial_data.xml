@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="commission_type_com001" model="commission.type">
+            <field name="code">COM001</field>
+            <field name="description">Dunlop,Color,Nitto</field>
+            <field name="name">Dunlop,Color,Nitto</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_com002" model="commission.type">
+            <field name="code">COM002</field>
+            <field name="description">ลวดตาข่าย</field>
+            <field name="name">ลวดตาข่าย</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_com003" model="commission.type">
+            <field name="code">COM003</field>
+            <field name="description">Giesse</field>
+            <field name="name">Giesse</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_com004" model="commission.type">
+            <field name="code">COM004</field>
+            <field name="description">Sika-Thai</field>
+            <field name="name">Sika-Thai</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_com005" model="commission.type">
+            <field name="code">COM005</field>
+            <field name="description">Stanley-Thai</field>
+            <field name="name">Stanley-Thai</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_com006" model="commission.type">
+            <field name="code">COM006</field>
+            <field name="description">H231 (12"X50Y) NORTON</field>
+            <field name="name">H231 (12"X50Y) NORTON</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_com007" model="commission.type">
+            <field name="code">COM007</field>
+            <field name="description">บันได</field>
+            <field name="name">บันได</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_com008" model="commission.type">
+            <field name="code">COM008</field>
+            <field name="description">Brand MIXPRO</field>
+            <field name="name">Brand MIXPRO</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_com009" model="commission.type">
+            <field name="code">COM009</field>
+            <field name="description">Brand MIX</field>
+            <field name="name">Brand MIX</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_com010" model="commission.type">
+            <field name="code">COM010</field>
+            <field name="description">SG 500</field>
+            <field name="name">SG 500</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_fac005" model="commission.type">
+            <field name="code">FAC005</field>
+            <field name="description">5% NORTON</field>
+            <field name="name">5% NORTON</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_fac010" model="commission.type">
+            <field name="code">FAC010</field>
+            <field name="description">10%</field>
+            <field name="name">10%</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_nor001" model="commission.type">
+            <field name="code">NOR001</field>
+            <field name="description">แผ่นตัด14",16" 3 Item</field>
+            <field name="name">แผ่นตัด14",16" 3 Item</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_nor002" model="commission.type">
+            <field name="code">NOR002</field>
+            <field name="description">NORTON</field>
+            <field name="name">NORTON</field>
+            <field name="is_active">True</field>
+        </record>
+        <record id="commission_type_tdr001" model="commission.type">
+            <field name="code">TRD001</field>
+            <field name="description">COLT TRAD</field>
+            <field name="name">COLT TRAD</field>
+            <field name="is_active">True</field>
+        </record>
+    </data>
+</odoo>

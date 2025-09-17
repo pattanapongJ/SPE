@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="partial_payment_form_inherit" model="ir.ui.view">
+            <field name="name">partial_payment.form</field>
+            <field name="model">partial.payment.wizard</field>
+            <field name="inherit_id" ref="pw_partial_payment_reconcile.partial_payment_wizard_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partial_amount']" position="after">
+                    <field name="reconcile_date"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

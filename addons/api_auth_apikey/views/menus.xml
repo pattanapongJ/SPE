@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- API Key Menu -->
+    <menuitem id="menu_api_auth_apikey" name="API Keys"
+        parent="api_framework_base.menu_api_framework_base_config"
+        action="api_auth_apikey_action"
+        groups="api_framework_base.group_api_administrator"/>
+
+</odoo>

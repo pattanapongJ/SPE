@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Dimension Group -->
+        <record id="bs_dimension_1" model="bs.dimension.group">
+            <field name="name">Dimension 1</field>
+        </record>
+
+        <record id="bs_dimension_2" model="bs.dimension.group">
+            <field name="name">Dimension 2</field>
+        </record>
+        <record id="bs_dimension_3" model="bs.dimension.group">
+            <field name="name">Dimension 3</field>
+        </record>
+    </data>
+</odoo>

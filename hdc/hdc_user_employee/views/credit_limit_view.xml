@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="credit_limit_sale_form_inherit_user_employee" model="ir.ui.view">
+        <field name="name">credit.limit.sale.form.inherit.user.employee</field>
+        <field name="model">credit.limit.sale</field>
+        <field name="inherit_id" ref="hdc_creditlimit_saleteam.view_credit_limit_sale_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='credit_line']//form//field[@name='sale_user_id']" position="replace">
+                <field name="sale_employee_ids" invisible="1"/>
+                <field name="company_id" invisible="1" force_save="1"/>
+                <field name="department_id" force_save="1"/>
+                <field name="sale_user_employee_id" options="{'no_create': True, 'no_open': True}"/>
+            </xpath>
+            <xpath expr="//page[@name='credit_line']//tree//field[@name='sale_user_id']" position="replace">
+                <field name="sale_employee_ids" invisible="1"/>
+                <field name="company_id" invisible="1" force_save="1"/>
+                <field name="department_id" force_save="1"/>
+                <field name="sale_user_employee_id" options="{'no_create': True, 'no_open': True}"/>
+            </xpath>
+        </field>
+    </record>    
+</odoo>

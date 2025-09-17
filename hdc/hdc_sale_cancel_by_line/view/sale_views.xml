@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>    
+
+    <record id="view_order_form_cancel_line" model="ir.ui.view">
+        <field name="name">sale.order.form.cancel.line</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='sequence']" position="before">
+                <button name="action_cancel_line" string="Cancel" type="object" class="btn btn-danger"
+                        attrs="{'invisible': ['|',('cancel_qty','>=','product_uom_qty'),('state', 'not in', ('done','sale'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='qty_delivered']" position="after">
+                <field name="cancel_qty" readonly="1" optional="hide" attrs="{'invisible': [('state', 'not in', ('done','sale'))]}"/>
+                <field name="remain_demand_qty" optional="hide" force_save="1" readonly="1"/>
+                <field name="canceled_by" optional="hide" readonly="1"/>
+                <field name="canceled_at" optional="hide" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group[1]" position="inside">
+                <field name="canceled_by" readonly="1"/>
+                <field name="canceled_at" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

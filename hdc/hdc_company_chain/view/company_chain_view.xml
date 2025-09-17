@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="view_company_chain_form" model="ir.ui.view">
+        <field name="name">company.chain.form</field>
+        <field name="model">company.chain</field>
+        <field name="arch" type="xml">
+            <form string="Company Chain">
+                <sheet>
+                    <div class="oe_button_box" name="company_chain_customer">
+                        <button name="company_chain_customer" type="object" class="oe_stat_button" string="Customers"  icon="fa-user">
+                            <field name="number_company_chain" string="Customers"/>
+                        </button>
+                    </div>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="view_company_chain_tree" model="ir.ui.view">
+        <field name="name">company.chain.tree</field>
+        <field name="model">company.chain</field>
+        <field name="arch" type="xml">
+            <tree string="Company Chain" create="true" edit="true">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_company_chain" model="ir.actions.act_window">
+        <field name="name">Company Chain</field>
+        <field name="res_model">company.chain</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_company_chain" name="Company Chain"
+          parent="contacts.res_partner_menu_config" action="action_company_chain"/>
+
+    <!-- ################### -->
+
+    <record id="inherit_partner_view_company_chain" model="ir.ui.view">
+        <field name="name">view.partner.company.chain</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//h1//field[@name='name']/.." position="after">
+                <div class="oe_edit_only">
+                    <group>
+                        <field name="company_chain_id" string="Company Chain" options="{'no_create_edit': True,'no_open': True, 'no_quick_create': True}"/>
+                    </group>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

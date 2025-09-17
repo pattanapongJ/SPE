@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_claims_ept_form_view_inherit_tab">
+        <field name="name">crm.claims.ept.form.view.inherit.tab</field>
+        <field name="model">crm.claim.ept</field>
+        <field name="inherit_id" ref="rma_ept.crm_claims_ept_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='rma_details']" position="after">
+                <page name="warranty_supplier" string="Warranty Supplier">
+                    <field name="crm_claim_ept_line_ids" mode="tree" nolabel="1">
+                        <tree editable="bottom" create="1" edit="true">
+                            <field name="line_product_id"/>
+                            <field name="line_description"/>
+                            <field name="line_qty"/>
+                            <field name="line_price"/>
+                            <field name="line_subtotal"/>
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                        <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                            <label for="claim_amount_total"/>
+                        </div>
+                        <field name="claim_amount_total" nolabel="1" class="oe_subtotal_footer_separator" force_save="1"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//button[@name='action_claim_reject_process_ept']" position="after">
+                <button name="print_rma_list" string="Print Report" type="object"  states="draft,approve,process,close"/>
+            </xpath>   
+
+             <xpath expr="//page[@name='rma_details']" position="inside">
+                <separator name='tms_remark' string="TMS Note" colspan="4"/>
+                <field name="tms_remark" colspan="4"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

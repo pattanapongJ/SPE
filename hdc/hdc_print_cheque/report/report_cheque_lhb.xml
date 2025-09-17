@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_cheque_lhb_document">
+        <t t-if="not o and doc">
+        <t t-set="o" t-value="doc"/>
+        </t>
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <div class="article" style="font-family:LatoOpen Sans;font-size:13px;">
+            <br/>
+            <div class="row">
+                <div class="col-1">
+                                    
+                </div>
+                <div class="col-3">
+                      
+                </div>
+                <div class="col-4">
+                                    
+                </div>
+                <div class="col-3 text-right">
+                    <t t-if="due_dates">
+                        <span style="margin-right: 20px;">
+                            <t t-foreach="due_dates.get(o.id, [])" t-as="dd">
+                                <span style="margin-right: 10px;">
+                                    <t t-esc="dd"/>
+                                </span>
+                            </t>
+                        </span>                        
+                    </t>    
+                </div>
+                <div class="col-1">
+                                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                                    
+                </div>
+                <div class="col-3">
+                    <t t-if="o.due_date">
+                        <t t-esc="o.due_date.strftime('%d/%m/') + str(int(o.due_date.strftime('%Y')) + 543)"/>
+                    </t>    
+                </div>
+                <div class="col-4">
+                    <t t-if="o.crossed_text">
+                        <t t-esc="o.crossed_text"/>
+                    </t> 
+                </div>
+                <div class="col-3 text-right">
+                </div>
+                <div class="col-1">
+                                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                                    
+                </div>
+                <div class="col-3">
+                    <t t-if="o.partner_id">
+                        <t t-esc="o.partner_id.name"/>
+                    </t>
+                </div>
+                <div class="col-6">
+                    <t t-if="o.partner_id">
+                        <t t-esc="o.partner_id.name"/>
+                    </t>
+                </div>
+                <div class="col-1">
+                   <t t-if="o.cheque_no">
+                        <t t-esc="o.cheque_no"/>
+                    </t>
+                </div>
+                <div class="col-1">
+                                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                
+                </div>
+                <div class="col-3">
+                    
+                </div>
+                <div class="col-8">
+                    
+                </div>
+            </div>
+            <t t-set="payment_amount" t-value="0"/>
+            <div class="row">
+                <div class="col-1">
+                                    
+                </div>
+                <div class="col-3">
+                </div>
+                <div class="col-8">
+                    <span t-esc="amount_to_text_th(abs(o.payment_amount), 'THB')"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    
+                </div>
+                <div class="col-7 text-left">
+                    <t t-if="o.payment_amount">
+                        <t t-set="payment_amount" t-value="'{0:,.2f}'.format(float(o.payment_amount))"/>
+                        <t t-esc="payment_amount"/>
+                    </t>  
+                </div>
+                <div class="col-4 text-center">
+                    <t t-if="o.payment_amount">
+                        <t t-set="payment_amount" t-value="'{0:,.2f}'.format(float(o.payment_amount))"/>
+                        **<t t-esc="payment_amount"/>**
+                    </t>                       
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1"/>
+                <div class="col-11 text-left">
+                    <t t-set="payment_number" t-value="o.env['account.payment'].search([('pdc_id', 'in', o.ids)], limit=1)"/>
+                    <t t-if="payment_number">
+                        <t t-esc="payment_number.name"/>          
+                    </t>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </template>
+
+    <template id="report_cheque_lhb">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="hdc_print_cheque.report_cheque_lhb_document" />
+            </t>
+        </t>
+    </template>    
+    
+</odoo>

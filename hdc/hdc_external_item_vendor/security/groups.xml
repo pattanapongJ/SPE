@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hdc_external_item_vendor.access_external_vendor" model="res.groups">
+        <field name="name">External Item Vendor</field>
+    </record>
+</odoo>

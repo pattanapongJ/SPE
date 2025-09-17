@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <template id="assets_common_addon_inventory" name="hdc_inventory_general_report assets"  inherit_id="web.report_assets_common">
+            <xpath expr="." position="inside">
+              <link rel="stylesheet" type="text/css" href="hdc_inventory_general_report/static/src/less/fonts.css" />
+            </xpath>
+      </template>
+
+      <template id="assets_common_addon_inventory_frontend" name="hdc_inventory_general_report assets" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="hdc_inventory_general_report/static/src/less/fonts.css" />
+        </xpath>
+    </template>
+</odoo>
