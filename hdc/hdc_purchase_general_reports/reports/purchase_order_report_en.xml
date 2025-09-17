@@ -19,9 +19,16 @@
         <div class="page">
         <div class="header" style="font-family: KanitLight;" >
             <div class="row">
-                <div class="col-2 text-left">
-                    <t t-call="hdc_purchase_general_reports.report_logo_style"/>
-                </div>
+                <div class="col-2 p-0 m-0" style="
+                            display: -webkit-box; 
+                            -webkit-box-pack: center;  
+                            -webkit-box-orient: vertical;
+                            display: flex;
+                            justify-content: center;
+                            flex-direction: column;">
+                            <img t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"
+                            style="max-width: 95%; height: auto;"/>
+                </div> 
                 <div class="col-7 text-left" style="margin-top:5mm; padding-left:40px">
                     <span style="font-family: KanitLight;font-size: 21.33px; ">
                         <t t-esc="company.name"/>
@@ -433,11 +440,11 @@
                     </div>
                     <div class="row">
                         <div class="col-7 text-left" style="font-weight: bold;">
-                            <span>Grand Total</span>(<span t-field="doc.currency_id"></span>)
+                            <span>Grand Total</span>(<span t-field="doc.currency_id.name"></span>)
                         </div>
                         <div class="col-5 text-right">
                             <span t-if="doc.amount_total">
-                                <span t-esc=" '{0:,.2f}'.format(float(doc.amount_total)) "/>
+                                <span t-esc=" '{0:,.2f}'.format(float(doc.amount_total))"/>
                             </span>
                             <span t-if="not doc.amount_total">
                                 -
