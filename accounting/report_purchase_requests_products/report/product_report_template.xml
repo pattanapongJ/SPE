@@ -129,6 +129,7 @@
                                             </td>
                                             <td class="text-center" style="border: 1px solid black">
                                                  <span t-field="line.product_qty"/>
+                                                 <span t-field="line.product_uom_id"/>
                                             </td>
                                             <td class="text-center" style="border: 1px solid black">
                                             </td>
@@ -158,8 +159,17 @@
                                         <span>ผู้สั่งซื้อ:</span>
                                       </div>
                                       <div class="col-7 m-0 p-0">
-                                      <img t-att-src="'data:image/png;base64,%s' % to_text(o.requested_by.employee_id.signature)" style="width:150px; height: 50px;"/>
-                                      <span>................................ </span>
+                                        <t t-if="o.requested_by.employee_id.signature">
+                                          <img t-att-src="'data:image/png;base64,%s' % to_text(o.requested_by.employee_id.signature)" style="width:150px; height: 50px;"/>
+                                        </t>
+                                        <t t-else="">
+                                          <div style="height: 40px;">
+                                          </div>
+                                          <div style="height: 8px;">
+                                            <span t-field="o.requested_by.name"/>
+                                          </div>
+                                        </t>
+                                        <span>................................ </span>
                                       </div>
                                     </div>
                               </div>
