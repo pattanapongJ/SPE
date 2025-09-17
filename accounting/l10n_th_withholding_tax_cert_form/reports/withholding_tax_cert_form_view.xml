@@ -103,9 +103,8 @@
             </div>
             <div class="company_name">
                 <p>
-                    <span t-field="o.company_partner_id.name" />
                     <t t-if="o.branch_id">
-                        (<span t-field="o.branch_id.name" />)
+                        <span t-field="o.branch_id.company_id.name_th" /> (<span t-field="o.branch_id.branch_no" />)
                     </t>
                 </p>
             </div>
