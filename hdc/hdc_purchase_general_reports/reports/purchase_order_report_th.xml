@@ -60,7 +60,7 @@
                     </span>             
                 </div>
             </div>
-            <div class="row" style="font-family: KanitLight;font-size: 12.00px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black;height: 160px">
+            <div class="row" style="font-family: KanitLight;font-size: 14.67px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black;height: 185px">
                 <div class="col-7">
                     <div class="row">
                         <div class="col-4">
@@ -268,7 +268,7 @@
         <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
             <div class="row">
                 <t t-set="l_no" t-value="0"/>
-                <table class="table" style="font-size: 12.00px;line-height: 18px">
+                <table class="table" style="font-size: 14.67px;line-height: 18px">
                     <thead style="background-color:#ECECEC">
                         <tr>
                             <th class="text-center" style="width: 6%;">ลำดับ</th>
