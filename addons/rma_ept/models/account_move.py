@@ -11,6 +11,7 @@ class AccountMove(models.Model):
     customer_requisition = fields.Char(string='Customer Requisition')
     customer_ref = fields.Char(string='Customer Reference')
     original_value = fields.Float(string='มูลค่าเดิม', copy=False,digits="Product Price")
+    register_date = fields.Date(string='ลงวันที่')
 
     @api.model
     def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
