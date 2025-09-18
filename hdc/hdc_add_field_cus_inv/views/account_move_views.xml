@@ -19,6 +19,7 @@
                 <field name="payment_no"/>
                 <field name="billing_date"/>
                 <field name="billing_no"/>
+                <field name="billing_receipt_date"/>
                 <field name="batch_billing_no"/>
             </xpath>
         </field>
@@ -35,7 +36,9 @@
             <field name="customer_account"/>
             <field name="customer_code"/>
             <field name="financial_note"/>
-            <field name="accounting_note"/>    
+            <field name="accounting_note"/>
+            <field name="commission_note"/>    
+            <field name="billing_note"/>
              <field name="delivery_tracking" attrs="{'invisible': [('move_type', 'not in', ['out_invoice','out_refund'])]}"/>     
         </xpath>
         </field>
