@@ -50,7 +50,7 @@
                     </span> 
                 </div>
                 <div class="col-3 text-right"  style="margin-right:0mm;margin-top:5mm">
-                    <div class="row" style="font-family: KanitLight;font-size: 12.00px;">
+                    <div class="row" style="font-family: KanitLight;font-size: 14.00px;">
                         <div class="col text-right">
                             <t t-set="check_iso" t-value="'hdc_purchase_general_reports.hdc_purchase_order_report_th_internal'"/>
                             <t t-esc="doc.check_iso_name(check_iso)"/>
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="row" style="font-family: KanitLight;font-size: 12.00px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black;height: 195px">
+            <div class="row" style="font-family: KanitLight;font-size: 14.00px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black;height: 220px">
                 <div class="col-7">
                     <div class="row">
                         <div class="col-4">
@@ -303,7 +303,7 @@
         <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
             <div class="row">
                 <t t-set="l_no" t-value="0"/>
-                <table class="table" style="font-size: 12.00px;line-height: 18px;margin-top:34px">
+                <table class="table" style="font-size: 14.00px;line-height: 18px;margin-top:34px">
                     <thead style="background-color:#ECECEC">
                         <tr>
                             <th class="text-center" style="width: 6%;">ลำดับ</th>
@@ -391,7 +391,7 @@
         </div>
 
          <div class="footer last-page not-first-page" style="font-size: 11px;margin-top:2mm;vertical-align: bottom;font-family: KanitLight;max-height:403px">
-            <div class="row" style="font-size: 12.00px;border-top: 1px solid black;border-bottom: 1px solid black;height: 95px">
+            <div class="row" style="font-size: 14.00px;border-top: 1px solid black;border-bottom: 1px solid black;height: 95px">
                 
                 <div class="col-8">
                     <div class="row">
