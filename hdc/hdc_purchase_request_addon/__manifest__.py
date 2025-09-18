@@ -21,7 +21,7 @@
 {
     "name": "HDC Purchase Request Addon",
     "author": "Hydra Data and Consulting Ltd",
-    "version": "14.0.0.0.1",
+    "version": "14.0.0.0.2",
     "summary": "Support Purchase Team"
     "requirements.",
     "website": "http://www.hydradataandconsulting.co.th",
