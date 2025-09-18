@@ -9,11 +9,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                    sudo -u odoo bash -c '
+                    /usr/bin/sudo -u odoo bash -c '
                     cd /home/odoo/modules &&
                     git pull origin master &&
                     '
-                    systemctl restart odoo
+                    /usr/bin/sudo systemctl restart odoo
                 '''
             }
         }
