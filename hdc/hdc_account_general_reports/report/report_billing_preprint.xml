@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_billing_preprint_document">
-        <?xml version="1.0"?>
         <t t-name="hdc_account_general_reports.report_billing_preprint_document">
             <t t-if="not o and doc">
                 <t t-set="o" t-value="doc"/>
