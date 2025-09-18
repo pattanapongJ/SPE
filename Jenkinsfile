@@ -13,7 +13,7 @@ pipeline {
                     cd /home/odoo/modules &&
                     git pull origin master &&
                     '
-                    sudo systemctl restart odoo
+                    systemctl restart odoo
                 '''
             }
         }
