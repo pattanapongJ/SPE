@@ -1,34 +1,20 @@
 pipeline {
     agent any
-    environment {
-        VPN = credentials('fortinet-user')
-    }
     stages {
         stage('Checkout Code') {
             steps {
                 git branch: 'master', url: 'https://github.com/pattanapongJ/SPE.git'
             }
         }
-        stage('Connect VPN') {
+        stage('Deploy') {
             steps {
                 sh '''
-                /usr/local/bin/vpn-connect.expect $VPN_USR $VPN_PSW spevpn &
-                sleep 15
+                    sudo -u odoo bash -c '
+                    cd /home/odoo/modules &&
+                    git pull origin master &&
+                    '
+                    sudo systemctl restart odoo
                 '''
-            }
-        }
-        stage('Deploy Locally') {
-            steps {
-                sh '''
-                    cd /home/odoo/modules
-                    git pull origin master
-                    systemctl restart odoo
-                '''
-            }
-        }
-        stage('Disconnect VPN') {
-            steps {
-                sh 'forticlient vpn disconnect spevpn || true'
             }
         }
     }
