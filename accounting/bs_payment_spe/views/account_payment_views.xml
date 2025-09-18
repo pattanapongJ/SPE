@@ -16,6 +16,8 @@
 
             <xpath expr="//field[@name='ref']" position="after">
                 <field name="internal_note" attrs="{'invisible':[('partner_type','=','supplier')]}"/>
+                <field name="document_ref"/>
+                <field name="pdc_ref"/>
             </xpath>
         </field>
     </record>
