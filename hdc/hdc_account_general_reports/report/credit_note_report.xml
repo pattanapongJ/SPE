@@ -444,7 +444,7 @@
                                 </span> -->
                                 <span t-if="doc.original_value">
                                     <span t-if="doc.original_value">
-                                        <span t-esc="'{:.2f}'.format(float(doc.original_value))"/>
+                                        <span t-esc="'{0:,.2f}'.format(float(doc.original_value))"/>
                                      </span>
                                 </span>
                             </div>
@@ -461,7 +461,7 @@
                                 <span t-if="doc.amount_untaxed">
                                     <span t-if="doc.amount_untaxed">
                                         <t t-set="amount_actual" t-value="doc.amount_untaxed"/>
-                                        <span t-esc="'{:.2f}'.format(float(amount_actual))"/>
+                                        <span t-esc="'{0:,.2f}'.format(float(amount_actual))"/>
                                      </span>
                                 </span>
                             </div>
