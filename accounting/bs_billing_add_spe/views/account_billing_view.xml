@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <record id="bs_billing_add_speaccount_billing_form" model="ir.ui.view">
         <field name="name">bs.billing.add.spe.account.billing.form</field>
         <field name="model">account.billing</field>
@@ -19,6 +18,17 @@
                     string="Amount Due"
                 />
             </xpath>
+            <xpath expr="//field[@name='billing_line_ids']/tree/field[@name='invoice_id']" position="after">
+                <field name="billing_route"/>
+                <field name="billing_terms"/>
+                <field name="billing_period"/>
+                <field name="payment_period"/>
+                <field name="sale_person_id"/>
+            </xpath>
+            <xpath expr="//field[@name='billing_line_ids']/tree/field[@name='origin']" position="after">
+                <field name="branch_name"/>
+                <field name="customer_po"/>
+            </xpath>
             <xpath expr="//field[@name='currency_id']" position="after">
                 <field name="branch_id"/>
             </xpath>
@@ -34,12 +44,33 @@
             </xpath>
         </field>
     </record>
-
+    <record id="bs_billing_add_billing_field" model="ir.ui.view">
+        <field name="name">bs.billing.add.billing.field</field>
+        <field name="model">account.billing</field>
+        <field name="inherit_id" ref="hdc_batch_billing.batch_billing_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='batch_billing_status']" position="after">
+                <field name="billing_route"/>
+                <field name="billing_terms"/>
+                <field name="billing_period"/>
+                <field name="payment_period"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="bs_billing_add_batch_no_field" model="ir.ui.view">
+        <field name="name">bs.billing.add.billing.field</field>
+        <field name="model">account.billing</field>
+        <field name="inherit_id" ref="hdc_add_from_no_header.view_account_billing_form_add_from_no"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='old_spe_billing_no']" position="after">
+                <field name="batch_no"/>
+            </xpath>
+        </field>
+    </record>
     <menuitem id="menu_action_customer_billing_spe" name="Customer Billing" sequence='99' web_icon="bs_billing_add_spe,static/description/icon.png" active="False" />
     <menuitem
         action="account_billing.action_customer_billing"
         id="menu_action_customer_billing_spe"
         sequence="15"
     />
-
 </odoo>
