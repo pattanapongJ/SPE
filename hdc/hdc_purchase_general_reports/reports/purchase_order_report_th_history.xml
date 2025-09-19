@@ -28,7 +28,7 @@
                         รายละเอียดใบสั่งซื้อย้อนหลัง
                     </span>
                     <br/>
-                    <span style="font-family: KanitLight;font-size: 14.67px;">
+                    <span style="font-family: KanitLight;font-size: 13.67px;">
                         PO No 
                         <span style="padding-right:50px">
                             <span t-if="doc.name">
@@ -46,7 +46,7 @@
         <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
             <div class="row">
                 <t t-set="l_no" t-value="0"/>
-                <table class="table-bordered" style="font-size: 14.px; line-height: 18px">
+                <table class="table-bordered" style="font-size: 13.67px; line-height: 18px">
                     <thead style="background-color:#ECECEC">
                         <tr>
                             <th class="text-center align-middle" style="width: 100px;">Item Number</th>

@@ -27,7 +27,7 @@
                                 (<t t-esc="branch.branch_number"/>)
                             </div>
                     </div>
-                    <span style="font-family: KanitLight;font-size: 14.67px; ">
+                    <span style="font-family: KanitLight;font-size: 13.67px; ">
                         <t t-if="branch">
                             <t t-set="branch_address" t-value="branch.address.split(' ')"/>
                             <t t-set="address_count" t-value="0"/>
@@ -42,7 +42,7 @@
                         <br/>
                     </span>
                     
-                    <span style="font-family: KanitLight;font-size: 14.67px; ">         
+                    <span style="font-family: KanitLight;font-size: 13.67px; ">         
                         TEL : <t t-esc="branch.telephone"/>
                         <span t-if="not branch.telephone" style="padding-left:90px"></span>
                         <span style="padding-left:40px">FAX : </span><t t-esc="branch.fax"/><br/>
@@ -61,7 +61,7 @@
                             ใบสั่งซื้อ
                         </div>
                     </div>
-                    <div class="row" style="font-family: KanitLight;font-size: 14.67px; margin-top:19mm">
+                    <div class="row" style="font-family: KanitLight;font-size: 13.67px; margin-top:19mm">
                         <div class="col text-right">
                             หน้า<span class="page"/>/<span style="padding-right:5px" class="topage"/>
                         </div>
