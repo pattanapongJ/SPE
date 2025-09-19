@@ -273,10 +273,10 @@
 
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-5">
                             <span><strong>เลขที่เอกสาร:</strong></span>
                         </div>
-                        <div class="col-6">
+                        <div class="col-7">
                             <span t-if="doc.name">
                                <span t-field="doc.name"/>
                            </span>
@@ -286,10 +286,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-5">
                             <span><strong>วันที่</strong></span>
                         </div>
-                        <div class="col-6">
+                        <div class="col-7">
                             <span t-if="doc.invoice_date">
                                 <t t-esc="doc.invoice_date.strftime('%d/%m/%Y')"/>
                             </span>
@@ -299,10 +299,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-5">
                             <span><strong>พนักงานขาย:</strong></span>
                         </div>
-                        <div class="col-6">
+                        <div class="col-7">
                            <span t-if="doc.invoice_user_employee_id">
                                <t t-esc="doc.invoice_user_employee_id.name"/>
                             </span>
@@ -328,10 +328,10 @@
                         <br/>
                     </div>
                     <div class="row text-left">
-                        <div class="col-6">
+                        <div class="col-5">
                             <span><strong>เลขที่ใบสั่งซื้อ:</strong></span>
                         </div>
-                        <div class="col-6">
+                        <div class="col-7">
                             <span t-if="sale_order.customer_po">
                                <t t-esc="sale_order.customer_po"/>
                             </span>
@@ -341,10 +341,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-5">
                             <span><strong>ผู้ติดต่อ:</strong></span>
                         </div>
-                        <div class="col-6">
+                        <div class="col-7">
                             <span t-if="doc.contact_person">
                                <span t-field="doc.contact_person.name"/>
                             </span>
@@ -354,10 +354,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-5">
                             <span><strong>ประเภทอุตสาหกรรม:</strong></span>
                         </div>
-                        <div class="col-6">
+                        <div class="col-7">
                             <!-- <span t-if="doc.industry_id">
                                <span t-field="doc.industry_id.name"/>
                             </span>
@@ -377,25 +377,22 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-5">
                             <span><strong>ปริมาณที่ใช้ต่อเดือน:</strong></span>
                         </div>
-                        <div class="col-6">
+                        <div class="col-7">
                              <span>................................</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <span><strong>สินค้าที่ใช้อยู่ในปัจจุบัน (ยี่ห้อ, รุ่น)</strong></span>
-                        </div>
-                        <div class="col-6">
-                             <span style="display: inline-block; border-bottom: 1px dotted #000; width: 87%;"/>
                         </div>
                     </div>
                 </div>
             </div>
 
-            
+            <div class="text-nowrap" style="width: 100%; font-size: 14px;font-weight: bold">
+                <span style="display: inline-block; min-width: 60px;">
+                    สินค้าที่ใช้อยู่ในปัจจุบัน (ยี่ห้อ, รุ่น)
+                </span>
+                <span style="display: inline-block; border-bottom: 1px dotted #000; width: 87%;"/>
+            </div>
 
 
         </div>
@@ -647,17 +644,6 @@
                                 <div>..........................................</div>
                             </div>
                             <div>ผู้อนุมัติ</div>
-                            <br />
-                            <div class="col-12 text-right"  style="margin-right:0mm;margin-top:3mm">
-                                <div style="font-size: 11px" >
-                                    <span t-if="sale_order.name">
-                                        <t t-esc="sale_order.name"/>
-                                    </span>
-                                    <span t-if="not sale_order.name">
-                                        -
-                                    </span>
-                                </div>
-                            </div>
                     </div>
                 </div>
             </div>
