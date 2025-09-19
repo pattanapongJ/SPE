@@ -25,18 +25,6 @@
             <field name="binding_type">report</field>
         </record>
 
-        <record id="account_tax_invoice_20_line_ex" model="ir.actions.report">
-            <field name="name">ใบกำกับภาษี Pre Print (External Description)</field>
-            <field name="model">account.move</field>
-            <field name="report_type">qweb-pdf</field>
-            <field name="print_report_name">"ใบกำกับภาษี Pre Print (External Description)"</field>
-            <field name="report_name">hdc_account_general_reports.mpf_tax_inv_pp_20line_ex_report</field>
-            <field name="report_file">hdc_account_general_reports.mpf_tax_inv_pp_20line_ex_report</field>
-            <field name="binding_model_id" ref="account.model_account_move"/>
-            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint_20line_ex"/>
-            <field name="binding_type">report</field>
-        </record>
-
         <record id="account_tax_invoice_online" model="ir.actions.report">
             <field name="name">ใบกำกับภาษี Pre Print (Online)</field>
             <field name="model">account.move</field>
