@@ -3,7 +3,7 @@
     'version': '1.0.0',
     'author': 'FreelancerApps',
     'category': 'Tools',
-    'depends': ['base', 'sale_management', 'purchase','crm','sale_blanket_order','hdc_quotation_order','account'],
+    'depends': ['base', 'sale_management', 'purchase','crm','sale_blanket_order','hdc_quotation_order','account','hdc_sale_project'],
     'summary': 'Provide same field Is Customer Is Vendor into the partner Customer Vendor Field customer field is supplied field supplier options customer options wehsite hide menu checklist readonly',
     'description': '''
 Odoo13 Is a Customer, Is a Vendor
@@ -20,7 +20,8 @@ KEY FEATURES:
     * Added Vendor Filter In Purchase Order.
     * Added translations for partner type, is customer and is supplier fields.
 ''',
-    'data': ['views/res_partner_view.xml'],
+    'data': ['views/res_partner_view.xml',
+             'views/project_sale.xml'],
     'post_init_hook': 'update_old_partners',
     'images': ['static/description/is_customer_is_vendor_banner.gif'],
     'price': 4.99,

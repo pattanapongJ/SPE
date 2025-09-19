@@ -14,7 +14,7 @@ class StockLandedCost(models.Model):
 
     cal_currency_id = fields.Many2one('res.currency', string='Currency', readonly=False)
     exchange_date = fields.Date(string='Exchange Date')
-    exchange_rate = fields.Float(string='Exchange Rate', readonly=False)
+    exchange_rate = fields.Float(string='Exchange Rate', readonly=False, digits=(16,4))
     
     target_type = fields.Selection(
         [('manual', 'Manual (Import/Export)'),
@@ -38,7 +38,7 @@ class StockLandedCost(models.Model):
     allowed_receipt_list_ids = fields.Many2many(
         'stock.picking.batch', compute='_compute_allowed_receipt_list_ids')
     
-    receipts_date = fields.Datetime(string="Receipts Date", default=False, copy=False,states={'done': [('readonly', True)]}, tracking=True)
+    receipts_date = fields.Datetime(string="Receipts Date",required=True, default=False, copy=False,states={'done': [('readonly', True)]}, tracking=True)
 
     vendor_bill_id = fields.Many2many(
         'account.move', string='Vendor Bill', copy=False, domain=[('move_type', '=', 'in_invoice')])
@@ -46,7 +46,6 @@ class StockLandedCost(models.Model):
     @api.onchange('receipt_list_ids', 'picking_ids')
     def _onchange_receipts_date(self):
         for rec in self:
-            print('---------------')
             rec.receipts_date = False
             if rec.receipt_list_ids:
                 rec.receipts_date = rec.receipt_list_ids[0].validate_inventory_date
@@ -158,7 +157,6 @@ class StockLandedCost(models.Model):
             elif self.target_model == 'receipt_list':
                 for receipt_list in self.receipt_list_ids:
                     for line_ids in receipt_list.line_ids:
-                        print('----------------receipt_list.name', receipt_list.name)
                         vals = {
                             'cost_id': self.id,
                             'receipt_name': receipt_list.name,
@@ -238,7 +236,6 @@ class StockLandedCost(models.Model):
             for receipt_list in self.receipt_list_ids:
                 for line_ids in receipt_list.line_ids:
                     move_ids += line_ids.move_id
-            print('---------_get_targeted_move_ids-', move_ids)
             return move_ids
         
     def compute_landed_cost(self):
@@ -247,7 +244,6 @@ class StockLandedCost(models.Model):
 
         towrite_dict = {}
         for cost in self.filtered(lambda cost: cost._get_targeted_move_ids()):
-            print('---------cost-', cost)
             rounding = cost.currency_id.rounding
             total_qty = 0.0
             total_cost = 0.0
@@ -256,9 +252,10 @@ class StockLandedCost(models.Model):
             total_line = 0.0
             all_val_line_values = cost.get_valuation_lines()
             for val_line_values in all_val_line_values:
-                for cost_line in cost.cost_lines:
-                    val_line_values.update({'cost_id': cost.id, 'cost_line_id': cost_line.id})
-                    self.env['stock.valuation.adjustment.lines'].create(val_line_values)
+                # for cost_line in cost.cost_lines:
+                    # val_line_values.update({'cost_id': cost.id, 'cost_line_id': cost_line.id})
+                val_line_values.update({'cost_id': cost.id })
+                self.env['stock.valuation.adjustment.lines'].create(val_line_values)
                 total_qty += val_line_values.get('quantity', 0.0)
                 total_weight += val_line_values.get('weight', 0.0)
                 total_volume += val_line_values.get('volume', 0.0)
@@ -273,34 +270,34 @@ class StockLandedCost(models.Model):
                 value_split = 0.0
                 for valuation in cost.valuation_adjustment_lines:
                     value = 0.0
-                    if valuation.cost_line_id and valuation.cost_line_id.id == line.id:
-                        if line.split_method == 'by_quantity' and total_qty:
-                            per_unit = (line.price_unit / total_qty)
-                            value = valuation.quantity * per_unit
-                        elif line.split_method == 'by_weight' and total_weight:
-                            per_unit = (line.price_unit / total_weight)
-                            value = valuation.weight * per_unit
-                        elif line.split_method == 'by_volume' and total_volume:
-                            per_unit = (line.price_unit / total_volume)
-                            value = valuation.volume * per_unit
-                        elif line.split_method == 'equal':
-                            value = (line.price_unit / total_line)
-                        elif line.split_method == 'by_current_cost_price' and total_cost:
-                            per_unit = (line.price_unit / total_cost)
-                            value = valuation.former_cost * per_unit
-                        else:
-                            value = (line.price_unit / total_line)
+                    # if valuation.cost_line_id and valuation.cost_line_id.id == line.id:
+                    if line.split_method == 'by_quantity' and total_qty:
+                        per_unit = (line.price_unit / total_qty)
+                        value = valuation.quantity * per_unit
+                    elif line.split_method == 'by_weight' and total_weight:
+                        per_unit = (line.price_unit / total_weight)
+                        value = valuation.weight * per_unit
+                    elif line.split_method == 'by_volume' and total_volume:
+                        per_unit = (line.price_unit / total_volume)
+                        value = valuation.volume * per_unit
+                    elif line.split_method == 'equal':
+                        value = (line.price_unit / total_line)
+                    elif line.split_method == 'by_current_cost_price' and total_cost:
+                        per_unit = (line.price_unit / total_cost)
+                        value = valuation.former_cost * per_unit
+                    else:
+                        value = (line.price_unit / total_line)
 
-                        if rounding:
-                            value = tools.float_round(value, precision_rounding=rounding, rounding_method='UP')
-                            fnc = min if line.price_unit > 0 else max
-                            value = fnc(value, line.price_unit - value_split)
-                            value_split += value
+                    if rounding:
+                        value = tools.float_round(value, precision_rounding=rounding, rounding_method='UP')
+                        fnc = min if line.price_unit > 0 else max
+                        value = fnc(value, line.price_unit - value_split)
+                        value_split += value
 
-                        if valuation.id not in towrite_dict:
-                            towrite_dict[valuation.id] = value
-                        else:
-                            towrite_dict[valuation.id] += value
+                    if valuation.id not in towrite_dict:
+                        towrite_dict[valuation.id] = value
+                    else:
+                        towrite_dict[valuation.id] += value
         for key, value in towrite_dict.items():
             AdjustementLines.browse(key).write({'additional_landed_cost': value})
         return True
@@ -414,6 +411,25 @@ class StockLandedCost(models.Model):
                 cost.write(cost_vals)
         return True
     
+
+    def _check_sum(self):
+        """ Check if each cost line its valuation lines sum to the correct amount
+        and if the overall total amount is correct also """
+        prec_digits = self.env.company.currency_id.decimal_places
+        for landed_cost in self:
+            total_amount = sum(landed_cost.valuation_adjustment_lines.mapped('additional_landed_cost'))
+            if not tools.float_is_zero(total_amount - landed_cost.amount_total, precision_digits=prec_digits):
+                return False
+
+            # ปิดเพราะ ต้องเช็คแบบรวมบรรทัด
+            # val_to_cost_lines = defaultdict(lambda: 0.0)
+            # for val_line in landed_cost.valuation_adjustment_lines:
+            #     val_to_cost_lines[val_line.cost_line_id] += val_line.additional_landed_cost
+            # if any(not tools.float_is_zero(cost_line.price_unit - val_amount, precision_digits=prec_digits)
+            #        for cost_line, val_amount in val_to_cost_lines.items()):
+            #     return False
+        return True
+    
     @api.onchange('vendor_bill_id')
     def _onchange_vendor_bill_id_update_additional_costs(self):
         if self.state == 'draft':
@@ -421,7 +437,6 @@ class StockLandedCost(models.Model):
             if self.vendor_bill_id:
                 new_cost_lines = []
                 for invoice in self.vendor_bill_id:
-                    print('---------------invoice', invoice, invoice.name)
                     for invoice_line in invoice.invoice_line_ids:
                         product = invoice_line.product_id
                         if product and product.landed_cost_ok and invoice_line.is_landed_costs_line:

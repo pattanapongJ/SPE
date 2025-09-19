@@ -13,14 +13,22 @@ class CrmClaimEpt(models.Model):
     _inherit = ['mail.thread']
 
     #addon SPE-10
-    receive_method = fields.Char(string='Receive Method')
+    receive_method = fields.Selection([ 
+                                        ('by_sale_person', 'เซลล์ถือมา'), 
+                                        ('by_shipping', 'รับผ่านขนส่ง'),
+                                        ('by_sale_person', 'เซลล์ถือมา'), 
+                                        ('by_company_car', 'รถบริษัท'),
+                                        ('walk_in', 'Walk In'),], 
+                                        string='Receive Method')
+    receive_remark = fields.Text(string='Receive Remark', tracking=True)
     receive_by = fields.Many2one('res.users', string='Receive By', tracking=True,
                               default=lambda self: self.env.user)
     
     project_name = fields.Many2one('sale.project', string='Project Name')
     land = fields.Char(string = "แปลง")
     home = fields.Char(string = "แบบบ้าน")
-    original_value = fields.Float(string='มูลค่าเดิม', copy=False,digits="Product Price")
+    original_value = fields.Float(string='มูลค่าเดิม', copy=False,digits="Product Price", tracking=True)
+    register_date = fields.Date(string='ลงวันที่')
     sale_person_id = fields.Many2one('res.users', string='Sale Person',
                               default=lambda self: self.env.user)
     sale_spec = fields.Many2one('res.users', string = 'Sale Spec')
@@ -107,7 +115,7 @@ class CrmClaimEpt(models.Model):
     claim_line_ids = fields.One2many("claim.line.ept", "claim_id", string="Return Line")
     repairs_count = fields.Integer(compute='_compute_repairs_count')
     return_partner_delivery_id = fields.Many2one('res.partner', string='Return Customer Address')
-    rma_reason_id = fields.Many2one('rma.reason.ept', string="Customer Reason", required=True, copy=False)
+    rma_reason_id = fields.Many2one('rma.reason.ept', string="Customer Reason", copy=False)
     claim_type = fields.Selection([
         ('refund', 'Refund'),
         ('replace_same_product', 'Replace With Same Product'),
@@ -130,6 +138,11 @@ class CrmClaimEpt(models.Model):
 
     rma_reason_journal_id = fields.Many2one('account.journal', domain=[("type", "=", "sale"),("show_in_credit_note", "=", True)], string="Journal")
     spe_invoice_no = fields.Char(string="SPE Invoice No.",help="SPE Invoice When Don't have Invoice in Odoo")
+    spe_invoice_date = fields.Date('Date')
+    customer_requisition = fields.Char(string='Customer Requisition')
+    customer_ref = fields.Char(string='Customer Reference')
+    is_job_no = fields.Char(string="Job No.")
+    report_company_id = fields.Many2one('res.company', string="Company", default=lambda self: self.env.company)
 
     @api.onchange('rma_reason_id')
     def _onchange_rma_reason_id(self):
@@ -138,6 +151,10 @@ class CrmClaimEpt(models.Model):
         if self.claim_line_ids:
             for line in self.claim_line_ids:
                 line.rma_reason_id = self.rma_reason_id
+        if self.rma_reason_id.action == 'replace_same_product':
+            for line in self.claim_line_ids:
+                line.to_be_replace_product_id = line.product_id.id
+                line.to_be_replace_quantity = line.quantity
 
 
     # @api.onchange('partner_id')
@@ -1358,7 +1375,7 @@ class CrmClaimEpt(models.Model):
         journal_id = invoice.journal_id.id
         if self.rma_reason_journal_id:
             journal_id = self.rma_reason_journal_id.id
-
+        
         refund_invoice.write({
             'invoice_origin':invoice.name,
             'claim_id':self.id,
@@ -1368,6 +1385,8 @@ class CrmClaimEpt(models.Model):
             'customer_ref':self.customer_ref,
             'customer_requisition':self.customer_requisition,
             'original_value':self.original_value,
+            'register_date':self.register_date,
+            'invoice_user_employee_id':self.sale_person_employee_id.id if self.sale_person_employee_id else False,
         })
         return refund_invoice
 
@@ -1490,3 +1509,41 @@ class CrmClaimEpt(models.Model):
             'target':'new',
             'context':ctx,
         }
+
+    def check_stock_not_get(self,data):
+        check = 0
+        if "NG" not in data.location_id.complete_name:
+            check = 1
+        if "Lost" not in data.location_id.complete_name:
+            check = 1
+        if "RP" not in data.location_id.complete_name:
+            check = 1
+        if "Inter Tranfer" not in data.location_id.complete_name:
+            check = 1
+        return check
+        
+    def get_stock_24A(self,data):
+        location_list = self.env['stock.quant'].search([('product_id','=', data.product_id.id),('location_id.usage','=','internal')])
+        total_available_quantity = 0
+        for rec in location_list:
+            if "24A" in rec.location_id.complete_name:
+                if self.check_stock_not_get(rec) == 1:
+                    total_available_quantity = total_available_quantity + rec.available_quantity
+        return total_available_quantity
+    def get_stock_24B(self,data):
+        location_list = self.env['stock.quant'].search([('product_id','=', data.product_id.id),('location_id.usage','=','internal')])
+        total_available_quantity = 0
+        for rec in location_list:
+            if "24B" in rec.location_id.complete_name:
+                if self.check_stock_not_get(rec) == 1:
+                    total_available_quantity = total_available_quantity + rec.available_quantity
+    def get_stock_other(self,data):
+        location_list = self.env['stock.quant'].search([('product_id','=', data.product_id.id),('location_id.usage','=','internal')])
+        total_available_quantity = 0
+        for rec in location_list:
+            if self.check_stock_not_get(rec) == 1:
+                total_available_quantity = total_available_quantity + rec.available_quantity
+        qty_24A = self.get_stock_24A(data) or 0.0
+        qty_24B = self.get_stock_24B(data) or 0.0
+        total_available_quantity = total_available_quantity - (qty_24A+qty_24B)
+        return total_available_quantity

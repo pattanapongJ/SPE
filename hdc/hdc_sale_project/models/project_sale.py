@@ -21,6 +21,8 @@ class SaleProject(models.Model):
     sale_taker_id = fields.Many2one('hr.employee', string="Sale Taker")
     customer_po_deadline = fields.Date(string="Customer PO Deadline")
 
+    remark_project = fields.Text('Remark ข้อมูลโครงการ')
+
     @api.constrains('code')
     def _check_unique_code(self):
         for record in self:
@@ -33,6 +35,7 @@ class BlanketOrder(models.Model):
     _inherit = "sale.blanket.order"
 
     project_name = fields.Many2one('sale.project', string='Project Name')
+    remark_project = fields.Text('Remark ข้อมูลโครงการ')
     start_date = fields.Datetime('Start date')
     end_date = fields.Datetime('End date')
     sale_spec = fields.Many2one('res.users', string='Sale Spec')
@@ -45,6 +48,10 @@ class BlanketOrder(models.Model):
         
     @api.onchange('name')
     def _onchange_project_name(self):            
+        if self.project_name and self.project_name.remark_project:
+            self.remark_project = self.project_name.remark_project
+        else:
+            self.remark_project = False
         sale_agreement_user = self.env.user
         self.administrator = sale_agreement_user
         self.write({'administrator': sale_agreement_user.id})

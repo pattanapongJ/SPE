@@ -17,15 +17,8 @@
         <!-- <div class="header" style="margin-left: -14px;margin-right: -14px" > -->
         <div class="header font-inventory-div" style="font-family: KanitLight;" >
             <div class="row">
-                <t t-if="company.name == 'COLT PLUS (THAILAND) COMPANY LIMITED'">
-                    <t t-set="logo_style">margin-top:10mm;</t>
-                </t>
-                <t t-if="company.name != 'COLT PLUS (THAILAND) COMPANY LIMITED'">
-                    <t t-set="logo_style">margin-top:0mm;</t>
-                </t>
-                
-                <div class="col-2 text-left" t-att-style="logo_style">
-                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo.decode('ascii')" class="pull-left img-logo " style="max-height: 140px; max-width: 140px;"/>
+                <div class="col-2 text-left">
+                    <t t-call="rma_ept.report_logo_style"/>
                 </div>
 
                 <div class="col-6 text-left" style="font-size: 15.12px;">

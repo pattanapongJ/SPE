@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <template id="account_general_voucher_report_document">
         <t t-if="not o and doc">
             <t t-set="o" t-value="doc"/>
@@ -29,10 +30,11 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end" style="font-size:12px; position: absolute;top: 92px;right: 16px;">
-                    <span>Page </span>
-                    <span class="page"/>
+                    <span>Page </span><span class="page"/>
                 </div>
             </div>
+                
+            
             <div class="header-bottom d-flex" style="font-size:12px; margin-top: 10px;">
                 <div>
                     <div class="d-flex" style="">
@@ -41,33 +43,32 @@
                             <div class="d-flex">
                                 <div style="margin-right: 5px;">
                                     <!-- [2]  -->
-                                    <span t-field="doc.partner_id.ref"/>
-                                </div>
+                                    <span t-field="doc.partner_id.ref"/></div>
                                 <div>
                                     <!-- [3]  -->
-                                    <span t-field="doc.partner_id.name_company"/>
-                                </div>
+                                    <span t-field="doc.partner_id.name_company"/></div>
                             </div>
                             <div style="">
                                 <div class="d-flex" style="display: flex; flex-wrap: wrap; width: 420px;">
-                                    <span t-field="doc.partner_id.street"/>
-                                    <span t-field="doc.partner_id.street2"/>
-                                    <span t-field="doc.partner_id.zip_id.name"/>
-                                    <span t-field="doc.partner_id.sub_district"/>
-                                    <span t-field="doc.partner_id.city"/>
-                                    <span t-field="doc.partner_id.state_id.name"/>
-                                    <span t-field="doc.partner_id.zip"/>
+                                  <span t-field="doc.partner_id.street"/>
+                                  <span t-field="doc.partner_id.street2"/>
+                                  <span t-field="doc.partner_id.zip_id.name"/>
+                                  <span t-field="doc.partner_id.sub_district"/>
+                                  <span t-field="doc.partner_id.city"/>
+                                  <span t-field="doc.partner_id.state_id.name"/>
+                                  <span t-field="doc.partner_id.zip"/>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                     </div>
                     <div class="d-flex" style="">
                         <div style="font-weight: bold;margin-right: 3px; width: 100px;">หมายเหตุ:</div>
                         <div style="width: 380px; border: 1px solid none; height: auto; overflow: hidden; word-wrap: break-word; max-height: 60px;">
                             <span t-field="doc.narration"/>
                         </div>
-                    </div>
+                    </div>                                        
                 </div>
+
                 <div style="position: absolute;top: 130px;right: 14px;">
                     <div class="d-flex">
                         <div style="font-weight: bold;  margin-right: 3px; width: 155px;">
@@ -113,7 +114,7 @@
                                 <span t-field="doc.invoice_date_due_payment_term"/>
                             </t>
                             <t t-else="">
-                            </t>
+                            </t>    
                         </div>
                     </div>
                     <div class="d-flex">
@@ -121,106 +122,114 @@
                             อัตราแลกเปลี่ยน/Currency:
                         </div>
                         <div class="d-flex">
-                            <!-- [20] -->
-                            <t t-set="compute_rate" t-value="1"/>
-                            <t t-if="doc.manual_currency_rate_active">
-                                <span t-esc="'{:.2f}'.format(doc.manual_currency_inverse_rate)"/>
-                            </t>
-                            <t t-else="">
-                                <t t-if="doc.currency_id.rate_ids">
-                                    <t t-set="time_now" t-value="doc.date"/>
-                                    <t t-foreach="doc.currency_id.rate_ids.sorted(key=lambda r: r.name)" t-as="rate_line">
-                                        <t t-if="rate_line.name">
-                                            <t t-if="time_now &gt;= rate_line.name">
-                                                <t t-set="compute_rate" t-value="rate_line.inverse_company_rate"/>
-                                        </t>
-                                        </t>
+                        <!-- [20] -->
+                        <t t-set="compute_rate" t-value="1"/>
+                        <t t-if="doc.currency_id.rate_ids">
+                            <t t-set="time_now" t-value="doc.date"/>
+                            <t t-foreach="doc.currency_id.rate_ids.sorted(key=lambda r: r.name)" t-as="rate_line">
+                                <t t-if="rate_line.name">                                    
+                                    <t t-if="time_now &gt;= rate_line.name">
+                                        <t t-set="compute_rate" t-value="rate_line.inverse_company_rate"/>
                                     </t>
-                                    <!-- <span t-esc="'{:,.2f}'.format(doc.currency_id.rate_ids.inverse_company_rate)"/> -->
                                 </t>
-                                <span t-esc="'{:,.2f}'.format(compute_rate)"/>
                             </t>
-                            <!-- [13] -->
-                            <div style="margin-left: 5px;">
-                                <span t-field="doc.currency_id.name"/>
-                            </div>
+
+                          <!-- <span t-esc="'{:,.2f}'.format(doc.currency_id.rate_ids.inverse_company_rate)"/> -->
+                        </t>
+
+                        <span t-esc="'{:,.2f}'.format(compute_rate)"/> /
+
+                        <!-- [13] -->
+                        <div style="margin-left: 5px;">
+                            <span t-field="doc.currency_id.name"/>
                         </div>
+                        
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="article" style="font-family: 'KanitLight'; font-size:12px">
             <t t-set="l_no" t-value="0"/>
-            <table class="table table-borderless" style="line-height: 10px; width: 100%;">
-                <thead>
-                    <tr style="border-bottom: 1px dotted black;border-top: 1px dotted black;">
-                        <th class="text-center font-tms-th" style="width: 5%">
-                            <div>ลำดับ</div>
-                            <div>No.</div>
-                        </th>
-                        <th class="text-center font-tms-th" style="width: 30%">
-                            <div>รหัสบัญชี</div>
-                            <div>Account No.</div>
-                        </th>
-                        <th class="text-center font-tms-th" style="width: 30%">
-                            <div>ชื่อบัญชี</div>
-                            <div>Account Name</div>
-                        </th>
-                        <th class="text-center font-tms-th">
-                            <div>เดบิต</div>
-                            <div>Debit Amount</div>
-                        </th>
-                        <th class="text-center font-tms-th">
-                            <div>เครดิต</div>
-                            <div>Credit Amount</div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <t t-foreach="o.line_ids" t-as="line">
-                        <tr>
-                            <td style="text-align: center;">
-                                <t t-set="l_no" t-value="l_no + 1"/>
-                                <t t-esc="l_no"/>
-                            </td>
-                            <td style="text-align: left;">
-                                <span t-esc="line.account_id.code"/>
-                            </td>
-                            <td style="text-align: left;">
-                                <span t-esc="line.account_id.name"/>
-                            </td>
-                            <td style="text-align: right;">
-                                <t t-if="line.debit">
-                                    <span t-esc="'{:,.2f}'.format(line.debit)"/>
-                                </t>
-                            </td>
-                            <td style="text-align: right;">
-                                <t t-if="line.credit">
-                                    <span t-esc="'{:,.2f}'.format(line.credit)"/>
-                                </t>
-                            </td>
+                <table class="table table-borderless" style="line-height: 10px; width: 100%;">
+                    <thead>
+                        <tr style="border-bottom: 1px dotted black;border-top: 1px dotted black;">
+                            <th class="text-center font-tms-th" style="width: 5%">
+                                <div>ลำดับ</div>
+                                <div>No.</div>
+                             </th>
+                            <th class="text-center font-tms-th" style="width: 30%">
+                                <div>รหัสบัญชี</div>
+                                <div>Account No.</div>
+                            </th>
+                            <th class="text-center font-tms-th" style="width: 30%">
+                                <div>ชื่อบัญชี</div>
+                                <div>Account Name</div>
+                            </th>
+                            <th class="text-center font-tms-th">
+                                <div>เดบิต</div>
+                                <div>Debit Amount</div>
+                            </th>
+                            <th class="text-center font-tms-th">
+                                <div>เครดิต</div>
+                                <div>Credit Amount</div>
+                            </th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="o.invoice_group_account_line_ids.sorted(key=lambda m: m.invoice_group_account_debit, reverse=True)" t-as="line">
+                            <tr>
+                                <td style="text-align: center;">
+                                    <t t-set="l_no" t-value="l_no + 1"/>
+                                    <t t-esc="l_no"/>
+                                </td>
+                                <td style="text-align: left;">
+                                    <!-- [15]  -->                                    
+                                    <span t-esc="doc.get_type_partner_id(line.invoice_group_account_account_id.code)"/>
+                                </td>
+                                <td style="text-align: left;">
+                                    <!-- [16]  -->                                    
+                                    <t t-esc="doc.get_type_partner_name(line.invoice_group_account_account_id.name)"/>
+                                </td>
+                                
+                                <td style="text-align: right;">
+                                    <!-- [17]  -->                       
+                                    <t t-if="doc.get_value_debit(line.invoice_group_account_debit)">
+                                      <t t-set="account_debit" t-value="doc.get_value_debit(line.invoice_group_account_debit)"/>
+                                      <span t-esc="'{:,.2f}'.format(account_debit)"/>
+                                    </t>
+                                </td>
+                                <td style="text-align: right;">
+                                    <!-- [18]  -->            
+                                    <t t-if="doc.get_value_credit(line.invoice_group_account_credit)">
+                                      <t t-set="account_credit" t-value="doc.get_value_credit(line.invoice_group_account_credit)"/>
+                                      <span t-esc="'{:,.2f}'.format(account_credit)"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <t t-if="page == topage">
+                        <tfoot class="font-weight-bold">
+                            <tr>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td style="text-align: right; border-bottom: 1px dotted black;border-top: 1px dotted black;">
+                                    <!-- [19]  -->
+                                    <span t-esc="'{:,.2f}'.format(sum(line.invoice_group_account_debit for line in o.invoice_group_account_line_ids))"/>
+                                </td>          
+                                <td style="text-align: right; border-bottom: 1px dotted black;border-top: 1px dotted black;">
+                                    <!-- [20]  -->
+                                    <span t-esc="'{:,.2f}'.format(sum(line.invoice_group_account_credit for line in o.invoice_group_account_line_ids))"/>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </t>
-                </tbody>
-                <t t-if="page == topage">
-                    <tfoot class="font-weight-bold">
-                        <tr>
-                            <td/>
-                            <td/>
-                            <td/>
-                            <td style="text-align: right; border-bottom: 1px dotted black;border-top: 1px dotted black;">
-                                <!-- [19]  -->
-                                <span t-esc="'{:,.2f}'.format(sum(line.debit for line in o.line_ids))"/>
-                            </td>
-                            <td style="text-align: right; border-bottom: 1px dotted black;border-top: 1px dotted black;">
-                                <!-- [20]  -->
-                                <span t-esc="'{:,.2f}'.format(sum(line.credit for line in o.line_ids))"/>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </t>
-            </table>
+                </table>
         </div>
+
         <div class="footer d-flex" style="font-family: 'KanitLight'; font-size:10.67px; border-top: 1px dotted black; padding-top: 10px; justify-content: space-between;">
             <div style="text-align: center; margin-left: 10px;">
                 <div style="margin-bottom: 40px;">จัดทำโดย</div>
@@ -251,6 +260,7 @@
             </div>
         </div>
     </template>
+
     <template id="account_general_voucher_report">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
@@ -258,4 +268,5 @@
             </t>
         </t>
     </template>
+
 </odoo>

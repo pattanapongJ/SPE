@@ -18,6 +18,7 @@ class PickingType(models.Model):
     is_master_key = fields.Boolean(string='Is Receipt MTK')
     is_transfer_master_key = fields.Boolean(string='Is Transfer MTK')
     is_internal_transfer_master_key = fields.Boolean(string='Is Internal Transfer MTK')
+    is_receipt_subcontract = fields.Boolean(string='Is Receipt Subcontractor')
 
     is_master_key_resupply_subcontract = fields.Boolean(string='Resupply Subcontractor')
     receipt_master_key_subcontract_id = fields.Many2one('stock.picking.type', string='Receipt MTK Subcontractor')
@@ -29,15 +30,32 @@ class StockPicking(models.Model):
     is_transfer_master_key = fields.Boolean(related='picking_type_id.is_transfer_master_key', store=True)
     is_internal_transfer_master_key = fields.Boolean(related='picking_type_id.is_internal_transfer_master_key', store=True)
     is_resupply_master_key = fields.Boolean(related='picking_type_id.is_master_key_resupply_subcontract', store=True)
+    is_receipt_subcontract = fields.Boolean(related='picking_type_id.is_receipt_subcontract', store=True)
+
     count_so_receipt_master_key = fields.Integer(string='Receipt Master Key Count', compute='_compute_master_key_count')
     count_so_transfer_master_key = fields.Integer(string='Transfer Master Key Count', compute='_compute_master_key_count')
     count_so_internal_transfer_master_key = fields.Integer(string='Internal Transfer Master Key Count', compute='_compute_master_key_count')
-
     count_po_resupply_master_key = fields.Integer(string='Purchase Resupply Master Key Count', compute='_compute_master_key_count')
     count_po_receipt_master_key = fields.Integer(string='Purchase Receipt Master Key Count', compute='_compute_master_key_count')
 
+    
     def print_master_key(self):
         return self.env.ref('hdc_master_key.hdc_master_key_report').report_action(self.id)
+
+    def print_master_key_receipt(self):
+        return self.env.ref('hdc_master_key.hdc_master_key_receipt_report').report_action(self.id)
+
+    def print_master_key_internal(self):
+        return self.env.ref('hdc_master_key.hdc_master_key_internal_report').report_action(self.id)
+
+    def print_master_key_transfer(self):
+        return self.env.ref('hdc_master_key.hdc_master_key_transfer_report').report_action(self.id)
+
+    def print_master_key_resupply(self):
+        return self.env.ref('hdc_master_key.hdc_master_key_resupply_report').report_action(self.id)
+
+    def print_master_key_sub(self):
+        return self.env.ref('hdc_master_key.hdc_master_key_sub_report').report_action(self.id)
 
     def _compute_master_key_count(self):
         for sale in self:

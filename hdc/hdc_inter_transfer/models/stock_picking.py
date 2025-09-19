@@ -750,60 +750,57 @@ class StockMove(models.Model):
         return vals
     
     def create_move_line_urgen(self):
+        # Batch fetch data
         deliveries = self.env['stock.picking'].search([
-                ('urgent_delivery_id', '=', self.picking_id.urgent_delivery_id.id),
-                ('state', '=', 'done')
-            ])
+            ('urgent_delivery_id', '=', self.picking_id.urgent_delivery_id.id),
+            ('state', '=', 'done')
+        ])
         move_line_ids = self.env['stock.move.line'].search([
-                ('picking_id', '=', deliveries.id),
-                ('product_id', '=', self.product_id.id)
-            ])
+            ('picking_id', 'in', deliveries.ids),
+            ('product_id', '=', self.product_id.id)
+        ])
         
+        # Build location quantities dict efficiently
         dict_location_qty = {}
-        location_list = []
-        for location_id in self.urgent_location_ids:
-            if self.picking_id.urgent_delivery_id:
-                for pl_list in self.picking_id.urgent_delivery_id.picking_list_ids:
-                    pl_data = self.env['picking.lists.line'].search([('picking_lists','=',pl_list.id),('product_id','=',self.product_id.id),('location_id','=',location_id.id)])
-                    if pl_data:
-                        if pl_data.location_id.id in dict_location_qty:
-                            dict_location_qty[pl_data.location_id.id] += pl_data.qty
-                        else:
-                            dict_location_qty[pl_data.location_id.id] = pl_data.qty
-                            location_list.append(pl_data.location_id.id)
+        if self.picking_id.urgent_delivery_id:
+            pl_lines = self.env['picking.lists.line'].search([
+                ('picking_lists', 'in', self.picking_id.urgent_delivery_id.picking_list_ids.ids),
+                ('product_id', '=', self.product_id.id),
+                ('location_id', 'in', self.urgent_location_ids.ids)
+            ])
+            for pl_data in pl_lines:
+                dict_location_qty[pl_data.location_id.id] = dict_location_qty.get(pl_data.location_id.id, 0) + pl_data.qty
     
+        # Add destination location
         location_dest_id = self.location_dest_id._get_putaway_strategy(self.product_id).id or self.location_dest_id.id
         qty_done = self.product_uom_qty - self.urgent_pick
-        if location_dest_id in dict_location_qty:
-            dict_location_qty[location_dest_id] += qty_done
-        else:
-            dict_location_qty[location_dest_id] = qty_done
-            location_list.append(location_dest_id)
+        dict_location_qty[location_dest_id] = dict_location_qty.get(location_dest_id, 0) + qty_done
 
-        num_move_line = -1
-        move_line_qty_done = 0
-        qty_location = 0 
-        dict_index = -1
-        while num_move_line < len(move_line_ids):
-            if move_line_qty_done == 0:
-                num_move_line += 1
-                if num_move_line < len(move_line_ids):
-                    move_line_qty_done = move_line_ids[num_move_line].qty_done
-                    lot_id = move_line_ids[num_move_line].lot_id
-            if qty_location == 0:
-                dict_index += 1
-                if dict_index < len(location_list):
-                    location_id = location_list[dict_index]
-                    qty_location = dict_location_qty[location_id]
-            if qty_location >= move_line_qty_done:
-                qty_done = move_line_qty_done
-            else:
-                qty_done = qty_location
-            move_line_qty_done -= qty_done
-            qty_location -= qty_done
-            if num_move_line < len(move_line_ids) and dict_index < len(location_list):
-                move_line = self.env['stock.move.line'].create(self._prepare_move_line_vals_urgen(qty_done,location_id,lot_id.id))
-                self.write({'move_line_ids': [(4, move_line.id)]})
+        # Create move lines in batch
+        move_line_vals_list = []
+        location_items = list(dict_location_qty.items())
+        
+        for move_line in move_line_ids:
+            remaining_qty = move_line.qty_done
+            lot_id = move_line.lot_id.id
+            
+            for location_id, available_qty in location_items:
+                if remaining_qty <= 0 or available_qty <= 0:
+                    continue
+                    
+                qty_to_use = min(remaining_qty, available_qty)
+                move_line_vals_list.append(self._prepare_move_line_vals_urgen(qty_to_use, location_id, lot_id))
+                
+                remaining_qty -= qty_to_use
+                dict_location_qty[location_id] -= qty_to_use
+                
+                if remaining_qty <= 0:
+                    break
+        
+        # Batch create and link
+        if move_line_vals_list:
+            new_move_lines = self.env['stock.move.line'].create(move_line_vals_list)
+            self.move_line_ids = [(4, ml.id) for ml in new_move_lines]
 
     @api.onchange('product_id', 'picking_type_id')
     def onchange_product(self):

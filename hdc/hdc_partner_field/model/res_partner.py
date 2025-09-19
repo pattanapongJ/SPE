@@ -21,7 +21,7 @@ class ResPartner(models.Model):
     register_date = fields.Date(string="Register Date")
     register_capital = fields.Float(string="Register Capital")
     director_lists = fields.Text(string="Director Lists")
-    bank_guarantee = fields.Boolean(string="Bank Guarantee", tracking=True)
+    bank_guarantee = fields.Boolean(string="Bank Guarantee")
     bank_guarantee_amount = fields.Float(string="Bank Guarantee Amount")
     start_date = fields.Date(string="Start Date")
     end_date = fields.Date(string="End Date")

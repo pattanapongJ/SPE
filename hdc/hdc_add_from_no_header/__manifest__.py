@@ -21,7 +21,7 @@
 
 {
     "name": "HDC Add Form No.",
-    "version": "14.0.0.0.1",
+    "version": "14.0.0.0.0",
     "category": "Account",
     "summary": "Add Form No. In Many Place In Account",
     "description": """

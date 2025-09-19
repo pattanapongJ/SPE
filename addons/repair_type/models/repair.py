@@ -28,7 +28,9 @@ class RepairLine(models.Model):
     location_dest_id = fields.Many2one(
         compute="_compute_location_id", store=True, readonly=False
     )
-
+    product_id = fields.Many2one(
+        'product.product', 'Product', required=True, check_company=True,
+        domain="['|', ('company_id', '=', company_id), ('company_id', '=', False)]")
     @api.depends("type", "repair_id.repair_type_id")
     def _compute_location_id(self):
         for rec in self:

@@ -189,7 +189,6 @@ class BlanketOrderWizard(models.TransientModel):
                 payment_term_id,
                 order_lines_by_customer,
             )
-            print('----------> order_vals', order_vals)
             sale_order = self.env["sale.order"].create(order_vals)
             res.append(sale_order.id)
         return {

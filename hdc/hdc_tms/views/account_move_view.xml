@@ -25,7 +25,6 @@
                     <field name="company_round_id" options="{'no_create_edit': True,'no_create': True, 'no_open': True}"/>
                     <field name="company_round_desc" />
                     <field name="tms_remark" />
-                    <field name="cancel_remark" />
                 </group>
             </xpath>
         </field>
@@ -35,10 +34,10 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_account_invoice_filter" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='team_id']" position="after">
+            <field name="name" position="before">
                 <field name="tms_remark" />
                 <field name="cancel_remark" />
-            </xpath>
+            </field>
             <filter name="myinvoices" position="before">
                 <filter name="tms_remark" string="TMS Remark" />
                 <filter name="cancel_remark" string="Cancel Remark" />

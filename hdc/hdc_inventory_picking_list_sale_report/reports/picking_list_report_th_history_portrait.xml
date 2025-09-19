@@ -244,16 +244,26 @@
                                         <span t-field="ol.external_item"/>
                                     </span>
                                     <span t-if="not ol.external_item">
-                                        -
+                                        <span t-if="ol.product_id.default_code">
+                                            <span t-field="ol.product_id.default_code"/>
+                                        </span>
+                                        <span t-if="not ol.product_id.default_code">
+                                            -
+                                        </span>
                                     </span>     
                                 </td>
                                 <td class="text-left" style="width: 28%;">
-                                    <span t-if="ol.product_id.name">
-                                        <span t-field="ol.product_id.name"/>
+                                    <span t-if="ol.description_customer">
+                                        <span t-field="ol.description_customer"/>
                                     </span>
-                                    <span t-if="not ol.product_id.name">
-                                        -
-                                    </span>     
+                                    <span t-if="not ol.description_customer">
+                                        <span t-if="ol.product_id.name">
+                                            <span t-field="ol.product_id.name"/>
+                                        </span>
+                                        <span t-if="not ol.product_id.name">
+                                            -
+                                        </span>
+                                    </span>   
                                 </td>
                                 <td class="text-left" style="width: 9%;">
                                     <t t-set="sub_location" t-value="o.env['sub.locations'].search([('product_id', '=', ol.product_id.id), ('location_id', '=', doc.location_id.id)], limit=1)"/>

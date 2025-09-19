@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <!-- custom purchase request report template -->
     <template id="purchase_request_layout">
         <t t-if="not o" t-set="o" t-value="doc" />
@@ -15,12 +16,13 @@
                 <t t-set="company" t-value="res_company" />
             </t>
         </t>
-        <!-- header -->
+
+         <!-- header -->
         <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
             <t t-set="doc" t-value="docs"/>
             <div style="margin-bottom:7px">
-                <!--                report iso-->
-                <div class="d-flex justify-content-end" style="font-family:kanit-light;font-size:14px">
+<!--                report iso-->
+                <div class="d-flex justify-content-end" style="font-family:kanit-light;font-size:12px">
                     <span t-esc=" env['ir.actions.report'].search([('report_name', '=', xmlid)]).iso_name"/>
                 </div>
                 <div class="row">
@@ -28,21 +30,22 @@
                     <div class="col-2 d-flex justify-content-center">
                       
                     </div>
+
                     <div class="col-5">
-                        <div class="text-right" style="font-family:kanit-light;font-size:26px">
+                      <div class="text-right" style="font-family:kanit-light;font-size:24px">
                             <span>
                                 ใบขอซื้อสินค้า
                             </span>
                         </div>
                     </div>
+
                     <div class="col-5" style="margin-top:2cm;">
                         <!--<div class="text-right" style="font-family:kanit-light;font-size:24px">-->
                         <!--    <span>-->
                         <!--    ใบขอซื้อสินค้า-->
                         <!--</span>-->
                         <!--</div>-->
-                        <div t-if="report_type == 'pdf'" class="text-muted text-right col" style="font-family:kanit-light;font-size:14px">
-                            <li class="list-inline-item">
+                        <div t-if="report_type == 'pdf'" class="text-muted text-right col" style="font-family:kanit-light;font-size:12px"><li class="list-inline-item">
                                 <div class="row">
                                     <span>Page</span>
                                     <span class="page"/>/
@@ -53,56 +56,58 @@
                     </div>
                 </div>
             </div>
-            <!--            border line -->
+<!--            border line -->
             <div t-if="company.logo or company.report_header" class="row zero_min_height">
                 <!-- <div class="col">
                     <div style="border-bottom: 1px solid black;" />
                 </div> -->
             </div>
         </div>
+
         <!-- content -->
         <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout"
             t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
             t-att-data-oe-lang="o and o.env.context.get('lang')">
             <div class="mt-5">
                 <!-- This div ensures that the address is not cropped by the header. -->
-                <!--                <t t-call="web.address_layout" />-->
+<!--                <t t-call="web.address_layout" />-->
             </div>
             <t t-raw="0" />
         </div>
+
         <!-- fotter -->
         <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
-            <div class="col-12">
-                <div style="border-top: 1px solid black;" />
-                <div class="row mt-1 mb-5">
-                    <div class="col" style="font-family:kanit-light;font-size:12px">
-                        <span>เหตุผล:&#160;</span>
-                        <span t-field="docs.remark"/>
-                    </div>
-                </div>
-                <div style="border-top: 1px solid black;" />
+           <div class="col-12">
+               <div style="border-top: 1px solid black;" />
+               <div class="row mt-1 mb-5">
+                   <div class="col" style="font-family:kanit-light;font-size:12px">
+                       <span>เหตุผล:&#160;</span>
+                       <span t-field="docs.remark"/>
+                   </div>
+               </div>
+               <div style="border-top: 1px solid black;" />
                 <br/>
-                <div class="row text-center mt-3" style="font-family:kanit-light; font-size:12px;">
-                    <div class="col-3 mx-5 py-2">
-                        <span t-field="o.requested_by.name"/>
-                        <div style="border-top: 1px dotted black;">
-                            <p>ผู้จัดทำ</p>
-                            <br/>
-                            <span>…............./................../................</span>
-                        </div>
+               <div class="row text-center mt-5" style="font-family:kanit-light; font-size:12px;">
+                    <div class="col-3 mx-5 py-2" style="border-top: 1px dotted black;">
+                        <p>ผู้จัดทำ</p>
+                        <br/>
+                        <span>…............./................../................</span>
                     </div>
-                    <div class="col-3 mx-4 py-2 mt-4" style="border-top: 1px dotted black;">
+                    <div class="col-3 mx-4 py-2" style="border-top: 1px dotted black;">
                         <p>ผู้ตรวจสอบ</p>
                         <br/>
                         <span>…............./................../................</span>
                     </div>
-                    <div class="col-3 mx-4 py-2 mt-4" style="border-top: 1px dotted black;">
+                       <div class="col-3 mx-4 py-2" style="border-top: 1px dotted black;">
                         <p>ผู้อนุมัติ</p>
-                        <br/>
+                           <br/>
                         <span>…............./................../................</span>
                     </div>
                 </div>
+
             </div>
         </div>
     </template>
+
+
 </odoo>

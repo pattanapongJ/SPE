@@ -154,7 +154,9 @@
                                     <t t-esc="doc.com_invoice_date.strftime('%d/%m/%Y')"/>
                                 </t>
                                 <t t-else="">
-                                    <t t-esc="doc.invoice_date_in.strftime('%d/%m/%Y')"/>
+                                    <t t-if="doc.invoice_date_in">
+                                        <t t-esc="doc.invoice_date_in.strftime('%d/%m/%Y')"/>
+                                    </t>
                                 </t>
                             </span>
                         </div>
