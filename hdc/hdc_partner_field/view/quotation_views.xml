@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="quotation_order_form_inherit_partner_field" model="ir.ui.view">
+        <field name="name">quotation.order.form.inherit.partner.field</field>
+        <field name="model">quotation.order</field>
+        <field name="inherit_id" ref="hdc_quotation_order.view_quotation_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="remark_payment_term"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

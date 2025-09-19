@@ -232,10 +232,10 @@
                             <span><strong>Sale Person:</strong></span>
                         </div>
                         <div class="col-7">
-                           <span t-if="doc.user_id">
-                               <t t-esc="doc.user_id.fullname_en" /><!-- ไม่ได้แก้ เพราะ employee ไม่มี fullname_en -->
+                            <span t-if="doc.user_employee_id">
+                               <t t-esc="doc.user_employee_id.name" /> <!-- ไม่ได้แก้เพราะ employee ไม่มี fullname_en -->
                             </span>
-                            <span t-if="not doc.user_id">
+                            <span t-if="not doc.user_employee_id">
                                -
                             </span>
                         </div>
@@ -245,10 +245,10 @@
                             <span><strong>Tel:</strong></span>
                         </div>
                         <div class="col-7">
-                            <span t-if="doc.user_id">
-                               <span t-field="doc.user_id.phone"/>
+                            <span t-if="doc.user_employee_id.work_phone">
+                               <span t-field="doc.user_employee_id.work_phone"/>
                             </span>
-                            <span t-if="not doc.user_id.phone">
+                            <span t-if="not doc.user_employee_id.work_phone">
                                -
                             </span>
                         </div>

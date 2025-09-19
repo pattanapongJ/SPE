@@ -39,7 +39,10 @@ class SaleOrder(models.Model):
     def _compute_master_key_counts(self):
         for sale in self:
             company_id = self.env.context.get('company_id') or self.env.company.id
-            picking_type_receipt = self.env['stock.picking.type'].with_company(company_id).search([('is_master_key', '=', True)], limit=1)
+            picking_type_receipt = self.env['stock.picking.type'].with_company(company_id).search([
+                ('is_master_key', '=', True),
+                ('company_id', '=', company_id),
+                ], limit=1)
             receipt_pickings = self.env['stock.picking'].search([
                 ('origin', '=', sale.name), 
                 ('picking_type_id', '=', picking_type_receipt.id)
@@ -52,14 +55,20 @@ class SaleOrder(models.Model):
             ])
             sale.count_purchase_master_key = len(set(purchase_orders.ids))
 
-            picking_type_transfer = self.env['stock.picking.type'].with_company(company_id).search([('is_transfer_master_key', '=', True)], limit=1)
+            picking_type_transfer = self.env['stock.picking.type'].with_company(company_id).search([
+                ('is_transfer_master_key', '=', True),
+                ('company_id', '=', company_id),
+                ], limit=1)
             transfer_pickings = self.env['stock.picking'].search([
                 ('origin', '=', sale.name), 
                 ('picking_type_id', '=', picking_type_transfer.id)
             ])
             sale.count_transfer_master_key = len(set(transfer_pickings.ids))
 
-            picking_type_internal_transfer = self.env['stock.picking.type'].with_company(company_id).search([('is_internal_transfer_master_key', '=', True)], limit=1)
+            picking_type_internal_transfer = self.env['stock.picking.type'].with_company(company_id).search([
+                ('is_internal_transfer_master_key', '=', True),
+                ('company_id', '=', company_id),
+                ], limit=1)
             internal_transfer_pickings = self.env['stock.picking'].search([
                 ('origin', '=', sale.name), 
                 ('picking_type_id', '=', picking_type_internal_transfer.id)
@@ -68,7 +77,10 @@ class SaleOrder(models.Model):
 
     def action_view_transfer_master_key(self):
         company_id = self.env.context.get('company_id') or self.env.company.id
-        picking_type = self.env['stock.picking.type'].with_company(company_id).search([('is_transfer_master_key', '=', True)], limit=1)
+        picking_type = self.env['stock.picking.type'].with_company(company_id).search([
+            ('is_transfer_master_key', '=', True),
+            ('company_id', '=', company_id),
+            ], limit=1)
         picking_ids = self.env['stock.picking'].search([('origin', '=', self.name), ('picking_type_id', '=', picking_type.id)])
         res_id = list(set(picking_ids.ids))
         if len(res_id) > 1:
@@ -84,7 +96,10 @@ class SaleOrder(models.Model):
     
     def action_view_internal_transfer_master_key(self):
         company_id = self.env.context.get('company_id') or self.env.company.id
-        picking_type = self.env['stock.picking.type'].with_company(company_id).search([('is_internal_transfer_master_key', '=', True)], limit=1)
+        picking_type = self.env['stock.picking.type'].with_company(company_id).search([
+            ('is_internal_transfer_master_key', '=', True),
+            ('company_id', '=', company_id),
+            ], limit=1)
         picking_ids = self.env['stock.picking'].search([('origin', '=', self.name), ('picking_type_id', '=', picking_type.id)])
         res_id = list(set(picking_ids.ids))
         if len(res_id) > 1:
@@ -100,7 +115,10 @@ class SaleOrder(models.Model):
     
     def action_view_receipt_master_key(self):
         company_id = self.env.context.get('company_id') or self.env.company.id
-        picking_type = self.env['stock.picking.type'].with_company(company_id).search([('is_master_key', '=', True)], limit=1)
+        picking_type = self.env['stock.picking.type'].with_company(company_id).search([
+            ('is_master_key', '=', True),
+            ('company_id', '=', company_id),
+            ], limit=1)
         picking_ids = self.env['stock.picking'].search([('origin', '=', self.name), ('picking_type_id', '=', picking_type.id)])
         res_id = list(set(picking_ids.ids))
         if len(res_id) > 1:
@@ -183,7 +201,10 @@ class SaleOrder(models.Model):
                             )
                         )
         
-            picking_type = self.env['stock.picking.type'].with_company(company_id).search([('is_master_key', '=', True)], limit=1)
+            picking_type = self.env['stock.picking.type'].with_company(company_id).search([
+                ('is_master_key', '=', True),
+                ('company_id', '=', company_id),
+                ], limit=1)
             if not picking_type:
                 raise UserError(_("No MTK Picking Type Found."))
 
@@ -312,7 +333,10 @@ class SaleOrder(models.Model):
                                 "คุณเคยสร้างใบ MTK แล้ว"
                             )
                         )
-            picking_type = self.env['stock.picking.type'].with_company(company_id).search([('is_transfer_master_key', '=', True)], limit=1)
+            picking_type = self.env['stock.picking.type'].with_company(company_id).search([
+                ('is_transfer_master_key', '=', True),
+                ('company_id', '=', company_id),
+                ], limit=1)
             if not picking_type:
                 raise UserError(_("No MTK Picking Type Found."))
 

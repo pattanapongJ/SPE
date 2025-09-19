@@ -18,6 +18,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='client_order_ref']" position="after">
                 <field name="project_name" options="{'no_create': True}"/>
+                <field name="remark_project"/>
             </xpath>
         </field>
     </record>

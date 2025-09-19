@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_project_view_form_inherit_is_customer" model="ir.ui.view">
+        <field name="name">sale.project.view.form.is.customer</field>
+        <field name="model">sale.project</field>
+        <field name="inherit_id" ref="hdc_sale_project.sale_project_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[('customer', '=', True),('parent_id', '=', False)]</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

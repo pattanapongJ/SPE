@@ -394,6 +394,8 @@ class StockMove(models.Model):
                                     remaining_out_qty -= deduct_qty
                                     
                 if move.product_id.cost_method == 'average':
+                    if move.product_id.quantity_svl == 0:
+                        return move.product_id.with_company(move.company_id.id).with_context(disable_auto_svl=True).sudo().write({'standard_price': 0})
                     new_std_price = move.product_id.value_svl / move.product_id.quantity_svl
                     move.product_id.with_company(move.company_id.id).with_context(disable_auto_svl=True).sudo().write({'standard_price': new_std_price})
 

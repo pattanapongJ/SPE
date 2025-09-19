@@ -32,7 +32,7 @@
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
     'website': "https://www.cybrosys.com",
-    'depends': ['sale_management', 'product'],
+    'depends': ['sale_management', 'product', 'hdc_convert_prod_uom'],
     'data': ['views/product_pricelist_item_views.xml'],
     'images': ['static/description/banner.jpg'],
     'license': 'AGPL-3',

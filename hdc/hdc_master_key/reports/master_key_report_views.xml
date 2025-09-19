@@ -2,12 +2,72 @@
 <odoo>
     <data>
         <record id="hdc_master_key_report" model="ir.actions.report">
-            <field name="name">รายงานใบจัดสินค้า Master Key</field>
+            <field name="name">รายงานใบจัดสินค้า Master Key A5</field>
             <field name="model">stock.picking</field>
             <field name="report_type">qweb-pdf</field>
             <field name="print_report_name">"รายงานใบจัดสินค้า Master Key A5-%s " %(object.name)</field>
             <field name="report_name">hdc_master_key.master_key_report</field>
             <field name="report_file">hdc_master_key.master_key_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_master_key.paperformat_report_master_key"/>
+            <field name="binding_type">report</field>
+         </record>
+
+         <record id="hdc_master_key_receipt_report" model="ir.actions.report">
+            <field name="name">รายงานใบรับส่งทำมาสเตอร์คีย์ A5</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายงานใบรับส่งทำมาสเตอร์คีย์ A5-%s " %(object.name)</field>
+            <field name="report_name">hdc_master_key.master_key_receipt_report</field>
+            <field name="report_file">hdc_master_key.master_key_receipt_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_master_key.paperformat_report_master_key"/>
+            <field name="binding_type">report</field>
+         </record>
+
+         <record id="hdc_master_key_internal_report" model="ir.actions.report">
+            <field name="name">รายงานใบจัดสินค้ามาสเตอร์คีย์ A5</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายงานใบจัดสินค้ามาสเตอร์คีย์ A5-%s " %(object.name)</field>
+            <field name="report_name">hdc_master_key.master_key_internal_report</field>
+            <field name="report_file">hdc_master_key.master_key_internal_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_master_key.paperformat_report_master_key"/>
+            <field name="binding_type">report</field>
+         </record>
+
+         <record id="hdc_master_key_transfer_report" model="ir.actions.report">
+            <field name="name">รายงานใบส่งสินค้ามาสเตอร์คีย์ A5</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายงานใบส่งสินค้ามาสเตอร์คีย์ A5-%s " %(object.name)</field>
+            <field name="report_name">hdc_master_key.master_key_transfer_report</field>
+            <field name="report_file">hdc_master_key.master_key_transfer_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_master_key.paperformat_report_master_key"/>
+            <field name="binding_type">report</field>
+         </record>
+
+         <record id="hdc_master_key_resupply_report" model="ir.actions.report">
+            <field name="name">รายงานใบส่งสินค้าทำมาสเตอร์คีย์ A5</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายงานใบส่งสินค้าทำมาสเตอร์คีย์ A5-%s " %(object.name)</field>
+            <field name="report_name">hdc_master_key.master_key_resupply_report</field>
+            <field name="report_file">hdc_master_key.master_key_resupply_report</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="paperformat_id" ref="hdc_master_key.paperformat_report_master_key"/>
+            <field name="binding_type">report</field>
+         </record>
+
+         <record id="hdc_master_key_sub_report" model="ir.actions.report">
+            <field name="name">รายงานใบรับส่งทำมาสเตอร์คีย์ A5</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"รายงานใบรับส่งทำมาสเตอร์คีย์ A5-%s " %(object.name)</field>
+            <field name="report_name">hdc_master_key.master_key_sub_report</field>
+            <field name="report_file">hdc_master_key.master_key_sub_report</field>
             <field name="binding_model_id" eval="False"/>
             <field name="paperformat_id" ref="hdc_master_key.paperformat_report_master_key"/>
             <field name="binding_type">report</field>

@@ -9,6 +9,7 @@
                 <group name="project_detail" string="Project Details">
                    <group name="project_group">
                         <field name="project_name" options="{'no_create': True}"/>
+                        <field name="remark_project"/>
                         <label for="start_date" string="Project Period" />
                         <div>
                             <div class="o_row">

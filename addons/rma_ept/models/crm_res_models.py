@@ -22,6 +22,7 @@ class CRMReason(models.Model):
 
     is_not_receipt = fields.Boolean(string="Not receipt", default=False)
     journal_id = fields.Many2one('account.journal', domain=[("type", "=", "sale"),("show_in_credit_note", "=", True)], string='Credit Note Journal')
+    remark = fields.Text('Remark')
     
     @api.model
     def _get_domain_picking_type_id_rg(self):
@@ -39,7 +40,7 @@ class CRMReason(models.Model):
                                         help="Operation Type for RG location")
 
     operation_type_id = fields.Many2one('stock.picking.type', string='Operation Type',
-                                        domain=lambda self: self._get_domain_picking_type_id(),
+                                        domain="[('code','=','incoming')]",
                                         help="Operation Type for Return location, if not Select Invoice,will use Operation Type")
     operation_type_delivery_id = fields.Many2one('stock.picking.type', string='Operation Type Delivery',
                                         domain="[('code', '=', 'outgoing')]",

@@ -31,7 +31,7 @@ class MRProductListLine(models.Model):
             return False
     
     def get_stock_onhand_company(self,company_id):
-        location_list = self.env['stock.quant'].search([('product_id','=', self.product_id.id),('location_id.usage','=','internal'),('company_id','=', company_id.id)])
+        location_list = self.env['stock.quant'].search([('product_id','=', self.product_id.id),('location_id.usage','in',('internal','production')),('company_id','=', company_id.id)])
         total_available_quantity = 0
         for rec in location_list:
             if self.check_stock_location_not_get(rec) == True:
@@ -71,7 +71,7 @@ class MRProductListModifyLine(models.Model):
             return False
     
     def get_stock_onhand_company(self,company_id):
-        location_list = self.env['stock.quant'].search([('product_id','=', self.product_id.id),('location_id.usage','=','internal'),('company_id','=', company_id.id)])
+        location_list = self.env['stock.quant'].search([('product_id','=', self.product_id.id),('location_id.usage','in',('internal','production')),('company_id','=', company_id.id)])
         total_available_quantity = 0
         for rec in location_list:
             if self.check_stock_location_not_get(rec) == True:

@@ -347,6 +347,15 @@ class SaleOrder(models.Model):
         
         return moves
 
+    def update_sale_line_pick_location_id(self):
+        for rec in self:
+            for line in rec.order_line:
+                putaway_id = line.env['stock.putaway.rule'].search([('product_id', '=', line.product_id.id), ('company_id', '=', line.company_id.id), ('location_out_id.warehouse_id', '=', line.warehouse_id.id)], limit = 1)
+                if putaway_id:
+                    line.pick_location_id = putaway_id.location_out_id.id
+                else:
+                    if self.warehouse_id:
+                        line.pick_location_id = line.warehouse_id.out_type_id.default_location_src_id.id
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"

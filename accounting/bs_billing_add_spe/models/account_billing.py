@@ -4,13 +4,9 @@ from odoo import api, fields, models
 class AccountBilling(models.Model):
     _inherit = 'account.billing'
     
-    sales_person_id = fields.Many2one('hr.employee', string='Salesperson', domain=[('sale_team_id', '!=', False)])
+    sales_person_id = fields.Many2one('res.users', string='Salesperson', domain=[('sale_team_id', '!=', False)])
     percentage      = fields.Float(string='% (Percent)', default=100.0)
     branch_id = fields.Many2one('res.branch', string='Branch')
-    billing_route = fields.Char(string="Billing Route")
-    billing_terms = fields.Char(string="Billing Terms")
-    billing_period = fields.Char(string="Billing Period")
-    payment_perriod = fields.Char(string="Payment Period")
     
     def _filter_selected_invoices(self):
         existing_bills = self.env['account.billing'].search([("partner_id", "=", self.partner_id.id),("bill_type", "=", self.bill_type),('id', '!=', self._origin.id)])

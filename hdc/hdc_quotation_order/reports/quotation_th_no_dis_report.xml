@@ -260,10 +260,10 @@
                             <span><strong>โทร:</strong></span>
                         </div>
                         <div class="col-7">
-                            <span t-if="doc.user_id">
-                               <span t-field="doc.user_id.phone"/>
+                            <span t-if="doc.user_employee_id.work_phone">
+                               <span t-field="doc.user_employee_id.work_phone"/>
                             </span>
-                            <span t-if="not doc.user_id.phone">
+                            <span t-if="not doc.user_employee_id.work_phone">
                                -
                             </span>
                         </div>
@@ -766,26 +766,29 @@
          
             </div>
         </div>
+        
+
         <div class="footer last-page not-first-page" style="font-size: 11px;margin-top:0mm;vertical-align: bottom;font-family: KanitLight">
             <div class="row" style="font-size: 13.64px">
                 กรุณายืนยันการสั่งซื้อหรือส่งใบสั่งซื้อที่ Email ดังต่อไปนี้: <span t-field="doc.user_employee_id.work_email"/> , <span t-field="doc.user_sale_agreement_employee.work_email"/>
             </div>
             <br/>
+            <div class="row">
+                <div class="col-12 text-left" style="color: white;">-</div>
+            </div>
             <div class="row" style="font-size: 13.64px">
                 <br/>
                 <div class="col-7">
                         <div class="row">
-                        <div class="col-12">
-                            <span t-if="doc.note_th and len(doc.note_th) &gt; 220">
-                                <span t-esc="doc.note_th[:220] + '...'" /> 
-                            </span>
-                            <span t-if="doc.note_th and len(doc.note_th) &lt;= 220">
-                                <span t-field="doc.note_th"/> 
-                            </span>
-                        </div>
+                          <div class="col-12">
+                            <div style="max-height:125px; overflow:hidden; display:block; text-overflow: ellipsis;">
+                              <t t-set="note_text" t-value="(doc.note_th or '').replace('\n','&lt;br/&gt;')"/>
+                              <span t-raw="note_text"/>
+                            </div>
+                          </div>
                         </div>
                         <div class="row">
-                        <div class="col-12 text-left" style="position: absolute; top: 80%; font-size: 11px;">
+                        <div class="col-12 text-left" style="position: absolute; top: 92%; font-size: 11px;">
                         <div class="row" style="background-color:#ECECEC">
                             <div class="col-3 text-left"><strong>ยอดรวมสุทธิ:</strong></div>
                             <div class="col-9 text-left"><span t-esc="doc.currency_id.amount_to_text_th(abs(doc.amount_total), o.currency_id.name)"/></div>
@@ -797,6 +800,21 @@
 
                     </div>
                 <div class="col-5" style="background-color:#ECECEC">
+                    <div class="row">
+                        <div class="col-12 text-left" style="color: white;">-</div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12 text-left" style="color: white;">-</div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12 text-left" style="color: white;">-</div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12 text-left" style="color: white;">-</div>
+                    </div>
                     
                     <div class="row">
                         <div class="col-6 text-left"><strong>มูลค่ารวมก่อนภาษี</strong></div>
@@ -814,14 +832,14 @@
                         <div class="col-8 text-left"><strong>เงินหลังหักส่วนลด</strong></div>
                     </div> -->
 
-                    <div class="row" >
+                    <div class="row">
                         <t t-if="doc.quotation_line">
-                            <t t-set="max_tax_amount" t-value="0" />
-                            <t t-set="check_tax_id_amount" t-value="[line.tax_id.amount for line in doc.quotation_line]" />
-                            <t t-set="max_tax_amount_1" t-value="max(check_tax_id_amount)" />
+                            <t t-set="max_tax_amount" t-value="0"/>
+                            <t t-set="check_tax_id_amount" t-value="[line.tax_id.amount for line in doc.quotation_line]"/>
+                            <t t-set="max_tax_amount_1" t-value="max(check_tax_id_amount)"/>
                         </t>
                         <t t-if="not doc.quotation_line">
-                            <t t-set="max_tax_amount_1" t-value="0" />
+                            <t t-set="max_tax_amount_1" t-value="0"/>
                         </t>
                         <div class="col-6 text-left"><strong>ภาษีมูลค่าเพิ่ม <span t-esc="'{0:,.2f}'.format(float(max_tax_amount_1))"/>%</strong></div>
                             <div class="col-6 text-right" style="border-bottom: 1px solid black"><span t-esc="'{0:,.2f}'.format(float(doc.amount_tax))"/>
@@ -849,7 +867,7 @@
                                 <!-- <div class="col-8" style="border-bottom: 1px solid black">&#160;</div> -->
                             </div>
                             <br/> 
-                            <div style="font-size: 11px">&#160;</div>
+                            <div style="font-size: 11px"> </div>
                             <div>ผู้อนุมัติซื้อ</div>
                             <div>วันที่ / Date............/.............../..............</div>
                     </div>
@@ -865,7 +883,7 @@
                                 
                             </div>
                             <div><t t-if="doc.user_sale_agreement_employee" t-esc="doc.user_sale_agreement_employee.name"/></div>
-                            <div style="font-size: 11px">&#160;</div>
+                            <div style="font-size: 11px"> </div>
                             <div>ผู้จัดทำ</div>
                             <div>วันที่ / Date............/.............../..............</div>
         
@@ -881,7 +899,7 @@
                                 <div class="col-8"><span>.......................................................</span></div>
                             </div>
                             <div><span t-field="doc.user_employee_id.name"/></div>
-                            <div style="font-size: 11px">&#160;</div>
+                            <div style="font-size: 11px"> </div>
                             <div>พนักงานขาย</div>
                             <div>วันที่ / Date............/.............../..............</div>
         
@@ -897,7 +915,7 @@
                                 <div class="col-8"><span>.......................................................</span></div>
                             </div>
                             <div><span t-if="doc.sale_manager_employee_id" t-esc="doc.sale_manager_employee_id.name"/></div>
-                            <div style="font-size: 11px">&#160;</div>
+                            <div style="font-size: 11px"> </div>
                             <div>ผู้จัดการฝ่ายขาย</div>
                             <div>วันที่ / Date............/.............../..............</div>
         
@@ -905,8 +923,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 text-right"  style="margin-right:0mm;margin-top:3mm">
-                    <div style="font-size: 11px" >
+                <div class="col-12 text-right" style="margin-right:0mm;margin-top:3mm">
+                    <div style="font-size: 11px">
                         <t t-set="check_iso" t-value="'hdc_quotation_order.hdc_quotation_th_no_dis_report'"/>
                         <span>
                             <span t-esc="doc.check_iso_name(check_iso)"/>

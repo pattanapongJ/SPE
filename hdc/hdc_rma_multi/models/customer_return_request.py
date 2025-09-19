@@ -249,6 +249,8 @@ class CustomerReturnRequest(models.Model):
     def action_create_receive(self):
         context = {
             'default_return_request_id': self.id,
+            'default_partner_id': self.partner_id.id,
+            'default_company_chain_id': self.partner_id.company_chain_id.id,
         }
         return {
                 'type': 'ir.actions.act_window',
@@ -317,7 +319,11 @@ class CustomerReturnRequestLine(models.Model):
             move_done = 0
             
             for move in move_list:
-                move_done = move_done + move.quantity_done
+                picking_type = move.picking_id.picking_type_id.code
+                if picking_type == "incoming":
+                    move_done += move.quantity_done
+                elif picking_type == "outgoing":
+                    move_done -= move.quantity_done
 
             order.receive_done = move_done
 

@@ -63,10 +63,10 @@ class PickingList(models.Model):
                 record.inventory_status = "cancel"
 
     def action_confirm(self):
-        if self.list_line_ids:
-            for line in self.list_line_ids.filtered(lambda x:x.state != 'cancel'):
-                if line.amount_arranged <= 0:
-                    raise UserError('Please Check Picking QTY')
+        # if self.list_line_ids:
+        #     for line in self.list_line_ids.filtered(lambda x:x.state != 'cancel'):
+        #         if line.amount_arranged <= 0:
+        #             raise UserError('Please Check Picking QTY')
         result = super(PickingList, self).action_confirm()
         self.confirm_picking_date = fields.Datetime.now()
         self.user_confirm_picking = self.env.user.name or ''

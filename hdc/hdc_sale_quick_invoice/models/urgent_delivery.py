@@ -283,13 +283,25 @@ class UrgentDelivery(models.Model):
                         "urgent_location_ids": move.urgent_location_ids,
                         }))
 
-                picking_in = self.env["stock.picking"].create({
-                    "picking_type_id": self.from_warehouse.inter_transfer_receive.id if self.from_warehouse.inter_transfer_receive else self.from_warehouse.in_type_id.id,
-                    "urgent_delivery_id":self.id,
-                    "location_id": self.location_dest_id.id,
-                    "location_dest_id": self.location_id.id,
-                    "move_lines": move_line
-                    })
+                try:
+                    picking_in = self.env["stock.picking"].create({
+                        "picking_type_id": self.from_warehouse.inter_transfer_receive.id if self.from_warehouse.inter_transfer_receive else self.from_warehouse.in_type_id.id,
+                        "urgent_delivery_id":self.id,
+                        "location_id": self.location_dest_id.id,
+                        "location_dest_id": self.location_id.id,
+                        "move_lines": move_line
+                        })
+                except Exception as e:
+                    self.env.cr.rollback()
+                    import time
+                    time.sleep(0.1)
+                    picking_in = self.env["stock.picking"].create({
+                        "picking_type_id": self.from_warehouse.inter_transfer_receive.id if self.from_warehouse.inter_transfer_receive else self.from_warehouse.in_type_id.id,
+                        "urgent_delivery_id":self.id,
+                        "location_id": self.location_dest_id.id,
+                        "location_dest_id": self.location_id.id,
+                        "move_lines": move_line
+                        })
                 picking_in.action_confirm()
                 self.receipt_check = True
                 if picking_in.urgent_delivery_id:

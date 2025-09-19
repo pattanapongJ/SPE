@@ -183,7 +183,7 @@ class sale_order(models.Model):
             mail_id =self.env['mail.mail'].create(mail_values)
             mail_id.send(True)
     
-    credit_limit_on_hold = fields.Boolean('Credit limit on hold', default=False)
+    credit_limit_on_hold = fields.Boolean('Credit limit on hold', default=False,tracking=True,)
     check_credit_limit_on_hold = fields.Boolean('Check Credit limit on hold', compute="_compute_check_credit_limit_on_hold")
     @api.depends("partner_id", "credit_limit_on_hold")
     def _compute_check_credit_limit_on_hold(self):

@@ -20,7 +20,12 @@ class WizardAddProductCrr(models.TransientModel):
         compute='_compute_available_invoices',
         store=False
     )
-
+    partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Customer",
+    )
+    company_chain_id = fields.Many2one('company.chain',string='Company Chain',copy=False)
+    
     @api.depends('spe_invoice')
     def _compute_available_invoices(self):
         for rec in self:
@@ -113,6 +118,7 @@ class WizardAddProductCrrLine(models.TransientModel):
     _description = "Wizard Add Product CRR Line"
 
     wiz_id = fields.Many2one("wizard.add.product.crr")
+    external_product_id = fields.Many2one('multi.external.product',string="External Item")
     product_id = fields.Many2one(comodel_name="product.product", string="Product")
     name = fields.Text(string="Description")
     receive_qty = fields.Float(string="Receive")
@@ -124,4 +130,16 @@ class WizardAddProductCrrLine(models.TransientModel):
             return
         self.name = self.product_id.display_name
         self.uom = self.product_id.uom_id.id
+
+    @api.onchange('external_product_id')
+    def external_product_id_change(self):
+        for rec in self:
+            if rec.external_product_id:
+                product_tmpl_id = rec.external_product_id.product_tmpl_id
+                if product_tmpl_id and product_tmpl_id.product_variant_ids:
+                    rec.product_id = product_tmpl_id.product_variant_ids[0].id
+                else:
+                    rec.product_id = False
+            else:
+                rec.product_id = False
 

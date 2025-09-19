@@ -9,6 +9,15 @@ class SaleOrder(models.Model):
 
     # project_name = fields.Many2one(related = "blanket_order_id.project_name")
     project_name = fields.Many2one('sale.project', string='Project Name')
+    remark_project = fields.Text('Remark ข้อมูลโครงการ')
+
+    @api.onchange('project_name')
+    def _onchange_project_name(self):
+        if self.project_name and self.project_name.remark_project:
+            self.remark_project = self.project_name.remark_project
+        else:
+            self.remark_project = False
+            
     delivery_state = fields.Selection(
         [
             ("no", "No delivery"),

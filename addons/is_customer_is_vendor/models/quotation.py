@@ -9,12 +9,12 @@ class Quotations(models.Model):
     partner_id = fields.Many2one('res.partner', string = 'Customer', readonly = True,
         states = {'draft': [('readonly', False)], 'sent': [('readonly', False)]}, required = True,
         change_default = True, index = True, tracking = 1,
-        domain = "[('customer','=', True),('parent_id', '=', False)]")
+        domain = "[('customer','=', True)]")
     
     partner_invoice_id = fields.Many2one('res.partner', string='Invoice Account', readonly=True, required=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'sale': [('readonly', False)]},
-        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id), ('customer','=', True)]", )
+        domain="[('customer','=', True)]", )
 
     partner_shipping_id = fields.Many2one('res.partner', string='Delivery Address', readonly=True, required=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'sale': [('readonly', False)]},
-        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id), ('customer','=', True)]", )
+        domain="[('customer','=', True)]", )
