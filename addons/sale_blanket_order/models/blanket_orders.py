@@ -8,10 +8,65 @@ from odoo.tools.misc import format_date
 from datetime import datetime, timedelta, date
 
 
+class BlanketOrderBomLine(models.Model):
+    _name = "sale.blanket.bom.line"
+    _description = "Components"
+
+    order_id = fields.Many2one(
+        "sale.blanket.order",
+        string="Order Reference",
+        required=True,
+        ondelete="cascade",
+        index=True,
+        copy=False,
+    )
+    origin_product_id = fields.Many2one(
+        "product.product", string="Product", required=True, store=True
+    )
+    product_id = fields.Many2one(
+        "product.product", string="Product Component", required=True, store=True
+    )
+    image_product = fields.Binary(
+        "Image product", related="product_id.image_128", readonly=True
+    )
+    product_uom_qty = fields.Float(
+        "Quantity.", digits="Product Unit of Measure", default=0.0
+    )
+    product_uom = fields.Many2one("uom.uom", "UoM")
+
 class BlanketOrder(models.Model):
     _name = "sale.blanket.order"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Blanket Order"
+
+    order_bom_line = fields.One2many(
+        "sale.blanket.bom.line",
+        "order_id",
+        string="Components",
+        compute="_compute_order_bom_line",
+        store=True,
+    )
+
+    @api.depends("line_ids.product_id", "line_ids.original_uom_qty")
+    def _compute_order_bom_line(self):
+        for order in self:
+            bom_lines = []
+            for line in order.line_ids:
+                if not line.product_id:
+                    continue
+    
+                bom = self.env['mrp.bom']._bom_find(product=line.product_id, company_id=order.company_id.id)
+                
+                if bom and bom.type == 'phantom':
+                    for bom_line in bom.bom_line_ids:
+                        bom_lines.append((0, 0, {
+                            'origin_product_id': line.product_id.id,
+                            'product_id': bom_line.product_id.id,
+                            'product_uom_qty': bom_line.product_qty * line.original_uom_qty,
+                            'product_uom': bom_line.product_uom_id.id,
+                        }))
+            
+            order.order_bom_line = [(5, 0, 0)] + bom_lines
 
     @api.model
     def _get_default_team(self):
@@ -464,6 +519,17 @@ class BlanketOrderLine(models.Model):
                 }
             )
 
+    bom_revision = fields.Char(string="Revision", compute="_onchange_bom_revision")
+
+    def _onchange_bom_revision(self):
+        for line in self:
+            if line.product_id:
+                bom = self.env['mrp.bom']._bom_find(product=line.product_id, company_id=line.order_id.company_id.id)
+                if bom:
+                    line.bom_revision = bom.bom_revision
+                else:
+                    line.bom_revision = ""
+
     name = fields.Char("Description", tracking=True)
     sequence = fields.Integer()
     order_id = fields.Many2one("sale.blanket.order", required=True, ondelete="cascade")
@@ -659,8 +725,8 @@ class BlanketOrderLine(models.Model):
         )
         if self.product_id:
             name = self.product_id.name
-            if not self.product_uom:
-                self.product_uom = self.product_id.uom_id.id
+            # if not self.product_uom:
+            #     self.product_uom = self.product_id.uom_id.id
             if self.order_id.partner_id and float_is_zero(
                 self.price_unit, precision_digits=precision
             ):
@@ -668,7 +734,7 @@ class BlanketOrderLine(models.Model):
             # if self.product_id.code:
             #     name = "[{}] {}".format(name, self.product_id.code)
             if self.product_id.description_sale:
-                name += "\n" + self.product_id.description_sale
+                name = self.product_id.description_sale
             self.name = name
 
             fpos = self.order_id.fiscal_position_id

@@ -8,6 +8,9 @@ class AccountBillings(models.Model):
     start_date        = fields.Date(string='Start Invoice Date', default=lambda self: fields.Date.context_today(self))
     end_date          = fields.Date(string='End Invoice Date', default=lambda self: fields.Date.context_today(self))
     payment_terms_id  = fields.Many2one('account.payment.term', string='Payment Terms')
+    receipt_date    = fields.Date(string='Receipt Date')
+    is_spe_invoice = fields.Boolean(string='SPE Invoice', default=False)
+    billing_due_date = fields.Date(string='Billing Due Date')
 
     @api.depends('billing_line_ids')
     def _compute_amount(self):

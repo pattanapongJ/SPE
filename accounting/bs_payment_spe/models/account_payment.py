@@ -24,7 +24,6 @@ class AccountPayment(models.Model):
         for rec in self:
             rec.pdc_ref = rec.pdc_id.name or ""
 
-
 class AccountPaymentRegister(models.TransientModel):
     _inherit = "account.payment.register"
 

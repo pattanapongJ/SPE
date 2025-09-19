@@ -339,6 +339,7 @@ class GeneratePickingListLine(models.TransientModel):
     name = fields.Text(string = 'Description')
     sale_id = fields.Many2one("sale.order", string = "Sale Order")
     product_id = fields.Many2one('product.product', string = 'Product', readonly = True)
+    ref = fields.Char(related = "product_id.default_code", string='Internal Reference', readonly = True)
     categ_id = fields.Many2one(related = "product_id.categ_id", string='Product Category', readonly = True)
     location_id = fields.Many2one(related = "move_id.location_id", string = 'Source Location', required = True, readonly = True)
     pick_location_id = fields.Many2one('stock.location', string = 'Location')
@@ -555,40 +556,41 @@ class PickingList(models.Model):
                 amount_arranged = 0
                 if line.move_id.state not in ('done', 'assigned', 'cancel'):
                     if len(line.list_line_detail_ids) == 0:
-                        if line.has_tracking != 'lot':
-                            line_detail = {
-                                'picking_lists_line':line.id,
-                                'product_id':line.product_id.id,
-                                'company_id':line.company_id.id,
-                                'location_id':line.location_id.id,
-                                'amount_arranged':line.amount_arranged,
-                                'uom_id':line.uom_id.id,
-                            }
-                            self.env['picking.lists.line.detail'].create(line_detail)
-                        else:
-                            amount_arranged = line.amount_arranged
-                            quant_id = rec.env['stock.quant'].search([('product_id','=', line.product_id.id),('location_id','=',line.location_id.id)])
-                            for quant in quant_id:
-                                amount = 0
-                                if amount_arranged > 0:
-                                    qty_ava = quant.available_quantity
-                                    if qty_ava > 0:
-                                        if qty_ava >= amount_arranged:
-                                            amount = amount_arranged
-                                        else:
-                                            amount = qty_ava
-                                            
-                                        amount_arranged -= amount
-                                        line_detail = {
-                                        'picking_lists_line':line.id,
-                                        'product_id':line.product_id.id,
-                                        'company_id':line.company_id.id,
-                                        'location_id':line.location_id.id,
-                                        'lot_id':quant.lot_id.id,
-                                        'amount_arranged':amount,
-                                        'uom_id':line.uom_id.id,
-                                        }
-                                        self.env['picking.lists.line.detail'].create(line_detail)
+                        if line.amount_arranged > 0:
+                            if line.has_tracking != 'lot':
+                                line_detail = {
+                                    'picking_lists_line':line.id,
+                                    'product_id':line.product_id.id,
+                                    'company_id':line.company_id.id,
+                                    'location_id':line.location_id.id,
+                                    'amount_arranged':line.amount_arranged,
+                                    'uom_id':line.uom_id.id,
+                                }
+                                self.env['picking.lists.line.detail'].create(line_detail)
+                            else:
+                                amount_arranged = line.amount_arranged
+                                quant_id = rec.env['stock.quant'].search([('product_id','=', line.product_id.id),('location_id','=',line.location_id.id)])
+                                for quant in quant_id:
+                                    amount = 0
+                                    if amount_arranged > 0:
+                                        qty_ava = quant.available_quantity
+                                        if qty_ava > 0:
+                                            if qty_ava >= amount_arranged:
+                                                amount = amount_arranged
+                                            else:
+                                                amount = qty_ava
+                                                
+                                            amount_arranged -= amount
+                                            line_detail = {
+                                            'picking_lists_line':line.id,
+                                            'product_id':line.product_id.id,
+                                            'company_id':line.company_id.id,
+                                            'location_id':line.location_id.id,
+                                            'lot_id':quant.lot_id.id,
+                                            'amount_arranged':amount,
+                                            'uom_id':line.uom_id.id,
+                                            }
+                                            self.env['picking.lists.line.detail'].create(line_detail)
                     for line_detail in line.list_line_detail_ids:
                         prepare_move = line.move_id._prepare_move_line_vals(quantity = line_detail.amount_arranged)
                         prepare_move['location_id'] = line.location_id.id
@@ -614,6 +616,12 @@ class PickingList(models.Model):
                 
     def action_confirm(self):
         for rec in self:
+            for line in rec.list_line_ids:
+                line._compute_qty_ava()
+                if line.qty_ava < line.amount_arranged:
+                    raise ValidationError(_("กรุณาตรวจสอบยอด Available Location เนื่องจากจำนวนที่หยิบ(Picking QTY) มีจำนวนมากกว่าจำนวนสต๊อกสินค้าที่มี"))
+                if line.qty < line.amount_arranged:
+                    raise ValidationError(_("กรุณาตรวจสอบจำนวนที่หยิบ(Picking QTY) เนื่องจากจำนวนมากกว่าที่สั่งให้หยิบ (Demand) กรุณาแก้ไขให้ถูกต้อง"))
             if not rec.partner_id:
                 raise ValidationError(_("Please select Customer."))
             if not rec.delivery_date:
@@ -634,19 +642,21 @@ class PickingList(models.Model):
                     raise ValidationError(_("Please Check available product %s" %line.product_id.name))
                 if line.qty < line.qty_done:
                     raise ValidationError(_("Picking up more products than ordered Please adjust the done again."))
-
-                if line.move_id.state not in ('done', 'assigned', 'cancel'):
-                    for line_detail in line.list_line_detail_ids:
-                        prepare_move = line.move_id._prepare_move_line_vals(quantity = line_detail.qty_done)
-                        prepare_move['location_id'] = line.location_id.id
-                        prepare_move['qty_done'] = line_detail.qty_done
-                        prepare_move['lot_id'] = line_detail.lot_id.id
-                        
-                        if prepare_move:
-                            move_line_id = self.env['stock.move.line'].create(prepare_move)
-                            quants = self.env['stock.quant']._update_reserved_quantity(product_id = move_line_id.product_id, location_id = move_line_id.location_id,
-                                quantity = move_line_id.product_uom_qty, lot_id = move_line_id.lot_id, strict = True)
-                            line.move_id.write({'state': 'assigned'})
+                if line.amount_arranged > 0:
+                    if line.move_id.state not in ('done', 'assigned', 'cancel'):
+                        for line_detail in line.list_line_detail_ids:
+                            if line_detail.qty_done > 0:
+                                prepare_move = line.move_id._prepare_move_line_vals(quantity = line_detail.qty_done)
+                                prepare_move['location_id'] = line.location_id.id
+                                prepare_move['qty_done'] = line_detail.qty_done
+                                prepare_move['lot_id'] = line_detail.lot_id.id
+                                prepare_move['product_uom_qty'] = line.qty
+                                if prepare_move:
+                                    move_line_id = self.env['stock.move.line'].create(prepare_move)
+                                    quants = self.env['stock.quant']._update_reserved_quantity(product_id = move_line_id.product_id, location_id = move_line_id.location_id,
+                                        quantity = move_line_id.product_uom_qty, lot_id = move_line_id.lot_id, strict = True)
+                                    line.move_id.write({'state': 'assigned'})
+                                
             rec.state = "done"
             rec.checker = self.env.user.id
             rec.checker_date = datetime.now()
@@ -687,6 +697,7 @@ class PickingList(models.Model):
                 if line2.picking_id.id not in list_pick:
                     list_pick.append(line2.picking_id.id)
                     picking_ids = line2.picking_id.button_validate()
+
                     if picking_ids != True and picking_ids != None:
                         context = {
                             'active_model': 'stock.picking',
@@ -793,13 +804,13 @@ class PickingListLine(models.Model):
     def _onchange_qty_done(self):
         if self.qty_done > self.qty:
             self.qty_done = False
-            raise UserError(_("จำนวน Picking Done ต้องไม่เกินกว่าที่จำนวนสั่ง Demand"))
+            raise UserError(_("กรุณาตรวจสอบจำนวน Picking Done เนื่องจากจำนวนมากกว่าที่สั่งให้หยิบ (Demand) กรุณาแก้ไขให้ถูกต้อง"))
         
     @api.onchange("amount_arranged")
     def _onchange_amount_arranged(self):
         if self.amount_arranged > self.qty:
             self.amount_arranged = False
-            raise UserError(_("จำนวน Picking QTY ต้องไม่เกินกว่าที่จำนวนสั่ง Demand"))
+            raise UserError(_("กรุณาตรวจสอบจำนวนที่หยิบ(Picking QTY) เนื่องจากจำนวนมากกว่าที่สั่งให้หยิบ (Demand) กรุณาแก้ไขให้ถูกต้อง"))
         
     def action_show_details(self):
         self.ensure_one()

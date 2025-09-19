@@ -40,6 +40,9 @@
 
              <xpath expr="//field[@name='end_date']" position="after">
                 <field name="payment_terms_id"/>
+                <field name="receipt_date"/>
+                <field name="is_spe_invoice"/>
+                <field name="billing_due_date"/>
              </xpath>
         </field>
     </record>

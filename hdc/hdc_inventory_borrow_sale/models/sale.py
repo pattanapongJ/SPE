@@ -304,6 +304,12 @@ class SaleOrder(models.Model):
                                  default_group_id = picking_id.group_id.id)
         return action
 
+    def search_employee(self):
+        employee_id = self.env["hr.employee"].search([("user_id", "=", self.env.user.id), ("company_id", "=", self.env.user.company_id.id)], limit=1)
+        if not employee_id:
+            employee_id = self.env["hr.employee"].search([("user_id", "=", self.env.user.id)], limit=1)
+        return employee_id.id
+
     def action_create_borrow(self):
         self.ensure_one()
         picking = self.env["stock.picking"]
@@ -314,7 +320,7 @@ class SaleOrder(models.Model):
             else:
                 picking_type = self.env["stock.picking.type"].search([("addition_operation_types", "=", addition.id),('company_id','=',self.company_id.id),('warehouse_id','=',self.warehouse_id.id)], limit = 1)
             if picking_type:
-                order_line_ids = []
+                list_item = {}
                 for line in self.order_line:
                     picking = self.env["stock.picking"].search([("sale_borrow", "=", self.id),("picking_type_id", "=", picking_type.id)])
                     move = self.env["stock.move"].search([("product_id", "=", line.product_id.id),("picking_id", "in", picking.ids),("state", "!=", "cancel")])
@@ -324,29 +330,64 @@ class SaleOrder(models.Model):
                         product_uom_qty = 0
                     if line.product_id == self.default_product_global_discount:
                         continue
-                    vals = (0, 0, {
-                        'product_id': line.product_id.id,
-                        'name': line.product_id.name,
-                        'product_uom_qty': product_uom_qty,
-                        'location_id': picking_type.default_location_src_id.id,
-                        'location_dest_id': picking_type.default_location_dest_id.id,
-                        'product_uom': line.product_uom.id,
-                        })
-                    order_line_ids.append(vals)
-                context = {
-                            "default_requester_emp": self.user_id.id,
-                            "default_picking_type_id": picking_type.id,
-                            "default_origin": self.name,
-                            "default_sale_borrow": self.id,
-                            "default_move_ids_without_package": order_line_ids
+                    location_out_id = line.pick_location_id.id
+                    if location_out_id in list_item:
+                        list_line = list_item.get(location_out_id)
+                        data_list = list_line.get("move_ids_without_package")
+                        data_rec = (0, 0, {
+                            'product_id': line.product_id.id,
+                            'name': line.product_id.name,
+                            'product_uom_qty': product_uom_qty,
+                            'location_id': location_out_id,
+                            'location_dest_id': picking_type.default_location_dest_id.id,
+                            'product_uom': line.product_uom.id,
+                            })
+                        data_list.append(data_rec)
+                    else:
+                        data_rec = (0, 0, {
+                            'product_id': line.product_id.id,
+                            'name': line.product_id.name,
+                            'product_uom_qty': product_uom_qty,
+                            'location_id': location_out_id,
+                            'location_dest_id': picking_type.default_location_dest_id.id,
+                            'product_uom': line.product_uom.id,
+                            })
+                        list_item[location_out_id] = {
+                            'requestor_emp_employee': self.search_employee(),
+                            'picking_type_id' : picking_type.id,
+                            'origin': self.name, 
+                            'partner_id': self.partner_id.id,
+                            'team_id': self.team_id.id,
+                            'sale_borrow': self.id,                      
+                            'location_id' : location_out_id,
+                            'location_dest_id' : picking_type.default_location_dest_id.id,
+                            'move_ids_without_package': [data_rec],
+                            }
+                res_id = []
+                for item in list_item:
+                    picking_borrow = self.env["stock.picking"].create(list_item.get(item))
+                    picking_borrow._default_external_tranfer_type()
+                    picking_borrow._onchange_type_borrow()
+                    picking_borrow.location_id = item
+                    picking_borrow.location_dest_id = picking_type.default_location_dest_id.id
+                    res_id.append(picking_borrow.id)
+                if len(res_id) == 1:
+                    return {
+                        "name": _("Borrow"),
+                        "view_mode": "form",
+                        "res_model": "stock.picking",
+                        "type": "ir.actions.act_window",
+                        'res_id': res_id[0],
+                        "flags": {"initial_mode": "view"},                
                         }
-                return {
-                    "type": "ir.actions.act_window",
-                    "name": _("Borrow"),
-                    "res_model": "stock.picking",
-                    "view_mode": "form",
-                    "context": context,
-                    }
+                else:            
+                    return {
+                        "name": _("Borrow"),
+                        "view_mode": "tree,form",
+                        "res_model": "stock.picking",
+                        "type": "ir.actions.act_window",
+                        "domain": [("id", "in", res_id)],                
+                        }
             else:
                 raise ValidationError(_("Not set operation type Borrow"))
         else:

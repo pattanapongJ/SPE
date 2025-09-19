@@ -9,7 +9,7 @@
             <xpath expr="//field[@name='temp_credit_request']" position="after">
                 <field name="move_type" invisible="1"/>
                 <field name="is_no_spe_invoice" invisible="1"/>
-                <field name="form_no" attrs="{'invisible': [('move_type', 'not in', ['out_invoice','out_refund'])],'required': [('move_type', '=', 'out_invoice'), ('is_no_spe_invoice', '=', False),('sale_type_id', '!=', False)]}"/>
+                <field name="form_no" attrs="{'readonly': [('state', 'in', ['posted'])], 'invisible': [('move_type', 'not in', ['out_invoice','out_refund'])],'required': [('move_type', '=', 'out_invoice'), ('is_no_spe_invoice', '=', False),('sale_type_id', '!=', False)]}"/>
                 <field name="old_spe_invoice"  attrs="{'readonly': [('state', 'in', ['posted'])], 'invisible': [('move_type', 'not in', ['out_invoice','out_refund'])]}"/>
             </xpath>
         </field>

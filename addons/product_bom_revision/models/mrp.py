@@ -9,6 +9,10 @@ class MrpBom(models.Model):
 
     bom_revision = fields.Char(string="Revision")
     check_default = fields.Boolean(string="Default")
+    
+    # Related fields for displaying product template information
+    product_internal_reference = fields.Char(related='product_tmpl_id.default_code', string='Internal Reference', readonly=True, store=True)
+    product_name = fields.Char(related='product_tmpl_id.name', string='Product Name', readonly=True, store=True)
 
     def name_get(self):
         return [(bom.id, 'Rev%s : %s' % (bom.bom_revision or '', bom.product_tmpl_id.display_name)) for bom in self]
@@ -29,6 +33,13 @@ class MrpBom(models.Model):
         search_self = self.search([('product_tmpl_id', '=', self.product_tmpl_id.id), ('check_default', '=', True)])
         if search_self:
             raise UserError(_("You can set default only one."))
+
+
+class MrpBomLine(models.Model):
+    _inherit = 'mrp.bom.line'
+    
+    # Related field for displaying product internal reference
+    product_internal_reference = fields.Char(related='product_id.default_code', string='Internal Reference', readonly=True, store=True)
 
 
 class MrpProduction(models.Model):

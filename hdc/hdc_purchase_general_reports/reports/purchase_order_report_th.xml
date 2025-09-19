@@ -26,7 +26,7 @@
                         <t t-esc="company.name_th"/>
                     </span>
                     <br/><br/>
-                    <span style="font-family: KanitLight;font-size: 14.67px; ">
+                    <span style="font-family: KanitLight;font-size: 13.67px; ">
                         <t t-if="branch">
                             <t t-set="branch_address" t-value="branch.address.split(' ')"/>
                             <t t-set="address_count" t-value="0"/>
@@ -40,7 +40,7 @@
                         </t>
                         <br/>
                     </span>   
-                    <span style="font-family: KanitLight;font-size: 14.67px; ">         
+                    <span style="font-family: KanitLight;font-size: 13.67px; ">         
                         TEL : <t t-esc="branch.telephone"/>
                         <span t-if="not branch.telephone" style="padding-left:90px"></span>
                         <span style="padding-left:40px">FAX : </span><t t-esc="branch.fax"/><br/>
@@ -55,12 +55,12 @@
                         ใบสั่งซื้อ
                     </span>
                     <br/>
-                    <span style="font-family: KanitLight;font-size: 14.67px; ">
+                    <span style="font-family: KanitLight;font-size: 13.67px; ">
                         หน้า <span class="page"/>/<span style="padding-right:5px" class="topage"/>
                     </span>             
                 </div>
             </div>
-            <div class="row" style="font-family: KanitLight;font-size: 14.67px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black;height: 185px">
+            <div class="row" style="font-family: KanitLight;font-size: 13.67px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black;height: 185px">
                 <div class="col-7">
                     <div class="row">
                         <div class="col-4">
@@ -268,7 +268,7 @@
         <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
             <div class="row">
                 <t t-set="l_no" t-value="0"/>
-                <table class="table" style="font-size: 14.67px;line-height: 18px">
+                <table class="table" style="font-size: 13.67px;line-height: 18px">
                     <thead style="background-color:#ECECEC">
                         <tr>
                             <th class="text-center" style="width: 6%;">ลำดับ</th>

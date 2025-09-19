@@ -47,6 +47,8 @@
                                     domain="[('company_id', '=', company_id),('company_id', '!=', False)]"/>
                             <field name="location_id" attrs="{'required': [('state', '!=', 'cancel')]}"
                                     domain="[('warehouse_id', '=', warehouse_id),('warehouse_id', '!=', False)]"/>
+                            <field name="rl_reference"/>
+                            <field name="old_invoice_ref"/>
                         </group>
                         <group name="group_2">
                             <field name="scheduled_date"/>

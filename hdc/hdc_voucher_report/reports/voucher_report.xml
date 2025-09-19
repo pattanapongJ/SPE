@@ -122,6 +122,7 @@
                         </div>
                         <div class="d-flex">
                             <!-- [20] -->
+                            <!-- [20] -->
                             <t t-set="compute_rate" t-value="1"/>
                             <t t-if="doc.manual_currency_rate_active">
                                 <span t-esc="'{:.2f}'.format(doc.manual_currency_inverse_rate)"/>
@@ -139,7 +140,7 @@
                                     <!-- <span t-esc="'{:,.2f}'.format(doc.currency_id.rate_ids.inverse_company_rate)"/> -->
                                 </t>
                                 <span t-esc="'{:,.2f}'.format(compute_rate)"/>
-                            </t>
+                            </t> /
                             <!-- [13] -->
                             <div style="margin-left: 5px;">
                                 <span t-field="doc.currency_id.name"/>

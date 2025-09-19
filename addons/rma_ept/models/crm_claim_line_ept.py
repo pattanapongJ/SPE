@@ -23,6 +23,7 @@ class CRMClaimLine(models.Model):
                                   store=True)
 
     product_id = fields.Many2one('product.product', string='Product')
+    description = fields.Text(string="Description")
     claim_id = fields.Many2one('crm.claim.ept', string='Related claim', copy=False,
                                ondelete='cascade')
     to_be_replace_product_id = fields.Many2one('product.product', string="Product to be Replace",
@@ -30,7 +31,9 @@ class CRMClaimLine(models.Model):
     move_id = fields.Many2one('stock.move')
     rma_reason_id = fields.Many2one('rma.reason.ept', related='claim_id.rma_reason_id', string="Customer Reason")
     serial_lot_ids = fields.Many2many('stock.production.lot', string="Lot/Serial Number")
-
+    description_replace = fields.Text(string="Description Replace Product")
+    replace_onhand_qty = fields.Float("Replace Onhand Quantity",related='to_be_replace_product_id.qty_available')
+    
     def _compute_return_quantity(self):
         """
         This method used to set a return quantity in the claim line base on the return move.
@@ -74,7 +77,7 @@ class CRMClaimLine(models.Model):
                       "\n Please set the proper Lot/Serial Number"))
 
     @api.onchange('rma_reason_id')
-    def onchange_product_id(self):
+    def onchange_rma_reason_id(self):
         """
         This method used recommendation to users.
         """
@@ -88,11 +91,28 @@ class CRMClaimLine(models.Model):
 
                           "It will not create a return delivery of the repair order."
             }
-
             warning = {'warning':warning_msg}
+        
 
         return warning
 
+    @api.onchange('product_id')
+    def _onchange_product_id(self):
+        if not self.description:
+            self.description = self.product_id.description_sale if self.product_id.description_sale else self.product_id.name
+        if self.rma_reason_id.action == 'replace_same_product' or self.rma_reason_id.action == 'replace_other_product':
+            if self.to_be_replace_product_id:
+                self.to_be_replace_product_id = self.product_id.id
+            if not self.description_replace:
+                self.description_replace = self.product_id.description_sale if self.product_id.description_sale else self.product_id.name
+            self.to_be_replace_quantity = self.quantity
+
+    @api.onchange('to_be_replace_product_id')
+    def _onchange_to_be_replace_product_id(self):
+        if self.to_be_replace_product_id:
+            self.description_replace = self.to_be_replace_product_id.description_sale if self.to_be_replace_product_id.description_sale else self.to_be_replace_product_id.name
+            self.to_be_replace_quantity = self.quantity
+            
     def unlink(self):
         """
         This method used to delete the claim line when clam state in draft

@@ -8,7 +8,7 @@
     "version": "14.0.1.1.1",
     "website": "https://github.com/OCA/sale-workflow",
     "summary": "Blanket Orders",
-    "depends": ["uom", "sale_management", "web_action_conditionable", "hdc_sale"],
+    "depends": ["uom", "sale_management", "web_action_conditionable", "hdc_sale", "product_bom_revision"],
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",

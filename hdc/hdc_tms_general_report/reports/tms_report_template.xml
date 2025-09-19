@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="hdc_tms_report_document">
-        <t t-if="not o and doc">
+         <t t-if="not o and doc">
             <t t-set="o" t-value="doc"/>
         </t>
 
@@ -63,12 +63,12 @@
                             <th class="text-center font-tms-th" style="width: 12%">วันที่ Invoice</th>
                             <th class="text-center font-tms-th">เลขที่เอกสาร</th>
                             <!-- <th class="text-center font-tms-th">เลขที่ ATR</th> -->
-                            <th class="text-center font-tms-th">SPE / Invoice No.</th>
+                            <th class="text-center font-tms-th text-nowrap">SPE / Invoice No.</th>
                             <th class="text-center font-tms-th">ชื่อลูกค้า</th>
                             <!-- <th class="text-center font-tms-th">เลขที่เอกสาร</th> -->
-                            <th class="text-center font-tms-th">วันที่เอกสาร</th>
+                            <th class="text-center font-tms-th text-nowrap">วันที่เอกสาร</th>
                             <th class="text-center font-tms-th">สายส่งTRL</th>
-                            <th class="text-center font-tms-th">จำนวนเงิน</th>
+                            <th class="text-center font-tms-th text-nowrap">จำนวนเงิน</th>
                             <!-- <th class="text-center font-tms-th">Billing Status</th> -->
                             <th class="text-center font-tms-th">Payment</th>
                             <th class="text-center font-tms-th">หมายเหตุ</th>
@@ -85,7 +85,7 @@
                                     <td style="text-align: center;">
                                         <span t-field="line.invoice_date"/>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td class="text-nowrap" style="text-align: center;">
                                         <span t-field="line.distribition_id.name"/>
                                     </td>
                                     <!-- <td style="text-align: center;">
@@ -99,7 +99,7 @@
                                             <span t-field="line.invoice_id.name"/>
                                         </t>
                                     </td>
-                                    <td style="text-align: left;">
+                                    <td class="text-nowrap" style="text-align: left;">
                                         <span t-field="line.partner_id"/>
                                     </td>
 
@@ -124,10 +124,10 @@
                                     <!-- <td style="text-align: center;">
                                         <span t-field="line.billing_status" />
                                     </td> -->
-                                    <td style="text-align: center;">
+                                    <td class="text-nowrap" style="text-align: center;">
                                         <span t-field="line.finance_type"/>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td class="text-nowrap" style="text-align: center;">
                                         <span t-field="line.remark"/>
                                     </td>
                                 </tr>
@@ -149,7 +149,7 @@
                                 <td/>
                                 <td/>
                                 <!-- <td></td> -->
-                                <td style="text-align: right;">
+                                <td class="text-nowrap" style="text-align: right;">
                                     <span t-esc="'{:,.2f}'.format(sum(line.amount_total for line in o.invoice_line_ids))"/>
                                     <span>฿</span>
                                 </td>

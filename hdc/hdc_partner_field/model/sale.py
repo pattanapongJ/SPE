@@ -13,6 +13,8 @@ from dateutil.relativedelta import relativedelta
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    remark_payment_term = fields.Text(string="Remark Payment Term")
+
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         res = super(SaleOrder,self).onchange_partner_id()
@@ -21,3 +23,4 @@ class SaleOrder(models.Model):
         self.delivery_company = self.partner_id.delivery_company.id if self.partner_id.delivery_company else False
         self.delivery_company_description = self.partner_id.delivery_company_description or False
         self._onchange_pricelist_to_change_fiscal_position_id()
+        self.remark_payment_term = self.partner_id.internal_remark

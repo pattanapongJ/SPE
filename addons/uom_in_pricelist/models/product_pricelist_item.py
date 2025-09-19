@@ -47,11 +47,11 @@ class PricelistItem(models.Model):
     @api.depends("product_tmpl_id")
     def _compute_product_uom_ids(self):
         for rec in self:
-            rec.product_uom_ids_rel = rec.product_tmpl_id.product_uom_ids.ids
+            rec.product_uom_ids_rel = rec.product_tmpl_id.sale_uom_map_ids.ids
     
     @api.onchange('product_tmpl_id')
     def _product_tmpl_id_onchange(self):
-        domain_uom_id = [('id', 'in', self.product_tmpl_id.product_uom_ids.ids)]
+        domain_uom_id = [('id', 'in', self.product_tmpl_id.sale_uom_map_ids.ids)]
         return {'domain': {'product_uom_id': domain_uom_id}}
 
     @api.depends('product_tmpl_id')

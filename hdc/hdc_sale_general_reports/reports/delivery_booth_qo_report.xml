@@ -248,10 +248,10 @@
                             <span><strong>โทร:</strong></span>
                         </div>
                         <div class="col-7">
-                            <span t-if="doc.user_id">
-                               <span t-field="doc.user_id.phone"/>
+                            <span t-if="doc.user_employee_id.work_phone">
+                               <span t-field="doc.user_employee_id.work_phone"/>
                             </span>
-                            <span t-if="not doc.user_id.phone">
+                            <span t-if="not doc.user_employee_id.work_phone">
                                -
                             </span>
                         </div>

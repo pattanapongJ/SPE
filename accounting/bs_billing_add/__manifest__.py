@@ -1,6 +1,6 @@
 {
     'name': 'Account billing show total amount',
-    'version': '14.4.2',
+    'version': '14.4.3',
     'category': 'Accounting',
     'author': 'Basic-Solution Co., Ltd.',
     'depends': ['base', 'web','account_billing'],

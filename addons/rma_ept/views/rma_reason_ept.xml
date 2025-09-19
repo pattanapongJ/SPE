@@ -29,6 +29,11 @@
                         <field name="operation_type_delivery_id" options="{'no_create': True}"/>
                         <field name="operation_type_rg_id" options="{'no_create': True}"/>
                     </group>
+                    <group string="Remark" name="remark_group">
+                        <div>
+                            <field name="remark" class="oe_inline"/>
+                        </div>
+                    </group>
                 </sheet>
             </form>
         </field>
