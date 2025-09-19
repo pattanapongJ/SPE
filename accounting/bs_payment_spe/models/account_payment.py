@@ -16,7 +16,13 @@ class AccountPayment(models.Model):
     commission_date = fields.Date(string="Commission Date")
     internal_note = fields.Char(string="Internal Note")
     saleperson_id = fields.Many2one("res.users", string="Saleperson")
+    document_ref = fields.Char(string="Document Ref.")
+    pdc_ref = fields.Char(string="PDC Reference", compute="_compute_pdc_ref")
 
+    @api.depends("pdc_id")
+    def _compute_pdc_ref(self):
+        for rec in self:
+            rec.pdc_ref = rec.pdc_id.name or ""
 
 class AccountPaymentRegister(models.TransientModel):
     _inherit = "account.payment.register"
