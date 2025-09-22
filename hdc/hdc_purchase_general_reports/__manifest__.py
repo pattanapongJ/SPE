@@ -21,7 +21,7 @@
 
 {
     "name": "HDC Purchase Orders Reports",
-    "version": "14.0.2.0.6",
+    "version": "14.0.2.0.7",
     "category": "Purchase Orders Reports",
     "summary": "Purchase Orders Reports",
     "description": """

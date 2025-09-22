@@ -18,27 +18,26 @@
         </t>
         <div class="header" style="font-family: KanitLight;" >
             <div class="row">
-                <div class="col-2 text-left">
-                    <t t-call="hdc_purchase_general_reports.report_logo_style"/>
-                </div>
+                <div class="col-2 p-0 m-0" style="
+                            display: -webkit-box; 
+                            -webkit-box-pack: center;  
+                            -webkit-box-orient: vertical;
+                            display: flex;
+                            justify-content: center;
+                            flex-direction: column;">
+                            <img t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"
+                            style="max-width: 95%; height: auto;"/>
+                </div> 
                 <div class="col-7 text-left" style="margin-top:5mm; padding-left:40px">
                     <span style="font-family: KanitLight;font-size: 21.33px; ">
                         <t t-esc="company.name_th"/>
                     </span>
                     <br/><br/>
                     <span style="font-family: KanitLight;font-size: 13.67px; ">
-                        <t t-if="branch">
-                            <t t-set="branch_address" t-value="branch.address.split(' ')"/>
-                            <t t-set="address_count" t-value="0"/>
-                            <t t-foreach="branch_address" t-as="adress" >
-                                <t t-esc="adress"/>                              
-                                <t t-set="address_count" t-value="address_count + 1"/>
-                                <span t-if="address_count == 4">
-                                    <br/>
-                                </span>
-                            </t>
+                         <t t-if="doc.company_id.branch_name_th">
+                            <t t-esc="doc.company_id.branch_name_th"/>
+                            <br/>
                         </t>
-                        <br/>
                     </span>   
                     <span style="font-family: KanitLight;font-size: 13.67px; ">         
                         TEL : <t t-esc="branch.telephone"/>
@@ -49,7 +48,7 @@
                 </div>
                 <div class="col-3 text-right"  style="margin-right:0mm;margin-top:5mm">    
                     <span style="font-family: KanitLight;font-size: 21.33px; ">
-                        <span style="padding-right:15px">(<t t-esc="branch.branch_number"/>)</span><br/><br/><br/>
+                        <span style="padding-right:15px">(<t t-esc="doc.company_id.branch_name_th"/>)</span><br/><br/><br/>
                     </span> 
                     <span style="font-family: KanitLight;font-size: 21.33px; ">
                         ใบสั่งซื้อ
@@ -60,13 +59,13 @@
                     </span>             
                 </div>
             </div>
-            <div class="row" style="font-family: KanitLight;font-size: 13.67px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black;height: 185px">
-                <div class="col-7">
+            <div class="row" style="font-family: KanitLight;font-size: 13.67px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black;height: 195px">
+                <div class="col-8">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <span><strong>ถึง </strong></span>
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <span t-if="doc.partner_id">
                                 <span t-field="doc.partner_id.name"/>
                             </span>
@@ -76,10 +75,10 @@
                         </div>
                     </div>                    
                     <div class="row">
-                       <div class="col-4">
+                       <div class="col-3">
                            <span><strong>ที่อยู่ : </strong></span>
                        </div>
-                       <div class="col-8">
+                       <div class="col-9">
                            <span t-if="doc.partner_id.street">
                                <span t-field="doc.partner_id.street"/>
                            </span>
@@ -104,10 +103,10 @@
                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <span><strong>ติดต่อ : </strong></span>
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <span t-if="doc.partner_id.contact_person">
                                 <span t-field="doc.partner_id.contact_person"/>
                             </span>
@@ -117,10 +116,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
-                            <span><strong>เงื่อนไขการชำระเงิน : </strong></span>
+                        <div class="col-3">
+                            <span style="font-weight:bold">เงื่อนไขการชำระเงิน :</span>
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <span t-if="doc.payment_term_id">
                                 <span t-field="doc.payment_term_id.name"/>
                             </span>
@@ -130,10 +129,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <span><strong>วันที่ยืนยัน : </strong></span>
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <span t-if="doc.date_approve">
                                 <span t-field="doc.date_approve" t-options='{"format": "dd/MM/yyyy"}'/>
                             </span>
@@ -143,10 +142,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <span><strong>ชื่อลูกค้า : </strong></span>
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <span t-if="doc.customer">
                                 <span t-field="doc.customer"/>
                             </span>
@@ -156,7 +155,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5">
+                <div class="col-4">
                     <div class="row">
                         <div class="col-6">
                             <span><strong>วันที่ :</strong></span>
@@ -271,14 +270,14 @@
                 <table class="table" style="font-size: 13.67px;line-height: 18px">
                     <thead style="background-color:#ECECEC">
                         <tr>
-                            <th class="text-center" style="width: 6%;">ลำดับ</th>
-                            <th class="text-center" style="width: 30%;">รายการ</th>
-                            <th class="text-center" style="width: 6%;">จำนวน</th>
-                            <th class="text-center" style="width: 6%;">หน่วย</th>
-                            <th class="text-center" style="width: 13%;">ราคา/หน่วย</th>
-                            <th class="text-center" style="width: 13%;">ส่วนลด</th>
-                            <th class="text-center" style="width: 13%;">ราคา/หน่วย<br/>หลังหักส่วนลด</th>
-                            <th class="text-center" style="width: 13%;">จำนวนเงิน</th>
+                            <th class="text-center align-middle" style="width: 6%; vertical-align: middle;">ลำดับ</th>
+                            <th class="text-center align-middle" style="width: 30%; vertical-align: middle;">รายการ</th>
+                            <th class="text-center align-middle" style="width: 6%; vertical-align: middle;">จำนวน</th>
+                            <th class="text-center align-middle" style="width: 6%; vertical-align: middle;">หน่วย</th>
+                            <th class="text-center align-middle" style="width: 13%; vertical-align: middle;">ราคา/หน่วย</th>
+                            <th class="text-center align-middle" style="width: 13%; vertical-align: middle;">ส่วนลด</th>
+                            <th class="text-center align-middle" style="width: 13%; vertical-align: middle;">ราคา/หน่วย<br/>หลังหักส่วนลด</th>
+                            <th class="text-center align-middle" style="width: 13%; vertical-align: middle;">จำนวนเงิน</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -431,8 +430,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-7 text-left">
-                            <span><strong>มูลค่าสุทธิ (USD)</strong></span>
+                        <div class="col-7 text-left" style="font-weight: bold;">
+                            <span>มูลค่าสุทธิ </span>(<span t-field="doc.currency_id.name"></span>)
                         </div>
                         <div class="col-5 text-right">
                             <span t-if="doc.amount_total">
