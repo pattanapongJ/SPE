@@ -19,7 +19,7 @@
 #
 {
     'name': 'HDC Voucher Report',
-    'version': '14.0.2',
+    'version': '14.0.3',
     'category': 'Accounting',
     'author': 'Hydra Data and Consulting Ltd',
     'website': 'http://www.hydradataandconsulting.co.th',
