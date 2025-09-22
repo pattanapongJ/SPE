@@ -433,19 +433,19 @@
                 <div class="d-flex justify-content-end" style="">
                     <span style="color: white">-</span>
                 </div>
-                <div style="margin-left: 45%; position: relative; top: -57px;">
+                <div style="margin-left: 55%; position: relative; top: -137px;">
                     <t t-if="doc.name">
                         <span t-esc="doc.name"/>
                     </t>
                     <t t-else="">
                         <span style="color: white">-</span>
                     </t>
-                </div>
+                </div>""
                 <br/>
                 <div style="width: 100%;">
-                    <div style="margin-left: 45%;">
+                    <div style="margin-left: 55%;">
                         <t t-if="doc.create_uid">
-                            <span style="position: relative; top: -66px;" t-field="doc.create_uid"/>
+                            <span style="position: relative; top: -146px;" t-field="doc.create_uid"/>
                         </t>
                         <t t-else="">
                             <span style="color: white; position: relative; top: -41px;">-</span>
