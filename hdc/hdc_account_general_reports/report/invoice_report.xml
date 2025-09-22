@@ -1003,13 +1003,8 @@
                 <div class="d-flex" style="margin-left: 5%;">
                     <div style="margin-top: 50px;margin-left: -15px; width: 70%;position: relative; top: 35px;">
                         <!-- 1xxxxxxxxxxxxxxxx -->
-                        <t t-if="sale_order">
-                            <t t-if="sale_order.name">
-                                <span t-field="sale_order.name"/>
-                            </t>
-                            <t t-if="not sale_order.name">
-                                <span t-field="doc.invoice_origin"/>
-                            </t>                      
+                        <t t-if="sale_order and sale_order.name">
+                            <span t-field="sale_order.name"/>          
                         </t>
                         <t t-if="not sale_order">
                             <span t-field="doc.invoice_origin"/>
@@ -1022,7 +1017,14 @@
                 <div class="d-flex" style="margin-left: 5%; position: relative; top: 49px;position: relative; left: 105px;">
                     <div style="margin-top: 30px;margin-left: 15px; width: 70%;">
                        <!-- 2xxxxxxxxxxxxxxxxxxxxxxx -->
-                       <span t-field="doc.partner_id.ref"/>  <span t-field="doc.partner_id.cus_doc_id.name"/>
+                    <t t-if="doc.partner_id.ref or doc.partner_id.cus_doc_id.name">
+                        <span t-if="doc.partner_id.ref" t-field="doc.partner_id.ref"/>
+                        <span t-if="doc.partner_id.cus_doc_id.name" t-field="doc.partner_id.cus_doc_id.name"/>
+                        <br/>
+                    </t>
+                    <t t-if="not doc.partner_id.ref and not doc.partner_id.cus_doc_id.name">
+                        <br/>
+                    </t>
                     </div>
 
                     <!--<div class="d-flex" style="margin-top: 30px;">-->
@@ -1043,7 +1045,7 @@
                           <span t-field="doc.billing_route_id.name"/> 
                       </t>
                       <t t-if="not doc.billing_route_id">
-                          <span style="color: white">-</span>
+                          <br/>
                       </t>
                   </p>
               
@@ -1052,7 +1054,7 @@
                       <span t-field="doc.form_no"/>                      
                   </t>
                   <t t-if="not doc.form_no">
-                      <span style="color: white">-</span>
+                      <br/>
                   </t>
               </div>
 
@@ -1062,10 +1064,11 @@
                     <p style="padding: 0px; margin-right: 50px;position: relative; left: -25px;">
                          <!-- 3xxxxxxxxxxxxxx -->
                          <t t-if="doc.billing_terms_id.code">
-                            <span t-field="doc.billing_terms_id.code"/>                      
+                            <span t-field="doc.billing_terms_id.code"/>
                         </t>
                         <t t-if="not doc.billing_terms_id.code">
-                            <span style="color: white">-</span>
+                            <!-- <span style="color: white">-</span> -->
+                            <br/>
                         </t>
                     </p>
                 </div>
@@ -1349,7 +1352,7 @@
                                             
                                             
                                             
-                                    <td class="text-right" style="position:relative; left:-7px;">
+                                    <td class="text-right" style="position:relative; left:-15px;">
                                         <t t-if="ol.quantity">
                                             <t t-set="qty" t-value="float(ol.quantity)"/>
                                             <t t-if="qty.is_integer()">
@@ -1516,18 +1519,15 @@
                                 <span style="color: white">-</span>
                             </t>
                         </div>
-                                                <div class="row" style="margin-bottom: 2mm; margin-left: 20px;">
+                        <div class="row" style="margin-bottom: 2mm; margin-left: 20px;">
                             <table style="width: 50%; text-align: left;">
                                 <tr>
                                     <td style="text-align: left;">
-                                        <t t-if="doc.narration and len(doc.narration) &gt; 220">
-                                            <span t-esc="doc.narration[:220] + '...'"/>
+                                        <t t-if="doc.remark_report">
+                                            <span t-field="doc.remark_report"/>
                                         </t>
-                                        <t t-if="doc.narration and len(doc.narration) &lt;= 220">
-                                            <span t-field="doc.narration"/>
-                                        </t>
-                                        <t t-if="not doc.narration">
-                                            <span style="color: white">-</span>
+                                        <t t-else="">
+                                            <br/>
                                         </t>
                                     </td>
                                 </tr>
