@@ -17,6 +17,9 @@
                 <field name="document_ref"/>
                 <field name="pdc_ref"/>
             </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="invoice_tag_id"/>
+            </xpath>
         </field>
     </record>
     <record id="view_account_payment_tree" model="ir.ui.view">
