@@ -35,16 +35,8 @@
                     </span>
                     <br/><br/>
                     <span style="font-family: KanitLight;font-size: 13.67px; ">
-                        <t t-if="branch">
-                            <t t-set="branch_address" t-value="branch.address_eng.split(',')"/>
-                            <t t-set="address_count" t-value="0"/>
-                            <t t-foreach="branch_address" t-as="adress" >
-                                <t t-esc="adress"/>,                             
-                                <t t-set="address_count" t-value="address_count + 1"/>
-                                <span t-if="address_count == 1">
-                                    <br/>
-                                </span>
-                            </t>
+                        <t t-if="doc.company_id.branch_name">
+                            <t t-esc="doc.company_id.branch_name"/>
                             <br/>
                         </t>
                     </span>             
@@ -68,13 +60,13 @@
                     </span>             
                 </div>
             </div>
-            <div class="row" style="font-family: KanitLight;font-size: 13.67px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black;height: 185px">
-                <div class="col-7">
+            <div class="row" style="font-family: KanitLight;font-size: 13.67px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black">
+                <div class="col-8">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <span><strong>Attn to </strong></span>
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <span t-if="doc.partner_id">
                                 <span t-field="doc.partner_id.name"/>
                             </span>
@@ -84,10 +76,10 @@
                         </div>
                     </div>                    
                     <div class="row">
-                    <div class="col-4">
+                    <div class="col-3">
                         <span><strong>Address : </strong></span>
                     </div>
-                    <div class="col-8">
+                    <div class="col-9">
                         <span t-if="doc.partner_id.street">
                             <span t-field="doc.partner_id.street"/>
                         </span>
@@ -112,10 +104,10 @@
                     </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <span><strong>Contact To : </strong></span>
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <span t-if="doc.partner_id.contact_person">
                                 <span t-field="doc.partner_id.contact_person"/>
                             </span>
@@ -125,10 +117,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <span><strong>Payment Term : </strong></span>
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <span t-if="doc.payment_term_id">
                                 <span t-field="doc.payment_term_id.name"/>
                             </span>
@@ -138,10 +130,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <span><strong>Confirm Date : </strong></span>
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <span t-if="doc.date_approve">
                                 <span t-field="doc.date_approve" t-options='{"format": "dd/MM/yyyy"}'/>
                             </span>
@@ -151,10 +143,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <span><strong>Customer Name : </strong></span>
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <span t-if="doc.customer">
                                 <span t-field="doc.customer"/>
                             </span>
@@ -164,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5">
+                <div class="col-4">
                     <div class="row">
                         <div class="col-6">
                             <span><strong>DATE :</strong></span>
@@ -374,7 +366,7 @@
         </div>
 
         <div class="footer last-page not-first-page" style="font-size: 11px;margin-top:2mm;vertical-align: bottom;font-family: KanitLight;max-height:403px">
-            <div class="row" style="font-size: 13.67px;border-top: 1px solid black;border-bottom: 1px solid black;height: 95px">
+            <div class="row" style="font-size: 13.67px;border-top: 1px solid black;border-bottom: 1px solid black">
                 <div class="col-8">
                     <div class="row">
                         <div class="col-2 text-left">
