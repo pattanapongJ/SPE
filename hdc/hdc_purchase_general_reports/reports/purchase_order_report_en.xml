@@ -17,473 +17,536 @@
             <t t-set="branch" t-value="res_branch"/>
         </t>
         <div class="page">
-        <div class="header" style="font-family: KanitLight;" >
-            <div class="row">
-                <div class="col-2 p-0 m-0" style="
+            <div class="header" style="font-family: KanitLight;" >
+                <div class="row">
+                    <div class="col-2 p-0 m-0" style="
                             display: -webkit-box; 
                             -webkit-box-pack: center;  
                             -webkit-box-orient: vertical;
                             display: flex;
                             justify-content: center;
                             flex-direction: column;">
-                            <img t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"
+                        <img t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"
                             style="max-width: 95%; height: auto;"/>
-                </div> 
-                <div class="col-7 text-left" style="margin-top:5mm; padding-left:40px">
-                    <span style="font-family: KanitLight;font-size: 21.33px; ">
-                        <t t-esc="company.name"/>
-                    </span>
-                    <br/><br/>
-                    <span style="font-family: KanitLight;font-size: 13.67px; ">
-                        <t t-if="doc.company_id.branch_name">
-                            <t t-esc="doc.company_id.branch_name"/>
+                    </div>
+                    <div class="col-7 text-left" style="margin-top:5mm; padding-left:40px">
+                        <span style="font-family: KanitLight;font-size: 21.33px; ">
+                            <t t-esc="company.name"/>
+                        </span>
+                        <br/>
+                        <br/>
+                        <span style="font-family: KanitLight;font-size: 13.67px; ">
+                            <t t-if="branch">
+                                <t t-set="branch_address" t-value="branch.address_eng.split(',')"/>
+                                <t t-set="address_count" t-value="0"/>
+                                <t t-foreach="branch_address" t-as="adress" >
+                                    <t t-esc="adress"/>,
+                                    <t t-set="address_count" t-value="address_count + 1"/>
+                                    <span t-if="address_count == 1">
+                                        <br/>
+                                    </span>
+                                </t>
+                                <br/>
+                            </t>
+                        </span>
+                        <span style="font-family: KanitLight;font-size: 13.67px; ">         
+                        TEL :
+                            <t t-esc="branch.telephone"/>
+                            <span t-if="not branch.telephone" style="padding-left:90px"></span>
+                            <span style="padding-left:40px">FAX : </span>
+                            <t t-esc="branch.fax"/>
                             <br/>
-                        </t>
-                    </span>             
-                    <span style="font-family: KanitLight;font-size: 13.67px; ">         
-                        TEL : <t t-esc="branch.telephone"/>
-                        <span t-if="not branch.telephone" style="padding-left:90px"></span>
-                        <span style="padding-left:40px">FAX : </span><t t-esc="branch.fax"/><br/>
-                        Tax ID : <t t-esc="company.vat"/>
-                    </span> 
-                </div>
-                <div class="col-3 text-right"  style="margin-right:0mm;margin-top:5mm">            
-                    <span style="font-family: KanitLight;font-size: 21.33px; ">
-                        <span style="padding-right:15px">(<t t-esc="branch.branch_number"/>)</span><br/><br/><br/>
-                    </span>       
-                    <span style="font-family: KanitLight;font-size: 21.33px; ">
+                        Tax ID :
+                            <t t-esc="company.vat"/>
+                        </span>
+                    </div>
+                    <div class="col-3 text-right"  style="margin-right:0mm;margin-top:5mm">
+                        <span style="font-family: KanitLight;font-size: 21.33px; ">
+                            <span style="padding-right:15px">(
+                                <t t-esc="doc.company_id.branch_name"/>)
+                            </span>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </span>
+                        <span style="font-family: KanitLight;font-size: 21.33px; ">
                         Purchase Order
                     </span>
-                    <br/>
-                    <span style="font-family: KanitLight;font-size: 13.67px; ">
-                        Page <span class="page"/>/<span style="padding-right:5px" class="topage"/>
-                    </span>             
+                        <br/>
+                        <span style="font-family: KanitLight;font-size: 13.67px; ">
+                        Page
+                            <span class="page"/>/
+                            <span style="padding-right:5px" class="topage"/>
+                    </span>
+                    </div>
+                </div>
+                <div class="row" style="font-family: KanitLight;font-size: 13.67px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black">
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-3">
+                                <span>
+                                    <strong>Attn to </strong>
+                                </span>
+                            </div>
+                            <div class="col-9">
+                                <span t-if="doc.partner_id">
+                                    <span t-field="doc.partner_id.name"/>
+                            </span>
+                                <span t-if="not doc.partner_id">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <span>
+                                    <strong>Address : </strong>
+                                </span>
+                            </div>
+                            <div class="col-9">
+                                <span t-if="doc.partner_id.street">
+                                    <span t-field="doc.partner_id.street"/>
+                        </span>
+                                <span t-if="doc.partner_id.street2">
+                                    <span t-field="doc.partner_id.street2"/>
+                                    <br/>
+                                </span>
+                                <span t-if="doc.partner_id.sub_district">
+                                    <span t-field="doc.partner_id.sub_district"/>
+                        </span>
+                                <span t-if="doc.partner_id.city">
+                                    <span t-field="doc.partner_id.city"/>
+                                    <br/>
+                                </span>
+                                <span t-if="doc.partner_id.state_id.name">
+                                    <span t-field="doc.partner_id.state_id.name"/>
+                        </span>
+                                <span t-if="doc.partner_id.zip">
+                                    <span t-field="doc.partner_id.zip"/>
+                        </span>
+                                <span t-if="doc.partner_id.country_id">
+                                    <span t-field="doc.partner_id.country_id.name"/>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <span>
+                                    <strong>Contact To : </strong>
+                                </span>
+                            </div>
+                            <div class="col-9">
+                                <span t-if="doc.partner_id.contact_person">
+                                    <span t-field="doc.partner_id.contact_person"/>
+                            </span>
+                                <span t-if="not doc.partner_id.contact_person">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <span>
+                                    <strong>Payment Term : </strong>
+                                </span>
+                            </div>
+                            <div class="col-9">
+                                <span t-if="doc.payment_term_id">
+                                    <span t-field="doc.payment_term_id.name"/>
+                            </span>
+                                <span t-if="not doc.payment_term_id">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <span>
+                                    <strong>Confirm Date : </strong>
+                                </span>
+                            </div>
+                            <div class="col-9">
+                                <span t-if="doc.date_approve">
+                                    <span t-field="doc.date_approve" t-options='{"format": "dd/MM/yyyy"}'/>
+                            </span>
+                                <span t-if="not doc.date_approve">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <span>
+                                    <strong>Customer Name : </strong>
+                                </span>
+                            </div>
+                            <div class="col-9">
+                                <span t-if="doc.customer">
+                                    <span t-field="doc.customer"/>
+                            </span>
+                                <span t-if="not doc.customer">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <span>
+                                    <strong>DATE :</strong>
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <span t-if="doc.date_approve">
+                                    <span t-field="doc.date_approve" t-options='{"format": "dd/MM/yyyy"}'/>
+                            </span>
+                                <span t-if="not doc.date_approve">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span>
+                                    <strong>P/O No :</strong>
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <span t-if="doc.name">
+                                    <span t-field="doc.name"/>
+                            </span>
+                                <span t-if="not doc.name">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span>
+                                    <strong>Vendor Ref : </strong>
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <span t-if="doc.partner_ref">
+                                    <span t-field="doc.partner_ref"/>
+                            </span>
+                                <span t-if="not doc.partner_ref">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span>
+                                    <strong>Origin Country : </strong>
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <span t-if="doc.country_orinal">
+                                    <span t-field="doc.country_orinal.name"/>
+                            </span>
+                                <span t-if="not doc.country_orinal">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span>
+                                    <strong>Incoterm : </strong>
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <span t-if="doc.incoterm_id">
+                                    <span t-field="doc.incoterm_id.name"/>
+                            </span>
+                                <span t-if="not doc.incoterm_id">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span>
+                                    <strong>Delivery mode : </strong>
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <span t-if="doc.carrier_id">
+                                    <span t-field="doc.carrier_id.name"/>
+                            </span>
+                                <span t-if="not doc.carrier_id">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span>
+                                    <strong>ETD Date : </strong>
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <span t-if="doc.etd_date">
+                                    <span t-field="doc.etd_date"/>
+                            </span>
+                                <span t-if="not doc.etd_date">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span>
+                                    <strong>ETA Date : </strong>
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <span t-if="doc.eta_date">
+                                    <span t-field="doc.eta_date"/>
+                            </span>
+                                <span t-if="not doc.eta_date">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row" style="font-family: KanitLight;font-size: 13.67px;margin-top:15px;padding-top:6px;border-top: 1px solid black;border-bottom: 1px solid black;height: 195px">
-                <div class="col-8">
-                    <div class="row">
-                        <div class="col-3">
-                            <span><strong>Attn to </strong></span>
-                        </div>
-                        <div class="col-9">
-                            <span t-if="doc.partner_id">
-                                <span t-field="doc.partner_id.name"/>
-                            </span>
-                            <span t-if="not doc.partner_id">
-                                -
-                            </span>
-                        </div>
-                    </div>                    
-                    <div class="row">
-                    <div class="col-3">
-                        <span><strong>Address : </strong></span>
-                    </div>
-                    <div class="col-9">
-                        <span t-if="doc.partner_id.street">
-                            <span t-field="doc.partner_id.street"/>
-                        </span>
-                        <span t-if="doc.partner_id.street2">
-                            <span t-field="doc.partner_id.street2"/><br/>
-                        </span>
-                        <span t-if="doc.partner_id.sub_district">
-                            <span t-field="doc.partner_id.sub_district"/>
-                        </span>
-                        <span t-if="doc.partner_id.city">
-                            <span t-field="doc.partner_id.city"/><br/>
-                        </span>
-                        <span t-if="doc.partner_id.state_id.name">
-                            <span t-field="doc.partner_id.state_id.name"/>
-                        </span>
-                        <span t-if="doc.partner_id.zip">
-                            <span t-field="doc.partner_id.zip"/>
-                        </span>
-                        <span t-if="doc.partner_id.country_id">
-                            <span t-field="doc.partner_id.country_id.name"/>
-                        </span>
-                    </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <span><strong>Contact To : </strong></span>
-                        </div>
-                        <div class="col-9">
-                            <span t-if="doc.partner_id.contact_person">
-                                <span t-field="doc.partner_id.contact_person"/>
-                            </span>
-                            <span t-if="not doc.partner_id.contact_person">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <span><strong>Payment Term : </strong></span>
-                        </div>
-                        <div class="col-9">
-                            <span t-if="doc.payment_term_id">
-                                <span t-field="doc.payment_term_id.name"/>
-                            </span>
-                            <span t-if="not doc.payment_term_id">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <span><strong>Confirm Date : </strong></span>
-                        </div>
-                        <div class="col-9">
-                            <span t-if="doc.date_approve">
-                                <span t-field="doc.date_approve" t-options='{"format": "dd/MM/yyyy"}'/>
-                            </span>
-                            <span t-if="not doc.date_approve">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <span><strong>Customer Name : </strong></span>
-                        </div>
-                        <div class="col-9">
-                            <span t-if="doc.customer">
-                                <span t-field="doc.customer"/>
-                            </span>
-                            <span t-if="not doc.customer">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="row">
-                        <div class="col-6">
-                            <span><strong>DATE :</strong></span>
-                        </div>
-                        <div class="col-6">
-                            <span t-if="doc.date_approve">
-                                <span t-field="doc.date_approve" t-options='{"format": "dd/MM/yyyy"}'/>
-                            </span>
-                            <span t-if="not doc.date_approve">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <span><strong>P/O No :</strong></span>
-                        </div>
-                        <div class="col-6">
-                            <span t-if="doc.name">
-                                <span t-field="doc.name"/>
-                            </span>
-                            <span t-if="not doc.name">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <span><strong>Vendor Ref : </strong></span>
-                        </div>
-                        <div class="col-6">
-                            <span t-if="doc.partner_ref">
-                                <span t-field="doc.partner_ref"/>
-                            </span>
-                            <span t-if="not doc.partner_ref">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <span><strong>Origin Country : </strong></span>
-                        </div>
-                        <div class="col-6">
-                            <span t-if="doc.country_orinal">
-                                <span t-field="doc.country_orinal.name"/>
-                            </span>
-                            <span t-if="not doc.country_orinal">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <span><strong>Incoterm : </strong></span>
-                        </div>
-                        <div class="col-6">
-                            <span t-if="doc.incoterm_id">
-                                <span t-field="doc.incoterm_id.name"/>
-                            </span>
-                            <span t-if="not doc.incoterm_id">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <span><strong>Delivery mode : </strong></span>
-                        </div>
-                        <div class="col-6">
-                            <span t-if="doc.carrier_id">
-                                <span t-field="doc.carrier_id.name"/>
-                            </span>
-                            <span t-if="not doc.carrier_id">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <span><strong>ETD Date : </strong></span>
-                        </div>
-                        <div class="col-6">
-                            <span t-if="doc.etd_date">
-                                <span t-field="doc.etd_date"/>
-                            </span>
-                            <span t-if="not doc.etd_date">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <span><strong>ETA Date : </strong></span>
-                        </div>
-                        <div class="col-6">
-                            <span t-if="doc.eta_date">
-                                <span t-field="doc.eta_date"/>
-                            </span>
-                            <span t-if="not doc.eta_date">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
-            <div class="row">
-                <t t-set="l_no" t-value="0"/>
-                <table class="table" style="font-size: 13.67px;line-height: 18px">
-                    <thead style="background-color:#ECECEC">
-                        <tr>
-                            <th class="text-center" style="width: 6%;">No.</th>
-                            <th class="text-center" style="width: 30%;">Description</th>
-                            <th class="text-center" style="width: 6%;">Qty.</th>
-                            <th class="text-center" style="width: 6%;">UoM</th>
-                            <th class="text-center" style="width: 13%;">Unit Price</th>
-                            <th class="text-center" style="width: 13%;">Discount</th>
-                            <th class="text-center" style="width: 13%;">Net Price</th>
-                            <th class="text-center" style="width: 13%;">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <t t-set="set_no_vat" t-value="0"/>
-                        <t t-set="set_vat" t-value="0"/>
-                        <t t-set="set_dis" t-value="0"/>
-                        <t t-foreach="o.order_line" t-as="ol" >                                                             
+            <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+                <div class="row">
+                    <t t-set="l_no" t-value="0"/>
+                    <table class="table" style="font-size: 13.67px;line-height: 18px">
+                        <thead style="background-color:#ECECEC">
                             <tr>
-                                <td class="text-center">
-                                    <t t-set="l_no" t-value="l_no + 1"/>
-                                    <t t-esc="l_no"/>
-                                </td>                       
-                                <td class="text-left" >
-                                    <t t-if="ol.item_eng">
-                                        <span t-field="ol.item_eng"/>
-                                    </t>
-                                    <t t-elif="ol.name">
-                                        <span t-field="ol.name"/>
-                                    </t>
-                                    <t t-else="">
-                                        <div class="text-center">-</div>
-                                    </t>
-                                </td>
-                                <td class="text-center" >
-                                    <span t-if="ol.product_qty">
-                                        <t t-set="qty" t-value="float(ol.product_qty)"/>
-                                        <t t-if="qty.is_integer()">
-                                        <!-- เป็นจำนวนเต็ม เช่น 10.00 => แสดง 10 -->
-                                        <span t-esc="'{:,.0f}'.format(qty)"/>
+                                <th class="text-center" style="width: 6%;">No.</th>
+                                <th class="text-center" style="width: 30%;">Description</th>
+                                <th class="text-center" style="width: 6%;">Qty.</th>
+                                <th class="text-center" style="width: 6%;">UoM</th>
+                                <th class="text-center" style="width: 13%;">Unit Price</th>
+                                <th class="text-center" style="width: 13%;">Discount</th>
+                                <th class="text-center" style="width: 13%;">Net Price</th>
+                                <th class="text-center" style="width: 13%;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="set_no_vat" t-value="0"/>
+                            <t t-set="set_vat" t-value="0"/>
+                            <t t-set="set_dis" t-value="0"/>
+                            <t t-foreach="o.order_line" t-as="ol" >
+                                <tr>
+                                    <td class="text-center">
+                                        <t t-set="l_no" t-value="l_no + 1"/>
+                                        <t t-esc="l_no"/>
+                                    </td>
+                                    <td class="text-left" >
+                                        <t t-if="ol.item_eng">
+                                            <span t-field="ol.item_eng"/>
+                                        </t>
+                                        <t t-elif="ol.name">
+                                            <span t-field="ol.name"/>
                                         </t>
                                         <t t-else="">
-                                        <!-- มีทศนิยม เช่น 10.30 => แสดง 10.30 -->
-                                        <span t-esc="'{:,.2f}'.format(qty)"/>
+                                            <div class="text-center">-</div>
                                         </t>
-                                    </span>
-                                    <span t-if="not ol.product_qty">
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="ol.product_qty">
+                                            <t t-set="qty" t-value="float(ol.product_qty)"/>
+                                            <t t-if="qty.is_integer()">
+                                                <!-- เป็นจำนวนเต็ม เช่น 10.00 => แสดง 10 -->
+                                                <span t-esc="'{:,.0f}'.format(qty)"/>
+                                            </t>
+                                            <t t-else="">
+                                                <!-- มีทศนิยม เช่น 10.30 => แสดง 10.30 -->
+                                                <span t-esc="'{:,.2f}'.format(qty)"/>
+                                            </t>
+                                        </span>
+                                        <span t-if="not ol.product_qty">
                                         -
                                     </span>
-                                </td>                                                                      
-                                <td class="text-center" >
-                                    <span t-if="ol.product_uom">
-                                        <span t-field="ol.product_uom"/>
+                                    </td>
+                                    <td class="text-center" >
+                                        <span t-if="ol.product_uom">
+                                            <span t-field="ol.product_uom"/>
                                     </span>
-                                    <span t-if="not ol.product_uom">
+                                        <span t-if="not ol.product_uom">
                                         -
                                     </span>
-                                </td>
-                                <td class="text-right" >
-                                    <span t-if="ol.gross_unit_price">                                                <span t-field="ol.gross_unit_price"/>
+                                    </td>
+                                    <td class="text-right" >
+                                        <span t-if="ol.gross_unit_price">
+                                            <span t-field="ol.gross_unit_price"/>
                                     </span>
-                                    <span t-if="not ol.gross_unit_price">
+                                        <span t-if="not ol.gross_unit_price">
                                         -
                                     </span>
-                                </td>
-                                <td class="text-right" >
-                                    <span t-if="ol.multi_disc_amount">
-                                        <!-- <span t-field="ol.multi_disc_amount"/>      -->
-                                        <span t-esc=" '{0:,.2f}'.format(float(ol.multi_disc_amount)) "/>                                           
+                                    </td>
+                                    <td class="text-right" >
+                                        <span t-if="ol.multi_disc_amount">
+                                            <!-- <span t-field="ol.multi_disc_amount"/>      -->
+                                            <span t-esc=" '{0:,.2f}'.format(float(ol.multi_disc_amount)) "/>                                           
                                     </span>
-                                    <span t-if="not ol.multi_disc_amount">
+                                        <span t-if="not ol.multi_disc_amount">
                                         -
                                     </span>
-                                </td>
-                                <td class="text-right" >
-                                    <span t-if="ol.total_before_global_disc">
-                                        <span t-esc=" '{0:,.2f}'.format(float(ol.total_before_global_disc/ol.product_qty)) "/>
+                                    </td>
+                                    <td class="text-right" >
+                                        <span t-if="ol.total_before_global_disc">
+                                            <span t-esc=" '{0:,.2f}'.format(float(ol.total_before_global_disc/ol.product_qty)) "/>
                                     </span>
-                                    <span t-if="not ol.total_before_global_disc">
+                                        <span t-if="not ol.total_before_global_disc">
                                         -
                                     </span>
-                                </td> 
-                                <td class="text-right" >
-                                    <span t-if="ol.total_before_global_disc">
-                                        <span t-esc=" '{0:,.2f}'.format(float(ol.total_before_global_disc)) "/>
+                                    </td>
+                                    <td class="text-right" >
+                                        <span t-if="ol.total_before_global_disc">
+                                            <span t-esc=" '{0:,.2f}'.format(float(ol.total_before_global_disc)) "/>
                                     </span>
-                                    <span t-if="not ol.total_before_global_disc">
+                                        <span t-if="not ol.total_before_global_disc">
                                         -
                                     </span>
-                                </td> 
-                            </tr>
-                        </t> 
-                    </tbody>
-                </table>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="footer last-page not-first-page" style="font-size: 11px;margin-top:2mm;vertical-align: bottom;font-family: KanitLight;max-height:403px">
+                <div class="row" style="font-size: 13.67px;border-top: 1px solid black;border-bottom: 1px solid black">
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-2 text-left">
+                                <span>
+                                    <strong>Note :</strong>
+                                </span>
+                            </div>
+                            <div class="col-10 text-left">
+                                <span t-field="doc.notes"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col-7 text-left">
+                                <span>
+                                    <strong>Total : </strong>
+                                </span>
+                            </div>
+                            <div class="col-5 text-right">
+                                <span t-if="doc.total_before_global_disc">
+                                    <span t-esc=" '{0:,.2f}'.format(float(doc.total_before_global_disc)) "/>
+                            </span>
+                                <span t-if="not doc.total_before_global_disc">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 text-left">
+                                <span>
+                                    <strong>Discount : </strong>
+                                </span>
+                            </div>
+                            <div class="col-5 text-right">
+                                <span t-if="doc.total_global_disc" >
+                                    <span t-esc=" '{0:,.2f}'.format(float(doc.total_global_disc)) "/>
+                            </span>
+                                <span t-if="not doc.total_global_disc">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 text-left">
+                                <span>
+                                    <strong>After Discount : </strong>
+                                </span>
+                            </div>
+                            <div class="col-5 text-right">
+                                <span t-if="doc.amount_untaxed">
+                                    <span t-esc=" '{0:,.2f}'.format(float(doc.amount_untaxed)) "/>
+                            </span>
+                                <span t-if="not doc.amount_untaxed">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 text-left">
+                                <span>
+                                    <strong>VAT : </strong>
+                                </span>
+                            </div>
+                            <div class="col-5 text-right">
+                                <span t-if="doc.amount_tax">
+                                    <span t-esc=" '{0:,.2f}'.format(float(doc.amount_tax)) "/>
+                            </span>
+                                <span t-if="not doc.amount_tax">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 text-left" style="font-weight: bold;">
+                                <span>Grand Total</span>(
+                                <span t-field="doc.currency_id.name"></span>)
+                            </div>
+                            <div class="col-5 text-right">
+                                <span t-if="doc.amount_total">
+                                    <span t-esc=" '{0:,.2f}'.format(float(doc.amount_total))"/>
+                            </span>
+                                <span t-if="not doc.amount_total">
+                                -
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  class="row">
+                    <div class="col-4" align="center">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div>
+                            <span t-field="doc.user_id.name"/>
+                        </div>
+                        <br/>
+                        <div>Manipulator</div>
+                        <br/>
+                        <div>
+                            <span t-field="doc.create_date" t-options='{"format": "dd/MM/yyyy"}'/>
+                        </div>
+                        <br/>
+                    </div>
+                    <div class="col-4" align="center">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div>.................................................................</div>
+                        <br/>
+                        <div>Veriflyer</div>
+                        <br/>
+                        <div>................../................../..................</div>
+                        <br/>
+                    </div>
+                    <div class="col-4" align="center">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div>.................................................................</div>
+                        <br/>
+                        <div>Approved</div>
+                        <br/>
+                        <div>................../................../..................</div>
+                        <br/>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="footer last-page not-first-page" style="font-size: 11px;margin-top:2mm;vertical-align: bottom;font-family: KanitLight;max-height:403px">
-            <div class="row" style="font-size: 13.67px;border-top: 1px solid black;border-bottom: 1px solid black">
-                <div class="col-8">
-                    <div class="row">
-                        <div class="col-2 text-left">
-                            <span><strong>Note :</strong></span>
-                        </div>
-                        <div class="col-10 text-left">
-                            <span t-field="doc.notes"/>
-                        </div>
-                    </div>                                        
-                </div>
-                <div class="col-4">
-                    <div class="row">
-                        <div class="col-7 text-left">
-                            <span><strong>Total : </strong></span>
-                        </div>
-                        <div class="col-5 text-right">
-                            <span t-if="doc.total_before_global_disc">
-                                <span t-esc=" '{0:,.2f}'.format(float(doc.total_before_global_disc)) "/>
-                            </span>
-                            <span t-if="not doc.total_before_global_disc">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 text-left">
-                            <span><strong>Discount : </strong></span>
-                        </div>
-                        <div class="col-5 text-right">
-                            <span t-if="doc.total_global_disc" >
-                                <span t-esc=" '{0:,.2f}'.format(float(doc.total_global_disc)) "/>
-                            </span>
-                            <span t-if="not doc.total_global_disc">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 text-left">
-                            <span><strong>After Discount : </strong></span>
-                        </div>
-                        <div class="col-5 text-right">
-                            <span t-if="doc.amount_untaxed">
-                                <span t-esc=" '{0:,.2f}'.format(float(doc.amount_untaxed)) "/>
-                            </span>
-                            <span t-if="not doc.amount_untaxed">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 text-left">
-                            <span><strong>VAT : </strong></span>
-                        </div>
-                        <div class="col-5 text-right">
-                            <span t-if="doc.amount_tax">
-                                <span t-esc=" '{0:,.2f}'.format(float(doc.amount_tax)) "/>
-                            </span>
-                            <span t-if="not doc.amount_tax">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 text-left" style="font-weight: bold;">
-                            <span>Grand Total</span>(<span t-field="doc.currency_id.name"></span>)
-                        </div>
-                        <div class="col-5 text-right">
-                            <span t-if="doc.amount_total">
-                                <span t-esc=" '{0:,.2f}'.format(float(doc.amount_total))"/>
-                            </span>
-                            <span t-if="not doc.amount_total">
-                                -
-                            </span>
-                        </div>
-                    </div>                       
-                </div>               
-            </div> 
-            <div  class="row">              
-                <div class="col-4" align="center">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <div><span t-field="doc.user_id.name"/></div>
-                    <br/>
-                    <div>Manipulator</div>
-                    <br/>
-                    <div><span t-field="doc.create_date" t-options='{"format": "dd/MM/yyyy"}'/></div>
-                    <br/>                    
-                </div>
-                <div class="col-4" align="center">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <div>.................................................................</div>
-                    <br/>
-                    <div>Veriflyer</div>
-                    <br/>
-                    <div>................../................../..................</div>
-                    <br/>      
-                </div>
-                <div class="col-4" align="center">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <div>.................................................................</div>
-                    <br/>
-                    <div>Approved</div>
-                    <br/>
-                    <div>................../................../..................</div>
-                    <br/>      
-                </div>
-            </div>          
-        </div>
-    </div>
     </template>
-
     <template id="hdc_purchase_order_report_en">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
