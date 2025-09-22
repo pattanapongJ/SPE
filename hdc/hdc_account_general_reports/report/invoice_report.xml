@@ -1549,7 +1549,7 @@
                             <table style="width: 100%; text-align: center;">
                                 <tr>
                                     <td style="width: 70%; padding-right: 10px;font-size: 15.67px">
-                                    <t t-if="doc0invoice_payments_widget">
+                                    <t t-if="doc.invoice_payments_widget">
                                         <span t-esc="doc.currency_id.amount_to_text_th(abs(doc.amount_total), o.currency_id.currency_unit_label)" style="position: relative; top: 20px;"/>
                                     </t>
                                     <t t-else="">
@@ -1672,7 +1672,7 @@
                             <table style="width: 98%; text-align: right;">
                                 <tr>
                                     <td style="width: 30%; text-align: right;font-size: 13.67px">
-                                        <t t-if="doc0invoice_payments_widget">
+                                        <t t-if="doc.invoice_payments_widget">
                                             <span t-esc="'{:,.2f}'.format(float(doc.amount_total))"/>
                                         </t>
                                         <t t-else="">
