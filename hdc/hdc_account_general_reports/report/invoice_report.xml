@@ -1342,8 +1342,9 @@
                                         <span t-if="not ol.product_uom_id.name">-</span>
                                     </td>
                                     <td class="text-right">
-                                        <span t-if="ol.price_unit"><span t-esc="'{:,.4f}'.format(float(ol.price_unit))"/></span>
-                                        <span t-if="not ol.price_unit">-</span>
+                                        <!-- <span t-if="ol.price_unit"><span t-esc="'{:,.4f}'.format(float(ol.price_unit))"/></span>
+                                        <span t-if="not ol.price_unit">-</span> -->
+                                        <span t-esc="show_digits(ol.price_unit)"/>
                                     </td>
                                     <td class="text-right">
                                         <!-- <span t-if="ol.price_subtotal"><span t-esc="'{:,.2f}'.format(float(ol.price_subtotal))" style="margin-right:3px;"/></span>
