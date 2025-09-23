@@ -33,8 +33,6 @@
                         <span style="font-family: KanitLight;font-size: 21.33px; ">
                             <t t-esc="company.name"/>
                         </span>
-                        <br/>
-                        <br/>
                         <span style="font-family: KanitLight;font-size: 13.67px; ">
                             <t t-if="branch">
                                 <t t-set="branch_address" t-value="branch.address_eng.split(',')"/>
@@ -63,7 +61,7 @@
                     <div class="col-3 text-right"  style="margin-right:0mm;margin-top:5mm">
                         <span style="font-family: KanitLight;font-size: 21.33px; ">
                             <span style="padding-right:15px">(
-                                <t t-esc="doc.company_id.branch_name"/>)
+                                <t t-esc="doc.branch_id.name_en"/>)
                             </span>
                             <br/>
                             <br/>
@@ -197,7 +195,7 @@
                                     <strong>DATE :</strong>
                                 </span>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6" style="margin-left:-30px">
                                 <span t-if="doc.date_approve">
                                     <span t-field="doc.date_approve" t-options='{"format": "dd/MM/yyyy"}'/>
                             </span>
@@ -212,7 +210,7 @@
                                     <strong>P/O No :</strong>
                                 </span>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6" style="margin-left:-30px">
                                 <span t-if="doc.name">
                                     <span t-field="doc.name"/>
                             </span>
@@ -227,7 +225,7 @@
                                     <strong>Vendor Ref : </strong>
                                 </span>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6" style="margin-left:-30px">
                                 <span t-if="doc.partner_ref">
                                     <span t-field="doc.partner_ref"/>
                             </span>
@@ -242,7 +240,7 @@
                                     <strong>Origin Country : </strong>
                                 </span>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6" style="margin-left:-30px">
                                 <span t-if="doc.country_orinal">
                                     <span t-field="doc.country_orinal.name"/>
                             </span>
@@ -257,7 +255,7 @@
                                     <strong>Incoterm : </strong>
                                 </span>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6" style="margin-left:-30px">
                                 <span t-if="doc.incoterm_id">
                                     <span t-field="doc.incoterm_id.name"/>
                             </span>
@@ -272,7 +270,7 @@
                                     <strong>Delivery mode : </strong>
                                 </span>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6" style="margin-left:-30px">
                                 <span t-if="doc.carrier_id">
                                     <span t-field="doc.carrier_id.name"/>
                             </span>
@@ -287,7 +285,7 @@
                                     <strong>ETD Date : </strong>
                                 </span>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6" style="margin-left:-30px">
                                 <span t-if="doc.etd_date">
                                     <span t-field="doc.etd_date"/>
                             </span>
@@ -302,7 +300,7 @@
                                     <strong>ETA Date : </strong>
                                 </span>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6" style="margin-left:-30px">
                                 <span t-if="doc.eta_date">
                                     <span t-field="doc.eta_date"/>
                             </span>
