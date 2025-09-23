@@ -14,6 +14,21 @@ class AccountBilling(models.Model):
     billing_period = fields.Many2one("account.billing.period", string="Billing Period")
     payment_period = fields.Many2one("account.payment.period", string="Payment Period")
     batch_no = fields.Char(string="Batch No.")
+    is_service = fields.Boolean(string="Service", default=True)
+    @api.onchange("partner_id")
+    def _onchange_partner_id(self):
+        """When partner changes, update billing fields from partner setup"""
+        for rec in self:
+            if rec.partner_id:
+                rec.billing_route = rec.partner_id.billing_route_id.id
+                rec.billing_terms = rec.partner_id.billing_terms_id.id
+                rec.billing_period = rec.partner_id.billing_period_id.id
+                rec.payment_period = rec.partner_id.payment_period_id.id
+            else:
+                rec.billing_route = False
+                rec.billing_terms = False
+                rec.billing_period = False
+                rec.payment_period = False
 
     def _filter_selected_invoices(self):
         existing_bills = self.env["account.billing"].search(
@@ -219,6 +234,12 @@ class AccountBillingLine(models.Model):
         store=True,
         readonly=False,
     )
+    spe_invoice = fields.Char(
+        string="SPE Invoice",
+        related="invoice_id.form_no",
+        store=True,
+        readonly=True,
+    )
 
     @api.depends("billing_id.percentage")
     def _compute_percentage(self):
@@ -235,42 +256,42 @@ class AccountBillingLine(models.Model):
 
         return True
 
-    @api.onchange("invoice_id")
-    def _get_invoice_domain(self):
-        domain = []
-        active_bill_id = self.billing_id._origin.id or self.billing_id.id
-        if not active_bill_id:
-            domain = self.billing_id.get_domain()
-        else:
-            # current active bill
-            active_bill = self.billing_id
+    # @api.onchange("invoice_id")
+    # def _get_invoice_domain(self):
+    #     domain = []
+    #     active_bill_id = self.billing_id._origin.id or self.billing_id.id
+    #     if not active_bill_id:
+    #         domain = self.billing_id.get_domain()
+    #     else:
+    #         # current active bill
+    #         active_bill = self.billing_id
 
-            bill_type = active_bill.bill_type
-            partner_id = active_bill.partner_id.id
+    #         bill_type = active_bill.bill_type
+    #         partner_id = active_bill.partner_id.id
 
-            selected_invoice_ids = active_bill.billing_line_ids.mapped("invoice_id.id")
+    #         selected_invoice_ids = active_bill.billing_line_ids.mapped("invoice_id.id")
 
-            if self.invoice_id:
-                selected_invoice_ids += self.invoice_id.ids
+    #         if self.invoice_id:
+    #             selected_invoice_ids += self.invoice_id.ids
 
-            domain = [
-                ("partner_id", "=", partner_id),
-                ("payment_state", "!=", "paid"),
-                ("state", "=", "posted"),
-                ("move_type", "=", bill_type),
-                ("currency_id", "=", active_bill.currency_id.id),
-                ("id", "not in", selected_invoice_ids),
-                ("invoice_user_id", "=", active_bill.sales_person_id.id),
-                ("payment_state", "!=", "reversed"),
-            ]
+    #         domain = [
+    #             ("partner_id", "=", partner_id),
+    #             ("payment_state", "!=", "paid"),
+    #             ("state", "=", "posted"),
+    #             ("move_type", "=", bill_type),
+    #             ("currency_id", "=", active_bill.currency_id.id),
+    #             ("id", "not in", selected_invoice_ids),
+    #             ("invoice_user_id", "=", active_bill.sales_person_id.id),
+    #             ("payment_state", "!=", "reversed"),
+    #         ]
 
-        amount = self.invoice_id.amount_residual
-        if self.invoice_id.move_type in ["out_refund", "in_refund"]:
-            amount *= -1
-        self.total = amount
+    #     amount = self.invoice_id.amount_residual
+    #     if self.invoice_id.move_type in ["out_refund", "in_refund"]:
+    #         amount *= -1
+    #     self.total = amount
 
-        self.amount_total = self.invoice_id.amount_total
+    #     self.amount_total = self.invoice_id.amount_total
 
-        self._compute_percentage()
+    #     self._compute_percentage()
 
-        return {"domain": {"invoice_id": domain}}
+    #     return {"domain": {"invoice_id": domain}}
