@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'BS Messagender Job',
-    'version': '14.0.0.0',
+    'version': '14.0.1.0',
     'summary': """ BS Messenger Job """,
     'author': "Basic Solution Co., Ltd.",
     'website': "https://www.basic-solution.com",
@@ -13,6 +13,7 @@
         "views/batch_billing.xml",
         "views/messenger_job_view.xml",
         "views/menuitem.xml",
+        "wizard/multiple_selection_form.xml",
     ],
     'application': True,
     'installable': True,
