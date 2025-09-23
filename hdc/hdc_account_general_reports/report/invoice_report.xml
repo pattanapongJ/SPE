@@ -1290,7 +1290,7 @@
                                     </td>
 
                                     <!-- คอลัมน์ชื่อสินค้า ตาม form_label_type -->
-                                   <td class="text-left" style="padding-top:1px; padding-bottom:1px;">
+                                   <td class="text-left">
                                         <t t-if="doc.form_label_type == 'label'">
                                             <span t-if="ol.name">
                                                 <span t-field="ol.name"/></span>
