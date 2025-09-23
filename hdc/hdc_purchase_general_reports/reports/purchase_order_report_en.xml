@@ -32,6 +32,7 @@
                     <div class="col-7 text-left" style="margin-top:5mm; padding-left:40px">
                         <span style="font-family: KanitLight;font-size: 21.33px; ">
                             <t t-esc="company.name"/>
+                            <br/>
                         </span>
                         <span style="font-family: KanitLight;font-size: 13.67px; ">
                             <t t-if="branch">
