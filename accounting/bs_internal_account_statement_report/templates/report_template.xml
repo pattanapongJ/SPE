@@ -1,0 +1,24 @@
+<odoo>
+    <template
+    id="assets_bs_internal_account_statement_report"
+    name="bs_internal_account_statement_report Assets"
+    inherit_id="web.assets_backend"
+>
+    <xpath expr="." position="inside">
+        <link
+            href="/bs_internal_account_statement_report/static/src/css/style.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" type="text/scss" href="/bs_internal_account_statement_report/static/src/scss/fonts.scss"/>
+        <script
+            type="text/javascript"
+            src="/bs_internal_account_statement_report/static/src/js/action_manager_report.js"
+        />
+        <script
+            type="text/javascript"
+            src="/bs_internal_account_statement_report/static/src/js/client_action.js"
+        />
+    </xpath>
+</template>
+
+</odoo>

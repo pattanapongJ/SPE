@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- report content -->
+    <template id="internal_acc_stmt_report_content">
+        <div class="act_as_table data_table" style="width: 100%;">
+            <!-- table header -->
+            <div class="act_as_thead">
+                <div class="act_as_row labels">
+                    <!--## Date-->
+                    <div class="act_as_cell" style="width: 5.5%">
+                        Date
+                    </div>
+                    <!--## SPE Invoice-->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        SPE Invoice
+                    </div>
+                    <!--## Payment No-->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Payment No
+                    </div>
+                    <!-- Date Receive -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Date Receive
+                    </div>
+                    <!-- Check No. -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Check No.
+                    </div>
+                    <!-- Check date -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Check date
+                    </div>
+                    <!-- Status -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Status
+                    </div>
+                    <!-- Sales Respond -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Sales Respond
+                    </div>
+                    <!--  SPE invoice amt.  -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                         SPE invoice amt. 
+                    </div>
+                    <!--   Payment Amount   -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Payment Amount  
+                    </div>
+                    <!--    Invoice Balance   -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Invoice Balance 
+                    </div>
+                    <!--     Payment Term    -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Payment Term 
+                    </div>
+                    <!--  Billing Date  -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Billing Date 
+                    </div>
+                    <!--  Billing No.  -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Billing No. 
+                    </div>
+                    <!--  วันที่รับวางบิล  -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        วันที่รับวางบิล  
+                    </div>
+                    <!--  วันที่นัดรับ  -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        วันที่นัดรับ 
+                    </div>
+                    <!--  Finance Note  -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Finance Note 
+                    </div>
+                    <!--  Accounting Note  -->
+                    <div class="act_as_cell" style="width: 5.5%;">
+                        Accounting Note 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+</odoo>

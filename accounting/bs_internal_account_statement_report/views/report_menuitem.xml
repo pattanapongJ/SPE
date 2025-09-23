@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        action="action_acc_statement_report_wizard"
+        id="menu_action_account_internal_statement_report"
+        parent="account.account_reports_management_menu"
+        name="Internal Account Statement"
+        sequence="30"
+    />
+
+</odoo>

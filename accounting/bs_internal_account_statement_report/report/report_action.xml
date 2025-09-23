@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="paperformat_account_statement_report" model="report.paperformat">
+        <field name="name">Internal Account Statement Paperformat</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">35</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_spacing">35</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <record id="action_account_statement_report_pdf" model="ir.actions.report">
+        <field name="name">Internal Account Statement</field>
+        <field name="model">internal.acc.stmt.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bs_internal_account_statement_report.report_acc</field>
+        <field name="report_file">bs_internal_account_statement_report.report_acc</field>
+        <field
+            name="print_report_name"
+        >'Internal Account Statement Report - [%s]' % object.date_start</field>
+        <field name="paperformat_id" ref="bs_internal_account_statement_report.paperformat_account_statement_report" />
+    </record>
+
+    <record id="action_account_statement_report_html" model="ir.actions.report">
+        <field name="name">Internal Account Statement</field>
+        <field name="model">internal.acc.stmt.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">bs_internal_account_statement_report.report_acc</field>
+        <field name="report_file">bs_internal_account_statement_report.report_acc</field>
+    </record>
+
+</odoo>

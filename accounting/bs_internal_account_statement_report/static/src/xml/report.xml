@@ -1,0 +1,11 @@
+<template>
+    <t t-name="bs_internal_account_statement_report.client_action.ControlButtons">
+        <div class="o_report_buttons">
+            <button
+                type="button"
+                class="btn btn-primary o_report_print"
+                title="Print"
+            >Print</button>
+        </div>
+    </t>
+</template>

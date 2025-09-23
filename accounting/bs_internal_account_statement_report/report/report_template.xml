@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- internal layout -->
+    <template id="internal_layout">
+        <!-- header -->
+        <div t-attf-class="header o_company_#{o.company_id.id}_layout" t-att-style="report_header_style">
+            <t t-call="bs_internal_account_statement_report.acc_internal_stmt_report_header"/>
+        </div>
+        <!-- content -->
+        <div class="article">
+            <link
+                href="/bs_internal_account_statement_report/static/src/css/style.css"
+                rel="stylesheet"
+            />
+            <t t-raw="0" />
+        </div>
+        <!-- footer -->
+        <t t-if="report_type == 'pdf'">
+            <t t-call="bs_internal_account_statement_report.acc_internal_stmt_report_footer"/>
+        </t>
+    </template>
+
+    <!-- Header Template -->
+    <template id="acc_internal_stmt_report_header">
+        <div class="col m-0 o_acc_stmt_report_header" style="font-family:Kanit-Light;">
+            <div class="row p-0 m-0">
+                <div class="col-11 m-0 p-0">
+                    <div class="title" style="font-weight: bold;font-size: 20px;">Internal Account Statement (Admin)</div>
+                    <div class="subtitle" style="font-weight: bold;font-size: 16px;">Saeng Charoen  Group</div>
+                </div>
+                <div class="col-1 m-0 p-0" style="font-size:12px;">
+                    <div class="col m-0 p-0">
+                        <div t-if="report_type == 'pdf'" class="text-muted text-right">
+                            <div class="row p-0 m-0">
+                                Page
+                                <span class="page"/>
+                                /
+                                <span class="topage"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col m-0 p-0">
+                        <t t-esc="report_date"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0 p-0" style="font-size:12px;">
+                <!-- left -->
+                <div class="col-5 m-0 p-0">
+                    <!-- 1. name -->
+                    <div class="row m-0 p-0">
+                        <div class="col-3 m-0 p-0">
+                            Name
+                        </div>
+                        <div class="col-9 m-0 p-0">
+                            <t t-esc="header_info['partner']['name']"/>
+                        </div>
+                    </div>
+                    <!-- 2. address -->
+                    <div class="row m-0 p-0">
+                        <div class="col-3 m-0 p-0">
+                            Address
+                        </div>
+                        <div class="col-9 m-0 p-0">
+                            <t t-esc="header_info['partner']['address']"/>
+                        </div>
+                    </div>
+                    <!-- 3. partner ref -->
+                    <div class="row m-0 p-0">
+                        <div class="col-3 m-0 p-0">
+                            Partner ID
+                        </div>
+                        <div class="col-9 m-0 p-0">
+                            <t t-esc="header_info['partner']['ref']"/>
+                        </div>
+                    </div>
+                    <!-- 4. custoemr remark -->
+                    <div class="row m-0 p-0">
+                        <div class="col-3 m-0 p-0">
+                            Customer Remark
+                        </div>
+                        <div class="col-9 m-0 p-0">
+                            <t t-esc="header_info['partner']['remark']"/>
+                        </div>
+                    </div>
+                </div>
+                <!-- middle -->
+                <div class="col-3 m-0 p-0">
+                    <!-- 1. Partner Group -->
+                    <div class="row m-0 p-0">
+                        <div class="col-5 m-0 p-0">
+                            Partner Group
+                        </div>
+                        <div class="col-7 m-0 p-0">
+                            <t t-esc="header_info['middle']['p_group_code']"/>
+                        </div>
+                    </div>
+                    <!-- 2. Business -->
+                    <div class="row m-0 p-0">
+                        <div class="col-5 m-0 p-0">
+                            Business
+                        </div>
+                        <div class="col-7 m-0 p-0">
+                            good
+                        </div>
+                    </div>
+                    <!-- 3. Payment Terms -->
+                    <div class="row m-0 p-0">
+                        <div class="col-5 m-0 p-0">
+                            Payment Terms
+                        </div>
+                        <div class="col-7 m-0 p-0">
+                            good
+                        </div>
+                    </div>
+                    <!-- 4. Credit Limit -->
+                    <div class="row m-0 p-0">
+                        <div class="col-5 m-0 p-0">
+                            Credit Limit
+                        </div>
+                        <div class="col-7 m-0 p-0">
+                            good
+                        </div>
+                    </div>
+                    <!-- 5. Credit limit on hold -->
+                    <div class="row m-0 p-0">
+                        <div class="col-5 m-0 p-0">
+                            Credit limit on hold
+                        </div>
+                        <div class="col-7 m-0 p-0">
+                            good
+                        </div>
+                    </div>
+                </div>
+                <!-- right -->
+                <div class="col-4 m-0 p-0">
+                    <!-- 1. Bank Guarantee -->
+                    <div class="row m-0 p-0">
+                        <div class="col-4 m-0 p-0">
+                            Bank Guarantee
+                        </div>
+                        <div class="col-8 m-0 p-0">
+                            good
+                        </div>
+                    </div>
+                    <!-- 2. Payment Period -->
+                    <div class="row m-0 p-0">
+                        <div class="col-4 m-0 p-0">
+                            Payment Period
+                        </div>
+                        <div class="col-8 m-0 p-0">
+                            good
+                        </div>
+                    </div>
+                    <!-- 3. Billing Period -->
+                    <div class="row m-0 p-0">
+                        <div class="col-4 m-0 p-0">
+                            Billing Period
+                        </div>
+                        <div class="col-8 m-0 p-0">
+                            good
+                        </div>
+                    </div>
+                    <!-- 4. Billing Route -->
+                    <div class="row m-0 p-0">
+                        <div class="col-4 m-0 p-0">
+                            Billing Route
+                        </div>
+                        <div class="col-8 m-0 p-0">
+                            good
+                        </div>
+                    </div>
+                    <!-- 5. Currency -->
+                    <div class="row m-0 p-0">
+                        <div class="col-4 m-0 p-0">
+                            Currency
+                        </div>
+                        <div class="col-8 m-0 p-0">
+                            good
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- button -->
+    <template id="report_buttons">
+        <div class="button_row">
+            <button class="o_acc_stmt_report_print btn btn-sm oe_button">
+                <span class="fa fa-print" />
+                Print
+            </button>
+        </div>
+    </template>
+
+    <!-- footer -->
+    <template id="acc_internal_stmt_report_footer">
+        <div class="footer bank-cash-report-footer last-page">
+            <div class="bank-cash-report-signature-container">
+                <div class="col mt-2" style="font-size:16px;font-family:ANGSA-NEW">
+                    <div class="row mb-3">
+                        <div class="col-2 text-white">-</div>
+                        <div class="col-3">
+                            <div class="row">
+                                <span>ลงชื่อ</span>
+                                <div class="col-7" style="border-bottom: 1px black;border-style: dotted;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 mx-4">
+                            <div class="row">
+                                <span>ลงชื่อ</span>
+                                <div class="col-7" style="border-bottom: 1px black;border-style: dotted;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <span>ลงชื่อ</span>
+                                <div class="col-7" style="border-bottom: 1px black;border-style: dotted;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-2 text-white">-</div>
+                        <div class="col-3">
+                            <div class="row">
+                                <span>วันที่</span>
+                                <div class="col-7" style="border-bottom: 1px black;border-style: dotted;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 mx-4">
+                            <div class="row">
+                                <span>วันที่</span>
+                                <div class="col-7" style="border-bottom: 1px black;border-style: dotted;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <span>วันที่</span>
+                                <div class="col-7" style="border-bottom: 1px black;border-style: dotted;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br></br>
+                    <!-- name -->
+                    <div class="row mb-3">
+                        <div class="col-2 text-white">-</div>
+                        <div class="col-3">
+                            <div class="row">
+                                <span class="text-white">---</span>
+                                <div class="col-7 text-center">
+                                    ผู้จัดทำ
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 mx-4">
+                            <div class="row">
+                                <span class="text-white">---</span>
+                                <div class="col-7 text-center">
+                                    ผู้ตรวจสอบ
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <span class="text-white">---</span>
+                                <div class="col-7 text-center">
+                                    ผู้อนุมัติ
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- external layout -->
+    <template id="bs_internal_account_statement_report.report_acc">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="bs_internal_account_statement_report.internal_layout">
+                    <div class="page">
+                        <t t-call="bs_internal_account_statement_report.internal_acc_stmt_report_content"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
