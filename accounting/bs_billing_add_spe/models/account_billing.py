@@ -14,7 +14,22 @@ class AccountBilling(models.Model):
     billing_period = fields.Many2one("account.billing.period", string="Billing Period")
     payment_period = fields.Many2one("account.payment.period", string="Payment Period")
     batch_no = fields.Char(string="Batch No.")
-
+    
+    @api.onchange("partner_id")
+    def _onchange_partner_id(self):
+        """When partner changes, update billing fields from partner setup"""
+        for rec in self:
+            if rec.partner_id:
+                rec.billing_route = rec.partner_id.billing_route_id.id
+                rec.billing_terms = rec.partner_id.billing_terms_id.id
+                rec.billing_period = rec.partner_id.billing_period_id.id
+                rec.payment_period = rec.partner_id.payment_period_id.id
+            else:
+                rec.billing_route = False
+                rec.billing_terms = False
+                rec.billing_period = False
+                rec.payment_period = False
+                
     def _filter_selected_invoices(self):
         existing_bills = self.env["account.billing"].search(
             [
