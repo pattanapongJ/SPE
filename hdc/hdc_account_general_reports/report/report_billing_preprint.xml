@@ -168,9 +168,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- <t t-foreach="iteration" t-as="variable">
-                        
-                    </t> -->
                             <tr t-foreach="o.billing_line_ids" t-as="ol">
                                 <td class="text-center" width="14%" style="padding-top: 2px; padding-bottom: 2px;">
                                     <t t-set="l_no" t-value="l_no + 1"/>
@@ -179,31 +176,31 @@
                                 <td class="text-center" style="padding-top: 2px; padding-bottom: 2px;">
                                     <t t-if="ol.invoice_date">
                                         <t t-esc="ol.invoice_date.strftime('%d/%m/%Y')"/>
-                            </t>
+                                    </t>
                                     <t t-else="">
                                         <span style="color: white;">-</span>
                                     </t>
                                 </td>
                                 <td class="text-center" style="padding-top: 2px; padding-bottom: 2px;">
-                                    <t t-if="ol.service">
+                                    <t t-if="o.is_service">
                                         <t t-esc="ol.service"/>
-                            </t>
-                                    <t t-elif="ol.invoice_id.customer_po">
+                                    </t>
+                                    <t t-else="">
                                         <t t-esc="ol.invoice_id.customer_po"/>
-                            </t>
+                                    </t>
                                 </td>
                                 <td class="text-center" style="padding-top: 2px; padding-bottom: 2px;">
                                     <t t-if="ol.invoice_id.form_no">
                                         <t t-esc="ol.invoice_id.form_no"/>
-                            </t>
+                                    </t>
                                     <t t-else="">
                                         <t t-esc="ol.invoice_id.name"/>
-                            </t>
+                                    </t>
                                 </td>
                                 <td class="text-right" style="padding-top: 2px; padding-bottom: 2px;">
                                     <t t-if="o.payment_terms_id.name">
                                         <t t-esc="o.payment_terms_id.name"/>
-                            </t>
+                                    </t>
                                     <t t-else="">
                                         <span style="color: white;">-</span>
                                     </t>
