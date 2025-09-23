@@ -1,6 +1,6 @@
 {
     'name': 'Account Billing Salesperson',
-    'version': '14.0.2.1.5',
+    'version': '14.0.2.1.6',
     'category': 'Accounting',
     'author': 'Basic-Solution Co., Ltd.',
     'website': 'https://www.basic-solution.com',
