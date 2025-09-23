@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_batch_billing_form" model="ir.ui.view">
+        <field name="name">batch.billing.view.form.inherit</field>
+        <field name="model">batch.billing</field>
+        <field name="inherit_id" ref="hdc_batch_billing.view_batch_billing_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='billing_no']" position="after">
+                <field name="billing_date"/>
+                <field name="billing_due_date"/>
+                <field name="billing_receipt_date"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='payment_term_id']" position="after">
+                <field name="spe_invoice"/>
+                <field name="due_payment"/>
+                <field name="payment_period"/>
+                <field name="messenger_job_id"/>
+                <field name="done_job"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
