@@ -5,7 +5,8 @@ from odoo import api, fields, models
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
-
+    
+    partner_ref = fields.Char(string="Partner Ref", related="partner_id.ref" , store=True, readonly=False)
     wt_tax_id = fields.Many2one(
         comodel_name="account.withholding.tax",
         string="WT",

@@ -29,6 +29,9 @@
             >
                 <field name="wt_tax_id" options="{'no_create': True}" optional="hide" />
             </xpath>
+            <xpath expr="//page/field[@name='line_ids']/tree/field[@name='account_id']" position="after">
+                <field name="partner_ref"/>
+            </xpath>
         </field>
     </record>
 </odoo>
