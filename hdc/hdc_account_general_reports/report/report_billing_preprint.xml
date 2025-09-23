@@ -181,7 +181,7 @@
                                         <span style="color: white;">-</span>
                                     </t>
                                 </td>
-                                <td class="text-center" style="padding-top: 2px; padding-bottom: 2px;">
+                                <td class="text-left" style="padding-top: 2px; padding-bottom: 2px;">
                                     <t t-if="o.is_service">
                                         <t t-esc="ol.service"/>
                                     </t>
@@ -256,11 +256,8 @@
                 <div class="row" style="position: relative; top: -30px;">
                     <div class="col-2">
                         <span>
-                            <t t-if="o.batch_billing_no">
-                                <t t-esc="o.batch_billing_no"/>
-                        </t>
-                            <t t-else="">
-                                <span style="color: white;">-</span>
+                            <t t-if="o.batch_no">
+                                <span t-field="o.batch_no"/>
                             </t>
                         </span>
                     </div>
