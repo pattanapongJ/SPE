@@ -88,6 +88,8 @@
                     </group>
                     <notebook>
                         <page name="invoice_tab" string="Invoices">
+                            <!-- button -->
+                            <button name="action_multiple_selection_window" type="object" string="Add Batch Billing Line" class="btn btn-success mb-2 oe_edit_only" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
                             <field name="line_ids">
                                 <tree editable="bottom">
                                     <field name="batch_billing_line_id"/>

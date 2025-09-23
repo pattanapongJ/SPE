@@ -7,6 +7,7 @@ class MessengerJobs(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Messenger Job'
     _rec_name = 'name'
+    _order = 'id desc'
 
     name = fields.Char(string='Name', required=True, default='New', copy=False, tracking=True, readonly=True)
     responsible_person = fields.Many2one('res.users', string='Responsible', states={'done': [('readonly', True)], 'cancel': [('readonly', True)], 'confirm': [('readonly', True)]}, default=lambda self: self.env.user, required=True)
@@ -32,6 +33,13 @@ class MessengerJobs(models.Model):
         if vals.get('name', 'New') == 'New':
             vals['name'] = self.env['ir.sequence'].next_by_code('messenger.job') or 'New'
         return super(MessengerJobs, self).create(vals)
+    
+    def unlink(self):
+        for record in self:
+            if record.state != 'draft':
+                raise ValidationError(_("You can only delete a Messenger Job in draft state."))
+            record._unlink_messenger_job_id()
+        return super(MessengerJobs, self).unlink()
     
     def action_confirm(self):
         self.ensure_one()
@@ -61,6 +69,10 @@ class MessengerJobs(models.Model):
         self.ensure_one()
         self.write({'state': 'draft'})
         self._unlink_messenger_job_id()
+        
+    def action_multiple_selection_window(self):
+        action = self.env['ir.actions.actions']._for_xml_id('bs_messenger_job.action_multiple_selection_wizard')
+        return action
     
     
     def _validate_lines(self):
