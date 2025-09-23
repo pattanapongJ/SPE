@@ -1,0 +1,568 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_messenger_job
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-23 06:48+0000\n"
+"PO-Revision-Date: 2025-09-23 06:48+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_form
+msgid "Add a note..."
+msgstr "เพิ่มหมายเหตุ ..."
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__amount_due
+msgid "Amount Due"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model,name:bs_messenger_job.model_batch_billing_line
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__batch_billing_line_id
+msgid "Batch Billing Line"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line__billing_date
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__billing_date
+msgid "Billing Date"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line__billing_due_date
+msgid "Billing Due Date"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__billing_no
+msgid "Billing No."
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line__billing_receipt_date
+msgid "Billing Receipt Date"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__billing_route_id
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__billing_route_id
+msgid "Billing Route"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields.selection,name:bs_messenger_job.selection__messenger_job__state__cancel
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_form
+msgid "Cancel"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Cancelled"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__company_id
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Company"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields.selection,name:bs_messenger_job.selection__messenger_job__state__confirm
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_form
+msgid "Confirm"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Confirmed"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model_terms:ir.actions.act_window,help:bs_messenger_job.action_messenger_jobs
+msgid "Create the first Messenger Job"
+msgstr "สร้างงาน Messenger แรก"
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__create_uid
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__create_date
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__currency_id
+msgid "Currency"
+msgstr "สกุลเงิน"
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__date
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Date"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__date_1
+msgid "Date1"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__date_2
+msgid "Date2"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__date_3
+msgid "Date3"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__description
+msgid "Description"
+msgstr "คำอธิบาย"
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_account_move__display_name
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line__display_name
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__display_name
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: bs_messenger_job
+#: model:ir.model.fields.selection,name:bs_messenger_job.selection__messenger_job__state__done
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Done"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line__done_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__done_job
+msgid "Done Job"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields.selection,name:bs_messenger_job.selection__messenger_job__state__draft
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Draft"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__due_date
+msgid "Due Date"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line__due_payment
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__due_payment
+msgid "Due Payment"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Future Activities"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_account_move__id
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line__id
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__id
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__message_needaction
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__message_has_error
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__invoice_id
+msgid "Invoice"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__invoice_date
+msgid "Invoice Date"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__invoice_no
+msgid "Invoice No."
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__line_ids
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_form
+msgid "Invoices"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model,name:bs_messenger_job.model_account_move
+msgid "Journal Entry"
+msgstr "รายการบันทึกบัญชี"
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_account_move____last_update
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line____last_update
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job____last_update
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line____last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__write_uid
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__write_date
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Late Activities"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model,name:bs_messenger_job.model_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_account_bank_statement_line__messenger_job_id
+#: model:ir.model.fields,field_description:bs_messenger_job.field_account_move__messenger_job_id
+#: model:ir.model.fields,field_description:bs_messenger_job.field_account_payment__messenger_job_id
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__messenger_job_id
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_form
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_tree
+msgid "Messenger Job"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model,name:bs_messenger_job.model_messenger_job_line
+msgid "Messenger Job Line"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line__messenger_job_id
+msgid "Messenger Job No."
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.actions.act_window,name:bs_messenger_job.action_messenger_jobs
+#: model:ir.ui.menu,name:bs_messenger_job.messenger_jobs_menu
+msgid "Messenger Jobs"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__messenger_name
+msgid "Messenger Name"
+msgstr "ผู้วิ่งงาน"
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__name
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Name"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__name_1
+msgid "Name1"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__name_2
+msgid "Name2"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__name_3
+msgid "Name3"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__notes
+msgid "Notes"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line__payment_period
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__payment_period_id
+msgid "Payment Period"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__payment_term_id
+msgid "Payment Term"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__remark_1
+msgid "Remark1"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__remark_2
+msgid "Remark2"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__remark_3
+msgid "Remark3"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_form
+msgid "Reset To Draft"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__responsible_person
+msgid "Responsible"
+msgstr "ผู้รับผิดชอบ"
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__spe_billing_no
+msgid "SPE Billing No."
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_batch_billing_line__spe_invoice
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job_line__spe_invoice
+msgid "SPE Invoice"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Show all records which has next action date is before today"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__state
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Status"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: bs_messenger_job
+#: code:addons/bs_messenger_job/models/messenger_job.py:0
+#, python-format
+msgid ""
+"The following billing(s) have already been processed in another Messenger Job.                 \n"
+"Please remove these billing(s) from the current Messenger Job before proceeding.\n"
+"\n"
+"%s                 "
+msgstr ""
+"การเรียกเก็บเงินต่อไปนี้ได้รับการประมวลผลในงาน Messenger อื่นแล้ว.                 \n"
+"โปรดลบการเรียกเก็บเงินเหล่านี้ออกจากงาน Messenger ปัจจุบันก่อนดำเนินการต่อ.\n"
+"\n"
+"%s                 "
+
+#. module: bs_messenger_job
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_search
+msgid "Today Activities"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_form
+msgid "Total Amount Due"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model_terms:ir.ui.view,arch_db:bs_messenger_job.view_messenger_job_form
+msgid "Validate"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,field_description:bs_messenger_job.field_messenger_job__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: bs_messenger_job
+#: model:ir.model.fields,help:bs_messenger_job.field_messenger_job__website_message_ids
+msgid "Website communication history"
+msgstr ""

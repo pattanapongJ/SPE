@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_messenger_job_manager,messenger_job_manager,model_messenger_job,,1,1,1,1
+access_messenger_job_line_manager,messenger_job_line_manager,model_messenger_job_line,,1,1,1,1
