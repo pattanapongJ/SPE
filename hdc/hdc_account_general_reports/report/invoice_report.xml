@@ -1290,68 +1290,36 @@
                                     </td>
 
                                     <!-- คอลัมน์ชื่อสินค้า ตาม form_label_type -->
-                                    <t t-if="doc.form_label_type == 'label'">
-                                        <td class="text-left">
-                                            <span t-if="ol.name"><span t-field="ol.name"/></span>
+                                   <td class="text-left" style="padding-top:1px; padding-bottom:1px;">
+                                        <t t-if="doc.form_label_type == 'label'">
+                                            <span t-if="ol.name">
+                                                <span t-field="ol.name"/></span>
                                             <span t-if="not ol.name">-</span>
-                                        </td>
-                                    </t>
-                                    <t t-elif="doc.form_label_type == 'name'">
-                                        <td class="text-left">
-                                            <span t-if="ol.product_id.name"><span t-field="ol.product_id.name"/></span>
+                                        </t>
+                                        <t t-elif="doc.form_label_type == 'name'">
+                                            <span t-if="ol.product_id.name">
+                                                <span t-field="ol.product_id.name"/>
+                                            </span>
                                             <span t-if="not ol.product_id.name">-</span>
-                                        </td>
-                                    </t>
-                                    <t t-elif="doc.form_label_type == 'ref_name'">
-                                        <td class="text-left">
-                                            <span t-field="ol.product_id.default_code"/> <span t-field="ol.name"/>
-                                        </td>
-                                    </t>
-                                    <t t-elif="doc.form_label_type == 'barcode_name'">
-                                        <td class="text-left">
-                                            <span t-field="ol.product_id.barcode"/> <span t-field="ol.name"/>
-                                        </td>
-                                    </t>
-                                    <t t-elif="doc.form_label_type == 'external_code_name'">
-                                        <t t-set="filtered_barcodes" t-value="ol.product_id.product_tmpl_id.barcode_spe_ids.filtered(lambda b: b.partner_id == doc.partner_id and b.product_tmpl_id == ol.product_id.product_tmpl_id)"/>
-                                        <td class="text-left">
-                                            <t t-if="filtered_barcodes">
-                                            <t t-foreach="filtered_barcodes" t-as="barcode1">
-                                                <span t-field="barcode1.external_code"/>
-                                                <span t-field="barcode1.external_description"/>
-                                            </t>
-                                            <!--<span t-field="ol.external_description"/>-->
-                                            </t>
-                                            <t t-else="">-</t>
-                                        </td>
-                                    </t>
-                                    <t t-elif="doc.form_label_type == 'external_desc_name'">
-                                        <t t-set="filtered_barcodes" t-value="ol.product_id.product_tmpl_id.barcode_spe_ids.filtered(lambda b: b.partner_id == doc.partner_id and b.product_tmpl_id == ol.product_id.product_tmpl_id)"/>
-                                        <td class="text-left">
-                                            <t t-if="filtered_barcodes">
-                                                <t t-foreach="filtered_barcodes" t-as="barcode1">
-                                                    <span t-field="barcode1.external_description"/>
-                                                </t>
-                                                <span t-field="ol.name"/>
-                                            </t>
-                                            <t t-else="">-</t>
-                                        </td>
-                                    </t>
-                                    <t t-else="">
-                                    <td class="text-left">
-                                        <span t-if="ol.name">
-                                        <span t-field="ol.product_id.default_code"/> <span t-field="ol.name"/></span>
-                                        <span t-if="not ol.name">-</span>
+                                        </t>
+                                        <t t-elif="doc.form_label_type == 'ref_name'">
+                                            <span t-field="ol.internal_reference"/>
+                                            <span t-field="ol.name"/>
+                                        </t>
+                                        <t t-elif="doc.form_label_type == 'barcode_name'">
+                                            <span t-field="ol.barcode_modern_trade"/>
+                                            <span t-field="ol.name"/>
+                                        </t>
+                                        <t t-elif="doc.form_label_type == 'external_code_name'">
+                                            <span t-field="ol.external_item"/>
+                                            <span t-field="ol.description_customer"/>
+                                        </t>
                                     </td>
-                                    </t>
                                         <td class="text-left text-nowrap" style="position:relative; left: -9px;">
                                         <span style="display:inline-block; width:47px; text-align:left;">
                                         <t t-esc="(ol.triple_discount or '').replace('+', ',')"/>
                                         </span>
                                     </td>
-                                            
-                                            
-                                            
                                     <td class="text-right" style="position:relative; left:-15px;">
                                         <t t-if="ol.quantity">
                                             <t t-set="qty" t-value="float(ol.quantity)"/>
