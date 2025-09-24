@@ -22,6 +22,19 @@
 
         </template>
 
+        <template id="withholding_layout_report_l10n" inherit_id="l10n_th_withholding_tax_cert_form.withholding_layout_report">
+            <!-- sub district -->
+            <xpath expr="//div[hasclass('supplier_address')]/t[@t-if='o.supplier_partner_id.street2']" position="after">
+                <t t-if="o.supplier_partner_id.sub_district">
+                    <span>,</span>
+                    <span t-field="o.supplier_partner_id.sub_district" />
+                </t>
+            </xpath>
+            <!-- remove country -->
+            <xpath expr="//div[hasclass('supplier_address')]/t[@t-if='o.supplier_partner_id.country_id']" position="replace">
+            </xpath>
+        </template>
+
 
     </data>
 </odoo>
