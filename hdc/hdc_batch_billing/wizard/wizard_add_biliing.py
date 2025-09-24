@@ -11,7 +11,7 @@ class WizardAddBilling(models.TransientModel):
     batch_billing_id = fields.Many2one('batch.billing', string='Batch Billing Reference')
     company_id = fields.Many2one('res.company', string='Company')
     billing_ids = fields.Many2many('account.billing', string='Billing', 
-                                   domain="[('batch_billing_status', '=', 'wait'), ('bill_type', '=', 'out_invoice'), ('state', '=', 'billed'),('company_id','=',company_id)]")
+                                   domain="[('batch_billing_status', '=', 'wait'), ('bill_type', '=', 'out_invoice'), ('state', '=', 'billed')]")
 
 
     def action_add_billing(self):      
