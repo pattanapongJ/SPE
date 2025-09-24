@@ -7,7 +7,17 @@
         <field name="arch" type="xml">
             <form string="Select Batch Billing Lines">
                 <field name="messenger_job_id" invisible="1" />
-                <field name="batch_line_ids" nolabel="1" options="{'no_create': True}"/>
+                <field name="batch_line_ids" nolabel="1" options="{'no_create': True}">
+                    <tree>
+                        <field name="partner_id"/>
+                        <field name="billing_no"/>
+                        <field name="billing_date"/>
+                        <field name="billing_due_date"/>
+                        <field name="billing_receipt_date"/>
+                        <field name="invoice_id"/>
+                        <field name="invoice_date"/>
+                    </tree>
+                </field>
                 <footer>
                     <button string="Add to Messenger Job" type="object" name="action_add_lines" class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
