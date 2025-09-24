@@ -88,9 +88,10 @@
 										ชื่อ
 									</span>
 								</div>
+								<t t-set="company_partner" t-value="o.env['res.company'].search([('id', '=', o.company_partner_id.id)])"/>
 								<div class="col-10 text-left" style="font-size: 15px;">
-									<span t-esc="o.company_partner_id.name" />
-									<span>(<t t-esc="o.company_partner_id.branch"/>)</span>
+									<span t-esc="company_partner.name_th" />
+									<span>(<t t-esc="company_partner.branch_name_th"/>)</span>
 								</div>
 							</div>
 							<div class="row">
