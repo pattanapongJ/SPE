@@ -1030,20 +1030,7 @@
                         <br />
                     </t>
                 </div>
-
-                <!--<div
-                class="d-flex" style="margin-top: 30px;">-->
-                <!--    <span>Page </span>-->
-                <!--    <span class="page"/>-->
-                <!--    /-->
-                <!--    <span class="topage"/>-->
-                <!--</div>-->
             </div>
-
-            <!--<div
-            style="margin-top: 5px; margin-left: 100px;color: white">-->
-            <!--    3xxxxxxxxxxxxxx-->
-            <!--</div>-->
 
             <div class="d-flex"
                 style="margin-left: 70%;position: relative; top: 15px;font-size:20pt;">
@@ -1082,7 +1069,7 @@
             </div>
 
             <div class="d-flex"
-                style="margin-left: 10%; position: relative; top: 37px; font-size: 17.5pt;">
+                style="margin-left: 10%; position: relative; font-size: 17.5pt;">
                 <div class="text-nowrap" style="margin-right: 10px; ">
                     <!-- 4xxxxxxxxxxxxxxxxxxxxxx -->
                     <t t-if="doc.partner_id.name">
@@ -1112,7 +1099,7 @@
 
             <div class="d-flex">
                 <div class="d-flex"
-                    style="margin-right: 30%;width: 400px;position: relative; top: 57px; font-size: 17.5pt;">
+                    style="margin-right: 30%;width: 400px;position: relative; font-size: 17.5pt;">
                     <!-- 5xxxxxxxxxxxxxxxxxxxxxx
                         5.1xxxxxxxxxxxxxxxxxxxxxx -->
                     <span t-field="doc.partner_id.street" />
@@ -1123,7 +1110,7 @@
                     <span t-field="doc.partner_id.zip" />
 
                 </div>
-                <div style="padding: 0px; margin: 0px;position: relative; top: 13px;font-size: 17.5pt;">
+                <div style="padding: 0px; margin: 0px;position: relative; font-size: 17.5pt;">
                     <!-- 6xxxxxxxxxxxxxxxxxxxxxx -->
                     <t t-if="doc.invoice_date">
                         <span t-field="doc.invoice_date" />
@@ -1135,38 +1122,7 @@
             </div>
 
             <div class="d-flex">
-                <div class="d-flex" style="margin-right: 30%;width: 400px;">
-                    <!-- 5.2xxxxxxxxxxxxxxxxxxxxxx
-                        5.3xxxxxxxxxxxxxxxxxxxxxx -->
-                    <!--<t
-                    t-if="doc.sale_spec_employee">-->
-                    <!--    <span style="position: relative; left: 600px;">Sale Spec</span>-->
-                    <!--</t>-->
-                </div>
-                <div style="padding: 0px; margin: 0px;width: 200px;position: relative; top: -6px;">
-                    <!-- 7xxxxxxxxxxxxxxxxxxxxxx -->
-                    <span style="color: white">-</span>
-
-                    <!--<t
-                    t-if="doc.sale_spec_employee">-->
-                    <!--    <span t-field="doc.sale_spec_employee.name"/>-->
-                    <!--</t>-->
-                    <!--<t
-                    t-if="not doc.sale_spec_employee">-->
-                    <!--    <span style="color: white">-</span>-->
-                    <!--</t>-->
-                </div>
-            </div>
-
-
-            <div class="d-flex">
                 <div class="d-flex" style="margin-right: 30%; width: 400px;">
-                    <!-- 5.4xxxxxxxxxxxxxxxxxxxxxx
-                        5.5xxxxxxxxxxxxxxxxxxxxxx -->
-                    <!--<t
-                    t-if="doc.invoice_user_employee_id">-->
-                    <!--    <span style="position: relative; left: 600px;">Sale Person</span>-->
-                    <!--</t>-->
 
                     <t t-if="doc.sale_spec_employee">
                         <span style="position: relative; left: 600px;">Spec</span>
@@ -1174,17 +1130,6 @@
 
                 </div>
                 <div style="padding: 0px; margin: 0px;width: 200px; position: relative; top: -1px;font-size: 15pt;">
-                    <!-- 8xxxxxxxxxxxxxxxxxxxxxx -->
-                    <!--<t
-                    t-if="doc.invoice_user_employee_id">-->
-                    <!--    <span t-field="doc.invoice_user_employee_id.name"/>/<span
-                    t-field="doc.invoice_user_employee_id.phone"/>-->
-                    <!--</t>-->
-                    <!--<t
-                    t-if="not doc.invoice_user_employee_id">-->
-                    <!--    <span style="color: white">-</span>-->
-                    <!--</t>-->
-
 
                     <t t-if="doc.sale_spec_employee">
                         <span t-field="doc.sale_spec_employee.name" />/<span
@@ -1202,16 +1147,7 @@
                         5.7xxxxxxxxxxxxxxxxxxxxxx -->
                 </div>
                 <div class="text-nowrap"
-                    style="padding: 0px; margin: 0px;width: 200px; position: relative; top: 1px;">
-                    <!-- 9xxxxxxxxxxxxxxxxxxxxxx -->
-                    <!--<t
-                    t-if="doc.team_id">-->
-                    <!--    <span t-field="doc.team_id.name"/>-->
-                    <!--</t>-->
-                    <!--<t
-                    t-if="not doc.team_id">-->
-                    <!--    <span style="color: white">-</span>-->
-                    <!--</t>-->
+                    style="padding: 0px; margin: 0px;width: 200px; position: relative; top: -30px;">
                     <t t-if="doc.invoice_user_employee_id">
                         <span t-field="doc.invoice_user_employee_id.name" />/<span
                             t-field="doc.invoice_user_employee_id.phone" />
@@ -1226,7 +1162,7 @@
                 <div class="d-flex" style="margin-right: 30%; width: 400px;">
                 </div>
                 <div
-                    style="padding: 0px; margin: 0px;text-align: center;width: 200px;position: relative; top: 9px;position: relative; left: 40px;font-size:17.5pt;">
+                    style="padding: 0px; margin: 0px;top: -20px;text-align: center;width: 200px;position: relative; position: relative; left: 40px;font-size:17.5pt;">
                     <t t-if="doc.partner_id.vat">
                         <span t-field="doc.partner_id.vat" />
                     </t>
@@ -1238,14 +1174,14 @@
 
             <div class="d-flex">
                 <div class="d-flex"
-                    style="margin-right: 30%; width: 400px;position: relative; top: -8px;font-size:15pt;">
+                    style="margin-right: 30%; width: 400px;position: relative; top: -30px;font-size:15pt;">
                     <!-- 10xxxxxxxxxxxxxxxxxxxxxx -->
                     <t t-if="doc.partner_id.phone">โทร: <span t-field="doc.partner_id.phone" /></t>
                     <t t-if="doc.partner_id.fax">โทรสาร: <span t-field="doc.partner_id.fax" /></t>
 
                 </div>
                 <div
-                    style="padding: 0px; margin: 0px;margin-left: -18px;text-align: center;width: 200px;position: relative; top: 15px;position: relative; left: 40px;font-size:15pt;">
+                    style="padding: 0px; margin: 0px;margin-left: -18px;text-align: center;width: 200px;position: relative; top: -20px;position: relative; left: 40px;font-size:15pt;">
                     <!-- 11xxxxxxxxxxxxxxxxxxxxxx -->
                     <t t-if="doc.invoice_payment_term_id">
                         <span t-field="doc.invoice_payment_term_id.name" />
