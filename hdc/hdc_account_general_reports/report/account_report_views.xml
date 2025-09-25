@@ -9,7 +9,7 @@
             <field name="report_name">hdc_account_general_reports.mpf_tax_inv_pp_report</field>
             <field name="report_file">hdc_account_general_reports.mpf_tax_inv_pp_report</field>
             <field name="binding_model_id" ref="account.model_account_move"/>
-            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint"/>
+            <field name="paperformat_id" ref="hdc_account_general_reports.paperformat_report_account_preprint_taxinvoice"/>
             <field name="binding_type">report</field>
         </record>
 
