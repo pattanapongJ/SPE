@@ -1003,7 +1003,7 @@
         <div>
             <div class="d-flex" style="margin-left: 5%;font-size:17.5pt;">
                 <div
-                    style="margin-top: 60px;margin-left: -15px; width: 70%;position: relative; top: 60px;">
+                    style="margin-top: 60px;margin-left: -15px; width: 70%;position: relative; top: 110px;">
                     <!-- 1xxxxxxxxxxxxxxxx -->
                     <t t-if="sale_order and sale_order.name">
                         <span t-field="sale_order.name" />
@@ -1017,7 +1017,7 @@
             </div>
 
             <div class="d-flex"
-                style="margin-left: 5%; position: relative; top: 49px;position: relative; left: 105px;font-size:16px;">
+                style="margin-left: 5%; position: relative; top: 80px;position: relative; left: 105px;font-size:16px;">
                 <div style="margin-top: 30px;margin-left: 15px; width: 70%;font-size:15pt;">
                     <!-- 2xxxxxxxxxxxxxxxxxxxxxxx -->
                     <t t-if="doc.partner_id.ref or doc.partner_id.cus_doc_id.name">
@@ -1099,7 +1099,7 @@
 
             <div class="d-flex">
                 <div class="d-flex"
-                    style="margin-right: 30%;width: 400px;position: relative; font-size: 17.5pt;">
+                    style="margin-right: 30%;width: 400px;position: relative;top:15px; font-size: 17.5pt;">
                     <!-- 5xxxxxxxxxxxxxxxxxxxxxx
                         5.1xxxxxxxxxxxxxxxxxxxxxx -->
                     <span t-field="doc.partner_id.street" />
@@ -1503,7 +1503,7 @@
                             </t>
                         </div>
                     </div>
-                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -110px;">
+                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -90px;">
                         <table style="width: 100%; text-align: center;">
                             <tr>
                                 <td style="width: 70%; padding-right: 10px;font-size: 17.5pt">
@@ -1537,7 +1537,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -66px;">
+                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -50px;">
                         <!-- 17xxxxxxxxxxxxxxxxxxxxxx -->
                         <table style="width: 98%; text-align: right;">
                             <tr>
@@ -1578,7 +1578,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -120px;">
+                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -100px;">
 
                         <div style="width: 70%; text-align: right;font-size:20pt;">
                             <t t-if="doc.invoice_line_ids">
@@ -1636,7 +1636,7 @@
                     </div>
 
                     <div class="row"
-                        style="margin-top: 15px; margin-bottom: 2mm; position: relative; top: -160px;">
+                        style="margin-top: 15px; margin-bottom: 2mm; position: relative; top: -140px;">
                         <table style="width: 98%; text-align: right;">
                             <tr>
                                 <td style="width: 30%; text-align: right;font-size: 20pt">
@@ -1689,7 +1689,7 @@
             </div>
 
 
-            <div style="position: absolute; top: 200px; left: 420px;font-size: 17.5pt;">
+            <div style="position: absolute; top: 210px; left: 420px;font-size: 17.5pt;">
                 <span t-field="doc.name" />
             </div>
 
