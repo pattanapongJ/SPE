@@ -1366,7 +1366,7 @@
             </div>
 
             <div class="row"
-                style="justify-content: space-between; align-items: flex-start;position: relative; top: 36px;">
+                style="justify-content: space-between; align-items: flex-start;position: relative; top: 25px;">
                 <!-- ซ้าย -->
                 <div style="margin-left: 20px; width: 50%;font-size: 17.5pt;">
                     <!-- สายส่ง: <span t-field="doc.transport_desc"/>  <span
@@ -1434,7 +1434,7 @@
                     30px;-->
 
                     <div class="row"
-                        style="margin-bottom: 2mm; margin-left: 20px;position: relative; top: -30px;font-size:17.5pt;">
+                        style="margin-bottom: 2mm; margin-left: 20px;position: relative; top: -50px;font-size:17.5pt;">
                         <!-- PO -->
                         <t t-if="doc.customer_po">
                             <span t-field="doc.customer_po" />
@@ -1475,7 +1475,7 @@
                             <span style="color: white">-</span>
                         </t>
                     </div>
-                    <div class="row" style="margin-bottom: 2mm; margin-left: 20px;">
+                    <div class="row" style="margin-bottom: 2mm; margin-left: 20px;position: relative; top: -50px;">
                         <table style="width: 100%; text-align: left;font-size: 17.5pt;">
                             <tr>
                                 <td style="text-align: left;">
@@ -1503,7 +1503,7 @@
                             </t>
                         </div>
                     </div>
-                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -60px;">
+                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -110px;">
                         <table style="width: 100%; text-align: center;">
                             <tr>
                                 <td style="width: 70%; padding-right: 10px;font-size: 17.5pt">
