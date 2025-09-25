@@ -1150,7 +1150,7 @@
                     style="padding: 0px; margin: 0px;width: 200px; position: relative; top: -50px;font-size: 17.5pt;">
                     <t t-if="doc.invoice_user_employee_id">
                         <span t-field="doc.invoice_user_employee_id.name" />/<span
-                            t-field="doc.invoice_user_employee_id.phone" />
+                            t-field="doc.invoice_user_employee_id.mobile_phone" />
                     </t>
                     <t t-if="not doc.invoice_user_employee_id">
                         <span style="color: white">-</span>
