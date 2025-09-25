@@ -1069,7 +1069,7 @@
             </div>
 
             <div class="d-flex"
-                style="margin-left: 10%; position: relative; font-size: 17.5pt;">
+                style="margin-left: 10%; position: relative;top:20px; font-size: 17.5pt;">
                 <div class="text-nowrap" style="margin-right: 10px; ">
                     <!-- 4xxxxxxxxxxxxxxxxxxxxxx -->
                     <t t-if="doc.partner_id.name">
@@ -1099,7 +1099,7 @@
 
             <div class="d-flex">
                 <div class="d-flex"
-                    style="margin-right: 30%;width: 400px;position: relative;top:15px; font-size: 17.5pt;">
+                    style="margin-right: 30%;width: 400px;position: relative;top:20px; font-size: 17.5pt;">
                     <!-- 5xxxxxxxxxxxxxxxxxxxxxx
                         5.1xxxxxxxxxxxxxxxxxxxxxx -->
                     <span t-field="doc.partner_id.street" />
@@ -1503,7 +1503,7 @@
                             </t>
                         </div>
                     </div>
-                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -90px;">
+                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -80px;">
                         <table style="width: 100%; text-align: center;">
                             <tr>
                                 <td style="width: 70%; padding-right: 10px;font-size: 17.5pt">
