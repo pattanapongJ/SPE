@@ -67,6 +67,7 @@
         "views/account_payment_view.xml",
         "views/product_views.xml",
         "views/sale_view.xml",
+        "views/template.xml",
     ],
     "demo": [],
     "installable": True,

@@ -998,9 +998,9 @@
         </t>
         <t t-set="sale_order" t-value="doc.env['sale.order'].search([('name', '=', doc.invoice_origin)])"/>
 
-        <div class="header" style="font-family: Kanit; font-size: 14px;margin-top: -15px;">
-            <div style="">
-                <div class="d-flex" style="margin-left: 5%;">
+        <div class="header" style="font-family: AngsanaUPC;margin-top: -15px;">
+            <div>
+                <div class="d-flex" style="margin-left: 5%;font-size:18.67px;">
                     <div style="margin-top: 50px;margin-left: -15px; width: 70%;position: relative; top: 35px;">
                         <!-- 1xxxxxxxxxxxxxxxx -->
                         <t t-if="sale_order and sale_order.name">
@@ -1014,7 +1014,7 @@
                     </div>
                 </div>
                 
-                <div class="d-flex" style="margin-left: 5%; position: relative; top: 49px;position: relative; left: 105px;">
+                <div class="d-flex" style="margin-left: 5%; position: relative; top: 49px;position: relative; left: 105px;font-size:16px;">
                     <div style="margin-top: 30px;margin-left: 15px; width: 70%;">
                        <!-- 2xxxxxxxxxxxxxxxxxxxxxxx -->
                     <t t-if="doc.partner_id.ref or doc.partner_id.cus_doc_id.name">
@@ -1039,7 +1039,7 @@
                 <!--    3xxxxxxxxxxxxxx-->
                 <!--</div>-->
                 
-                <div class="d-flex" style="margin-left: 70%;position: relative; top: 15px;">
+                <div class="d-flex" style="margin-left: 70%;position: relative; top: 15px;font-size:21.33px;">
                   <p style="padding: 0px; margin-right: 50px; position: relative; left: -35px;">
                       <t t-if="doc.billing_route_id">
                           <span t-field="doc.billing_route_id.name"/> 
@@ -1059,7 +1059,7 @@
               </div>
 
                 
-                <div class="d-flex" style="margin-left: 68%;position: relative; top: 7px;">
+                <div class="d-flex" style="margin-left: 68%;position: relative; top: 7px;font-size:21.33px;">
                     <!-- <p style="padding: 0px; margin-right: 30px;">[3] - Billing Route</p> -->
                     <p style="padding: 0px; margin-right: 50px;position: relative; left: -25px;">
                          <!-- 3xxxxxxxxxxxxxx -->
@@ -1259,7 +1259,7 @@
                         <th class="text-center" style="width: 16%;color: white">7</th>
                       </tr>
                     </thead>
-                    <tbody style="font-size: 12.67px">
+                    <tbody style="font-size: 18.67px">
                         <t t-foreach="doc.invoice_line_ids.sorted(key=lambda l: l.sequence)" t-as="ol">
                             <!-- กรณีบรรทัดประเภทหัวข้อ/หมายเหตุ -->
                             <t t-if="ol.display_type in ['line_section', 'line_note']">
@@ -1401,7 +1401,7 @@
                                   <td style="padding: 0px; text-align: right; padding-right: 40px;">
                                       รวมก่อนหักส่วนลด
                                   </td>
-                                  <td style="width: 100px;font-size: 13.67px">
+                                  <td style="width: 100px;font-size: 21.33px">
                                       <span t-esc="'{:,.2f}'.format(float(doc.amount_before_discount))"/>
                                   </td>
                               </tr>
@@ -1409,7 +1409,7 @@
                                   <td style="padding: 0px; text-align: right; padding-right: 40px;">
                                       ส่วนลด
                                   </td>
-                                  <td style="width: 100px;font-size: 13.67px">
+                                  <td style="width: 100px;font-size: 21.33px">
                                       <span t-esc="'{:,.2f}'.format(float(doc.total_discount_amount_new))"/>
                                   </td>
                               </tr>
@@ -1423,7 +1423,7 @@
                                     <td style="padding: 0px; text-align: right; padding-right: 40px;">
                                         รวมก่อนหักส่วนลด
                                     </td>
-                                    <td style="width: 100px;font-size: 13.67px">
+                                    <td style="width: 100px;font-size: 21.33px">
                                         <span t-esc="'{:,.2f}'.format(float(doc.amount_before_discount))"/>
                                     </td>
                                 </tr>
@@ -1431,7 +1431,7 @@
                                     <td style="padding: 0px; text-align: right; padding-right: 40px;">
                                         ส่วนลด
                                     </td>
-                                    <td style="width: 100px;font-size: 13.67px">
+                                    <td style="width: 100px;font-size: 21.33px">
                                         <span t-esc="'{:,.2f}'.format(float(doc.total_discount_amount_new))"/>
                                     </td>
                                 </tr>
@@ -1585,7 +1585,7 @@
                         </div>
                         <div class="row" style="margin-bottom: 2mm; position: relative; top: -12px;">
 
-                          <div style="width: 70%; text-align: right;">
+                          <div style="width: 70%; text-align: right;font-size:21.33px;">
                               <t t-if="doc.invoice_line_ids">
                                   <t t-if="doc.invoice_line_ids[0].tax_ids">
                                     <div style="margin-right: 8px; display: inline-block;">
@@ -1601,7 +1601,7 @@
                           <div style="width: 30%;">
                             <table style="width: 94%; text-align: right;">
                                 <tr>
-                                    <td style="width: 100px; text-align: right;font-size: 13.67px">
+                                    <td style="width: 100px; text-align: right;font-size: 21.33px">
                                         <t t-set="amount_by_group" t-value="doc.amount_by_group"/>
                                         <t t-if="amount_by_group and len(amount_by_group) &gt; 0 and len(amount_by_group[0]) &gt; 1">
                                             <t t-if="amount_by_group[0][1]">
@@ -1640,7 +1640,7 @@
                         <div class="row" style="margin-top: 15px; margin-bottom: 2mm; position: relative; top: -39px;">
                             <table style="width: 98%; text-align: right;">
                                 <tr>
-                                    <td style="width: 30%; text-align: right;font-size: 13.67px">
+                                    <td style="width: 30%; text-align: right;font-size: 21.33px">
                                         <t t-if="doc.invoice_payments_widget">
                                             <span t-esc="'{:,.2f}'.format(float(doc.amount_total))"/>
                                         </t>
@@ -3274,7 +3274,7 @@
                         </t>
                     </p>
                 </div>
-                <div class="d-flex" style="margin-left: 10%; position: relative; top: 37px; font-size: 15px">
+                <div class="d-flex" style="margin-left: 10%; position: relative; top: 37px; font-size: 18.67px">
                     <div class="text-nowrap" style="margin-right: 10px; ">
                         <!-- 4xxxxxxxxxxxxxxxxxxxxxx -->
                         <t t-if="doc.partner_id.name">
@@ -3302,7 +3302,7 @@
                     </div>
                 </div>
                 <div class="d-flex">
-                    <div class="d-flex" style="margin-right: 30%;width: 400px;position: relative; top: 57px; font-size: 15px">
+                    <div class="d-flex" style="margin-right: 30%;width: 400px;position: relative; top: 57px; font-size: 18.67px">
                         <!-- 5xxxxxxxxxxxxxxxxxxxxxx
                             5.1xxxxxxxxxxxxxxxxxxxxxx -->
                         <span t-field="doc.partner_id.street"/>
@@ -3312,7 +3312,7 @@
                         <span t-field="doc.partner_id.state_id"/>
                         <span t-field="doc.partner_id.zip"/>
                     </div>
-                    <div style="padding: 0px; margin: 0px;position: relative; top: 13px;">
+                    <div style="padding: 0px; margin: 0px;position: relative; top: 13px;font-size:18.67px;">
                         <!-- 6xxxxxxxxxxxxxxxxxxxxxx -->
                         <t t-if="doc.invoice_date">
                             <span t-field="doc.invoice_date"/>
