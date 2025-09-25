@@ -1003,7 +1003,7 @@
         <div>
             <div class="d-flex" style="margin-left: 5%;font-size:17.5pt;">
                 <div
-                    style="margin-top: 50px;margin-left: -15px; width: 70%;position: relative; top: 35px;">
+                    style="margin-top: 50px;margin-left: -15px; width: 70%;position: relative; top: 60px;">
                     <!-- 1xxxxxxxxxxxxxxxx -->
                     <t t-if="sale_order and sale_order.name">
                         <span t-field="sale_order.name" />
@@ -1110,7 +1110,7 @@
                     <span t-field="doc.partner_id.zip" />
 
                 </div>
-                <div style="padding: 0px; margin: 0px;position: relative; font-size: 17.5pt;">
+                <div style="padding: 0px; margin: 0px;top: -20px;position: relative; font-size: 17.5pt;">
                     <!-- 6xxxxxxxxxxxxxxxxxxxxxx -->
                     <t t-if="doc.invoice_date">
                         <span t-field="doc.invoice_date" />
@@ -1129,7 +1129,7 @@
                     </t>
 
                 </div>
-                <div style="padding: 0px; margin: 0px;width: 200px; position: relative; top: -1px;font-size: 15pt;">
+                <div style="padding: 0px; margin: 0px;width: 200px; position: relative; top: -20px;font-size: 15pt;">
 
                     <t t-if="doc.sale_spec_employee">
                         <span t-field="doc.sale_spec_employee.name" />/<span
@@ -1147,7 +1147,7 @@
                         5.7xxxxxxxxxxxxxxxxxxxxxx -->
                 </div>
                 <div class="text-nowrap"
-                    style="padding: 0px; margin: 0px;width: 200px; position: relative; top: -30px;">
+                    style="padding: 0px; margin: 0px;width: 200px; position: relative; top: -50px;">
                     <t t-if="doc.invoice_user_employee_id">
                         <span t-field="doc.invoice_user_employee_id.name" />/<span
                             t-field="doc.invoice_user_employee_id.phone" />
@@ -1162,7 +1162,7 @@
                 <div class="d-flex" style="margin-right: 30%; width: 400px;">
                 </div>
                 <div
-                    style="padding: 0px; margin: 0px;top: -20px;text-align: center;width: 200px;position: relative; position: relative; left: 40px;font-size:17.5pt;">
+                    style="padding: 0px; margin: 0px;top: -30px;text-align: center;width: 200px;position: relative; position: relative; left: 40px;font-size:17.5pt;">
                     <t t-if="doc.partner_id.vat">
                         <span t-field="doc.partner_id.vat" />
                     </t>
@@ -1174,14 +1174,14 @@
 
             <div class="d-flex">
                 <div class="d-flex"
-                    style="margin-right: 30%; width: 400px;position: relative; top: -30px;font-size:15pt;">
+                    style="margin-right: 30%; width: 400px;position: relative; top: -50px;font-size:15pt;">
                     <!-- 10xxxxxxxxxxxxxxxxxxxxxx -->
                     <t t-if="doc.partner_id.phone">โทร: <span t-field="doc.partner_id.phone" /></t>
                     <t t-if="doc.partner_id.fax">โทรสาร: <span t-field="doc.partner_id.fax" /></t>
 
                 </div>
                 <div
-                    style="padding: 0px; margin: 0px;margin-left: -18px;text-align: center;width: 200px;position: relative; top: -20px;position: relative; left: 40px;font-size:15pt;">
+                    style="padding: 0px; margin: 0px;margin-left: -18px;text-align: center;width: 200px;position: relative; top: -40px;position: relative; left: 40px;font-size:15pt;">
                     <!-- 11xxxxxxxxxxxxxxxxxxxxxx -->
                     <t t-if="doc.invoice_payment_term_id">
                         <span t-field="doc.invoice_payment_term_id.name" />
@@ -1434,7 +1434,7 @@
                     30px;-->
 
                     <div class="row"
-                        style="margin-bottom: 2mm; margin-left: 20px;position: relative; top: 8px;font-size:17.5pt;">
+                        style="margin-bottom: 2mm; margin-left: 20px;position: relative; top: -30px;font-size:17.5pt;">
                         <!-- PO -->
                         <t t-if="doc.customer_po">
                             <span t-field="doc.customer_po" />
@@ -1537,7 +1537,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="row" style="margin-bottom: 2mm; position: relative; top: 6px;">
+                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -70px;">
                         <!-- 17xxxxxxxxxxxxxxxxxxxxxx -->
                         <table style="width: 98%; text-align: right;">
                             <tr>
@@ -1578,7 +1578,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -12px;">
+                    <div class="row" style="margin-bottom: 2mm; position: relative; top: -140px;">
 
                         <div style="width: 70%; text-align: right;font-size:20pt;">
                             <t t-if="doc.invoice_line_ids">
@@ -1636,7 +1636,7 @@
                     </div>
 
                     <div class="row"
-                        style="margin-top: 15px; margin-bottom: 2mm; position: relative; top: -39px;">
+                        style="margin-top: 15px; margin-bottom: 2mm; position: relative; top: -170px;">
                         <table style="width: 98%; text-align: right;">
                             <tr>
                                 <td style="width: 30%; text-align: right;font-size: 20pt">
@@ -1655,7 +1655,7 @@
             </div>
 
             <div class="row"
-                style="margin-left: 70%; justify-content: flex-end; position: relative; top: -28px;">
+                style="margin-left: 70%; justify-content: flex-end; position: relative; top: -150px;">
                 <table style="width: 94%; text-align: right;">
                     <tr>
                         <td style="padding: 0px; margin-right: 50px; text-align: right;">
@@ -1689,13 +1689,13 @@
             </div>
 
 
-            <div style="position: absolute; top: 245px; left: 420px;font-size: 17.5pt;">
+            <div style="position: absolute; top: 200px; left: 420px;font-size: 17.5pt;">
                 <span t-field="doc.name" />
             </div>
 
             <!-- อยู่กับที่กลางหน้ากระดาษ -->
             <div
-                style="position: absolute; top: 320px; left: 30%; width: 400px;text-align: center;font-size: 18.67pt;">
+                style="position: absolute; top: 280px; left: 30%; width: 400px;text-align: center;font-size: 18.67pt;">
                 <span t-field="doc.user_sale_agreement_employee.name" />
                 <br />
                 <!--<span
