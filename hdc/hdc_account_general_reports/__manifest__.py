@@ -22,7 +22,7 @@
 
 {
     "name": "HDC Account Invoice Reports",
-    "version": "14.0.1.0.11",
+    "version": "14.0.1.1.11",
     "category": "Invoice Reports",
     "summary": "Account Invoice Reports",
     "description": """
@@ -67,6 +67,7 @@
         "views/account_payment_view.xml",
         "views/product_views.xml",
         "views/sale_view.xml",
+        "views/template.xml",
     ],
     "demo": [],
     "installable": True,
