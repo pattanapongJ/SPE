@@ -1125,15 +1125,15 @@
                 <div class="d-flex" style="margin-right: 30%; width: 400px;">
 
                     <t t-if="doc.sale_spec_employee">
-                        <span style="position: relative; left: 600px;font-size: 17.5pt;">Spec</span>
+                        <span style="position: relative; left: 600px;top:-40px;font-size: 17.5pt;">Spec</span>
                     </t>
 
                 </div>
-                <div style="padding: 0px; margin: 0px;width: 200px; position: relative; top: -20px;font-size: 17.5pt;">
+                <div style="padding: 0px; margin: 0px;width: 200px; position: relative; top: -40px;font-size: 17.5pt;">
 
                     <t t-if="doc.sale_spec_employee">
                         <span t-field="doc.sale_spec_employee.name" />/<span
-                            t-field="doc.sale_spec_employee.phone" />
+                            t-field="doc.sale_spec_employee.mobile_phone" />
                     </t>
                     <t t-if="not doc.sale_spec_employee">
                         <span style="color: white">-</span>
