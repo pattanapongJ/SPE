@@ -1378,7 +1378,7 @@
                 <!-- ขวา -->
                 <t t-if="doc.global_discount">
                     <div style="width: 46%;">
-                        <table style="width: 100%; text-align: right;margin-right: 10px">
+                        <table style="width: 100%; text-align: right;margin-right: 10px;font-size: 20pt;">
                             <tr>
                                 <td style="padding: 0px; text-align: right; padding-right: 40px;">
                                     รวมก่อนหักส่วนลด
@@ -1402,12 +1402,12 @@
                 </t>
                 <t t-else="">
                     <div style="width: 46%;color: white">
-                        <table style="width: 100%; text-align: right;margin-right: 10px">
+                        <table style="width: 100%; text-align: right;margin-right: 10px;font-size: 20pt">
                             <tr>
                                 <td style="padding: 0px; text-align: right; padding-right: 40px;">
                                     รวมก่อนหักส่วนลด
                                 </td>
-                                <td style="width: 100px;font-size: 20pt">
+                                <td style="width: 100px;">
                                     <span
                                         t-esc="'{:,.2f}'.format(float(doc.amount_before_discount))" />
                                 </td>
@@ -1416,7 +1416,7 @@
                                 <td style="padding: 0px; text-align: right; padding-right: 40px;">
                                     ส่วนลด
                                 </td>
-                                <td style="width: 100px;font-size: 20pt">
+                                <td style="width: 100px;">
                                     <span
                                         t-esc="'{:,.2f}'.format(float(doc.total_discount_amount_new))" />
                                 </td>
