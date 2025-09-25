@@ -168,7 +168,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr t-foreach="o.billing_line_ids" t-as="ol">
+                            <tr t-foreach="o.billing_line_ids.sorted(key=lambda l: (l.spe_invoice is False, l.spe_invoice or 0))" t-as="ol">
                                 <td class="text-center" width="14%" style="padding-top: 2px; padding-bottom: 2px;">
                                     <t t-set="l_no" t-value="l_no + 1"/>
                                     <t t-esc="l_no"/>
