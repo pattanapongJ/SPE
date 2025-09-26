@@ -35,6 +35,7 @@ class BatchBilling(models.Model):
     finance_receipt = fields.Boolean(default=False, string="Finance Receipt",tracking=True)
     finance_date = fields.Date(string='Finance Date',tracking=True)
     finance_receipt_by = fields.Many2one('res.users', string='Finance Receipt By',tracking=True)
+    batch_no = fields.Char(string='Batch No.', tracking=True)
     
     def action_confirm(self):
         self.state = 'confirm'

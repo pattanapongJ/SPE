@@ -19,7 +19,7 @@
 ####################################################################################
 {
     'name': 'HDC Batch Billing',
-    'version': '14.0.3',
+    'version': '14.0.4',
     'category': 'Sale',
     'author': 'Hydra Data and Consulting Ltd',
     'website': 'http://www.hydradataandconsulting.co.th',

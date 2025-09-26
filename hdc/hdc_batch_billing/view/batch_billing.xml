@@ -30,6 +30,7 @@
                             <field name="responsible_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                             <field name="billing_route_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                             <field name="description"/>
+                            <field name="batch_no"/>
                         </group>
                         <group>
                             <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
