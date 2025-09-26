@@ -88,7 +88,7 @@
 										ชื่อ
 									</span>
 								</div>
-								<div class="col-10 text-left" style="font-size: 15px;">
+								<div class="col-10 text-left" style="font-size: 12px; left:-40px;">
 									<span t-esc="o.branch_id.company_id.name_th" />
 									<span>(<t t-esc="o.branch_id.name"/>)</span>
 								</div>
@@ -129,7 +129,7 @@
 								ที่อยู่
 							</span>
 						</div>
-						<div class="col-11 text-left">
+						<div class="col-11 text-left" style="font-size: 12px; left:-37px">
 							<span t-field="o.branch_id.address" />
 						</div>
 					</div>
@@ -161,7 +161,7 @@
 										ชื่อ
 									</span>
 								</div>
-								<div class="col-10 text-left" style="font-size: 15px;">
+								<div class="col-10 text-left" style="font-size: 12px; left:-44px;">
 									<span t-esc="o.supplier_partner_id.name"/>
 									<t t-if="o.supplier_partner_id.branch">
 										<span>(<t t-esc="o.supplier_partner_id.branch"/>)</span>
@@ -204,7 +204,7 @@
 								ที่อยู่
 							</span>
 						</div>
-						<div class="col-11 text-left">
+						<div class="col-11 text-left" style="font-size: 12px; left:-41px">
 							<span t-field="o.supplier_partner_id.street" />
 							<span t-field="o.supplier_partner_id.street2" />
 							<span t-field="o.supplier_partner_id.city" />
