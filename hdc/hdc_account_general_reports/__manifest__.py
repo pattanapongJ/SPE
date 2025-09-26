@@ -22,7 +22,7 @@
 
 {
     "name": "HDC Account Invoice Reports",
-    "version": "14.0.1.2.0",
+    "version": "14.0.1.2.1",
     "category": "Invoice Reports",
     "summary": "Account Invoice Reports",
     "description": """

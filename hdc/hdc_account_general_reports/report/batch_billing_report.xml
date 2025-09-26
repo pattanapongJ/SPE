@@ -36,10 +36,10 @@
                             <span style="font-weight: bold;">เลขที่เอกสาร</span>
                         </div>
                         <div class="col-7 text-left" style="font-size: 12px">
-                            <span t-if="doc.name">
-                                <span t-field="doc.name"/>
+                            <span t-if="doc.batch_no">
+                                <span t-field="doc.batch_no"/>
                             </span>
-                            <span t-if="not doc.name">
+                            <span t-if="not doc.batch_no">
                                 -
                             </span>
                         </div>
@@ -147,11 +147,12 @@
                                             -
                                         </span>
                                     </td>
-                                        <td class="text-left border-dark">
-                                        <span t-if="ol.invoice_id.form_no">
-                                            <span t-field="ol.invoice_id.form_no"/>
+                                    <td class="text-left border-dark">
+                                        <t t-set="billing_id" t-value="o.env['account.billing'].search([('name', '=', ol.billing_no)])"/>
+                                        <span t-if="billing_id">
+                                            <span t-esc="billing_id.form_no"/>
                                         </span>
-                                        <span t-if="not ol.invoice_id.form_no">
+                                        <span t-if="not billing_id">
                                             -
                                         </span>
                                     </td>
@@ -176,7 +177,7 @@
                                     </td>
                                     <td class="text-right border-dark">
                                         <span t-if="ol.amount">
-                                            <span t-esc="'{:.2f}'.format(float(ol.amount))"/>
+                                            <span t-esc="'{:,.2f}'.format(float(ol.amount))"/>
                                             <t t-set="total_amount" t-value="total_amount + ol.amount"/>
                                         </span>
                                         <span t-if="not ol.amount">
@@ -240,11 +241,12 @@
                                             -
                                         </span>
                                     </td>
-                                        <td class="text-left border-dark">
-                                        <span t-if="ol.billing_no">
-                                            <span t-field="ol.billing_no"/>
+                                    <td class="text-left border-dark">
+                                        <t t-set="billing_id" t-value="o.env['account.billing'].search([('name', '=', ol.billing_no)])"/>
+                                        <span t-if="billing_id">
+                                            <span t-esc="billing_id.form_no"/>
                                         </span>
-                                        <span t-if="not ol.billing_no">
+                                        <span t-if="not billing_id">
                                             -
                                         </span>
                                     </td>
@@ -269,7 +271,7 @@
                                     </td>
                                     <td class="text-right border-dark">
                                         <span t-if="ol.amount">
-                                            <span t-esc="'{:.2f}'.format(float(ol.amount))"/>
+                                            <span t-esc="'{:,.2f}'.format(float(ol.amount))"/>
                                             <t t-set="total_amount" t-value="total_amount + ol.amount"/>
                                         </span>
                                         <span t-if="not ol.amount">
