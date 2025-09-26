@@ -33,9 +33,9 @@ class AccountMove(models.Model):
     billing_no = fields.Char(string="Billing No.", compute="_compute_add_field_cus_inv")
     batch_billing_no = fields.Char(string="Batch Billing No.", compute="_compute_add_field_cus_inv")
     delivery_tracking = fields.Char(string="Delivery Tracking")
-    commission_note = fields.Char(string="Commission Note")
-    billing_note = fields.Char(string="Billing Note")
-    billing_receipt_date = fields.Date(string="Billing Receipt Date")
+    commission_note = fields.Char(string="Commission Notes")
+    billing_note = fields.Char(string="Billing Notes")
+    billing_receipt_date = fields.Date(string="Billing Receipt Dates")
     # @api.onchange('invoice_date_due_payment_term')
     # def _onchange_invoice_date_due(self):
     #     for record in self:
