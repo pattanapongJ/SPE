@@ -45,6 +45,7 @@
                 <field name="performa_invoice_date"/>
                 <field name="commercial_invoice" />
                 <field name="commercial_invoice_date" />
+                <field name="free_text_commercial_invoice" />
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="before">
                 <field name="vendor_code" readonly="1" force_save="1"/>

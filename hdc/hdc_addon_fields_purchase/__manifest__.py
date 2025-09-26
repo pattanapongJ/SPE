@@ -25,7 +25,7 @@
     "description": """
         Addon Fiels Purchase
     """,
-    "version": "14.0.1.1.2",
+    "version": "14.0.1.1.3",
     "development_status": "Mature",
     "summary": "Addon HDC CRM Hydra",
     'author': 'Hydra Data and Consulting Ltd',
