@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 ###################################################################################
 #    Hydra Data and Consulting Ltd.
@@ -21,7 +22,7 @@
 
 {
     "name": "HDC Account Invoice Reports",
-    "version": "14.0.1.0.3",
+    "version": "14.0.1.2.2",
     "category": "Invoice Reports",
     "summary": "Account Invoice Reports",
     "description": """
@@ -66,6 +67,7 @@
         "views/account_payment_view.xml",
         "views/product_views.xml",
         "views/sale_view.xml",
+        "views/template.xml",
     ],
     "demo": [],
     "installable": True,

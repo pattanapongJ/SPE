@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- View res.partner form -->
+    <record id="view_res_partner_form" model="ir.ui.view">
+        <field name="name">view.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='accounting_entries']" position="inside">
+                <separator string="Finance Dimension" colspan="2"/>
+                <field name="finance_dimension_1_id" options="{'no_create': True}"/>
+                <field name="finance_dimension_2_id" options="{'no_create': True}"/>
+                <field name="finance_dimension_3_id" invisible="1" options="{'no_create': True}"/>
+                <field name="finance_dimension_4_id" options="{'no_create': True}"/>
+                <field name="finance_dimension_5_id" options="{'no_create': True}"/>
+                <field name="finance_dimension_6_id" options="{'no_create': True}"/>
+                <field name="finance_dimension_7_id" invisible="1" options="{'no_create': True}"/>
+                <field name="finance_dimension_8_id" invisible="1" options="{'no_create': True}"/>
+                <field name="finance_dimension_9_id" invisible="1" options="{'no_create': True}"/>
+                <field name="finance_dimension_10_id" invisible="1" options="{'no_create': True}"/>
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

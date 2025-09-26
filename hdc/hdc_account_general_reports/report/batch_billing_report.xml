@@ -36,16 +36,16 @@
                             <span style="font-weight: bold;">เลขที่เอกสาร</span>
                         </div>
                         <div class="col-7 text-left" style="font-size: 12px">
-                            <span t-if="doc.name">
-                                <span t-field="doc.name"/>
+                            <span t-if="doc.batch_no">
+                                <span t-field="doc.batch_no"/>
                             </span>
-                            <span t-if="not doc.name">
+                            <span t-if="not doc.batch_no">
                                 -
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-2 text-left" style="font-size: 12px;margin-left:4mm;">
+                <div class="col-2 text-left" style="font-size: 14px;margin-left:4mm;">
                     <span>Page</span>
                     <span class="page"/>
                     /
@@ -115,7 +115,7 @@
             <t t-set="count_total" t-value="0"/>
             <div class="row">
                 <t t-set="l_no" t-value="0"/>
-                <table class="table table-borderless" style="font-size: 12px;line-height: 18px;">
+                <table class="table table-borderless" style="font-size: 14px;line-height: 18px;">
                     <thead>
                         <tr>
                             <th class="text-center border border-dark" style="width: 6%;">ใบที่</th>
@@ -133,12 +133,12 @@
                             <t t-if="check_partner_id == ol.partner_id">
                                 <t t-set="check_partner_id" t-value="ol.partner_id"/>
                                 <tr>
-                                    <td class="text-center border-left border-right border-dark">
+                                    <td class="text-center border-dark">
                                         <t t-set="l_no" t-value="l_no + 1"/>
                                         <t t-esc="l_no"/>
                                         <t t-set="count_partner_id_item" t-value="count_partner_id_item + 1"/>
                                     </td>
-                                    <td class="text-left border-left border-right border-dark">
+                                    <td class="text-left border-dark">
                                         <span t-if="ol.partner_id.display_name">
                                             <span t-field="ol.partner_id.display_name"/>
     
@@ -147,23 +147,24 @@
                                             -
                                         </span>
                                     </td>
-                                        <td class="text-left border-left border-right border-dark">
-                                        <span t-if="ol.billing_no">
-                                            <span t-field="ol.billing_no"/>
+                                    <td class="text-left border-dark">
+                                        <t t-set="billing_id" t-value="o.env['account.billing'].search([('name', '=', ol.billing_no)])"/>
+                                        <span t-if="billing_id">
+                                            <span t-esc="billing_id.form_no"/>
                                         </span>
-                                        <span t-if="not ol.billing_no">
+                                        <span t-if="not billing_id">
                                             -
                                         </span>
                                     </td>
-                                    <td class="text-left border-left border-right border-dark">
-                                        <span t-if="ol.invoice_id">
-                                            <span t-field="ol.invoice_id.name"/>
+                                    <td class="text-left border-dark">
+                                        <span t-if="ol.invoice_id.form_no">
+                                            <span t-field="ol.invoice_id.form_no"/>
                                         </span>
-                                        <span t-if="not ol.invoice_id">
+                                        <span t-if="not ol.invoice_id.form_no">
                                             -
                                         </span>
                                     </td>
-                                    <td class="text-center border-left border-right border-dark">
+                                    <td class="text-center border-dark">
                                         <span t-if="ol.invoice_date">
                                             <span t-field="ol.invoice_date"/>
                                         </span>
@@ -171,19 +172,19 @@
                                             -
                                         </span>
                                     </td>
-                                    <td class="text-right border-left border-right border-dark">
+                                    <td class="text-right border-dark">
                                         
                                     </td>
-                                    <td class="text-right border-left border-right border-dark">
+                                    <td class="text-right border-dark">
                                         <span t-if="ol.amount">
-                                            <span t-esc="'{:.2f}'.format(float(ol.amount))"/>
+                                            <span t-esc="'{:,.2f}'.format(float(ol.amount))"/>
                                             <t t-set="total_amount" t-value="total_amount + ol.amount"/>
                                         </span>
                                         <span t-if="not ol.amount">
                                             -
                                         </span>
                                     </td>
-                                    <td class="text-right border-left border-right border-dark">
+                                    <td class="text-right border-dark">
                                         
                                     </td>
                                 </tr>
@@ -192,32 +193,32 @@
                                 <t t-set="check_partner_id" t-value="ol.partner_id"/>
                                 <t t-if="first_partner_id != 1">
                                     <tr>
-                                        <td class="text-center border-left border-right border-dark">
+                                        <td class="text-center border-dark">
                                         
                                         </td>
-                                        <td class="text-left border-left border-right border-dark">
+                                        <td class="text-left border-dark">
                                             
                                         </td>
-                                        <td class="text-right border-left border-right border-dark" >
+                                        <td class="text-right border-dark" >
                                             
                                         </td>
-                                        <td class="text-right border-left border-right border-dark" >
+                                        <td class="text-right border-dark" >
                                             
                                         </td>
-                                        <td class="text-right border-left border-right border-dark" >
+                                        <td class="text-right border-dark" >
     
                                         </td>
-                                        <td class="text-center border-left border-right border-dark">
+                                        <td class="text-center border-dark">
                                             <t t-if="count_partner_id_item">
                                                 <t t-set="count_total" t-value="count_total + count_partner_id_item"/>
                                                 <t t-esc="'{0:,.0f}'.format(count_partner_id_item)"/> ใบ
                                                 <t t-set="count_partner_id_item" t-value="0"/>
                                             </t>  
                                         </td>
-                                        <td class="text-right border-left border-right border-dark">
+                                        <td class="text-right border-dark">
         
                                         </td>
-                                        <td class="text-right border-left border-right border-dark">
+                                        <td class="text-right border-dark">
                                             
                                         </td>
                                     </tr>
@@ -226,12 +227,12 @@
                                     <t t-set="first_partner_id" t-value="0"/>
                                 </t>
                                 <tr>
-                                    <td class="text-center border-left border-right border-dark">
+                                    <td class="text-center border-dark">
                                         <t t-set="l_no" t-value="l_no + 1"/>
                                         <t t-esc="l_no"/>
                                         <t t-set="count_partner_id_item" t-value="count_partner_id_item + 1"/>
                                     </td>
-                                    <td class="text-left border-left border-right border-dark">
+                                    <td class="text-left border-dark">
                                         <span t-if="ol.partner_id.display_name">
                                             <span t-field="ol.partner_id.display_name"/>
     
@@ -240,23 +241,24 @@
                                             -
                                         </span>
                                     </td>
-                                        <td class="text-left border-left border-right border-dark">
-                                        <span t-if="ol.billing_no">
-                                            <span t-field="ol.billing_no"/>
+                                    <td class="text-left border-dark">
+                                        <t t-set="billing_id" t-value="o.env['account.billing'].search([('name', '=', ol.billing_no)])"/>
+                                        <span t-if="billing_id">
+                                            <span t-esc="billing_id.form_no"/>
                                         </span>
-                                        <span t-if="not ol.billing_no">
+                                        <span t-if="not billing_id">
                                             -
                                         </span>
                                     </td>
-                                    <td class="text-left border-left border-right border-dark">
-                                        <span t-if="ol.invoice_id">
-                                            <span t-field="ol.invoice_id.name"/>
+                                    <td class="text-left border-dark">
+                                        <span t-if="ol.invoice_id.form_no">
+                                            <span t-field="ol.invoice_id.form_no"/>
                                         </span>
-                                        <span t-if="not ol.invoice_id">
+                                        <span t-if="not ol.invoice_id.form_no">
                                             -
                                         </span>
                                     </td>
-                                    <td class="text-center border-left border-right border-dark">
+                                    <td class="text-center border-dark">
                                         <span t-if="ol.invoice_date">
                                             <span t-field="ol.invoice_date"/>
                                         </span>
@@ -264,51 +266,51 @@
                                             -
                                         </span>
                                     </td>
-                                    <td class="text-right border-left border-right border-dark">
+                                    <td class="text-right border-dark">
                                         
                                     </td>
-                                    <td class="text-right border-left border-right border-dark">
+                                    <td class="text-right border-dark">
                                         <span t-if="ol.amount">
-                                            <span t-esc="'{:.2f}'.format(float(ol.amount))"/>
+                                            <span t-esc="'{:,.2f}'.format(float(ol.amount))"/>
                                             <t t-set="total_amount" t-value="total_amount + ol.amount"/>
                                         </span>
                                         <span t-if="not ol.amount">
                                             -
                                         </span>
                                     </td>
-                                    <td class="text-right border-left border-right border-dark">
+                                    <td class="text-right border-dark">
                                         
                                     </td>
                                 </tr>
                             </t>
                         </t>
                         <tr>
-                            <td class="text-center border-left border-right border-bottom border-dark">
+                            <td class="text-center">
                             
                             </td>
-                            <td class="text-left border-left border-right border-bottom border-dark">
+                            <td class="text-left">
                                 
                             </td>
-                            <td class="text-right border-left border-right border-bottom border-dark">
+                            <td class="text-right">
                                 
                             </td>
-                            <td class="text-right border-left border-right border-bottom border-dark">
+                            <td class="text-right">
                                 
                             </td>
-                            <td class="text-right border-left border-right border-bottom border-dark">
+                            <td class="text-right">
 
                             </td>
-                            <td class="text-center border-left border-right border-bottom border-dark">
+                            <td class="text-center">
                                 <t t-if="count_partner_id_item">
                                     <t t-set="count_total" t-value="count_total + count_partner_id_item"/>
                                     <t t-esc="'{0:,.0f}'.format(count_partner_id_item)"/> ใบ
                                     <t t-set="count_partner_id_item" t-value="0"/>
                                 </t>        
                             </td>
-                            <td class="text-right border-left border-right border-bottom border-dark">
+                            <td class="text-right">
 
                             </td>
-                            <td class="text-right border-left border-right border-bottom border-dark">
+                            <td class="text-right">
                                 
                             </td>
                         </tr>
@@ -319,12 +321,12 @@
         </div>
         <div class="footer" style="margin-top:0mm;vertical-align: bottom;font-family: KanitLight">
             <div class="last-page not-first-page">
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-4 border-left border-top border-dark">
                         
                     </div>
                     <div class="col-4 text-center border-left border-top border-dark">
-                        <div class="row" style="font-size: 12px;">
+                        <div class="row" style="font-size: 14px;">
                             <div class="col-4 text-left">
                                 รวมบิล
                             </div>
@@ -343,7 +345,7 @@
                         
                     </div>
                 </div>
-                <div class="row" style="font-size: 12px;">
+                <div class="row" style="font-size: 14px;">
                     <div class="col-4 border-left border-top border-bottom border-dark" >
                         <br/>
                         ผู้ลงบัญชี.........................................................................................
@@ -358,7 +360,7 @@
                         วันที่ลง...........................................................................................
                         <br/>&#160;
                     </div>
-                    <div class="col-4 border-left border-right border-top border-bottom border-dark">
+                    <div class="col-4 border-top border-left border-right border-bottom border-dark">
                         <br/>
                         ผู้ตัดบัญชี.........................................................................................
                         <br/>

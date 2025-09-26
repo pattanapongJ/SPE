@@ -15,6 +15,9 @@
     "depends": ["base","hdc_billing_period_route","account","hdc_partner_company_delivery","hdc_fiscal_position_by_company"],
     "data": [
         "view/partner_view.xml",
+        "view/quotation_views.xml",
+        "view/sale_blanket_order_views.xml",
+        "view/sale_view.xml",
     ],
     "auto_install": False,
     "installable": True,

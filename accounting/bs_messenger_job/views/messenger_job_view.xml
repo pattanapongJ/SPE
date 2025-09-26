@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- filter -->
+    <record id="view_messenger_job_search" model="ir.ui.view">
+        <field name="name">messenger.job.search</field>
+        <field name="model">messenger.job</field>
+        <field name="arch" type="xml">
+            <search string="Messenger Job">
+                <field name="name" string="Name"
+                    filter_domain="[('name', 'ilike', self)"/>
+                <separator/>
+                <separator/>
+                <filter string="Draft" name="state_draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="state_confirm" domain="[('state', '=', 'confirm')]"/>
+                <filter string="Cancelled" name="state_cancel" domain="[('state', '=', 'cancel')]"/>
+                <filter string="Done" name="state_done" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter string="Date" name="date" date="date"/>
+                <separator/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <filter string="Status" name="state" domain="[]" context="{'group_by': 'state'}"/>
+                <filter string="Company" name="company" domain="[]" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                <separator/>
+                <filter invisible="1" string="Late Activities" name="activities_overdue"
+                    domain="[('my_activity_date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                    help="Show all records which has next action date is before today"/>
+                <filter invisible="1" string="Today Activities" name="activities_today"
+                    domain="[('my_activity_date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter invisible="1" string="Future Activities" name="activities_upcoming_all"
+                    domain="[('my_activity_date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- tree -->
+    <record id="view_messenger_job_tree" model="ir.ui.view">
+        <field name="name">bs.messenger.job.view.tree</field>
+        <field name="model">messenger.job</field>
+        <field name="arch" type="xml">
+            <tree string="Messenger Job">
+                <field name="name"/>
+                <field name="responsible_person"/>
+                <field name="messenger_name"/>
+                <field name="billing_route_id"/>
+                <field name="payment_period_id"/>
+                <field name="date"/>
+                <field name="state" widget="badge" decoration-info="state in ['draft', 'confirm']"
+                decoration-success="state == 'done'" decoration-danger="state == 'cancel'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- form -->
+    <record id="view_messenger_job_form" model="ir.ui.view">
+        <field name="name">bs.messenger.job.view.form</field>
+        <field name="model">messenger.job</field>
+        <field name="arch" type="xml">
+            <form string="Messenger Job">
+                <header>
+                    <button name="action_confirm" attrs="{'invisible': [('state', '!=', 'draft')]}" type="object" string="Confirm" class="btn btn-primary"/>
+                    <button name="action_done" attrs="{'invisible': [('state', '!=', 'confirm')]}" type="object" string="Validate" class="btn btn-primary"/>
+                    <button name="action_cancel" attrs="{'invisible': [('state', '!=', 'draft')]}" type="object" string="Cancel"/>
+                    <button name="action_set_to_draft" attrs="{'invisible': [('state', '=', 'draft')]}" type="object" string="Reset To Draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <!-- invisible fields -->
+                    <div class="invisible">
+                        <field name="company_id" invisible="1"/>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field name="responsible_person"/>
+                            <field name="messenger_name"/>
+                            <field name="billing_route_id"/>
+                            <field name="payment_period_id"/>
+                            <field name="description"/>
+                        </group>
+                        <group name="right">
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="invoice_tab" string="Invoices">
+                            <!-- button -->
+                            <button name="action_multiple_selection_window" type="object" string="Add Batch Billing Line" class="btn btn-success mb-2 oe_edit_only" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="batch_billing_line_id"/>
+                                    <field name="partner_id"/>
+                                    <field name="billing_no"/>
+                                    <field name="spe_billing_no"/>
+                                    <field name="billing_date"/>
+                                    <field name="invoice_no"/>
+                                    <field name="spe_invoice"/>
+                                    <field name="invoice_date"/>
+                                    <field name="payment_term_id"/>
+                                    <field name="due_date"/>
+                                    <field name="due_payment"/>
+                                    <field name="amount_due" sum="Total Amount Due"/>
+                                    <field name="billing_route_id"/>
+                                    <field name="name_1"/>
+                                    <field name="date_1"/>
+                                    <field name="remark_1"/>
+                                    <field name="name_2"/>
+                                    <field name="date_2"/>
+                                    <field name="remark_2"/>
+                                    <field name="name_3"/>
+                                    <field name="date_3"/>
+                                    <field name="remark_3"/>
+                                    <field name="done_job"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <div class="oe_note">
+                            <field name="notes" placeholder="Add a note..." widget="text" class="oe_editable"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </div>
+                    </footer>
+                </sheet>
+                <div class="o_attachment_preview"/>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>

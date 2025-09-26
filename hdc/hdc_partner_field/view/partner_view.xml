@@ -49,7 +49,7 @@
                             widget="res_partner_many2one"
                             placeholder="Company"
                             domain="[('is_company', '=', True)]" context="{'default_is_company': True, 'show_vat': True}"
-                            attrs="{'invisible': ['|', '&amp;', ('is_company','=', True),('parent_id', '=', False),('company_name', '!=', False),('company_name', '!=', '')]}"/>
+                            />
                 </group>
             </xpath>
 

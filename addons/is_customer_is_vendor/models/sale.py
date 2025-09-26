@@ -10,15 +10,13 @@ class SaleOrder(models.Model):
         'res.partner', string='Customer', readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
         required=True, change_default=True, index=True, tracking=1,
-        domain = "[('customer', '=', True),('parent_id', '=', False)]")
+        domain = "[('customer', '=', True)]")
     
     @api.onchange('partner_id')
     def _get_domain_partner_id_sale_order(self):
-        partner_invoice_id = ['|', ('company_id', '=', False), ('company_id', '=', self.company_id.id),
-                              ('id', 'in', self.partner_id.child_ids.ids), ('type', '=', 'invoice')]
-        partner_shipping_id = ['|', ('company_id', '=', False), ('company_id', '=', self.company_id.id),
-                              ('id', 'in', self.partner_id.child_ids.ids), ('type', '=', 'delivery')]
+        partner_invoice_id = [('customer', '=', True)]
+        partner_shipping_id = [('customer', '=', True)]
         res = {}
-        domain_partner = [('customer', '=', True),('parent_id', '=', False)]
+        domain_partner = [('customer', '=', True)]
         res['domain'] = {'partner_invoice_id': partner_invoice_id, 'partner_shipping_id': partner_shipping_id, 'partner_id': domain_partner}
         return res

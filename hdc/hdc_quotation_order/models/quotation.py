@@ -411,6 +411,7 @@ class Quotations(models.Model):
     billing_period_id = fields.Many2one(comodel_name='account.billing.period', string="Billing Period")
     billing_route_id = fields.Many2one(comodel_name='account.billing.route', string="Billing Route")
     project_name = fields.Many2one("sale.project",string = "Project Name",domain="['|',('status', '=', 'active'),('end_date', '<', date_order), ('end_date', '=', False)]")
+    remark_project = fields.Text('Remark ข้อมูลโครงการ')
     blanket_order_id = fields.Many2one("sale.blanket.order", string = "Project Name")
     contact_person = fields.Many2one('res.partner', string = 'Contact Person', readonly = False)
     warehouse_id = fields.Many2one('stock.warehouse', string = 'Warehouse', required = True, readonly = True,
@@ -435,6 +436,12 @@ class Quotations(models.Model):
         for order in self:
             order.lang_code = order.partner_id.lang
 
+    @api.onchange('project_name')
+    def _onchange_project_name(self):
+        if self.project_name and self.project_name.remark_project:
+            self.remark_project = self.project_name.remark_project
+        else:
+            self.remark_project = False
 
     @api.model
     def _default_note_en(self):
@@ -1422,22 +1429,41 @@ class Quotations(models.Model):
             days = self.payment_term_id.days
             self.validity_date = today + timedelta(days=days)
 
+    def update_quotation_line_pick_location_id(self):
+        for rec in self:
+            for line in rec.quotation_line:
+                putaway_id = line.env['stock.putaway.rule'].search([('product_id', '=', line.product_id.id), ('company_id', '=', line.company_id.id), ('location_out_id.warehouse_id', '=', line.warehouse_id.id)], limit = 1)
+                if putaway_id:
+                    line.pick_location_id = putaway_id.location_out_id.id
+                else:
+                    if self.warehouse_id:
+                        line.pick_location_id = line.warehouse_id.out_type_id.default_location_src_id.id
+
 class QuotationLine(models.Model):
     _name = 'quotation.order.line'
     _description = 'Quotation Order Line'
     _order = 'quotation_id, sequence, id'
     _check_company_auto = True
 
-    bom_revision = fields.Char(string="Revision", compute="_onchange_bom_revision")
+    bom_revision = fields.Char(
+        string="Revision",
+        compute="_compute_bom_revision",
+        store=True
+    )
 
-    def _onchange_bom_revision(self):
+    #แก้ไขบัคให้ชั่วคราว(หน้างาน)เพราะ error หน้างานไม่รู้ว่าแก้ไขถูกจุดหรือไม่
+    # @api.depends('product_id', 'quotation_id.company_id')
+    def _compute_bom_revision(self):
         for line in self:
+            revision = ""
             if line.product_id:
-                bom = self.env['mrp.bom']._bom_find(product=line.product_id, company_id=line.quotation_id.company_id.id)
+                bom = self.env['mrp.bom']._bom_find(
+                    product=line.product_id,
+                    company_id=line.quotation_id.company_id.id
+                )
                 if bom:
-                    line.bom_revision = bom.bom_revision
-                else:
-                    line.bom_revision = ""
+                    revision = bom.bom_revision or ""
+            line.bom_revision = revision
 
     quotation_id = fields.Many2one('quotation.order', string='Quotation Reference', required=True, ondelete='cascade', index=True, copy=False)
     validity_date = fields.Date(related='quotation_id.validity_date', string='Validity Date', store=True)

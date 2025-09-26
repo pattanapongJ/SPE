@@ -89,8 +89,8 @@
 									</span>
 								</div>
 								<div class="col-10 text-left" style="font-size: 15px;">
-									<span t-esc="o.company_partner_id.name" />
-									<span>(<t t-esc="o.company_partner_id.branch"/>)</span>
+									<span t-esc="o.branch_id.company_id.name_th" />
+									<span>(<t t-esc="o.branch_id.name"/>)</span>
 								</div>
 							</div>
 							<div class="row">
@@ -130,12 +130,7 @@
 							</span>
 						</div>
 						<div class="col-11 text-left">
-							<span t-field="o.company_id.street" />
-							<span t-field="o.company_id.street2" />
-							<span t-field="o.company_id.city" />
-							<span t-field="o.company_id.state_id" />
-							<span t-field="o.company_id.zip" />
-							<span t-field="o.company_id.country_id" />
+							<span t-field="o.branch_id.address" />
 						</div>
 					</div>
 					<div class="row pl-4">

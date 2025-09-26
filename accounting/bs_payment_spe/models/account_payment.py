@@ -12,10 +12,18 @@ class AccountPayment(models.Model):
 
     book_no = fields.Char(string="Book No.")
     no = fields.Char(string="No.")
-    messenger_name = fields.Many2one(string="Message Name",comodel_name='hr.employee')
+    messenger_name = fields.Many2one(string="Message Name", comodel_name="hr.employee")
     commission_date = fields.Date(string="Commission Date")
     internal_note = fields.Char(string="Internal Note")
     saleperson_id = fields.Many2one("res.users", string="Saleperson")
+    document_ref = fields.Char(string="Document Ref.")
+    pdc_ref = fields.Char(string="PDC Reference", compute="_compute_pdc_ref")
+    invoice_tag_id = fields.Many2one("sh.invoice.tags", string="Invoice Tag")
+
+    @api.depends("pdc_id")
+    def _compute_pdc_ref(self):
+        for rec in self:
+            rec.pdc_ref = rec.pdc_id.name or ""
 
 
 class AccountPaymentRegister(models.TransientModel):
@@ -23,7 +31,7 @@ class AccountPaymentRegister(models.TransientModel):
 
     book_no = fields.Char(string="Book No.")
     no = fields.Char(string="No.")
-    messenger_name = fields.Many2one(string="Message Name",comodel_name='hr.employee')
+    messenger_name = fields.Many2one(string="Message Name", comodel_name="hr.employee")
 
     def _create_payment_vals_from_wizard(self):
         val = super(AccountPaymentRegister, self)._create_payment_vals_from_wizard()
@@ -33,8 +41,10 @@ class AccountPaymentRegister(models.TransientModel):
             {
                 "book_no": self.book_no,
                 "no": self.no,
-                "messenger_name": self.messenger_name.id if self.messenger_name else False,
-                "branch_id": self.branch_id.id
+                "messenger_name": (
+                    self.messenger_name.id if self.messenger_name else False
+                ),
+                "branch_id": self.branch_id.id,
             }
         )
         return val
@@ -56,8 +66,10 @@ class AccountPaymentRegister(models.TransientModel):
             {
                 "book_no": self.book_no,
                 "no": self.no,
-                "messenger_name": self.messenger_name.id if self.messenger_name else False,
-                "branch_id": self.branch_id.id
+                "messenger_name": (
+                    self.messenger_name.id if self.messenger_name else False
+                ),
+                "branch_id": self.branch_id.id,
             }
         )
         return vals

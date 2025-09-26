@@ -1,6 +1,6 @@
 {
     "name": "bs_payment_spe",
-    "version": "14.0.2.2",
+    "version": "14.0.2.4",
     "category": "Accounting",
     "description": "bs_payment_spe",
     "author": "Basic-Solution Co., Ltd.",

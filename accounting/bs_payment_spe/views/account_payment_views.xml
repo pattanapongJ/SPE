@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <!-- View account.payment form -->
     <record id="view_account_payment_form" model="ir.ui.view">
         <field name="name">view.account.payment.form</field>
@@ -13,13 +12,16 @@
                 <field name="messenger_name" attrs="{'invisible':[('partner_type','=','supplier')]}" options="{'no_create':True}"/>
                 <field name="commission_date" attrs="{'invisible':[('partner_type','=','supplier')]}"/>
             </xpath>
-
             <xpath expr="//field[@name='ref']" position="after">
                 <field name="internal_note" attrs="{'invisible':[('partner_type','=','supplier')]}"/>
+                <field name="document_ref"/>
+                <field name="pdc_ref"/>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="invoice_tag_id"/>
             </xpath>
         </field>
     </record>
-
     <record id="view_account_payment_tree" model="ir.ui.view">
         <field name="name">view.account.payment.tree</field>
         <field name="model">account.payment</field>
@@ -29,9 +31,5 @@
                 <field name="saleperson_id"/>
             </field>
         </field>
-
     </record>
-
-
-
 </odoo>

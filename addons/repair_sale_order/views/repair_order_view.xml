@@ -25,12 +25,13 @@
             <xpath expr="//field[@name='invoice_state']" position="after">
                 <field name="create_sale_order" invisible="1" />
             </xpath>
-            <xpath expr="//button[@name='action_repair_start']" position="attributes">
+            <!-- <xpath expr="//button[@name='action_repair_start']" position="attributes">
                 <attribute
                     name="attrs"
                 >{'invisible': ['|', ('create_sale_order', '=', True), '&amp;', ('state','!=','confirmed'), '!', '&amp;', ('state','=','ready'), ('invoice_method','=','b4repair')]}</attribute>
-            </xpath>
-            <xpath expr="//button[@name='action_repair_start']" position="after">
+            </xpath> -->
+            <!-- เาอไปไว้ในdewalt -->
+            <!-- <xpath expr="//button[@name='action_repair_start']" position="after">
                 <button
                     name="action_create_sale_order"
                     type="object"
@@ -38,7 +39,7 @@
                     attrs="{'invisible': ['|', '|', ('create_sale_order', '=', False), ('sale_order_count', '&gt;', 0), ('state','!=','confirmed')]}"
                     class="oe_highlight"
                 />
-            </xpath>
+            </xpath> -->
             <xpath expr="//field[@name='invoice_method']" position="attributes">
                 <attribute
                     name="attrs"

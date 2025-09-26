@@ -55,8 +55,8 @@
                 </div>
                 <div class="d-flex" style="margin-left: 70%">
                     <p style="padding: 0px; margin-right: 50px;">
-                        <t t-if="doc.billing_route_id.name">
-                            <span t-esc="doc.billing_route_id.name"/>
+                        <t t-if="doc.billing_terms_id">
+                            <span t-esc="doc.billing_terms_id.code"/>
                         </t>
                         <t t-else="">
                             <span style="color: white">-</span>
@@ -309,8 +309,24 @@
                                         <span t-if="not ol.price_unit">-</span>
                                     </td>
                                     <td class="text-right">
+                                        <t t-set="subtotal" t-value="0"/>
                                         <span t-if="ol.price_subtotal">
-                                            <span t-esc="'{:,.2f}'.format(float(ol.price_subtotal))" style="margin-right:3px;"/></span>
+                                            <t t-if="ol.tax_ids">
+                                                <t t-foreach="ol.tax_ids" t-as="tax">
+                                                    <t t-if="tax.price_include">
+                                                        <t t-set="subtotal" t-value="ol.price_total"/>
+                                                        <t t-break=""/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <t t-set="subtotal" t-value="ol.price_subtotal"/>
+                                                        <t t-break=""/>
+                                                    </t>
+                                                </t>
+                                            </t>
+                                            <t t-else="">
+                                                <t t-set="subtotal" t-value="ol.price_subtotal"/>
+                                            </t>
+                                            <span t-esc="'{:,.2f}'.format(float(subtotal))" style="margin-right:3px;"/></span>
                                         <span t-if="not ol.price_subtotal" style="margin-right:3px;">-</span>
                                     </td>
                                 </tr>
@@ -390,16 +406,16 @@
                 </div>
                 <div class="d-flex justify-content-center" style="margin-right: 10px;">
                     <div style="padding: 10px 30px 10px 30px;">
-                        <t t-if="doc.currency_id.amount_to_text_th(abs(doc.amount_residual), o.currency_id.currency_unit_label)">
-                            <span style="position: relative; top: 5px;font-size: 15px" t-esc="doc.currency_id.amount_to_text_th(abs(doc.amount_residual), o.currency_id.currency_unit_label)"/>
+                        <t t-if="doc.currency_id.amount_to_text_th(abs(doc.amount_total), o.currency_id.currency_unit_label)">
+                            <span style="position: relative; top: 5px;font-size: 15px" t-esc="doc.currency_id.amount_to_text_th(abs(doc.amount_total), o.currency_id.currency_unit_label)"/>
                         </t>
                         <t t-else="">
                             <span style="color: white; position: relative; top: 20px;">-</span>
                         </t>
                     </div>
                     <div>
-                        <t t-if="doc.amount_residual">
-                            <span style="color: white" t-esc="'{:,.2f}'.format(float(doc.amount_residual))"/>
+                        <t t-if="doc.amount_total">
+                            <span style="color: white" t-esc="'{:,.2f}'.format(float(doc.amount_total))"/>
                         </t>
                         <t t-else="">
                             <span style="color: white">-</span>
@@ -408,8 +424,8 @@
                 </div>
                 <div class="d-flex justify-content-end" style="">
                     <div>
-                        <t t-if="doc.amount_residual">
-                            <span style="position: relative; top: -26px; margin-right: 10px;" t-esc="'{:,.2f}'.format(float(doc.amount_residual))"/>
+                        <t t-if="doc.amount_total">
+                            <span style="position: relative; top: -26px; margin-right: 10px;" t-esc="'{:,.2f}'.format(float(doc.amount_total))"/>
                         </t>
                         <t t-else="">
                             <span style="color: white;position: relative; top: -14px; margin-right: 10px;">-</span>
@@ -433,19 +449,19 @@
                 <div class="d-flex justify-content-end" style="">
                     <span style="color: white">-</span>
                 </div>
-                <div style="margin-left: 45%; position: relative; top: -57px;">
+                <div style="margin-left: 50%; position: relative; top: -137px;">
                     <t t-if="doc.name">
                         <span t-esc="doc.name"/>
                     </t>
                     <t t-else="">
                         <span style="color: white">-</span>
                     </t>
-                </div>
+                </div>""
                 <br/>
                 <div style="width: 100%;">
-                    <div style="margin-left: 45%;">
+                    <div style="margin-left: 50%;">
                         <t t-if="doc.create_uid">
-                            <span style="position: relative; top: -66px;" t-field="doc.create_uid"/>
+                            <span style="position: relative; top: -146px;" t-field="doc.create_uid"/>
                         </t>
                         <t t-else="">
                             <span style="color: white; position: relative; top: -41px;">-</span>

@@ -41,7 +41,12 @@
                             <div class="d-flex">
                                 <div style="margin-right: 5px;">
                                     <!-- [2]  -->
-                                    <span t-field="doc.partner_id.ref"/>
+                                    <t t-if="doc.move_type == 'entry'">
+                                        <span t-esc="doc.line_ids[0].partner_id.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span t-field="doc.partner_id.ref"/>
+                                    </t>
                                 </div>
                                 <div>
                                     <!-- [3]  -->
@@ -93,38 +98,43 @@
                             <span t-field="doc.ref"/>
                         </div>
                     </div>
-                    <div class="d-flex">
-                        <div style="font-weight: bold;  margin-right: 3px; width: 155px;">
-                            วันที่เอกสาร/Document Date:
+                    <t t-if="doc.move_type != 'entry'">
+                        <div class="d-flex">
+                            <div style="font-weight: bold;  margin-right: 3px; width: 155px;">
+                                วันที่เอกสาร/Document Date:
+                            </div>
+                            <div style="">
+                                <span t-field="doc.invoice_date"/>
+                            </div>
                         </div>
-                        <div style="">
-                            <span t-field="doc.invoice_date"/>
+                    </t>
+                    <t t-if="doc.move_type != 'entry'">
+                        <div class="d-flex">
+                            <div style="font-weight: bold;  margin-right: 3px; width: 155px;">
+                                วันที่ครบกำหนด/Due Date:
+                            </div>
+                            <div style="">
+                                <t t-if="doc.invoice_date_due">
+                                    <span t-field="doc.invoice_date_due"/>
+                                </t>
+                                <t t-elif="doc.invoice_payment_term_id.name">
+                                    <span t-field="doc.invoice_date_due_payment_term"/>
+                                </t>
+                                <t t-else="">
+                                </t>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex">
-                        <div style="font-weight: bold;  margin-right: 3px; width: 155px;">
-                            วันที่ครบกำหนด/Due Date:
-                        </div>
-                        <div style="">
-                            <t t-if="doc.invoice_date_due">
-                                <span t-field="doc.invoice_date_due"/>
-                            </t>
-                            <t t-elif="doc.invoice_payment_term_id.name">
-                                <span t-field="doc.invoice_date_due_payment_term"/>
-                            </t>
-                            <t t-else="">
-                            </t>
-                        </div>
-                    </div>
+                    </t>
                     <div class="d-flex">
                         <div style="font-weight: bold;  margin-right: 3px; width: 155px;">
                             อัตราแลกเปลี่ยน/Currency:
                         </div>
                         <div class="d-flex">
                             <!-- [20] -->
+                            <!-- [20] -->
                             <t t-set="compute_rate" t-value="1"/>
                             <t t-if="doc.manual_currency_rate_active">
-                                <span t-esc="'{:.2f}'.format(doc.manual_currency_inverse_rate)"/>
+                                <span t-esc="'{:.4f}'.format(doc.manual_currency_inverse_rate)"/>
                             </t>
                             <t t-else="">
                                 <t t-if="doc.currency_id.rate_ids">
@@ -138,8 +148,8 @@
                                     </t>
                                     <!-- <span t-esc="'{:,.2f}'.format(doc.currency_id.rate_ids.inverse_company_rate)"/> -->
                                 </t>
-                                <span t-esc="'{:,.2f}'.format(compute_rate)"/>
-                            </t>
+                                <span t-esc="'{:,.4f}'.format(compute_rate)"/>
+                            </t> /
                             <!-- [13] -->
                             <div style="margin-left: 5px;">
                                 <span t-field="doc.currency_id.name"/>

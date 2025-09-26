@@ -1,6 +1,6 @@
 {
     'name': 'bs_withholding_tax_certificarte_form',
-    'version': '14.0.0.2',
+    'version': '14.0.0.5',
     'author': 'Basic-Solution Co., Ltd.',
     'website': 'https://www.basic-solution.com/',
     "license": "AGPL-3",

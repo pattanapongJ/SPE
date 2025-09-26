@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_multiple_selection_form" model="ir.ui.view">
+        <field name="name">multiple.selection.form</field>
+        <field name="model">multi.selection.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Batch Billing Lines">
+                <field name="messenger_job_id" invisible="1" />
+                <field name="batch_line_ids" nolabel="1" options="{'no_create': True}">
+                    <tree>
+                        <field name="partner_id"/>
+                        <field name="billing_no"/>
+                        <field name="billing_date"/>
+                        <field name="billing_due_date"/>
+                        <field name="billing_receipt_date"/>
+                        <field name="invoice_id"/>
+                        <field name="invoice_date"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button string="Add to Messenger Job" type="object" name="action_add_lines" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_multiple_selection_wizard" model="ir.actions.act_window">
+        <field name="name">Add Billing Lines</field>
+        <field name="res_model">multi.selection.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_multiple_selection_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="hdc_delivery_booth_so_report_document">
-        <t t-if="not o and doc">
+         <t t-if="not o and doc">
             <t t-set="o" t-value="doc"/>
         </t>
 
@@ -11,7 +11,7 @@
         <t t-if="not o or not 'company_id' in o">
             <t t-set="company" t-value="res_company"/>
         </t>
-        <div class="header" style="font-family: KanitLight;" >
+        <div class="header" style="font-family: KanitLight;">
             <span t-if="doc.state in ['cancel']">
                 <div class="row">
                     <div class="col-2 text-left">
@@ -39,16 +39,16 @@
                         <div style="font-size: 28.18px; font-weight: bold; color: red; text-align: center; padding-bottom: 10px;">
                             <span style="display: inline-block; border-bottom: 3px solid red; padding-bottom: 3px; position: relative;">
                                 <strong>Cancel</strong>
-                                <span style="display: block; border-bottom: 2px solid red; position: absolute; bottom: -5px; width: 100%;"></span>
+                                <span style="display: block; border-bottom: 2px solid red; position: absolute; bottom: -5px; width: 100%;"/>
                             </span>
                         </div>
                     </div>
-                    <div class="col-3 text-right"  style="margin-right:0mm;margin-top:3mm">
-                        <div style="font-size: 18.18px; font-weight: bold;" >
+                    <div class="col-3 text-right" style="margin-right:0mm;margin-top:3mm">
+                        <div style="font-size: 18.18px; font-weight: bold;">
                             <span><strong>ใบส่งสินค้าออกบูธ</strong></span><br/>
                             <!-- <span><strong>(Sale Order)</strong></span><br/> -->
                         </div>
-                        <div style="font-size: 18.18px; font-weight: bold;" >
+                        <div style="font-size: 18.18px; font-weight: bold;">
                             <!-- <span>ต้นฉบับ/Original</span><br/> -->
                             <span>หน้า </span>
                             <span class="page"/>
@@ -79,12 +79,12 @@
                         </span>
                         <br/>
                     </div>
-                    <div class="col-3 text-right"  style="margin-right:0mm;margin-top:3mm">
-                        <div style="font-size: 18.18px; font-weight: bold;" >
+                    <div class="col-3 text-right" style="margin-right:0mm;margin-top:3mm">
+                        <div style="font-size: 18.18px; font-weight: bold;">
                             <span><strong>ใบส่งสินค้าออกบูธ</strong></span><br/>
                             <!-- <span><strong>(Sale Order)</strong></span><br/> -->
                         </div>
-                        <div style="font-size: 18.18px; font-weight: bold;" >
+                        <div style="font-size: 18.18px; font-weight: bold;">
                             <!-- <span>ต้นฉบับ/Original</span><br/> -->
                             <span>หน้า </span>
                             <span class="page"/>
@@ -248,7 +248,7 @@
                         </div>
                         <div class="col-7">
                             <span>
-                               <t t-esc="name_revision" />
+                               <t t-esc="name_revision"/>
                             </span>
                         </div>
                     </div>
@@ -258,7 +258,7 @@
                         </div>
                         <div class="col-7">
                             <span t-if="doc.create_date">
-                                <t t-esc="doc.create_date.strftime('%d/%m/%Y')" />
+                                <t t-esc="doc.create_date.strftime('%d/%m/%Y')"/>
                             </span>
                             <span t-if="not doc.create_date">
                                -
@@ -271,7 +271,7 @@
                         </div>
                         <div class="col-7">
                            <span t-if="doc.user_employee_id">
-                               <t t-esc="doc.user_employee_id.name" />
+                               <t t-esc="doc.user_employee_id.name"/>
                             </span>
                             <span t-if="not doc.user_employee_id">
                                -
@@ -283,10 +283,10 @@
                             <span><strong>โทร:</strong></span>
                         </div>
                         <div class="col-7">
-                            <span t-if="doc.user_id">
-                               <span t-field="doc.user_id.phone"/>
+                            <span t-if="doc.user_employee_id.work_phone">
+                               <span t-field="doc.user_employee_id.work_phone"/>
                             </span>
-                            <span t-if="not doc.user_id.phone">
+                            <span t-if="not doc.user_employee_id.work_phone">
                                -
                             </span>
                         </div>
@@ -359,18 +359,41 @@
            
 
         <!-- <div class="row" style="font-size: 15px;margin-bottom:3mm;margin-top:3mm;border-top: 1px solid black;border-bottom: 1px solid black;max-height: 10px;height: 10px;"></div> -->
-        <div class="article" 
-        style="font-family: KanitLight;" 
-        t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
-            <div class="row" >
+        <div class="article" style="font-family: KanitLight;" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <div class="row">
         
                 <t t-set="l_no" t-value="0"/>
                 <table class="table" style="font-size: 13.64px;line-height: 18px">
                     <thead style="background-color:#ECECEC">
                         <tr>
                             <th class="text-center" style="width: 6%;">ลำดับ</th>
-                            <th class="text-center" style="width: 20%;">รหัสสินค้า</th>
-                            <th class="text-center" style="width: 28%;">รายละเอียด</th>
+                            <t t-if="not description_type">
+                                <th class="text-center" style="width: 20%;">รหัสสินค้า</th>
+                                <th class="text-center" style="width: 28%;">รายละเอียด</th>
+                            </t>
+                            <t t-elif="description_type == 'name_product'">
+                                <th class="text-center" style="width: 48%;">ชื่อสินค้า</th>
+                            </t>
+                            <t t-elif="description_type == 'pic_name_product'">
+                                <th class="text-center" style="width: 20%;">รูปภาพ/ชื่อสินค้า</th>
+                                <th class="text-center" style="width: 28%;">รายละเอียด</th>
+                            </t>
+                            <t t-elif="description_type == 'ex_barcode_name_product'">
+                                <th class="text-center" style="width: 20%;">บาร์โค็ต/รหัสสินค้า/ชื่อสินค้า</th>
+                                <th class="text-center" style="width: 28%;">รายละเอียด</th>
+                            </t>
+                            <t t-elif="description_type == 'ex_name_product'">
+                                <th class="text-center" style="width: 20%;">รหัสสินค้า/ชื่อสินค้า</th>
+                                <th class="text-center" style="width: 28%;">รายละเอียด</th>
+                            </t>
+                            <t t-elif="description_type == 'barcode_name_product'">
+                                <th class="text-center" style="width: 20%;">บาร์โค็ต/ชื่อสินค้า</th>
+                                <th class="text-center" style="width: 28%;">รายละเอียด</th>
+                            </t>
+                            <t t-elif="description_type == 'ex_barcode_cus_product'">
+                                <th class="text-center" style="width: 20%;">Barcode Customer/Description</th>
+                                <th class="text-center" style="width: 28%;">รายละเอียด</th>
+                            </t>
                             <th class="text-center" style="width: 12%;">จำนวน</th>
                             <th class="text-center" style="width: 12%;">หน่วย</th>
                             <th class="text-center" style="width: 12%;">จำนวนเงิน</th>
@@ -381,11 +404,11 @@
                         <t t-set="set_no_vat" t-value="0"/>
                         <t t-set="set_vat" t-value="0"/>
                         <t t-set="set_dis" t-value="0"/>
-                        <t t-foreach="o.order_line" t-as="ol" >
+                        <t t-foreach="o.order_line" t-as="ol">
                             <t t-if="ol.display_type in ['line_section', 'line_note']">
                                 <tr>
-                                    <td></td>
-                                    <td colspan="7" class="text-left" >
+                                    <td/>
+                                    <td colspan="7" class="text-left">
                                         <span t-if="ol.name">
                                             <t t-if="ol.display_type == 'line_note'">
                                                 <em>
@@ -409,23 +432,187 @@
                                         <t t-set="l_no" t-value="l_no + 1"/>
                                         <t t-esc="l_no"/>
                                     </td>
-                                    <td class="text-left">
-                                        <span t-if="ol.product_id.default_code">
-                                            <span t-field="ol.product_id.default_code"/>
-                                        </span>
-                                        <span t-if="not ol.product_id.default_code">
-                                            -
-                                        </span>
-                                    </td>
-                                    <td class="text-left">
-                                        <span t-if="ol.name">
-                                            <span t-field="ol.name"/>
-                                        </span>
-                                        <span t-if="not ol.name">
-                                            -
-                                        </span>
-                                    </td>
-                                    <td class="text-center" >
+                                   <t t-if="description_type == 'name_product'">
+                                        <td class="text-left">
+                                            <span t-if="ol.product_id.name">
+                                                <span t-field="ol.product_id.name"/>
+                                            </span>
+                                            <span t-if="not ol.product_id.name">
+                                                -
+                                            </span>
+                                        </td>
+                                    </t>
+                                    <t t-elif="description_type == 'pic_name_product'">
+                                        <td class="text-left">
+                                            <span t-if="ol.product_id.image_256">
+                                                <img t-if="ol.product_id.image_256" t-att-src="'data:image/png;base64,%s' % to_text(ol.product_id.image_256)" style="max-height: 96px; max-width: 96px;" /><br/> 
+                                                <!-- <span t-field="ol.name"/> -->
+                                            </span>
+                                            <span t-if="not ol.product_id.image_256">
+                                                -
+                                            </span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-if="ol.name">
+                                                <span t-field="ol.name"/>
+                                            </span>
+                                            <span t-if="not ol.name">
+                                                -
+                                            </span>
+                                        </td>
+                                    </t>
+                                    <t t-elif="description_type == 'barcode_name_product'">
+
+                                      <!-- กรองเฉพาะตาม product_tmpl_id ไม่เช็ค partner_id -->
+                                      <t t-set="filtered_barcodes" 
+                                         t-value="ol.product_id.product_tmpl_id.barcode_spe_ids.filtered(
+                                                      lambda b: b.product_tmpl_id == ol.product_id.product_tmpl_id 
+                                                                and b.barcode_modern_trade 
+                                                                and not (b.barcode_modern_trade.endswith('INB') 
+                                                                         or b.barcode_modern_trade.endswith('MTB'))
+                                                  )" />
+                                  
+                                      <!-- ถ้ามี barcode ที่ผ่านเงื่อนไข -->
+                                      <t t-if="filtered_barcodes">
+                                          <!-- เอาเฉพาะ record แรก -->
+                                          <t t-set="barcode1" t-value="filtered_barcodes[0]" />
+                                  
+                                          <td class="text-left">
+                                              <!--<span>-->
+                                              <!--    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;quiet=%s' % ('Code128', barcode1.barcode_modern_trade, 400, 100, 0)" -->
+                                              <!--         style="height:30px" alt="Barcode"/>-->
+                                              <!--</span>-->
+                                              
+                                              <span>
+                                                  <t t-esc="barcode1.barcode_modern_trade" />
+                                              </span>
+                                          </td>
+                                  
+                                          <td class="text-left">
+                                              <span t-if="ol.name">
+                                                  <span t-field="ol.name"/>
+                                              </span>
+                                              <span t-if="not ol.name">-</span>
+                                          </td>
+                                      </t>
+                                  
+                                      <!-- ถ้าไม่มี barcode ที่ผ่านเงื่อนไข -->
+                                      <t t-else="">
+                                          <td class="text-left">
+                                              <span t-if="ol.product_id.barcode">
+                                                  <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;quiet=%s' % ('Code128', ol.product_id.barcode, 400, 100, 0)" 
+                                                       style="height:30px" alt="Barcode"/>
+                                              </span>
+                                          </td>
+                                          <td class="text-left">
+                                              <span t-if="ol.name">
+                                                  <span t-field="ol.name"/>
+                                              </span>
+                                              <span t-if="not ol.name">-</span>
+                                          </td>
+                                      </t>
+                                  </t>
+
+                                    <t t-elif="description_type == 'ex_barcode_name_product'">
+                                            <t t-set="filtered_barcodes" t-value="ol.product_id.product_tmpl_id.barcode_spe_ids.filtered(lambda b: b.partner_id == doc.partner_id and b.product_tmpl_id == ol.product_id.product_tmpl_id)" />
+                                            <t t-if="filtered_barcodes">
+                                                <td class="text-left">
+                                                    <span>
+                                                        <!-- ใช้ t-foreach สำหรับวนลูปผลลัพธ์ -->
+                                                        <t t-foreach="filtered_barcodes" t-as="barcode1">
+                                                            <!-- <span t-field="barcode1.external_code" /> -->
+                                                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;quiet=%s' % ('Code128', barcode1.external_code, 400, 100, 0)" style="height:30px" alt="Barcode"/>
+                                                        </t>
+                                                    </span>
+                                                </td>
+                                                <td class="text-left">
+                                                    <span t-if="ol.name">
+                                                        <t t-foreach="filtered_barcodes" t-as="barcode1">
+                                                            <span t-field="barcode1.external_code" />
+                                                        </t>
+                                                        <br />
+                                                        <span t-field="ol.name" />
+                                                    </span>
+                                                    <span t-if="not ol.name">
+                                                        -
+                                                    </span>
+                                                </td>
+                                            </t>
+                                            <t t-else="">
+                                                <td class="text-left">
+                                                    <span t-if="ol.product_id.barcode">
+                                                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;quiet=%s' % ('Code128', ol.product_id.barcode, 400, 100, 0)" style="height:30px" alt="Barcode"/>
+                                                    </span>
+                                                    <span t-if="not ol.product_id.barcode">
+                                                        
+                                                    </span>
+                                                </td>
+                                                <td class="text-left">
+                                                    <span t-if="ol.name">
+                                                        <span t-field="ol.product_id.default_code"/><br/>
+                                                        <span t-field="ol.name"/>
+                                                    </span>
+                                                    <span t-if="not ol.name">
+                                                        -
+                                                    </span>
+                                                </td>
+                                            </t>
+                                        </t>
+                                    <t t-elif="description_type == 'ex_name_product'">
+                                        <td class="text-left">
+                                            <span t-if="ol.name">
+                                                <span t-field="ol.product_id.default_code"/>
+                                            </span>
+                                            <span t-if="not ol.name">
+                                                -
+                                            </span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-if="ol.name">
+                                                <span t-field="ol.name"/>
+                                            </span>
+                                            <span t-if="not ol.name">
+                                                -
+                                            </span>
+                                        </td>
+                                    </t>
+                                    <t t-elif="description_type == 'ex_barcode_cus_product'">
+                                        <td class="text-left">
+                                            <span t-if="ol.name">
+                                                <span t-field="ol.barcode_customer"/>
+                                            </span>
+                                            <span t-else="">
+                                                -
+                                            </span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-if="ol.name">
+                                                <span t-field="ol.name"/>
+                                            </span>
+                                            <span t-if="not ol.name">
+                                                -
+                                            </span>
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td class="text-left">
+                                            <span t-if="ol.product_id.default_code">
+                                                <span t-field="ol.product_id.default_code"/>
+                                            </span>
+                                            <span t-if="not ol.product_id.default_code">
+                                                -
+                                            </span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-if="ol.name">
+                                                <span t-field="ol.name"/>
+                                            </span>
+                                            <span t-if="not ol.name">
+                                                -
+                                            </span>
+                                        </td>
+                                    </t>
+                                    <td class="text-center">
                                         <span t-if="ol.product_uom_qty">
                                             <span t-field="ol.product_uom_qty"/>
                                         </span>
@@ -433,7 +620,7 @@
                                             -
                                         </span>
                                     </td>
-                                    <td class="text-center" >
+                                    <td class="text-center">
                                         <span t-if="ol.product_uom">
                                             <span t-field="ol.product_uom"/>
                                         </span>
@@ -476,7 +663,7 @@
                             <div class="row">
                             <div class="col-12">
                                 <span t-if="doc.note_th and len(doc.note_th) &gt; 220">
-                                    <span t-esc="doc.note_th[:220] + '...'" /> <span t-field="doc.modify_type_txt"/> <span t-field="doc.plan_home"/>
+                                    <span t-esc="doc.note_th[:220] + '...'"/> <span t-field="doc.modify_type_txt"/> <span t-field="doc.plan_home"/>
                                 </span>
                                 <span t-if="doc.note_th and len(doc.note_th) &lt;= 220">
                                     <span t-field="doc.note_th"/> <span t-field="doc.modify_type_txt"/> <span t-field="doc.plan_home"/>
@@ -501,29 +688,29 @@
                             <div class="col-6 text-left"><strong>มูลค่ารวมก่อนภาษี</strong></div>
                             <div class="col-6 text-right" style="border-bottom: 1px solid black"><span t-esc="'{0:,.2f}'.format(float(doc.amount_before_discount))"/></div>
                         </div>
-                        <div class="row" >
+                        <div class="row">
                             <div class="col-6 text-left"><strong>ส่วนลด <span t-esc="doc.global_discount"/></strong></div>
                             <div class="col-6 text-right" style="border-bottom: 1px solid black">
                             <span t-esc="'{0:,.2f}'.format(float(doc.global_discount_total))"/>
                     
                             </div>
                         </div>
-                        <div class="row" >
+                        <div class="row">
                             <div class="col-6 text-left"><strong>เงินหลังหักส่วนลด</strong></div>
                             <div class="col-6 text-right" style="border-bottom: 1px solid black">
-                                <t t-set="total_before_tax" t-value="doc.amount_untaxed" />
-                                <t t-set="total_after_discount" t-value="total_before_tax - doc.total_discount_amount" />
+                                <t t-set="total_before_tax" t-value="doc.amount_untaxed"/>
+                                <t t-set="total_after_discount" t-value="total_before_tax - doc.total_discount_amount"/>
                                 <span t-esc="'{0:,.2f}'.format(doc.amount_untaxed)"/>
                             </div>
                         </div>
-                        <div class="row" >
+                        <div class="row">
                             <t t-if="doc.order_line">
-                                <t t-set="max_tax_amount" t-value="0" />
-                                <t t-set="check_tax_id_amount" t-value="[line.tax_id.amount for line in doc.order_line]" />
-                                <t t-set="max_tax_amount_1" t-value="max(check_tax_id_amount)" />
+                                <t t-set="max_tax_amount" t-value="0"/>
+                                <t t-set="check_tax_id_amount" t-value="[line.tax_id.amount for line in doc.order_line]"/>
+                                <t t-set="max_tax_amount_1" t-value="max(check_tax_id_amount)"/>
                             </t>
                             <t t-if="not doc.order_line">
-                                <t t-set="max_tax_amount_1" t-value="0" />
+                                <t t-set="max_tax_amount_1" t-value="0"/>
                             </t>
                             <div class="col-6 text-left"><strong>ภาษีมูลค่าเพิ่ม <span t-esc="'{0:,.2f}'.format(float(max_tax_amount_1))"/>%</strong></div>
                             <div class="col-6 text-right" style="border-bottom: 1px solid black">
@@ -540,7 +727,7 @@
                 <br/>
 
                 <div style="font-family: KanitLight">
-                    <div  class="row" style="font-size: 11px;border-top: 1px solid black;overflow: hidden;">
+                    <div class="row" style="font-size: 11px;border-top: 1px solid black;overflow: hidden;">
                         <br/>
                         <div class="col-3" align="center" style="border: 1px solid black; padding: 10px;">
                                 <br/><br/> 
@@ -548,7 +735,7 @@
                                     <div class="col-8"><span>.......................................................</span></div>
                                 </div>
                                 <br/> 
-                                <div style="font-size: 11px">&#160;</div>
+                                <div style="font-size: 11px"> </div>
                                 <div>ผู้อนุมัติซื้อ</div>
                                 <div>วันที่ / Date............/.............../..............</div>
                         </div>
@@ -559,7 +746,7 @@
                                     
                                 </div>
                             	<div><t t-if="doc.user_sale_agreement_employee" t-esc="doc.user_sale_agreement_employee.name"/></div>
-                                <div style="font-size: 11px">&#160;</div>
+                                <div style="font-size: 11px"> </div>
                                 <div>ผู้จัดทำ</div>
                                 <div>วันที่ / Date............/.............../..............</div>
             
@@ -570,7 +757,7 @@
                                     <div class="col-8"><span>.......................................................</span></div>
                                 </div>
                                 <div><span t-field="doc.user_employee_id.name"/></div>
-                                <div style="font-size: 11px">&#160;</div>
+                                <div style="font-size: 11px"> </div>
                                 <div>พนักงานขาย</div>
                                 <div>วันที่ / Date............/.............../..............</div>
             
@@ -582,7 +769,7 @@
                                     <div class="col-8"><span>.......................................................</span></div>
                                 </div>
                             	<div><span t-if="doc.sale_manager_employee_id" t-esc="doc.sale_manager_employee_id.name"/></div>
-                                <div style="font-size: 11px">&#160;</div>
+                                <div style="font-size: 11px"> </div>
                                 <div>ผู้จัดการฝ่ายขาย</div>
                                 <div>วันที่ / Date............/.............../..............</div>
             
@@ -590,8 +777,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 text-right"  style="margin-right:0mm;margin-top:3mm">
-                        <div style="font-size: 11px" >
+                    <div class="col-12 text-right" style="margin-right:0mm;margin-top:3mm">
+                        <div style="font-size: 11px">
                             <t t-set="check_iso" t-value="'hdc_sale_general_reports.hdc_delivery_booth_so_report'"/>
                             <span>
                                 <span t-esc="doc.check_iso_name(check_iso)"/>

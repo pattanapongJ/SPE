@@ -79,6 +79,8 @@ class ReceiptList(models.Model):
     delivery_mode = fields.Many2one("delivery.carrier", string='Delivery Mode')
     etd = fields.Date(string='ETD')
     eta = fields.Date(string='ETA')
+    rl_reference = fields.Char(string='RL Reference', copy=False)
+    old_invoice_ref = fields.Char(string='Old Invoice Reference', copy=False)
 
     remarks = fields.Text(string='Remarks')
 
@@ -122,6 +124,22 @@ class ReceiptList(models.Model):
     ], string='Billing Status', compute='_get_invoiced', store=True, readonly=True, copy=False, default='no')
 
     shipper = fields.Char(string='Shipper',)
+
+    def name_get(self):
+        result = []
+        for rec in self:
+            old_invoice_ref = ''
+            if rec.is_oversea:
+                old_invoice_ref = rec.commercial_invoice
+            else:
+                old_invoice_ref = rec.invoice_no
+
+            if old_invoice_ref:
+                name = '%s (%s)' %(rec.name,old_invoice_ref)
+            else:
+                name = rec.name
+            result.append((rec.id, name))
+        return result
 
     @api.depends('state', 'line_ids.qty_to_invoice')
     def _get_invoiced(self):
@@ -413,9 +431,15 @@ class ReceiptList(models.Model):
                     'price': line.price_unit,
                     'shipped_qty': line.product_uom_qty
                 }))
+        if self.is_oversea:
+            old_invoice_ref = self.commercial_invoice
+        else:
+            old_invoice_ref = self.invoice_no
         receipt_lists = self.copy({
                     'name': 'New',
                     'line_ids': [],
+                    'rl_reference': self.name,
+                    'old_invoice_ref': old_invoice_ref,
                     'cost_lines': [],
                     'valuation_adjustment_lines': [],
                     'state': 'draft',

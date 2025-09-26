@@ -23,6 +23,7 @@
                     <field name="customer_ref"/>
                     <field name="is_job_no"/>
                     <field name="original_value"/>
+                    <field name="register_date"/>
                 </group>
             </xpath>
         </field>

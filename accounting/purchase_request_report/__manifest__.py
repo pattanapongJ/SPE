@@ -1,6 +1,6 @@
 {
     'name': 'Purchase request report',
-    'version': '14.0.2',
+    'version': '14.0.1',
     'category': 'Inventory',
     'author': 'Basic-Solution Co., Ltd.',
     'depends':['purchase_request', 'product','partner_fax'],

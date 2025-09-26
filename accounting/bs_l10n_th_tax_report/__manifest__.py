@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Bs_l10n_th_tax_report',
-    'version': '14.0.6.2',
+    'version': '14.0.6.3',
     'summary': """ Bs_l10n_th_tax_report Summary""",
     'author': "Basic Solution Co., Ltd.",
     'website': "https://www.basic-solution.com",

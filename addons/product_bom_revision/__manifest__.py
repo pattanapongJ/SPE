@@ -9,7 +9,12 @@
     "author": "C2i Change 2 improve," "Odoo Community Association (OCA)",
     "category": "Warehouse",
     "website": "https://github.com/OCA/product-attribute",
-    "depends": ["product", "mrp"],
-    "data": ["views/mrp_view.xml", "views/product_view.xml"],
+    "depends": ["sale","product", "mrp"],
+    "data": [
+            "security/ir.model.access.csv",
+            "views/mrp_view.xml", 
+            "views/product_view.xml",
+            "views/sale_views.xml"
+            ],
     "installable": True,
 }

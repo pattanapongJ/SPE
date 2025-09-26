@@ -1,23 +1,51 @@
-
 from odoo import api, fields, models
 
+
 class AccountBilling(models.Model):
-    _inherit = 'account.billing'
-    
-    sales_person_id = fields.Many2one('res.users', string='Salesperson', domain=[('sale_team_id', '!=', False)])
-    percentage      = fields.Float(string='% (Percent)', default=100.0)
-    branch_id = fields.Many2one('res.branch', string='Branch')
-    
+    _inherit = "account.billing"
+
+    sales_person_id = fields.Many2one(
+        "hr.employee", string="Salesperson", domain=[("sale_team_id", "!=", False)]
+    )
+    percentage = fields.Float(string="% (Percent)", default=100.0)
+    branch_id = fields.Many2one("res.branch", string="Branch")
+    billing_route = fields.Many2one("account.billing.route", string="Billing Route")
+    billing_terms = fields.Many2one("account.billing.terms", string="Billing Terms")
+    billing_period = fields.Many2one("account.billing.period", string="Billing Period")
+    payment_period = fields.Many2one("account.payment.period", string="Payment Period")
+    batch_no = fields.Char(string="Batch No.")
+    is_service = fields.Boolean(string="Service", default=True)
+    @api.onchange("partner_id")
+    def _onchange_partner_id(self):
+        """When partner changes, update billing fields from partner setup"""
+        for rec in self:
+            if rec.partner_id:
+                rec.billing_route = rec.partner_id.billing_route_id.id
+                rec.billing_terms = rec.partner_id.billing_terms_id.id
+                rec.billing_period = rec.partner_id.billing_period_id.id
+                rec.payment_period = rec.partner_id.payment_period_id.id
+            else:
+                rec.billing_route = False
+                rec.billing_terms = False
+                rec.billing_period = False
+                rec.payment_period = False
+
     def _filter_selected_invoices(self):
-        existing_bills = self.env['account.billing'].search([("partner_id", "=", self.partner_id.id),("bill_type", "=", self.bill_type),('id', '!=', self._origin.id)])
+        existing_bills = self.env["account.billing"].search(
+            [
+                ("partner_id", "=", self.partner_id.id),
+                ("bill_type", "=", self.bill_type),
+                ("id", "!=", self._origin.id),
+            ]
+        )
         selected_invoice_ids = []
-        
+
         for line in existing_bills:
             for inv in line.billing_line_ids:
                 selected_invoice_ids.append(inv.invoice_id.id)
         return selected_invoice_ids
-    
-    def _get_invoices(self, date=False, types=False):   
+
+    def _get_invoices(self, date=False, types=False):
         selected_invoice_ids = self._filter_selected_invoices()
 
         invoices = self.env["account.move"].search(
@@ -28,59 +56,59 @@ class AccountBilling(models.Model):
                 ("currency_id", "=", self.currency_id.id),
                 (date, "<=", self.threshold_date),
                 ("move_type", "in", types),
-                ('payment_state', '!=', 'reversed'),
-                ('id', 'not in', selected_invoice_ids),
+                ("payment_state", "!=", "reversed"),
+                ("id", "not in", selected_invoice_ids),
             ]
         )
         return invoices
-    
-    def _get_invoices_salesperson(self, date=False, types=False, start_date=False, end_date=False):
+
+    def _get_invoices_salesperson(
+        self, date=False, types=False, start_date=False, end_date=False
+    ):
         selected_invoice_ids = self._filter_selected_invoices()
-        
+
         domain = [
-                ('partner_id', '=', self.partner_id.id),
-                ('state', '=', 'posted'),
-                ('payment_state', '!=', 'paid'),
-                ('currency_id', '=', self.currency_id.id),
-                (date, '<=', self.threshold_date),
-                ('move_type', 'in', types),
-                ('payment_state', '!=', 'reversed'),
-                ('id', 'not in', selected_invoice_ids),
-                ('invoice_date', '>=', start_date),
-                ('invoice_date', '<=', end_date),
-            ]
-        
+            ("partner_id", "=", self.partner_id.id),
+            ("state", "=", "posted"),
+            ("payment_state", "!=", "paid"),
+            ("currency_id", "=", self.currency_id.id),
+            (date, "<=", self.threshold_date),
+            ("move_type", "in", types),
+            ("payment_state", "!=", "reversed"),
+            ("id", "not in", selected_invoice_ids),
+            ("invoice_date", ">=", start_date),
+            ("invoice_date", "<=", end_date),
+        ]
+
         if self.sales_person_id:
-            domain.append(('invoice_user_id', '=', self.sales_person_id.id))
-            
-        invoices = self.env['account.move'].search(domain)
+            domain.append(("invoice_user_id", "=", self.sales_person_id.id))
+
+        invoices = self.env["account.move"].search(domain)
 
         return invoices
-    
+
     def _get_invoices_with_date(self, start_date=False, end_date=False, types=False):
         selected_invoice_ids = self._filter_selected_invoices()
         domain = [
-                    ('partner_id', '=', self.partner_id.id),
-                    ('state', '=', 'posted'),
-                    ('payment_state', '!=', 'paid'),
-                    ('currency_id', '=', self.currency_id.id),
-                    ('invoice_date', '>=', start_date),
-                    ('invoice_date', '<=', end_date),
-                    ('move_type', 'in', types),
-                    ('payment_state', '!=', 'reversed'),
-                    ('id', 'not in', selected_invoice_ids),
-                ]
-        
+            ("partner_id", "=", self.partner_id.id),
+            ("state", "=", "posted"),
+            ("payment_state", "!=", "paid"),
+            ("currency_id", "=", self.currency_id.id),
+            ("invoice_date", ">=", start_date),
+            ("invoice_date", "<=", end_date),
+            ("move_type", "in", types),
+            ("payment_state", "!=", "reversed"),
+            ("id", "not in", selected_invoice_ids),
+        ]
+
         if self.sales_person_id:
-            domain.append(
-                ('invoice_user_id', '=', self.sales_person_id.id)
-            )
-        
+            domain.append(("invoice_user_id", "=", self.sales_person_id.id))
+
         invoices = self.env["account.move"].search(domain)
-        
+
         return invoices
-    
-    @api.onchange('sales_person_id')
+
+    @api.onchange("sales_person_id")
     def _onchange_invoice_salesperson(self):
         self.billing_line_ids = False
         Billing_line = self.env["account.billing.line"]
@@ -89,7 +117,9 @@ class AccountBilling(models.Model):
             types = ["in_invoice", "in_refund"]
             if self.bill_type == "out_invoice":
                 types = ["out_invoice", "out_refund"]
-            invoices = self._get_invoices_salesperson(self.threshold_date_type, types, self.start_date, self.end_date)
+            invoices = self._get_invoices_salesperson(
+                self.threshold_date_type, types, self.start_date, self.end_date
+            )
         else:
             if invoices[0].move_type in ["out_invoice", "out_refund"]:
                 self.bill_type = "out_invoice"
@@ -98,16 +128,16 @@ class AccountBilling(models.Model):
         for line in invoices:
             amount = line.amount_residual
             if line.move_type in ["out_refund", "in_refund"]:
-                amount *= (-1)
+                amount *= -1
             self.billing_line_ids += Billing_line.new(
-                    {
-                        "invoice_id": line.id, 
-                        "total": amount,
-                        "amount_total": line.amount_total
-                    }
-                )
-            
-    @api.onchange('start_date', 'end_date')
+                {
+                    "invoice_id": line.id,
+                    "total": amount,
+                    "amount_total": line.amount_total,
+                }
+            )
+
+    @api.onchange("start_date", "end_date")
     def _onchange_date_range(self):
         self.billing_line_ids = False
         Billing_line = self.env["account.billing.line"]
@@ -116,7 +146,9 @@ class AccountBilling(models.Model):
             types = ["in_invoice", "in_refund"]
             if self.bill_type == "out_invoice":
                 types = ["out_invoice", "out_refund"]
-            invoices = self._get_invoices_with_date(self.start_date, self.end_date, types)
+            invoices = self._get_invoices_with_date(
+                self.start_date, self.end_date, types
+            )
         else:
             if invoices[0].move_type in ["out_invoice", "out_refund"]:
                 self.bill_type = "out_invoice"
@@ -125,15 +157,15 @@ class AccountBilling(models.Model):
         for line in invoices:
             amount = line.amount_residual
             if line.move_type in ["out_refund", "in_refund"]:
-                amount *= (-1)
+                amount *= -1
             self.billing_line_ids += Billing_line.new(
-                    {
-                        "invoice_id": line.id, 
-                        "total": amount,
-                        "amount_total": line.amount_total
-                    }
-                )
-            
+                {
+                    "invoice_id": line.id,
+                    "total": amount,
+                    "amount_total": line.amount_total,
+                }
+            )
+
     @api.onchange("partner_id", "currency_id", "threshold_date", "threshold_date_type")
     def _onchange_invoice_list(self):
         self.billing_line_ids = False
@@ -152,96 +184,114 @@ class AccountBilling(models.Model):
         for line in invoices:
             amount = line.amount_residual
             if line.move_type in ["out_refund", "in_refund"]:
-                amount *= (-1)
+                amount *= -1
             self.billing_line_ids += Billing_line.new(
-                    {
-                        "invoice_id": line.id, 
-                        "total": amount,
-                        "amount_total": line.amount_total
-                    }
-                )
-            
+                {
+                    "invoice_id": line.id,
+                    "total": amount,
+                    "amount_total": line.amount_total,
+                }
+            )
+
     def get_domain(self):
-        selected_invoice_ids = self.billing_line_ids.mapped('invoice_id.id')
+        selected_invoice_ids = self.billing_line_ids.mapped("invoice_id.id")
 
         if self.billing_line_ids.invoice_id:
-                selected_invoice_ids += self.billing_line_ids.invoice_id.ids 
+            selected_invoice_ids += self.billing_line_ids.invoice_id.ids
         domain = [
-            ('partner_id', '=', self.partner_id.id),
-            ('payment_state', '!=', 'paid'),
-            ('state', '=', 'posted'),
-            ('move_type', '=', self.bill_type),
-            ('currency_id', '=', self.currency_id.id),
-            ('id', 'not in', selected_invoice_ids),
-            ('payment_state', '!=', 'reversed'),
+            ("partner_id", "=", self.partner_id.id),
+            ("payment_state", "!=", "paid"),
+            ("state", "=", "posted"),
+            ("move_type", "=", self.bill_type),
+            ("currency_id", "=", self.currency_id.id),
+            ("id", "not in", selected_invoice_ids),
+            ("payment_state", "!=", "reversed"),
         ]
-        
+
         if self.sales_person_id:
-            domain.append(('invoice_user_id', '=', self.sales_person_id.id))
-        
+            domain.append(("invoice_user_id", "=", self.sales_person_id.id))
+
         return domain
-            
-    
+
+
 class AccountBillingLine(models.Model):
-    _inherit = 'account.billing.line'
-    
-    amount_total = fields.Float(string='Total')
-    percentage  = fields.Float(string='%', compute='_compute_percentage', store=True)
-    bill_total  = fields.Float(string='Billing Total')
-    bill_balance = fields.Float(string='Billing Balance')
-    service     = fields.Char(string='Service')
-    
-    @api.depends('billing_id.percentage')
+    _inherit = "account.billing.line"
+
+    amount_total = fields.Float(string="Total")
+    percentage = fields.Float(string="%", compute="_compute_percentage", store=True)
+    bill_total = fields.Float(string="Billing Total")
+    bill_balance = fields.Float(string="Billing Balance")
+    service = fields.Char(string="Service")
+    billing_route = fields.Many2one("account.billing.route", string="Billing Route")
+    billing_terms = fields.Many2one("account.billing.terms", string="Billing Terms")
+    billing_period = fields.Many2one("account.billing.period", string="Billing Period")
+    payment_period = fields.Many2one("account.payment.period", string="Payment Period")
+    sale_person_id = fields.Many2one("hr.employee", string="Sales person")
+    branch_name = fields.Char(string="Branch Name")
+    customer_po = fields.Char(
+        string="Customer PO",
+        related="invoice_id.customer_po",
+        store=True,
+        readonly=False,
+    )
+    spe_invoice = fields.Char(
+        string="SPE Invoice",
+        related="invoice_id.form_no",
+        store=True,
+        readonly=True,
+    )
+
+    @api.depends("billing_id.percentage")
     def _compute_percentage(self):
         for rec in self:
             if rec.billing_id.percentage is not False:
                 rec.percentage = rec.billing_id.percentage
-                
-                rec.bill_total = (rec.amount_total * (rec.percentage/100))
-                
+
+                rec.bill_total = rec.amount_total * (rec.percentage / 100)
+
                 if rec.total < 0:
-                    rec.bill_balance = (rec.total + rec.bill_total)
+                    rec.bill_balance = rec.total + rec.bill_total
                 else:
-                    rec.bill_balance = (rec.total - rec.bill_total)
-                
+                    rec.bill_balance = rec.total - rec.bill_total
+
         return True
-    
-    @api.onchange('invoice_id')
-    def _get_invoice_domain(self): 
-        domain = []
-        active_bill_id = self.billing_id._origin.id or self.billing_id.id
-        if not active_bill_id:
-            domain = self.billing_id.get_domain()
-        else:
-            # current active bill
-            active_bill = self.billing_id
 
-            bill_type = active_bill.bill_type
-            partner_id = active_bill.partner_id.id
-            
-            selected_invoice_ids = active_bill.billing_line_ids.mapped('invoice_id.id')
+    # @api.onchange("invoice_id")
+    # def _get_invoice_domain(self):
+    #     domain = []
+    #     active_bill_id = self.billing_id._origin.id or self.billing_id.id
+    #     if not active_bill_id:
+    #         domain = self.billing_id.get_domain()
+    #     else:
+    #         # current active bill
+    #         active_bill = self.billing_id
 
-            if self.invoice_id:
-                selected_invoice_ids += self.invoice_id.ids
-            
-            domain = [
-                ('partner_id', '=', partner_id),
-                ('payment_state', '!=', 'paid'),
-                ('state', '=', 'posted'),
-                ('move_type', '=', bill_type),
-                ('currency_id', '=', active_bill.currency_id.id),
-                ('id', 'not in', selected_invoice_ids),
-                ('invoice_user_id', '=', active_bill.sales_person_id.id),
-                ('payment_state', '!=', 'reversed'),
-            ]
-            
-        amount = self.invoice_id.amount_residual
-        if self.invoice_id.move_type in ["out_refund", "in_refund"]:
-            amount *= (-1)
-        self.total = amount
+    #         bill_type = active_bill.bill_type
+    #         partner_id = active_bill.partner_id.id
 
-        self.amount_total = self.invoice_id.amount_total
-        
-        self._compute_percentage()
-            
-        return {'domain': {'invoice_id': domain}}
+    #         selected_invoice_ids = active_bill.billing_line_ids.mapped("invoice_id.id")
+
+    #         if self.invoice_id:
+    #             selected_invoice_ids += self.invoice_id.ids
+
+    #         domain = [
+    #             ("partner_id", "=", partner_id),
+    #             ("payment_state", "!=", "paid"),
+    #             ("state", "=", "posted"),
+    #             ("move_type", "=", bill_type),
+    #             ("currency_id", "=", active_bill.currency_id.id),
+    #             ("id", "not in", selected_invoice_ids),
+    #             ("invoice_user_id", "=", active_bill.sales_person_id.id),
+    #             ("payment_state", "!=", "reversed"),
+    #         ]
+
+    #     amount = self.invoice_id.amount_residual
+    #     if self.invoice_id.move_type in ["out_refund", "in_refund"]:
+    #         amount *= -1
+    #     self.total = amount
+
+    #     self.amount_total = self.invoice_id.amount_total
+
+    #     self._compute_percentage()
+
+    #     return {"domain": {"invoice_id": domain}}
