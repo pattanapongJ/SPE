@@ -42,6 +42,7 @@ class PurchaseOrder(models.Model):
     
     commercial_invoice = fields.Char(string="Commercial Invoice (CI)", tracking=True)
     commercial_invoice_date = fields.Date(string="Commercial Invoice Date", tracking=True)
+    free_text_commercial_invoice = fields.Char(string="Free Text Commercial Invoice")
 
     # @api.depends("partner_id")
     # def _compute_commercial_invoice(self):
