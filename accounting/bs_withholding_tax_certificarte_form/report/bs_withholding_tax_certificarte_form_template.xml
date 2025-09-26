@@ -88,10 +88,9 @@
 										ชื่อ
 									</span>
 								</div>
-								<t t-set="company_partner" t-value="o.env['res.company'].search([('partner_id', '=', o.company_partner_id.id)])"/>
 								<div class="col-10 text-left" style="font-size: 15px;">
-									<span t-esc="company_partner.name_th" />
-									<span>(<t t-esc="company_partner.branch_name_th"/>)</span>
+									<span t-esc="o.branch_id.company_id.name_th" />
+									<span>(<t t-esc="o.branch_id.name"/>)</span>
 								</div>
 							</div>
 							<div class="row">
@@ -131,12 +130,7 @@
 							</span>
 						</div>
 						<div class="col-11 text-left">
-							<span t-field="o.company_id.street" />
-							<span t-field="o.company_id.street2" />
-							<span t-field="o.company_id.city" />
-							<span t-field="o.company_id.state_id" />
-							<span t-field="o.company_id.zip" />
-							<span t-field="o.company_id.country_id" />
+							<span t-field="o.branch_id.address" />
 						</div>
 					</div>
 					<div class="row pl-4">
