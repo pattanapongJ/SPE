@@ -17,13 +17,14 @@ class AccountPayment(models.Model):
     internal_note = fields.Char(string="Internal Note")
     saleperson_id = fields.Many2one("res.users", string="Saleperson")
     document_ref = fields.Char(string="Document Ref.")
-    pdc_ref = fields.Char(string="PDC Reference", compute="_compute_pdc_ref")
+    pdc_ref = fields.Char(string="Cheque Reference", compute="_compute_pdc_ref")
     invoice_tag_id = fields.Many2one("sh.invoice.tags", string="Invoice Tag")
+    pdc_due_date = fields.Date(string="PDC Due Date", related="pdc_id.due_date")
 
     @api.depends("pdc_id")
     def _compute_pdc_ref(self):
         for rec in self:
-            rec.pdc_ref = rec.pdc_id.name or ""
+            rec.pdc_ref = rec.pdc_id.reference or ""
 
 
 class AccountPaymentRegister(models.TransientModel):
