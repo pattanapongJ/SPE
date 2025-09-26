@@ -16,6 +16,9 @@
                 <field name="internal_note" attrs="{'invisible':[('partner_type','=','supplier')]}"/>
                 <field name="document_ref"/>
                 <field name="pdc_ref"/>
+                <field name="pdc_due_date"/>
+                <field name="create_date"/>
+                <field name="create_uid"/>
             </xpath>
             <xpath expr="//field[@name='company_id']" position="after">
                 <field name="invoice_tag_id"/>
