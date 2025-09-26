@@ -5,7 +5,7 @@
 
 {
     "name": "HDC Partner Field Addon",
-    "version": "14.0.0.0.2",
+    "version": "14.0.0.0.3",
     "category": "Contact",
     'summary': "HDC Partner Field Addon",
     'description': "HDC Partner Field Addon",
