@@ -252,7 +252,7 @@
         <field name="page_width">210</field>
         <field name="orientation">Portrait</field>
         <field name="margin_top">60</field>
-        <field name="margin_bottom">40</field>
+        <field name="margin_bottom">53</field>
         <field name="margin_left">15</field>
         <field name="margin_right">15</field>
         <field name="header_line" eval="False" />
