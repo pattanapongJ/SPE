@@ -55,8 +55,8 @@
                 </div>
                 <div class="d-flex" style="margin-left: 70%">
                     <p style="padding: 0px; margin-right: 50px;">
-                        <t t-if="doc.billing_route_id.name">
-                            <span t-esc="doc.billing_route_id.name"/>
+                        <t t-if="doc.billing_terms_id">
+                            <span t-esc="doc.billing_terms_id.code"/>
                         </t>
                         <t t-else="">
                             <span style="color: white">-</span>
