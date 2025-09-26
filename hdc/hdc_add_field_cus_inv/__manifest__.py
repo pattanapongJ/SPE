@@ -19,14 +19,14 @@
 #
 {
     'name': 'HDC Add Fields Customer Invoice',
-    'version': '14.0.1',
+    'version': '14.0.3',
     'category': 'Accounting',
     'author': 'Hydra Data and Consulting Ltd',
     'website': 'http://www.hydradataandconsulting.co.th',
     'description': """
         HDC Add Fields Customer Invoice
     """,
-    'depends': ['base','sale_order_type', 'hdc_account_addon_fields', 'account'],
+    'depends': ['base','sale_order_type', 'hdc_account_addon_fields'],
     'data': [
         'security/ir.model.access.csv',
         'views/account_move_views.xml',
@@ -35,4 +35,3 @@
     'auto_install': False,
     'application': True,
 }
-###################################################################################
